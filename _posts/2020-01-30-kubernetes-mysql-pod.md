@@ -8,8 +8,6 @@ tags: [kubernetes, kubectl, mysql, pod]
 comments: true
 ---
 
-## MySQL pod 생성
-
 - 컨테이너 이미지가 존재한다는 가정하에 가능하다.
 - 만약 이미지가 없다면 Docker Hub에서 들고온다.
 (https://hub.docker.com/search?image_filter=official&type=image)
