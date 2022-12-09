@@ -3,11 +3,12 @@ layout: post
 title: "[Algorithms | C++] Quick sort : 퀵 정렬"
 date: 2016-02-04
 excerpt: "분할 정복 알고리즘의 하나, 평균적으로 매우 빠른 수행 속도를 자랑하는 정렬 방법"
-tags: [Algorithms, cpp, Quick, Sort, Programming]
+categories: [Algorithms, Quick sort, cpp]
+tags: [Algorithms, cpp, Quick sort, Programming]
 comments: true
 ---
 
-## 퀵 정렬(quick sort) 알고리즘의 개념 요약
+## 퀵 정렬(Quick sort) 알고리즘의 개념 요약
 * '찰스 앤터니 리처드 호어(Charles Antony Richard Hoare)'가 개발한 정렬 알고리즘
 * 퀵 정렬은 **불안정 정렬** 에 속하며, 다른 원소와의 비교만으로 정렬을 수행하는 **비교 정렬** 에 속한다.
 * 분할 정복 알고리즘의 하나로, 평균적으로 <span style="color:#4d0000">**매우 빠른 수행 속도를**</span> 자랑하는 정렬 방법
@@ -25,7 +26,7 @@ comments: true
     * 리스트의 크기가 0이나 1이 될 때까지 반복한다.
 * ![](/images/algorithms/quick_sort/quick-sort-concepts.png)
 
-## 퀵 정렬(quick sort) 알고리즘의 구체적인 개념
+## 퀵 정렬(Quick sort) 알고리즘의 구체적인 개념
 * 하나의 리스트를 피벗(pivot)을 기준으로 두 개의 비균등한 크기로 분할하고 분할된 부분 리스트를 정렬한 다음, 두 개의 정렬된 부분 리스트를 합하여 전체가 정렬된 리스트가 되게 하는 방법이다.
 * 퀵 정렬은 다음의 단계들로 이루어진다.
   * **분할(Divide):** 입력 배열을 피벗을 기준으로 비균등하게 2개의 부분 배열(피벗을 중심으로 왼쪽: 피벗보다 작은 요소들, 오른쪽: 피벗보다 큰 요소들)로 분할한다.
@@ -35,7 +36,7 @@ comments: true
 * ![](/images/algorithms/quick_sort/quick-sort.png)
 
 
-## 퀵 정렬(quick sort) 알고리즘의 예제
+## 퀵 정렬(Quick sort) 알고리즘의 예제
 * 배열에 5, 3, 8, 4, 9, 1, 6, 2, 7이 저장되어 있다고 가정하고 자료를 오름차순으로 정렬해 보자.
 * *퀵 정렬에서 피벗을 기준으로 두 개의 리스트로 나누는 과정(c언어 코드의 partition 함수의 내용)*
 * ![](/images/algorithms/quick_sort/quick-sort2.png)
@@ -52,7 +53,7 @@ comments: true
 * 3회전: 피벗(1회전의 오른쪽 부분리스트의 첫 번째 데이터)이 9인 경우,
   * 위와 동일한 방법으로 반복한다.
 
-### C++로 구현한 삽입정렬 (Insertion)
+### C++로 구현한 퀵 정렬 (Quick sort)
 [이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol-yoon.github.io/posts/data-structures-linked-list-array/)
 
 ```c++

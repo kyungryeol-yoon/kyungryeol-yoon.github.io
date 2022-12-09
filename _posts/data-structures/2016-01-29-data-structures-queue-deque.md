@@ -3,6 +3,7 @@ layout: post
 title: "[Data Structures | C++] Queue & Deque : 큐 & 데큐"
 date: 2016-01-29
 excerpt: "먼저 집어 넣은 데이터가 먼저 나오는 FIFO(First In First Out)구조로 저장하는 형식"
+categories: [Data Structures, Queue, cpp]
 tags: [Data Structures, cpp, Queue, Deque, Programming]
 comments: true
 ---
@@ -25,8 +26,8 @@ comments: true
 * peek() : 큐에서 가장 위에 있는 항목을 반환한다.
 * isEmpty() : 큐가 비어 있을 때에 true를 반환한다.
 
-* <mark>주의!</mark>
-  * 큐(Queue)에서 처음과 마지막 노드를 갱신할 때 실수가 나오기 쉽다.
+> 큐(Queue)에서 처음과 마지막 노드를 갱신할 때 실수가 나오기 쉽다.
+{: .prompt-warning }
 
 ### 큐의 단점
 

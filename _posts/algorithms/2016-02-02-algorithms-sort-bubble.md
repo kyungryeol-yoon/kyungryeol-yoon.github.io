@@ -1,19 +1,20 @@
 ---
 layout: post
-title: "[Algorithms | C++] Bubble : 버블 정렬"
+title: "[Algorithms | C++] Bubble sort : 버블 정렬"
 date: 2016-02-02
 excerpt: 서로 인접한 두 원소를 검사하여 정렬하는 알고리즘
-tags: [Algorithms, cpp, bubble, sort, Programming]
+categories: [Algorithms, Bubble sort, cpp]
+tags: [Algorithms, cpp, Bubble sort, Programming]
 comments: true
 ---
 
-## 버블 정렬(bubble sort) 알고리즘의 개념
+## 버블 정렬(Bubble sort) 알고리즘의 개념
 * 서로 **인접한** 두 원소를 검사하여 정렬하는 알고리즘
   * 인접한 2개의 레코드를 비교하여 크기가 순서대로 되어 있지 않으면 서로 교환한다.
 * 선택 정렬과 기본 개념이 유사하다.
 
 
-## 버블 정렬(bubble sort) 알고리즘의 예제
+## 버블 정렬(Bubble sort) 알고리즘의 예제
 * 배열에 7, 4, 5, 1, 3이 저장되어 있다고 가정하고 자료를 오름차순으로 정렬해 보자.
 
 * ![](/images/algorithms/bubble_sort/bubble-sort.png)
@@ -27,7 +28,7 @@ comments: true
 * 4회전
   * 첫 번째의 1과 두 번째의 3을 비교하여 교환하지 않는다.
 
-### C++로 구현한 버블 정렬 (Bubble)
+### C++로 구현한 버블 정렬 (Bubble sort)
 [이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol-yoon.github.io/posts/data-structures-linked-list-array/)
 
 ```c++
@@ -73,7 +74,7 @@ void DoubleList::BubbleSort() {
 }
 ```
 
-## 버블 정렬(bubble sort) 알고리즘의 특징
+## 버블 정렬(Bubble sort) 알고리즘의 특징
 * 장점
   * 구현이 매우 간단하다.
 * 단점
@@ -83,7 +84,7 @@ void DoubleList::BubbleSort() {
 * 일반적으로 자료의 교환 작업(SWAP)이 자료의 이동 작업(MOVE)보다 더 복잡하기 때문에 버블 정렬은 단순성에도 불구하고 **거의 쓰이지 않는다.**
 
 
-## 버블 정렬(bubble sort)의 시간복잡도
+## 버블 정렬(Bubble sort)의 시간복잡도
 시간복잡도를 계산한다면
 * 비교 횟수
   * 최상, 평균, 최악 모두 일정
