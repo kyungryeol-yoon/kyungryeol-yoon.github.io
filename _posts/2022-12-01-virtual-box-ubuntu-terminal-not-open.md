@@ -10,9 +10,9 @@ comments: true
 > Ubuntu Desktop 이라면 'Ctrl + Alt + F3' 으로 TTY Terminal 접속
 {: .prompt-info }
 
-    ```console
-        $ sudo locale-gen --purge
-    ```
+```console
+$ sudo locale-gen --purge
+```
 
 재부팅 후 Termianl 실행
 
