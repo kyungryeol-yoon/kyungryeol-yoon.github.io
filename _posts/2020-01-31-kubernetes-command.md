@@ -4,7 +4,7 @@ title: Kubernetes command
 date: 2020-01-30
 # excerpt: Kubernetes command 관련
 categories: [Kubernetes, command]
-tags: [kubernetes, kubectl, command]
+tags: [Kubernetes, kubectl, command]
 comments: true
 pin: true
 ---

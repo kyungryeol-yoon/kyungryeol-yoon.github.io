@@ -3,7 +3,7 @@ layout: post
 title: "[Algorithms] Quick sort"
 date: 2016-02-04
 excerpt: "분할 정복 알고리즘의 하나, 평균적으로 매우 빠른 수행 속도를 자랑하는 정렬 방법"
-tags: [algorithms, c++, quick, sort, programming]
+tags: [algorithms, cpp, quick, sort, programming]
 comments: true
 ---
 

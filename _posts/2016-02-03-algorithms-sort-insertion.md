@@ -3,7 +3,7 @@ layout: post
 title: "[Algorithms] Insertion sort"
 date: 2016-02-03
 excerpt: "매 순서마다 해당 원소를 삽입할 수 있는 위치를 찾는 알고리즘"
-tags: [algorithms, c++, insertion, sort, programming]
+tags: [algorithms, cpp, insertion, sort, programming]
 comments: true
 ---
 

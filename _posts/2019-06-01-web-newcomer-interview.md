@@ -3,7 +3,7 @@ layout: post
 title: "Web 신입 면접 정리"
 date: 2019-06-01
 excerpt: "Web 신입 면접과 관련하여 정리"
-tags: [web, spring, java, programming, mvc, interview]
+tags: [web, Spring, Java, programming, mvc, interview]
 comments: true
 ---
 
@@ -464,6 +464,7 @@ COntent-Length: 15
 ...
 {"msg": "hello"}
 {% endhighlight %}
+
 {% highlight xml %}
 # HTTP 2.0
 HEADER frame
@@ -722,27 +723,27 @@ DATA frame
   * Java를 하는 사람들에게 가장 익숙한 표기법이 바로 카멜 표기법
   * 기본적으로 변수를 소문자로 선언하는데, 두 단어 이상 이어진 변수는 첫 단어를 뺀 나머지 단어의 시작 부분을 대분자로 표기
   * 낙타의 등을 닮았다고 해서 붙여진 이름
-{% highlight java %}
+```java
 var busan;
 var appStore;
 var javaWebProgramming;
-{% endhighlight %}
+```
 2. 파스칼 표기법
   * C 계열에 익숙한 사람들이 많이 사용했을 표기법
   * 카멜 표기법과 유사하지만 유일한 차이점으로 모든 단어를 대분자로 표기
-{% highlight java %}
+```java
 var Pascal;
 var BlackCherry;
 var RedAndBlue;
-{% endhighlight %}
+```
 3. 헝가리안 표기법
   * 잘 안 쓰이는 표기법이지만 간혹가다 오래전에 짠 코드에서 가끔씩 발견되는 표기법
   * 변수의 앞에 자료형을 붙여서 명명하는 방식
-{% highlight java %}
+```java
 var strText;
 var intNumber;
 var arrBook;
-{% endhighlight %}
+```
 
 ## 64bit와 32bit 차이점?
 * CPU는 외부에서 들어오는 데이터 처리능력이 있다. 한번에 처리하는 데이터가 32bit라면 32bit, 64bit CPU는 한번에 64bit 처리가 가능하다.

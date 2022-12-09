@@ -3,7 +3,7 @@ layout: post
 title: "[Data Structures] Queue & Deque"
 date: 2016-01-29
 excerpt: "먼저 집어 넣은 데이터가 먼저 나오는 FIFO(First In First Out)구조로 저장하는 형식"
-tags: [data structures, c++, queue, deque, programming]
+tags: [data structures, cpp, queue, deque, programming]
 comments: true
 ---
 
@@ -74,7 +74,7 @@ comments: true
 ### C++로 구현한 큐 & 덱 (Queue & Deque)
 [이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol1101.github.io/data-structures-linked-list-array/)
 
-{% highlight cpp %}
+```cpp
 class Queue
 {
 private:
@@ -148,4 +148,4 @@ void Manager::QueueRun() {
 		}
 	}
 }
-{% endhighlight %}
+```

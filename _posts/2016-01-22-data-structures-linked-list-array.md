@@ -1,13 +1,11 @@
 ---
 layout: post
-title: "[Data Structures] Linked List & Array"
+title: [Data Structures] Linked List & Array(링크드 리스트 & 배열, C++)
 date: 2016-01-22
 excerpt: "링크드리스트와 배열의 차이점과 각각의 장단점"
-tags: [data structures, c++, linked list, array, programming]
+tags: [data structures, cpp, linked list, array, programming]
 comments: true
 ---
-
-# Linked List & Array : 링크드 리스트 & 배열 (C++)
 
 ## 배열(Array)
 
@@ -28,7 +26,7 @@ comments: true
 (단순 연결리스트는 다음 데이터의 주소를, 이중 연결리스트는 이전 주소와 다음 주소를 모두 저장) 특정 데이터에 접근할 때 인덱스로 바로 접근할 수 있었던 배열과 달리 첫 노드부터 원하는 노드까지 링크를 따라가야 접근이 가능하기 때문에 배열에 비해 접근 속도는 떨어진다.\\
 하지만 반대로, 데이터를 삽입/삭제 할 때에는 물리적 주소에 구애받지 않고 앞/뒤 노드의 주소만 끼워넣을 노드의 주소로 바꿔주면 되기 때문에 삽입/삭제는 배열보다 빠르다.
 
-### C++로 구현한 양방향 연결 리스트(Double Linked List)
+## C++로 구현한 양방향 연결 리스트(Double Linked List)
 ```c++
 /**
  * 연결리스트(LinkedList)에 사용할 노드 클래스

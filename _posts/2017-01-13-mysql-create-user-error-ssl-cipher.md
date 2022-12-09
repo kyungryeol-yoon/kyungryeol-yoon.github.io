@@ -24,7 +24,7 @@ values('localhost','사용자명',password('비밀번호'),'','','');
 
 * mysql 5.5 에서 user 생성시 authentication_string 필드 추가. '' 값으로 입력
 
-```
+```sql
 insert into user (Host, User, Password, ssl_cipher, x509_issuer, x509_subject, authentication_string) 
 values('localhost','사용자명', password('비밀번호'),'','','','');
 ```

@@ -3,7 +3,7 @@ layout: post
 title: "Machine Learning LSTM"
 date: 2019-10-01
 excerpt: "Machine Learning LSTM에 대한 설명(Keras를 이용함)"
-tags: [lstm, python, jupyter, MachineLearning, DeepLearning, RNN]
+tags: [LSTM, python, jupyter, Machine Learning, Deep Learning, RNN]
 comments: true
 ---
 

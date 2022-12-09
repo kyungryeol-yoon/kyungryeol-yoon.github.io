@@ -3,8 +3,8 @@ layout: post
 title: kubectl error
 date: 2020-01-29
 excerpt: "The connection to the server localhost:8080 was refused 오류 해결법"
-categories: [Kubernetes, K8s]
-tags: [kubernetes, kubectl]
+categories: [Kubernetes, Error]
+tags: [Kubernetes, kubectl]
 comments: true
 ---
 

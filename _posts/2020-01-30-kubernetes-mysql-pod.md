@@ -4,7 +4,7 @@ title: Kubernetes mysql pod 생성
 date: 2020-01-30
 # excerpt: Kubernetes mysql pod 생성 관련
 categories: [Kubernetes, MySQL]
-tags: [kubernetes, kubectl, mysql, pod]
+tags: [Kubernetes, kubectl, MySQL, pod]
 comments: true
 ---
 

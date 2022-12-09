@@ -4,7 +4,7 @@ title: Kubernetes RBAC
 date: 2020-02-01
 excerpt: Kubernetes RBAC 관련
 categories: [Kubernetes, RBAC]
-tags: [Kubernetes, kubectl, RBAC, k8s]
+tags: [Kubernetes, kubectl, RBAC]
 comments: true
 ---
 
