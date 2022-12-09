@@ -3,7 +3,7 @@ layout: post
 title: "Compilation Process"
 date: 2016-05-12
 excerpt: "프로그램 코드를 컴퓨터가 이해할 수 있는 언어로 변환하는 작업"
-tags: [Compilation Process, compile languages, byte code languages, interpreter languages, c, cpp, java, csharp, javascript, python, ruby, Programming]
+tags: [Compilation Process, compile languages, byte code languages, interpreter languages, c, cpp, Java, csharp, javascript, Python, Ruby, Programming]
 comments: true
 ---
 
@@ -132,7 +132,7 @@ printf("Hello, world!");
 
 - 대부분의 컴파일러는 ASSERT() 매크로를 가지고 있다.
 
-```cpp
+```c++
 #ifndef DEBUG
 #define ASSERT(x)
 #else
