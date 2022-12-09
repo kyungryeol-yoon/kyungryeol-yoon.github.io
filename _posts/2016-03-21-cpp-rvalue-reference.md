@@ -15,7 +15,7 @@ comments: true
 
 ## 메모리 버퍼를 관리하는 MemoryBlock이라는 class를 작성하고 이 class 객체를 vector에 삽입하는 code를 아래와 같이 작성해보았습니다.
 
-{% highlight cpp %}
+```c++
 // MemoryBlock.h
 #pragma once
 #include <iostream>
@@ -105,6 +105,6 @@ int main()
     // 첫 번째 원소를 다른 MemoryBlock 으로 변경
     v[0] = MemoryBlock(50);
 }
-{% endhighlight %}
+```
 복사 생성자와 대입 연산자를 구현하여 다른 객체로부터의 객체 생성과 복사가 가능합니다. main 함수에서 임시 객체를 이용하여 vector에 원소를 삽입할 때 복사 생성자가 이용되고 삽입된 원소를 또 다른 임시 객체로 변경할 때 대입 연산자가 이용됩니다.
 v[0] = MemoryBlock(50); 코드가 어떻게 동작되는지 아래의 그림을 살펴보도록 합시다.

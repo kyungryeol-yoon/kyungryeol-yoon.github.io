@@ -10,7 +10,7 @@ comments: true
 ## 모든 코딩 테스트는 C++로 작성하였습니다. (실제로 온라인, 오프라인 코딩 테스트 전부 C++로 치루었습니다. C++이 익숙해서...잘 못하지만...ㅎㅎ)
 
 1. 글자 뒤집기. 글자안에 특수문자 잇으면 그건 그대로 들고오기
-{% highlight cpp %}
+```c++
 bool Reverse::isSpecial(char c) {
 	if ((c >= 'a') && (c <= 'z')) return false;
 	if ((c >= 'A') && (c <= 'Z')) return false;
@@ -48,15 +48,15 @@ void Reverse::ReverseMain() {
 	rev(str, stringSize);
 	cout << str << endl;
 }
-{% endhighlight %}
+```
 
 2. 링크드리스트 두개 합치기 그리고 정렬. 중복은 한개만
-{% highlight cpp %}
-
-{% endhighlight %}
+```c++
+string test;
+```
 
 3. 바이너리 서치(Binary Search, 이진 검색)를 이용해서 배열안에 원하는 숫자 찾기
-{% highlight cpp %}
+```c++
 //반복문을 이용한 이진 탐색
 int BinarySearch::binarySearch(int array[], int _find, int size) {
 	int s = 0;
@@ -105,7 +105,7 @@ int BinarySearch::STLbinary_search() {
 
 	return 0;
 }
-{% endhighlight %}
+```
 
 4. 사전 검색 프로그램 (띄어쓰기)
 

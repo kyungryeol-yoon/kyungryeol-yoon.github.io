@@ -33,8 +33,7 @@ comments: true
 
 - define문은 여러 경우에 사용될 수 있는데 일반적으로 문자열 대치에 사용된다.
 
-{% highlight cpp %}
-
+```c++
 -------------------------------
 #define MAX 512
 int Arr[MAX];
@@ -69,15 +68,13 @@ int Arr[512];
 #elif
 #else
 #endif
-
-{% endhighlight %}
+```
 
 ### 포함감시(Inclusion Guard)
 
 - 여러 개의 헤더 파일(.h 또는 .hpp)과 구현 파일(.c 또는 .cpp)들이 있을 경우 헤더 파일이 중복 포함되는 경우가 많다. 포함 감시 기능은 만드는 모든 헤더 파일에 적용하도록 하자.
 
-{% highlight cpp %}
-
+```c++
 #ifndef FILENAME_H
 #define FILENAME_H
 // 여기에 헤더 파일의 모든 내용을 넣는다.
@@ -85,8 +82,7 @@ int Arr[512];
 -------------------------------
 #include "filename.h"
 #include "filename.h" // 두 번째 헤더 파일이 포함될 때 #ifndef가 거짓이 되어 헤더 파일이 포함되지 않는다.
-
-{% endhighlight %}
+```
 
 포함 감시 기능을 이용하여 두 번째 헤더 파일이 포함될 때 #ifndef가 거짓이 되어 헤더 파일이 포함되지 않는다. FILENAME_H 부분은 관례상 파일명을 이용해서 이렇게 명명한다. `_FILENAME_H` 또는 `` __FILENAME_H__ `` 등 잘 사용되지 않는 문자열을 파일 이름을 사용해서 만드는 것이다.
 
@@ -95,8 +91,7 @@ int Arr[512];
 - 매크로 함수도 전처리기로 흔히 사용된다. 다만 디버깅이 힘들다는 단점 때문에 점점 사용되지 않고 있다고 들었다. 특히, C++의 경우 엄격한 형 검사를 하게 되는데 매크로 함수를 사용하게 되면 그 기능을 사용할 수 없으니 피해야 한다.
 - C++ 사용자는 매크로 함수보다는 **Template** 또는 **inline** 함수를 사용해야 한다.
 
-{% highlight cpp %}
-
+```c++
 #define CUBE(x) ((x)*(x)*(x))
 
 int x, y;
@@ -108,12 +103,11 @@ y = CUBE(x);
 int x, y;
 
 y = (x)*(x)*(x);
-
-{% endhighlight %}
+```
 
 ### 문자열 조작
 
-{% highlight cpp %}
+```c++
 
 #define SAY(x) printf(#x)
 
@@ -124,24 +118,21 @@ SAY(Hello, world!);
 -------------------------------
 
 printf("Hello, world!");
-
-{% endhighlight %}
+```
 
 ### 문자열 결합
 
-{% highlight cpp %}
-
+```c++
 #define Print(x) Print ## x
 // ##은 두 개의 문자열을 결합해 준다.
 // Pirnt(One)을 사용하면 PrintOne이라는 문자열로 대치되고 Print(Two)는 PrintTwo라는 문자열로 대치된다.
-
-{% endhighlight %}
+```
 
 ### ASSERT()
 
 - 대부분의 컴파일러는 ASSERT() 매크로를 가지고 있다.
 
-```cpp
+```c++
 
 #ifndef DEBUG
 #define ASSERT(x)
@@ -174,15 +165,14 @@ printf("Hello, world!");
 
 - 컴파일러는 이 명령을 만나게 되면 해당 메시지를 출력하고 컴파일을 중지한다. C++ 컴파일러에서만 동작하게 하는 다음 코드를 참조하자.
 
-{% highlight c++ %}
+```c++
 
 #if !defined(__cplusplus)
 #error C++ compiler required.
 #endif
 
 // __cplusplus는 C++ 컴파일러일 경우에 정의되는 내장 매크로이다.
-
-{% endhighlight %}
+```
 
 ### pragma
 

@@ -17,7 +17,7 @@ C++에서 모든 표현식은 Lvalue와 Rvalue입니다. **Lvalue은 단일 표�
 
 ## Example Source Code
 
-{% highlight cpp %}
+```c++
 #include <iostream>
 #include <string>
 using namespace std;
@@ -31,22 +31,22 @@ int main() {
 	++x;
 	x++;
 }
-{% endhighlight %}
+```
 
 x, y, z, p 등의 이름을 가지는 변수는 모두 Lvalue이지만 상수값 3, 임시객체 string("one")은 표현식이 종료되면 더 이상 참조할 수 없는 값이기 떄문에 Rvalue입니다. x + y, &x와 같은 표현식도 마찬가지로 Rvalue입니다. 또 한가지 흥미로운 점은 ++x는 Lvalue이지만 x++은 Rvalue라는 점입니다. 둘 다 증가된 값을 리턴하지만 ++x는 증가된 x 자신을 리턴하기 때문에 Lvalue인 반면에 x++은 증가되기 전의 복사본을 리턴하기 때문에 Rvalue입니다.
 **아직도 Lvalue와 Rvalue가 잘 이해가 되지 않으신다면 조금 더 확실하게 구분하는 방법이 있습니다. 바로 표현식에 주소 연산자 &를 붙여보는 겁니다. &연산자는 Lvalue를 요구하기 때문에 표현식이 Rvalue라면 compile error가 나타날겁니다.**
 
-{% highlight cpp %}
+```c++
 &(++x);
 &(x++); // error C2102: '&' requires l-value
-{% endhighlight %}
+```
 
 ## Rvalue 참조자 &&
 
 C++에서 int& a = b; 형탤 사용하였던 참조자(Reference)는 Lvalue 참조자입니다. C++ 11 표준에서부터 Lvalue 참조자 이외에도 Rvalue를 참조할 수 있는 Rvalue 참조자가 추가되었습니다. Lvalue 참조자는 Lvalue만 참조할 수 있고 Rvalue 참조자는 Rvalue만 참조할 수 있습니다.
 (Rvalue 참조자는 Visual Studio 2010 이상 버전의 compiler에서 사용 가능합니다.)
 
-{% highlight cpp %}
+```c++
 int rvalue() {
 	return 10;
 }
@@ -60,7 +60,7 @@ int main() {
 	int&& c = lvalue; // error C2440: 'initializing' : cannot convert from 'int' to 'int &&'
 	int&& d = rvalue();
 }
-{% endhighlight %}
+```
 
 Lvalue 참조 타입에 Rvalue를 대입하려고 하거나 Rvalue 참조 타입에 Lvalue를 대입하려고 하면 compile error가 나는 것을 볼 수 있습니다.
 여기서 왜 Rvalue 참조자가 필요한 것일까요?

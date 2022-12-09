@@ -89,14 +89,14 @@ comments: true
 ## Spirng에서 IoC(제어의 역전)란?
 * 프레임워크가 제어권을 가짐. 객체 생성도 컨테이너가 함. IoC 의존관계를 결정, 설정, 생명주기를 해결하기 위한 디자인 패턴
 * IoC가 아닌 경우
-{% highlight java %}
+```java
 String A = new String();
-{% endhighlight %}
+```
 * IoC인 경우
-{% highlight java %}
+```java
 @Autowired
 UserService userService;
-{% endhighlight %}
+```
 * 객체 생성 생명 주기 관리. 의존성 관리. POJO의 생성, 초기화, 서비스, 소멸에 대한 권한을 가짐.
 
 ### IoC 분류
@@ -107,10 +107,10 @@ UserService userService;
 ** Constructor(생성자를 통해 주입)
 ** Method(자바 메서드를 통해 주입)
 * 의존관계 Bean설정(사용자가 설정해줌), 어노테이션 등등이 있다. 컨테이너가 정보들을 읽고 자동으로 설정.
-{% highlight java %}
+```java
 @Autowired // 의존관계 설정
 UserService userService;
-{% endhighlight %}
+```
 * 컨테이너가 흐름의 주체가 된다.(사용자가 설정해준 것을 컨테이너가 연결)
 * 장점 : 코드가 단순, 컴포넌트 간의 결합도 제거
 * Spring DI 컨테이너가 관리하는 객체를 Bean, 이 Bean들을 관리한다는 의미로 컨테이너를 Bean Factory.

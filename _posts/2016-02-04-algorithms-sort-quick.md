@@ -55,7 +55,7 @@ comments: true
 ### C++로 구현한 삽입정렬 (Insertion)
 [이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol1101.github.io/data-structures-linked-list-array/)
 
-{% highlight cpp %}
+```c++
 void DoubleList::QuickSort(int Left, int Right)
 {
 	if (Left < Right) {
@@ -90,7 +90,7 @@ int DoubleList::Partition(int Left, int Right)
 
 	return Right;
 }
-{% endhighlight %}
+```
 
 ## 퀵 정렬(quick sort) 알고리즘의 특징
 * 장점

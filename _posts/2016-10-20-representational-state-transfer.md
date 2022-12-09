@@ -33,7 +33,7 @@ REST는 REpresentational State Transfer의 약어로서 부수적인 레이어�
 Client -> Request -> DispatcherServlet -> HandlerMapping -> Controller -> View -> DispatcherServlet -> Response -> Client
 
 #### Controller(BasicController)
-{% highlight java %}
+```java
 package com.chris.springmvcproj.controller.test;
 
 import org.springframework.stereotype.Controller;
@@ -47,7 +47,7 @@ public class BasicController {
     return "hello";
   }
 }
-{% endhighlight %}
+```
 
 #### View(hello.jsp)
 {% highlight html %}
@@ -99,7 +99,7 @@ public class BasicController2 {
 Client -> HTTP Request -> DispatcherServlet -> HandlerMapping -> RestController(자동 ResponseBody 추가) -> HTTP Response -> Client
 
 #### RestController(RestController)
-{% highlight java %}
+```java
 package com.chris.springmvcproj.controller.test;
 
 import java.util.ArrayList;
@@ -164,14 +164,14 @@ public class ControllerRest {
         return map;
     }
 }
-{% endhighlight %}
+```
 
 **Spring 4.0에서는 <code>@RestController</code> annotation이 추가 되었는데 Controller Class의 각 Method마다 <code>@ResponseBody</code>을 추가할 필요가 없어졌고, 모든 Method는 <code>@ResponseBody</code> annotation이 기본으로 작동이 된다.**
 
 ### ResponseEntity
 RestController는 별도의 View를 제공하지 않는 형태로 서비스를 실행하기 때문에, 때로는 결과데이터가 예외적인 상황에서 문제가 발생할 수 있다. ResponseEntity는 개발자가 직접 결과 데이터와 HTTP 상태 코드를 직접 제어할 수 있는 클래스로 개발자는 404나 500 같은 HTTP 상태 코드를 전송하고 싶은 데이터와 함께 전송할 수 있기 때문에 좀 더 세밀한 제어가 필요한 경우 사용할 수 있다.
 
-{% highlight java %}
+```java
 // ResponseEntity : 데이터 + http status code
 @RequestMapping("/sendMap2")
 public ResponseEntity<Map<Integer, BoardVO>> sendMap2(){
@@ -196,7 +196,7 @@ public ResponseEntity<Map<Integer, BoardVO>> sendMap2(){
 public ResponseEntity<Void> sendListAuth(){
   return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 }
-{% endhighlight %}
+```
 
 ### <code>@RestController</code> : View가 필요 없는 API만 지원하는 서비스에서 사용, <code>@ResponseBody</code>를 포함하고 있음. (View가 필요한 곳에서 <code>@RestController</code>를 사용해서 Class를 매핑해버리면, View로 접근을 못하는 문제가 있음)
 ### <code>@Controller</code> : API와 View를 동시에 사용, 대신 API 서비스는 <code>@ResponseBody</code>를 붙여줘야 함.

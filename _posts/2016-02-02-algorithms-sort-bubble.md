@@ -30,7 +30,7 @@ comments: true
 ### C++로 구현한 버블 정렬 (Bubble)
 [이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol1101.github.io/data-structures-linked-list-array/)
 
-{% highlight cpp %}
+```c++
 void DoubleList::BubbleSort() {
 	Node *Current(NULL);
 	for (int i = 0; i < CountNode() - 1; i++) {
@@ -71,7 +71,7 @@ void DoubleList::BubbleSort() {
 		}
 	}
 }
-{% endhighlight %}
+```
 
 ## 버블 정렬(bubble sort) 알고리즘의 특징
 * 장점

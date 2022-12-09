@@ -57,7 +57,7 @@ comments: true
 ### C++로 구현한 스택 (Stack)
 [이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol1101.github.io/data-structures-linked-list-array/)
 
-{% highlight cpp %}
+```c++
 class Stack
 {
 private:
@@ -131,4 +131,4 @@ void Manager::StackRun() {
 		}
 	}
 }
-{% endhighlight %}
+```
