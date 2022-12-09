@@ -1,10 +1,11 @@
 ---
-layout: post
+# layout: post
 title: "Spring framework"
 date: 2016-10-15
-excerpt: "Spring framework 특징 및 구성, 구조(Directory)"
+# excerpt: "Spring framework 특징 및 구성, 구조(Directory)"
+categories: [Spring, Framework]
 tags: [Spring, Framework, Java, Programming]
-comments: true
+# comments: true
 ---
 
 # Spring framework란?

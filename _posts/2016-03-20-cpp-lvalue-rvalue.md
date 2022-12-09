@@ -1,10 +1,10 @@
 ---
-layout: post
+# layout: post
 title: "[C++] Lvalue와 Rvalue"
 date: 2016-03-20
-excerpt: "C++에서 모든 표현식은 Lvalue와 Rvalue입니다."
+# excerpt: "C++에서 모든 표현식은 Lvalue와 Rvalue입니다."
 tags: [Left Value, Right Value, cpp, Programming]
-comments: true
+# comments: true
 ---
 
 # C++ Lvalue와 Rvalue

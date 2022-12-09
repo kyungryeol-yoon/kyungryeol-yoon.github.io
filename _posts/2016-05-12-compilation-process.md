@@ -1,10 +1,10 @@
 ---
-layout: post
+# layout: post
 title: "Compilation Process"
 date: 2016-05-12
-excerpt: "프로그램 코드를 컴퓨터가 이해할 수 있는 언어로 변환하는 작업"
+# excerpt: "프로그램 코드를 컴퓨터가 이해할 수 있는 언어로 변환하는 작업"
 tags: [Compilation Process, compile languages, byte code languages, interpreter languages, c, cpp, Java, csharp, javascript, Python, Ruby, Programming]
-comments: true
+# comments: true
 ---
 
 컴파일 과정은 프로그램을 만드는 데 있어서 반드시 알아야 하는 내용은 아니지만 이 과정을 머리속에 담고 있는 개발자는 앞으로 무수히 부딪히게 될 많은 문제나 오류들을 이해하는데 **훨씬 큰 이점**을 얻게 될 것입니다.

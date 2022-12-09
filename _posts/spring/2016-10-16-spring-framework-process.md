@@ -1,9 +1,10 @@
 ---
-layout: post
+# layout: post
 title: "Spring framework home.jsp 구동 과정과 web.xml, servlet-context.xml은 무엇인가?"
 date: 2016-10-16
+categories: [Spring, Framework]
 tags: [Spring, Framework, Java, Programming, process]
-comments: true
+# comments: true
 ---
 
 Spring project를 생성하고 바로 실행하면 browser에 home.jsp가 실행된다.\\

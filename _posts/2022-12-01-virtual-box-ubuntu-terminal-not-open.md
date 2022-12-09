@@ -1,10 +1,10 @@
 ---
-layout: post
+# layout: post
 title: "Virtual Box - Ubuntu Terminal Not Open"
 date: 2022-12-01
 categories: [Virtual Box, Ubuntu, Terminal]
 tags: [Virtual Box, Ubuntu, Termianl, Error]
-comments: true
+# comments: true
 ---
 
 > Ubuntu Desktop 이라면 'Ctrl + Alt + F3' 으로 TTY Terminal 접속

@@ -1,10 +1,10 @@
 ---
-layout: post
+# layout: post
 title: "코딩 테스트 정리"
 date: 2019-06-01
-excerpt: "코딩 테스트 관련하여 정리"
+# excerpt: "코딩 테스트 관련하여 정리"
 tags: [cpp, Programming, coding, test]
-comments: true
+# comments: true
 ---
 
 ### 모든 코딩 테스트는 C++로 작성하였습니다.
