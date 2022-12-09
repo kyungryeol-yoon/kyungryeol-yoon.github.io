@@ -22,10 +22,10 @@ RNN의 성공의 열쇠는 "Long Short-Term Memory Network" (이하 LSTM)의 사
 
 
 ## Keras LSTM
-{% highlight python %}
+```python
 model = keras.models.Sequential()
 model.add(keras.layers.LSTM(unit=3, input_shape=(3, 5)))
-{% endhighlight %}
+```
 
 input_shape는 (data size, time steps, features) 3차원으로 구성한다. 대부분 data size는 따로 넘기지 않는다. 보통 자동으로 전체 data size를 알 수 있기 때문이다.
 
@@ -35,9 +35,9 @@ Batch는 일괄 처리되는 작업의 양이다. 위에서 설명된 data_size�
 
 batch 되는 양이 있다면 아래와 같이 설정할 수도 있다.
 
-{% highlight python %}
+```python
 model = keras.models.Sequential()
 model.add(keras.layers.LSTM(unit=4, batch_input_shape=(3, 4, 6)))
-{% endhighlight %}
+```
 
 batch_size, time_steps, features 각각은 3,4,6이 된다.
