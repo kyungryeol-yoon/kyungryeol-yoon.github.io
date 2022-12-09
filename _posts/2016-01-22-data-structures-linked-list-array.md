@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [Data Structures] Linked List & Array(링크드 리스트 & 배열, C++)
+title: [Data Structures] Linked List & Array(링크드 리스트 & 배열)
 date: 2016-01-22
 excerpt: "링크드리스트와 배열의 차이점과 각각의 장단점"
 tags: [data structures, cpp, linked list, array, programming]
