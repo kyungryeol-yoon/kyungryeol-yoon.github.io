@@ -50,7 +50,7 @@ public class BasicController {
 ```
 
 #### View(hello.jsp)
-{% highlight html %}
+```html
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -62,7 +62,7 @@ public class BasicController {
     Hello World
   </body>
 </html>
-{% endhighlight %}
+```
 
 ### <code>@ResponseBody</code>
 ### Spring 3.x MVC Restful Web Service Work Flow

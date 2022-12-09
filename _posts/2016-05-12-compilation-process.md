@@ -132,8 +132,7 @@ printf("Hello, world!");
 
 - 대부분의 컴파일러는 ASSERT() 매크로를 가지고 있다.
 
-```c++
-
+```cpp
 #ifndef DEBUG
 #define ASSERT(x)
 #else
@@ -144,7 +143,6 @@ printf("Hello, world!");
 		printf("is Null on line %d in file %s", __LINE__, __FILE__); \
 	}
 #endif
-
 ```
 
 위 코드의 위에 #define DEBUG를 포함하면 #define ASSERT(x)는 아무 일도 하지 않고, DEBUG가 정의되지 않으면 그 아래 함수가 정의된다.

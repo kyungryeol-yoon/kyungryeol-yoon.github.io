@@ -70,7 +70,7 @@ comments: true
 - 입력이 한쪽 끝으로만 가능하도록 설정한 데크인 입력제한데크(Scroll), 출력이 한쪽 끝으로만 가능하도록 설정한 데크인 출력제한데크(Shelf)가 있다.
 
 ### C++로 구현한 큐 & 덱 (Queue & Deque)
-[이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol1101.github.io/data-structures-linked-list-array/)
+[이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol-yoon.github.io/posts/data-structures-linked-list-array/)
 
 ```c++
 class Queue

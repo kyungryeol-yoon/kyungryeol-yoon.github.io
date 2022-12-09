@@ -36,7 +36,7 @@ comments: true
   - Key 값 4와 첫 번째 자료인 2를 비교한다. 2가 Key 값보다 작으므로 4를 두 번째 자리에 기억시킨다.
 
 ### C++로 구현한 삽입 정렬 (Insertion)
-[이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol1101.github.io/data-structures-linked-list-array/)
+[이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol-yoon.github.io/posts/data-structures-linked-list-array/)
 
 ```c++
 void DoubleList::InsertSort() {

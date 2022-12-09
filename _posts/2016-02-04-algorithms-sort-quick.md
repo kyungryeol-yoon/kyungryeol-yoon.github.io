@@ -53,7 +53,7 @@ comments: true
   * 위와 동일한 방법으로 반복한다.
 
 ### C++로 구현한 삽입정렬 (Insertion)
-[이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol1101.github.io/data-structures-linked-list-array/)
+[이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol-yoon.github.io/posts/data-structures-linked-list-array/)
 
 ```c++
 void DoubleList::QuickSort(int Left, int Right)

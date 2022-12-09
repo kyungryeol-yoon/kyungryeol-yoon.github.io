@@ -28,7 +28,7 @@ comments: true
   * 첫 번째의 1과 두 번째의 3을 비교하여 교환하지 않는다.
 
 ### C++로 구현한 버블 정렬 (Bubble)
-[이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol1101.github.io/data-structures-linked-list-array/)
+[이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol-yoon.github.io/posts/data-structures-linked-list-array/)
 
 ```c++
 void DoubleList::BubbleSort() {
