@@ -3,7 +3,7 @@ layout: post
 title: "코딩 테스트 정리"
 date: 2019-06-01
 excerpt: "코딩 테스트 관련하여 정리"
-tags: [cpp, programming, coding, test]
+tags: [cpp, Programming, coding, test]
 comments: true
 ---
 

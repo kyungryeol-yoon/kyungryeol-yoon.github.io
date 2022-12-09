@@ -1,13 +1,11 @@
 ---
 layout: post
-title: "[Algorithms] Quick sort"
+title: "[Algorithms | C++] Quick sort : 퀵 정렬"
 date: 2016-02-04
 excerpt: "분할 정복 알고리즘의 하나, 평균적으로 매우 빠른 수행 속도를 자랑하는 정렬 방법"
-tags: [algorithms, cpp, quick, sort, programming]
+tags: [Algorithms, cpp, Quick, Sort, Programming]
 comments: true
 ---
-
-# Quick sort : 퀵 정렬 (C++)
 
 ## 퀵 정렬(quick sort) 알고리즘의 개념 요약
 * '찰스 앤터니 리처드 호어(Charles Antony Richard Hoare)'가 개발한 정렬 알고리즘

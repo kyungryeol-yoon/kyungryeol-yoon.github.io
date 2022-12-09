@@ -3,7 +3,7 @@ layout: post
 title: "Spring framework"
 date: 2016-10-15
 excerpt: "Spring framework 특징 및 구성, 구조(Directory)"
-tags: [spring, framework, java, programming]
+tags: [Spring, Framework, java, Programming]
 comments: true
 ---
 

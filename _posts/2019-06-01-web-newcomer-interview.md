@@ -3,7 +3,7 @@ layout: post
 title: "Web 신입 면접 정리"
 date: 2019-06-01
 excerpt: "Web 신입 면접과 관련하여 정리"
-tags: [web, Spring, Java, programming, mvc, interview]
+tags: [Web, Spring, Java, Programming, mvc, interview]
 comments: true
 ---
 

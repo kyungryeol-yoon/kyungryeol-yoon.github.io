@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 깊은 복사(Deep Copy) VS 얕은 복사(Shallow Copy)
+title: "Deep Copy & Shallow Copy : 깊은 복사 & 얕은 복사"
 date: 2016-01-20
-# excerpt: 객체가 가진 값 형식(Value Type) 과 참조형식(Reference Type) 의 복제 방식에 따라 얕은복사와 깊은 복사로 개념이 나뉜다.
-tags: [deep copy, shallow copy, programming]
+# excerpt: "객체가 가진 값 형식(Value Type) 과 참조형식(Reference Type) 의 복제 방식에 따라 얕은복사와 깊은 복사로 개념이 나뉜다."
+tags: [Deep Copy, Shallow Copy, Programming]
 comments: true
 ---
 
