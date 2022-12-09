@@ -10,11 +10,12 @@ comments: true
 > Ubuntu Desktop 이라면 'Ctrl + Alt + F3' 으로 TTY Terminal 접속
 {: .prompt-info }
 
-```Console
-$ sudo locale-gen --purge
-```
+    ```console
+        $ sudo locale-gen --purge
+    ```
 
 재부팅 후 Termianl 실행
+
 
 ```
 Ctrl+Alt+F1: Returns you to the graphical desktop environment log in screen
