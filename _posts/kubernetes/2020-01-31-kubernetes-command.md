@@ -1,10 +1,10 @@
 ---
-layout: post
+# layout: post
 title: "Kubernetes command"
 date: 2020-01-30
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command]
-comments: true
+# comments: true
 pin: true
 ---
 

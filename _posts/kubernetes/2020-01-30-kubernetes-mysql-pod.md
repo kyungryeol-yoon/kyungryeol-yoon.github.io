@@ -1,10 +1,10 @@
 ---
-layout: post
+# layout: post
 title: "Kubernetes mysql pod 생성"
 date: 2020-01-30
 categories: [Kubernetes, MySQL]
 tags: [Kubernetes, kubectl, MySQL, pod]
-comments: true
+# comments: true
 ---
 
 - 컨테이너 이미지가 존재한다는 가정하에 가능하다.

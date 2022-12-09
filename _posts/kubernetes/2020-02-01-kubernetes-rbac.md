@@ -1,10 +1,10 @@
 ---
-layout: post
+# layout: post
 title: "Kubernetes RBAC"
 date: 2020-02-01
 categories: [Kubernetes, RBAC]
 tags: [Kubernetes, kubectl, RBAC]
-comments: true
+# comments: true
 ---
 
 RBAC (Role-based Access Control)는 쿠버네티스 환경에서 Node 또는 네트워크 리소스 등 여러가지 접근 권한에 대한 Role 관리하는 작업 요소 이다.
