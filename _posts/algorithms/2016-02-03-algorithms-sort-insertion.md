@@ -1,11 +1,11 @@
 ---
-layout: post
+# layout: post
 title: "[Algorithms | C++] Insertion sort : 삽입 정렬"
 date: 2016-02-03
-excerpt: "매 순서마다 해당 원소를 삽입할 수 있는 위치를 찾는 알고리즘"
+# excerpt: "매 순서마다 해당 원소를 삽입할 수 있는 위치를 찾는 알고리즘"
 categories: [Algorithms, Insertion sort, cpp]
 tags: [Algorithms, cpp, Insertion sort, Programming]
-comments: true
+# comments: true
 ---
 
 ## 삽입 정렬(Insertion sort) 알고리즘 개념

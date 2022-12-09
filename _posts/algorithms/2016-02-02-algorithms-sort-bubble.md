@@ -1,11 +1,11 @@
 ---
-layout: post
+# layout: post
 title: "[Algorithms | C++] Bubble sort : 버블 정렬"
 date: 2016-02-02
-excerpt: 서로 인접한 두 원소를 검사하여 정렬하는 알고리즘
+# excerpt: 서로 인접한 두 원소를 검사하여 정렬하는 알고리즘
 categories: [Algorithms, Bubble sort, cpp]
 tags: [Algorithms, cpp, Bubble sort, Programming]
-comments: true
+# comments: true
 ---
 
 ## 버블 정렬(Bubble sort) 알고리즘의 개념
