@@ -23,7 +23,7 @@ Spring project를 생성하고 바로 실행하면 browser에 home.jsp가 실행
 ### 01) /WEB-INF/web.xml
 #### 웹프로젝트의 배치 기술서(deploy descriptor, 웹프로젝트의 환경 설정 파일)
 * Spring project가 실행되면 가장 먼저 web.xml을 읽어 들이게 되고 위에서부터 차례대로 태그들을 해석하기 시작한다.
-```
+```yaml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -64,15 +64,13 @@ Spring project를 생성하고 바로 실행하면 browser에 home.jsp가 실행
         <!-- DispatcherServlet이 모든 요청을 가로챌 수 있도록 등록 -->
         <!-- 특정 url으로 변경하여 사용가능 ex) *.do -->
     </servlet-mapping>
-
 </web-app>
 ```
-{: file="web.xml"}
 
 ### 02) /WEB-INF/spring/root-context.xml
 #### Spring의 환경 설정 파일
 * 현재는 별다른 내용을 작성하지 않았기 때문에 web.xml에서는 root-context.xml을 건너 뛰게 된다.
-```
+```yaml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -87,7 +85,7 @@ Spring project를 생성하고 바로 실행하면 browser에 home.jsp가 실행
 
 ### 03) servlet-context.xml
 * web.xml에서 DispatcherServlet(Spring에 내장된 컨트롤러)로 이동하게 되고, /WEB-INF/spring/appServlet/servlet-context.xml을 참조하게 된다.
-```
+```yaml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
