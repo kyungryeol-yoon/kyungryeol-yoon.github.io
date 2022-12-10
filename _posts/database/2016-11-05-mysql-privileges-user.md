@@ -28,9 +28,9 @@ mysql> GRANT ALL privileges ON DB_NAME.* TO USER_ID@locahost IDENTIFIED BY 'PASS
 mysql> GRANT ALL privileges ON DB_NAME.* TO USER_ID@'%' IDENTIFIED BY 'PASSWORD';
 ```
 > host에 '200.100.%' 로 하면 IP주소가 200.100.X.X 로 시작되는 모든 IP에서 원격 접속을 허용한다는 의미
-{: .prompt-info }
+{: .prompt-tip }
 > host에 '200.100.100.50' 으로 하면 IP주소가 200.100.100.50 인 곳에서만 원격 접속을 허용한다는 의미
-{: .prompt-info }
+{: .prompt-tip }
 
 ### user에게 test 데이터베이스 모든 테이블에 대한 권한 부여
 ```sql
@@ -49,7 +49,7 @@ mysql> grant select, insert, update on test.* to user@localhost;    -- 패스워
 
 ### user에게 모든 데이터베이스 모든 테이블에 권한 부여
 > 전역 권한은 모두 광범위한 보안문제가 수반되므로 권한을 허용하는 경우 신중해야 함
-{: .prompt-info }
+{: .prompt-warning }
 ```sql
 mysql> grant all privileges on *.* to user@localhost identified by 'password' with grant option;
 ```

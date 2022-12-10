@@ -5,7 +5,6 @@ categories: [Programming, Python]
 tags: [Python, List, Programming]
 ---
 
-### 원하는 개수만큼 문자열을 잘라서 리스트에 담기
 ```python
 a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 unit = 7
