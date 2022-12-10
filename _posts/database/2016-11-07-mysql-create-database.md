@@ -23,7 +23,7 @@ mysql> select host, user, password from user;
 
 ### 데이터베이스 생성
 ```sql
-mysql> create database DB명;    
+mysql> create database db_name;    
 ```
 
 ### 둘중에 하나를 입력하면 DB 생성됨
@@ -32,12 +32,12 @@ mysql> create database DB명;
 > default character set을 지정하지 않으면 한글이 깨져서 나오므로 주의해야 한다.
 {: .prompt-danger }
 ```sql
-msyql> create schema DB명 default character set utf8;
+msyql> create schema db_name default character set utf8;
 ```
 
 ```sql
-mysql> create database DB명 default character set utf8;
-mysql> create database DB명 default character set utf8 COLLATE utf8_general_ci;
+mysql> create database db_name default character set utf8;
+mysql> create database db_name default character set utf8 COLLATE utf8_general_ci;
 ```
 
 ### default character set 변경
@@ -47,5 +47,5 @@ msyql> ALTER DATABASE web DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 ### 데이터베이스 삭제
 ```sql
-msyql> drop database DB명;
+msyql> drop database db_name;
 ```
