@@ -1,13 +1,13 @@
 ---
-title: "Kubernetes Kubecns"
+title: "Kubernetes kubectx"
 date: 2019-12-10
-categories: [Kubernetes, Kubectx]
-tags: [Kubernetes, Kubectx]
+categories: [Kubernetes, kubectx]
+tags: [Kubernetes, kubectx]
 ---
 
 Kubernetes의 Context를 여러개 사용하고 있다면,\\
 kubectx는 Context를 쉽게 변경할 수 있도록 도움을 줍니다.\\
-이 도구를 사용하면, kubectl config use-context greentea 같은 긴 명령어를 사용하지 않아도 됩니다.\\
+이 도구를 사용하면, `kubectl config use-context greentea` 같은 긴 명령어를 사용하지 않아도 됩니다.\\
 fzf를 설치하면 대화식 메뉴를 제공하기 때문에, 더욱 편리하게 사용할 수 있습니다.
 
 > Kubernetes는 Cluster, User, Namespace를 조합한 Context라는 오브젝트를 제공한다. Context는 독립적인 단위로 흔히 우리가 생각하는 클러스터를 Context 단위로 볼 수도 있지만, 사실 그보다 더 세분화된 단위라고 볼 수 있다.

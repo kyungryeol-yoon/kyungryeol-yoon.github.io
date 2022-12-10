@@ -1,8 +1,8 @@
 ---
-title: "Kubernetes Kubecns"
+title: "Kubernetes kubens"
 date: 2019-12-16
-categories: [Kubernetes, Kubecns]
-tags: [Kubernetes, Kubecns]
+categories: [Kubernetes, kubens]
+tags: [Kubernetes, kubens]
 ---
 
 Kubernetes의 Namespace를 여러개 사용하고 있다면,\\
@@ -21,13 +21,13 @@ default
 #### Namespace를 변경하기 위해서는, Namespace 명을 입력하면 됩니다.
 ```terminal
 $ kubens kube-system
-Context "greentea" modified.
+Context "minikube" modified.
 Active namespace is "kube-system".
 ```
 
 #### 만약 fzf가 설치되어 있으면, kubens 명령을 실행하면 대화식 메뉴를 보여줍니다.
 ```terminal
-$ kubectx
+$ kubens
 > kube-system
   kube-public
   istio-system

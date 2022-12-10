@@ -8,6 +8,21 @@ tags: [Kubernetes, kubectl, command]
 pin: true
 ---
 
+### Context 변경
+```
+kubectl config use-context [context-name]
+```
+
+### Namespace 조회
+```
+kubectl get namespace
+```
+
+### Namespace 변경
+```
+kubectl config set-context --current --namespace=[namespace-name]
+```
+
 ### 기본 출력을 위한 Get 커맨드
 ```
 kubectl get services                          # 네임스페이스 내 모든 서비스의 목록 조회
