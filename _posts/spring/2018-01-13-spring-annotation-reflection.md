@@ -5,12 +5,12 @@ categories: [Spring, Annotation]
 tags: [Spring, Java, Programming, Annotation, Reflection]
 ---
 
-### Annotation이란?
+## Annotation이란?
 코드 사이에 주석처럼 쓰이며 특별한 의미, 기능을 수행하도록 하는 기술이다.\\
 프로그램에게 추가적인 정보를 제공해주는 메타데이터라고 볼 수 있다.\\
 **meta data** : 데이터를 위한 데이터
 
-#### 다음은 어노테이션의 용도를 나타낸 것이다.
+### 다음은 어노테이션의 용도를 나타낸 것이다.
 
 컴파일러에게 코드 작성 문법 에러를 체크하도록 정보를 제공한다.\\
 소프트웨어 개발 툴이 빌드나 배치시 코드를 자동으로 생성할 수 있도록 정보를 제공한다.\\
@@ -18,11 +18,11 @@ tags: [Spring, Java, Programming, Annotation, Reflection]
 
 `코드가 실행되는 중에 Reflection을 이용하여 추가 정보를 획득하여 기능을 실시한다.`
 
-### Reflection이란?
+## Reflection이란?
 Heap 영역에 로드된 Class 타입의 객체를 통해, 원하는 클래스의 인스턴스를 생성할 수 있도록 지원하고, 인스턴스의 필드와 메소드를 접근 제어자와 상관 없이 사용할 수 있도록 지원하는 API\\
 Java와 같은 객체 지향 프로그래밍 언어에서 Reflection을 사용하면 컴파일 타임에 인터페이스, 필드, 메소드의 이름을 알지 못해도 실행 중에 클래스, 인터페이스, 필드 및 메소드에 접근할 수 있다.
 
-#### 방법
+### 방법
 - 클래스.class로 가져오기
 - 인스턴스.getClass()로 가져오기
 - Class.forName("클래스명")으로 가져오기
@@ -76,7 +76,7 @@ public class Main {
 }
 ```
 
-##### getConstructor()를 통해 생성자를 얻어 오고, newInstance()를 통해 Member 인스턴스를 동적으로 생성해 줄 수 있다.
+#### getConstructor()를 통해 생성자를 얻어 오고, newInstance()를 통해 Member 인스턴스를 동적으로 생성해 줄 수 있다.
 ```java
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -98,7 +98,7 @@ public class Main {
 }
 ```
 
-##### 인스턴스의 필드와 메소드를 접근 제어자와 상관 없이 접근
+#### 인스턴스의 필드와 메소드를 접근 제어자와 상관 없이 접근
 getDeclaredFileds()를 통해 클래스의 인스턴스 변수를 모두 가져올 수 있고, get()을 통해 필드 값을 반환받을 수 있고, set( 을 통해 필드 값을 수정할 수 있는 것을 알 수 있다.\\
 이때 주의할 점은 private 접근 제어자가 있는 필드에 접근할 때는 setAccessible()의 인자를 true로 넘겨주어야 한다.\\
 메소드도 getDeclaredMethod()를 통해 메소드를 가져올 수 있다.\\
@@ -132,9 +132,10 @@ public class Main {
 }
 ```
 
-#### 장점
+### 장점
 - 런타임 시점에서 클래스의 인스턴스를 생성하고, 접근 제어자와 관계 없이 필드와 메소드에 접근하여 필요한 작업을 수행할 수 있는 유연성을 가지고 있다.
-#### 단점
+
+### 단점
 - 캡슐화를 저해한다.
 - 런타임 시점에서 인스턴스를 생성하므로 컴파일 시점에서 해당 타입을 체크할 수 없다.
 - 런타임 시점에서 인스턴스를 생성하므로 구체적인 동작 흐름을 파악하기 어렵다.
