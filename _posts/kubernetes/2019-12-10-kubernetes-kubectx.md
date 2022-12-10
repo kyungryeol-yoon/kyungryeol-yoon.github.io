@@ -13,7 +13,7 @@ fzf를 설치하면 대화식 메뉴를 제공하기 때문에, 더욱 편리하
 > Kubernetes는 Cluster, User, Namespace를 조합한 Context라는 오브젝트를 제공한다. Context는 독립적인 단위로 흔히 우리가 생각하는 클러스터를 Context 단위로 볼 수도 있지만, 사실 그보다 더 세분화된 단위라고 볼 수 있다.
 {: .prompt-info }
 
-#### kubectx 명령을 실행하면, Context 목록을 보여줍니다.
+### kubectx 명령을 실행하면, Context 목록을 보여줍니다.
 ```terminal
 $ kubectx
 coffee
@@ -21,13 +21,13 @@ minikube
 test
 ```
 
-#### Context를 변경하기 위해서는, Context 명을 입력하면 됩니다.
+### Context를 변경하기 위해서는, Context 명을 입력하면 됩니다.
 ```terminal
 $ kubectx minikube
 Switched to context "minikube".
 ```
 
-#### 만약 fzf가 설치되어 있으면, kubectx 명령을 실행하면 대화식 메뉴를 보여줍니다.
+### 만약 fzf가 설치되어 있으면, kubectx 명령을 실행하면 대화식 메뉴를 보여줍니다.
 ```terminal
 $ kubectx
 > coffee
