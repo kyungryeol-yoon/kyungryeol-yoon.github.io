@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Spring framework"
+title: "Spring framework 특징 및 구성, 구조"
 date: 2016-10-15
 # excerpt: "Spring framework 특징 및 구성, 구조(Directory)"
 categories: [Spring, Framework]

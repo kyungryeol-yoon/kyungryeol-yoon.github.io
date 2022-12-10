@@ -1,10 +1,10 @@
 ---
 # layout: post
-title: "Kubernetes install Centos7"
+title: "Kubernetes install Centos"
 date: 2020-01-28
-# excerpt: "Kubernetes Centos7 설치법"
+# excerpt: "Kubernetes Centos 설치법"
 categories: [Kubernetes, Install, Centos]
-tags: [Kubernetes, Centos7, Install]
+tags: [Kubernetes, Centos, Install]
 # comments: true
 ---
 
