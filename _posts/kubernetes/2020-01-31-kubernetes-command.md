@@ -1,7 +1,7 @@
 ---
 # layout: post
 title: "Kubernetes command"
-date: 2020-01-30
+date: 2020-01-31
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command]
 # comments: true
@@ -64,3 +64,6 @@ kubectl describe pod [pod-name]
 ```
 kubectl get pod --all-namespaces --show-labels
 ```
+
+> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+{: .prompt-info }

@@ -3,7 +3,7 @@
 title: "Machine Learning LSTM"
 date: 2019-10-01
 # excerpt: "Machine Learning LSTM에 대한 설명(Keras를 이용함)"
-tags: [LSTM, Python, jupyter, Machine Learning, Deep Learning, RNN]
+tags: [LSTM, Python, Machine Learning, Deep Learning, RNN]
 # comments: true
 ---
 
@@ -15,11 +15,8 @@ Recurrent Neural Network(이하 RNN)는 이 문제를 해결하고자 하는 모
 ## 긴 의존 기간으로 인한 문제점
 RNN의 성공의 열쇠는 "Long Short-Term Memory Network" (이하 LSTM)의 사용이다. LSTM은 RNN의 굉장히 특별한 종류이다. 기존 RNN도 LSTM만큼 대단히 유용하지만 그 성능이 상황에 따라 그 때 그 때 다르다.
 
-
-
 ## LSTM?
 이러한 RNN에 단점을 보완한 긴 의존 기간을 필요로 하는 학습을 수행할 능력이 있는 LSTM이 Hochreiter & Schmidhuber(1997)에 의해 소개되었고, 그 후에 여러 추후 연구로 계속 발전하고 있다.
-
 
 ## Keras LSTM
 ```python
