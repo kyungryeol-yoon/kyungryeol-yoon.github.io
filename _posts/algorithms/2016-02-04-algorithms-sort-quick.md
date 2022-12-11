@@ -24,7 +24,7 @@ tags: [Algorithms, cpp, Quick sort, Programming]
     * 부분 리스트에서도 다시 피벗을 정하고 피벗을 기준으로 2개의 부분 리스트로 나누는 과정을 반복한다.
   4. 부분 리스트들이 더 이상 분할이 불가능할 때까지 반복한다.
     * 리스트의 크기가 0이나 1이 될 때까지 반복한다.
-* ![](/images/algorithms/quick_sort/quick-sort-concepts.png)
+* ![](/images/algorithms/quick-sort/quick-sort-concepts.png)
 
 ## 퀵 정렬(Quick sort) 알고리즘의 구체적인 개념
 * 하나의 리스트를 피벗(pivot)을 기준으로 두 개의 비균등한 크기로 분할하고 분할된 부분 리스트를 정렬한 다음, 두 개의 정렬된 부분 리스트를 합하여 전체가 정렬된 리스트가 되게 하는 방법이다.
@@ -33,13 +33,13 @@ tags: [Algorithms, cpp, Quick sort, Programming]
   * **정복(Conquer):** 부분 배열을 정렬한다. 부분 배열의 크기가 충분히 작지 않으면 **순환 호출** 을 이용하여 다시 분할 정복 방법을 적용한다.
   * **결합(Combine):** 정렬된 부분 배열들을 하나의 배열에 합병한다.
   * 순환 호출이 한번 진행될 때마다 최소한 하나의 원소(피벗)는 최종적으로 위치가 정해지므로, 이 알고리즘은 반드시 끝난다는 것을 보장할 수 있다.
-* ![](/images/algorithms/quick_sort/quick-sort.png)
+* ![](/images/algorithms/quick-sort/quick-sort.png)
 
 
 ## 퀵 정렬(Quick sort) 알고리즘의 예제
 * 배열에 5, 3, 8, 4, 9, 1, 6, 2, 7이 저장되어 있다고 가정하고 자료를 오름차순으로 정렬해 보자.
 * *퀵 정렬에서 피벗을 기준으로 두 개의 리스트로 나누는 과정(c언어 코드의 partition 함수의 내용)*
-* ![](/images/algorithms/quick_sort/quick-sort2.png)
+* ![](/images/algorithms/quick-sort/quick-sort2.png)
 
 * 피벗 값을 입력 리스트의 첫 번째 데이터로 하자. (다른 임의의 값이어도 상관없다.)
 * 2개의 인덱스 변수(low, high)를 이용해서 리스트를 두 개의 부분 리스트로 나눈다.
@@ -108,7 +108,7 @@ int DoubleList::Partition(int Left, int Right)
 ## 퀵 정렬(quick sort)의 시간복잡도
 * 최선의 경우
   * 비교 횟수
-    * ![](/images/algorithms/quick_sort/sort-time-complexity-etc1.png)
+    * ![](/images/algorithms/quick-sort/sort-time-complexity-etc1.png)
     * *순환 호출의 깊이*
       * 레코드의 개수 n이 2의 거듭제곱이라고 가정(n=2^k)했을 때, n=2^3의 경우, 2^3 -> 2^2 -> 2^1 -> 2^0 순으로 줄어들어 순환 호출의 깊이가 3임을 알 수 있다. 이것을 **일반화하면** n=2^k의 경우, k(k=log₂n)임을 알 수 있다.
       * k=log₂n
@@ -121,7 +121,7 @@ int DoubleList::Partition(int Left, int Right)
   * 최선의 경우 T(n) = **O(nlog₂n)**
 * 최악의 경우
   * 리스트가 계속 불균형하게 나누어지는 경우 (특히, 이미 정렬된 리스트에 대하여 퀵 정렬을 실행하는 경우)
-  * ![](/images/algorithms/quick_sort/sort-time-complexity-etc2.png)
+  * ![](/images/algorithms/quick-sort/sort-time-complexity-etc2.png)
   * 비교 횟수
     * *순환 호출의 깊이*
       * 레코드의 개수 n이 2의 거듭제곱이라고 가정(n=2^k)했을 때, 순환 호출의 깊이는 n임을 알 수 있다.
@@ -140,7 +140,7 @@ int DoubleList::Partition(int Left, int Right)
 
 
 # 정렬 알고리즘 시간복잡도 비교
-![](/images/algorithms/quick_sort/sort-time-complexity.png)
+![](/images/algorithms/quick-sort/sort-time-complexity.png)
 
 * 단순(구현 간단)하지만 비효율적인 방법
   * 삽입 정렬, 선택 정렬, 버블 정렬

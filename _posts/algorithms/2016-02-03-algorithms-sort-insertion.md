@@ -19,7 +19,7 @@ tags: [Algorithms, cpp, Insertion sort, Programming]
 ## 삽입 정렬(Insertion sort) 알고리즘의 예제
 * 배열에 8, 5, 6, 2, 4가 저장되어 있다고 가정하고 자료를 오름차순으로 정렬해 보자.
 
-* ![](/images/algorithms/insertion_sort/insertion-sort.png){: width="900" height="950"}
+* ![](/images/algorithms/insertion-sort/insertion-sort.png){: width="900" height="950"}
 
 * 1회전: 두 번째 자료인 5를 Key로 해서 그 이전의 자료들과 비교한다.
   - Key 값 5와 첫 번째 자료인 8을 비교한다. 8이 5보다 크므로 8을 5자리에 넣고 Key 값 5를 8의 자리인 첫 번째에 기억시킨다.
@@ -107,7 +107,7 @@ void DoubleList::InsertSort() {
 
 # 정렬 알고리즘 시간복잡도 비교
 
-![](/images/algorithms/insertion_sort/sort-time-complexity.png)
+![](/images/algorithms/insertion-sort/sort-time-complexity.png)
 
 * 단순(구현 간단)하지만 비효율적인 방법
   * **삽입 정렬**, 선택 정렬, 버블 정렬

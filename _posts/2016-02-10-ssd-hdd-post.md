@@ -4,8 +4,6 @@ title: "SSD VS HDD"
 date: 2016-02-10
 # excerpt: "SSD와 HDD"
 tags: [ssd, hdd, hardware]
-# feature: https://www.backblaze.com/blog/wp-content/uploads/2018/03/hdd_vs_ssd_bz.png
-# comments: true
 ---
 
 ## 컴퓨터의 보조 기억 장치란?

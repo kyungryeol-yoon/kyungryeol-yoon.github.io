@@ -16,7 +16,7 @@ tags: [Compilation Process, compile languages, byte code languages, interpreter 
 일반적으로 하나의 프로그램은 여러 개의 오브젝트 파일과 공용 라이브러리로 조합이 되며, 하나의 컴퓨터가 실행할 수 있는 프로그램을 완성화기 위한 작업을 **링킹(Linking)**이라고 부른다. 결국 코드를 컴파일 과정과 링킹 과정을 거치면 사용자가 실행할 수 있는 **실행 파일(ex. EXE 파일)**이 생성된다.
 완성된 실행파일을 사용자가 실행(Execute)하게 되면 컴퓨터는 해당 프로그램의 내용을 메모리에 적재(Load)시키고 내용에 따라 프로그램을 수행하게 된다. 이러한 일을 수행하는 프로그램을 **로더(Loader)**라고 한다.
 
-* ![](/images/compilation_process/compilation-process.png)
+* ![](/images/compilation-process/compilation-process.png)
 
 개발자가 작성한 코드는 위의 과정을 거쳐 실행 가능한 **바이너리 파일(Binary File)**로 만들어진다. 이렇게 만들어진 실행파일을 실행하면 바이너리 파일의 내용들이 **주기억장치(Ram)**로 **적재(Load)**되어 시스템에서 동작하게 된다.
 
@@ -179,7 +179,7 @@ printf("Hello, world!");
 
 ## 컴파일 과정 - 전단부 (Front-End)
 
-* ![](/images/compilation_process/Front-End.png)
+* ![](/images/compilation-process/Front-End.png)
 
 전단부에서는 언어 종속적인 부분을 처리한다. 이 단계에서는 C, C++, Java 등의 다른 언어로 작성된 코드들이 각각 다른 모듈에 의해 처리되며, 소스코드가 올바르게 작성되었는지 분석하고, 중단부에 넘겨주기 위한 GIMPLE 트리 (소스코드를 트리 형태로 표현한 자료구조)를 생성하는 일을 수행한다.
 
@@ -190,7 +190,7 @@ printf("Hello, world!");
 
 ## 컴파일 과정 - 중단부 (Middle-End)
 
-* ![](/images/compilation_process/Middle-End.png)
+* ![](/images/compilation-process/Middle-End.png)
 
 중단부에서는 전단부에서 넘겨 받은 GIMPLE Tree를 **SSA(Static Single Assignment)**형태로 변환한 후에 아키텍쳐 비종속적인 최적화를 수행한 후 최종적으로 후단부에서 사용하는 **RTL(Register Transfer Language : 고급 언어와 어셈블리 언어의 중간 형태)**을 생성한다.
 **아키텍쳐 비종속적인 최적화**란 서로 다른 CPU 아키텍쳐에 구애받지 않고 공통적으로 수행할 수 있는 최적화를 말한다. 중단부에서는 SSA 기반으로 최적화를 수행한다.
@@ -201,7 +201,7 @@ printf("Hello, world!");
 
 ## 컴파일 과정 - 후단부 (Back-End)
 
-* ![](/images/compilation_process/Back-End.png)
+* ![](/images/compilation-process/Back-End.png)
 
 후단부에서는 RTL Optimizer에 의해 **아키텍쳐 비종속적인 최적화**와 함께 **아키텍쳐 종속적인 최적화**가 수행된다.
 아키텍쳐 종속적인 최적화는 각 프로그램 내의 명령어 중 아키텍쳐별로 좀 더 효율적인 명령어로 대체해 성능을 높이는 작업과 같이 아키텍쳐 특성에 따라 최적화를 수행하는 것을 말한다.
