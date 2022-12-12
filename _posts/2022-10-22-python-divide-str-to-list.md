@@ -6,29 +6,21 @@ tags: [Python, List, Programming]
 ---
 
 ```python
-a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-unit = 7
-b = [a[i : i + unit] for i in range(0,len(a),unit)]
-
-# ['ABCDEFG', 'HIJKLMN', 'OPQRSTU', 'VWXYZ']
-```
-
-```python
-seq='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+str_eng='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 length=3
-result = [seq[i:i+length] for i in range(0, len(seq), length)]
+result = [str_eng[i:i+length] for i in range(0, len(str_eng), length)]
 
 # ['ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQR', 'STU', 'VWX', 'YZ']
 
-seq='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+str_eng='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 length=3
-result = [''.join(x) for x in zip(*[list(seq[z::length]) for z in range(length)])]
+result = [''.join(x) for x in zip(*[list(str_eng[z::length]) for z in range(length)])]
 
 # ['ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQR', 'STU', 'VWX']
 
-seq='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+str_eng='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 length=3
-result = list(map(''.join, zip(*[iter(seq)]*length)))
+result = list(map(''.join, zip(*[iter(str_eng)]*length)))
 
 # ['ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQR', 'STU', 'VWX']
 ```
