@@ -12,11 +12,13 @@ tags: [Linux, disk, usage, command]
 du /etc
 ```
 
-### du -s 디렉토리명, du -sh 디렉토리명
+### du -s 디렉토리명
 - 선택한 디렉토리만의 용량을 알고 싶으면 s 옵션을 붙입니다.
 ```terminal
 du -s /etc
 ```
+
+### du -sh 디렉토리명
 - 용량이 읽기 편한 단위로 나오게 하려면 h 옵션을 붙입니다.
 ```terminal
 du -sh /etc
