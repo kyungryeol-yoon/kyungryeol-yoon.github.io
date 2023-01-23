@@ -24,28 +24,30 @@ tags: [Kubernetes, Affinity]
             - ```yaml
                 ...생략...
                 affinity:
-                nodeAffinity:
-                    requiredDuringSchedulingIgnoredDuringExecution:
-                    nodeSelectorTerms:
-                    - matchExpressions:
-                        - key: disktype
-                        operator: In
-                        values:
-                        - ssd
+                    nodeAffinity:
+                        requiredDuringSchedulingIgnoredDuringExecution:
+                        nodeSelectorTerms:
+                        - matchExpressions:
+                            - key: disktype
+                            operator: In
+                            values:
+                            - ssd
                 ```
     - 선호하는 조건 (Soft)
         - preferredDuringSchedulingIgnoredDuringExecution : `스케쥴링하는 동안 만족하면 좋은` 조건입니다. 꼭 이 조건을 만족해야하는 것은 아니라는 의미입니다.
             - 즉, 스케쥴링되는 워크로드에는 선호 조건이고, 실행 중인 워크로드는 조건을 무시한다는 의미이다.
             - ```yaml
                 ...생략...
-                preferredDuringSchedulingIgnoredDuringExecution:
-                - weight: 10
-                preference:
-                - matchExpressions:
-                    - key: disktype
-                    operator: In
-                    values:
-                    - hdd
+                affinity:
+                    nodeAffinity:
+                        preferredDuringSchedulingIgnoredDuringExecution:
+                        - weight: 10
+                        preference:
+                        - matchExpressions:
+                            - key: disktype
+                            operator: In
+                            values:
+                            - hdd
                 ```
     - 용어 설명:
         - IgnoredDuringExecution: 실행 중인 워크로드에 대해서는 해당 규칙을 무시한다.
