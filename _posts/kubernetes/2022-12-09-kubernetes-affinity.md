@@ -22,7 +22,7 @@ tags: [Kubernetes, Affinity]
             - 즉, 스케쥴링되는 워크로드에는 필수 조건이고, 실행 중인 워크로드는 조건을 무시한다는 의미이다.
             - requiredDuringSchedulingIgnoredDuringExecution를 구성하는 매니페스트 파일
 ```yaml
-...중략...
+...생략
 affinity:
 nodeAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
