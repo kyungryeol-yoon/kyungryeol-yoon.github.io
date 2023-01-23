@@ -18,7 +18,7 @@ tags: [Kubernetes, Affinity]
 - matchExpressions 사용 가능하다. (In, NotIn, Exists, DoesNotExist, Gt, Lt 등의 옵션이 있다.)
 - 여러 유즈케이스에 활용 가능한 2가지 옵션이 있는데. Hard, Soft로 나뉜다. 매우 조건이 길기 때문에 2등분해서 의미를 이해하면 좋다.
     - 반드시 충족해야 하는 조건 (Hard)
-        - requiredDuringSchedulingIgnoredDuringExecution : '스케쥴링하는 동안 꼭 필요한' 조건
+        - requiredDuringSchedulingIgnoredDuringExecution : `스케쥴링하는 동안 꼭 필요한` 조건
             - 즉, 스케쥴링되는 워크로드에는 필수 조건이고, 실행 중인 워크로드는 조건을 무시한다는 의미이다.
             - requiredDuringSchedulingIgnoredDuringExecution를 구성하는 매니페스트 파일
 
@@ -36,7 +36,7 @@ tags: [Kubernetes, Affinity]
             ```
 
     - 선호하는 조건 (Soft)
-        - preferredDuringSchedulingIgnoredDuringExecution : '스케쥴링하는 동안 만족하면 좋은' 조건입니다. 꼭 이 조건을 만족해야하는 것은 아니라는 의미입니다.
+        - preferredDuringSchedulingIgnoredDuringExecution : `스케쥴링하는 동안 만족하면 좋은` 조건입니다. 꼭 이 조건을 만족해야하는 것은 아니라는 의미입니다.
             - 즉, 스케쥴링되는 워크로드에는 선호 조건이고, 실행 중인 워크로드는 조건을 무시한다는 의미이다.
 
             ```yaml
