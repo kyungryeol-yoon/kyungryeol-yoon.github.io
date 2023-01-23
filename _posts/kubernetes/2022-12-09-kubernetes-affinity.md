@@ -21,21 +21,32 @@ tags: [Kubernetes, Affinity]
         - requiredDuringSchedulingIgnoredDuringExecution : '스케쥴링하는 동안 꼭 필요한' 조건
             - 즉, 스케쥴링되는 워크로드에는 필수 조건이고, 실행 중인 워크로드는 조건을 무시한다는 의미이다.
             - requiredDuringSchedulingIgnoredDuringExecution를 구성하는 매니페스트 파일
-            ```yaml
-            ...중략...
-            affinity:
-            nodeAffinity:
-                requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                - matchExpressions:
-                    - key: disktype
-                    operator: In
-                    values:
-                    - ssd
-            ```
+```yaml
+...중략...
+affinity:
+nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    nodeSelectorTerms:
+    - matchExpressions:
+        - key: disktype
+        operator: In
+        values:
+        - ssd
+```
     - 선호하는 조건 (Soft)
         - preferredDuringSchedulingIgnoredDuringExecution : '스케쥴링하는 동안 만족하면 좋은' 조건입니다. 꼭 이 조건을 만족해야하는 것은 아니라는 의미입니다.
             - 즉, 스케쥴링되는 워크로드에는 선호 조건이고, 실행 중인 워크로드는 조건을 무시한다는 의미이다.
+```yaml
+...생략
+preferredDuringSchedulingIgnoredDuringExecution:
+- weight: 10
+  preference:
+  - matchExpressions:
+    - key: disktype
+      operator: In
+      values:
+      - hdd
+```
     - 용어 설명:
         - IgnoredDuringExecution: 실행 중인 워크로드에 대해서는 해당 규칙을 무시한다.
         - RequiredDuringExecution: 위와 반대개념으로 실행 중인 워크로드에 대해서 해당 규칙을 반드시 필요로 한다.
@@ -43,9 +54,9 @@ tags: [Kubernetes, Affinity]
 | key 필드 값 | 설명 |
 | - | - |
 | In | values[] 필드에 설정한 값 중 레이블에 있는 값과 일치하는 것이 하나라도 있는지 확인합니다. |
-| Notln | In과 반대로 values[]에 있는 값 모두와 맞지 않는 지 확인합니다. |
-| Exists | key 필드에 설정한 값이 레이블에 있는지만 확인합니다. (values[] 필드가 필요 없습니다.) |
-| DoseNotExist | Exists와 반대로 노드의 레이블에 key 필드 값이 없는지만 확인합니다. |
+| Notln | `In`과 반대로 values[]에 있는 값 모두와 맞지 않는 지 확인합니다. |
+| Exists | `key` 필드에 설정한 값이 레이블에 있는지만 확인합니다. (values[] 필드가 필요 없습니다.) |
+| DoseNotExist | `Exists`와 반대로 노드의 레이블에 `key` 필드 값이 없는지만 확인합니다. |
 | Gt | Greater than의 약자로 values[] 필드에 설정된 값이 설정된 값 보다 더 큰 숫자형 데이터 인지 확인합니다. 이 때 values[] 필드에는 값이 하나만 있어야 합니다. |
 | Lt | Lower than의 약자로 values[] 필드에 설정된 값이 설정된 값 보다 더 작은 숫자형 데이터 인지 확인합니다. 이 때 values[] 필드에는 값이 하나만 있어야 합니다. |
 
