@@ -5,9 +5,9 @@ categories: [Kubernetes, PostgreSQL]
 tags: [Kubernetes, PostgreSQL]
 ---
 
-- PVC 설정이 되어 있지 않았을 때
-- PVC가 실수로 지웠을 때
-- 환경이 동일하고 같은 테이블을 사용하는 db를 사용할 때
+- PV 또는 PVC 설정이 되어 있지 않았을 때
+- PV 또는 PVC 실수로 지웠을 때
+- 환경이 동일하고 같은 테이블을 사용하는 db를 재사용할 때
 
 postgresql pod가 생성될 때 최초로 아래와 같은 기본 테이블 세팅 설정
 
