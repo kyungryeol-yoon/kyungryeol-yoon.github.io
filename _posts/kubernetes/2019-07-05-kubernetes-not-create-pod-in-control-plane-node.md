@@ -5,7 +5,7 @@ categories: [Kubernetes, Node]
 tags: [Kubernetes, Control-Plane, Node, Pod]
 ---
 
-## Control-Plane Node에 Pod를 올릴경우 아래처럼 Pending 상태로 진행되지 않음 (테스트를 위해 Contrl-Plane Node만 Ready인 상태로 진행)
+## Control-Plane Node에 Pod를 올릴 경우
 1. deployment yaml 생성
 ```
 apiVersion: apps/v1
@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.7.9
+        image: nginx:latest
         ports:
         - containerPort: 80
 ```
