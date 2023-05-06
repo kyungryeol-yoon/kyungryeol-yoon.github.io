@@ -50,6 +50,11 @@ kubectl get nodes
 kubectl exec [pod-name] –ti bash
 ```
 
+### pod 강제 종료
+```
+kubectl delete pod [PODNAME] --grace-period=0 --force --namespace [NAMESPACE]
+```
+
 ### 포트포워딩 설정 (모든 서버에)
 ```
 kubectl port-forward svc/[pod-name] 3306:3306 –address 0.0.0.0
@@ -73,6 +78,21 @@ kubectl describe sa foo
 ### pod 상세 출력
 ```
 kubectl describe pod [pod-name]
+```
+
+### Node 상세 출력
+```
+kubectl describe node [node name]
+```
+
+### Kubernetes에 의해 발생한 모든 event 정보를 확인
+```
+kubectl get events -n kube-system
+```
+
+### Kubernetes에 join되어 있는 node들의 상태 정보를 확인
+```
+kubectl describe node master
 ```
 
 ### 모든 네임스페이스 내 모든 파드(또는 레이블을 지원하는 다른 쿠버네티스 오브젝트)의 레이블 조회
