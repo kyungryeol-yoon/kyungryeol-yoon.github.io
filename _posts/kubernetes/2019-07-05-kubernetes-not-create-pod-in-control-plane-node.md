@@ -6,7 +6,7 @@ tags: [Kubernetes, Control-Plane, Node, Pod]
 ---
 
 ## Control-Plane Node에 Pod를 올릴 경우
-1. deployment yaml 생성
+### deployment yaml 생성
 
 ```
 apiVersion: apps/v1
@@ -32,7 +32,7 @@ spec:
         - containerPort: 80
 ```
 
-2. Apply
+### Apply
 
 ```
 kubectl apply -f nginx-deployment.yaml
@@ -40,7 +40,7 @@ kubectl apply -f nginx-deployment.yaml
 deployment.apps/nginx-deployment created
 ```
 
-3. Pod 상태 확인 (Pending 상태로 지속 됨)
+### Pod 상태 확인 (Pending 상태로 지속 됨)
 
 ```
 $ kubectl get pods
@@ -49,7 +49,7 @@ NAME                               READY   STATUS    RESTARTS   AGE
 nginx-deployment-6dd86d77d-4rkhf   0/1     Pending   0          20m
 ```
 
-4. Pod 상태 자세히 확인
+### Pod 상태 자세히 확인
 
 ```
 $ kubectl describe pod nginx-deployment-6dd86d77d-4rkhf
@@ -66,7 +66,7 @@ Events:
 ```
 
 ## 위처럼 Pending 상태로 안올라오는 이유는 Contrl-Plane Node에 Pod를 못 올리도록 설정되어 있기 때문
-1. Contrl-Plane Node 확인 (아래 master는 Contrl-Plane Node Name)
+### Contrl-Plane Node 확인 (아래 master는 Contrl-Plane Node Name)
 
 ```
 $ kubectl describe node master | grep Taints
@@ -75,7 +75,7 @@ Taints:             node-role.kubernetes.io/master:NoSchedule
 ```
 
 ## Pod를 올리고 싶을 경우
-1. Taint 설정 해제
+### Taint 설정 해제
 
 ```
 $ kubectl taint nodes –all node-role.kubernetes.io/master-
@@ -89,7 +89,7 @@ nginx-deployment-6dd86d77d-4rkhf   1/1     Running   0          35m   10.244.0.7
 ```
 
 ## 다시 Pod를 못 올리도록 설정하고 싶은 경우
-1. Taint 설정
+### Taint 설정
 
 ```
 $ kubectl taint nodes master node-role.kubernetes.io=master:NoSchedule
@@ -97,7 +97,7 @@ $ kubectl taint nodes master node-role.kubernetes.io=master:NoSchedule
 node/master tainted
 ```
 
-2. 확인
+### 확인
 
 ```
 $ kubectl describe node master | grep Taints
