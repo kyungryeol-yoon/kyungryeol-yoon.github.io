@@ -85,6 +85,7 @@ checkout_latest_release() {
 }
 
 init_files() {
+  echo "init_files"
   if $_no_gh; then
     rm -rf .github
   else
