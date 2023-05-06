@@ -50,6 +50,7 @@ _check_status() {
 }
 
 _check_init() {
+  echo "check_init"
   local _has_inited=false
 
   if [[ ! -d .github ]]; then # using option `--no-gh`
@@ -93,11 +94,11 @@ init_files() {
     mv ./${ACTIONS_WORKFLOW}.hook .github/workflows/${ACTIONS_WORKFLOW}
 
     ## Cleanup image settings in site config
-    _sedi "s/^img_cdn:.*/img_cdn:/;s/^avatar:.*/avatar:/" _config.yml
+    # _sedi "s/^img_cdn:.*/img_cdn:/;s/^avatar:.*/avatar:/" _config.yml
   fi
 
   # remove the other files
-  rm -rf _posts/*
+  # rm -rf _posts/*
 
   # build assets
   npm i && npm run build
