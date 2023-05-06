@@ -5,8 +5,8 @@ categories: [Kubernetes, Node]
 tags: [Kubernetes, Control-Plane, Node, Pod]
 ---
 
-### Kubernetes Control-Plane Node에 Pod 올리는 방법
 #### Control-Plane Node에 Pod를 올릴경우 아래처럼 Pending 상태로 진행되지 않음 (테스트를 위해 Contrl-Plane Node만 Ready인 상태로 진행)
+
 ##### deployment yaml 생성
 ```nginx-deployment.yaml
 apiVersion: apps/v1
@@ -63,6 +63,7 @@ Events:
 ```
 
 #### 위처럼 Pending 상태로 안올라오는 이유는 Contrl-Plane Node에 Pod를 못 올리도록 설정되어 있기 때문
+
 ##### Contrl-Plane Node 확인 (아래 master는 Contrl-Plane Node Name)
 ```
 $ kubectl describe node master | grep Taints
@@ -71,6 +72,7 @@ Taints:             node-role.kubernetes.io/master:NoSchedule
 ```
 
 #### Pod를 올리고 싶을 경우
+
 ##### Taint 설정 해제
 ```
 $ kubectl taint nodes –all node-role.kubernetes.io/master-
@@ -84,6 +86,7 @@ nginx-deployment-6dd86d77d-4rkhf   1/1     Running   0          35m   10.244.0.7
 ```
 
 #### 다시 Pod를 못 올리도록 설정하고 싶은 경우
+
 ##### Taint 설정
 ```
 $ kubectl taint nodes master node-role.kubernetes.io=master:NoSchedule
