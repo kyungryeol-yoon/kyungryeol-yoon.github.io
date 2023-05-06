@@ -1,7 +1,7 @@
 ---
 title: "[Linux] Directory와 파일 용량 확인 명령어"
 date: 2022-11-24
-categories: [Linux, command]
+categories: [Linux, disk]
 tags: [Linux, disk, usage, command]
 ---
 
