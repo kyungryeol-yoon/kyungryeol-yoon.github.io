@@ -81,7 +81,7 @@ Taints:             node-role.kubernetes.io/master:NoSchedule
 $ kubectl taint nodes –all node-role.kubernetes.io/master-
 
 node/master untainted
-Pod 상태 재조회 (자동으로 리스타트 됨)
+Pod 상태 재조회 (자동으로 restart)
 $ kubectl get pods -o wide
 
 NAME                               READY   STATUS    RESTARTS   AGE   IP           NODE     NOMINATED NODE   READINESS GATES
