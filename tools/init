@@ -75,10 +75,11 @@ _check_init() {
 check_env() {
   _check_cli
   _check_status
-  # _check_init
+  _check_init
 }
 
 checkout_latest_release() {
+  echo "checkout_latest_release"
   hash=$(git log --grep="chore(release):" -1 --pretty="%H")
   git reset --hard "$hash"
 }
