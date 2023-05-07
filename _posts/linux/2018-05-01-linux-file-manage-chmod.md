@@ -2,7 +2,7 @@
 title: "[Linux] 파일 관리 - chmod 파일/디렉토리 권한 변경"
 date: 2018-05-01
 categories: [Linux, File]
-tags: [Linux, file, directory, chmod]
+tags: [Linux, File, Directory, chmod]
 ---
 
 ## chmod 명령어

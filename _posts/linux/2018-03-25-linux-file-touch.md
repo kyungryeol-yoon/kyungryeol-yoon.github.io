@@ -2,7 +2,7 @@
 title: "[Linux] 파일 관리 - touch 빈 파일 생성"
 date: 2018-03-25
 categories: [Linux, File]
-tags: [Linux, file, touch]
+tags: [Linux, File, touch]
 ---
 
 ## touch 명령어

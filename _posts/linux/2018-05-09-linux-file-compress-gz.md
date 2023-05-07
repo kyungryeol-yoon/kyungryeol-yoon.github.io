@@ -2,7 +2,7 @@
 title: "[Linux] gz 압축 및 해제"
 date: 2018-05-09
 categories: [Linux, File]
-tags: [Linux, file, directory, compress, gz]
+tags: [Linux, File, Directory, Compress, gz]
 ---
 
 ## gzip 설치하기

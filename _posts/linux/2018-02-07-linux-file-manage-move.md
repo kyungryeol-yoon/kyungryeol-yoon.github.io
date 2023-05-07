@@ -2,7 +2,7 @@
 title: "[Linux] 파일 관리 - mv 파일/디렉토리 이동"
 date: 2018-02-07
 categories: [Linux, File]
-tags: [Linux, file, directory, mv, move]
+tags: [Linux, File, Directory, mv, move]
 ---
 
 ## mv 명령어

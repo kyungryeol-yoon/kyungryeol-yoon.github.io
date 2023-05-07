@@ -2,7 +2,7 @@
 title: "[Linux] 프로세스 관리 - top 실시간 프로세스 모니터링"
 date: 2018-07-25
 categories: [Linux, Process]
-tags: [Linux, process, top]
+tags: [Linux, Process, top]
 ---
 
 ## top 명령어

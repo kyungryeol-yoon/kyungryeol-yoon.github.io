@@ -2,7 +2,7 @@
 title: "[Linux] 7z 압축 및 해제"
 date: 2018-05-25
 categories: [Linux, File]
-tags: [Linux, file, directory, compress, 7z]
+tags: [Linux, File, Directory, Compress, 7z]
 ---
 
 ## p7zip 설치하기

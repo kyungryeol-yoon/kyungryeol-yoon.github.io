@@ -2,7 +2,7 @@
 title: "[Linux] 파일 관리 - rmdir, rm"
 date: 2018-01-09
 categories: [Linux, File]
-tags: [Linux, file, rmdir, rm, directory]
+tags: [Linux, File, rmdir, rm, Directory]
 ---
 
 ## rmdir 명령어

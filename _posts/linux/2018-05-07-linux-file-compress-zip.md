@@ -2,7 +2,7 @@
 title: "[Linux] zip 압축 및 해제"
 date: 2018-05-07
 categories: [Linux, File]
-tags: [Linux, file, directory, compress, zip]
+tags: [Linux, File, Directory, Compress, zip]
 ---
 
 ## zip, unzip 설치하기
