@@ -41,6 +41,6 @@ A라는 계정에서 저장한 alias명령어는 B라는 계정에서 사용 불
 ### 저장법
 1. cat >> ~root/.bashrc 입력
 2. 자신이 저장 할 alias 입력
-3. 엔터 친뒤 Ctrl + C
+3. Enter 후 Ctrl + C
 4. 창을 껐다가 키거나, 아래 명령어을 입력한다.
     - chsh -s /bin/bash
