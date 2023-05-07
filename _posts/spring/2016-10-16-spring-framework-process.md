@@ -14,14 +14,14 @@ Spring project를 생성하고 바로 실행하면 browser에 home.jsp가 실행
 1. 클라이어트 요청(/, root 페이지 요청)
 2. web.xml에서 dispatcherServlet가 클라이언트 요청을 핸들링
 3. servlet-context.xml에서 해당 클래스의 웹요청을 처리하는 컨트롤러를 사용(HandlerMapping으로 Controller를 검색)
-4. 해당 Controller가 요청을 처리 후, home을 리턴)
+4. 해당 Controller가 요청을 처리 후, home을 리턴
 5. View에 출력
 
 ### DispatcherServlet
 #### Model, Controller, View를 조합하여 browser로 출력해주는 역할을 수행하는 class
 ![](/images/spring/dispatcher-servlet.png)
 
-### 01) /WEB-INF/web.xml
+### 01. /WEB-INF/web.xml
 #### 웹프로젝트의 배치 기술서(deploy descriptor, 웹프로젝트의 환경 설정 파일)
 * Spring project가 실행되면 가장 먼저 web.xml을 읽어 들이게 되고 위에서부터 차례대로 태그들을 해석하기 시작한다.
 {% highlight xml %}
@@ -68,7 +68,7 @@ Spring project를 생성하고 바로 실행하면 browser에 home.jsp가 실행
 </web-app>
 {% endhighlight %}
 
-### 02) /WEB-INF/spring/root-context.xml
+### 02. /WEB-INF/spring/root-context.xml
 #### Spring의 환경 설정 파일
 * 현재는 별다른 내용을 작성하지 않았기 때문에 web.xml에서는 root-context.xml을 건너 뛰게 된다.
 {% highlight xml %}
@@ -81,7 +81,7 @@ Spring project를 생성하고 바로 실행하면 browser에 home.jsp가 실행
 </beans>
 {% endhighlight %}
 
-### 03) servlet-context.xml
+### 03. servlet-context.xml
 * web.xml에서 DispatcherServlet(Spring에 내장된 컨트롤러)로 이동하게 되고, /WEB-INF/spring/appServlet/servlet-context.xml을 참조하게 된다.
 {% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>
@@ -121,7 +121,7 @@ Spring project를 생성하고 바로 실행하면 browser에 home.jsp가 실행
 </beans:beans>
 {% endhighlight %}
 
-### 04) HomeController
+### 04. HomeController
 ```java
 package com.chris.springmvcproj;
 
