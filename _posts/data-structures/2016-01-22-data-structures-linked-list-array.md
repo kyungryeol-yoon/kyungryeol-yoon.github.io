@@ -10,9 +10,6 @@ tags: [Data Structures, cpp, Linked List, Array, Programming]
 
 ## 배열(Array)
 
-<!-- <figure>
-    <img src="/images/data-structures/array.jpg">
-</figure> -->
 ![](/images/data-structures/array.jpg)
 
 데이터를 물리적 주소에 순차적으로 저장하며 인덱스를 가지고 있어 바로 접근할 수 있기 때문에 접근 속도가 매우 빠르다.\\
@@ -20,9 +17,6 @@ tags: [Data Structures, cpp, Linked List, Array, Programming]
 
 ## 연결리스트(LinkedList)
 
-<!-- <figure>
-    <img src="/images/data-structures/linkedlist.jpg">
-</figure> -->
 ![](/images/data-structures/linkedlist.jpg)
 
 데이터를 저장할 때 데이터만 저장하는 것이 아니라 다음 데이터의 물리적 주소까지 같이 저장한다.\\
