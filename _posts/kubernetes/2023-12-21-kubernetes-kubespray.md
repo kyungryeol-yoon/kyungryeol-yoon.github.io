@@ -26,10 +26,12 @@ tags: [Kubernetes, Kubespray]
     - Amazon Linux 2
   - 지속적인 통합 (CI) 테스트
 
-### Affinity 종류
-- Vagrant 설정
+### Vagrant 설정
+- vagrant init
+- vagrant up
+- vagrant status
 
-```Vagrantfile
+```vagrantfile
 require "yaml"  
 
 CONFIG = YAML.load_file(File.join(File.dirname(__FILE__), "config.yaml"))
