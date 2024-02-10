@@ -31,7 +31,7 @@ tags: [Kubernetes, Kubespray]
 - vagrant up
 - vagrant status
 
-```vagrantfile
+```
 require "yaml"  
 
 CONFIG = YAML.load_file(File.join(File.dirname(__FILE__), "config.yaml"))
