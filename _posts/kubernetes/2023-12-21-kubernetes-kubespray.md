@@ -29,7 +29,7 @@ tags: [Kubernetes, Kubespray]
 ### Affinity 종류
 - Vagrant 설정
 
-```
+```Vagrantfile
 require "yaml"  
 
 CONFIG = YAML.load_file(File.join(File.dirname(__FILE__), "config.yaml"))
