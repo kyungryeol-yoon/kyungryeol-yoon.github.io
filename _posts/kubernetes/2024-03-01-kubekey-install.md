@@ -49,7 +49,7 @@ make kk
 ./kk create cluster --with-kubesphere v3.2.1
 ```
 
-## 4. Create Config
+## 4. 세부 설정을 위한 Create Config
 ```
 ./kk create config [--with-kubernetes version] [--with-kubesphere version] [(-f | --filename) path]
 ```
