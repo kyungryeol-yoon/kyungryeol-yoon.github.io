@@ -149,3 +149,119 @@ workers:
     memory: 2048
     cpu: 2
 ```
+
+### SSH 생성
+vagrant ssh k8s-master-1
+
+ssh-keygen -t rsa
+
+ls -al .ssh/
+
+cat .ssh/id_rsa.pub
+
+ssh-copy-id vagrant@192.168.10.100
+ssh-copy-id vagrant@192.168.10.200
+ssh-copy-id vagrant@192.168.10.210
+
+
+virtualenv --python=python3 venv
+
+. venv/bin/activate
+
+git clone https://github.com/kubernetes-sigs/kubespray
+cd kubespray
+git checkout release-2.22
+
+pip install -r requirements.txt
+
+
+ansible --version
+
+cp -rfp inventory/sample inventory/mycluster
+
+declare -a IPS=(192.168.10.100 192.168.10.200 192.168.10.210)
+
+CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+
+# vi inventory/mycluster/inventory.ini
+ansible all -m ping -i inventory/mycluster/inventory.ini
+
+vi inventory/mycluster/group_vars/k8s_cluster/addons.yml
+
+# apt 캐시 업데이트
+ansible all -i inventory/mycluster/inventory.ini -m apt -a 'update_cache=yes' --become
+
+ansible all -i inventory/mycluster/inventory.ini -a 'timedatectl'
+
+ansible-playbook -i inventory/mycluster/inventory.ini  --become --become-user=root cluster.yml -e ansible_ssh_timeout=50 --flush-cache -vvv
+ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml -e ignore_assert_errors=yes -e ansible_ssh_timeout=50
+ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml -e ansible_ssh_timeout=50 --flush-cache -vvv
+
+
+deactivate
+
+sudo su
+
+kubectl get nodes
+kubectl get componentstatus
+kubectl get --raw='/readyz?verbose'
+
+
+## vi inventory/mycluster/inventory.ini
+```
+[all]
+k8s-master-1 ansible_host=192.168.10.100 ip=192.168.10.100
+k8s-worker-1 ansible_host=192.168.10.200 ip=192.168.10.200
+k8s-worker-2 ansible_host=192.168.10.210 ip=192.168.10.210
+[kube_control_plane]
+k8s-master-1
+
+[etcd]
+k8s-master-1
+
+[kube_node]
+k8s-worker-1
+k8s-worker-2
+
+[calico_rr]
+
+[k8s_cluster:children]
+kube_control_plane
+kube_node
+calico_rr
+```
+
+## vi inventory/mycluster/hosts.yaml
+```
+all:
+  hosts:
+    k8s-master-1:
+      ansible_host: 192.168.10.100
+      ip: 192.168.10.100
+      access_ip: 192.168.10.100
+    k8s-worker-1:
+      ansible_host: 192.168.10.200
+      ip: 192.168.10.200
+      access_ip: 192.168.10.200
+    k8s-worker-2:
+      ansible_host: 192.168.10.210
+      ip: 192.168.10.210
+      access_ip: 192.168.10.210
+  children:
+    kube_control_plane:
+      hosts:
+        k8s-master-1:
+    kube_node:
+      hosts:
+        k8s-worker-1:
+        k8s-worker-2:
+    etcd:
+      hosts:
+        k8s-master-1:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}
+```

@@ -6,7 +6,7 @@ tags: [Kubernetes, Kubekey]
 ---
 
 # KubeKey 설치
-## 1. script
+## 1. script 다운로드
 ```
 curl -sfL https://get-kk.kubesphere.io | VERSION=v3.0.7 sh -
 or
@@ -22,7 +22,13 @@ make kk
 
 ## 4. Create Config
 ```
+./kk create config [--with-kubernetes version] [--with-kubesphere version] [(-f | --filename) path]
+```
+- 다른 파일 이름이나 다른 폴더에 있는 파일을 지정할 수도 있다.
+```
 ./kk create config [--with-kubernetes version] [(-f | --file) path]
+```
+```
 ./kk create config --with-kubernetes v1.20.4
 ```
 ### vi config-sample.yaml
