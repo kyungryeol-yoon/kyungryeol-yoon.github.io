@@ -13,12 +13,15 @@ or
 curl -sfL https://get-kk.kubesphere.io | sh -
 ```
 
-## 2. Binary Downloads https://github.com/kubesphere/kubekey/releases
+## 2. Binary Downloads
+- https://github.com/kubesphere/kubekey/releases
 
 ## 3. Build Binary from Source Code
+```
 git clone https://github.com/kubesphere/kubekey.git
 cd kubekey
 make kk
+```
 
 ## 4. Create Config
 ```
@@ -31,8 +34,9 @@ make kk
 ```
 ./kk create config --with-kubernetes v1.20.4
 ```
+
 ### vi config-sample.yaml
-```config-sample.yaml
+```yaml
 apiVersion: kubekey.kubesphere.io/v1alpha1
 kind: Cluster
 metadata:
@@ -70,17 +74,13 @@ hosts:
 - {name: master, address: 192.168.0.1, internalAddress: 192.168.0.1, privateKeyPath: "~/.ssh/id_rsa"}
 ```
 
+## 5. Install Cluster
 ```
 ./kk create cluster -f config-sample.yaml
 ```
 
-# another
-./kk create cluster [--with-kubernetes version] [--with-kubesphere version]
-
-## Examples
-- Create a pure Kubernetes cluster with default version (Kubernetes v1.23.10).
 ```
-./kk create cluster
+./kk create cluster [--with-kubernetes versio n] [--with-kubesphere version]
 ```
 
 - Create a Kubernetes cluster with a specified version.

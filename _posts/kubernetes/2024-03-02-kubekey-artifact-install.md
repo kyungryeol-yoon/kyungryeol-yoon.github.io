@@ -14,19 +14,19 @@ tags: [Kubernetes, Kubekey, Artifact]
     - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
 - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
 
-참고)
-https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest_and_artifact.md
-https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt
-https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation
-https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest-example.md
+## 참고
+- https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest_and_artifact.md
+- https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt
+- https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation
+- https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest-example.md
 
-# kubekey artifact 설치
-## 1. script 다운로드
+## kubekey artifact 설치
+### 1. script 다운로드
 ```
 curl -sfL https://get-kk.kubesphere.io | VERSION=v3.0.7 sh -
 ```
-## 2. artifact-3.0.7.yaml 작성
-```artifact-3.0.7.yaml
+### 2. artifact-3.0.7.yaml 작성
+```yaml
 apiVersion: kubekey.kubesphere.io/v1alpha2
 kind: Manifest
 metadata:
@@ -75,15 +75,22 @@ spec:
 #  - docker.io/kubesphere/kube-apiserver:v1.23.15
 #  - docker.io/kubesphere/kube-controller-manager:v1.23.15
 ```
-## 3. Export Artifact
+### 3. Export Artifact
+```
 sudo ./kk artifact export -m artifact-3.0.7.yaml -o artifact-3.0.7.tar.gz
+```
 
-## 4. registry 설치
+### 4. registry 설치
+```
 kk init registry -f config-sample.yaml -a artifact-3.0.7.tar.gz
+```
 
-## 5. Cluster 설치를 위한 config 파일 생성 및 작성
+### 5. Cluster 설치를 위한 config 파일 생성 및 작성
+```
 sudo ./kk create config --with-kubesphere v3.4.1 --with-kubernetes v1.24.9 -f config-sample.yaml
 ```
+
+```yaml
 apiVersion: kubekey.kubesphere.io/v1alpha2
 kind: Cluster
 metadata:
@@ -313,12 +320,12 @@ spec:
     timeout: 600
 ```
 
-## 6. harbor 수정
+### 6. harbor 수정
 ```
 curl -O https://raw.githubusercontent.com/kubesphere/ks-installer/master/scripts/create_project_harbor.sh
 ```
 
-### url 수정 : https://dockerhub.kubekey.local
+#### url 수정 : https://dockerhub.kubekey.local
 ```
 vi create_project_harbor.sh
 ```
@@ -327,26 +334,31 @@ vi create_project_harbor.sh
 chmod +x create_project_harbor.sh
 ```
 
-#### error 났을 때 (harbor curl: (60) SSL certificate problem: unable to get local issuer certificate)
+##### error 났을 때 (harbor curl: (60) SSL certificate problem: unable to get local issuer certificate)
+```
 sudo cp /etc/docker/certs.d/dockerhub.kubekey.local/ca.crt /usr/local/share/ca-certificates/harbor-ca.crt
 scp -i /home/vagrant/.ssh/id_rsa /usr/local/share/ca-certificates/harbor-ca.crt root@192.168.10.110:/usr/local/share/ca-certificates/harbor-ca.crt
 scp -i /home/vagrant/.ssh/id_rsa /usr/local/share/ca-certificates/harbor-ca.crt root@192.168.10.120:/usr/local/share/ca-certificates/harbor-ca.crt
+```
 
-#### image 별도로 push 방법
+##### image 별도로 push 방법
 ```
 sudo kk artifact image push -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```
 
-## Cluster 설치
+### 7. Cluster 설치
+```
 sudo kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz --with-packages
-### --skip-push-images를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
+```
+
+#### --skip-push-images를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
 ```
 sudo kk create cluster --skip-push-images -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ./kk-v3.0.13 create cluster --skip-push-images -f config-sampler.yaml -a artifact-3.0.7.tar.gz
 ```
 
-## Cluster 설치하면서 log 확인
+#### Cluster 설치하면서 log 확인
 ```
 kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
 ```
