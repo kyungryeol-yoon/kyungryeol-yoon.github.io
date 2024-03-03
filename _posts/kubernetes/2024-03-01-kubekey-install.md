@@ -23,6 +23,32 @@ cd kubekey
 make kk
 ```
 
+### Quick Start
+- Quick Start is for all-in-one installation which is a good start to get familiar with Kubernetes and KubeSphere.
+- Note: Since Kubernetes temporarily does not support uppercase NodeName, contains uppercase letters in the hostname will lead to subsequent installation error
+
+#### Command
+- If you have problem to access https://storage.googleapis.com, execute first export KKZONE=cn.
+```
+./kk create cluster [--with-kubernetes versio] [--with-kubesphere version]
+```
+
+##### Examples
+- Create a pure Kubernetes cluster with default version (Kubernetes v1.23.10).
+```
+./kk create cluster
+```
+
+- Create a Kubernetes cluster with a specified version.
+```
+./kk create cluster --with-kubernetes v1.24.1 --container-manager containerd
+```
+
+- Create a Kubernetes cluster with KubeSphere installed.
+```
+./kk create cluster --with-kubesphere v3.2.1
+```
+
 ## 4. Create Config
 ```
 ./kk create config [--with-kubernetes version] [--with-kubesphere version] [(-f | --filename) path]
@@ -77,18 +103,4 @@ hosts:
 ## 5. Install Cluster
 ```
 ./kk create cluster -f config-sample.yaml
-```
-
-```
-./kk create cluster [--with-kubernetes versio n] [--with-kubesphere version]
-```
-
-- Create a Kubernetes cluster with a specified version.
-```
-./kk create cluster --with-kubernetes v1.24.1 --container-manager containerd
-```
-
-- Create a Kubernetes cluster with KubeSphere installed.
-```
-./kk create cluster --with-kubesphere v3.2.1
 ```
