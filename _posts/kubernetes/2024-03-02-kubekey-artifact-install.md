@@ -282,14 +282,9 @@ spec:
 sudo ./kk artifact export -m artifact-3.0.7.yaml -o artifact-3.0.7.tar.gz
 ```
 
-### 4. registry 설치
+### 4. Cluster 설치를 위한 config 파일 생성 및 작성
 ```
-kk init registry -f config-sample.yaml -a artifact-3.0.7.tar.gz
-```
-
-### 5. Cluster 설치를 위한 config 파일 생성 및 작성
-```
-sudo ./kk create config --with-kubesphere v3.4.1 --with-kubernetes v1.24.9 -f config-sample.yaml
+sudo ./kk create config --with-kubesphere v3.3.2 --with-kubernetes v1.24.9 -f config-sample.yaml
 ```
 
 ```yaml
@@ -321,7 +316,7 @@ spec:
     address: ""
     port: 6443
   kubernetes:
-    version: v1.26.5
+    version: v1.24.9
     clusterName: cluster.local
     autoRenewCerts: true
     containerManager: containerd
@@ -522,6 +517,18 @@ spec:
     timeout: 600
 ```
 
+### 5. registry 설치
+```
+sudo ./kk init registry -f config-sample.yaml -a artifact-3.0.7.tar.gz
+```
+
+#### ssh error
+- 각 node 별로 ssh가 안될시 root passwd가 맞지 않아 발생함.
+- vagrant에서 vm이 생성되면 root 비번을 설정해줘야 하는 듯
+```
+sudo passwd root
+```
+
 ### 6. harbor 수정
 ```
 curl -O https://raw.githubusercontent.com/kubesphere/ks-installer/master/scripts/create_project_harbor.sh
@@ -589,6 +596,10 @@ done
 chmod +x create_project_harbor.sh
 ```
 
+```
+./create_project_harbor.sh
+```
+
 ##### error 났을 때 (harbor curl: (60) SSL certificate problem: unable to get local issuer certificate)
 ```
 sudo cp /etc/docker/certs.d/dockerhub.kubekey.local/ca.crt /usr/local/share/ca-certificates/harbor-ca.crt
@@ -598,19 +609,18 @@ scp -i /home/vagrant/.ssh/id_rsa /usr/local/share/ca-certificates/harbor-ca.crt 
 
 ##### image 별도로 push 방법
 ```
-sudo kk artifact image push -f config-sample.yaml -a artifact-3.0.7.tar.gz
+sudo ./kk artifact image push -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```
 
 ### 7. Cluster 설치
 ```
-sudo kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz
-./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz --with-packages
+sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz
+sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz --with-packages
 ```
 
 #### --skip-push-images를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
 ```
-sudo kk create cluster --skip-push-images -f config-sample.yaml -a artifact-3.0.7.tar.gz
-./kk-v3.0.13 create cluster --skip-push-images -f config-sampler.yaml -a artifact-3.0.7.tar.gz
+sudo ./kk create cluster --skip-push-images -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```
 
 #### Cluster 설치하면서 log 확인
