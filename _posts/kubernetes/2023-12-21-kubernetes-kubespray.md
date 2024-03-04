@@ -72,6 +72,8 @@ Vagrant.configure("2") do |config|
       # install python
       cfg.vm.provision "shell", inline: <<-SCRIPT
         sudo apt install python3-pip python3-setuptools virtualenv -y
+        sudo apt-get install -y conntrack
+        sudo apt-get install -y socat
       SCRIPT
     end
   end
@@ -103,6 +105,11 @@ Vagrant.configure("2") do |config|
         sudo systemctl disable ufw
         sudo sed -i "s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/" /etc/sysctl.conf
         sudo sysctl -p
+      SCRIPT
+
+      cfg.vm.provision "shell", inline: <<-SCRIPT
+        sudo apt-get install -y conntrack
+        sudo apt-get install -y socat
       SCRIPT
     end
   end
