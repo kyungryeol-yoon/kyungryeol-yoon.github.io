@@ -104,3 +104,22 @@ hosts:
 ```
 ./kk create cluster -f config-sample.yaml
 ```
+
+### Cluster 설치하면서 log 확인
+```
+kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
+```
+
+### 일반 유저 일 때
+```
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+### 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
+error: error loading config file "/etc/kubernetes/admin.conf": open /etc/kubernetes/admin.conf: permission denied
+아래 명령어를 입력하면 sudo 없이 사용 가능합니다.
+```
+export KUBECONFIG=$HOME/.kube/config
+```

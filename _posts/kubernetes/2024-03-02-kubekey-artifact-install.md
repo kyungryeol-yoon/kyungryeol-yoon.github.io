@@ -529,7 +529,18 @@ sudo ./kk init registry -f config-sample.yaml -a artifact-3.0.7.tar.gz
 sudo passwd root
 ```
 
-### 6. harbor 수정
+### 6. Harbor 인증서 복사 및 업데이트 (harbor curl: (60) SSL certificate problem: unable to get local issuer certificate)
+```
+sudo cp /etc/docker/certs.d/dockerhub.kubekey.local/ca.crt /usr/local/share/ca-certificates/harbor-ca.crt
+scp -i /home/vagrant/.ssh/id_rsa /usr/local/share/ca-certificates/harbor-ca.crt root@192.168.10.110:/usr/local/share/ca-certificates/harbor-ca.crt
+scp -i /home/vagrant/.ssh/id_rsa /usr/local/share/ca-certificates/harbor-ca.crt root@192.168.10.120:/usr/local/share/ca-certificates/harbor-ca.crt
+
+# 각 node 별로 아래 작업
+sudo update-ca-certificates
+systemctl restart containerd
+```
+
+### 7. Harbor 수정
 ```
 curl -O https://raw.githubusercontent.com/kubesphere/ks-installer/master/scripts/create_project_harbor.sh
 ```
@@ -600,19 +611,12 @@ chmod +x create_project_harbor.sh
 ./create_project_harbor.sh
 ```
 
-##### error 났을 때 (harbor curl: (60) SSL certificate problem: unable to get local issuer certificate)
-```
-sudo cp /etc/docker/certs.d/dockerhub.kubekey.local/ca.crt /usr/local/share/ca-certificates/harbor-ca.crt
-scp -i /home/vagrant/.ssh/id_rsa /usr/local/share/ca-certificates/harbor-ca.crt root@192.168.10.110:/usr/local/share/ca-certificates/harbor-ca.crt
-scp -i /home/vagrant/.ssh/id_rsa /usr/local/share/ca-certificates/harbor-ca.crt root@192.168.10.120:/usr/local/share/ca-certificates/harbor-ca.crt
-```
-
 ##### image 별도로 push 방법
 ```
 sudo ./kk artifact image push -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```
 
-### 7. Cluster 설치
+### 8. Cluster 설치
 ```
 sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz
 sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz --with-packages
@@ -626,4 +630,18 @@ sudo ./kk create cluster --skip-push-images -f config-sample.yaml -a artifact-3.
 #### Cluster 설치하면서 log 확인
 ```
 kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
+```
+
+#### 일반 유저 일 때
+```
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+#### 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
+error: error loading config file "/etc/kubernetes/admin.conf": open /etc/kubernetes/admin.conf: permission denied
+아래 명령어를 입력하면 sudo 없이 사용 가능합니다.
+```
+export KUBECONFIG=$HOME/.kube/config
 ```
