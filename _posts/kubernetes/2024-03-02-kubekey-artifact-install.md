@@ -540,6 +540,8 @@ sudo update-ca-certificates
 systemctl restart containerd
 ```
 
+- harbor 주소 : [harbor 설치한 ip]:80
+
 ### 7. Harbor 수정
 ```
 curl -O https://raw.githubusercontent.com/kubesphere/ks-installer/master/scripts/create_project_harbor.sh
