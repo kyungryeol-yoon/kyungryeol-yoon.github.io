@@ -33,7 +33,7 @@ make kk
 ./kk create cluster [--with-kubernetes versio] [--with-kubesphere version]
 ```
 
-##### Examples
+#### Examples
 - Create a pure Kubernetes cluster with default version (Kubernetes v1.23.10).
 ```
 ./kk create cluster

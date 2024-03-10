@@ -151,22 +151,22 @@ spec:
   # - docker.io/jenkins/inbound-agent:4.10-2
   # - docker.io/kubesphere/builder-base:v3.2.2
   # - docker.io/kubesphere/builder-nodejs:v3.2.0
-  # - docker.io/kubesphere/builder-maven:v3.2.0
   # - docker.io/kubesphere/builder-maven:v3.2.1-jdk11
+  # - docker.io/kubesphere/builder-maven:v3.2.0
   # - docker.io/kubesphere/builder-python:v3.2.0
-  # - docker.io/kubesphere/builder-go:v3.2.0
-  # - docker.io/kubesphere/builder-go:v3.2.2-1.16
-  # - docker.io/kubesphere/builder-go:v3.2.2-1.17
   # - docker.io/kubesphere/builder-go:v3.2.2-1.18
+  # - docker.io/kubesphere/builder-go:v3.2.2-1.17
+  # - docker.io/kubesphere/builder-go:v3.2.2-1.16
+  # - docker.io/kubesphere/builder-go:v3.2.0
   # - docker.io/kubesphere/builder-base:v3.2.2-podman
   # - docker.io/kubesphere/builder-nodejs:v3.2.0-podman
-  # - docker.io/kubesphere/builder-maven:v3.2.0-podman
   # - docker.io/kubesphere/builder-maven:v3.2.1-jdk11-podman
+  # - docker.io/kubesphere/builder-maven:v3.2.0-podman
   # - docker.io/kubesphere/builder-python:v3.2.0-podman
   # - docker.io/kubesphere/builder-go:v3.2.0-podman
-  # - docker.io/kubesphere/builder-go:v3.2.2-1.16-podman
-  # - docker.io/kubesphere/builder-go:v3.2.2-1.17-podman
   # - docker.io/kubesphere/builder-go:v3.2.2-1.18-podman
+  # - docker.io/kubesphere/builder-go:v3.2.2-1.17-podman
+  # - docker.io/kubesphere/builder-go:v3.2.2-1.16-podman
   # - docker.io/kubesphere/s2ioperator:v3.2.1
   # - docker.io/kubesphere/s2irun:v3.2.0
   # - docker.io/kubesphere/s2i-binary:v3.2.0
@@ -175,9 +175,9 @@ spec:
   # - docker.io/kubesphere/tomcat85-java8-centos7:v3.2.0
   # - docker.io/kubesphere/tomcat85-java8-runtime:v3.2.0
   # - docker.io/kubesphere/java-11-centos7:v3.2.0
+  # - docker.io/kubesphere/java-11-runtime:v3.2.0
   # - docker.io/kubesphere/java-8-centos7:v3.2.0
   # - docker.io/kubesphere/java-8-runtime:v3.2.0
-  # - docker.io/kubesphere/java-11-runtime:v3.2.0
   # - docker.io/kubesphere/nodejs-8-centos7:v3.2.0
   # - docker.io/kubesphere/nodejs-6-centos7:v3.2.0
   # - docker.io/kubesphere/nodejs-4-centos7:v3.2.0
@@ -545,9 +545,17 @@ spec:
 sudo ./kk artifact image push -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```
 
-##### Harbor에 image push 할 때 Unauthorized 에러 발생 때
+#### image 수동 pull 및 push
+```
+sudo docker pull docker.io/kubesphere/pause:3.7
+sudo docker tag docker.io/kubesphere/pause:3.7 dockerhub.kubekey.local/kubesphereio/pause:3.7
+sudo docker push dockerhub.kubekey.local/kubesphereio/pause:3.7
+```
+
+#### Harbor에 image push 할 때 Unauthorized 에러 발생 때
 - 다시 로그인
 ```
+sudo docker login dockerhub.kubekey.local
 sudo docker login [your.host.com]:port -u username -p password
 ```
 
