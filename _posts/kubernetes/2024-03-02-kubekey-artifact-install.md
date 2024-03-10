@@ -117,6 +117,7 @@ spec:
   - docker.io/kubesphere/ks-controller-manager:v3.4.1
   - docker.io/kubesphere/ks-controller-manager:v3.3.2
   - docker.io/kubesphere/kubectl:v1.20.0
+  - docker.io/kubesphere/kubectl:v1.22.0
   - docker.io/kubesphere/kubefed:v0.8.1
   - docker.io/kubesphere/tower:v0.2.1
   - docker.io/kubesphere/tower:v0.2.0
@@ -537,6 +538,12 @@ scp -i /home/vagrant/.ssh/id_rsa /usr/local/share/ca-certificates/harbor-ca.crt 
 
 # 각 node 별로 아래 작업
 sudo update-ca-certificates
+
+# 인증서 적용 확인
+ls -lrt /etc/ssl/certs
+- harbor-ca.pem -> /usr/local/share/ca-certificates/harbor-ca.crt
+- ca-certificates.crt
+
 systemctl restart containerd
 ```
 
@@ -646,4 +653,11 @@ error: error loading config file "/etc/kubernetes/admin.conf": open /etc/kuberne
 아래 명령어를 입력하면 sudo 없이 사용 가능합니다.
 ```
 export KUBECONFIG=$HOME/.kube/config
+```
+
+#### error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
+```
+chown -R kubelet:kubelet /var/lib/kubelet/pods
+chmod 750 /var/lib/kubelet/pods
+systemctl restart kubelet
 ```

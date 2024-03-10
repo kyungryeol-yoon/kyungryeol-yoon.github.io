@@ -123,3 +123,10 @@ error: error loading config file "/etc/kubernetes/admin.conf": open /etc/kuberne
 ```
 export KUBECONFIG=$HOME/.kube/config
 ```
+
+#### error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
+```
+chown -R kubelet:kubelet /var/lib/kubelet/pods
+chmod 750 /var/lib/kubelet/pods
+systemctl restart kubelet
+```
