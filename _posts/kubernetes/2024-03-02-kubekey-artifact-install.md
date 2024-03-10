@@ -106,7 +106,7 @@ spec:
   - docker.io/library/haproxy:2.3
   - docker.io/kubesphere/nfs-subdir-external-provisioner:v4.0.2
   - docker.io/kubesphere/k8s-dns-node-cache:1.15.12
-  # https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt
+  # https://github.com/kubesphere/ks-installer/releases/download/v3.3.2/images-list.txt
   ##kubesphere-images
   - docker.io/kubesphere/ks-installer:v3.4.1
   - docker.io/kubesphere/ks-installer:v3.3.2
@@ -523,7 +523,7 @@ spec:
 sudo ./kk init registry -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```
 
-#### ssh error
+#### [ERROR] ssh error
 - 각 node 별로 ssh가 안될시 root passwd가 맞지 않아 발생함.
 - vagrant에서 vm이 생성되면 root 비번을 설정해줘야 하는 듯
 ```
@@ -625,7 +625,7 @@ chmod +x create_project_harbor.sh
 sudo ./kk artifact image push -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```
 
-###### Harbor에 image push 할 때 Unauthorized 에러 발생 때
+##### [ERROR] Harbor에 image push 할 때 Unauthorized 에러 발생 때
 - 다시 로그인
 ```
 docker login [your.host.com]:port -u username -p password
@@ -661,7 +661,7 @@ error: error loading config file "/etc/kubernetes/admin.conf": open /etc/kuberne
 export KUBECONFIG=$HOME/.kube/config
 ```
 
-#### error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
+#### [ERROR] error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
 ```
 chown -R kubelet:kubelet /var/lib/kubelet/pods
 chmod 750 /var/lib/kubelet/pods

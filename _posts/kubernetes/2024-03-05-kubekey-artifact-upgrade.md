@@ -552,7 +552,7 @@ sudo docker tag docker.io/kubesphere/pause:3.7 dockerhub.kubekey.local/kubespher
 sudo docker push dockerhub.kubekey.local/kubesphereio/pause:3.7
 ```
 
-#### Harbor에 image push 할 때 Unauthorized 에러 발생 때
+#### [ERROR] Harbor에 image push 할 때 Unauthorized 에러 발생 때
 - 다시 로그인
 ```
 sudo docker login dockerhub.kubekey.local
