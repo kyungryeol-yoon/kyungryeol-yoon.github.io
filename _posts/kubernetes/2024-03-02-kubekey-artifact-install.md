@@ -1,8 +1,8 @@
 ---
-title: "Kubernetes Kubekey Artifact"
-date: 2024-03-01
+title: "Kubernetes Kubekey Artifact Install"
+date: 2024-03-02
 categories: [Kubernetes, Kubekey]
-tags: [Kubernetes, Kubekey, Artifact]
+tags: [Kubernetes, Kubekey, Artifact, Install]
 ---
 
 # offline 설치 위한 artifact 파일 생성
@@ -72,29 +72,29 @@ spec:
     docker-compose:
       version: v2.2.2
   images:
-  - docker.io/kubesphere/kube-apiserver:v1.24.9
-  - docker.io/kubesphere/kube-apiserver:v1.25.10
-  - docker.io/kubesphere/kube-apiserver:v1.26.5
   - docker.io/kubesphere/kube-apiserver:v1.27.2
-  - docker.io/kubesphere/kube-controller-manager:v1.24.9
-  - docker.io/kubesphere/kube-controller-manager:v1.25.10
-  - docker.io/kubesphere/kube-controller-manager:v1.26.5
+  - docker.io/kubesphere/kube-apiserver:v1.26.5
+  - docker.io/kubesphere/kube-apiserver:v1.25.10
+  - docker.io/kubesphere/kube-apiserver:v1.24.9
   - docker.io/kubesphere/kube-controller-manager:v1.27.2
-  - docker.io/kubesphere/kube-scheduler:v1.24.9
-  - docker.io/kubesphere/kube-scheduler:v1.25.10
-  - docker.io/kubesphere/kube-scheduler:v1.26.5
+  - docker.io/kubesphere/kube-controller-manager:v1.26.5
+  - docker.io/kubesphere/kube-controller-manager:v1.25.10
+  - docker.io/kubesphere/kube-controller-manager:v1.24.9
   - docker.io/kubesphere/kube-scheduler:v1.27.2
-  - docker.io/kubesphere/kube-proxy:v1.24.9
-  - docker.io/kubesphere/kube-proxy:v1.25.10
-  - docker.io/kubesphere/kube-proxy:v1.26.5
+  - docker.io/kubesphere/kube-scheduler:v1.26.5
+  - docker.io/kubesphere/kube-scheduler:v1.25.10
+  - docker.io/kubesphere/kube-scheduler:v1.24.9
   - docker.io/kubesphere/kube-proxy:v1.27.2
+  - docker.io/kubesphere/kube-proxy:v1.26.5
+  - docker.io/kubesphere/kube-proxy:v1.25.10
+  - docker.io/kubesphere/kube-proxy:v1.24.9
   - docker.io/kubesphere/pause:3.8
   - docker.io/kubesphere/pause:3.7
   - docker.io/kubesphere/pause:3.6
   - docker.io/kubesphere/pause:3.5
   - docker.io/kubesphere/pause:3.4.1
-  - docker.io/coredns/coredns:1.8.0
   - docker.io/coredns/coredns:1.8.6
+  - docker.io/coredns/coredns:1.8.0
   - docker.io/calico/cni:v3.23.2
   - docker.io/calico/kube-controllers:v3.23.2
   - docker.io/calico/node:v3.23.2
@@ -116,8 +116,8 @@ spec:
   - docker.io/kubesphere/ks-console:v3.3.2
   - docker.io/kubesphere/ks-controller-manager:v3.4.1
   - docker.io/kubesphere/ks-controller-manager:v3.3.2
-  - docker.io/kubesphere/kubectl:v1.20.0
   - docker.io/kubesphere/kubectl:v1.22.0
+  - docker.io/kubesphere/kubectl:v1.20.0
   - docker.io/kubesphere/kubefed:v0.8.1
   - docker.io/kubesphere/tower:v0.2.1
   - docker.io/kubesphere/tower:v0.2.0
@@ -623,6 +623,12 @@ chmod +x create_project_harbor.sh
 ##### image 별도로 push 방법
 ```
 sudo ./kk artifact image push -f config-sample.yaml -a artifact-3.0.7.tar.gz
+```
+
+###### Harbor에 image push 할 때 Unauthorized 에러 발생 때
+- 다시 로그인
+```
+docker login [your.host.com]:port -u username -p password
 ```
 
 ### 8. Cluster 설치
