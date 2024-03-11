@@ -51,11 +51,11 @@ spec:
     helm:
       version: v3.9.0
     cni:
-      version: v0.9.1
+      version: v1.2.0
     etcd:
       version: v3.4.13
     calicoctl:
-      version: v3.23.2
+      version: v3.26.1
     ## For now, if your cluster container runtime is containerd, KubeKey will add a docker 20.10.8 container runtime in the below list.
     ## The reason is KubeKey creates a cluster with containerd by installing a docker first and making kubelet connect the socket file of containerd which docker contained.
     containerRuntimes:
