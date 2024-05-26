@@ -159,6 +159,7 @@ workers:
 
 ### SSH 생성
 - vagrant ssh k8s-master-1
+
 ```
 ssh-keygen -t rsa
 
