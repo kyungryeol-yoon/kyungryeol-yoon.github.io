@@ -1,8 +1,8 @@
 ---
-title: "Kubernetes kubespray"
+title: "Install Kubernetes using kubespray in the Virtual Box"
 date: 2023-12-21
 categories: [Kubernetes, Kubespray]
-tags: [Kubernetes, Kubespray]
+tags: [Kubernetes, Kubespray, VirtualBox, Vagrant]
 ---
 
 ### Kubespray?
@@ -158,8 +158,8 @@ workers:
 ```
 
 ### SSH 생성
-vagrant ssh k8s-master-1
-
+- vagrant ssh k8s-master-1
+```
 ssh-keygen -t rsa
 
 ls -al .ssh/
@@ -212,7 +212,7 @@ sudo su
 kubectl get nodes
 kubectl get componentstatus
 kubectl get --raw='/readyz?verbose'
-
+```
 
 ## vi inventory/mycluster/inventory.ini
 ```

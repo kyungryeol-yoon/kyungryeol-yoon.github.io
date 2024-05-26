@@ -65,7 +65,7 @@ multipass list
 multipass shell <instance name>
 ```
 
-### 명령 실행
+### Instance 명령 실행
 - 어느 Instance가 특정한 명령을 수행하길 원한다면, exec 명령어를 사용하면 된다. -- 하이픈 두개 뒤에 수행할 명령어를 기입해주자.
 ```
 multipass exec <instance name> -- <명령어>
@@ -77,7 +77,7 @@ multipass exec <instance name> -- <명령어>
 multipass stop <instance name>
 ```
 
-### Instance 정지
+### Instance 시작
 - start 명령어를 통해 정지되어 있던(Stopped 상태) Instance를 실행시킬 수 있다.
 ```
 multipass start <instance name>
