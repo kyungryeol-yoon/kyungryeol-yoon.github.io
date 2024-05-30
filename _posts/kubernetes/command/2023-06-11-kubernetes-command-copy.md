@@ -5,7 +5,6 @@ date: 2023-06-11
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, copy]
 # comments: true
-pin: true
 ---
 
 ## 기본 구조

@@ -5,7 +5,6 @@ date: 2023-07-07
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, cordon]
 # comments: true
-pin: true
 ---
 
 ## 기본 구조

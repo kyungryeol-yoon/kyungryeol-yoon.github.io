@@ -5,7 +5,6 @@ date: 2023-03-30
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, create]
 # comments: true
-pin: true
 ---
 
 ## 기본 구조

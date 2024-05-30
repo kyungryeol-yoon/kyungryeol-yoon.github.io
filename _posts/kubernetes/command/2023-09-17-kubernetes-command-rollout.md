@@ -133,6 +133,7 @@ kubectl rollout pause deployment/my-deployment
 # app=nginx Label을 가진 모든 deployment의 rollout 작업을 일시 중지
 kubectl rollout pause deployment --selector=app=nginx
 ```
+
 > 일시 중지된 rollout 작업은 kubectl rollout resume 명령어를 사용하여 다시 시작할 수 있다. 이 명령어를 사용하면, rollout 작업이 이전 상태에서 재개된다.
 {: .prompt-danger }
 

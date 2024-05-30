@@ -5,7 +5,6 @@ date: 2023-07-27
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, drain]
 # comments: true
-pin: true
 ---
 
 ## 기본 구조
