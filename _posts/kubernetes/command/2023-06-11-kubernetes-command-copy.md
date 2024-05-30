@@ -17,6 +17,7 @@ kubectl cp /path/to/local/file my-pod:/path/to/destination
 ```
 
 > [명령어] --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
+{: .prompt-info }
 
 ### Option
 - -c, --container: 컨테이너 이름을 지정

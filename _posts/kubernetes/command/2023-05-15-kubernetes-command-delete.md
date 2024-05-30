@@ -17,6 +17,7 @@ kubectl delete pod [파드 이름]
 ```
 
 > [명령어] --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
+{: .prompt-info }
 
 ### Option
 - --all: 모든 리소스를 삭제

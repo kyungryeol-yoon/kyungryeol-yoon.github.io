@@ -16,6 +16,7 @@ kubectl run nginx --image=nginx
 ```
 
 > [명령어] --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
+{: .prompt-info }
 
 ### Option
 - --image: 실행할 이미지 이름을 지정

@@ -17,6 +17,7 @@ kubectl drain my-node
 ```
 
 > [명령어] --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
+{: .prompt-info }
 
 ### Option
 - --ignore-daemonsets: 데몬셋을 무시하고 파드를 다른 노드로 이동

@@ -14,6 +14,7 @@ kubectl config use-context [context-name]
 ```
 
 > [명령어] --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
+{: .prompt-info }
 
 ### Namespace 변경
 ```
