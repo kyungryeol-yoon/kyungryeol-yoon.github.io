@@ -90,5 +90,7 @@ kubectl create deployment my-deployment --image=nginx -n my-namespace
 kubectl create pod my-pod --image=nginx --restart-policy=OnFailure
 ```
 
+> --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
+
 > 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 {: .prompt-info }
