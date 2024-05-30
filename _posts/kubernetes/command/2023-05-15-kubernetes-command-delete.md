@@ -27,6 +27,7 @@ kubectl delete pod [파드 이름]
 - --grace-period=<초>: 삭제될 때 대기할 시간을 초 단위로 설정
 
 - --timeout=<초>: 명령이 실행될 때 대기할 최대 시간을 초 단위로 설정
+
 ```
 # 모든 파드를 강제로 삭제
 kubectl delete pod --all --force
