@@ -100,3 +100,10 @@ multipass recover <instance name>
 ```
 multipass purge
 ```
+
+## Multipass 명령어
+### 복사 명령어
+```
+multipass copy-files [복사할 파일 path] [설정한 multipass 이름]:[복사할 path]
+multipass copy-files C:\ProgramData\Multipass\data\ssh-keys\id_rsa primary:/home/ubuntu/.ssh/id_rsa
+```
