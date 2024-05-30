@@ -16,6 +16,8 @@ kubectl cordon [노드 이름]
 kubectl cordon my-node
 ```
 
+> --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
+
 ### Option
 - --ignore-daemonsets: 데몬셋을 무시하고 노드를 cordon 처리
 ```
@@ -40,8 +42,6 @@ kubectl cordon --selector="region=us-west"
 # my-node 이름을 가진 노드를 Scheduling 하지 않도록 설정하면서, 타임아웃을 60초로 설정
 kubectl cordon my-node --timeout=60s
 ```
-
-> --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 > 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 {: .prompt-info }

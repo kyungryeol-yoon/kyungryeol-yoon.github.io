@@ -13,6 +13,8 @@ pin: true
 kubectl create [리소스 종류] [리소스 이름]
 ```
 
+> --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
+
 ### 자주 사용하는 Command
 ```
 kubectl create pod
@@ -89,8 +91,6 @@ kubectl create deployment my-deployment --image=nginx -n my-namespace
 # Nginx 이미지를 사용하는 my-pod 이름을 가진 Pod 리소스를 생성하면서, 컨테이너의 재시작 정책을 OnFailure로 지정
 kubectl create pod my-pod --image=nginx --restart-policy=OnFailure
 ```
-
-> --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 > 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 {: .prompt-info }
