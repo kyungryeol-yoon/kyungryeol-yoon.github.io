@@ -16,7 +16,7 @@ kubectl cp [소스] [대상]
 kubectl cp /path/to/local/file my-pod:/path/to/destination
 ```
 
-> --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
+> [명령어] --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 - -c, --container: 컨테이너 이름을 지정

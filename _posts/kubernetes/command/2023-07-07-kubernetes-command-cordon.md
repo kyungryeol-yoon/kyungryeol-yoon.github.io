@@ -16,7 +16,7 @@ kubectl cordon [노드 이름]
 kubectl cordon my-node
 ```
 
-> --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
+> [명령어] --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 - --ignore-daemonsets: 데몬셋을 무시하고 노드를 cordon 처리

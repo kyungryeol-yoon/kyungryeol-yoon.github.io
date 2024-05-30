@@ -16,7 +16,7 @@ kubectl delete [리소스 유형] [리소스 이름]
 kubectl delete pod [파드 이름]
 ```
 
-> --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
+> [명령어] --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 - --all: 모든 리소스를 삭제
@@ -30,7 +30,7 @@ kubectl delete pod [파드 이름]
 # 모든 파드를 강제로 삭제
 kubectl delete pod --all --force
 
-#모든 종류의 리소스와 파드를 삭제
+# 모든 종류의 리소스와 파드를 삭제
 kubectl delete all --all
 ```
 

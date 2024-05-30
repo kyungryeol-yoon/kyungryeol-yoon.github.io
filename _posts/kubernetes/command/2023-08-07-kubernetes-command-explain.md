@@ -15,7 +15,7 @@ kubectl explain [리소스 종류]
 kubectl explain podPod
 ```
 
-> --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
+> [명령어] --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 - --recursive, -r: 모든 참조된 리소스의 필드와 값을 출력
