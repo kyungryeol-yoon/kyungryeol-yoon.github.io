@@ -3,7 +3,7 @@
 title: "Kubeadm list command"
 date: 2022-09-22
 categories: [Kubeadm, command]
-tags: [kubeadm, , command, list]
+tags: [kubeadm, command, list]
 # comments: true
 # pin: true
 ---

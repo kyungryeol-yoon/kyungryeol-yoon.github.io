@@ -3,7 +3,7 @@
 title: "Kubeadm token command"
 date: 2022-10-02
 categories: [Kubeadm, command]
-tags: [kubeadm, , command, token]
+tags: [kubeadm, command, token]
 # comments: true
 # pin: true
 ---

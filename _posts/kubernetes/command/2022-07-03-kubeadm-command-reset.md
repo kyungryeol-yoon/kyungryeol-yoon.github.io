@@ -3,7 +3,7 @@
 title: "Kubeadm reset command"
 date: 2022-07-03
 categories: [Kubeadm, command]
-tags: [kubeadm, , command, reset]
+tags: [kubeadm, command, reset]
 # comments: true
 # pin: true
 ---
