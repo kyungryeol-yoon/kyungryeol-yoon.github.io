@@ -5,24 +5,24 @@ date: 2022-01-22
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, get]
 # comments: true
-# pin: true
+pin: true
 ---
 
 ## 기본 구조
 ```
 kubectl get [리소스 종류] [옵션]
 ```
-
-- Pod
-- Service
-- Deployment
-- ConfigMap
-- Secret
-- Node
-- Namespace
-- PersistentVolume
-- StorageClass
-- Ingress
+- 리소스 종류
+    - Pod
+    - Service
+    - Deployment
+    - ConfigMap
+    - Secret
+    - Node
+    - Namespace
+    - PersistentVolume
+    - StorageClass
+    - Ingress
 
 > [명령어] --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 {: .prompt-info }
