@@ -43,84 +43,103 @@ sudo kubectl get pods -n awx
 > AWX에는 postgres Pod에 대한 영구 볼륨이 필요
 {: .prompt-info }
 
-1. StorageClass 생성 및 확인
+##### StorageClass 생성 및 확인
 - vi local-storage-class.yaml
-  ```yaml
-  apiVersion: storage.k8s.io/v1
-  kind: StorageClass
-  metadata:
-    name: local-storage
-    namespace: awx
-  provisioner: kubernetes.io/no-provisioner
-  volumeBindingMode: WaitForFirstConsumer
-  ```
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-storage
+  namespace: awx
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+```
 
 - kubectl create -f local-storage-class.yaml
 - kubectl get sc -n awx
 
-2. PersistentVolume 생성 및 확인
+##### PersistentVolume 생성 및 확인
 - vi pv.yaml
-  ```yaml
-  apiVersion: v1
-  kind: PersistentVolume
-  metadata:
-    name: postgres-pv
-    namespace: awx
-  spec:
-    capacity:
-      storage: 10Gi
-    volumeMode: Filesystem
-    accessModes:
-    - ReadWriteOnce
-    persistentVolumeReclaimPolicy: Delete
-    storageClassName: local-storage
-    local:
-      path: /mnt/storage
-    nodeAffinity:
-      required:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: kubernetes.io/hostname
-            operator: In
-            values:
-            - k8s-worker
-  ```
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-pv
+  namespace: awx
+spec:
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-storage
+  local:
+    path: /mnt/storage
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - k8s-worker
+```
 
 - kubectl create -f pv.yaml
 
-3. PersistentVolumeClaim 생성 및 확인
+##### PersistentVolumeClaim 생성 및 확인
 - vi pvc.yaml
-  ```yaml
-  apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    name: postgres-13-ansible-awx-postgres-13-0
-    namespace: awx
-  spec:
-    storageClassName: local-storage
-    accessModes:
-      - ReadWriteOnce
-    resources:
-      requests:
-        storage: 10Gi
-  ```
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-13-ansible-awx-postgres-13-0
+  namespace: awx
+spec:
+  storageClassName: local-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+```
 
 - kubectl create -f pvc.yaml
 - kubectl get pv,pvc -n awx
 
 ### AWX instance 배포
 - vi ansible-awx.yaml
-  ```yaml
-  ---
-  apiVersion: awx.ansible.com/v1beta1
-  kind: AWX
-  metadata:
-    name: ansible-awx
-    namespace: awx
-  spec:
-    service_type: nodeport
-    postgres_storage_class: local-storage
-  ```
+```yaml
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: ansible-awx
+  namespace: awx
+spec:
+  service_type: nodeport
+  postgres_storage_class: local-storage
+```
 
 - kubectl create -f ansible-awx.yaml
 - kubectl get pods -n awx
+
+### AWX Web 접속
+#### service 생성
+```shell
+kubectl expose deployment ansible-awx-web --name ansible-awx-web-svc --type NodePort -n awx
+```
+#### service 확인
+```shell
+kubectl get svc ansible-awx-web-svc -n awx
+```
+
+#### 기본적으로 관리자는 admin이고 비밀번호는 <resourcename>-admin-password 확인할 수 있다.
+```shell
+kubectl get secrets -n awx | grep -i admin-password
+```
+
+```shell
+kubectl get secret ansible-awx-admin-password -o jsonpath="{.data.password}" -n awx | base64 --decode ; echo
+```

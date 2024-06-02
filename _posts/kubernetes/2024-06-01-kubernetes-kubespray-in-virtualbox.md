@@ -26,121 +26,125 @@ tags: [Kubernetes, Kubespray, VirtualBox, Vagrant]
     - Amazon Linux 2
   - 지속적인 통합 (CI) 테스트
 
-### Vagrant 설정
-1. vagrant init
+### Vagrant 설정 및 실행
+#### Vagrant 설정
+```
+vagrant init
+```
 
-2. Vagrantfile 작성
+#### Vagrantfile 작성
+```
+require "yaml"  
 
-  ```
-  require "yaml"  
+CONFIG = YAML.load_file(File.join(File.dirname(__FILE__), "config.yaml"))
 
-  CONFIG = YAML.load_file(File.join(File.dirname(__FILE__), "config.yaml"))
+Vagrant.configure("2") do |config|
+  # Use the same SSH key for all machines
+  config.ssh.insert_key = false
 
-  Vagrant.configure("2") do |config|
-    # Use the same SSH key for all machines
-    config.ssh.insert_key = false
+  # masters
+  CONFIG["masters"].each do |master|
+    config.vm.define master["name"] do |cfg|
+      cfg.vm.box = master["box"]
+      cfg.vm.network "private_network", ip: master["ip"], virtualbox_intnet: true
+      cfg.vm.hostname = master["hostname"]
 
-    # masters
-    CONFIG["masters"].each do |master|
-      config.vm.define master["name"] do |cfg|
-        cfg.vm.box = master["box"]
-        cfg.vm.network "private_network", ip: master["ip"], virtualbox_intnet: true
-        cfg.vm.hostname = master["hostname"]
-
-        cfg.vm.provider "virtualbox" do |v|
-          v.memory = master["memory"]
-          v.cpus = master["cpu"]
-          v.name = master["name"]
-          v.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
-          v.customize ['modifyvm', :id, '--hwvirtex', 'on']
-        end
-        cfg.vm.provision "shell", inline: <<-SCRIPT
-          sed -i -e "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd _config
-          systemctl restart sshd
-        SCRIPT
-
-        # set timezone & disable swap memory, ufw & enable ip forwarding
-        cfg.vm.provision "shell", inline: <<-SCRIPT
-          sudo apt-get update
-          sudo timedatectl set-timezone "Asia/Seoul"
-          sudo swapoff -a
-          sudo sed -i "/swap/d" /etc/fstab
-          sudo systemctl stop ufw
-          sudo systemctl disable ufw
-          sudo sed -i "s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/" /etc/sysctl.conf
-          sudo sysctl -p
-        SCRIPT
-
-        # install python
-        cfg.vm.provision "shell", inline: <<-SCRIPT
-          sudo apt install python3-pip python3-setuptools virtualenv -y
-        SCRIPT
+      cfg.vm.provider "virtualbox" do |v|
+        v.memory = master["memory"]
+        v.cpus = master["cpu"]
+        v.name = master["name"]
+        v.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
+        v.customize ['modifyvm', :id, '--hwvirtex', 'on']
       end
-    end
-    
-    # worker nodes
-    CONFIG["workers"].each do |worker|
-      config.vm.define worker["name"] do |cfg|
-        cfg.vm.box = worker["box"]
-        cfg.vm.network "private_network", ip: worker["ip"], virtualbox_intnet: true
-        cfg.vm.hostname = worker["hostname"]
-        
-        cfg.vm.provider "virtualbox" do |v|
-          v.memory = worker["memory"]
-          v.cpus = worker["cpu"]
-          v.name = worker["name"]
-          v.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
-          v.customize ['modifyvm', :id, '--hwvirtex', 'on']
-        end
-        cfg.vm.provision "shell", inline: <<-SCRIPT
-          sed -i -e "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
-          systemctl restart sshd
-        SCRIPT
+      cfg.vm.provision "shell", inline: <<-SCRIPT
+        sed -i -e "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd _config
+        systemctl restart sshd
+      SCRIPT
 
-        # set timezone & disable swap memory & ufw & enable ip forwarding
-        cfg.vm.provision "shell", inline: <<-SCRIPT
-          sudo apt-get update
-          sudo timedatectl set-timezone "Asia/Seoul"
-          sudo swapoff -a
-          sudo sed -i "/swap/d" /etc/fstab
-          sudo systemctl stop ufw
-          sudo systemctl disable ufw
-          sudo sed -i "s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/" /etc/sysctl.conf
-          sudo sysctl -p
-        SCRIPT
-      end
+      # set timezone & disable swap memory, ufw & enable ip forwarding
+      cfg.vm.provision "shell", inline: <<-SCRIPT
+        sudo apt-get update
+        sudo timedatectl set-timezone "Asia/Seoul"
+        sudo swapoff -a
+        sudo sed -i "/swap/d" /etc/fstab
+        sudo systemctl stop ufw
+        sudo systemctl disable ufw
+        sudo sed -i "s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/" /etc/sysctl.conf
+        sudo sysctl -p
+      SCRIPT
+
+      # install python
+      cfg.vm.provision "shell", inline: <<-SCRIPT
+        sudo apt install python3-pip python3-setuptools virtualenv -y
+      SCRIPT
     end
   end
-  ```
+  
+  # worker nodes
+  CONFIG["workers"].each do |worker|
+    config.vm.define worker["name"] do |cfg|
+      cfg.vm.box = worker["box"]
+      cfg.vm.network "private_network", ip: worker["ip"], virtualbox_intnet: true
+      cfg.vm.hostname = worker["hostname"]
+      
+      cfg.vm.provider "virtualbox" do |v|
+        v.memory = worker["memory"]
+        v.cpus = worker["cpu"]
+        v.name = worker["name"]
+        v.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
+        v.customize ['modifyvm', :id, '--hwvirtex', 'on']
+      end
+      cfg.vm.provision "shell", inline: <<-SCRIPT
+        sed -i -e "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+        systemctl restart sshd
+      SCRIPT
 
-3. config.yaml 작성
+      # set timezone & disable swap memory & ufw & enable ip forwarding
+      cfg.vm.provision "shell", inline: <<-SCRIPT
+        sudo apt-get update
+        sudo timedatectl set-timezone "Asia/Seoul"
+        sudo swapoff -a
+        sudo sed -i "/swap/d" /etc/fstab
+        sudo systemctl stop ufw
+        sudo systemctl disable ufw
+        sudo sed -i "s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/" /etc/sysctl.conf
+        sudo sysctl -p
+      SCRIPT
+    end
+  end
+end
+```
 
-  ```yaml
-  masters:
-    - name: ks-master
-      box: generic/ubuntu2004
-      hostname: ks-master
-      ip: 192.168.10.100
-      memory: 4096
-      cpu: 4
+#### config.yaml 작성
+```yaml
+masters:
+  - name: ks-master
+    box: generic/ubuntu2004
+    hostname: ks-master
+    ip: 192.168.10.100
+    memory: 4096
+    cpu: 4
 
-  workers:
-    - name: ks-worker-1
-      box: generic/ubuntu2004
-      hostname: ks-worker-1
-      ip: 192.168.10.210
-      memory: 4096
-      cpu: 4
+workers:
+  - name: ks-worker-1
+    box: generic/ubuntu2004
+    hostname: ks-worker-1
+    ip: 192.168.10.210
+    memory: 4096
+    cpu: 4
 
-    - name: ks-worker-2
-      box: generic/ubuntu2004
-      hostname: ks-worker-2
-      ip: 192.168.10.220
-      memory: 4096
-      cpu: 4
-  ```
+  - name: ks-worker-2
+    box: generic/ubuntu2004
+    hostname: ks-worker-2
+    ip: 192.168.10.220
+    memory: 4096
+    cpu: 4
+```
 
-4. vagrant up
+#### Vagrant 실행
+```
+vagrant up
+```
 
 ### SSH 생성 및 설정
 - vagrant ssh ks-master
