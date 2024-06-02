@@ -60,6 +60,7 @@ volumeBindingMode: WaitForFirstConsumer
 
 ##### PersistentVolume 생성 및 확인
 - vi pv.yaml
+
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -90,6 +91,7 @@ spec:
 
 ##### PersistentVolumeClaim 생성 및 확인
 - vi pvc.yaml
+
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
