@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes get command"
+title: "[Kubernetes] kubectl get command"
 date: 2022-01-22
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, get]

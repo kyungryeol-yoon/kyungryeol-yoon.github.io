@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes PostgreSQL initdb 설정"
+title: "[Kubernetes] PostgreSQL initdb 설정"
 date: 2022-11-19
 categories: [Kubernetes, PostgreSQL]
 tags: [Kubernetes, PostgreSQL]

@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes Affinity"
+title: "[Kubernetes] Affinity"
 date: 2022-12-09
 categories: [Kubernetes, Affinity]
 tags: [Kubernetes, Affinity]

@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubeadm init command"
+title: "[Kubernetes] kubeadm init command"
 date: 2022-08-12
 categories: [Kubeadm, command]
 tags: [kubeadm, command, init]

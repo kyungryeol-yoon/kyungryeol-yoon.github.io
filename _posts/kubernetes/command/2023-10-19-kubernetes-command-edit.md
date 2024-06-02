@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes edit command"
+title: "[Kubernetes] kubectl edit command"
 date: 2023-10-19
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, edit]

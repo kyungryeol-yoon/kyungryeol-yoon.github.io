@@ -1,5 +1,5 @@
 ---
-title: "Istioctl 다운로드 및 설치"
+title: "[Kubernetes] Istioctl 다운로드 및 설치"
 date: 2022-10-17
 categories: [Kubernetes, Istio]
 tags: [Kubernetes, istioctl, Istio]

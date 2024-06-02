@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes auth reconcile command"
+title: "[Kubernetes] kubectl auth reconcile command"
 date: 2022-11-19
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, auth reconcile]

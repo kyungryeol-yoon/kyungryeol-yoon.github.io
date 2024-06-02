@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubeadm reset command"
+title: "[Kubernetes] kubeadm reset command"
 date: 2022-07-03
 categories: [Kubeadm, command]
 tags: [kubeadm, command, reset]

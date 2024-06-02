@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubeadm list command"
+title: "[Kubernetes] kubeadm list command"
 date: 2022-09-22
 categories: [Kubeadm, command]
 tags: [kubeadm, command, list]

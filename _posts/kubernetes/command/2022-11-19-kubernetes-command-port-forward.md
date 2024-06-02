@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes port-forward command"
+title: "[Kubernetes] kubectl port-forward command"
 date: 2022-11-19
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, port-forward]

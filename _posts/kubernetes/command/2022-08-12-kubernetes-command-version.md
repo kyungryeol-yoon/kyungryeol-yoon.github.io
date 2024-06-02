@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes version command"
+title: "[Kubernetes] kubectl version command"
 date: 2022-08-12
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, version]

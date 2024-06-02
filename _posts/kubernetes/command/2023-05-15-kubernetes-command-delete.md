@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes delete command"
+title: "[Kubernetes] kubectl delete command"
 date: 2023-05-15
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, delete]

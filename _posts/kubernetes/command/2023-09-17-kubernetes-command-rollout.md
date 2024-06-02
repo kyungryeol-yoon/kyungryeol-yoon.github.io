@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes rollout command"
+title: "[Kubernetes] kubectl rollout command"
 date: 2023-09-17
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, rollout]

@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes patch command"
+title: "[Kubernetes] kubectl patch command"
 date: 2023-02-21
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, patch]

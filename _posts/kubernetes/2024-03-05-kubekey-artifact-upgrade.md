@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes Kubekey Artifact Upgrade"
+title: "[Kubernetes] Kubekey Artifact Upgrade"
 date: 2024-03-05
 categories: [Kubernetes, Kubekey]
 tags: [Kubernetes, Kubekey, Artifact, Upgrade]

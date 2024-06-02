@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes Kubekey"
+title: "[Kubernetes] Kubekey"
 date: 2024-03-01
 categories: [Kubernetes, Kubekey]
 tags: [Kubernetes, Kubekey]

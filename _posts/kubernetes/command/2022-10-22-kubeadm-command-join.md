@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubeadm join command"
+title: "[Kubernetes] kubeadm join command"
 date: 2022-10-22
 categories: [Kubeadm, command]
 tags: [kubeadm, command, join]

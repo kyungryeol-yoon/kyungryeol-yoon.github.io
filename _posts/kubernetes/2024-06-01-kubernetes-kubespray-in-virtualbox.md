@@ -1,6 +1,6 @@
 ---
-title: "Install Kubernetes using kubespray in the Virtual Box"
-date: 2023-12-21
+title: "[Kubernetes] Install Kubernetes using kubespray in the Virtual Box"
+date: 2024-06-01
 categories: [Kubernetes, Kubespray]
 tags: [Kubernetes, Kubespray, VirtualBox, Vagrant]
 ---
@@ -27,9 +27,9 @@ tags: [Kubernetes, Kubespray, VirtualBox, Vagrant]
   - 지속적인 통합 (CI) 테스트
 
 ### Vagrant 설정
-- vagrant init
-- vagrant up
-- vagrant status
+1. vagrant init
+
+2. Vagrantfile 작성
 
 ```
 require "yaml"  
@@ -51,6 +51,8 @@ Vagrant.configure("2") do |config|
         v.memory = master["memory"]
         v.cpus = master["cpu"]
         v.name = master["name"]
+        v.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
+        v.customize ['modifyvm', :id, '--hwvirtex', 'on']
       end
       cfg.vm.provision "shell", inline: <<-SCRIPT
         sed -i -e "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd _config
@@ -72,8 +74,6 @@ Vagrant.configure("2") do |config|
       # install python
       cfg.vm.provision "shell", inline: <<-SCRIPT
         sudo apt install python3-pip python3-setuptools virtualenv -y
-        sudo apt-get install -y conntrack
-        sudo apt-get install -y socat
       SCRIPT
     end
   end
@@ -89,6 +89,8 @@ Vagrant.configure("2") do |config|
         v.memory = worker["memory"]
         v.cpus = worker["cpu"]
         v.name = worker["name"]
+        v.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
+        v.customize ['modifyvm', :id, '--hwvirtex', 'on']
       end
       cfg.vm.provision "shell", inline: <<-SCRIPT
         sed -i -e "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
@@ -106,170 +108,120 @@ Vagrant.configure("2") do |config|
         sudo sed -i "s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/" /etc/sysctl.conf
         sudo sysctl -p
       SCRIPT
-
-      cfg.vm.provision "shell", inline: <<-SCRIPT
-        sudo apt-get install -y conntrack
-        sudo apt-get install -y socat
-      SCRIPT
     end
   end
 end
 ```
 
-- config.yaml
+3. config.yaml 작성
 
 ```
 masters:
-  - name: k8s-master-1
-    box: generic/ubuntu2204
-    hostname: k8s-master-1
+  - name: ks-master
+    box: generic/ubuntu2004
+    hostname: ks-master
     ip: 192.168.10.100
-    memory: 2048
-    cpu: 2
-
-  - name: k8s-master-2
-    box: generic/ubuntu2204
-    hostname: k8s-master-2
-    ip: 192.168.10.110
-    memory: 2048
-    cpu: 2
-
-  - name: k8s-master-3
-    box: generic/ubuntu2204
-    hostname: k8s-master-3
-    ip: 192.168.10.120
-    memory: 2048
-    cpu: 2
+    memory: 4096
+    cpu: 4
 
 workers:
-  - name: k8s-worker-1
-    box: generic/ubuntu2204
-    hostname: k8s-worker-1
-    ip: 192.168.10.200
-    memory: 2048
-    cpu: 2
-
-  - name: k8s-worker-2
-    box: generic/ubuntu2204
-    hostname: k8s-worker-2
+  - name: ks-worker-1
+    box: generic/ubuntu2004
+    hostname: ks-worker-1
     ip: 192.168.10.210
-    memory: 2048
-    cpu: 2
+    memory: 4096
+    cpu: 4
+
+  - name: ks-worker-2
+    box: generic/ubuntu2004
+    hostname: ks-worker-2
+    ip: 192.168.10.220
+    memory: 4096
+    cpu: 4
 ```
 
-### SSH 생성
-- vagrant ssh k8s-master-1
+4. vagrant up
+
+### SSH 생성 및 설정
+- vagrant ssh ks-master
 
 ```
 ssh-keygen -t rsa
 
 ls -al .ssh/
-
 cat .ssh/id_rsa.pub
 
 ssh-copy-id vagrant@192.168.10.100
-ssh-copy-id vagrant@192.168.10.200
 ssh-copy-id vagrant@192.168.10.210
+ssh-copy-id vagrant@192.168.10.220
+```
 
-
+```
 virtualenv --python=python3 venv
 
 . venv/bin/activate
 
 git clone https://github.com/kubernetes-sigs/kubespray
 cd kubespray
-git checkout release-2.22
+git checkout v2.22.2
 
 pip install -r requirements.txt
-
 
 ansible --version
 
 cp -rfp inventory/sample inventory/mycluster
 
-declare -a IPS=(192.168.10.100 192.168.10.200 192.168.10.210)
-
+declare -a IPS=(192.168.10.100 192.168.10.210 192.168.10.220)
 CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
 
-# vi inventory/mycluster/inventory.ini
-ansible all -m ping -i inventory/mycluster/inventory.ini
+ansible all -m ping -i inventory/mycluster/hosts.yaml
 
 vi inventory/mycluster/group_vars/k8s_cluster/addons.yml
 
-# apt 캐시 업데이트
-ansible all -i inventory/mycluster/inventory.ini -m apt -a 'update_cache=yes' --become
-
-ansible all -i inventory/mycluster/inventory.ini -a 'timedatectl'
-
-ansible-playbook -i inventory/mycluster/inventory.ini  --become --become-user=root cluster.yml -e ansible_ssh_timeout=50 --flush-cache -vvv
-ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml -e ignore_assert_errors=yes -e ansible_ssh_timeout=50
-ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml -e ansible_ssh_timeout=50 --flush-cache -vvv
-
+ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml
 
 deactivate
+```
 
-sudo su
+```
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 kubectl get nodes
 kubectl get componentstatus
 kubectl get --raw='/readyz?verbose'
 ```
 
-## vi inventory/mycluster/inventory.ini
-```
-[all]
-k8s-master-1 ansible_host=192.168.10.100 ip=192.168.10.100
-k8s-worker-1 ansible_host=192.168.10.200 ip=192.168.10.200
-k8s-worker-2 ansible_host=192.168.10.210 ip=192.168.10.210
-[kube_control_plane]
-k8s-master-1
-
-[etcd]
-k8s-master-1
-
-[kube_node]
-k8s-worker-1
-k8s-worker-2
-
-[calico_rr]
-
-[k8s_cluster:children]
-kube_control_plane
-kube_node
-calico_rr
-```
-
 ## vi inventory/mycluster/hosts.yaml
-```
 all:
   hosts:
-    k8s-master-1:
+    ks-master:
       ansible_host: 192.168.10.100
       ip: 192.168.10.100
       access_ip: 192.168.10.100
-    k8s-worker-1:
-      ansible_host: 192.168.10.200
-      ip: 192.168.10.200
-      access_ip: 192.168.10.200
-    k8s-worker-2:
+    ks-worker-1:
       ansible_host: 192.168.10.210
       ip: 192.168.10.210
       access_ip: 192.168.10.210
+    ks-worker-2:
+      ansible_host: 192.168.10.220
+      ip: 192.168.10.220
+      access_ip: 192.168.10.220
   children:
     kube_control_plane:
       hosts:
-        k8s-master-1:
+        ks-master:
     kube_node:
       hosts:
-        k8s-worker-1:
-        k8s-worker-2:
+        ks-worker-1:
+        ks-worker-2:
     etcd:
       hosts:
-        k8s-master-1:
+        ks-master:
     k8s_cluster:
       children:
         kube_control_plane:
         kube_node:
     calico_rr:
       hosts: {}
-```

@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes logs command"
+title: "[Kubernetes] kubectl logs command"
 date: 2022-04-12
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, logs]

@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes run command"
+title: "[Kubernetes] kubectl run command"
 date: 2023-04-20
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, run]

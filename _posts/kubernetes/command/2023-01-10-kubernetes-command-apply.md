@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes apply command"
+title: "[Kubernetes] kubectl apply command"
 date: 2023-01-10
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, apply]

@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes proxy command"
+title: "[Kubernetes] kubectl proxy command"
 date: 2022-06-25
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, proxy]

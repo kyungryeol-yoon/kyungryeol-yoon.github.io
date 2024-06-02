@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes certificate command"
+title: "[Kubernetes] kubectl certificate command"
 date: 2022-02-15
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, certificate]

@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes kube-ps1"
+title: "[Kubernetes] kube-ps1"
 date: 2019-12-22
 categories: [Kubernetes, kube-ps1]
 tags: [Kubernetes, kube-ps1]

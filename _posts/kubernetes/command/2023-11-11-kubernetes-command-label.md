@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes label command"
+title: "[Kubernetes] kubectl label command"
 date: 2023-11-11
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, label]

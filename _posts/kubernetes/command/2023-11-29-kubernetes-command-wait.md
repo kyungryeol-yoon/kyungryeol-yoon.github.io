@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes wait command"
+title: "[Kubernetes] kubectl wait command"
 date: 2023-11-29
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, wait]

@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes Alias"
+title: "[Kubernetes] Alias"
 date: 2019-11-17
 categories: [Kubernetes, Alias]
 tags: [Kubernetes, kubectl, Alias]

@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes annotate command"
+title: "[Kubernetes] kubectl annotate command"
 date: 2023-11-19
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, annotate]

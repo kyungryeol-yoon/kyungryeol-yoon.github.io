@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubeadm token command"
+title: "[Kubernetes] kubeadm token command"
 date: 2022-10-02
 categories: [Kubeadm, command]
 tags: [kubeadm, command, token]

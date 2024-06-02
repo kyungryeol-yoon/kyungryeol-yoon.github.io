@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes top command"
+title: "[Kubernetes] kubectl top command"
 date: 2022-07-09
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, top]

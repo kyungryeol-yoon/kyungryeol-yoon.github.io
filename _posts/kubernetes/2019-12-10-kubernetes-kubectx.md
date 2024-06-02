@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes kubectx"
+title: "[Kubernetes] kubectx"
 date: 2019-12-10
 categories: [Kubernetes, kubectx]
 tags: [Kubernetes, kubectx]

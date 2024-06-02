@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Kubernetes explain command"
+title: "[Kubernetes] kubectl explain command"
 date: 2023-08-07
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, explain]
