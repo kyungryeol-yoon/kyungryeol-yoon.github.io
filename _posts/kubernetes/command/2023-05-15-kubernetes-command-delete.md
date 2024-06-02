@@ -5,7 +5,7 @@ date: 2023-05-15
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, delete]
 # comments: true
-pin: true
+# pin: true
 ---
 
 ## 기본 구조

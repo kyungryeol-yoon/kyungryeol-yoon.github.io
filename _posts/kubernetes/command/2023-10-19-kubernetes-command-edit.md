@@ -5,7 +5,7 @@ date: 2023-10-19
 categories: [Kubernetes, command]
 tags: [Kubernetes, kubectl, command, edit]
 # comments: true
-pin: true
+# pin: true
 ---
 
 ## 기본 구조
