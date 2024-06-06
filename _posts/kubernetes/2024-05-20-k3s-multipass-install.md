@@ -1,5 +1,5 @@
 ---
-title: "Install K3S Multipass"
+title: "Multipass - Install K3S"
 date: 2024-05-20
 categories: [Kubernetes, Install]
 tags: [Kubernetes, K3S, Multipass, Ubuntu, Linux]
