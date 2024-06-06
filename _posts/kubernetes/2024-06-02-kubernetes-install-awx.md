@@ -18,6 +18,7 @@ helm version
 
 ## Install the AWX chart
 - helm repo 저장소 추가
+
 ```shell
 helm repo add awx-operator https://ansible.github.io/awx-operator
 
@@ -44,7 +45,7 @@ sudo kubectl get pods -n awx
 
 ## Create PV, PVC and deploy AWX yaml file
 
-> AWX에는 postgres Pod에 대한 영구 볼륨이 필요, 다만 StorageClass가 설정되어 있다면 자동으로 pv, pvc 생성을 해주므로 AWX instance 바로 배포
+> AWX에는 postgres Pod에 대한 영구 볼륨이 필요,\\다만 StorageClass가 설정되어 있다면 자동으로 pv, pvc 생성을 해주므로 AWX instance 바로 배포
 {: .prompt-info }
 
 ### StorageClass
@@ -158,6 +159,8 @@ metadata:
 spec:
   service_type: nodeport
   postgres_storage_class: local-storage
+  # projects_persistence: true
+  # projects_storage_access_mode: ReadWriteOnce
 ```
 
 #### Instance 배포
@@ -241,6 +244,8 @@ spec:
   postgres_storage_class: local-path
   admin_user: admin
   admin_password_secret: awx-admin-password
+  # projects_persistence: true
+  # projects_storage_access_mode: ReadWriteOnce
 ```
 
 #### Instance 배포
