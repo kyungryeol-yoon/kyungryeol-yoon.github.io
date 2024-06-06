@@ -112,6 +112,7 @@ spec:
 
 ### AWX instance 배포
 - vi ansible-awx.yaml
+
 ```yaml
 apiVersion: awx.ansible.com/v1beta1
 kind: AWX
