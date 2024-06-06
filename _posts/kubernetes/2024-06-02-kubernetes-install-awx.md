@@ -40,7 +40,7 @@ sudo kubectl get pods -n awx
 
 #### Create PV, PVC and deploy AWX yaml file
 
-> AWX에는 postgres Pod에 대한 영구 볼륨이 필요
+> AWX에는 postgres Pod에 대한 영구 볼륨이 필요, 다만 StorageClass가 설정되어 있다면 자동으로 pv, pvc 생성을 해주므로 AWX instance 바로 배포
 {: .prompt-info }
 
 ##### StorageClass 생성 및 확인
@@ -113,7 +113,6 @@ spec:
 ### AWX instance 배포
 - vi ansible-awx.yaml
 ```yaml
----
 apiVersion: awx.ansible.com/v1beta1
 kind: AWX
 metadata:
