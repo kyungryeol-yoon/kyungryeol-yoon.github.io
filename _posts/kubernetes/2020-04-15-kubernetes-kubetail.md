@@ -6,7 +6,7 @@ tags: [Kubernetes, kubetail]
 ---
 
 - 여러 POD의 로그를 동시에 조회하는 기능
-- "kubectl logs -f "를 실행하는 것과 동일하지만 여러 Pod에 적용
+- `kubectl logs -f`를 실행하는 것과 동일하지만 여러 Pod에 적용
 
 ### Install Ubuntu
 

@@ -55,7 +55,7 @@ kubectl krew install neat
 {: .prompt-info }
 
 #### 기본 구조
-- 끝에 k neat를붙여준다.
+- 끝에 `k neat`를붙여준다.
 
 ```shell
 kubectl get pod [pod-name] -o yaml | k neat
