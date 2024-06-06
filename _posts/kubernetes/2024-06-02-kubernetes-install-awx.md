@@ -1,8 +1,8 @@
 ---
 title: "[Kubernetes] Install AWX"
 date: 2024-06-02
-categories: [Kubernetes, Install]
-tags: [Kubernetes, AWX, Ansible]
+categories: [Kubernetes, AWX]
+tags: [Kubernetes, AWX, Ansible, Install]
 ---
 
 ### Helm이 설치되어 있지 않다면, Install helm

@@ -1,7 +1,7 @@
 ---
 title: "[Linux] 우분투(Ubuntu) 크롬(Chrome) 설치 및 다운로드"
 date: 2020-05-11
-categories: [Linux, Install]
+categories: [Linux, Chrome]
 tags: [Linux, Install, Ubuntu, Chrome]
 ---
 
