@@ -149,7 +149,7 @@ vagrant up
 ### SSH 생성 및 설정
 - vagrant ssh ks-master
 
-```shell
+```
 ssh-keygen -t rsa
 
 ls -al .ssh/
@@ -160,7 +160,7 @@ ssh-copy-id vagrant@192.168.10.210
 ssh-copy-id vagrant@192.168.10.220
 ```
 
-```shell
+```
 virtualenv --python=python3 venv
 
 . venv/bin/activate
@@ -187,7 +187,7 @@ ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root 
 deactivate
 ```
 
-```shell
+```
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config

@@ -18,7 +18,7 @@ tags: [Kubernetes, kubectl-neat]
 > Install krew 참고 https://github.com/kubernetes-sigs/krew
 {: .prompt-info }
 
-```shell
+```
 (
   set -x; cd "$(mktemp -d)" &&
   OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
@@ -32,13 +32,13 @@ tags: [Kubernetes, kubectl-neat]
 
 #### Add Env to bashrc or zshrc
 
-```shell
+```
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 ```
 
 #### 기본 구조
 
-```shell
+```
 kubectl krew [command]
 ```
 
@@ -47,7 +47,7 @@ kubectl krew [command]
 
 ### Install neat with krew
 
-```shell
+```
 kubectl krew install neat
 ```
 
@@ -57,7 +57,7 @@ kubectl krew install neat
 #### 기본 구조
 - 끝에 `k neat`를붙여준다.
 
-```shell
+```
 kubectl get pod [pod-name] -o yaml | k neat
 ```
 

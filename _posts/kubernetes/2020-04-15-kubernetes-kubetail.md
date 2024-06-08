@@ -10,13 +10,13 @@ tags: [Kubernetes, kubetail]
 
 ### Install Ubuntu
 
-```shell
+```
 sudo apt install kubetail
 ```
 
 ### Install Mac OS
 
-```shell
+```
 brew tap johanhaleby/kubetail && brew install kubetail
 ```
 
@@ -25,18 +25,18 @@ brew tap johanhaleby/kubetail && brew install kubetail
 
 ### How to use
 #### Container or Multiple Containers
-```shell
+```
 kubetail app2 -c container1
 kubetail app2 -c container1 -c container2
 ```
 
 #### Multiple Apps(pods)
-```shell
+```
 kubetail app1,app2
 ``` 
 
 #### Deployment or DaemonSet
-```shell
+```
 kubetail "coredns-556f6dffc4-*" -n kube-system
 Will tail 2 logs...
 coredns-556f6dffc4-bd2mr
@@ -44,13 +44,13 @@ coredns-556f6dffc4-hbvdt
 ```
 
 #### Label selector.
-```shell
+```
 kubetail --selector service=my-service --since 10m
 kubetail --selector release=p-jm-han
 ```
 
 #### Regex
-```shell
+```
 kubetail "^app1|.*my-demo.*" --regex
 
 kubetail '.*loki-read-*|.*loki-write-*' -n monitoring --regex
