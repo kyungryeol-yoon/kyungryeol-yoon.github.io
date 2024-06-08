@@ -71,6 +71,17 @@ k3sctl port-forward svc/grafana 3000:80 -n monitoring
 
 - https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 
+
+#### 또는 Git 다운로드하여 수정
+```
+git clone https://github.com/grafana/helm-charts.git
+```
+
+- values.yaml 수정
+```
+vi helm-charts/charts/grafana
+```
+
 #### Setting Admin
 
 ```
