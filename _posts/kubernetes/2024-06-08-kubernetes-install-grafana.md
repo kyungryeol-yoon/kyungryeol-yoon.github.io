@@ -37,6 +37,12 @@ helm repo list
 helm repo update
 ```
 
+- Grafana Helm Chart Release 검색
+
+```
+helm search repo grafana
+```
+
 ### Deploy the Grafana Helm charts
 - namespace 생성
 
@@ -79,7 +85,7 @@ git clone https://github.com/grafana/helm-charts.git
 
 - values.yaml 수정
 ```
-vi helm-charts/charts/grafana
+vi helm-charts/charts/grafana/values.yaml
 ```
 
 #### Setting Admin
@@ -146,6 +152,17 @@ service:
 
 ```
 helm install grafana grafana/grafana -f values.yaml -n monitoring
+```
+
+## Uninstall the Grafana chart
+
+```
+helm uninstall <RELEASE-NAME> <NAMESPACE-NAME>
+helm uninstall my-grafana -n monitoring
+```
+
+```
+kubectl delete namespace monitoring
 ```
 
 > 설치 참고 : https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm
