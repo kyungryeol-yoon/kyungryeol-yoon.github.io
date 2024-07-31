@@ -244,25 +244,34 @@ spec:
 ```
 
 
-
 #### Node Collector(Daemonset)
 - File Logs
 - Host metrics
 - Kubelet state metrics
 
 공식 문서에서 DaemonSet 을 권장하는 receiver가 모인 collector이다.
-log | Filelog
-수집 대상은 stdout/stderr로 생성된 Kubernetes, apps log으로, 사실 상 Fluentbit를 대체한다. 이를 위해 log scraping 및 전달 뿐 아니라 Processors 에서 언급한 다양한 processor 사용을 고려해야 한다.
-Receiver: [Filelog Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#filelog-receiver)
-Exporter: [Loki exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/lokiexporter)
-metric | Kubelet Stats
-node, pod, container, volume, filesystem network I/O and error metrics 등 CPU, memory 등 infra resource에 관한 metric을 다루어, 각 노드의 kubelet이 노출하는 API에서 추출한다. 사실 상 cAdvisor의 대체이다.
-Receiver: [Kubelet Stats Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubeletstats-receiver)
-Exporter: OTLP/HTTP Exporter
-metric | Host Metrics
-수집 대상은 node (cpu, disk, CPU load, filesystem, memory, network, paging, process..)의 metric으로, 사실 상 Prometheus Node Exporter를 대체한다. Kubelet Stats Receiver와 일부 항목이 겹치므로 동시 운용 시 중복 처리가 필요하다.
-Receiver: [Host Metrics Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#host-metrics-receiver)
-Exporter: OTLP/HTTP Exporter
+##### log | Filelog
+수집 대상은 stdout/stderr로 생성된 Kubernetes, apps log으로,
+사실 상 Fluentbit를 대체한다.
+이를 위해 log scraping 및 전달 뿐 아니라 Processors 에서 언급한 다양한 processor 사용을 고려해야 한다.
+
+- Receiver: [Filelog Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#filelog-receiver)
+- Exporter: [Loki exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/lokiexporter)
+
+##### metric | Kubelet Stats
+node, pod, container, volume, filesystem network I/O and error metrics 등 CPU, memory 등 infra resource에 관한 metric을 다루어,
+각 노드의 kubelet이 노출하는 API에서 추출한다. 사실 상 cAdvisor의 대체이다.
+
+- Receiver: [Kubelet Stats Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubeletstats-receiver)
+- Exporter: OTLP/HTTP Exporter
+
+##### metric | Host Metrics
+수집 대상은 node (cpu, disk, CPU load, filesystem, memory, network, paging, process..)의 metric으로,
+사실 상 Prometheus Node Exporter를 대체한다.
+Kubelet Stats Receiver와 일부 항목이 겹치므로 동시 운용 시 중복 처리가 필요하다.
+
+- Receiver: [Host Metrics Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#host-metrics-receiver)
+- Exporter: OTLP/HTTP Exporter
 
 ```
 # otel-node-collector service accounts are created automatically
@@ -408,13 +417,19 @@ spec:
 - k8s events(log)
 - k8s objects(metrics)
 
-단일 replica 사용 권장인 receivers 대상으로, 이들 receiver는 2개 이상의 instance 사용 시 중복이 발생 가능하기 때문이라고 공식 문서에서 논한다. 두 receiver 모두 cluster 관점에서 추출하기 때문이라고. 이에 따라 deployment type에 1개의 replica로 설정한다.
-log | Kubernetes Objects
+단일 replica 사용 권장인 receivers 대상으로,
+이들 receiver는 2개 이상의 instance 사용 시 중복이 발생 가능하기 때문이라고 공식 문서에서 논한다.
+두 receiver 모두 cluster 관점에서 추출하기 때문이라고. 이에 따라 deployment type에 1개의 replica로 설정한다.
+
+##### log | Kubernetes Objects
 주로 Kubernetes event 수집용으로 Kubernetes API server 출처의 objects(전체 목록은 kubectl api-resources 로 확인) 수집에도 사용한다.
-Receiver: [Kubernetes Objects Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubernetes-objects-receiver)
-Exporter: [Loki exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/lokiexporter)
-metric | Kubernetes Cluster
+
+- Receiver: [Kubernetes Objects Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubernetes-objects-receiver)
+- Exporter: [Loki exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/lokiexporter)
+
+##### metric | Kubernetes Cluster
 사실 상 Kube State Metrics의 대체로 Kubernetes API server에서 cluster level의 metric과 entity events를 추출한다.
+
 Receiver: [Kubernetes Cluster Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubernetes-cluster-receiver)
 Exporter: OTLP/HTTP Exporter
 
@@ -604,19 +619,26 @@ spec:
 - Generic OTEL Logs
 - Generic OTEL metrics
 
-공용 receiver, exporter 공통적으로 otlp 프로토콜을 사용하고 replica 개수 제약이 없는 signal 대상 collector로서, 제약이 없을 경우 가장 운용에 유리한 배포 패턴인 Deployment 를 사용한다. MLT 모두를 대상으로 한다.
-trace | Generic OTEL trace
+공용 receiver, exporter 공통적으로 otlp 프로토콜을 사용하고 replica 개수 제약이 없는 signal 대상 collector로서,
+제약이 없을 경우 가장 운용에 유리한 배포 패턴인 Deployment 를 사용한다. MLT 모두를 대상으로 한다.
+
+##### trace | Generic OTEL trace
 [Jaeger](https://www.jaegertracing.io/docs/next-release/deployment/) 및 [Grafana Tempo](https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/)는 OTLP Receiver를 자체적으로 지원한다. 
-Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
-Exporter: [OTLP Exporter (gRPC)](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/otlpexporter)
-metric | Generic OTEL metric
+
+- Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
+- Exporter: [OTLP Exporter (gRPC)](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/otlpexporter)
+
+##### metric | Generic OTEL metric
 앞서 논한 metric 이외의 app level metrics 등의 여타 metric 수집을 위한 endpoint이다.
-Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
-Exporter: OTLP/HTTP Exporter
-log | Generic OTEL log
+
+- Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
+- Exporter: OTLP/HTTP Exporter
+
+##### log | Generic OTEL log
 Istio의 OTel access log를 포함한 여타 log 수집을 위한 endpoint이다.
-Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
-Exporter: [Loki exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/lokiexporter)
+
+- Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
+- Exporter: [Loki exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/lokiexporter)
 
 ```
 # otel-otlp-collector service accounts are created automatically
