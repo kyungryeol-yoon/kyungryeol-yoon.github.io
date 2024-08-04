@@ -38,6 +38,9 @@ helm repo update
 helm install ansible-awx-operator awx-operator/awx-operator -n awx --create-namespace
 ```
 
+> [AWX Operator resources configured](https://github.com/ansible/awx-operator/tree/devel/.helm/starter)
+{: .prompt-info }
+
 ### Verify AWX operator installation
 ```
 sudo kubectl get pods -n awx
@@ -193,6 +196,10 @@ kubectl get secrets -n awx | grep -i admin-password
 
 ```
 kubectl get secret ansible-awx-admin-password -o jsonpath="{.data.password}" -n awx | base64 --decode ; echo
+
+or
+
+kubectl -n awx get secret ansible-awx-admin-password -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
 ```
 
 ##### Paasword 설정하지 않았을 때 아래와 같이 Secret 조회가 된다.
