@@ -7,13 +7,15 @@ tags: [Kubernetes, K6, Install]
 
 ## Install k6-operator
 
+```
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 helm install k6-operator grafana/k6-operator
+```
 
-
+```
 helm install k6-operator grafana/k6-operator -f values.yaml
-
+```
 
 
 ```
