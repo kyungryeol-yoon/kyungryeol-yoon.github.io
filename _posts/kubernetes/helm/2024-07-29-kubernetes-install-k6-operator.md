@@ -16,8 +16,14 @@ helm install k6-operator grafana/k6-operator
 ```
 helm install k6-operator grafana/k6-operator -f values.yaml
 ```
+
+### Stream real-time metrics
 https://k6.io/docs/results-output/real-time/
+
+### Stream real-time influxdb metrics
 https://k6.io/docs/results-output/real-time/influxdb/
+
+### Stream real-time prometheus metrics
 https://k6.io/docs/results-output/real-time/prometheus-remote-write/
 
 [InfluxDB 설치 관련](https://kyungryeol-yoon.github.io/posts/kubernetes-install-influxdb/)
