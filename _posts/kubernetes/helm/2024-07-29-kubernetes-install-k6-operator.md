@@ -16,7 +16,11 @@ helm install k6-operator grafana/k6-operator
 ```
 helm install k6-operator grafana/k6-operator -f values.yaml
 ```
+https://k6.io/docs/results-output/real-time/
+https://k6.io/docs/results-output/real-time/influxdb/
+https://k6.io/docs/results-output/real-time/prometheus-remote-write/
 
+[InfluxDB 설치 관련](https://kyungryeol-yoon.github.io/posts/kubernetes-install-influxdb/)
 
 ```
 # k6-resource.yml
@@ -27,6 +31,10 @@ metadata:
   name: k6-sample
 spec:
   parallelism: 4
+  arguments: --out influxdb=http://influxdb:8086/k6
+  arguments: -o xk6-influxdb=http://localhost:8086
+  arguments: -o xk6-prometheus-rw --tag testid=test
+  arguments: -o experimental-prometheus-rw    # prometheus : --enable-feature=remote-write-receiver
   script:
     configMap:
       name: k6-test
@@ -63,6 +71,75 @@ spec:
       runAsNonRoot: true
 ```
 
+```
+apiVersion: k6.io/v1alpha1
+kind: K6
+metadata:
+  name: k6-sample
+spec:
+  arguments: -o xk6-prometheus-rw --tag testid=test
+  parallelism: 1
+  runner:
+    env:
+    - name: K6_PROMETHEUS_RW_SERVER_URL
+      value: http://kube-prometheus-stack-prometheus.monitoring:9090/api/v1/write
+    - name: K6_PROMETHEUS_RW_TREND_AS_NATIVE_HISTOGRAM
+      value: "true"
+    image: k6-prometheus:v1
+  script:
+    configMap:
+      file: scritps.js
+      name: test-script
+```
+
+
+https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/
+
+```
+import http from 'k6/http';
+import { sleep } from 'k6';
+
+export const options = {
+  stages: [
+    { duration: '10s', target: 10 },
+    { duration: '10s', target: 20 },
+    { duration: '10s', target: 30 },
+    { duration: '10s', target: 0 },
+  ],
+};
+
+export default function () {
+  http.get('http://test.k6.io');
+  sleep(1);
+}
+```
+
+https://test-api.k6.io/
+
+```
+import http from 'k6/http';
+import { check } from 'k6';
+
+export const options = {
+  insecureSkipTLSVerify: true,
+  stages: [
+    { target: 200, duration: '30s' },
+    { target: 0, duration: '30s' },
+  ],
+};
+
+export default function () {
+  const result = http.get('https://test-api.k6.io/public/crocodiles/');
+  check(result, {
+    'http response status code is 200': result.status === 200,
+  });
+}
+```
+
+```
+kubectl create configmap test-script --from-file /home/ec2-user/environment/k6/scritps.js 
+configmap/test-script created
+```
 
 ```
 # Build the k6 binary with the extension
@@ -74,6 +151,18 @@ RUN go install go.k6.io/xk6/cmd/xk6@latest
 RUN xk6 build \
     --with github.com/grafana/xk6-output-influxdb@latest \
     --output /k6
+
+# Use the operator's base image and override the k6 binary
+FROM grafana/k6:latest
+COPY --from=builder /k6 /usr/bin/k6
+```
+
+```
+# Build the k6 binary with the extension
+FROM golang:1.18.1 as builder
+
+RUN go install go.k6.io/xk6/cmd/xk6@latest
+RUN xk6 build --output /k6 --with github.com/grafana/xk6-output-prometheus-remote@latest
 
 # Use the operator's base image and override the k6 binary
 FROM grafana/k6:latest
