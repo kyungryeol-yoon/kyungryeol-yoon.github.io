@@ -115,15 +115,15 @@ export function teardown(data) {
 - k6 는 가상 유저를 만들어 애플리케이션에 원하는 요청을 반복적으로 보내게 된다.
 
 ```js
-import http from "k6/http"		# http test
-import { sleep } from "k6"		# sleep 기능 사용 시 추가 (sleep(n) → 지정한 n 기간 동한 VU 실행을 일시 중지)
+import http from "k6/http"		// http test
+import { sleep } from "k6"		// sleep 기능 사용 시 추가 (sleep(n) → 지정한 n 기간 동한 VU 실행을 일시 중지)
 
 export let options = {
-	vus: 10,          # 가상의 유저 수
-	duration: '1m'    # 테스트 진행 시간
+	vus: 10,          // 가상의 유저 수
+	duration: '1m'    // 테스트 진행 시간
 };
 
-const BASE_URL = 'http://test.k6.io';		# 테스트 URL
+const BASE_URL = 'http://test.k6.io';		// 테스트 URL
 
 export default function () {
 	let getUrl = BASE_URL
@@ -186,7 +186,7 @@ export const options = {
 };
 
 export function setup() {
-  const url = "";		# token취득
+  const url = "";		/// token취득
   const params = {
     headers: {
       Authorization: "Bearer XXX",
@@ -199,7 +199,7 @@ export function setup() {
 }
 
 export function scenarioFunc(token) {
-  const scenarioUrl = "";		# 실행할 API
+  const scenarioUrl = "";		// 실행할 API
   const scenario = http.get(scenarioUrl, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -342,7 +342,7 @@ scenario2 ✓ [======================================] 1 VUS 10s
 
      ✓ scenario status is 200
 	 
-     🁢 setup
+     ▮ setup
 
      checks.........................: 100.00% ✓ 2893      ✗ 0
      data_received..................: 3.5 MB  58 kB/s
