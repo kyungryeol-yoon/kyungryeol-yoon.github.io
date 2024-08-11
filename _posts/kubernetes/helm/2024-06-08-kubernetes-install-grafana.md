@@ -90,7 +90,7 @@ vi helm-charts/charts/grafana/values.yaml
 
 #### Setting Admin
 
-```
+```yaml
 ...
 # Administrator credentials when not using an existing secret (see below)
 adminUser: admin
@@ -100,7 +100,7 @@ adminPassword: <your_password>
 
 #### Enable persistent storage (recommended)
 
-```
+```yaml
 ...
 persistence:
   type: pvc
@@ -124,7 +124,7 @@ persistence:
 
 #### 외부 접속을 위한 NodePort 설정
 
-```
+```yaml
 ...
 ## Expose the grafana service to be accessed from outside the cluster (LoadBalancer service).
 ## or access it from within the cluster (ClusterIP service). Set the service type and the port to serve it.

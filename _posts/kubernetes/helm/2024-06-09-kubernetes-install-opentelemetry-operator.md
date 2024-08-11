@@ -72,7 +72,7 @@ opentelemetry-collector-k8s : opentelemetry-collector와 contrib의 구성요소
 
 1. OpenTelemetry Collector 설치 및 구성
 
-```
+```yaml
 apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
@@ -188,7 +188,7 @@ spec:
           exporters: [loki]
 ```
 
-```
+```yaml
 apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
@@ -273,7 +273,7 @@ Kubelet Stats Receiver와 일부 항목이 겹치므로 동시 운용 시 중복
 - Receiver: [Host Metrics Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#host-metrics-receiver)
 - Exporter: OTLP/HTTP Exporter
 
-```
+```yaml
 # otel-node-collector service accounts are created automatically
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -433,7 +433,7 @@ spec:
 Receiver: [Kubernetes Cluster Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubernetes-cluster-receiver)
 Exporter: OTLP/HTTP Exporter
 
-```
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -640,7 +640,7 @@ Istio의 OTel access log를 포함한 여타 log 수집을 위한 endpoint이다
 - Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
 - Exporter: [Loki exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/lokiexporter)
 
-```
+```yaml
 # otel-otlp-collector service accounts are created automatically
 apiVersion: opentelemetry.io/v1alpha1
 kind: OpenTelemetryCollector
