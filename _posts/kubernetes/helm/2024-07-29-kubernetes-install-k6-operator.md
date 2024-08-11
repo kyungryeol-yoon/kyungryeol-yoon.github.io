@@ -74,7 +74,8 @@ spec:
 > [InfluxDB 설치 관련](https://kyungryeol-yoon.github.io/posts/kubernetes-install-influxdb/)
 {: .prompt-info }
 
-```Dockerfile/xk6-output-influxdb
+#### Dockerfile xk6-output-influxdb
+```Dockerfile
 # Build the k6 binary with the extension
 FROM golang:1.20 as builder
 
@@ -90,7 +91,8 @@ FROM grafana/k6:latest
 COPY --from=builder /k6 /usr/bin/k6
 ```
 
-```Dockerfile/xk6-output-prometheus-remote
+#### Dockerfile xk6-output-prometheus-remote 
+```Dockerfile
 # Build the k6 binary with the extension
 FROM golang:1.18.1 as builder
 
