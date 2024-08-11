@@ -8,7 +8,7 @@ tags: [K6, Test, JavaScript]
 - Smoke Test, Load Test, Stress Test 등 다양한 테스트 지원
 - 예를 들어 Kubernetes에 애플리케이션 Pod를 배포한다고 가정했을 때, 파드의 resources를 지정해줘야 하는데 어느 정도 값을 줘야 하는 지 모를 때가 있다. 이때 k6 의 Load Test 를 진행하면 보다 수월하게 값을 지정할 수 있다.
 
-> [Test Type](https://grafana.com/docs/k6/latest/testing-guides/test-types/)
+> [Load Test Type](https://grafana.com/docs/k6/latest/testing-guides/test-types/)
 {: .prompt-info }
 
 # 주요 성능 지표
@@ -134,8 +134,8 @@ export default function () {
 
 - 10명의 가상 유저가 10s 동안 http://test.k6.io 을 호출
 
-> - k6 web page test : https://test.k6.io
-- k6 api test : https://test-api.k6.io/
+> - [K6 Web Page Test](https://test.k6.io)
+- [K6 API Test](https://test-api.k6.io)
 {: .prompt-info }
 
 > 1명의 가상 유저가 한번만 default function을 호출하는 것이 아닌, 60초 동안 해당 함수를 계속 호출한다.\\
@@ -235,13 +235,13 @@ export const options = {
 };
 ```
 
-- executor: k6의 실행 엔진을 나타낸다.
+- executor : k6의 실행 엔진을 나타낸다.
 	- 여기에서 VU(Virtual user)나 스크립트 실행 패턴을 지정할 수 있다.
 	- 자세한 내용은 k6의 [executors](https://grafana.com/docs/k6/latest/using-k6/scenarios/executors/)를 참조
-- exec: 실행하고자 하는 시나리오를 지정
-- vus: Virtual Users API를 실행할 가상 유저. 필요한 만큼의 병렬 실행 수를 여기에 설정
-- duration: VUS가 반복 시나리오를 실행하는 시간을 설정
-- env: 공통으로 사용되는 변수를 설정
+- exec : 실행하고자 하는 시나리오를 지정
+- vus : Virtual Users API를 실행할 가상 유저. 필요한 만큼의 병렬 실행 수를 여기에 설정
+- duration : VUS가 반복 시나리오를 실행하는 시간을 설정
+- env : 공통으로 사용되는 변수를 설정
 - 참고 : https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/
 
 ### Trend 관련
@@ -365,81 +365,81 @@ scenario2 ✓ [======================================] 1 VUS 10s
      vus_max........................: 2       min=2       max=2
 ```
 
-- checks
+- **checks**
 	- 결과 : 100.00% ✓ 2893 ✗ 0
 	- 의미 : 요청이 성공한 비율(%)
 
-- data_received
+- **data_received**
 	- 결과 : 3.5 MB  58 kB/s
 	- 의미 : 응답한 데이터 양 (Total, /s)
 
-- data_sent
+- **data_sent**
 	- 결과 : 416 kB  6.9 kB/s
 	- 의미 : 요청한 데이터 양 (Total, /s)
 
-- http_req_blocked
+- **http_req_blocked**
 	- 결과 : avg=49.33ms min=1µs      med=3µs   max=3.45s    p(90)=16µs    p(95)=377.18ms
 	- 의미 : TCP 접속 대기시간(avg, min, med, max, p(90), p(95)
 
-- http_req_connecting
+- **http_req_connecting**
 	- 결과 : avg=13.09ms min=0s       med=0s    max=199.77ms p(90)=0s      p(95)=186.36ms
 	- 의미 : TCP 접속에 걸린시간(avg, min, med, max, p(90), p(95)
 
-- http_req_duration
+- **http_req_duration**
 	- 결과 : avg=2.14s   min=190.5ms  med=1.32s max=5.79s    p(90)=5.39s   p(95)=5.57s
 	- 의미 : 요청 → 응답 까지 얼마나 걸렸는지를 나타내는 지표. http_req_sending + http_req_waiting + http_req_receiveing(avg, min, med, max, p(90), p(95)
 
-- { expected_response:true }
+- **{ expected_response:true }**
 	- 결과 : avg=2.14s   min=190.5ms  med=1.32s max=5.79s    p(90)=5.39s   p(95)=5.57s
 	- 의미 : 정상응답만 http_req_duration(avg, min, med, max, p(90), p(95) 정상응답이 없을 경우 이 항목은 표시되지 않음
 
-- http_req_failed
+- **http_req_failed**
 	- 결과 : 0.00%   ✓ 0   ✗ 2893
 	- 의미 : 요청이 실패한 비율(%)
 
-- http_req_receiving
+- **http_req_receiving**
 	- 결과 : avg=81.97µs min=19µs     med=61µs  max=2.43ms   p(90)=141.8µs p(95)=205.4µs
 	- 의미 : 응답의 1바이트가 도달하고 나서 마지막 바이트를 수신할 때까지의 시간(avg, min, med, max, p(90), p(95)
 
-- http_req_sending
+- **http_req_sending**
 	- 결과 : avg=22.37µs min=5µs      med=16µs  max=687µs    p(90)=38µs    p(95)=57µs
 	- 의미 : 요청을 전송하는데 걸린시간(avg, min, med, max, p(90), p(95)
 
-- http_req_tls_handshaking
+- **http_req_tls_handshaking**
 	- 결과 : avg=36.2ms  min=0s       med=0s    max=3.2s     p(90)=0s      p(95)=190.18ms
 	- 의미 : TLS 세션의 핸드쉐이크에 걸린 시간(avg, min, med, max, p(90), p(95) http에서는 0
 
-- http_req_waiting
+- **http_req_waiting**
 	- 결과 : avg=2.14s   min=190.38ms med=1.32s max=5.79s    p(90)=5.39s   p(95)=5.57s
 	- 의미 : 요청이 전송 완료된 후 응답이 시작될 때까지의 시간(avg, min, med, max, p(90), p(95) TTFB(Time To First Byte)
 
-- http_reqs
+- **http_reqs**
 	- 결과 : 2893    48.176768/s
 	- 의미 : 총 리퀘스트수 (Total, /s)
 
-- iteration_duration
+- **iteration_duration**
 	- 결과 : avg=2.19s   min=190.7ms  med=1.39s max=6.05s    p(90)=5.4s    p(95)=5.58s
 	- 의미 : 시나리오 1회 반복에 걸린 시간(avg, min, med, max, p(90), p(95)
 
-- iterations
+- **iterations**
 	- 결과 : 2893    48.176768/s
 	- 의미 : 시나리오 반복 횟수(Total, /s)
 
-- vus
+- **vus**
 	- 결과 : 2 min=0 max=2
 	- 의미 : Virtual Users, 시나리오 실행시 유저수(병렬)
 
-- vus_max
+- **vus_max**
 	- 결과 : 2 min=0 max=2
 	- 의미 : 최대 Virtual Users, 시나리오의 최대 실행유저수(병렬)
 
 ### p(90)과 p(95)의 의미
-- p 는 percentile 을 의미하고 뒤에 90, 95 는 각각 90%, 95% 를 의미
+- p는 percentile을 의미하고 뒤에 90, 95는 각각 90%, 95%를 의미
 	- p(90)은 "90%의 요청이 주어진 지연보다 빠르거나 동일한 시간 안에 완료된다는 것을 의미"
 	- p(95)는 "95%의 요청이 주어진 지연보다 빠르거나 동일한 시간 안에 완료된다는 것을 의미"
 
 #### 500명의 고객들이 햄버거를 주문했다고 가정
-1. 80%인 400 명은 20초 안에 햄버거를 받았고, 20%인 100 명은 햄버거를 받기까지 10분 이상이 걸렸다.
+1. 80%인 400명은 20초 안에 햄버거를 받았고, 20%인 100명은 햄버거를 받기까지 10분 이상이 걸렸다.
 2. 이때 평균적으로 한 고객이 햄버거를 받기까지 약 4분이 소요
 3. 대부분의 사람들이 20초 내에 햄버거를 받았음에도 불구하고 평균 시간은 4분으로 측정되기 때문에 햄버거를 받기까지의 시간이 오래 걸린다고 생각할 수 있다. 
 
@@ -456,9 +456,9 @@ scenario2 ✓ [======================================] 1 VUS 10s
 |:-|:-|:-|
 | vus | Gauge | 현재 활성화 된 사용자 유저 |
 | vus_max | Gauge | 가능한 최대 가상 사용자 수(로드 레벨을 확장할 때 성능에 영향을 미치지 않도록 VU 리소스가 미리 할당됨) |
-| iterations | Counter | 테스트에서 Vu 가 JS 스크립트를 실행한 총 횟수 |
-| iteration_duration | Trend | default/main function 의 전체 반복을 한 번 완료하는데 소요된 시간 |
-| dropped_iterations | Counter | k6 v0.27.0 에 도입된 VU lack 또는 lack of time 으로 인해 시작할 수 없는 반복 회수 |
+| iterations | Counter | 테스트에서 Vu가 JS 스크립트를 실행한 총 횟수 |
+| iteration_duration | Trend | default/main function의 전체 반복을 한 번 완료하는데 소요된 시간 |
+| dropped_iterations | Counter | k6 v0.27.0에 도입된 VU lack 또는 lack of time으로 인해 시작할 수 없는 반복 회수 |
 | data_received | Counter | 데이터를 전달받은 양 |
 | data_sent | Counter | 데이터를 전달한 양 |
 | checks | Rate | 성공적으로 체크된 Rate |
@@ -467,7 +467,7 @@ scenario2 ✓ [======================================] 1 VUS 10s
 
 | Metric Name | Type | Description |
 |:-|:-|:-|
-| http_reqs | Counter | 총 얼마나 많은 HTTP requests 를 k6 에서 생성했는지 횟수 |
+| http_reqs | Counter | 총 얼마나 많은 HTTP requests를 k6에서 생성했는지 횟수 |
 | http_req_blocked | Trend | 요청을 시작하기 전에 차단된 시간(TCP connection slot 을 기다리는) 단위: float |
 | http_req_connecting | Trend | 원격 호스트에 대한 TCP 연결을 설정하는데 소요된 시간. 단위: float |
 | http_req_tls_handshaking | Trend | 원격 호스트와의 핸드셰이킹 TLS 세션에 소요된 시간 |
@@ -480,10 +480,10 @@ scenario2 ✓ [======================================] 1 VUS 10s
 > [출력 가능한 옵션](https://grafana.com/docs/k6/latest/results-output/real-time/)
 {: .prompt-info }
 
-> [Swagger API](https://k6.io/blog/load-testing-your-api-with-swagger-openapi-and-k6/)
+> [Swagger API 관련](https://k6.io/blog/load-testing-your-api-with-swagger-openapi-and-k6/)
 {: .prompt-info }
 
-> [Postman](https://grafana.com/blog/2020/04/19/load-testing-your-api-with-postman/)
+> [Postman 관련](https://grafana.com/blog/2020/04/19/load-testing-your-api-with-postman/)
 {: .prompt-info }
 
 > [k6-learn](https://github.com/grafana/k6-learn)
