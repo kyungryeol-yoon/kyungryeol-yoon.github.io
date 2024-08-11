@@ -1,5 +1,5 @@
 ---
-title: "[K6] K6 Test"
+title: "[K6] K6 Load Testing Tool"
 date: 2024-08-10
 categories: [K6, Test]
 tags: [K6, Test, JavaScript]
@@ -134,6 +134,10 @@ export default function () {
 
 - 10명의 가상 유저가 10s 동안 http://test.k6.io 을 호출
 
+> - k6 web page test : https://test.k6.io
+- k6 api test : https://test-api.k6.io/
+{: .prompt-info }
+
 > 1명의 가상 유저가 한번만 default function을 호출하는 것이 아닌, 60초 동안 해당 함수를 계속 호출한다.\\
 즉, default function을 1명씩 1번 호출해서 총 10번 호출하는 것이 아닌, 1명의 가상유저가 5~10번 정도 호출한다.
 {: .prompt-info }
@@ -182,7 +186,7 @@ export const options = {
 };
 
 export function setup() {
-  const url = ""; // token취득
+  const url = "";		# token취득
   const params = {
     headers: {
       Authorization: "Bearer XXX",
@@ -195,7 +199,7 @@ export function setup() {
 }
 
 export function scenarioFunc(token) {
-  const scenarioUrl = ""; // 실행할 API
+  const scenarioUrl = "";		# 실행할 API
   const scenario = http.get(scenarioUrl, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -238,6 +242,7 @@ export const options = {
 - vus: Virtual Users API를 실행할 가상 유저. 필요한 만큼의 병렬 실행 수를 여기에 설정
 - duration: VUS가 반복 시나리오를 실행하는 시간을 설정
 - env: 공통으로 사용되는 변수를 설정
+- 참고 : https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/
 
 ### Trend 관련
 

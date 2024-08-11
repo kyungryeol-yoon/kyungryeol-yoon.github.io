@@ -17,16 +17,7 @@ helm install k6-operator grafana/k6-operator
 helm install k6-operator grafana/k6-operator -f values.yaml
 ```
 
-### Stream real-time metrics
-https://k6.io/docs/results-output/real-time/
-
-### Stream real-time influxdb metrics
-https://k6.io/docs/results-output/real-time/influxdb/
-
-### Stream real-time prometheus metrics
-https://k6.io/docs/results-output/real-time/prometheus-remote-write/
-
-[InfluxDB 설치 관련](https://kyungryeol-yoon.github.io/posts/kubernetes-install-influxdb/)
+### k6 resource 설정 관련
 
 ```
 # k6-resource.yml
@@ -77,6 +68,42 @@ spec:
       runAsNonRoot: true
 ```
 
+> [Stream real-time](https://grafana.com/docs/k6/latest/results-output/real-time/)
+{: .prompt-info }
+
+> [InfluxDB 설치 관련](https://kyungryeol-yoon.github.io/posts/kubernetes-install-influxdb/)
+{: .prompt-info }
+
+```Dockerfile xk6-output-influxdb 관련
+# Build the k6 binary with the extension
+FROM golang:1.20 as builder
+
+RUN go install go.k6.io/xk6/cmd/xk6@latest
+# For our example, we'll add support for output of test metrics to InfluxDB v2.
+# Feel free to add other extensions using the '--with ...'.
+RUN xk6 build \
+    --with github.com/grafana/xk6-output-influxdb@latest \
+    --output /k6
+
+# Use the operator's base image and override the k6 binary
+FROM grafana/k6:latest
+COPY --from=builder /k6 /usr/bin/k6
+```
+
+```Dockerfile xk6-output-prometheus-remote 관련
+# Build the k6 binary with the extension
+FROM golang:1.18.1 as builder
+
+RUN go install go.k6.io/xk6/cmd/xk6@latest
+RUN xk6 build --output /k6 --with github.com/grafana/xk6-output-prometheus-remote@latest
+
+# Use the operator's base image and override the k6 binary
+FROM grafana/k6:latest
+COPY --from=builder /k6 /usr/bin/k6
+```
+
+#### k6 resource 예시
+
 ```
 apiVersion: k6.io/v1alpha1
 kind: K6
@@ -98,9 +125,9 @@ spec:
       name: test-script
 ```
 
+### 테스트 JavaScript
 
-https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/
-
+#### Ex 1.
 ```
 import http from 'k6/http';
 import { sleep } from 'k6';
@@ -120,8 +147,7 @@ export default function () {
 }
 ```
 
-https://test-api.k6.io/
-
+#### Ex 2.
 ```
 import http from 'k6/http';
 import { check } from 'k6';
@@ -142,35 +168,11 @@ export default function () {
 }
 ```
 
+### 테스트 JavaScript 적용
 ```
-kubectl create configmap test-script --from-file /home/ec2-user/environment/k6/scritps.js 
+kubectl -n [namespace] create configmap test-script --from-file /home/documents/k6/scritps.js 
 configmap/test-script created
 ```
 
-```
-# Build the k6 binary with the extension
-FROM golang:1.20 as builder
-
-RUN go install go.k6.io/xk6/cmd/xk6@latest
-# For our example, we'll add support for output of test metrics to InfluxDB v2.
-# Feel free to add other extensions using the '--with ...'.
-RUN xk6 build \
-    --with github.com/grafana/xk6-output-influxdb@latest \
-    --output /k6
-
-# Use the operator's base image and override the k6 binary
-FROM grafana/k6:latest
-COPY --from=builder /k6 /usr/bin/k6
-```
-
-```
-# Build the k6 binary with the extension
-FROM golang:1.18.1 as builder
-
-RUN go install go.k6.io/xk6/cmd/xk6@latest
-RUN xk6 build --output /k6 --with github.com/grafana/xk6-output-prometheus-remote@latest
-
-# Use the operator's base image and override the k6 binary
-FROM grafana/k6:latest
-COPY --from=builder /k6 /usr/bin/k6
-```
+> [K6 Load Test](https://kyungryeol-yoon.github.io/posts/k6-load-testing-tool/)
+{: .prompt-info }
