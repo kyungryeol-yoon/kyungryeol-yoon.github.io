@@ -186,7 +186,7 @@ export const options = {
 };
 
 export function setup() {
-  const url = "";		/// token취득
+  const url = "";		// token취득
   const params = {
     headers: {
       Authorization: "Bearer XXX",
