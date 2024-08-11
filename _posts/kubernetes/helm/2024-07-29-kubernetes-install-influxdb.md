@@ -13,6 +13,7 @@ helm repo update
 helm install influxdb influxdata/influxdb
 ```
 
+
 ```
 helm install influxdb influxdata/influxdb -f influxdb-values.yaml
 ```
