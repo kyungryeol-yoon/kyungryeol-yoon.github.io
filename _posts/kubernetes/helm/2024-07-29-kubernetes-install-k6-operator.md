@@ -19,7 +19,7 @@ helm install k6-operator grafana/k6-operator -f values.yaml
 
 ### k6 resource 설정 관련
 
-```
+```yaml
 # k6-resource.yml
 
 apiVersion: k6.io/v1alpha1
@@ -106,7 +106,7 @@ COPY --from=builder /k6 /usr/bin/k6
 
 #### k6 resource 예시
 
-```
+```yaml
 apiVersion: k6.io/v1alpha1
 kind: K6
 metadata:
@@ -130,7 +130,7 @@ spec:
 ### 테스트 JavaScript
 
 #### Ex 1.
-```
+```js
 import http from 'k6/http';
 import { sleep } from 'k6';
 
@@ -150,7 +150,7 @@ export default function () {
 ```
 
 #### Ex 2.
-```
+```js
 import http from 'k6/http';
 import { check } from 'k6';
 

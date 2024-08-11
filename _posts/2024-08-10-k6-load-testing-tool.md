@@ -85,7 +85,7 @@ k6 run --no-setup --no-teardown ...
 
 - setup에서 정의한 데이터를 default function과 teardown 으로 전달
 
-```
+```js
 export function setup() {
   return { v: 1 };
 }
@@ -114,7 +114,7 @@ export function teardown(data) {
 
 - k6 는 가상 유저를 만들어 애플리케이션에 원하는 요청을 반복적으로 보내게 된다.
 
-```
+```js
 import http from "k6/http"		# http test
 import { sleep } from "k6"		# sleep 기능 사용 시 추가 (sleep(n) → 지정한 n 기간 동한 VU 실행을 일시 중지)
 
@@ -149,7 +149,7 @@ export default function () {
 
 ## Test Code 작성 예시
 
-```
+```js
 import http from "k6/http";
 import { sleep, check } from "k6";
 import { Trend } from "k6/metrics";
@@ -219,7 +219,7 @@ export function scenarioFunc(token) {
 
 ### Option 관련
 
-```
+```js
 export const options = {
   scenarios: {
     scenario1: {
@@ -246,7 +246,7 @@ export const options = {
 
 ### Trend 관련
 
-```
+```js
 const trends = {
   scenario1: new Trend("scenario1) Response time", true),
   scenario2: new Trend("scenario2) Response time", true),
@@ -264,7 +264,7 @@ scenario2) Response time.......: avg=1.29s    min=1.25s    med=1.29s max=1.36s  
 
 ### Setup 관련
 
-```
+```js
 export function setup() {
   const url = "";
   const params = {
@@ -284,7 +284,7 @@ export function setup() {
 
 ### scenario 관련
 
-```
+```js
 export function scenarioFunc(token) {
   const scenarioUrl = "";
   const scenario = http.get(scenarioUrl, {
