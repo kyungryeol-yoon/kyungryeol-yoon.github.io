@@ -12,10 +12,7 @@ tags: [Kubernetes, AWX, Ansible, Install, Helm]
 - Helm repo 저장소 추가
 ```
 helm repo add awx-operator https://ansible.github.io/awx-operator
-
-"awx-operator" has been added to your repositories
 ```
-
 > 이전에 repository를 추가한 경우, 아래 명령을 실행하여 최신 버전의 패키지를 가져온다.
 {: .prompt-info }
 

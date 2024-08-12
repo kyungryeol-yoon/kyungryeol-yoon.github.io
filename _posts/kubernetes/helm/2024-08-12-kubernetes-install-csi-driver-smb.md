@@ -9,9 +9,23 @@ tags: [Kubernetes, csi, smb, Install]
 {: .prompt-info }
 
 ## Install CSI Driver SMB
+- Helm repo 저장소 추가
 ```
 helm repo add csi-driver-smb https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
+```
+
+- Helm list 확인
+```
+helm repo list
+```
+
+- Helm repo 저장소 업데이트
+```
 helm repo update
+```
+
+- Helm install
+```
 helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
 ```
 

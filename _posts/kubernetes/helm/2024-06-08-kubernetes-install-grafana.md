@@ -13,7 +13,6 @@ tags: [Kubernetes, Grafana, Helm, Install]
 ```
 helm repo add grafana https://grafana.github.io/helm-charts
 ```
-
 > 이전에 repository를 추가한 경우, 아래 명령을 실행하여 최신 버전의 패키지를 가져온다.
 {: .prompt-info }
 
@@ -51,9 +50,9 @@ kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-pass
 - port-forward로 연결하기
 ```
 kubectl --namespace monitoring port-forward $POD_NAME 3000
+```
 
-or
-
+```
 k3sctl port-forward svc/grafana 3000:80 -n monitoring
 ```
 

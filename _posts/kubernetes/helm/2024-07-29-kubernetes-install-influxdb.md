@@ -13,7 +13,6 @@ tags: [Kubernetes, InfluxDB, Install]
 ```
 helm repo add influxdata https://helm.influxdata.com
 ```
-
 > 이전에 repository를 추가한 경우, 아래 명령을 실행하여 최신 버전의 패키지를 가져온다.
 {: .prompt-info }
 
