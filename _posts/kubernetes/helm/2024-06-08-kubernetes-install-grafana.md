@@ -51,14 +51,12 @@ kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-pass
 ```
 kubectl --namespace monitoring port-forward $POD_NAME 3000
 ```
-
 ```
 k3sctl port-forward svc/grafana 3000:80 -n monitoring
 ```
 
 ## Customize Grafana default configuration
 ### Download the values.yaml file
-
 - https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 
 - 또는 Git 다운로드하여 수정
@@ -72,7 +70,6 @@ vi helm-charts/charts/grafana/values.yaml
 ```
 
 #### Setting Admin
-
 ```yaml
 ...
 # Administrator credentials when not using an existing secret (see below)
@@ -82,7 +79,6 @@ adminPassword: <your_password>
 ```
 
 #### Enable persistent storage (recommended)
-
 ```yaml
 ...
 persistence:
@@ -106,7 +102,6 @@ persistence:
 ```
 
 #### 외부 접속을 위한 NodePort 설정
-
 ```yaml
 ...
 ## Expose the grafana service to be accessed from outside the cluster (LoadBalancer service).
@@ -132,20 +127,14 @@ service:
 ```
 
 #### Install Grafana
-
 ```
 helm install grafana grafana/grafana -f values.yaml -n monitoring
 ```
 
 # Uninstall the Grafana chart
-
 ```
 helm uninstall <RELEASE-NAME> <NAMESPACE-NAME>
 helm uninstall my-grafana -n monitoring
-```
-
-```
-kubectl delete namespace monitoring
 ```
 
 > 설치 참고 : https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm

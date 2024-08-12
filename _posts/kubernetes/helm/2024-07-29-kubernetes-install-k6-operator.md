@@ -40,7 +40,6 @@ helm install k6-operator grafana/k6-operator -f override-values.yaml -n [namespa
 ```
 
 # k6 resource 배포 설정 관련
-
 ```yaml
 # k6-resource.yml
 
@@ -150,7 +149,6 @@ spec:
 ```
 
 # 테스트 JavaScript
-
 ## Ex 1.
 ```js
 import http from 'k6/http';
@@ -198,18 +196,11 @@ kubectl -n [namespace] create configmap test-script --from-file /home/documents/
 configmap/test-script created
 ```
 
-
 > 참고 : [K6 Load Test](https://kyungryeol-yoon.github.io/posts/k6-load-testing-tool/)
 {: .prompt-info }
 
-
 # Uninstall the K6 Operator chart
-
 ```
 helm uninstall <RELEASE-NAME> <NAMESPACE-NAME>
 helm uninstall k6-operator -n monitoring
-```
-
-```
-kubectl delete namespace monitoring
 ```

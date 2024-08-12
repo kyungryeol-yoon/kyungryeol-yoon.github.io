@@ -8,7 +8,7 @@ tags: [Kubernetes, csi, smb, Install]
 > Helm이 설치되어 있지 않다면, [설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
 {: .prompt-info }
 
-## Install CSI Driver SMB
+# Install CSI Driver SMB
 - Helm repo 저장소 추가
 ```
 helm repo add csi-driver-smb https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
@@ -29,12 +29,12 @@ helm repo update
 helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
 ```
 
-## Customizing CSI Driver SMB
+# Customizing CSI Driver SMB
 ```
 helm install -n csi-smb-provisioner csi-driver-smb  -f override-values.yaml
 ```
 
-### Test
+## Test
 
 > 참고 [Storage Class](https://github.com/kubernetes-csi/csi-driver-smb/blob/master/deploy/example/storageclass-smb.yaml)
 {: .prompt-info }
@@ -137,6 +137,7 @@ spec:
             claimName: pvc-smb
 ```
 
+6. 확인
 ```
 kubectl -n smb-test exec -it deploy-smb-pod-8569fdd89c-dmlzh -- ls -rtl /mnt/smb
 
@@ -144,10 +145,12 @@ total 28
 -rwxrwxrwx 1 root root 26280 Sep 25 17:53 outfile
 ```
 
+7. test.txt 파일 생성
 ```
 kubectl -n smb-test exec -it deploy-smb-pod-8569fdd89c-dmlzh -- touch /mnt/smb/test.txt
 ```
 
+8. 확인2
 ```
 kubectl -n smb-test exec -it deploy-smb-pod-8569fdd89c-dmlzh -- ls -la /mnt/smb
 
