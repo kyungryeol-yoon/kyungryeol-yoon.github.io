@@ -31,7 +31,7 @@ helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
 
 # Customizing CSI Driver SMB
 ```
-helm install -n csi-smb-provisioner csi-driver-smb  -f override-values.yaml
+helm install -n csi-smb-provisioner csi-driver-smb csi-driver-smb/csi-driver-smb -f override-values.yaml
 ```
 
 ## Test
@@ -53,7 +53,7 @@ kubectl -n smb-test create secret generic smb-creds \
 ```
 
 3. PersistentVolume 생성
-```
+```yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -82,7 +82,7 @@ spec:
 ```
 
 4. PersistentVolumeClaim 생성
-```
+```yaml
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -99,7 +99,7 @@ spec:
 ```
 
 5. Deployment 생성
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
