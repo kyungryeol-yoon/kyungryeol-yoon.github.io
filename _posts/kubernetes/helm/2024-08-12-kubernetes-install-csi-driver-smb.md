@@ -119,7 +119,7 @@ spec:
       name: deploy-smb-pod
     spec:
       nodeSelector:
-        "kubernetes.io/os": linux
+        kubernetes.io/os: linux
       containers:
         - name: deploy-smb-pod
           image: nginx:1.19.5

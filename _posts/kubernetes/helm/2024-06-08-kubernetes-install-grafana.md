@@ -134,7 +134,7 @@ helm install grafana grafana/grafana -f values.yaml -n monitoring
 # Uninstall the Grafana chart
 ```shell
 helm uninstall <RELEASE-NAME> <NAMESPACE-NAME>
-helm uninstall my-grafana -n monitoring
+helm uninstall grafana -n monitoring
 ```
 
 > 설치 참고 : https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm
