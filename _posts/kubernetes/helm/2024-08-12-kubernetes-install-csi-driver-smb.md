@@ -38,12 +38,12 @@ helm install -n csi-smb-provisioner csi-driver-smb csi-driver-smb/csi-driver-smb
 > 참고 [Storage Class](https://github.com/kubernetes-csi/csi-driver-smb/blob/master/deploy/example/storageclass-smb.yaml)
 {: .prompt-info }
 
-1. Namespace 생성
+## 1. Namespace 생성
 ```shell
 kubectl create ns smb-test
 ```
 
-2. Secret 생성
+## 2. Secret 생성
 ```shell
 kubectl -n smb-test create secret generic smb-creds \
 --from-literal username=testuser \
@@ -51,7 +51,7 @@ kubectl -n smb-test create secret generic smb-creds \
 --from-literal password=testpw
 ```
 
-3. PersistentVolume 생성
+## 3. PersistentVolume 생성
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -80,7 +80,7 @@ spec:
       namespace: smb-test
 ```
 
-4. PersistentVolumeClaim 생성
+## 4. PersistentVolumeClaim 생성
 ```yaml
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -97,7 +97,7 @@ spec:
   storageClassName: ''
 ```
 
-5. Deployment 생성
+## 5. Deployment 생성
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -134,7 +134,7 @@ spec:
             claimName: pvc-smb
 ```
 
-6. 확인
+## 6. 확인
 ```shell
 kubectl -n smb-test exec -it deploy-smb-pod-8569fdd89c-dmlzh -- ls -rtl /mnt/smb
 
@@ -142,12 +142,12 @@ total 28
 -rwxrwxrwx 1 root root 26280 Sep 25 17:53 outfile
 ```
 
-7. test.txt 파일 생성
+## 7. test.txt 파일 생성
 ```shell
 kubectl -n smb-test exec -it deploy-smb-pod-8569fdd89c-dmlzh -- touch /mnt/smb/test.txt
 ```
 
-8. 확인2
+## 8. 확인2
 ```shell
 kubectl -n smb-test exec -it deploy-smb-pod-8569fdd89c-dmlzh -- ls -la /mnt/smb
 
