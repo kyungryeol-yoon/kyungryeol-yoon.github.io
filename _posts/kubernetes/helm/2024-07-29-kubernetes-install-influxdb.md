@@ -10,28 +10,28 @@ tags: [Kubernetes, InfluxDB, Install]
 
 # Install InfluxDB
 - Helm repo 저장소 추가
-```
+```shell
 helm repo add influxdata https://helm.influxdata.com
 ```
 > 이전에 repository를 추가한 경우, 아래 명령을 실행하여 최신 버전의 패키지를 가져온다.
 {: .prompt-info }
 
 - Helm repo 저장소 업데이트
-```
+```shell
 helm repo update
 ```
 
 - Helm install
-```
+```shell
 helm install influxdb influxdata/influxdb
 ```
 
 # Customizing Install InfluxDB
-```
+```shell
 helm install influxdb influxdata/influxdb -f influxdb-values.yaml
 ```
 
 
-```
+```shell
 curl -XPOST 'http://<LoadBalancer-IP>:8086/query' --data-urlencode 'q=CREATE DATABASE mydb'
 ```

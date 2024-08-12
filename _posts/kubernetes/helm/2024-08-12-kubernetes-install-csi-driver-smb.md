@@ -10,27 +10,27 @@ tags: [Kubernetes, csi, smb, Install]
 
 # Install CSI Driver SMB
 - Helm repo 저장소 추가
-```
+```shell
 helm repo add csi-driver-smb https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
 ```
 
 - Helm list 확인
-```
+```shell
 helm repo list
 ```
 
 - Helm repo 저장소 업데이트
-```
+```shell
 helm repo update
 ```
 
 - Helm install
-```
+```shell
 helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
 ```
 
 # Customizing CSI Driver SMB
-```
+```shell
 helm install -n csi-smb-provisioner csi-driver-smb csi-driver-smb/csi-driver-smb -f override-values.yaml
 ```
 
@@ -40,12 +40,12 @@ helm install -n csi-smb-provisioner csi-driver-smb csi-driver-smb/csi-driver-smb
 {: .prompt-info }
 
 1. Namespace 생성
-```
+```shell
 kubectl create ns smb-test
 ```
 
 2. Secret 생성
-```
+```shell
 kubectl -n smb-test create secret generic smb-creds \
 --from-literal username=testuser \
 --from-literal domain=12.123.123.123 \
@@ -138,7 +138,7 @@ spec:
 ```
 
 6. 확인
-```
+```shell
 kubectl -n smb-test exec -it deploy-smb-pod-8569fdd89c-dmlzh -- ls -rtl /mnt/smb
 
 total 28
@@ -146,12 +146,12 @@ total 28
 ```
 
 7. test.txt 파일 생성
-```
+```shell
 kubectl -n smb-test exec -it deploy-smb-pod-8569fdd89c-dmlzh -- touch /mnt/smb/test.txt
 ```
 
 8. 확인2
-```
+```shell
 kubectl -n smb-test exec -it deploy-smb-pod-8569fdd89c-dmlzh -- ls -la /mnt/smb
 
 total 48

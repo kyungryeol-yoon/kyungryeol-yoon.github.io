@@ -10,48 +10,48 @@ tags: [Kubernetes, Grafana, Helm, Install]
 
 # Search the Grafana chart
 - Helm repo 저장소 추가
-```
+```shell
 helm repo add grafana https://grafana.github.io/helm-charts
 ```
 > 이전에 repository를 추가한 경우, 아래 명령을 실행하여 최신 버전의 패키지를 가져온다.
 {: .prompt-info }
 
 - Helm list 확인
-```
+```shell
 helm repo list
 ```
 
 - Helm repo 저장소 업데이트
-```
+```shell
 helm repo update
 ```
 
 - Grafana Helm Chart Release 검색
-```
+```shell
 helm search repo grafana
 ```
 
 ## Install the Grafana Helm charts
 - namespace 생성
-```
+```shell
 kubectl create namespace monitoring
 ```
 
 - Grafana 배포
-```
+```shell
 helm install grafana grafana/grafana --namespace monitoring --set adminPassword=<your_password>
 ```
 
 - Password 설정하지 않았을 때, 아래와 같이 찾아보기
-```
+```shell
 kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
 
 - port-forward로 연결하기
-```
+```shell
 kubectl --namespace monitoring port-forward $POD_NAME 3000
 ```
-```
+```shell
 k3sctl port-forward svc/grafana 3000:80 -n monitoring
 ```
 
@@ -60,12 +60,12 @@ k3sctl port-forward svc/grafana 3000:80 -n monitoring
 - https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 
 - 또는 Git 다운로드하여 수정
-```
+```shell
 git clone https://github.com/grafana/helm-charts.git
 ```
 
 - values.yaml 수정
-```
+```shell
 vi helm-charts/charts/grafana/values.yaml
 ```
 
@@ -127,12 +127,12 @@ service:
 ```
 
 #### Install Grafana
-```
+```shell
 helm install grafana grafana/grafana -f values.yaml -n monitoring
 ```
 
 # Uninstall the Grafana chart
-```
+```shell
 helm uninstall <RELEASE-NAME> <NAMESPACE-NAME>
 helm uninstall my-grafana -n monitoring
 ```
