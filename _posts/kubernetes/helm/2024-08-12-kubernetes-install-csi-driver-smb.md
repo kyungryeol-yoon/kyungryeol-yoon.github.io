@@ -53,6 +53,7 @@ kubectl -n smb-test create secret generic smb-creds \
 ```
 
 3. PersistentVolume 생성
+
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
