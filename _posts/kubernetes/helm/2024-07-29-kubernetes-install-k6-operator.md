@@ -202,5 +202,5 @@ configmap/test-script created
 # Uninstall the K6 Operator chart
 ```
 helm uninstall <RELEASE-NAME> <NAMESPACE-NAME>
-helm uninstall k6-operator -n monitoring
+helm uninstall k6-operator -n <NAMESPACE-NAME>
 ```

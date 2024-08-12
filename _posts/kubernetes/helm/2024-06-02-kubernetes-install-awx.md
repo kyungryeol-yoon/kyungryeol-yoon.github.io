@@ -35,7 +35,6 @@ sudo kubectl get pods -n awx
 ```
 
 ## Create PV, PVC and deploy AWX yaml file
-
 > AWX에는 postgres Pod에 대한 영구 볼륨이 필요
 {: .prompt-info }
 
