@@ -7,7 +7,7 @@ tags: [Left Value, Right Value, cpp, Programming]
 # comments: true
 ---
 
-# C++ Lvalue와 Rvalue
+## C++ Lvalue와 Rvalue
 
 Lvalue와 Rvalue는 보통 Left-value(왼쪽 값)과 Right-value(오른쪽 값)로 풀어서 씁니다. 이 때문에 대입 연산자(=)를 기준으로 왼쪽에 위치하는 값이 Lvalue이고 오른쪽에 위치하는 값이 Rvalue라고 이해하기 쉽습니다. 이것은 C 표준에 입각하여 살펴보면 완전히 틀린 얘기는 아니지만(C 표준에서는 대입연산자(=)를 기준으로 왼쪽과 오른쪽에 모두 사용될 수 있는 값은 Lvalue이고 오른쪽에만 사용될 수 있는 값이 Rvalue라고 정의하고 있습니다.) 잘못된 이해이며, C++ 관점에서는 전혀 다른 관점에서 해석할 필요가 있습니다. **C++ 표준에서는 더이상 단순하게 L과 R은 Left와 Right를 의미하지 않습니다.** 이제부터는 위에서 언급한 Left, Right의 개념은 잊어버리고 Lvalue와 Rvalue를 단순히 고유명사로만 기억합시다.
 

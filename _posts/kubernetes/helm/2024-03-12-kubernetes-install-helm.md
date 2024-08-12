@@ -5,12 +5,12 @@ categories: [Kubernetes, Helm]
 tags: [Kubernetes, Helm]
 ---
 
-# Install Helm
+## Install Helm
 
 > 설치 참고 : https://helm.sh/docs/intro/install/
 {: .prompt-info }
 
-## Script 방식
+### Script 방식
 ```shell
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 
@@ -21,18 +21,18 @@ chmod +x get_helm.sh
 helm version
 ```
 
-## Windows
-### choco 이용
+### Windows
+#### choco 이용
 ```
 choco install kubernetes-helm
 ```
 
-### scoop 이용
+#### scoop 이용
 ```
 scoop install helm
 ```
 
-## Apt 이용 (Debian/Ubuntu)
+### Apt 이용 (Debian/Ubuntu)
 ```shell
 curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
 sudo apt-get install apt-transport-https --yes

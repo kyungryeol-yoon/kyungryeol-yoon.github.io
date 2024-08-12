@@ -5,15 +5,15 @@ categories: [Kubernetes, Affinity]
 tags: [Kubernetes, Affinity]
 ---
 
-### Affinity?
+## Affinity?
 - Affinity란 선호도란 뜻이다. Pod는 항상 Node에서 띄워져야 하는데, 이러한 배치를 함에 있어 선호하는 Node나 Pod를 설정할 수 있는 리소스이다.
 
-### Affinity 종류
+## Affinity 종류
 - nodeAffinity는 어떤 Node를 선호할 것인가? 에 관련한 리소스이다. 즉, Pod를 배치할 때 어떤 Node에 스케쥴링할지 설정을 해준다.
 - podAffinity는 Pod가 배치될 때, 실행 중인 Pod들 중에 선호하는 Pod를 찾아 해당 Pod와 동일한 Node로 배치하는 걸 설정해준다.
 - podAnitAffinity는 실행 중인 Pod들 중에, 선호하지 않은 Pod가 실행 중인 Node는 피해서 배치를 하겠다는 걸 설정해준다.
 
-### nodeAffinity?
+## nodeAffinity?
 - 선호하는 노드를 설정하는 방법으로, nodeSelector 보다 확장된 Label Selector 기능을 지원한다. 그래서 좀 더 실무환경에 적합한 Pod 배치 전략이다.
 - matchExpressions 사용 가능하다. (In, NotIn, Exists, DoesNotExist, Gt, Lt 등의 옵션이 있다.)
 - 여러 유즈케이스에 활용 가능한 2가지 옵션이 있는데. Hard, Soft로 나뉜다. 매우 조건이 길기 때문에 2등분해서 의미를 이해하면 좋다.
@@ -62,7 +62,7 @@ tags: [Kubernetes, Affinity]
 | Gt | Greater than의 약자로 values[] 필드에 설정된 값이 설정된 값 보다 더 큰 숫자형 데이터 인지 확인합니다. 이 때 values[] 필드에는 값이 하나만 있어야 합니다. |
 | Lt | Lower than의 약자로 values[] 필드에 설정된 값이 설정된 값 보다 더 작은 숫자형 데이터 인지 확인합니다. 이 때 values[] 필드에는 값이 하나만 있어야 합니다. |
 
-#### nodeAffinity 세팅
+### nodeAffinity 세팅
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -150,7 +150,7 @@ kubectl get nodes --show-labels
 kubectl get nodes --label-columns team
 ```
 
-### podAffinity?
+## podAffinity?
 - 선호하는 파드를 설정하는 방법으로, 사용법은 nodeAffinity와 거의 동일하다.
 - 역시 여러 유즈케이스에 활용 가능한 2가지 옵션을 제공하며, Hard, Soft로 나뉜다. nodeAffinity와 동일하여 자세한 설명은 생략한다.
     - 반드시 충족해야 하는 조건 (Hard)
@@ -167,7 +167,7 @@ kubectl get nodes --label-columns team
         - region 단위: topology.kubernetes.io/region
             - 지역 (서울, 도쿄 등)
 
-#### podAffinity 세팅
+### podAffinity 세팅
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -273,7 +273,7 @@ spec:
               # topologyKey: topology.kubernetes.io/region
 ```
 
-### podAntiAffinity?
+## podAntiAffinity?
 - 선호하지 않는 파드를 설정하는 방법으로, podAffinity를 podAntiAffinity로만 변경하면 사용법 동일하다.
 - 역시 여러 유즈케이스에 활용 가능한 2가지 옵션을 제공하며, Hard, Soft로 나뉜다. podAffinity와 동일하여 자세한 설명은 생략한다.
     - 반드시 충족해야 하는 조건 (Hard)

@@ -5,35 +5,35 @@ categories: [Kubernetes, Kubekey]
 tags: [Kubernetes, Kubekey]
 ---
 
-# KubeKey 설치
-## 1. script 다운로드
+## KubeKey 설치
+### 1. script 다운로드
 ```
 curl -sfL https://get-kk.kubesphere.io | VERSION=v3.0.7 sh -
 or
 curl -sfL https://get-kk.kubesphere.io | sh -
 ```
 
-## 2. Binary Downloads
+### 2. Binary Downloads
 - https://github.com/kubesphere/kubekey/releases
 
-## 3. Build Binary from Source Code
+### 3. Build Binary from Source Code
 ```
 git clone https://github.com/kubesphere/kubekey.git
 cd kubekey
 make kk
 ```
 
-### Quick Start
+#### Quick Start
 - Quick Start is for all-in-one installation which is a good start to get familiar with Kubernetes and KubeSphere.
 - Note: Since Kubernetes temporarily does not support uppercase NodeName, contains uppercase letters in the hostname will lead to subsequent installation error
 
-#### Command
+##### Command
 - If you have problem to access https://storage.googleapis.com, execute first export KKZONE=cn.
 ```
 ./kk create cluster [--with-kubernetes versio] [--with-kubesphere version]
 ```
 
-#### Examples
+##### Examples
 - Create a pure Kubernetes cluster with default version (Kubernetes v1.23.10).
 ```
 ./kk create cluster
@@ -49,7 +49,7 @@ make kk
 ./kk create cluster --with-kubesphere v3.2.1
 ```
 
-## 4. 세부 설정을 위한 Create Config
+### 4. 세부 설정을 위한 Create Config
 ```
 ./kk create config [--with-kubernetes version] [--with-kubesphere version] [(-f | --filename) path]
 ```
@@ -61,7 +61,7 @@ make kk
 ./kk create config --with-kubernetes v1.20.4
 ```
 
-### vi config-sample.yaml
+#### vi config-sample.yaml
 ```yaml
 apiVersion: kubekey.kubesphere.io/v1alpha1
 kind: Cluster
@@ -100,31 +100,31 @@ hosts:
 - {name: master, address: 192.168.0.1, internalAddress: 192.168.0.1, privateKeyPath: "~/.ssh/id_rsa"}
 ```
 
-## 5. Install Cluster
+### 5. Install Cluster
 ```
 ./kk create cluster -f config-sample.yaml
 ```
 
-### Cluster 설치하면서 log 확인
+#### Cluster 설치하면서 log 확인
 ```
 kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
-### 일반 유저 일 때
+#### 일반 유저 일 때
 ```
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-### 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
+#### 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
 error: error loading config file "/etc/kubernetes/admin.conf": open /etc/kubernetes/admin.conf: permission denied
 아래 명령어를 입력하면 sudo 없이 사용 가능합니다.
 ```
 export KUBECONFIG=$HOME/.kube/config
 ```
 
-#### error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
+##### error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
 ```
 chown -R kubelet:kubelet /var/lib/kubelet/pods
 chmod 750 /var/lib/kubelet/pods

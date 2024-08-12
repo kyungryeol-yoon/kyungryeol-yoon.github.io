@@ -5,8 +5,8 @@ categories: [Kubernetes, Kubekey]
 tags: [Kubernetes, Kubekey, Artifact, Upgrade]
 ---
 
-# offline 설치 위한 artifact 파일 생성
-## version 참고
+## offline 설치 위한 artifact 파일 생성
+### version 참고
 - kubernetes와 관련된 image는 https://github.com/kubesphere/ks-installer/releases 에서 주요 release에만 포함되는 image-list.txt파일을 참고
 - kubekey의 버전별로 kubernetes, kubesphere의 최신 지원 버전이 있음
     - kubekey/version/components.json
@@ -14,18 +14,18 @@ tags: [Kubernetes, Kubekey, Artifact, Upgrade]
     - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
 - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
 
-## 참고
+### 참고
 - https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest_and_artifact.md
 - https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt
 - https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation
 - https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest-example.md
 
-## kubekey artifact 설치
-### 1. script 다운로드
+### kubekey artifact 설치
+#### 1. script 다운로드
 ```
 curl -sfL https://get-kk.kubesphere.io | VERSION=v3.0.13 sh -
 ```
-### 2. artifact-3.0.13.yaml 작성
+#### 2. artifact-3.0.13.yaml 작성
 ```yaml
 apiVersion: kubekey.kubesphere.io/v1alpha2
 kind: Manifest
@@ -273,12 +273,12 @@ spec:
         username: "username"
         password: "password"
 ```
-### 3. Export Artifact
+#### 3. Export Artifact
 ```
 sudo ./kk artifact export -m artifact-3.0.13.yaml -o artifact-3.0.13.tar.gz
 ```
 
-### 4. Cluster 설치를 위한 config 파일 생성 및 작성
+#### 4. Cluster 설치를 위한 config 파일 생성 및 작성
 ```
 sudo ./kk create config --with-kubesphere v3.4.1 --with-kubernetes v1.26.5 -f config-sample.yaml
 ```
@@ -540,31 +540,31 @@ spec:
     timeout: 600
 ```
 
-#### image 별도로 push 방법
+##### image 별도로 push 방법
 ```
 sudo ./kk artifact image push -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```
 
-#### image 수동 pull 및 push
+##### image 수동 pull 및 push
 ```
 sudo docker pull docker.io/kubesphere/pause:3.7
 sudo docker tag docker.io/kubesphere/pause:3.7 dockerhub.kubekey.local/kubesphereio/pause:3.7
 sudo docker push dockerhub.kubekey.local/kubesphereio/pause:3.7
 ```
 
-#### [ERROR] Harbor에 image push 할 때 Unauthorized 에러 발생 때
+##### [ERROR] Harbor에 image push 할 때 Unauthorized 에러 발생 때
 - 다시 로그인
 ```
 sudo docker login dockerhub.kubekey.local
 sudo docker login [your.host.com]:port -u username -p password
 ```
 
-### 5. Upgrade
+#### 5. Upgrade
 ```
 sudo ./kk upgrade -f config-sample.yaml -a artifact-3.0.13.tar.gz
 ```
 
-#### Upgrade하면서 log 확인
+##### Upgrade하면서 log 확인
 ```
 kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
 ``

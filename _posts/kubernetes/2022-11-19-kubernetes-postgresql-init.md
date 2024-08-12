@@ -11,7 +11,7 @@ tags: [Kubernetes, PostgreSQL]
 
 postgresql pod가 생성될 때 최초로 아래와 같은 기본 테이블 세팅 설정
 
-### ConfigMap yaml
+## ConfigMap yaml
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -36,7 +36,7 @@ data:
  INSERT INTO customers VALUES ('Chris', 'company_name', 'contact_name', 'contact_title', 'address', 'city_name', region_name, 'postal_code', 'Korea', 'phone-number', 'fax-number');
 ```
 
-### PV yaml
+## PV yaml
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -54,7 +54,7 @@ spec:
     path: "/Users/docker/postgres/docker-pg-vol/data"
 ```
 
-### PVC yaml
+## PVC yaml
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -71,7 +71,7 @@ spec:
       storage: 100Mi
 ```
 
-### Deployment yaml
+## Deployment yaml
 ```yaml
 kind: Deployment
 metadata:

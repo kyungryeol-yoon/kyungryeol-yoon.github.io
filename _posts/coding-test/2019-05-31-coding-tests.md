@@ -7,7 +7,7 @@ tags: [cpp, Programming, coding, test]
 # comments: true
 ---
 
-### 모든 코딩 테스트는 C++로 작성하였습니다.
+## 모든 코딩 테스트는 C++로 작성하였습니다.
 
 1. 글자 뒤집기. 글자안에 특수문자 잇으면 그건 그대로 들고오기
 

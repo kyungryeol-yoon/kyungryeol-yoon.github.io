@@ -11,7 +11,7 @@ RBAC (Role-based Access Control)는 쿠버네티스 환경에서 Node 또는 네
 RBAC는 rbac.authorization.k8s.io API를 사용하며, K8s 1.8 이상부터 RBAC Mode가 Stable 한다.
 또한, RBAC 활성화를 위한 --authorization-mode=RBAC 설정이 필요하다.
 
-### Role & ClusterRle
+## Role & ClusterRle
 Role : Default 라는 Namespace에 모든 Pod의 읽기권한(get, watch, list)을 설정하고 pod-read 라고 정의한다.
 ```
 apiVersion: rbac.authorization.k8s.io/v1
@@ -48,7 +48,7 @@ metadata:
   namespace: kube-system
 ```
 
-### RoleBinding & ClusterRoleBinding
+## RoleBinding & ClusterRoleBinding
 RoleBinding 은 User, Team 단위의 권한 부여 기능이며, ClusterRoleBinding은 클러스터 단위의 권한 부여 기능을 나타낸다.
 
 RoleBinding : Reference 라는 User 에게 Pod-read 권한 설정. 즉, Reference 라는 User는 Namespace가 Default인 모든 Pod을 읽기가 가능하다.
@@ -100,7 +100,7 @@ roleRef:
   name: cluster-admin
 ```
 
-### K8s API 호출 권한
+## K8s API 호출 권한
 K8s api 호출시 RBAC role 에 의한 접근 불가 오류 메세지 출력되면
 
 K8s api 호출 error example - kryoon에서 pod에 대한 정보를 요청할 때 RBAC role에 막혔다

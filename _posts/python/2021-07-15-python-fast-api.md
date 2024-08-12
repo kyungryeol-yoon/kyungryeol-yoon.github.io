@@ -5,20 +5,20 @@ categories: [Python, FastAPI]
 tags: [Python, FastAPI, Programming]
 ---
 
-### FastAPI란?
+## FastAPI란?
 파이썬 3.6+ 으로 API서버를 구축하기 위한 모던하고, 빠른 웹 프레임 워크
 
-#### fastapi 설치
+### fastapi 설치
 ```terminal
 $ pip install fastapi
 ```
 
-#### uvicorn 설치
+### uvicorn 설치
 ```terminal
 $ pip install uvicorn
 ```
 
-### 간단한 실행
+## 간단한 실행
 ```python
 from fastapi import FastAPI
 
@@ -29,7 +29,7 @@ async def root():
 	return { "message" : "Hello World" }
 ```
 
-#### fastapi + uvicorn 실행
+### fastapi + uvicorn 실행
 ```terminal
 $ uvicorn main:app --reload --host=0.0.0.0 --port=8000
 ```

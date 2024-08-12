@@ -8,7 +8,7 @@ tags: [Kubernetes, InfluxDB, Install]
 > Helm이 설치되어 있지 않다면, [설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
 {: .prompt-info }
 
-# Install InfluxDB
+## Install InfluxDB
 - Helm repo 저장소 추가
 ```shell
 helm repo add influxdata https://helm.influxdata.com
@@ -26,7 +26,7 @@ helm repo update
 helm install influxdb influxdata/influxdb
 ```
 
-# Customizing Install InfluxDB
+## Customizing Install InfluxDB
 ```shell
 helm install influxdb influxdata/influxdb -f influxdb-values.yaml
 ```

@@ -5,12 +5,12 @@ categories: [Python, venv]
 tags: [Python, venv, Programming]
 ---
 
-### 가상환경을 사용하는 이유
+## 가상환경을 사용하는 이유
 당연히 파이썬 패키지(라이브러리) 간 의존성 때문에 쓰는 거다.\\
 특정 패키지 버전을 업데이트 할 때 다른 것들이 호환되지 않아 문제가 생기는 경우가 발생한다.\\
 그리고 작업환경이 바뀌더라도, 예를 들면 PC를 교체하더라도 필요한 패키지들을 동일한 버전으로 설치해 작업할 수 있기 때문에 무조건 사용하는 게 좋다.
 
-### 가상환경 생성
+## 가상환경 생성
 예를 들어 바탕화면에 “my_project”라는 폴더를 만들어 작업을 한다면, 그 폴더 안에서 python -m venv `가상환경이름`이라고 쳐주면 된다.
 
 ```
@@ -28,7 +28,7 @@ C:\Users\kryoon\Desktop\my_project>python -m venv [가상환경이름]
 C:\Users\kryoon\Desktop\my_project>python -m venv [가상환경이름] --system-site-packages
 ```
 
-### 가상환경 활성화/비활성화
+## 가상환경 활성화/비활성화
 프로젝트 폴더 안에서 가상환경이름\Scripts\activate.bat 이라고 쳐주면 가상환경이 활성화된다.
 
 ```
@@ -39,7 +39,7 @@ C:\Users\kryoon\Desktop\my_project>가상환경이름\Scripts\activate.bat
 
 가상환경을 비활성화 하고 싶다면 `deactivate`
 
-### 가상환경 내에서 패키지 설치, 삭제
+## 가상환경 내에서 패키지 설치, 삭제
 가상환경 내에서 패키지를 설치하려면, 가상환경을 활성화 한 상태에서 평소처럼 pip install로 패키지 설치를 하면 된다. (삭제는 pip uninstall)
 
 ```

@@ -8,7 +8,7 @@ tags: [Spring, Framework, Java, Programming]
 # comments: true
 ---
 
-# Spring framework란?
+## Spring framework란?
 **"자바 엔터프라이즈 개발을 편하게 해주는 오픈소스 경량급 애플리케이션 프레임워크"**
 
 ## POJO(Plain Old Java Object) 기반의 구성

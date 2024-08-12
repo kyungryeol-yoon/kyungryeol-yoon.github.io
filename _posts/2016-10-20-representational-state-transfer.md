@@ -7,7 +7,7 @@ tags: [Spring, Framework, Java, Programming, controller, MVC, restcontroller]
 # comments: true
 ---
 
-# REST의 탄생 배경
+## REST의 탄생 배경
 기존 웹서비스 전달 프로토콜인 SOAP(simple Object Access Protocol)은 HTTP응용 프로토콜로서 SOAP 헤더와 바디로 구성되어 있고, 메시지 송수신 시 헤더와 바디의 인코딩/디코딩 과정이 필수입니다. 따라서 기본 HTTP로 메시지를 전달하던 인터넷 서비스 분야에서는 원하는 기능에 비해 SOAP 프로토콜 처리의 오버헤드가 발생하는 문제가 있습니다.\\
 (여기서 오버헤드란, 시스템에서 목적으로 하는 효과를 얻기 위해 본질적인 것은 아니지만 요구되는 작동, 또는 그 때문에 필요한 자원을 말합니다.)\\
 이런 SOAP의 단점을 보완하고자 등장한 구현 기술이 바로 RESTful 웹서비스입니다. RESTful 웹서비스는 REST 기반의 웹서비스를 의미하고, HTTP의 기본 기능만으로 원격 정보에 접근하는 웹 응용 기술입니다.\\

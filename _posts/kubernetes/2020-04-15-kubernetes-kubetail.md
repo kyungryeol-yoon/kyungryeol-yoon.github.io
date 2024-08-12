@@ -8,13 +8,13 @@ tags: [Kubernetes, kubetail]
 - 여러 POD의 로그를 동시에 조회하는 기능
 - `kubectl logs -f`를 실행하는 것과 동일하지만 여러 Pod에 적용
 
-### Install Ubuntu
+## Install Ubuntu
 
 ```
 sudo apt install kubetail
 ```
 
-### Install Mac OS
+## Install Mac OS
 
 ```
 brew tap johanhaleby/kubetail && brew install kubetail
@@ -23,19 +23,19 @@ brew tap johanhaleby/kubetail && brew install kubetail
 > kubetail에 대한 설정 방법은 [설치 문서](https://github.com/johanhaleby/kubetail)를 참고하시기 바랍니다.
 {: .prompt-info }
 
-### How to use
-#### Container or Multiple Containers
+## How to use
+### Container or Multiple Containers
 ```
 kubetail app2 -c container1
 kubetail app2 -c container1 -c container2
 ```
 
-#### Multiple Apps(pods)
+### Multiple Apps(pods)
 ```
 kubetail app1,app2
 ``` 
 
-#### Deployment or DaemonSet
+### Deployment or DaemonSet
 ```
 kubetail "coredns-556f6dffc4-*" -n kube-system
 Will tail 2 logs...
@@ -43,13 +43,13 @@ coredns-556f6dffc4-bd2mr
 coredns-556f6dffc4-hbvdt
 ```
 
-#### Label selector.
+### Label selector.
 ```
 kubetail --selector service=my-service --since 10m
 kubetail --selector release=p-jm-han
 ```
 
-#### Regex
+### Regex
 ```
 kubetail "^app1|.*my-demo.*" --regex
 

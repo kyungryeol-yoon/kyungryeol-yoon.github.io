@@ -8,7 +8,7 @@ tags: [Kubernetes, Grafana, Helm, Install]
 > Helm이 설치되어 있지 않다면, [설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
 {: .prompt-info }
 
-# Search the Grafana chart
+## Search the Grafana chart
 - Helm repo 저장소 추가
 ```shell
 helm repo add grafana https://grafana.github.io/helm-charts
@@ -131,7 +131,7 @@ service:
 helm install grafana grafana/grafana -f values.yaml -n monitoring
 ```
 
-# Uninstall the Grafana chart
+## Uninstall the Grafana chart
 ```shell
 helm uninstall <RELEASE-NAME> <NAMESPACE-NAME>
 helm uninstall grafana -n monitoring
