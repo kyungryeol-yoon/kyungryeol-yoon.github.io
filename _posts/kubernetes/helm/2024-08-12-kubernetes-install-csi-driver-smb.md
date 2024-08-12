@@ -60,7 +60,7 @@ metadata:
   name: pv-smb
   namespace: smb-test
 spec:
-  storageClassName: ""
+  storageClassName: ''
   capacity:
     storage: 50Gi
   accessModes:
@@ -95,7 +95,7 @@ spec:
     requests:
       storage: 10Gi
   volumeName: pv-smb
-  storageClassName: ""
+  storageClassName: ''
 ```
 
 5. Deployment 생성
