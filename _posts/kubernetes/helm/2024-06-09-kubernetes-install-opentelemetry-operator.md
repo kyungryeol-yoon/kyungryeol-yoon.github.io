@@ -5,6 +5,9 @@ categories: [Kubernetes, OpenTelemetry]
 tags: [Kubernetes, OpenTelemetry, Cert-manager, Install]
 ---
 
+> Helm이 설치되어 있지 않다면, [설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
+{: .prompt-info }
+
 ## Install Cert-manager
 
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.yaml

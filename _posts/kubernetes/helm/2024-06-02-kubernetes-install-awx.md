@@ -5,20 +5,11 @@ categories: [Kubernetes, AWX]
 tags: [Kubernetes, AWX, Ansible, Install, Helm]
 ---
 
-## Helm이 설치되어 있지 않다면, Install Helm
-```
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-
-chmod +x get_helm.sh
-
-./get_helm.sh
-
-helm version
-```
+> Helm이 설치되어 있지 않다면, [설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
+{: .prompt-info }
 
 ## Install the AWX chart
-- helm repo 저장소 추가
-
+- Helm repo 저장소 추가
 ```
 helm repo add awx-operator https://ansible.github.io/awx-operator
 
@@ -28,7 +19,7 @@ helm repo add awx-operator https://ansible.github.io/awx-operator
 > 이전에 repository를 추가한 경우, 아래 명령을 실행하여 최신 버전의 패키지를 가져온다.
 {: .prompt-info }
 
-- helm repo 저장소 업데이트
+- Helm repo 저장소 업데이트
 ```
 helm repo update
 ```
@@ -117,7 +108,7 @@ kubectl create -f pv.yaml
 ```
 
 ```
-kubectl get pv,pvc -n awx
+kubectl get pv -n awx
 ```
 
 ### PersistentVolumeClaim

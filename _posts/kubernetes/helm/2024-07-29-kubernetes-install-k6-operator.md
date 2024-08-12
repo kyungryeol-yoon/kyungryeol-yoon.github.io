@@ -5,19 +5,39 @@ categories: [Kubernetes, K6]
 tags: [Kubernetes, K6, Install]
 ---
 
-## Install k6-operator
+> Helm이 설치되어 있지 않다면, [설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
+{: .prompt-info }
 
+# Install k6-operator
+- Helm repo 저장소 추가
 ```
 helm repo add grafana https://grafana.github.io/helm-charts
+```
+
+> 이전에 repository를 추가한 경우, 아래 명령을 실행하여 최신 버전의 패키지를 가져온다.
+{: .prompt-info }
+
+- Helm list 확인
+```
+helm repo list
+```
+
+- Helm repo 저장소 업데이트
+```
 helm repo update
+```
+
+- Helm install
+```
 helm install k6-operator grafana/k6-operator
 ```
 
+# Customizing Install k6-operator
 ```
-helm install k6-operator grafana/k6-operator -f values.yaml
+helm install k6-operator grafana/k6-operator -f override-values.yaml -n [namespace]
 ```
 
-### k6 resource 설정 관련
+# k6 resource 배포 설정 관련
 
 ```yaml
 # k6-resource.yml
@@ -74,7 +94,7 @@ spec:
 > [InfluxDB 설치 관련](https://kyungryeol-yoon.github.io/posts/kubernetes-install-influxdb/)
 {: .prompt-info }
 
-#### Dockerfile Build with xk6-output-influxdb
+## Dockerfile Build with xk6-output-influxdb
 ```Dockerfile
 # Build the k6 binary with the extension
 FROM golang:1.20 as builder
@@ -91,7 +111,7 @@ FROM grafana/k6:latest
 COPY --from=builder /k6 /usr/bin/k6
 ```
 
-#### Dockerfile Build with xk6-output-prometheus-remote 
+## Dockerfile Build with xk6-output-prometheus-remote 
 ```Dockerfile
 # Build the k6 binary with the extension
 FROM golang:1.18.1 as builder
@@ -104,7 +124,7 @@ FROM grafana/k6:latest
 COPY --from=builder /k6 /usr/bin/k6
 ```
 
-#### k6 resource 예시
+## k6 resource 예시
 
 ```yaml
 apiVersion: k6.io/v1alpha1
@@ -127,9 +147,9 @@ spec:
       name: test-script
 ```
 
-### 테스트 JavaScript
+# 테스트 JavaScript
 
-#### Ex 1.
+## Ex 1.
 ```js
 import http from 'k6/http';
 import { sleep } from 'k6';
@@ -149,7 +169,7 @@ export default function () {
 }
 ```
 
-#### Ex 2.
+## Ex 2.
 ```js
 import http from 'k6/http';
 import { check } from 'k6';
@@ -170,7 +190,7 @@ export default function () {
 }
 ```
 
-### 테스트 JavaScript 적용
+# 테스트 JavaScript 적용
 ```
 kubectl -n [namespace] create configmap test-script --from-file /home/documents/k6/scritps.js 
 configmap/test-script created
@@ -178,4 +198,19 @@ configmap/test-script created
 
 
 > 참고 : [K6 Load Test](https://kyungryeol-yoon.github.io/posts/k6-load-testing-tool/)
+{: .prompt-info }
+
+
+# Uninstall the K6 Operator chart
+
+```
+helm uninstall <RELEASE-NAME> <NAMESPACE-NAME>
+helm uninstall k6-operator -n monitoring
+```
+
+```
+kubectl delete namespace monitoring
+```
+
+> 설치 참고 : https://grafana.com/docs/k6/latest/set-up/set-up-distributed-k6/install-k6-operator/
 {: .prompt-info }

@@ -5,20 +5,11 @@ categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Grafana, Helm, Install]
 ---
 
-## Helm이 설치되어 있지 않다면, Install Helm
-```
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+> Helm이 설치되어 있지 않다면, [설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
+{: .prompt-info }
 
-chmod +x get_helm.sh
-
-./get_helm.sh
-
-helm version
-```
-
-## Install the Grafana chart
-- helm repo 저장소 추가
-
+# Search the Grafana chart
+- Helm repo 저장소 추가
 ```
 helm repo add grafana https://grafana.github.io/helm-charts
 ```
@@ -26,44 +17,38 @@ helm repo add grafana https://grafana.github.io/helm-charts
 > 이전에 repository를 추가한 경우, 아래 명령을 실행하여 최신 버전의 패키지를 가져온다.
 {: .prompt-info }
 
-- helm list 확인
-
+- Helm list 확인
 ```
 helm repo list
 ```
 
-- helm repo 저장소 업데이트
+- Helm repo 저장소 업데이트
 ```
 helm repo update
 ```
 
 - Grafana Helm Chart Release 검색
-
 ```
 helm search repo grafana
 ```
 
-### Deploy the Grafana Helm charts
+## Install the Grafana Helm charts
 - namespace 생성
-
 ```
 kubectl create namespace monitoring
 ```
 
 - Grafana 배포
-
 ```
 helm install grafana grafana/grafana --namespace monitoring --set adminPassword=<your_password>
 ```
 
 - Password 설정하지 않았을 때, 아래와 같이 찾아보기
-
 ```
 kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
 
 - port-forward로 연결하기
-
 ```
 kubectl --namespace monitoring port-forward $POD_NAME 3000
 
@@ -72,13 +57,12 @@ or
 k3sctl port-forward svc/grafana 3000:80 -n monitoring
 ```
 
-### Customize Grafana default configuration
-#### Download the values.yaml file
+## Customize Grafana default configuration
+### Download the values.yaml file
 
 - https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 
-
-#### 또는 Git 다운로드하여 수정
+- 또는 Git 다운로드하여 수정
 ```
 git clone https://github.com/grafana/helm-charts.git
 ```
@@ -154,7 +138,7 @@ service:
 helm install grafana grafana/grafana -f values.yaml -n monitoring
 ```
 
-## Uninstall the Grafana chart
+# Uninstall the Grafana chart
 
 ```
 helm uninstall <RELEASE-NAME> <NAMESPACE-NAME>

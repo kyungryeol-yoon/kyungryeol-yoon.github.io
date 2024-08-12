@@ -155,8 +155,8 @@ import { sleep, check } from "k6";
 import { Trend } from "k6/metrics";
 
 const trends = {
-  scenario1: new Trend("scenario1) Response time", true),
-  scenario2: new Trend("scenario2) Response time", true),
+  scenario1: new Trend("scenario1_response_time", true),
+  scenario2: new Trend("scenario2_response time", true),
 };
 
 const VUS = 1;
@@ -196,9 +196,14 @@ export function setup() {
   const token = JSON.parse(res.body).account.token;
 
   return token;
+  return { data: res.json() };
 }
 
-export function scenarioFunc(token) {
+export function teardown(data) {
+  console.log("Function teardown : " + JSON.stringify(data));
+}
+
+export function scenarioFunc(token, data) {
   const scenarioUrl = "";		// 실행할 API
   const scenario = http.get(scenarioUrl, {
     headers: {
@@ -208,6 +213,8 @@ export function scenarioFunc(token) {
   __ENV.SCENARIO_ID === "1"
     ? trends.scenario1.add(scenario.timings.duration)
     : trends.scenario2.add(scenario.timings.duration);
+
+  console.log("Function default : " + JSON.stringify(data));
 
   check(scenario, {
     "scenario status is 200": (res) => res.status === 200,
