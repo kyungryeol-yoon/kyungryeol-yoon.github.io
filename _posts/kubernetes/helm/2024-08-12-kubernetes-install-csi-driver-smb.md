@@ -34,8 +34,7 @@ helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
 helm install -n csi-smb-provisioner csi-driver-smb csi-driver-smb/csi-driver-smb -f override-values.yaml
 ```
 
-## Test
-
+# Test
 > 참고 [Storage Class](https://github.com/kubernetes-csi/csi-driver-smb/blob/master/deploy/example/storageclass-smb.yaml)
 {: .prompt-info }
 
