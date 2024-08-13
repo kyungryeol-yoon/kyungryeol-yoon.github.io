@@ -67,6 +67,7 @@ helm repo update
 ```
 
 - syslog 및 container log
+
 ```yaml
 apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
