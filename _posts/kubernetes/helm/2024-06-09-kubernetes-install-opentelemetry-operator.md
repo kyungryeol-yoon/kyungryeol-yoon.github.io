@@ -99,7 +99,7 @@ spec:
         tcp:
           listen_address: '0.0.0.0:54527'
         protocol: rfc3164
-        location: UTC # or Asia/Seoul # specify server timezone here
+        location: UTC or Asia/Seoul # specify server timezone here
         operators:
           - type: move
             from: attributes.message
@@ -199,7 +199,8 @@ spec:
 
     exporters:
       loki:
-        endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push # or http://<Loki-svc>.<Loki-Namespace>.svc/loki/api/v1/push
+        endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push or http://<Loki-svc>.<Loki-Namespace>.svc/loki/api/v1/push
+
     service:
       pipelines:
         logs:
@@ -259,6 +260,7 @@ spec:
     exporters:
       loki:
         endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push or http://<Loki-svc>.<Loki-Namespace>.svc/loki/api/v1/push
+
     service:
       pipelines:
         logs:
