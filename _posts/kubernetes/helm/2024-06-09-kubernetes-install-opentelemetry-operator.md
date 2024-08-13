@@ -54,7 +54,6 @@ kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releas
 > 설치 참고 : https://github.com/open-telemetry/opentelemetry-operator
 
 
-
 ```
 helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
 helm repo update
@@ -69,11 +68,16 @@ helm repo update
 ### OpenTelemetry Collector
 
 collector에 대한 배포판은 3가지가 있고,
-opentelemetry-collector : 핵심 기능을 제공
-opentelemetry-collector-contrib : Contrib은 opentelemetry-collector 확장하여 다양한 환경에서 사용될 수 있도록 제작
-opentelemetry-collector-k8s : opentelemetry-collector와 contrib의 구성요소 중 k8s cluster와 구성요소를 모니터링할 수 있도록 특별히 제작
+- opentelemetry-collector : 핵심 기능을 제공
+- opentelemetry-collector-contrib : Contrib은 opentelemetry-collector 확장하여 다양한 환경에서 사용될 수 있도록 제작
+- opentelemetry-collector-k8s : opentelemetry-collector와 contrib의 구성요소 중 k8s cluster와 구성요소를 모니터링할 수 있도록 특별히 제작
 
 1. OpenTelemetry Collector 설치 및 구성
+
+- vi /etc/rsyslog.conf 추가
+```conf
+*.* action(type="omfwd" target="0.0.0.0" port="54527" protocol="tcp" action.resumeRetryCount="10" queue.type="linkedList" queue.size="10000")
+```
 
 ```yaml
 apiVersion: opentelemetry.io/v1beta1
@@ -100,11 +104,29 @@ spec:
       mountPath: /var/lib/docker/containers
       readOnly: true
   config:
+    syslog:
+    tcp:
+      listen_address: '0.0.0.0:54527'
+    protocol: rfc3164
+    location: UTC or Asia/Seoul # specify server timezone here
+    operators:
+      - type: move
+        from: attributes.message
+        to: body
+      - type: move
+        from: attributes["attributes.hostname"]
+        to: resource["hostname"]
+      - type: move
+        from: attributes["attributes.appname"]
+        to: resource["daemon"]
     # This is a new configuration file - do not merge this with your metrics configuration!
     receivers:
       filelog:
         include:
           - /var/log/pods/*/*/*.log
+        exclude:
+          # Exclude logs from all containers named otel-collector
+          - /var/log/pods/*/otel-collector/*.log
         start_at: beginning
         include_file_path: true
         include_file_name: false
@@ -172,6 +194,11 @@ spec:
             to: body
 
     processors:
+      attributes:
+        actions:
+        - action: insert
+          key: loki.resource.labels
+          value: hostname, daemon
       resource:
         attributes:
           - action: insert
@@ -182,14 +209,16 @@ spec:
             value: pod, namespace, container, cluster, filename
     exporters:
       loki:
-        endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push
+        endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push or http://<Loki-svc>.<Loki-Namespace>.svc/loki/api/v1/push
     service:
       pipelines:
         logs:
-          receivers: [filelog]
-          processors: [resource]
+          receivers: [syslog, filelog]
+          processors: [attributes, resource]
           exporters: [loki]
 ```
+
+- https://opentelemetry.io/blog/2024/otel-collector-container-log-parser/
 
 ```yaml
 apiVersion: opentelemetry.io/v1beta1
@@ -237,7 +266,7 @@ spec:
             value: pod, namespace, container, cluster, filename
     exporters:
       loki:
-        endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push
+        endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push or http://<Loki-svc>.<Loki-Namespace>.svc/loki/api/v1/push
     service:
       pipelines:
         logs:
@@ -301,7 +330,7 @@ subjects:
     name: otel-node-collector
     namespace: cluster
 ---
-apiVersion: opentelemetry.io/v1alpha1
+apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
   name: otel-node
@@ -334,7 +363,7 @@ spec:
   #     mountPath: /hostfs
   #     readOnly: true
   #     mountPropagation: HostToContainer
-  config: |
+  config:
     extensions:
       health_check: # for k8s liveness and readiness probes
         endpoint: 0.0.0.0:13133 # default
@@ -437,13 +466,18 @@ Receiver: [Kubernetes Cluster Receiver](https://opentelemetry.io/docs/kubernetes
 Exporter: OTLP/HTTP Exporter
 
 ```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: otel-collector-opentelemetry-collector
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: otel-cluster
+  name: otel-collector-opentelemetry-collector
 rules:
   - apiGroups:
-      - ""
+      - ''
     resources:
       - events
       - namespaces
@@ -502,18 +536,18 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: otel-cluster-collector
+  name: otel-collector-opentelemetry-collector
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: otel-cluster
+  name: otel-collector-opentelemetry-collector
 subjects:
   - kind: ServiceAccount
-    name: otel-cluster-collector
-    namespace: cluster
+    name: otel-collector-opentelemetry-collector
+    namespace: default
 ---
 # otel-cluster-collector service accounts are created automatically
-apiVersion: opentelemetry.io/v1alpha1
+apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
   name: otel-cluster
@@ -526,7 +560,7 @@ spec:
   podAnnotations:
     prometheus.io/scrape: "true"
     prometheus.io/port: "8888"
-  config: |
+  config:
     extensions:
       health_check: # for k8s liveness and readiness probes
         endpoint: 0.0.0.0:13133 # default
@@ -614,6 +648,36 @@ spec:
         password: mycluster
 ```
 
+```yaml
+apiVersion: opentelemetry.io/v1beta1
+kind: OpenTelemetryCollector
+metadata:
+  name: otel-cluster-k8s-events
+  namespace: cluster
+  labels:
+    app: otel-cluster-collector
+spec:
+  mode: deployment
+  replicas: 1
+  config:
+    receivers:
+      k8s_events:
+        auth_type: serviceAccount
+
+    processors:
+      batch:
+
+    exporters:
+      loki:
+        endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push or http://<Loki-svc>.<Loki-Namespace>.svc/loki/api/v1/push
+    service:
+      pipelines:
+        logs:
+          receivers: [k8s_events]
+          processors: [batch]
+          exporters: [loki]
+```
+
 #### prometheus Collector(statefulset)
 - prometheus metrics
 
@@ -645,7 +709,7 @@ Istio의 OTel access log를 포함한 여타 log 수집을 위한 endpoint이다
 
 ```yaml
 # otel-otlp-collector service accounts are created automatically
-apiVersion: opentelemetry.io/v1alpha1
+apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
   name: otel-otlp
@@ -668,7 +732,7 @@ spec:
   podAnnotations:
     prometheus.io/scrape: "true"
     prometheus.io/port: "8888"
-  config: |
+  config:
     extensions:
       health_check: # for k8s liveness and readiness probes
         endpoint: 0.0.0.0:13133 # default
