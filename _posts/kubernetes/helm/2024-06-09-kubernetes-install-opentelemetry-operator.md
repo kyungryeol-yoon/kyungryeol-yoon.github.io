@@ -13,7 +13,7 @@ tags: [Kubernetes, OpenTelemetry, Cert-manager, Install]
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.yaml
 ```
 
-### OTel(OpenTelemetry) 설치 시 Cert-manager가 필요한 이유는 다음과 같습니다.
+### OTel(OpenTelemetry) 설치 시 Cert-manager가 필요한 이유
 1. HTTPS 통신 보안
 OTel(OpenTelemetry) Collector는 기본적으로 HTTP를 통해 데이터를 수집하고 전송하지만,\\
 HTTPS를 사용하여 보안을 강화하는 것이 좋습니다.\\
@@ -33,13 +33,13 @@ Cert-manager를 사용하면 수동으로 인증서를 발급하고 관리하는
 Kubernetes Operator는 K8s API의 기능을 확장하여 K8s 사용자를 대신해 복잡한 애플리케이션의 인스턴스를 생성,\\
 설정 및 관리하는 애플리케이션별 컨트롤러이고 Opentelemetry Operator는 Kubernetes Operator로 이루어졌다.
 
-### Opentelemetry Operator가 관리하는 기능은 두가지다.
-#### Opentelemetry Collector
+## Opentelemetry Operator가 관리하는 기능 두가지
+### Opentelemetry Collector
 - auto-instrumentation of the workloads using OpenTelemetry instrumentation libraries
 - 프로젝트가 다수일 경우 매번 Opentelemetry Collector와 auto-instrumentation agent를 같이 띄울 필요 없이 Operator를 활용하여,\\
 프로젝트별로 Collector를 설치할 수 있고 각 서버마다 agent를 명세할 필요 없이 annotation을 통하여 Operator가 해당 Pod에 sidecar 형태로 추가해준다.
 
-#### OTel(OpenTelemetry) Collector 배포하는 방법은 2가지가 있다.
+### OTel(OpenTelemetry) Collector 배포하는 방법 2가지
 - OpenTelemetry Operator 사용하여 OpenTelemetry Collector 배포 할 수 있다.
 ```
 kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
@@ -196,6 +196,7 @@ spec:
           - action: insert
             key: loki.resource.labels
             value: pod, namespace, container, cluster, filename
+
     exporters:
       loki:
         endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push or http://<Loki-svc>.<Loki-Namespace>.svc/loki/api/v1/push
