@@ -6,26 +6,26 @@ tags: [Kubernetes, Kubekey, Artifact, Install]
 ---
 
 ## offline 설치 위한 artifact 파일 생성
-### version 참고
-- kubernetes와 관련된 image는 https://github.com/kubesphere/ks-installer/releases 에서 주요 release에만 포함되는 image-list.txt파일을 참고
-- kubekey의 버전별로 kubernetes, kubesphere의 최신 지원 버전이 있음
-    - kubekey/version/components.json
-    - kubekey/cmd/kk/pkg/version/kubesphere/version_enum.go
-    - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
-- default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
+- version 참고
+  - kubernetes와 관련된 image는 https://github.com/kubesphere/ks-installer/releases 에서 주요 release에만 포함되는 image-list.txt파일을 참고
+  - kubekey의 버전별로 kubernetes, kubesphere의 최신 지원 버전이 있음
+      - kubekey/version/components.json
+      - kubekey/cmd/kk/pkg/version/kubesphere/version_enum.go
+      - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
+  - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
 
-### 참고
-- https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest_and_artifact.md
-- https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt
-- https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation
-- https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest-example.md
+- 참고
+  - https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest_and_artifact.md
+  - https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt
+  - https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation
+  - https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest-example.md
 
-### kubekey artifact 설치
-#### 1. script 다운로드
+## kubekey artifact 설치
+### 1. script 다운로드
 ```
 curl -sfL https://get-kk.kubesphere.io | VERSION=v3.0.7 sh -
 ```
-#### 2. artifact-3.0.7.yaml 작성
+### 2. artifact-3.0.7.yaml 작성
 ```yaml
 apiVersion: kubekey.kubesphere.io/v1alpha2
 kind: Manifest
@@ -278,12 +278,12 @@ spec:
         username: "username"
         password: "password"
 ```
-#### 3. Export Artifact
+### 3. Export Artifact
 ```
 sudo ./kk artifact export -m artifact-3.0.7.yaml -o artifact-3.0.7.tar.gz
 ```
 
-#### 4. Cluster 설치를 위한 config 파일 생성 및 작성
+### 4. Cluster 설치를 위한 config 파일 생성 및 작성
 ```
 sudo ./kk create config --with-kubesphere v3.3.2 --with-kubernetes v1.24.9 -f config-sample.yaml
 ```
@@ -518,19 +518,19 @@ spec:
     timeout: 600
 ```
 
-#### 5. registry 설치
+### 5. registry 설치
 ```
 sudo ./kk init registry -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```
 
-##### [ERROR] ssh error
-- 각 node 별로 ssh가 안될시 root passwd가 맞지 않아 발생함.
-- vagrant에서 vm이 생성되면 root 비번을 설정해줘야 하는 듯
-```
-sudo passwd root
-```
+- [ERROR] ssh error
+  - 각 node 별로 ssh가 안될시 root passwd가 맞지 않아 발생함.
+  - vagrant에서 vm이 생성되면 root 비번을 설정해줘야 하는 듯
+  ```
+  sudo passwd root
+  ```
 
-#### 6. Harbor 인증서 복사 및 업데이트 (harbor curl: (60) SSL certificate problem: unable to get local issuer certificate)
+### 6. Harbor 인증서 복사 및 업데이트 (harbor curl: (60) SSL certificate problem: unable to get local issuer certificate)
 ```
 sudo cp /etc/docker/certs.d/dockerhub.kubekey.local/ca.crt /usr/local/share/ca-certificates/harbor-ca.crt
 scp -i /home/vagrant/.ssh/id_rsa /usr/local/share/ca-certificates/harbor-ca.crt root@192.168.10.110:/usr/local/share/ca-certificates/harbor-ca.crt
@@ -549,12 +549,12 @@ systemctl restart containerd
 
 - harbor 주소 : [harbor 설치한 ip]:80
 
-#### 7. Harbor 수정
+### 7. Harbor 수정
 ```
 curl -O https://raw.githubusercontent.com/kubesphere/ks-installer/master/scripts/create_project_harbor.sh
 ```
 
-##### url 수정 : https://dockerhub.kubekey.local
+#### url 수정 : https://dockerhub.kubekey.local
 ```
 vi create_project_harbor.sh
 ---
@@ -620,48 +620,48 @@ chmod +x create_project_harbor.sh
 ./create_project_harbor.sh
 ```
 
-###### image 별도로 push 방법
+- image 별도로 push 방법
 ```
 sudo ./kk artifact image push -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```
 
-###### [ERROR] Harbor에 image push 할 때 Unauthorized 에러 발생 때
-- 다시 로그인
-```
-docker login [your.host.com]:port -u username -p password
-```
+- [ERROR] Harbor에 image push 할 때 Unauthorized 에러 발생 때
+  - 다시 로그인
+  ```
+  docker login [your.host.com]:port -u username -p password
+  ```
 
-#### 8. Cluster 설치
+### 8. Cluster 설치
 ```
 sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz
 sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz --with-packages
 ```
 
-##### --skip-push-images를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
+- --skip-push-images를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
 ```
 sudo ./kk create cluster --skip-push-images -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```
 
-##### Cluster 설치하면서 log 확인
+#### Cluster 설치하면서 log 확인
 ```
 kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
-##### 일반 유저 일 때
+#### 일반 유저 일 때
 ```
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-##### 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
+#### 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
 error: error loading config file "/etc/kubernetes/admin.conf": open /etc/kubernetes/admin.conf: permission denied
 아래 명령어를 입력하면 sudo 없이 사용 가능합니다.
 ```
 export KUBECONFIG=$HOME/.kube/config
 ```
 
-##### [ERROR] error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
+- [ERROR] error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
 ```
 chown -R kubelet:kubelet /var/lib/kubelet/pods
 chmod 750 /var/lib/kubelet/pods
