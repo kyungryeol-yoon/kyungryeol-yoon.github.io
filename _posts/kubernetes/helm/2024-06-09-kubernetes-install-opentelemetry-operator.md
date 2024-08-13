@@ -93,23 +93,23 @@ spec:
       mountPath: /var/lib/docker/containers
       readOnly: true
   config:
-    syslog:
-    tcp:
-      listen_address: '0.0.0.0:54527'
-    protocol: rfc3164
-    location: UTC or Asia/Seoul # specify server timezone here
-    operators:
-      - type: move
-        from: attributes.message
-        to: body
-      - type: move
-        from: attributes["attributes.hostname"]
-        to: resource["hostname"]
-      - type: move
-        from: attributes["attributes.appname"]
-        to: resource["daemon"]
     # This is a new configuration file - do not merge this with your metrics configuration!
     receivers:
+      syslog:
+        tcp:
+          listen_address: '0.0.0.0:54527'
+        protocol: rfc3164
+        location: UTC or Asia/Seoul # specify server timezone here
+        operators:
+          - type: move
+            from: attributes.message
+            to: body
+          - type: move
+            from: attributes["attributes.hostname"]
+            to: resource["hostname"]
+          - type: move
+            from: attributes["attributes.appname"]
+            to: resource["daemon"]
       filelog:
         include:
           - /var/log/pods/*/*/*.log
@@ -255,6 +255,7 @@ spec:
           - action: insert
             key: loki.resource.labels
             value: pod, namespace, container, cluster, filename
+
     exporters:
       loki:
         endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push or http://<Loki-svc>.<Loki-Namespace>.svc/loki/api/v1/push
@@ -274,8 +275,8 @@ spec:
 - 공식 문서에서 DaemonSet을 권장하는 receiver가 모인 collector이다.
 
 #### Log | Filelog
-수집 대상은 stdout/stderr로 생성된 Kubernetes, apps log으로,\\
-사실 상 Fluentbit를 대체한다.\\
+수집 대상은 stdout/stderr로 생성된 Kubernetes, app log으로,\\
+사실상 Fluentbit를 대체한다.\\
 이를 위해 log scraping 및 전달 뿐 아니라 Processors 에서 언급한 다양한 processor 사용을 고려해야 한다.
 
 - Receiver: [Filelog Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#filelog-receiver)
