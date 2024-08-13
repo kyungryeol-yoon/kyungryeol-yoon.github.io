@@ -36,8 +36,7 @@ Kubernetes Operator는 K8s API의 기능을 확장하여 K8s 사용자를 대신
 ## Opentelemetry Operator가 관리하는 기능 두가지
 ### Opentelemetry Collector
 - auto-instrumentation of the workloads using OpenTelemetry instrumentation libraries
-- 프로젝트가 다수일 경우 매번 Opentelemetry Collector와 auto-instrumentation agent를 같이 띄울 필요 없이 Operator를 활용하여,\\
-프로젝트별로 Collector를 설치할 수 있고 각 서버마다 agent를 명세할 필요 없이 annotation을 통하여 Operator가 해당 Pod에 sidecar 형태로 추가해준다.
+- 프로젝트가 다수일 경우 매번 Opentelemetry Collector와 auto-instrumentation agent를 같이 띄울 필요 없이 Operator를 활용하여, 프로젝트별로 Collector를 설치할 수 있고 각 서버마다 agent를 명세할 필요 없이 annotation을 통하여 Operator가 해당 Pod에 sidecar 형태로 추가해준다.
 
 ### OTel(OpenTelemetry) Collector 배포하는 방법 2가지
 - OpenTelemetry Operator 사용하여 OpenTelemetry Collector 배포 할 수 있다.
@@ -62,7 +61,7 @@ helm repo update
   - opentelemetry-collector-k8s : opentelemetry-collector와 contrib의 구성요소 중 k8s cluster와 구성요소를 모니터링할 수 있도록 특별히 제작
 
 ### OpenTelemetry Collector 배포 및 구성
-- vi /etc/rsyslog.conf 추가
+- vi /etc/rsyslog.conf에 아래의 Code 추가
 ```conf
 *.* action(type="omfwd" target="0.0.0.0" port="54527" protocol="tcp" action.resumeRetryCount="10" queue.type="linkedList" queue.size="10000")
 ```
