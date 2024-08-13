@@ -61,7 +61,7 @@ helm repo update
   - opentelemetry-collector-contrib : Contrib은 opentelemetry-collector 확장하여 다양한 환경에서 사용될 수 있도록 제작
   - opentelemetry-collector-k8s : opentelemetry-collector와 contrib의 구성요소 중 k8s cluster와 구성요소를 모니터링할 수 있도록 특별히 제작
 
-1. OpenTelemetry Collector 설치 및 구성
+### OpenTelemetry Collector 설치 및 구성
 - vi /etc/rsyslog.conf 추가
 ```conf
 *.* action(type="omfwd" target="0.0.0.0" port="54527" protocol="tcp" action.resumeRetryCount="10" queue.type="linkedList" queue.size="10000")
