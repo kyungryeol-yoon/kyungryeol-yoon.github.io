@@ -62,211 +62,211 @@ helm repo update
 
 ### OpenTelemetry Collector 배포 및 구성
 - vi /etc/rsyslog.conf에 아래의 Code 추가
-```conf
-*.* action(type="omfwd" target="0.0.0.0" port="54527" protocol="tcp" action.resumeRetryCount="10" queue.type="linkedList" queue.size="10000")
-```
+  ```conf
+  *.* action(type="omfwd" target="0.0.0.0" port="54527" protocol="tcp" action.resumeRetryCount="10" queue.type="linkedList" queue.size="10000")
+  ```
 
 - syslog 및 container log
-```yaml
-apiVersion: opentelemetry.io/v1beta1
-kind: OpenTelemetryCollector
-metadata:
-  name: otel-collector-log
-spec:
-  mode: daemonset
-  hostNetwork: true
-  volumes:
-    # Typically the collector will want access to pod logs and container logs
-    - name: varlogpods
-      hostPath:
-        path: /var/log/pods
-    - name: varlibdockercontainers
-      hostPath:
-        path: /var/lib/docker/containers
-  volumeMounts:
-    # Mount the volumes to the collector container
-    - name: varlogpods
-      mountPath: /var/log/pods
-      readOnly: true
-    - name: varlibdockercontainers
-      mountPath: /var/lib/docker/containers
-      readOnly: true
-  config:
-    # This is a new configuration file - do not merge this with your metrics configuration!
-    receivers:
-      syslog:
-        tcp:
-          listen_address: '0.0.0.0:54527'
-        protocol: rfc3164
-        location: UTC or Asia/Seoul # specify server timezone here
-        operators:
-          - type: move
-            from: attributes.message
-            to: body
-          - type: move
-            from: attributes["attributes.hostname"]
-            to: resource["hostname"]
-          - type: move
-            from: attributes["attributes.appname"]
-            to: resource["daemon"]
-      filelog:
-        include:
-          - /var/log/pods/*/*/*.log
-        exclude:
-          # Exclude logs from all containers named otel-collector
-          - /var/log/pods/*/otel-collector/*.log
-        start_at: beginning
-        include_file_path: true
-        include_file_name: false
-        operators:
-          # Find out which format is used by kubernetes
-          - type: router
-            id: get-format
-            routes:
-              - output: parser-docker
-                expr: 'body matches "^\\{"'
-              - output: parser-crio
-                expr: 'body matches "^[^ Z]+ "'
-              - output: parser-containerd
-                expr: 'body matches "^[^ Z]+Z"'
-          # Parse CRI-O format
-          - type: regex_parser
-            id: parser-crio
-            regex: '^(?P<time>[^ Z]+) (?P<stream>stdout|stderr) (?P<logtag>[^ ]*) ?(?P<log>.*)$'
-            output: extract_metadata_from_filepath
-            timestamp:
-              parse_from: attributes.time
-              layout_type: gotime
-              layout: '2006-01-02T15:04:05.999999999Z07:00'
-          # Parse CRI-Containerd format
-          - type: regex_parser
-            id: parser-containerd
-            regex: '^(?P<time>[^ ^Z]+Z) (?P<stream>stdout|stderr) (?P<logtag>[^ ]*) ?(?P<log>.*)$'
-            output: extract_metadata_from_filepath
-            timestamp:
-              parse_from: attributes.time
-              layout: '%Y-%m-%dT%H:%M:%S.%LZ'
-          # Parse Docker format
-          - type: json_parser
-            id: parser-docker
-            output: extract_metadata_from_filepath
-            timestamp:
-              parse_from: attributes.time
-              layout: '%Y-%m-%dT%H:%M:%S.%LZ'
-          # Extract metadata from file path
-          - type: regex_parser
-            id: extract_metadata_from_filepath
-            # Pod UID is not always 36 characters long
-            regex: '^.*\/(?P<namespace>[^_]+)_(?P<pod_name>[^_]+)_(?P<uid>[a-f0-9\-]{16,36})\/(?P<container_name>[^\._]+)\/(?P<restart_count>\d+)\.log$'
-            parse_from: attributes["log.file.path"]
-            cache:
-              size: 128 # default maximum amount of Pods per Node is 110
-          # Rename attributes
-          - type: move
-            from: attributes["log.file.path"]
-            to: resource["filename"]
-          - type: move
-            from: attributes.container_name
-            to: resource["container"]
-          - type: move
-            from: attributes.namespace
-            to: resource["namespace"]
-          - type: move
-            from: attributes.pod_name
-            to: resource["pod"]
-          - type: add
-            field: resource["cluster"]
-            value: 'your-cluster-name' # Set your cluster name here
-          - type: move
-            from: attributes.log
-            to: body
+  ```yaml
+  apiVersion: opentelemetry.io/v1beta1
+  kind: OpenTelemetryCollector
+  metadata:
+    name: otel-collector-log
+  spec:
+    mode: daemonset
+    hostNetwork: true
+    volumes:
+      # Typically the collector will want access to pod logs and container logs
+      - name: varlogpods
+        hostPath:
+          path: /var/log/pods
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+    volumeMounts:
+      # Mount the volumes to the collector container
+      - name: varlogpods
+        mountPath: /var/log/pods
+        readOnly: true
+      - name: varlibdockercontainers
+        mountPath: /var/lib/docker/containers
+        readOnly: true
+    config:
+      # This is a new configuration file - do not merge this with your metrics configuration!
+      receivers:
+        syslog:
+          tcp:
+            listen_address: '0.0.0.0:54527'
+          protocol: rfc3164
+          location: UTC or Asia/Seoul # specify server timezone here
+          operators:
+            - type: move
+              from: attributes.message
+              to: body
+            - type: move
+              from: attributes["attributes.hostname"]
+              to: resource["hostname"]
+            - type: move
+              from: attributes["attributes.appname"]
+              to: resource["daemon"]
+        filelog:
+          include:
+            - /var/log/pods/*/*/*.log
+          exclude:
+            # Exclude logs from all containers named otel-collector
+            - /var/log/pods/*/otel-collector/*.log
+          start_at: beginning
+          include_file_path: true
+          include_file_name: false
+          operators:
+            # Find out which format is used by kubernetes
+            - type: router
+              id: get-format
+              routes:
+                - output: parser-docker
+                  expr: 'body matches "^\\{"'
+                - output: parser-crio
+                  expr: 'body matches "^[^ Z]+ "'
+                - output: parser-containerd
+                  expr: 'body matches "^[^ Z]+Z"'
+            # Parse CRI-O format
+            - type: regex_parser
+              id: parser-crio
+              regex: '^(?P<time>[^ Z]+) (?P<stream>stdout|stderr) (?P<logtag>[^ ]*) ?(?P<log>.*)$'
+              output: extract_metadata_from_filepath
+              timestamp:
+                parse_from: attributes.time
+                layout_type: gotime
+                layout: '2006-01-02T15:04:05.999999999Z07:00'
+            # Parse CRI-Containerd format
+            - type: regex_parser
+              id: parser-containerd
+              regex: '^(?P<time>[^ ^Z]+Z) (?P<stream>stdout|stderr) (?P<logtag>[^ ]*) ?(?P<log>.*)$'
+              output: extract_metadata_from_filepath
+              timestamp:
+                parse_from: attributes.time
+                layout: '%Y-%m-%dT%H:%M:%S.%LZ'
+            # Parse Docker format
+            - type: json_parser
+              id: parser-docker
+              output: extract_metadata_from_filepath
+              timestamp:
+                parse_from: attributes.time
+                layout: '%Y-%m-%dT%H:%M:%S.%LZ'
+            # Extract metadata from file path
+            - type: regex_parser
+              id: extract_metadata_from_filepath
+              # Pod UID is not always 36 characters long
+              regex: '^.*\/(?P<namespace>[^_]+)_(?P<pod_name>[^_]+)_(?P<uid>[a-f0-9\-]{16,36})\/(?P<container_name>[^\._]+)\/(?P<restart_count>\d+)\.log$'
+              parse_from: attributes["log.file.path"]
+              cache:
+                size: 128 # default maximum amount of Pods per Node is 110
+            # Rename attributes
+            - type: move
+              from: attributes["log.file.path"]
+              to: resource["filename"]
+            - type: move
+              from: attributes.container_name
+              to: resource["container"]
+            - type: move
+              from: attributes.namespace
+              to: resource["namespace"]
+            - type: move
+              from: attributes.pod_name
+              to: resource["pod"]
+            - type: add
+              field: resource["cluster"]
+              value: 'your-cluster-name' # Set your cluster name here
+            - type: move
+              from: attributes.log
+              to: body
 
-    processors:
-      attributes:
-        actions:
-        - action: insert
-          key: loki.resource.labels
-          value: hostname, daemon
-      resource:
+      processors:
         attributes:
-          - action: insert
-            key: loki.format
-            value: raw
+          actions:
           - action: insert
             key: loki.resource.labels
-            value: pod, namespace, container, cluster, filename
+            value: hostname, daemon
+        resource:
+          attributes:
+            - action: insert
+              key: loki.format
+              value: raw
+            - action: insert
+              key: loki.resource.labels
+              value: pod, namespace, container, cluster, filename
 
-    exporters:
-      loki:
-        endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push or http://<Loki-svc>.<Loki-Namespace>.svc/loki/api/v1/push
+      exporters:
+        loki:
+          endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push or http://<Loki-svc>.<Loki-Namespace>.svc/loki/api/v1/push
 
-    service:
-      pipelines:
-        logs:
-          receivers: [syslog, filelog]
-          processors: [attributes, resource]
-          exporters: [loki]
-```
+      service:
+        pipelines:
+          logs:
+            receivers: [syslog, filelog]
+            processors: [attributes, resource]
+            exporters: [loki]
+  ```
 
 - 변경될 Container Log 수집 방법
-```yaml
-apiVersion: opentelemetry.io/v1beta1
-kind: OpenTelemetryCollector
-metadata:
-  name: otel-collector-log
-spec:
-  mode: daemonset
-  hostNetwork: true
-  volumes:
-    # Typically the collector will want access to pod logs and container logs
-    - name: varlogpods
-      hostPath:
-        path: /var/log/pods
-    - name: varlibdockercontainers
-      hostPath:
-        path: /var/lib/docker/containers
-  volumeMounts:
-    # Mount the volumes to the collector container
-    - name: varlogpods
-      mountPath: /var/log/pods
-      readOnly: true
-    - name: varlibdockercontainers
-      mountPath: /var/lib/docker/containers
-      readOnly: true
-  config:
-    # This is a new configuration file - do not merge this with your metrics configuration!
-    receivers:
-      filelog:
-        include_file_path: true
-        include:
-          - /var/log/pods/*/*/*.log
-        operators:
-          - id: container-parser
-            type: container
+  ```yaml
+  apiVersion: opentelemetry.io/v1beta1
+  kind: OpenTelemetryCollector
+  metadata:
+    name: otel-collector-log
+  spec:
+    mode: daemonset
+    hostNetwork: true
+    volumes:
+      # Typically the collector will want access to pod logs and container logs
+      - name: varlogpods
+        hostPath:
+          path: /var/log/pods
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+    volumeMounts:
+      # Mount the volumes to the collector container
+      - name: varlogpods
+        mountPath: /var/log/pods
+        readOnly: true
+      - name: varlibdockercontainers
+        mountPath: /var/lib/docker/containers
+        readOnly: true
+    config:
+      # This is a new configuration file - do not merge this with your metrics configuration!
+      receivers:
+        filelog:
+          include_file_path: true
+          include:
+            - /var/log/pods/*/*/*.log
+          operators:
+            - id: container-parser
+              type: container
 
-    processors:
-      resource:
-        attributes:
-          - action: insert
-            key: loki.format
-            value: raw
-          - action: insert
-            key: loki.resource.labels
-            value: pod, namespace, container, cluster, filename
+      processors:
+        resource:
+          attributes:
+            - action: insert
+              key: loki.format
+              value: raw
+            - action: insert
+              key: loki.resource.labels
+              value: pod, namespace, container, cluster, filename
 
-    exporters:
-      loki:
-        endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push or http://<Loki-svc>.<Loki-Namespace>.svc/loki/api/v1/push
+      exporters:
+        loki:
+          endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push or http://<Loki-svc>.<Loki-Namespace>.svc/loki/api/v1/push
 
-    service:
-      pipelines:
-        logs:
-          receivers: [filelog]
-          processors: [resource]
-          exporters: [loki]
-```
-> 참고 : https://opentelemetry.io/blog/2024/otel-collector-container-log-parser/
-{: .prompt-info }
+      service:
+        pipelines:
+          logs:
+            receivers: [filelog]
+            processors: [resource]
+            exporters: [loki]
+  ```
+  > 참고 : https://opentelemetry.io/blog/2024/otel-collector-container-log-parser/
+  {: .prompt-info }
 
 ### Node Collector(Daemonset)
 - File Logs
