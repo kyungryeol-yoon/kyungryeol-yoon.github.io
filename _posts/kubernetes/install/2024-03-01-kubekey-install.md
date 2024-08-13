@@ -1,8 +1,8 @@
 ---
-title: "[Kubernetes] Kubekey"
+title: "[Kubernetes] Install Kubekey"
 date: 2024-03-01
 categories: [Kubernetes, Kubekey]
-tags: [Kubernetes, Kubekey]
+tags: [Kubernetes, Kubekey, Install]
 ---
 
 ## KubeKey 설치
@@ -110,7 +110,7 @@ hosts:
 kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
-#### 일반 유저 일 때
+#### Kubernetes 일반 유저 일 때
 ```
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
