@@ -171,7 +171,7 @@ kubectl get pods -n awx
 ```shell
 kubectl expose deployment ansible-awx-web --name ansible-awx-web-svc --type NodePort -n awx
 ```
-##### service 확인
+- service 확인
 ```shell
 kubectl get svc ansible-awx-web-svc -n awx
 ```
@@ -189,7 +189,7 @@ or
 kubectl -n awx get secret ansible-awx-admin-password -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
 ```
 
-##### Paasword 설정하지 않았을 때 아래와 같이 Secret 조회가 된다.
+- Paasword 설정하지 않았을 때 아래와 같이 Secret 조회가 된다.
 ```shell
 kubectl get secret -n awx
 NAME                                         TYPE                 DATA   AGE

@@ -23,17 +23,17 @@ cd kubekey
 make kk
 ```
 
-#### Quick Start
+### Quick Start
 - Quick Start is for all-in-one installation which is a good start to get familiar with Kubernetes and KubeSphere.
 - Note: Since Kubernetes temporarily does not support uppercase NodeName, contains uppercase letters in the hostname will lead to subsequent installation error
 
-##### Command
+#### Command
 - If you have problem to access https://storage.googleapis.com, execute first export KKZONE=cn.
 ```
 ./kk create cluster [--with-kubernetes versio] [--with-kubesphere version]
 ```
 
-##### Examples
+#### Examples
 - Create a pure Kubernetes cluster with default version (Kubernetes v1.23.10).
 ```
 ./kk create cluster
@@ -124,7 +124,7 @@ error: error loading config file "/etc/kubernetes/admin.conf": open /etc/kuberne
 export KUBECONFIG=$HOME/.kube/config
 ```
 
-##### error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
+- error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
 ```
 chown -R kubelet:kubelet /var/lib/kubelet/pods
 chmod 750 /var/lib/kubelet/pods

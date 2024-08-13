@@ -548,7 +548,7 @@ sudo ./kk upgrade -f config-sample.yaml -a artifact-3.0.13.tar.gz
 - Upgrade하면서 log 확인
 ```
 kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
-``
+```
 
 ### image 별도로 push 방법
 ```
