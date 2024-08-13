@@ -67,7 +67,6 @@ helm repo update
 ```
 
 - syslog 및 container log
-
 ```yaml
 apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
@@ -210,8 +209,6 @@ spec:
 ```
 
 - 변경될 Container Log 수집 방법
-> 참고 : https://opentelemetry.io/blog/2024/otel-collector-container-log-parser/
-{: .prompt-info }
 ```yaml
 apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
@@ -268,6 +265,8 @@ spec:
           processors: [resource]
           exporters: [loki]
 ```
+> 참고 : https://opentelemetry.io/blog/2024/otel-collector-container-log-parser/
+{: .prompt-info }
 
 ### Node Collector(Daemonset)
 - File Logs
