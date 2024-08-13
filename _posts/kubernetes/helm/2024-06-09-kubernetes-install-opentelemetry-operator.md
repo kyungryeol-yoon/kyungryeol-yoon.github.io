@@ -9,71 +9,58 @@ tags: [Kubernetes, OpenTelemetry, Cert-manager, Install]
 {: .prompt-info }
 
 ## Install Cert-manager
-
+```
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.yaml
+```
 
-OTel(OpenTelemetry) 설치 시 Cert-manager가 필요한 이유는 다음과 같습니다:
+### OTel(OpenTelemetry) 설치 시 Cert-manager가 필요한 이유는 다음과 같습니다.
+1. HTTPS 통신 보안
+OTel(OpenTelemetry) Collector는 기본적으로 HTTP를 통해 데이터를 수집하고 전송하지만,\\
+HTTPS를 사용하여 보안을 강화하는 것이 좋습니다.\\
+Cert-manager는 인증서 발급 및 관리를 자동화하여 OTel(OpenTelemetry) Collector가 안전하게 HTTPS를 사용하도록 설정하는 데 도움을 줍니다.
 
-1. HTTPS 통신 보안:
+2. 인증서 자동 갱신
+HTTPS 인증서는 만료 기간이 있으며, 만료되면 OTel(OpenTelemetry) Collector가 작동하지 않게 됩니다.\\
+Cert-manager는 인증서가 만료되기 전에 자동으로 갱신하여 서비스 중단을 방지합니다.
 
-OTel(OpenTelemetry) Collector는 기본적으로 HTTP를 통해 데이터를 수집하고 전송하지만, HTTPS를 사용하여 보안을 강화하는 것이 좋습니다. Cert-manager는 인증서 발급 및 관리를 자동화하여 OTel(OpenTelemetry) Collector가 안전하게 HTTPS를 사용하도록 설정하는 데 도움을 줍니다.
-
-2. 인증서 자동 갱신:
-
-HTTPS 인증서는 만료 기간이 있으며, 만료되면 OTel(OpenTelemetry) Collector가 작동하지 않게 됩니다. Cert-manager는 인증서가 만료되기 전에 자동으로 갱신하여 서비스 중단을 방지합니다.
-
-3. 사용 편의성 향상:
-
+3. 사용 편의성 향상
 Cert-manager를 사용하면 수동으로 인증서를 발급하고 관리하는 번거로움 없이 OpenTelemetry Collector를 안전하게 배포하고 운영할 수 있습니다.
 
-주의 사항:
+> 주의 사항
+- OTel(OpenTelemetry) 설치 시 반드시 Cert-manager가 필요한 것은 아니지만, HTTPS를 사용하여 보안을 강화하려는 경우 필수적입니다. Cert-manager는 Kubernetes 환경에서만 사용 가능합니다.
+{: .prompt-warning }
 
-OTel(OpenTelemetry) 설치 시 반드시 Cert-manager가 필요한 것은 아니지만, HTTPS를 사용하여 보안을 강화하려는 경우 필수적입니다.
-Cert-manager는 Kubernetes 환경에서만 사용 가능합니다.
+## Install OpenTelemetry Operator
+Kubernetes Operator는 K8s API의 기능을 확장하여 K8s 사용자를 대신해 복잡한 애플리케이션의 인스턴스를 생성,\\
+설정 및 관리하는 애플리케이션별 컨트롤러이고 Opentelemetry Operator는 Kubernetes Operator로 이루어졌다.
 
+### Opentelemetry Operator가 관리하는 기능은 두가지다.
+#### Opentelemetry Collector
+- auto-instrumentation of the workloads using OpenTelemetry instrumentation libraries
+- 프로젝트가 다수일 경우 매번 Opentelemetry Collector와 auto-instrumentation agent를 같이 띄울 필요 없이 Operator를 활용하여,\\
+프로젝트별로 Collector를 설치할 수 있고 각 서버마다 agent를 명세할 필요 없이 annotation을 통하여 Operator가 해당 Pod에 sidecar 형태로 추가해준다.
 
-## Install OpenTelemetry
-### OpenTelemetry Operator
-Kubernetes Operator는 K8s API의 기능을 확장하여 K8s 사용자를 대신해 복잡한 애플리케이션의 인스턴스를 생성, 설정 및 관리하는 애플리케이션별 컨트롤러이고 Opentelemetry Operator는 Kubernetes Operator로 이루어졌다.
-
-Opentelemetry Operator가 관리하는 기능은 두가지다:
-
-Opentelemetry Collector
-auto-instrumentation of the workloads using OpenTelemetry instrumentation libraries
-프로젝트가 다수일 경우 매번 Opentelemetry Collector와 auto-instrumentation agent를 같이 띄울 필요 없이 Operator를 활용하여 , 프로젝트별로 Collector를 설치할 수 있고 각 서버마다 agent를 명세할 필요 없이 annotation을 통하여 Operator가 해당 Pod에 sidecar 형태로 추가해준다.
-
-
-
-
-OTel(OpenTelemetry) Collector 배포하는 방법은 2가지가 있다.
-Helm Chart 사용하는 방법과 OpenTelemetry Operator 사용하여 OpenTelemetry Collector 배포 할 수 있다.
+#### OTel(OpenTelemetry) Collector 배포하는 방법은 2가지가 있다.
+- OpenTelemetry Operator 사용하여 OpenTelemetry Collector 배포 할 수 있다.
 ```
 kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
 ```
-
 > 설치 참고 : https://github.com/open-telemetry/opentelemetry-operator
 
-
+- Helm Chart 사용하는 방법
 ```
 helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
 helm repo update
 ```
-
 > Helm 설치 참고 : https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator
 
-
-
-
-
-### OpenTelemetry Collector
-
-collector에 대한 배포판은 3가지가 있고,
-- opentelemetry-collector : 핵심 기능을 제공
-- opentelemetry-collector-contrib : Contrib은 opentelemetry-collector 확장하여 다양한 환경에서 사용될 수 있도록 제작
-- opentelemetry-collector-k8s : opentelemetry-collector와 contrib의 구성요소 중 k8s cluster와 구성요소를 모니터링할 수 있도록 특별히 제작
+## OpenTelemetry Collector
+- collector에 대한 배포판은 3가지
+  - opentelemetry-collector : 핵심 기능을 제공
+  - opentelemetry-collector-contrib : Contrib은 opentelemetry-collector 확장하여 다양한 환경에서 사용될 수 있도록 제작
+  - opentelemetry-collector-k8s : opentelemetry-collector와 contrib의 구성요소 중 k8s cluster와 구성요소를 모니터링할 수 있도록 특별히 제작
 
 1. OpenTelemetry Collector 설치 및 구성
-
 - vi /etc/rsyslog.conf 추가
 ```conf
 *.* action(type="omfwd" target="0.0.0.0" port="54527" protocol="tcp" action.resumeRetryCount="10" queue.type="linkedList" queue.size="10000")
@@ -276,13 +263,13 @@ spec:
 ```
 
 
-#### Node Collector(Daemonset)
+### Node Collector(Daemonset)
 - File Logs
 - Host metrics
 - Kubelet state metrics
 
 공식 문서에서 DaemonSet 을 권장하는 receiver가 모인 collector이다.
-##### log | Filelog
+#### log | Filelog
 수집 대상은 stdout/stderr로 생성된 Kubernetes, apps log으로,
 사실 상 Fluentbit를 대체한다.
 이를 위해 log scraping 및 전달 뿐 아니라 Processors 에서 언급한 다양한 processor 사용을 고려해야 한다.
@@ -290,14 +277,14 @@ spec:
 - Receiver: [Filelog Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#filelog-receiver)
 - Exporter: [Loki exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/lokiexporter)
 
-##### metric | Kubelet Stats
+#### metric | Kubelet Stats
 node, pod, container, volume, filesystem network I/O and error metrics 등 CPU, memory 등 infra resource에 관한 metric을 다루어,
 각 노드의 kubelet이 노출하는 API에서 추출한다. 사실 상 cAdvisor의 대체이다.
 
 - Receiver: [Kubelet Stats Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubeletstats-receiver)
 - Exporter: OTLP/HTTP Exporter
 
-##### metric | Host Metrics
+#### metric | Host Metrics
 수집 대상은 node (cpu, disk, CPU load, filesystem, memory, network, paging, process..)의 metric으로,
 사실 상 Prometheus Node Exporter를 대체한다.
 Kubelet Stats Receiver와 일부 항목이 겹치므로 동시 운용 시 중복 처리가 필요하다.
@@ -445,7 +432,7 @@ spec:
           insecure: true
 ```
 
-#### Cluster Collector(Single Pod)
+### Cluster Collector(Single Pod)
 - k8s events(log)
 - k8s objects(metrics)
 
@@ -453,13 +440,13 @@ spec:
 이들 receiver는 2개 이상의 instance 사용 시 중복이 발생 가능하기 때문이라고 공식 문서에서 논한다.
 두 receiver 모두 cluster 관점에서 추출하기 때문이라고. 이에 따라 deployment type에 1개의 replica로 설정한다.
 
-##### log | Kubernetes Objects
+#### log | Kubernetes Objects
 주로 Kubernetes event 수집용으로 Kubernetes API server 출처의 objects(전체 목록은 kubectl api-resources 로 확인) 수집에도 사용한다.
 
 - Receiver: [Kubernetes Objects Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubernetes-objects-receiver)
 - Exporter: [Loki exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/lokiexporter)
 
-##### metric | Kubernetes Cluster
+#### metric | Kubernetes Cluster
 사실 상 Kube State Metrics의 대체로 Kubernetes API server에서 cluster level의 metric과 entity events를 추출한다.
 
 Receiver: [Kubernetes Cluster Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubernetes-cluster-receiver)
@@ -678,10 +665,10 @@ spec:
           exporters: [loki]
 ```
 
-#### prometheus Collector(statefulset)
+### prometheus Collector(statefulset)
 - prometheus metrics
 
-#### OTLP Collector(Deployment)
+### OTLP Collector(Deployment)
 - Traces(OTEL)
 - Generic OTEL Logs
 - Generic OTEL metrics
@@ -689,19 +676,19 @@ spec:
 공용 receiver, exporter 공통적으로 otlp 프로토콜을 사용하고 replica 개수 제약이 없는 signal 대상 collector로서,
 제약이 없을 경우 가장 운용에 유리한 배포 패턴인 Deployment 를 사용한다. MLT 모두를 대상으로 한다.
 
-##### trace | Generic OTEL trace
+#### trace | Generic OTEL trace
 [Jaeger](https://www.jaegertracing.io/docs/next-release/deployment/) 및 [Grafana Tempo](https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/)는 OTLP Receiver를 자체적으로 지원한다. 
 
 - Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
 - Exporter: [OTLP Exporter (gRPC)](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/otlpexporter)
 
-##### metric | Generic OTEL metric
+#### metric | Generic OTEL metric
 앞서 논한 metric 이외의 app level metrics 등의 여타 metric 수집을 위한 endpoint이다.
 
 - Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
 - Exporter: OTLP/HTTP Exporter
 
-##### log | Generic OTEL log
+#### log | Generic OTEL log
 Istio의 OTel access log를 포함한 여타 log 수집을 위한 endpoint이다.
 
 - Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
