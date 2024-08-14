@@ -40,19 +40,19 @@ Kubernetes Operator는 K8s API의 기능을 확장하여 K8s 사용자를 대신
 
 ### OTel(OpenTelemetry) Collector 배포하는 방법 2가지
 - OpenTelemetry Operator 사용하여 OpenTelemetry Collector 배포 할 수 있다.
-```
-kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
-```
-> 설치 참고 : https://github.com/open-telemetry/opentelemetry-operator
-{: .prompt-info }
+  ```
+  kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
+  ```
+  > 설치 참고 : https://github.com/open-telemetry/opentelemetry-operator
+  {: .prompt-info }
 
 - Helm Chart 사용하는 방법
-```
-helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
-helm repo update
-```
-> Helm 설치 참고 : https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator
-{: .prompt-info }
+  ```
+  helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
+  helm repo update
+  ```
+  > Helm 설치 참고 : https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator
+  {: .prompt-info }
 
 ## OpenTelemetry Collector
 - collector에 대한 배포판은 3가지
@@ -71,10 +71,15 @@ helm repo update
   apiVersion: opentelemetry.io/v1beta1
   kind: OpenTelemetryCollector
   metadata:
-    name: otel-collector-log
+    name: otel-log
   spec:
     mode: daemonset
     hostNetwork: true
+    podSecurityContext:
+      runAsUser: 0
+      runAsGroup: 0
+    tolerations:
+      - operator: Exists
     volumes:
       # Typically the collector will want access to pod logs and container logs
       - name: varlogpods
@@ -104,10 +109,10 @@ helm repo update
               from: attributes.message
               to: body
             - type: move
-              from: attributes["attributes.hostname"]
+              from: attributes.hostname
               to: resource["hostname"]
             - type: move
-              from: attributes["attributes.appname"]
+              from: attributes.appname
               to: resource["daemon"]
         filelog:
           include:
@@ -213,7 +218,7 @@ helm repo update
   apiVersion: opentelemetry.io/v1beta1
   kind: OpenTelemetryCollector
   metadata:
-    name: otel-collector-log
+    name: otel-log
   spec:
     mode: daemonset
     hostNetwork: true
