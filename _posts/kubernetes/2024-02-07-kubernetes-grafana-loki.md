@@ -107,6 +107,8 @@ https://grafana.com/docs/loki/latest/fundamentals/architecture/components/
   - **Consistent Hash Rings** : 클러스터 내에서 데이터를 균등하게 분배하고 고가용성을 보장하는 메커니즘입니다. 이는 클러스터의 스케일링을 용이하게 하며, 데이터 샤딩과 복제를 통한 안정성을 제공합니다.
   - **Multi-tenancy** : Loki는 다중 테넌시를 지원하여, 하나의 Loki 인스턴스를 여러 사용자나 팀이 공유할 수 있게 합니다. 이는 리소스의 효율적인 사용과 데이터 분리를 가능하게 합니다.
 
+![](/images/kubernetes/grafana/loki/loki_architecture_components.png)
+
 ### Write Path: Distributor, Ingester
 #### Distributor
 - 클라이언트로부터 수신한 로그 데이터를 검증 후 Ingester에게 전달하는 역할을 담당한다
