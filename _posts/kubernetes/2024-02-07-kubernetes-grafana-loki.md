@@ -20,7 +20,7 @@ https://grafana.com/docs/loki/latest/fundamentals/overview/\\
 Loki는 log data를 효율적으로 보관하기 위해 최적화된 데이터 저장소이다.\\
 다른 logging system과 다르게 Loki index는 label에서 작성되며 원래 log message는 색인화되지 않는다.\\
 Prometheus가 저장과 polling을 담당한 것과 달리 Loki는 저장을 담당하고 application에서 push를 해주는 역할을 해주는 agent가 필요하다.\\
-Promtail agent는 Loki를 위해 설계되었지만 그 외에 다른 많은 agent가 Loki와 원활하게 통합된다.\\
+Promtail agent는 Loki를 위해 설계되었지만 그 외에 다른 많은 agent(FluentD, LogStash 혹은 기타 서비스 애플리케이션)가 Loki와 원활하게 통합된다.\\
 Loki는 stream을 indexing 한다.\\
 각 steam은 고유한 label set과 연결된 log 집합을 식별한다.\\
 label의 quality set은 간결하고 효율적인 query 실행을 허용하는 index 생성의 핵심이다.\\
@@ -76,8 +76,16 @@ https://grafana.com/docs/loki/latest/fundamentals/architecture/components/
   - **Query frontend** : query 발송의 API endpoint를 제공하는 선택적 서비스
   - **Querier** : LogQL을 사용하여 query를 처리하고 ingester와 storage에서 log를 가져옴
 
+## Loki Helm Charts
+- grafana/loki 관련된 Helm chart들을 살펴보면 대략 5가지 정도가 존재
+  - **grafana/loki** : 현재 Grafana Loki에서 중점적으로 관리 및 업데이트하고 있는 Helm chart
+  - **grafana/loki-distributed** : Microservice 형태로 Loki를 관리할 수 있도록 해주는 Helm chart
+    - Ingester, Querier, Index Gateway, Distributor, Query-Frontend, Ruler 등으로 구분되어 있음
+  - **grafana/loki-simple-scalable** : 현재 Deprecated 되었지만 Loki를 아주 간단하게 관리할 수 있도록 도와주는 Helm chart
+    - Write와 Read, Nginx gateway로만 구분되어 있다.
+  - **grafana/loki-stack** : 올인원 모놀리식 형태로 사용할 수 있는 Loki Helm chart
 
-## 1. loki-stack
+### 1. loki-stack
 "loki-stack" Helm 차트는 Loki를 단일 노드로 구성하여 배포하는 방법을 제공합니다.\\
 이는 기본적인 Loki 설치를 위해 사용되며, 로그 수집, 저장 및 검색을 단일 노드에서 처리합니다.\\
 이 단일 노드는 다수의 컨테이너로 구성되어 Loki 서버, Prometheus, Grafana 및 Prometheus 메트릭 저장소를 모두 단일 클러스터에 배포합니다.\\
@@ -86,7 +94,7 @@ https://grafana.com/docs/loki/latest/fundamentals/architecture/components/
 > [loki-stack 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-loki-stack/)
 {: .prompt-info }
 
-## 2. loki-distributed
+### 2. loki-distributed
 "loki-distributed" Helm 차트는 Loki를 분산 환경에서 배포하기 위해 설계되었습니다.\\
 이 차트는 Loki의 구성 요소들을 다수의 노드로 분산시키고, 데이터를 보다 효율적으로 처리하고 처리 능력을 확장할 수 있도록 도와줍니다.\\
 분산된 Loki를 사용하면 대량의 로그를 처리하는 데 더 적합하며, 고가용성과 확장성을 갖추기 위해 다양한 구성을 가능하게 합니다.\\
@@ -111,7 +119,7 @@ https://grafana.com/docs/loki/latest/fundamentals/architecture/components/
 
 ### Write Path: Distributor, Ingester
 #### Distributor
-- 클라이언트로부터 수신한 로그 데이터를 검증 후 Ingester에게 전달하는 역할을 담당한다
+- 클라이언트로부터 수신한 로그 데이터를 검증 후 Ingester에게 전달하는 역할을 담당한다. 여기서 클라이언트는 Promtail이 될 수도 있고 FluentD, LogStash 혹은 기타 서비스 애플리케이션 쪽 로그 라이브러리가 될 수도 있다.
 - Distributor의 주요 기능 및 특징
   - **유효성 검사(Validation)** : Distributor는 수신된 스트림이 Grafana LGTM 사양에 부합하는지 첫 번째로 확인합니다. 이는 데이터가 올바르게 처리될 수 있는지를 보장하기 위한 필수적인 과정입니다.
   - **전처리(Preprocessing)** : 스트림의 레이블을 정렬하는 과정으로, 이를 통해 Loki는 데이터를 효율적으로 캐시하고 해시할 수 있습니다.
@@ -138,7 +146,7 @@ https://grafana.com/docs/loki/latest/fundamentals/architecture/components/
   - **플러시** : 장기 저장소로의 플러시 과정에서, chunk는 테넌트, 레이블, 콘텐츠를 기반으로 해시되어 중복된 데이터의 백업 저장소 쓰기를 방지합니다. 그러나 복제본 중 하나에 쓰기가 실패하면 여러 개의 서로 다른 chunk 객체가 생성될 수 있습니다.
 - 이러한 기능과 특징들은 Ingester가 Grafana LGTM 아키텍처에서 중요한 역할을 수행하게 합니다. 데이터의 안정적인 저장과 효율적인 검색을 보장하는 동시에, 시스템의 전반적인 신뢰성과 성능을 높이는 데 기여합니다.
 
-#### 로그 스트림이 chunk에 저장되는 과정 (Write)
+#### Write : 로그 스트림이 chunk에 저장되는 과정
 1. distributor는 스트림(로그)에 대한 데이터를 저장하기 위한 HTTP/1 요청을 받습니다.
 2. 각 스트림은 해시 링을 사용하여 해시됩니다.
 3. distributor는 해시된 데이터를 각 스트림을 적절한 ingesters에 해당 복제본으로 보냅니다.
@@ -240,10 +248,26 @@ components를 개별 마이크로서비스로 실행하면 마이크로서비스
   3. 장애가 복구되어 프로세스가 다시 시작되면 WAL에 저장된 데이터를 읽어와 메모리에 적재하여  장애 전의 상태로 복구된다.
 
 
+### Chunk Store : Loki의 로그를 장기 저장하기 위한 저장소이다.
 
+### Index Gateway
+- Querier, Ruler에게 Index 쿼리를 제공하기 위해 Object Storage 및 BoltDB 인덱스를 다운로드하고 동기화한다.
+  - 이렇게 하면 Grafana로부터 로그 검색 요청이 들어왔을 때 Querier나 Ruler가 불필요하게 일하지 않아도 된다.
 
+### Compactor와 Table Manager
+- Grafana Loki의 로그 보존(Retention)은 Compactor 혹은 Table Manager에 의해 수행된다.
+- 현재 Table Manager를 통한 Retention은 TTL을 통해 달성되며 boltdb-shipper, chunk/index store 모두 작동한다.
+- Compactor를 통한 Retention은 boltdb-shipper 저장소에서만 지원된다.
+- 만약 Compactor로 Retention을 적용한다면 Table Manager는 필요로 하지 않게 될 수 있다.
+- 현재 Grafana Loki에서는 Compactor를 중점적으로 개발중인 것 같다. 
 
+- 다음은 Compactor 설정 예시이다.
+  ```config
+  compactor:
+    shared_store: s3
+    retention_delete_delay: 2h
+    retention_enabled: true
+  ```
 
-
-
-
+- Compactor의 Retention은 limits_config에 설정해주면 된다.
+  - https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period
