@@ -5,38 +5,21 @@ categories: [Kubernetes, K6]
 tags: [Kubernetes, K6, Install]
 ---
 
-> Helm이 설치되어 있지 않다면, [설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
+> Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
 {: .prompt-info }
 
 ## Install k6-operator
-- Helm repo 저장소 추가
-```
-helm repo add grafana https://grafana.github.io/helm-charts
-```
-> 이전에 repository를 추가한 경우, 아래 명령을 실행하여 최신 버전의 패키지를 가져온다.
-{: .prompt-info }
-
-- Helm list 확인
-```
-helm repo list
-```
-
-- Helm repo 저장소 업데이트
-```
-helm repo update
-```
-
 - Helm install
-```
+```shell
 helm install k6-operator grafana/k6-operator
 ```
 
 > 설치 참고 : https://grafana.com/docs/k6/latest/set-up/set-up-distributed-k6/install-k6-operator/
 {: .prompt-info }
 
-## Customizing Install k6-operator
-```
-helm install k6-operator grafana/k6-operator -f override-values.yaml -n [namespace]
+## Customize Default Configuration
+```shell
+helm install k6-operator grafana/k6-operator -f override-values.yaml -n [NAMESPACE NAME]
 ```
 
 ## k6 resource 배포 설정 관련
@@ -189,16 +172,15 @@ export default function () {
 ```
 
 ## 테스트 JavaScript 적용
-```
-kubectl -n [namespace] create configmap test-script --from-file /home/documents/k6/scritps.js 
+```shell
+kubectl -n [NAMESPACE NAME] create configmap test-script --from-file /home/documents/k6/scritps.js 
 configmap/test-script created
 ```
 
 > 참고 : [K6 Load Test](https://kyungryeol-yoon.github.io/posts/k6-load-testing-tool/)
 {: .prompt-info }
 
-## Uninstall the K6 Operator chart
-```
-helm uninstall <RELEASE-NAME> <NAMESPACE-NAME>
-helm uninstall k6-operator -n <NAMESPACE-NAME>
+## Uninstall the Chart
+```shell
+helm uninstall [RELEASE NAME] -n [NAMESPACE NAME]
 ```

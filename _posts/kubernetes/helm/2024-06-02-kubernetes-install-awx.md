@@ -5,23 +5,10 @@ categories: [Kubernetes, AWX]
 tags: [Kubernetes, AWX, Ansible, Install, Helm]
 ---
 
-> Helm이 설치되어 있지 않다면, [설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
+> Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
 {: .prompt-info }
 
-## Install the AWX chart
-- Helm repo 저장소 추가
-```shell
-helm repo add awx-operator https://ansible.github.io/awx-operator
-```
-> 이전에 repository를 추가한 경우, 아래 명령을 실행하여 최신 버전의 패키지를 가져온다.
-{: .prompt-info }
-
-- Helm repo 저장소 업데이트
-```shell
-helm repo update
-```
-
-### Install awx-operator
+## Install awx-operator
 ```shell
 helm install ansible-awx-operator awx-operator/awx-operator -n awx --create-namespace
 ```
@@ -29,7 +16,7 @@ helm install ansible-awx-operator awx-operator/awx-operator -n awx --create-name
 > [AWX Operator resources configured](https://github.com/ansible/awx-operator/tree/devel/.helm/starter)
 {: .prompt-info }
 
-### Verify AWX operator installation
+## Verify AWX operator installation
 ```shell
 sudo kubectl get pods -n awx
 ```

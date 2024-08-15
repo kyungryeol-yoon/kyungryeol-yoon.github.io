@@ -5,31 +5,8 @@ categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Grafana, Helm, Install]
 ---
 
-> Helm이 설치되어 있지 않다면, [설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
+> Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
 {: .prompt-info }
-
-## Search the Grafana chart
-- Helm repo 저장소 추가
-```shell
-helm repo add grafana https://grafana.github.io/helm-charts
-```
-> 이전에 repository를 추가한 경우, 아래 명령을 실행하여 최신 버전의 패키지를 가져온다.
-{: .prompt-info }
-
-- Helm list 확인
-```shell
-helm repo list
-```
-
-- Helm repo 저장소 업데이트
-```shell
-helm repo update
-```
-
-- Grafana Helm Chart Release 검색
-```shell
-helm search repo grafana
-```
 
 ## Install the Grafana Helm charts
 - namespace 생성
@@ -55,18 +32,16 @@ kubectl --namespace monitoring port-forward $POD_NAME 3000
 k3sctl port-forward svc/grafana 3000:80 -n monitoring
 ```
 
-## Customize Grafana default configuration
-### Download the values.yaml file
-- https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
+## Customize Default Configuration
+1. Chart
+  - https://github.com/grafana/helm-charts/tree/main/charts/grafana
 
-- 또는 Git 다운로드하여 수정
-```shell
-git clone https://github.com/grafana/helm-charts.git
-```
+2. Realase file.tgz 다운로드
+  - https://github.com/grafana/helm-charts/releases
 
-- values.yaml 수정
+### values.yaml 수정
 ```shell
-vi helm-charts/charts/grafana/values.yaml
+vi values.yaml
 ```
 
 #### Setting Admin
@@ -131,10 +106,9 @@ service:
 helm install grafana grafana/grafana -f values.yaml -n monitoring
 ```
 
-## Uninstall the Grafana chart
+## Uninstall the Chart
 ```shell
-helm uninstall <RELEASE-NAME> <NAMESPACE-NAME>
-helm uninstall grafana -n monitoring
+helm uninstall [RELEASE NAME] -n [NAMESPACE NAME]
 ```
 
 > 설치 참고 : https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm
