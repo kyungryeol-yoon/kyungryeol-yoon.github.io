@@ -22,6 +22,10 @@ helm install k6-operator grafana/k6-operator
 helm install k6-operator grafana/k6-operator -f override-values.yaml -n [NAMESPACE NAME]
 ```
 
+```shell
+helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
+```
+
 ## k6 resource 배포 설정 관련
 ```yaml
 apiVersion: k6.io/v1alpha1

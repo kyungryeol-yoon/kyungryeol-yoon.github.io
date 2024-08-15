@@ -13,6 +13,10 @@ tags: [Kubernetes, AWX, Ansible, Install, Helm]
 helm install ansible-awx-operator awx-operator/awx-operator -n awx --create-namespace
 ```
 
+```shell
+helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
+```
+
 > [AWX Operator resources configured](https://github.com/ansible/awx-operator/tree/devel/.helm/starter)
 {: .prompt-info }
 

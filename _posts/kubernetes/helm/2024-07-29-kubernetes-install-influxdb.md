@@ -19,7 +19,6 @@ helm install influxdb influxdata/influxdb
 helm install influxdb influxdata/influxdb -f influxdb-values.yaml -n [NAMESPACE NAME]
 ```
 
-
 ```shell
 curl -XPOST 'http://<LoadBalancer-IP>:8086/query' --data-urlencode 'q=CREATE DATABASE mydb'
 ```

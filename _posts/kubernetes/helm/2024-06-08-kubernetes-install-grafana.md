@@ -39,12 +39,9 @@ k3sctl port-forward svc/grafana 3000:80 -n monitoring
 2. Realase file.tgz 다운로드
   - https://github.com/grafana/helm-charts/releases
 
-### values.yaml 수정
-```shell
-vi values.yaml
-```
+3. values.yaml 수정
 
-#### Setting Admin
+### Setting Admin
 ```yaml
 ...
 # Administrator credentials when not using an existing secret (see below)
@@ -53,7 +50,7 @@ adminPassword: <your_password>
 ...
 ```
 
-#### Enable persistent storage (recommended)
+### Enable persistent storage (recommended)
 ```yaml
 ...
 persistence:
@@ -76,7 +73,7 @@ persistence:
 ...
 ```
 
-#### 외부 접속을 위한 NodePort 설정
+### 외부 접속을 위한 NodePort 설정
 ```yaml
 ...
 ## Expose the grafana service to be accessed from outside the cluster (LoadBalancer service).
@@ -101,15 +98,19 @@ service:
 ...
 ```
 
-#### Install Grafana
+### Install Grafana
 ```shell
 helm install grafana grafana/grafana -f values.yaml -n monitoring
 ```
+
+```shell
+helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
+```
+
+> 설치 참고 : https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm
+{: .prompt-info }
 
 ## Uninstall the Chart
 ```shell
 helm uninstall [RELEASE NAME] -n [NAMESPACE NAME]
 ```
-
-> 설치 참고 : https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm
-{: .prompt-info }
