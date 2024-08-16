@@ -1,11 +1,11 @@
 ---
-title: "[Kubernetes] Install K6-operator"
+title: "[Kubernetes] K6-operator"
 date: 2024-07-29
 categories: [Kubernetes, K6]
-tags: [Kubernetes, K6, Install]
+tags: [Kubernetes, K6, Install, Helm]
 ---
 
-> Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
+> Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 {: .prompt-info }
 
 ## Install k6-operator
@@ -26,53 +26,68 @@ helm install k6-operator grafana/k6-operator -f override-values.yaml -n [NAMESPA
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
 
-## k6 resource 배포 설정 관련
-```yaml
-apiVersion: k6.io/v1alpha1
-kind: TestRun
-metadata:
-  name: k6-sample
-spec:
-  parallelism: 4
-  arguments: --out influxdb=http://influxdb:8086/k6
-  arguments: -o xk6-influxdb=http://localhost:8086
-  arguments: -o xk6-prometheus-rw --tag testid=test
-  arguments: -o experimental-prometheus-rw    # prometheus : --enable-feature=remote-write-receiver
-  script:
-    configMap:
-      name: k6-test
-      file: test.js
-  separate: false
-  runner:
-    image: <custom-image>
-    metadata:
-      labels:
-        cool-label: foo
-      annotations:
-        cool-annotation: bar
-    securityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      runAsNonRoot: true
-    resources:
-      limits:
-        cpu: 200m
-        memory: 1000Mi
-      requests:
-        cpu: 100m
-        memory: 500Mi
-  starter:
-    image: <custom-image>
-    metadata:
-      labels:
-        cool-label: foo
-      annotations:
-        cool-annotation: bar
-    securityContext:
-      runAsUser: 2000
-      runAsGroup: 2000
-      runAsNonRoot: true
-```
+## k6 resource 설정 관련
+- Resource yaml 작성
+  ```yaml
+  apiVersion: k6.io/v1alpha1
+  kind: TestRun
+  metadata:
+    name: k6-sample
+  spec:
+    parallelism: 4
+    arguments: --out influxdb=http://influxdb:8086/k6
+    arguments: -o xk6-influxdb=http://localhost:8086
+    arguments: -o xk6-prometheus-rw --tag testid=test
+    arguments: -o experimental-prometheus-rw    # prometheus : --enable-feature=remote-write-receiver
+    cleanup: 'post'   # configure the automatic deletion of all resources
+    script:
+      configMap:
+        name: k6-test
+        file: test.js
+    separate: false
+    runner:
+      image: <custom-image>
+      metadata:
+        labels:
+          cool-label: foo
+        annotations:
+          cool-annotation: bar
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+      resources:
+        limits:
+          cpu: 200m
+          memory: 1000Mi
+        requests:
+          cpu: 100m
+          memory: 500Mi
+    starter:
+      image: <custom-image>
+      metadata:
+        labels:
+          cool-label: foo
+        annotations:
+          cool-annotation: bar
+      securityContext:
+        runAsUser: 2000
+        runAsGroup: 2000
+        runAsNonRoot: true
+  ```
+
+- 적용
+  ```shell
+  kubectl apply -f /path/to/your/k6-resource.yml
+  ```
+
+- 삭제
+  ```shell
+  kubectl delete -f /path/to/your/k6-resource.yml
+  ```
+
+> [Run k6 사용법](https://grafana.com/docs/k6/latest/set-up/set-up-distributed-k6/usage/)
+{: .prompt-info }
 
 > [Stream real-time](https://grafana.com/docs/k6/latest/results-output/real-time/)
 {: .prompt-info }
@@ -111,7 +126,6 @@ COPY --from=builder /k6 /usr/bin/k6
 ```
 
 ### k6 resource 예시
-
 ```yaml
 apiVersion: k6.io/v1alpha1
 kind: K6
@@ -121,12 +135,15 @@ spec:
   arguments: -o xk6-prometheus-rw --tag testid=test
   parallelism: 1
   runner:
+    image: <custom-image>
     env:
     - name: K6_PROMETHEUS_RW_SERVER_URL
       value: http://kube-prometheus-stack-prometheus.monitoring:9090/api/v1/write
     - name: K6_PROMETHEUS_RW_TREND_AS_NATIVE_HISTOGRAM
       value: "true"
     image: k6-prometheus:v1
+  starter:
+    image: <custom-image>
   script:
     configMap:
       file: scritps.js

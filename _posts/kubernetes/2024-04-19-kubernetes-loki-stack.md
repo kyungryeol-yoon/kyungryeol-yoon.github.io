@@ -1,11 +1,11 @@
 ---
-title: "[Kubernetes] Install Loki Stack"
+title: "[Kubernetes] Loki Stack"
 date: 2024-04-19
 categories: [Kubernetes, Grafana]
-tags: [Kubernetes, Promtail, Loki, Grafana, Install]
+tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 ---
 
-> Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
+> Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 {: .prompt-info }
 
 ## Install the Loki Stack Helm charts

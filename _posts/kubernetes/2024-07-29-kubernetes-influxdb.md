@@ -1,11 +1,11 @@
 ---
-title: "[Kubernetes] Install InfluxDB"
+title: "[Kubernetes] InfluxDB"
 date: 2024-08-08
 categories: [Kubernetes, InfluxDB]
-tags: [Kubernetes, InfluxDB, Install]
+tags: [Kubernetes, InfluxDB, Install, Helm]
 ---
 
-> Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
+> Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 {: .prompt-info }
 
 ## Install InfluxDB

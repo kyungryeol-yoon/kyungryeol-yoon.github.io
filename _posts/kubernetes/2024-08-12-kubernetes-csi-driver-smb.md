@@ -1,11 +1,11 @@
 ---
-title: "[Kubernetes] Install SMB CSI Driver for Kubernetes"
+title: "[Kubernetes] CSI Driver SMB for Kubernetes"
 date: 2024-08-12
 categories: [Kubernetes, CSI]
-tags: [Kubernetes, csi, smb, Install]
+tags: [Kubernetes, csi, smb, Install, Helm]
 ---
 
-> Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-helm/)
+> Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 {: .prompt-info }
 
 ## Install CSI Driver SMB
