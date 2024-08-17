@@ -288,6 +288,7 @@ loki의 endpoint 어트리뷰트에 loki 주소의 "/loki/api/v1/push" Path를 �
 
 Loki Receiver에서 Log 데이터를 수집해 k8sattributes, resource, memory_limiter, batch 순으로 가공한 뒤, Loki Exporter를 사용해 Loki backend로 전송합니다.
 
+
 #### Pipeline Configuration - Plan B
 filelog, k8s_events Receiver에서 Log 데이터를 수집해k8sattributes, resource, memory_limiter, batch순으로 가공한 뒤, Loki Exporter를 사용해 Loki backend로 전송합니다.
 

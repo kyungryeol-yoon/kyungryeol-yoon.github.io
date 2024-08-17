@@ -255,8 +255,8 @@ export const options = {
 
 ```js
 const trends = {
-  scenario1: new Trend("scenario1) Response time", true),
-  scenario2: new Trend("scenario2) Response time", true),
+  scenario1: new Trend("scenario1_response_time", true),
+  scenario2: new Trend("scenario2_response_time", true),
 };
 ```
 
@@ -265,8 +265,8 @@ const trends = {
 - Trend를 추가하면 아래와 같이 실행 결과에서 볼 수 있다.
 
 ```
-scenario1) Response time.......: avg=1.29s    min=1.26s    med=1.29s max=1.35s    p(90)=1.34s    p(95)=1.34s
-scenario2) Response time.......: avg=1.29s    min=1.25s    med=1.29s max=1.36s    p(90)=1.32s    p(95)=1.34s
+scenario1_response_time.......: avg=1.29s    min=1.26s    med=1.29s max=1.35s    p(90)=1.34s    p(95)=1.34s
+scenario2_response_time.......: avg=1.29s    min=1.25s    med=1.29s max=1.36s    p(90)=1.32s    p(95)=1.34s
 ```
 
 #### Setup 관련

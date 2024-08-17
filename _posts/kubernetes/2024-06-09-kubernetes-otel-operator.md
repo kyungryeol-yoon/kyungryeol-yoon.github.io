@@ -5,7 +5,8 @@ categories: [Kubernetes, OpenTelemetry]
 tags: [Kubernetes, OpenTelemetry, Operator, Cert-manager, Install, Helm]
 ---
 
-> Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+> Helm 설치 및 설명
+  - https://kyungryeol-yoon.github.io/posts/kubernetes-helm/
 {: .prompt-info }
 
 ## Install Cert-manager
@@ -43,7 +44,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/do
   helm repo update
   helm install opentelemetry-operator open-telemetry/opentelemetry-operator --set "manager.collectorImage.repository=otel/opentelemetry-collector-k8s"
   ```
-  > Helm 설치 참고
+  > **Helm 설치 참고**
     - https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator
   {: .prompt-info }
 

@@ -5,7 +5,8 @@ categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 ---
 
-> Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+> Helm 설치 및 설명
+  - https://kyungryeol-yoon.github.io/posts/kubernetes-helm/
 {: .prompt-info }
 
 ## Install the Loki Distributed Helm charts
@@ -35,10 +36,10 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 - https://grafana.com/docs/loki/latest/configuration/
 {: .prompt-info }
 
+
 1. Grafana Loki 모범 사례
   - https://grafana.com/docs/loki/latest/best-practices/
   - https://grafana.com/blog/2021/02/16/the-essential-config-settings-you-should-use-so-you-wont-drop-logs-in-loki/
-
   - 레이블은 Loki에서 Log를 검색할 때 필터링이 되는 기준이 되는데 여기선 정적 레이블을 가급적이면 사용하라고 가이드하고 있다.
     - 레이블은 클라이언트에서 설정한다음에 Loki에게 Push하면 된다.
   - chunk_target_size를 사용하라고 한다.
@@ -62,7 +63,6 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 3. Loki Grafana 모니터링
   - 실운영하기 위해서는 Loki의 메트릭들을 Grafana와 같은 대시보드에서 확인할 수 있어야 한다.
   - Loki는 기본적으로 /metrics 엔드포인트로부터 각 Components들의 Metric들을 확인할 수 있다.
-
   - 모든 컴포넌트들의 Service annotation에 아래의 문구를 추가해준다.
     - 메트릭들을 활용하여 Grafana dashboard를 구성하면 된다.
     - 이렇게 하면 Prometheus가 자동으로 /metrics 엔드포인트로 메트릭들을 scrape 해간다.
