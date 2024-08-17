@@ -1,8 +1,8 @@
 ---
-title: "[Kubernetes] OTel(OpenTelemetry)"
+title: "[Kubernetes] OTel(OpenTelemetry) Operator"
 date: 2024-06-09
 categories: [Kubernetes, OpenTelemetry]
-tags: [Kubernetes, OpenTelemetry, Cert-manager, Install, Helm]
+tags: [Kubernetes, OpenTelemetry, Operator, Cert-manager, Install, Helm]
 ---
 
 > Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
@@ -14,51 +14,51 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/do
 ```
 
 ### OTel(OpenTelemetry) 설치 시 Cert-manager가 필요한 이유
-1. HTTPS 통신 보안
-OTel(OpenTelemetry) Collector는 기본적으로 HTTP를 통해 데이터를 수집하고 전송하지만,\\
-HTTPS를 사용하여 보안을 강화하는 것이 좋습니다.\\
-Cert-manager는 인증서 발급 및 관리를 자동화하여 OTel(OpenTelemetry) Collector가 안전하게 HTTPS를 사용하도록 설정하는 데 도움을 줍니다.
+- HTTPS 통신 보안
+  OTel(OpenTelemetry) Collector는 기본적으로 HTTP를 통해 데이터를 수집하고 전송하지만,\\
+  HTTPS를 사용하여 보안을 강화하는 것이 좋다.\\
+  Cert-manager는 인증서 발급 및 관리를 자동화하여 OTel(OpenTelemetry) Collector가 안전하게 HTTPS를 사용하도록 설정하는 데 도움을 준다.
 
-2. 인증서 자동 갱신
-HTTPS 인증서는 만료 기간이 있으며, 만료되면 OTel(OpenTelemetry) Collector가 작동하지 않게 됩니다.\\
-Cert-manager는 인증서가 만료되기 전에 자동으로 갱신하여 서비스 중단을 방지합니다.
+- 인증서 자동 갱신
+  HTTPS 인증서는 만료 기간이 있으며, 만료되면 OTel(OpenTelemetry) Collector가 작동하지 않게 된다.\\
+  Cert-manager는 인증서가 만료되기 전에 자동으로 갱신하여 서비스 중단을 방지한다.
 
-3. 사용 편의성 향상
-Cert-manager를 사용하면 수동으로 인증서를 발급하고 관리하는 번거로움 없이 OpenTelemetry Collector를 안전하게 배포하고 운영할 수 있습니다.
+- 사용 편의성 향상
+  Cert-manager를 사용하면 수동으로 인증서를 발급하고 관리하는 번거로움 없이 OpenTelemetry Collector를 안전하게 배포하고 운영할 수 있다.
 
-> OTel(OpenTelemetry) 설치 시 반드시 Cert-manager가 필요한 것은 아니지만, HTTPS를 사용하여 보안을 강화하려는 경우 필수적입니다. Cert-manager는 Kubernetes 환경에서만 사용 가능합니다.
+> OTel(OpenTelemetry) 설치 시 반드시 Cert-manager가 필요한 것은 아니지만, HTTPS를 사용하여 보안을 강화하려는 경우 필수. Cert-manager는 Kubernetes 환경에서만 사용 가능.
 {: .prompt-warning }
 
 ## Install OpenTelemetry Operator
-Kubernetes Operator는 K8s API의 기능을 확장하여 K8s 사용자를 대신해 복잡한 애플리케이션의 인스턴스를 생성,\\
-설정 및 관리하는 애플리케이션별 컨트롤러이고 Opentelemetry Operator는 Kubernetes Operator로 이루어졌다.
-
-## Opentelemetry Operator가 관리하는 기능 두가지
-### Opentelemetry Collector
-- auto-instrumentation of the workloads using OpenTelemetry instrumentation libraries
-- 프로젝트가 다수일 경우 매번 Opentelemetry Collector와 auto-instrumentation agent를 같이 띄울 필요 없이 Operator를 활용하여, 프로젝트별로 Collector를 설치할 수 있고 각 서버마다 agent를 명세할 필요 없이 annotation을 통하여 Operator가 해당 Pod에 sidecar 형태로 추가해준다.
-
-### OTel(OpenTelemetry) Collector 배포하는 방법 2가지
-- OpenTelemetry Operator 사용하여 OpenTelemetry Collector 배포 할 수 있다.
-  ```
+- 1. Install OpenTelemetry Operator
+  ```shell
   kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
   ```
   > 설치 참고 : https://github.com/open-telemetry/opentelemetry-operator
   {: .prompt-info }
 
-- Helm Chart 사용하는 방법
-  ```
+- 2. Install Helm Chart - OpenTelemetry Operator
+  ```shell
   helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
   helm repo update
+  helm install opentelemetry-operator open-telemetry/opentelemetry-operator --set "manager.collectorImage.repository=otel/opentelemetry-collector-k8s"
   ```
   > Helm 설치 참고 : https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator
   {: .prompt-info }
 
-## OpenTelemetry Collector
+### Opentelemetry Operator가 관리하는 기능 두가지
+- Opentelemetry Collector
+- auto-instrumentation of the workloads using OpenTelemetry instrumentation libraries
+
+프로젝트가 다수일 경우 매번 Opentelemetry Collector와 auto-instrumentation agent를 같이 띄울 필요 없이 Operator를 활용하여, 프로젝트별로 Collector를 설치할 수 있고 각 서버마다 agent를 명세할 필요 없이 annotation을 통하여 Operator가 해당 Pod에 sidecar 형태로 추가해준다.
+
+
+## OpenTelemetry Operator 사용하여 OpenTelemetry Collector 배포 할 수 있다.
+### OpenTelemetry Collector
 - collector에 대한 배포판은 3가지
-  - opentelemetry-collector : 핵심 기능을 제공
-  - opentelemetry-collector-contrib : Contrib은 opentelemetry-collector 확장하여 다양한 환경에서 사용될 수 있도록 제작
-  - opentelemetry-collector-k8s : opentelemetry-collector와 contrib의 구성요소 중 k8s cluster와 구성요소를 모니터링할 수 있도록 특별히 제작
+  - **opentelemetry-collector** : 핵심 기능을 제공
+  - **opentelemetry-collector-contrib** : Contrib은 opentelemetry-collector 확장하여 다양한 환경에서 사용될 수 있도록 제작
+  - **opentelemetry-collector-k8s** : opentelemetry-collector와 contrib의 구성요소 중 k8s cluster와 구성요소를 모니터링할 수 있도록 특별히 제작
 
 ### Node Collector(Daemonset)
 - File Logs

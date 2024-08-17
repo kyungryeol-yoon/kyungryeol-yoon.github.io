@@ -1,9 +1,13 @@
 ---
-title: "[Kubernetes] OTel(OpenTelemetry) - Logging"
+title: "[Kubernetes] OTel(OpenTelemetry) Collector - Logging"
 date: 2024-06-10
 categories: [Kubernetes, OpenTelemetry]
 tags: [Kubernetes, OpenTelemetry, Collector, Logging]
 ---
+
+## Opentelemetry Collector
+
+아키텍쳐는 OTel Collector와 기존의 로그 수집 도구를 혼합해 구성한 Plan A와 OTel Collector만으로 구성한 Plan B로 나눌 수 있다.
 
 ## OpenTelemetry Collector 배포 및 구성
 - vi /etc/rsyslog.conf에 아래의 Code 추가
@@ -250,6 +254,44 @@ tags: [Kubernetes, OpenTelemetry, Collector, Logging]
   ```
   > 참고 : https://opentelemetry.io/blog/2024/otel-collector-container-log-parser/
   {: .prompt-info }
+
+### Receiver Configuration - Plan A
+
+Receiver는 Promtail 및 EventExporter로부터 Log 데이터를 받는 진입점을 위한 loki receiver를 사용합니다.
+loki receiver를 사용하면 Otel Collector에 기존의 Loki가 노출하는 endpoint를 동일하게 노출시켜 기존의 Log 수집 컴포넌트들이 동일한 방법으로 OTel Collector에 Log를 보낼 수 있도록 구성할 수 있습니다.
+
+#### Receiver Configuration - Plan B
+Receiver는 Container Log 수집을 위한 filelog, System Log 수집을 위한 filelog, Kubernetes Event Log 수집을 위한 k8s_event 3개를 사용합니다.
+
+Container Log는 filelog receiver로 /var/log/pods/*/*/*.log 경로에서 수집하고, 수집한 파일들을 기반으로 Path 및 Body를 분석해 Container 명, Pod 명, Namespace 명 등의 정보를 추출합니다.
+
+System Log는 별도의 filelog receiver로 /var/log 경로에서 수집한 dmesg, messages, secure 파일들에서 syslog_parser로 정보를 추출해 수집합니다. 
+
+Kubernetes Event Log는 k8s_event receiver를 이용해 Kubernetes API로부터 수집합니다.
+
+### Processor Configuration
+Processor는 Log에 Kubernetes Attribute를 부착하기 위한 k8sattributes, Loki Label을 구성하기 위한 resource, OOM 방지를 위한 memory_limiter, Log를 batch성으로 전송하기 위한 batch 4개를 사용합니다.
+
+k8sattributes Processor는 filelog로부터 수집한 Container log를 기반으로 이와 일치하는 Pod, Deployment, Cluster 등의 정보를 데이터에 부착합니다.
+
+resource Processor는 위에서 부착한 정보를 Loki의 indexing에 필요한 Label로 변환하는 작업을 수행합니다.
+
+batch와 memory_limiter Processor는 가공한 Log 데이터를 Export하는 방법을 제공합니다.
+
+### Exporter Configuration
+Exporter는 Log를 Loki로 전송하기 위한 loki exporter를 사용합니다.
+
+loki의 endpoint 어트리뷰트에 loki 주소의 "/loki/api/v1/push" Path를 붙여 로그 진입점을 값으로 넣어 수집한 Log를 Loki로 전송합니다.
+
+### Pipeline Configuration
+마지막으로 위에서 정의한 Receiver, Processor, Exporter를 순서에 맞게 조합하는 Pipeline을 정의합니다.
+
+특히 Processor 요소들의 배치 순서에 따라 Log를 가공하는 순서가 달라지기 때문에, 위의 순서를 준수하는 것이 중요합니다.
+
+Loki Receiver에서 Log 데이터를 수집해 k8sattributes, resource, memory_limiter, batch 순으로 가공한 뒤, Loki Exporter를 사용해 Loki backend로 전송합니다.
+
+#### Pipeline Configuration - Plan B
+filelog, k8s_events Receiver에서 Log 데이터를 수집해k8sattributes, resource, memory_limiter, batch순으로 가공한 뒤, Loki Exporter를 사용해 Loki backend로 전송합니다.
 
 ## Node Collector(Daemonset)
 - File Logs

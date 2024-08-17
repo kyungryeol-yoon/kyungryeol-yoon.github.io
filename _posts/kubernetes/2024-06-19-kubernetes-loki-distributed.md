@@ -11,22 +11,25 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 ## Install the Loki Distributed Helm charts
 - Loki Distributed 배포
   ```shell
+  helm repo add grafana https://grafana.github.io/helm-charts
+  helm repo update
   helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NAME] --version [VERSION]
   ```
 
+> **설치 참고** : https://grafana.com/docs/loki/latest/setup/install/helm/
+{: .prompt-info }
+
 ## Customize Default Configuration
-1. Chart
-  - https://github.com/grafana/helm-charts/tree/main/charts/loki-distributed
+- values.yaml 수정
+  - 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
 
-2. Realase file.tgz 다운로드
-  - https://github.com/grafana/helm-charts/releases
-
-3. values.yaml 수정
+- Chart : https://github.com/grafana/helm-charts/tree/main/charts/loki-distributed
+- Release file (.tgz) : https://github.com/grafana/helm-charts/releases
 
 ### Loki Configurations
 우선 Loki 설정값을 어떻게 해야 하는지는 공식문서를 자세히 읽어보면 상당히 많이 나온다.
 
-- Loki 설정값 공식 문서
+**Loki 설정값 공식 문서**
   - https://grafana.com/docs/loki/latest/configuration/
 
 1. Grafana Loki 모범 사례
@@ -45,27 +48,27 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
     - 그러나 복제 요소가 데이터 손실을 방지하는 유일한 요소는 아니며, 주요 목적은 롤아웃 및 재시작 중에 쓰기가 중단되지 않도록 하는 것이다.
 
 2. Request Validation, Rate-Limit 에러
-- https://grafana.com/docs/loki/latest/operations/request-validation-rate-limits/
-- 기본값으로 설정하면 필히 겪게 될 에러들이다.
-- https://grafana.com/docs/loki/latest/configuration/#limits_config
-  - 아래의 값으로 설정하면 필히 쓰로틀링이 걸리게 된다. 하여 적절한 값으로 조정이 필요하다.
-  - ingestion_rate_mb는 기본값 4이며 ingestion_burst_size_mb는 기본값 6이다.
-    - ingestion_rate_mb: 20
-    - ingestion_burst_size_mb: 40
+  - https://grafana.com/docs/loki/latest/operations/request-validation-rate-limits/
+  - 기본값으로 설정하면 필히 겪게 될 에러들이다.
+  - https://grafana.com/docs/loki/latest/configuration/#limits_config
+    - 아래의 값으로 설정하면 필히 쓰로틀링이 걸리게 된다. 하여 적절한 값으로 조정이 필요하다.
+    - ingestion_rate_mb는 기본값 4이며 ingestion_burst_size_mb는 기본값 6이다.
+      - ingestion_rate_mb: 20
+      - ingestion_burst_size_mb: 40
 
 3. Loki Grafana 모니터링
-- 실운영하기 위해서는 Loki의 메트릭들을 Grafana와 같은 대시보드 툴에서 확인할 수 있어야 한다.
-- Loki는 기본적으로 /metrics 엔드포인트로부터 각 Components들의 Metric들을 확인할 수 있다.
+  - 실운영하기 위해서는 Loki의 메트릭들을 Grafana와 같은 대시보드에서 확인할 수 있어야 한다.
+  - Loki는 기본적으로 /metrics 엔드포인트로부터 각 Components들의 Metric들을 확인할 수 있다.
 
-- 모든 컴포넌트들의 Service annotation에 아래의 문구를 추가해준다.
-  - 메트릭들을 활용하여 Grafana dashboard를 구성하면 된다.
-  - 이렇게 하면 Prometheus가 자동으로 /metrics 엔드포인트로 메트릭들을 scrape 해간다.
-    ```
-    prometheus.io/scrape: "true"
-    prometheus.io/path: "/metrics"
-    prometheus.io/port: "3100"
-    ```
-- Loki에 대한 모니터링 https://grafana.com/docs/loki/latest/operations/observability/
+  - 모든 컴포넌트들의 Service annotation에 아래의 문구를 추가해준다.
+    - 메트릭들을 활용하여 Grafana dashboard를 구성하면 된다.
+    - 이렇게 하면 Prometheus가 자동으로 /metrics 엔드포인트로 메트릭들을 scrape 해간다.
+      ```
+      prometheus.io/scrape: "true"
+      prometheus.io/path: "/metrics"
+      prometheus.io/port: "3100"
+      ```
+  - Loki에 대한 모니터링 https://grafana.com/docs/loki/latest/operations/observability/
 
 #### Compactor와 Table Manager
 - Grafana Loki의 로그 보존(Retention)은 Compactor 혹은 Table Manager에 의해 수행된다.
@@ -84,13 +87,13 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 - Compactor의 Retention은 limits_config에 설정해주면 된다.
   - https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period
 
-### Install
+### Install Customize Default Configuration
 ```shell
-helm install loki-distributed grafana/loki-distributed -f values.yaml -n logging
+helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
 
 ```shell
-helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
+helm install loki-distributed grafana/loki-distributed -f override-values.yaml -n [NAMESPACE NAME]
 ```
 
 ## Uninstall the Chart

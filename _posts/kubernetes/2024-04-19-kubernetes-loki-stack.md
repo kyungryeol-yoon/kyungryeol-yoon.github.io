@@ -11,26 +11,34 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 ## Install the Loki Stack Helm charts
 - Loki Stack 배포
   ```shell
+  helm repo add grafana https://grafana.github.io/helm-charts
+  helm repo update
   helm install loki-stack grafana/loki-stack --namespace [NAMESPACE NAME] --version [VERSION]
   ```
 
+> **설치 참고** : https://grafana.com/docs/loki/latest/setup/install/helm/
+{: .prompt-info }
+
 ## Customize Default Configuration
-1. Chart
-  - https://github.com/grafana/helm-charts/tree/main/charts/loki-stack
-
-2. Realase file.tgz 다운로드
-  - https://github.com/grafana/helm-charts/releases
-
-3. values.yaml 수정
+- values.yaml 수정
   - 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
 
-### Install
+- Chart : https://github.com/grafana/helm-charts/tree/main/charts/loki-stack
+- Release file (.tgz) : https://github.com/grafana/helm-charts/releases
+
+### promtail
+#### syslog regex
+```
+^(?<time>[^ ]* {1,2}[^ ]* [^ ]*) (?<hostname>[^ ]*) (?<daemon>[^ :\[]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?<message>.*)$
+```
+
+### Install Customize Default Configuration
 ```shell
-helm install loki-stack grafana/loki-stack -f values.yaml -n logging
+helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
 
 ```shell
-helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
+helm install loki-stack grafana/loki-stack -f override-values.yaml -n [NAMESPACE NAME]
 ```
 
 ## Uninstall the Chart

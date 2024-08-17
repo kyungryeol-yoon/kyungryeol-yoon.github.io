@@ -10,19 +10,35 @@ tags: [Kubernetes, AWX, Ansible, Install, Helm]
 
 ## Install awx-operator
 ```shell
+helm repo add awx-operator https://ansible.github.io/awx-operator/
+helm repo update
 helm install ansible-awx-operator awx-operator/awx-operator -n awx --create-namespace
 ```
 
+> **설치 참고**
+- https://ansible.readthedocs.io/projects/awx-operator/en/latest/installation/basic-install.html
+- https://github.com/ansible/awx-operator/blob/devel/docs/installation/basic-install.md
+{: .prompt-info }
+
+## Customize Default Configuration
+- values.yaml 수정
+  - 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
+
+- Chart : https://github.com/ansible/awx-operator/tree/{tags}/.helm/starter
+- Release file (.tgz) : https://github.com/ansible/awx-operator/releases
+
+### Install Customize Default Configuration
 ```shell
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
 
-> [AWX Operator resources configured](https://github.com/ansible/awx-operator/tree/devel/.helm/starter)
-{: .prompt-info }
+```shell
+helm install ansible-awx-operator awx-operator/awx-operator -f override-values.yaml -n [NAMESPACE NAME]
+```
 
 ## Verify AWX operator installation
 ```shell
-sudo kubectl get pods -n awx
+kubectl get pods -n awx
 ```
 
 ## Create PV, PVC and deploy AWX yaml file

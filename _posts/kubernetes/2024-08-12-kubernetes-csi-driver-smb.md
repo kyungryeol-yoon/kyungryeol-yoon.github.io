@@ -10,11 +10,27 @@ tags: [Kubernetes, csi, smb, Install, Helm]
 
 ## Install CSI Driver SMB
 - Helm install
-```shell
-helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
-```
+  ```shell
+  helm repo add csi-driver-smb https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
+  helm repo update
+  helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
+  ```
+
+> **설치 참고** : https://github.com/kubernetes-csi/csi-driver-smb
+{: .prompt-info }
 
 ## Customize Default Configuration
+- values.yaml 수정
+  - 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
+
+- Chart : https://github.com/kubernetes-csi/csi-driver-smb/tree/master/charts
+- Release file (.tgz) : https://github.com/kubernetes-csi/csi-driver-smb/releases
+
+### Install Customize Default Configuration
+```shell
+helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
+```
+
 ```shell
 helm install csi-driver-smb csi-driver-smb/csi-driver-smb -f override-values.yaml -n [NAMESPACE NAME]
 ```

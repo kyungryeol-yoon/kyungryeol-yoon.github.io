@@ -10,36 +10,39 @@ tags: [Kubernetes, Grafana, Helm, Install]
 
 ## Install the Grafana Helm charts
 - namespace 생성
-```shell
-kubectl create namespace monitoring
-```
+  ```shell
+  kubectl create namespace [NAMESPACE NAME]
+  ```
 
 - Grafana 배포
-```shell
-helm install grafana grafana/grafana --namespace monitoring --set adminPassword=<your_password>
-```
+  ```shell
+  helm repo add grafana https://grafana.github.io/helm-charts
+  helm repo update
+  helm install grafana grafana/grafana --namespace [NAMESPACE NAME] --set adminPassword=<your_password>
+  ```
+
+> **설치 참고** : https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm
+{: .prompt-info }
 
 - Password 설정하지 않았을 때, 아래와 같이 찾아보기
-```shell
-kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
-```
+  ```shell
+  kubectl get secret --namespace [NAMESPACE NAME] grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+  ```
 
 - port-forward로 연결하기
-```shell
-kubectl --namespace monitoring port-forward $POD_NAME 3000
-```
-```shell
-k3sctl port-forward svc/grafana 3000:80 -n monitoring
-```
+  ```shell
+  kubectl --namespace [NAMESPACE NAME] port-forward $POD_NAME 3000
+  ```
+  ```shell
+  k3sctl port-forward svc/grafana 3000:80 -n [NAMESPACE NAME]
+  ```
 
 ## Customize Default Configuration
-1. Chart
-  - https://github.com/grafana/helm-charts/tree/main/charts/grafana
+- values.yaml 수정
+  - 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
 
-2. Realase file.tgz 다운로드
-  - https://github.com/grafana/helm-charts/releases
-
-3. values.yaml 수정
+- Chart : https://github.com/grafana/helm-charts/tree/main/charts/grafana
+- Release file (.tgz) : https://github.com/grafana/helm-charts/releases
 
 ### Setting Admin
 ```yaml
@@ -98,17 +101,14 @@ service:
 ...
 ```
 
-### Install Grafana
-```shell
-helm install grafana grafana/grafana -f values.yaml -n monitoring
-```
-
+### Install Customize Default Configuration
 ```shell
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
 
-> 설치 참고 : https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm
-{: .prompt-info }
+```shell
+helm install grafana grafana/grafana -f override-values.yaml -n [NAMESPACE NAME]
+```
 
 ## Uninstall the Chart
 ```shell
