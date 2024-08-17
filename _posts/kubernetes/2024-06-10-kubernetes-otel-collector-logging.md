@@ -6,7 +6,6 @@ tags: [Kubernetes, OpenTelemetry, Collector, Logging]
 ---
 
 ## Opentelemetry Collector
-
 아키텍쳐는 OTel Collector와 기존의 로그 수집 도구를 혼합해 구성한 Plan A와 OTel Collector만으로 구성한 Plan B로 나눌 수 있다.
 
 ## OpenTelemetry Collector 배포 및 구성

@@ -16,7 +16,8 @@ tags: [Kubernetes, InfluxDB, Install, Helm]
   helm install influxdb influxdata/influxdb
   ```
 
-> **설치 참고** : https://github.com/influxdata/helm-charts
+> **설치 참고**
+  - https://github.com/influxdata/helm-charts
 {: .prompt-info }
 
 ## Customize Default Configuration
@@ -35,8 +36,6 @@ helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 �
 ```shell
 helm install influxdb influxdata/influxdb -f override-values.yaml -n [NAMESPACE NAME]
 ```
-
-
 
 
 

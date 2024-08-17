@@ -16,7 +16,8 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
   helm install loki-stack grafana/loki-stack --namespace [NAMESPACE NAME] --version [VERSION]
   ```
 
-> **설치 참고** : https://grafana.com/docs/loki/latest/setup/install/helm/
+> **설치 참고**
+  - https://grafana.com/docs/loki/latest/setup/install/helm/
 {: .prompt-info }
 
 ## Customize Default Configuration
@@ -32,6 +33,7 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 ```
 ^(?<time>[^ ]* {1,2}[^ ]* [^ ]*) (?<hostname>[^ ]*) (?<daemon>[^ :\[]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?<message>.*)$
 ```
+
 
 ### Grafana
 https://kyungryeol-yoon.github.io/posts/kubernetes-grafana/

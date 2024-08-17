@@ -16,8 +16,8 @@ helm install ansible-awx-operator awx-operator/awx-operator -n awx --create-name
 ```
 
 > **설치 참고**
-- https://ansible.readthedocs.io/projects/awx-operator/en/latest/installation/basic-install.html
-- https://github.com/ansible/awx-operator/blob/devel/docs/installation/basic-install.md
+  - https://ansible.readthedocs.io/projects/awx-operator/en/latest/installation/basic-install.html
+  - https://github.com/ansible/awx-operator/blob/devel/docs/installation/basic-install.md
 {: .prompt-info }
 
 ## Customize Default Configuration

@@ -16,7 +16,8 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
   helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NAME] --version [VERSION]
   ```
 
-> **설치 참고** : https://grafana.com/docs/loki/latest/setup/install/helm/
+> **설치 참고**
+  - https://grafana.com/docs/loki/latest/setup/install/helm/
 {: .prompt-info }
 
 ## Customize Default Configuration
@@ -31,7 +32,7 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 우선 Loki 설정값을 어떻게 해야 하는지는 공식문서를 자세히 읽어보면 상당히 많이 나온다.
 
 > **Loki 설정값 공식 문서**
-  - https://grafana.com/docs/loki/latest/configuration/
+- https://grafana.com/docs/loki/latest/configuration/
 {: .prompt-info }
 
 1. Grafana Loki 모범 사례

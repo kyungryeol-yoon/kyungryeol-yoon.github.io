@@ -43,7 +43,8 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/do
   helm repo update
   helm install opentelemetry-operator open-telemetry/opentelemetry-operator --set "manager.collectorImage.repository=otel/opentelemetry-collector-k8s"
   ```
-  > Helm 설치 참고 : https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator
+  > Helm 설치 참고
+    - https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator
   {: .prompt-info }
 
 ### Opentelemetry Operator가 관리하는 기능 두가지
@@ -51,6 +52,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/do
 - auto-instrumentation of the workloads using OpenTelemetry instrumentation libraries
 
 프로젝트가 다수일 경우 매번 Opentelemetry Collector와 auto-instrumentation agent를 같이 띄울 필요 없이 Operator를 활용하여, 프로젝트별로 Collector를 설치할 수 있고 각 서버마다 agent를 명세할 필요 없이 annotation을 통하여 Operator가 해당 Pod에 sidecar 형태로 추가해준다.
+
 
 
 ## OpenTelemetry Operator 사용하여 OpenTelemetry Collector 배포 할 수 있다.
