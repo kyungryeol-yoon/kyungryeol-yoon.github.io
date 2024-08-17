@@ -256,7 +256,6 @@ tags: [Kubernetes, OpenTelemetry, Collector, Logging]
   {: .prompt-info }
 
 ### Receiver Configuration - Plan A
-
 Receiver는 Promtail 및 EventExporter로부터 Log 데이터를 받는 진입점을 위한 loki receiver를 사용합니다.
 loki receiver를 사용하면 Otel Collector에 기존의 Loki가 노출하는 endpoint를 동일하게 노출시켜 기존의 Log 수집 컴포넌트들이 동일한 방법으로 OTel Collector에 Log를 보낼 수 있도록 구성할 수 있습니다.
 

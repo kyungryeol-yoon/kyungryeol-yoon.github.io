@@ -21,7 +21,8 @@ tags: [Kubernetes, csi, smb, Install, Helm]
 
 ## Customize Default Configuration
 - values.yaml 수정
-  - 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
+  > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
+  {: .prompt-info }
 
 - Chart : https://github.com/kubernetes-csi/csi-driver-smb/tree/master/charts
 - Release file (.tgz) : https://github.com/kubernetes-csi/csi-driver-smb/releases

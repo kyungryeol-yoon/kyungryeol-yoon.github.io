@@ -21,7 +21,8 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 
 ## Customize Default Configuration
 - values.yaml 수정
-  - 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
+  > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
+  {: .prompt-info }
 
 - Chart : https://github.com/grafana/helm-charts/tree/main/charts/loki-stack
 - Release file (.tgz) : https://github.com/grafana/helm-charts/releases
@@ -31,6 +32,9 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 ```
 ^(?<time>[^ ]* {1,2}[^ ]* [^ ]*) (?<hostname>[^ ]*) (?<daemon>[^ :\[]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?<message>.*)$
 ```
+
+### Grafana
+https://kyungryeol-yoon.github.io/posts/kubernetes-grafana/
 
 ### Install Customize Default Configuration
 ```shell

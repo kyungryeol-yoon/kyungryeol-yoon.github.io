@@ -21,7 +21,8 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 
 ## Customize Default Configuration
 - values.yaml 수정
-  - 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
+  > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
+  {: .prompt-info }
 
 - Chart : https://github.com/grafana/helm-charts/tree/main/charts/loki-distributed
 - Release file (.tgz) : https://github.com/grafana/helm-charts/releases
@@ -29,8 +30,9 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 ### Loki Configurations
 우선 Loki 설정값을 어떻게 해야 하는지는 공식문서를 자세히 읽어보면 상당히 많이 나온다.
 
-**Loki 설정값 공식 문서**
+> **Loki 설정값 공식 문서**
   - https://grafana.com/docs/loki/latest/configuration/
+{: .prompt-info }
 
 1. Grafana Loki 모범 사례
   - https://grafana.com/docs/loki/latest/best-practices/

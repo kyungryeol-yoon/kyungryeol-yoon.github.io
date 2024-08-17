@@ -60,6 +60,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/do
   - **opentelemetry-collector-contrib** : Contrib은 opentelemetry-collector 확장하여 다양한 환경에서 사용될 수 있도록 제작
   - **opentelemetry-collector-k8s** : opentelemetry-collector와 contrib의 구성요소 중 k8s cluster와 구성요소를 모니터링할 수 있도록 특별히 제작
 
+
 ### Node Collector(Daemonset)
 - File Logs
 - Host metrics

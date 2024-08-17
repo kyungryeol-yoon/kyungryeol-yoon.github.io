@@ -21,7 +21,8 @@ tags: [Kubernetes, InfluxDB, Install, Helm]
 
 ## Customize Default Configuration
 - values.yaml 수정
-  - 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
+  > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
+  {: .prompt-info }
 
 - Chart : https://github.com/influxdata/helm-charts/tree/master/charts/influxdb
 - Release file (.tgz) : https://github.com/influxdata/helm-charts/releases
@@ -34,6 +35,7 @@ helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 �
 ```shell
 helm install influxdb influxdata/influxdb -f override-values.yaml -n [NAMESPACE NAME]
 ```
+
 
 
 
