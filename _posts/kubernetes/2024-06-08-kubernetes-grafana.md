@@ -20,7 +20,7 @@ tags: [Kubernetes, Grafana, Helm, Install]
   helm repo update
   helm install grafana grafana/grafana --namespace [NAMESPACE NAME] --set adminPassword=<your_password>
   ```
-    > [Helm 설치 참고](https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm)
+    > [Grafana - Helm 설치 참고](https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm)
     {: .prompt-info }
 
 - Password 설정하지 않았을 때, 아래와 같이 찾아보기

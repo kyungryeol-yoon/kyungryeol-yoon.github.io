@@ -15,7 +15,7 @@ helm repo update
 helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
 ```
 
-> [Helm 설치 참고](https://github.com/kubernetes-csi/csi-driver-smb)
+> [CSI Driver SMB - Helm 설치 참고](https://github.com/kubernetes-csi/csi-driver-smb)
 {: .prompt-info }
 
 ## Customize Default Configuration

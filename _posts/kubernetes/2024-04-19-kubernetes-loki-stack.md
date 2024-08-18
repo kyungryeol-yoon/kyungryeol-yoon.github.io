@@ -15,7 +15,7 @@ helm repo update
 helm install loki-stack grafana/loki-stack --namespace [NAMESPACE NAME] --version [VERSION]
 ```
 
-> [Helm 설치 참고](https://grafana.com/docs/loki/latest/setup/install/helm/)
+> [Loki Stack - Helm 설치 참고](https://grafana.com/docs/loki/latest/setup/install/helm/)
 {: .prompt-info }
 
 ## Customize Default Configuration

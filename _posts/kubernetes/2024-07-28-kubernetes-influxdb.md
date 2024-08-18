@@ -15,7 +15,7 @@ helm repo update
 helm install influxdb influxdata/influxdb
 ```
 
-> [Helm 설치 참고](https://github.com/influxdata/helm-charts)
+> [InfluxDB - Helm 설치 참고](https://github.com/influxdata/helm-charts)
 {: .prompt-info }
 
 ## Customize Default Configuration

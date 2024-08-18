@@ -29,7 +29,7 @@ helm repo update
 helm install promtail grafana/promtail --namespace [NAMESPACE NAME]
 ```
 
-> [Helm 설치 참고](https://grafana.com/docs/loki/latest/clients/promtail/installation/)
+> [Promtail - Helm 설치 참고](https://grafana.com/docs/loki/latest/clients/promtail/installation/)
 {: .prompt-info }
 
 ## Customize Default Configuration

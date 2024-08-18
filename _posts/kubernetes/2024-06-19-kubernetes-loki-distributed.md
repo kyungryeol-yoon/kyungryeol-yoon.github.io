@@ -15,7 +15,7 @@ helm repo update
 helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NAME] --version [VERSION]
 ```
 
-> [Helm 설치 참고](https://grafana.com/docs/loki/latest/setup/install/helm/)
+> [Loki Distributed - Helm 설치 참고](https://grafana.com/docs/loki/latest/setup/install/helm/)
 {: .prompt-info }
 
 ## Customize Default Configuration
@@ -30,8 +30,7 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
 ### Loki Configurations
 우선 Loki 설정값을 어떻게 해야 하는지는 공식문서를 자세히 읽어보면 상당히 많이 나온다.
 
-> **Loki 설정값 공식 문서**
-- https://grafana.com/docs/loki/latest/configuration/
+> [Loki 설정 값 문서](https://grafana.com/docs/loki/latest/configuration/)
 {: .prompt-info }
 
 1. Grafana Loki 모범 사례
@@ -68,8 +67,8 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
       prometheus.io/path: "/metrics"
       prometheus.io/port: "3100"
       ```
-  - Loki에 대한 모니터링 참고
-    - https://grafana.com/docs/loki/latest/operations/observability/
+> [Loki에 대한 모니터링 참고](https://grafana.com/docs/loki/latest/operations/observability/)
+{: .prompt-info }
 
 #### Compactor와 Table Manager
 - Grafana Loki의 로그 보존(Retention)은 Compactor 혹은 Table Manager에 의해 수행된다.
@@ -86,7 +85,8 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
     retention_enabled: true
   ```
 - Compactor의 Retention은 limits_config에 설정해주면 된다.
-  - https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period
+  > [Retention 설정 참고](https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period)
+  {: .prompt-info }
 
 ### Install Customize Default Configuration
 ```shell
