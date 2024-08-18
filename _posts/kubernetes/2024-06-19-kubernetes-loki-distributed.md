@@ -34,9 +34,6 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
 {: .prompt-info }
 
 1. Grafana Loki 모범 사례
-  > - https://grafana.com/docs/loki/latest/best-practices/
-  - https://grafana.com/blog/2021/02/16/the-essential-config-settings-you-should-use-so-you-wont-drop-logs-in-loki/
-  {: .prompt-info }
   - 레이블은 Loki에서 Log를 검색할 때 필터링이 되는 기준이 되는데 여기선 정적 레이블을 가급적이면 사용하라고 가이드하고 있다.
       - 레이블은 클라이언트에서 설정한다음에 Loki에게 Push하면 된다.
   - chunk_target_size를 사용하라고 한다.
@@ -47,6 +44,9 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
   - RF(Replication factor)를 항상 설정할 것을 권고한다.
       - 데이티의 손실 가능성을 완화하기 위해 Ingester의 복제 요소를 일반적으로 3개로 설정할 것을 권고하고 있다.
       - 그러나 복제 요소가 데이터 손실을 방지하는 유일한 요소는 아니며, 주요 목적은 롤아웃 및 재시작 중에 쓰기가 중단되지 않도록 하는 것이다.
+  > - https://grafana.com/docs/loki/latest/best-practices/
+  - https://grafana.com/blog/2021/02/16/the-essential-config-settings-you-should-use-so-you-wont-drop-logs-in-loki/
+  {: .prompt-info }
 
 2. Request Validation, Rate-Limit 에러
   - https://grafana.com/docs/loki/latest/operations/request-validation-rate-limits/
