@@ -51,7 +51,7 @@ kubectl -n smb-test create secret generic smb-creds \
 ```
 
 ### 3. PersistentVolume or StorageClass 생성
-- PersistentVolume
+#### PersistentVolume
   ```yaml
   apiVersion: v1
   kind: PersistentVolume
@@ -80,7 +80,7 @@ kubectl -n smb-test create secret generic smb-creds \
         namespace: smb-test
   ```
 
-- StorageClass
+#### StorageClass
   ```yaml
   apiVersion: storage.k8s.io/v1
   kind: StorageClass
@@ -108,9 +108,10 @@ kubectl -n smb-test create secret generic smb-creds \
     - cache=strict
     - noserverino  # required to prevent data corruption
   ```
-    > **Storage Class 참고**
-      - https://github.com/kubernetes-csi/csi-driver-smb/blob/master/deploy/example/storageclass-smb.yaml
-    {: .prompt-info }
+
+> **Storage Class 참고**
+  - https://github.com/kubernetes-csi/csi-driver-smb/blob/master/deploy/example/storageclass-smb.yaml
+{: .prompt-info }
 
 ### 4. PersistentVolumeClaim 생성
 ```yaml
