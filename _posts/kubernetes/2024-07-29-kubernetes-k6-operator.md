@@ -207,7 +207,6 @@ export default function () {
 ## 테스트 JavaScript 적용
 ```shell
 kubectl -n [NAMESPACE NAME] create configmap test-script --from-file /home/documents/k6/scritps.js 
-configmap/test-script created
 ```
 
 > [K6 Load Test 참고](https://kyungryeol-yoon.github.io/posts/k6-load-testing-tool/)
