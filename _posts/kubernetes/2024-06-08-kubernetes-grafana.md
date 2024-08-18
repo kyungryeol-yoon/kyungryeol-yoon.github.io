@@ -5,7 +5,7 @@ categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Grafana, Helm, Install]
 ---
 
-> Helm 설치 및 설명, [참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 {: .prompt-info }
 
 ## Install the Grafana Helm charts

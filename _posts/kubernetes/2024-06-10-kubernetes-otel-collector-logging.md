@@ -267,6 +267,7 @@ System Log는 별도의 filelog receiver로 /var/log 경로에서 수집한 dmes
 
 Kubernetes Event Log는 k8s_event receiver를 이용해 Kubernetes API로부터 수집합니다.
 
+
 ### Processor Configuration
 Processor는 Log에 Kubernetes Attribute를 부착하기 위한 k8sattributes, Loki Label을 구성하기 위한 resource, OOM 방지를 위한 memory_limiter, Log를 batch성으로 전송하기 위한 batch 4개를 사용합니다.
 

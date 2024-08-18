@@ -5,8 +5,7 @@ categories: [Kubernetes, InfluxDB]
 tags: [Kubernetes, InfluxDB, Install, Helm]
 ---
 
-> Helm 설치 및 설명
-  - https://kyungryeol-yoon.github.io/posts/kubernetes-helm/
+> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 {: .prompt-info }
 
 ## Install InfluxDB
@@ -29,8 +28,7 @@ tags: [Kubernetes, InfluxDB, Install, Helm]
 - Chart : https://github.com/influxdata/helm-charts/tree/master/charts/influxdb
 - Release file (.tgz) : https://github.com/influxdata/helm-charts/releases
 
-> InfluxDB 설정 및 사용법 참고
-  - https://kyungryeol-yoon.github.io/posts/kubernetes-helm/
+> [InfluxDB 설정 및 사용법 참고](https://kyungryeol-yoon.github.io/posts/influxdb/)
 {: .prompt-tip }
 
 ### values.yaml - config 설정
@@ -74,7 +72,7 @@ initScripts:
 
 > API Create Database
 ```shell
-curl -XPOST 'http://<LoadBalancer-IP>:8086/query' --data-urlencode 'q=CREATE DATABASE mydb'
+curl -XPOST 'http://[influxdb-svc].[influxdb-namespace].svc:8086/query' --data-urlencode 'q=CREATE DATABASE mydb'
 ```
 {: .prompt-info }
 

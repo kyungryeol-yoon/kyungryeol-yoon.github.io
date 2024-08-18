@@ -5,8 +5,7 @@ categories: [Kubernetes, OpenTelemetry]
 tags: [Kubernetes, OpenTelemetry, Operator, Cert-manager, Install, Helm]
 ---
 
-> Helm 설치 및 설명
-  - https://kyungryeol-yoon.github.io/posts/kubernetes-helm/
+> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 {: .prompt-info }
 
 ## Install Cert-manager
@@ -53,6 +52,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/do
 - auto-instrumentation of the workloads using OpenTelemetry instrumentation libraries
 
 프로젝트가 다수일 경우 매번 Opentelemetry Collector와 auto-instrumentation agent를 같이 띄울 필요 없이 Operator를 활용하여, 프로젝트별로 Collector를 설치할 수 있고 각 서버마다 agent를 명세할 필요 없이 annotation을 통하여 Operator가 해당 Pod에 sidecar 형태로 추가해준다.
+
 
 
 

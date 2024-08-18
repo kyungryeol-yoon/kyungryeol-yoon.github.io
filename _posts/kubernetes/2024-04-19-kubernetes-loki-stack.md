@@ -5,8 +5,7 @@ categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 ---
 
-> Helm 설치 및 설명
-  - https://kyungryeol-yoon.github.io/posts/kubernetes-helm/
+> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 {: .prompt-info }
 
 ## Install the Loki Stack Helm charts
@@ -34,6 +33,7 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 ```
 ^(?<time>[^ ]* {1,2}[^ ]* [^ ]*) (?<hostname>[^ ]*) (?<daemon>[^ :\[]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?<message>.*)$
 ```
+
 
 
 ### Grafana
