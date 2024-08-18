@@ -20,8 +20,7 @@ tags: [Kubernetes, Grafana, Helm, Install]
   helm repo update
   helm install grafana grafana/grafana --namespace [NAMESPACE NAME] --set adminPassword=<your_password>
   ```
-    > **설치 참고**
-      - https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm
+    > [Helm 설치 참고](https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm)
     {: .prompt-info }
 
 - Password 설정하지 않았을 때, 아래와 같이 찾아보기
@@ -41,9 +40,10 @@ tags: [Kubernetes, Grafana, Helm, Install]
 - values.yaml 수정
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
-
-- Chart : https://github.com/grafana/helm-charts/tree/main/charts/grafana
-- Release file (.tgz) : https://github.com/grafana/helm-charts/releases
+  - Chart
+    - https://github.com/grafana/helm-charts/tree/main/charts/grafana
+  - Release file (.tgz)
+    - https://github.com/grafana/helm-charts/releases
 
 ### Setting Admin
 ```yaml

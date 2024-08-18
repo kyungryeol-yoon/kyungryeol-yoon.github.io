@@ -2,7 +2,7 @@
 title: "[Kubernetes] Grafana Loki"
 date: 2024-04-07
 categories: [Kubernetes, Grafana]
-tags: [Kubernetes, Grafana, Loki]
+tags: [Kubernetes, Grafana, Loki, Install]
 ---
 
 ## Loki
@@ -241,9 +241,8 @@ tags: [Kubernetes, Grafana, Loki]
 - chunk 보관주기를 관리하고(retention), 테이블을 단일 인덱스 파일로 압축한다.
 - Compactor를 통한 보존은 boltdb-shipper 또는 tsdb store에서만 지원된다.
   - Loki 2.8부터는 TSDB Store 사용이 권장이다. 이전에 사용하던 boltdb-shipper보다 효율적이고 빠르며 확장성이 뛰어나다.
-      > 참고
-        - https://grafana.com/docs/loki/latest/storage/
-      {: .prompt-info }
+    > [Loki Storage 참고](https://grafana.com/docs/loki/latest/storage/)
+    {: .prompt-info }
 
 ### Ruler
 - 사용자가 정의한 경고 규칙 기반으로 경고를 발생시키는 등 로그 데이터에 대한 경고를 관리한다.

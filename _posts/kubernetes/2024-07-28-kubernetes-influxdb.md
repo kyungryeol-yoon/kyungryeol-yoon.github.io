@@ -15,22 +15,22 @@ helm repo update
 helm install influxdb influxdata/influxdb
 ```
 
-> **설치 참고**
-  - https://github.com/influxdata/helm-charts
+> [Helm 설치 참고](https://github.com/influxdata/helm-charts)
 {: .prompt-info }
 
 ## Customize Default Configuration
 - values.yaml 수정
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
-
-- Chart : https://github.com/influxdata/helm-charts/tree/master/charts/influxdb
-- Release file (.tgz) : https://github.com/influxdata/helm-charts/releases
+  - Chart
+    - https://github.com/influxdata/helm-charts/tree/master/charts/influxdb
+  - Release file (.tgz)
+    - https://github.com/influxdata/helm-charts/releases
 
 > [InfluxDB 설정 및 사용법 참고](https://kyungryeol-yoon.github.io/posts/influxdb/)
 {: .prompt-tip }
 
-### values.yaml - config 설정
+### Setting config
 ```
 ...
 config:
@@ -58,7 +58,7 @@ config:
 ...
 ```
 
-### values.yaml - create database 설정
+### Setting create database
 ```
 ...
 initScripts:

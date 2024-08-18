@@ -34,7 +34,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/do
   ```shell
   kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
   ```
-  > 설치 참고 : https://github.com/open-telemetry/opentelemetry-operator
+  > [설치 참고](https://github.com/open-telemetry/opentelemetry-operator)
   {: .prompt-info }
 
 - 2. Install Helm Chart - OpenTelemetry Operator
@@ -43,8 +43,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/do
   helm repo update
   helm install opentelemetry-operator open-telemetry/opentelemetry-operator --set "manager.collectorImage.repository=otel/opentelemetry-collector-k8s"
   ```
-  > **Helm 설치 참고**
-    - https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator
+  > [Helm 설치 참고](https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator)
   {: .prompt-info }
 
 ### Opentelemetry Operator가 관리하는 기능 두가지

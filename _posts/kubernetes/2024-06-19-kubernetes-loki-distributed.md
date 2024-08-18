@@ -15,17 +15,17 @@ helm repo update
 helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NAME] --version [VERSION]
 ```
 
-> **설치 참고**
-  - https://grafana.com/docs/loki/latest/setup/install/helm/
+> [Helm 설치 참고](https://grafana.com/docs/loki/latest/setup/install/helm/)
 {: .prompt-info }
 
 ## Customize Default Configuration
 - values.yaml 수정
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
-
-- Chart : https://github.com/grafana/helm-charts/tree/main/charts/loki-distributed
-- Release file (.tgz) : https://github.com/grafana/helm-charts/releases
+  - Chart
+    - https://github.com/grafana/helm-charts/tree/main/charts/loki-distributed
+  - Release file (.tgz)
+    - https://github.com/grafana/helm-charts/releases
 
 ### Loki Configurations
 우선 Loki 설정값을 어떻게 해야 하는지는 공식문서를 자세히 읽어보면 상당히 많이 나온다.

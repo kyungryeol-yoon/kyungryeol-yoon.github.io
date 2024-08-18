@@ -6,8 +6,7 @@ tags: [Kubernetes, Helm, Install]
 ---
 
 ## Install Helm
-
-> 설치 참고 : https://helm.sh/docs/intro/install/
+> [설치 참고](https://helm.sh/docs/intro/install/)
 {: .prompt-info }
 
 ### Script 방식

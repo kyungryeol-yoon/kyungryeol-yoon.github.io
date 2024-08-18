@@ -15,26 +15,33 @@ helm repo update
 helm install loki-stack grafana/loki-stack --namespace [NAMESPACE NAME] --version [VERSION]
 ```
 
-> **설치 참고**
-  - https://grafana.com/docs/loki/latest/setup/install/helm/
+> [Helm 설치 참고](https://grafana.com/docs/loki/latest/setup/install/helm/)
 {: .prompt-info }
 
 ## Customize Default Configuration
 - values.yaml 수정
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
+  - Chart
+    - https://github.com/grafana/helm-charts/tree/main/charts/loki-stack
+  - Release file (.tgz)
+    - https://github.com/grafana/helm-charts/releases
 
-- Chart : https://github.com/grafana/helm-charts/tree/main/charts/loki-stack
-- Release file (.tgz) : https://github.com/grafana/helm-charts/releases
-
-### Promtail
-#### syslog regex
+### Setting Promtail
+```yaml
+promtail:
+  enabled: true
+  config:
+    logLevel: info
+    serverPort: 3101
+    clients:
+      - url: http://{{ .Release.Name }}:3100/loki/api/v1/push
 ```
-^(?<time>[^ ]* {1,2}[^ ]* [^ ]*) (?<hostname>[^ ]*) (?<daemon>[^ :\[]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?<message>.*)$
-```
 
-### Loki
+> [Promtail 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-grafana-promtail/)
+{: .prompt-info }
 
+### Setting Loki
 ```yaml
 loki:
   enabled: true
@@ -55,8 +62,23 @@ loki:
     uid: ""
 ```
 
+> [Loki 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-grafana-loki/)
+{: .prompt-info }
 
-### Grafana
+### Setting Grafana
+```yaml
+grafana:
+  enabled: false
+  sidecar:
+    datasources:
+      label: ""
+      labelValue: ""
+      enabled: true
+      maxLines: 1000
+  image:
+    tag: 10.3.3
+```
+
 > [Grafana 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-grafana/)
 {: .prompt-info }
 
