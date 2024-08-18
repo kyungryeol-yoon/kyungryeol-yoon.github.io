@@ -37,10 +37,6 @@ helm install csi-driver-smb csi-driver-smb/csi-driver-smb -f override-values.yam
 ```
 
 ## Test
-> Storage Class 참고
-  - https://github.com/kubernetes-csi/csi-driver-smb/blob/master/deploy/example/storageclass-smb.yaml
-{: .prompt-info }
-
 ### 1. Namespace 생성
 ```shell
 kubectl create ns smb-test
@@ -54,34 +50,67 @@ kubectl -n smb-test create secret generic smb-creds \
 --from-literal password=testpw
 ```
 
-### 3. PersistentVolume 생성
-```yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv-smb
-  namespace: smb-test
-spec:
-  storageClassName: ''
-  capacity:
-    storage: 50Gi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
+### 3. PersistentVolume or StorageClass 생성
+- PersistentVolume
+  ```yaml
+  apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: pv-smb
+    namespace: smb-test
+  spec:
+    storageClassName: ''
+    capacity:
+      storage: 50Gi
+    accessModes:
+      - ReadWriteMany
+    persistentVolumeReclaimPolicy: Retain
+    mountOptions:
+      - dir_mode=0777
+      - file_mode=0777
+      - vers=3.0
+    csi:
+      driver: smb.csi.k8s.io
+      readOnly: false
+      volumeHandle: $VOLUMEID  # make sure it's a unique id in the cluster
+      volumeAttributes:
+        source: //12.123.123.123/testuser
+      nodeStageSecretRef:
+        name: smb-creds
+        namespace: smb-test
+  ```
+
+- StorageClass
+  ```yaml
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    name: smb
+    namespace: smb-test
+  provisioner: smb.csi.k8s.io
+  parameters:
+    # On Windows, "*.default.svc.cluster.local" could not be recognized by csi-proxy
+    source: //smb-server.default.svc.cluster.local/share
+    # if csi.storage.k8s.io/provisioner-secret is provided, will create a sub directory
+    # with PV name under source
+    # csi.storage.k8s.io/provisioner-secret-name: smbcreds
+    # csi.storage.k8s.io/provisioner-secret-namespace: [NAMESPACE NAME]
+    csi.storage.k8s.io/node-stage-secret-name: smbcreds
+    csi.storage.k8s.io/node-stage-secret-namespace: smb-test
+  volumeBindingMode: Immediate
   mountOptions:
     - dir_mode=0777
     - file_mode=0777
-    - vers=3.0
-  csi:
-    driver: smb.csi.k8s.io
-    readOnly: false
-    volumeHandle: $VOLUMEID  # make sure it's a unique id in the cluster
-    volumeAttributes:
-      source: //12.123.123.123/testuser
-    nodeStageSecretRef:
-      name: smb-creds
-      namespace: smb-test
-```
+    - uid=1001
+    - gid=1001
+    - noperm
+    - mfsymlinks
+    - cache=strict
+    - noserverino  # required to prevent data corruption
+  ```
+  > Storage Class 참고
+    - https://github.com/kubernetes-csi/csi-driver-smb/blob/master/deploy/example/storageclass-smb.yaml
+  {: .prompt-info }
 
 ### 4. PersistentVolumeClaim 생성
 ```yaml
@@ -96,8 +125,8 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  volumeName: pv-smb
-  storageClassName: ''
+  volumeName: pv-smb    # pv를 설정했을 때
+  storageClassName: smb    # sc를 설정했을 때
 ```
 
 ### 5. Deployment 생성
