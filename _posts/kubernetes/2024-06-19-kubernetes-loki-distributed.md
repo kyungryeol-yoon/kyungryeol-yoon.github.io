@@ -78,7 +78,7 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
 - 만약 Compactor로 Retention을 적용한다면 Table Manager는 필요로 하지 않게 될 수 있다.
 - 현재 Grafana Loki에서는 Compactor를 중점적으로 개발중인 것 같다. 
 
-- 다음은 Compactor 설정 예시이다.
+- Compactor 설정 예시
   ```config
   compactor:
     shared_store: s3

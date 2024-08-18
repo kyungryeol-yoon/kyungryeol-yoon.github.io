@@ -12,16 +12,11 @@ tags: [Kubernetes, Grafana, Loki, Install]
 - 이후 Grafana에서 LogQL이라는 쿼리 언어를 통해 로그를 검색하게 된다.
 - 또한 경고 규칙을 설정하여 Prometheus Alertmanager로 경고를 보낼 수 있다.
 
-> 참고
-  - https://github.com/grafana/loki
+> [Loki 참고](https://github.com/grafana/loki)
 {: .prompt-info }
 
 - "Like Prometheus, but for logs"
 - Prometheus가 metric을 시계열 데이터로 저장하기 위해 사용된다면 Loki는 log 데이터를 저장하기 위해 사용된다.
-
-> 참고
-  - https://grafana.com/docs/loki/latest/fundamentals/overview/
-{: .prompt-info }
 
 - Loki는 log data를 효율적으로 보관하기 위해 최적화된 데이터 저장소이다.
 - 다른 logging system과 다르게 Loki index는 label에서 작성되며 원래 log message는 색인화되지 않는다.
@@ -32,21 +27,22 @@ tags: [Kubernetes, Grafana, Loki, Install]
 - label의 quality set은 간결하고 효율적인 query 실행을 허용하는 index 생성의 핵심이다.
 - LogQL은 Loki의 query language이다.
 
-- Loki의 특징
-  - log indexing을 위한 효율적인 memory 사용
-  - multi-tenancy
-  - LogQL - Prometheus의 query language인 PromQL과 유사하며, log data에서 metric을 생성하는 것이 용이함.
-  - Scalability - 단일 바이너리로 사용할 수도 있으나 component 별 microservice로 실행될 수도 있음
-  - Flexibility - 많은 agent가 플러그인을 지원
-  - Grafana 통합
+### Loki 특징
+- log indexing을 위한 효율적인 memory 사용
+- multi-tenancy
+- LogQL - Prometheus의 query language인 PromQL과 유사하며, log data에서 metric을 생성하는 것이 용이함.
+- Scalability - 단일 바이너리로 사용할 수도 있으나 component 별 microservice로 실행될 수도 있음
+- Flexibility - 많은 agent가 플러그인을 지원
+- Grafana 통합
 
-> 참고
-  - https://grafana.com/docs/loki/latest/operations/storage/
+### Loki 저장소
+> [Manage storage 참고](https://grafana.com/docs/loki/latest/operations/storage/)
 {: .prompt-info }
 
 - Loki는 chunk와 index라는 두 가지 유형의 데이터를 저장해야 한다.
 - Loki는 별도의 stream으로 log를 수신하며 각 steam은 tenant ID와 label set으로 고유하게 식별된다.
-- stream의 log 항목이 도착하면 chunk로 압축되어 chunk 저장소에 저장된다.index는 각 steam의 label set를 저장하고 개별 chunk에 연결한다.
+- stream의 log 항목이 도착하면 chunk로 압축되어 chunk 저장소에 저장된다.
+- index는 각 steam의 label set를 저장하고 개별 chunk에 연결한다.
 
 - index에 대해 다음 저장소가 지원
   - Single Store (boltdb-shipper)
@@ -68,6 +64,7 @@ tags: [Kubernetes, Grafana, Loki, Install]
     > [minio 참고](https://blog.min.io/how-to-grafana-loki-minio/)
     {: .prompt-info }
 
+### Loki 설정
 > **설정 파일에 대한 자세한 내용**
   - https://grafana.com/docs/loki/latest/configuration/
   - common 아래에 설정을 하면 전체가 공통으로 사용할 설정을 하게 된다.
