@@ -28,16 +28,18 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 - Chart : https://github.com/grafana/helm-charts/tree/main/charts/loki-stack
 - Release file (.tgz) : https://github.com/grafana/helm-charts/releases
 
-### promtail
+### Promtail
 #### syslog regex
 ```
 ^(?<time>[^ ]* {1,2}[^ ]* [^ ]*) (?<hostname>[^ ]*) (?<daemon>[^ :\[]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?<message>.*)$
 ```
 
+### Loki
 
 
 ### Grafana
-https://kyungryeol-yoon.github.io/posts/kubernetes-grafana/
+> [Grafana 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-grafana/)
+{: .prompt-info }
 
 ### Install Customize Default Configuration
 ```shell
