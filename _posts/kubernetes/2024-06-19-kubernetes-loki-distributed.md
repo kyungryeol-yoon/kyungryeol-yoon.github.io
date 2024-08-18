@@ -69,7 +69,8 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
       prometheus.io/path: "/metrics"
       prometheus.io/port: "3100"
       ```
-  - Loki에 대한 모니터링 https://grafana.com/docs/loki/latest/operations/observability/
+  - Loki에 대한 모니터링 참고
+    - https://grafana.com/docs/loki/latest/operations/observability/
 
 #### Compactor와 Table Manager
 - Grafana Loki의 로그 보존(Retention)은 Compactor 혹은 Table Manager에 의해 수행된다.

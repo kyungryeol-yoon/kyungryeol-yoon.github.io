@@ -97,13 +97,15 @@ helm install k6-operator grafana/k6-operator -f override-values.yaml -n [NAMESPA
   kubectl delete -f /path/to/your/k6-resource.yml
   ```
 
-> [Run k6 사용법](https://grafana.com/docs/k6/latest/set-up/set-up-distributed-k6/usage/)
+> **Run k6 사용법**
+  - https://grafana.com/docs/k6/latest/set-up/set-up-distributed-k6/usage/
 {: .prompt-info }
 
-> [Stream real-time](https://grafana.com/docs/k6/latest/results-output/real-time/)
+> **Stream real-time**
+  - https://grafana.com/docs/k6/latest/results-output/real-time/
 {: .prompt-info }
 
-> [InfluxDB 설치 관련](https://kyungryeol-yoon.github.io/posts/kubernetes-install-influxdb/)
+> [InfluxDB 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-influxdb/)
 {: .prompt-info }
 
 ### Dockerfile Build with xk6-output-influxdb
@@ -209,7 +211,7 @@ kubectl -n [NAMESPACE NAME] create configmap test-script --from-file /home/docum
 configmap/test-script created
 ```
 
-> 참고 : [K6 Load Test](https://kyungryeol-yoon.github.io/posts/k6-load-testing-tool/)
+> [K6 Load Test 참고](https://kyungryeol-yoon.github.io/posts/k6-load-testing-tool/)
 {: .prompt-info }
 
 ## Uninstall the Chart

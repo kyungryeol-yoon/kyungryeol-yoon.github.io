@@ -38,7 +38,8 @@ helm install csi-driver-smb csi-driver-smb/csi-driver-smb -f override-values.yam
 ```
 
 ## Test
-> 참고 [Storage Class](https://github.com/kubernetes-csi/csi-driver-smb/blob/master/deploy/example/storageclass-smb.yaml)
+> Storage Class 참고
+  - https://github.com/kubernetes-csi/csi-driver-smb/blob/master/deploy/example/storageclass-smb.yaml
 {: .prompt-info }
 
 ### 1. Namespace 생성
