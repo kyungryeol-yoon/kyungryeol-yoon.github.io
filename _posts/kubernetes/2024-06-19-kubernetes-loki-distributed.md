@@ -63,7 +63,7 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
   - 모든 컴포넌트들의 Service annotation에 아래의 문구를 추가해준다.
     - 메트릭들을 활용하여 Grafana dashboard를 구성하면 된다.
     - 이렇게 하면 Prometheus가 자동으로 /metrics 엔드포인트로 메트릭들을 scrape 해간다.
-      ```
+      ```yaml
       prometheus.io/scrape: "true"
       prometheus.io/path: "/metrics"
       prometheus.io/port: "3100"
