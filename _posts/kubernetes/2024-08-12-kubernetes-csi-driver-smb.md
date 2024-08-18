@@ -15,16 +15,17 @@ helm repo update
 helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
   ```
 
-> **설치 참고**
-  - https://github.com/kubernetes-csi/csi-driver-smb
+> [설치 참고](https://github.com/kubernetes-csi/csi-driver-smb)
 {: .prompt-info }
 
 ## Customize Default Configuration
 - values.yaml 수정
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
-  - Chart : https://github.com/kubernetes-csi/csi-driver-smb/tree/master/charts
-  - Release file (.tgz) : https://github.com/kubernetes-csi/csi-driver-smb/releases
+  - Chart
+    - https://github.com/kubernetes-csi/csi-driver-smb/tree/master/charts
+  - Release file (.tgz)
+    - https://github.com/kubernetes-csi/csi-driver-smb/releases
 
 ### Install Customize Default Configuration
 ```shell

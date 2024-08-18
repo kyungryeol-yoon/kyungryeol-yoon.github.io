@@ -6,7 +6,9 @@ tags: [K6, Test, JavaScript]
 ---
 
 - Smoke Test, Load Test, Stress Test 등 다양한 테스트 지원
-- 예를 들어 Kubernetes에 애플리케이션 Pod를 배포한다고 가정했을 때, 파드의 resources를 지정해줘야 하는데 어느 정도 값을 줘야 하는 지 모를 때가 있다. 이때 k6 의 Load Test 를 진행하면 보다 수월하게 값을 지정할 수 있다.
+- 예를 들어, Kubernetes에 애플리케이션 Pod를 배포한다고 가정했을 때
+  - Pod의 resources를 지정해줘야 하는데 어느 정도 값을 줘야 하는 지 모를 때가 있다.
+  - 이때 k6 의 Load Test 를 진행하면 보다 수월하게 값을 지정할 수 있다.
 
 > [Load Test Type](https://grafana.com/docs/k6/latest/testing-guides/test-types/)
 {: .prompt-info }
@@ -450,6 +452,7 @@ scenario2 ✓ [======================================] 1 VUS 10s
 - AWS S3 서비스만 봐도 [99.999999999%의 내구성과 99.99%의 가용성을 제공](https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/DataDurability.html)한다고 합니다.
 
 ### [Test 표준 측정 항목](https://grafana.com/docs/k6/latest/using-k6/metrics/reference/#standard-built-in-metrics)
+
 | Metric Name | Type | Description |
 |:-|:-|:-|
 | vus | Gauge | 현재 활성화 된 사용자 유저 |
@@ -462,6 +465,7 @@ scenario2 ✓ [======================================] 1 VUS 10s
 | checks | Rate | 성공적으로 체크된 Rate |
 
 ### [HTTP 측정 항목](https://grafana.com/docs/k6/latest/using-k6/metrics/reference/#http)
+
 | Metric Name | Type | Description |
 |:-|:-|:-|
 | http_reqs | Counter | 총 얼마나 많은 HTTP requests를 k6에서 생성했는지 횟수 |
@@ -473,6 +477,7 @@ scenario2 ✓ [======================================] 1 VUS 10s
 | http_req_receiving | Trend | 원격 호스트로부터 응답 데이터를 수신하는 데 소요된 시간. 단위: float |
 | http_req_duration | Trend | 요청의 총 시간. It's equal to http_req_sending + http_req_waiting + http_req_receiving (즉, 초기 DNS 조회/연결 시간 없이 원격 서버가 요청을 처리하고 응답하는 데 소요된 시간s). 단위: float |
 | http_req_failed | Rate | [setResponseCallback](https://k6.io/docs/javascript-api/k6-http/setresponsecallback/) 에 따른 요칭 실패 비율. |
+
 
 > [출력 가능한 옵션](https://grafana.com/docs/k6/latest/results-output/real-time/)
 {: .prompt-info }

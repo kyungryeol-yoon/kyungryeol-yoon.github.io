@@ -240,7 +240,7 @@ tags: [Kubernetes, Grafana, Loki]
 ### Compactor
 - chunk 보관주기를 관리하고(retention), 테이블을 단일 인덱스 파일로 압축한다.
 - Compactor를 통한 보존은 boltdb-shipper 또는 tsdb store에서만 지원된다.
-  - Loki 2.8부터는 tsdb store사용이 권장이다. 이전에 사용하던 boltdb-shipper보다 효율적이고 빠르며 확장성이 뛰어나다.
+  - Loki 2.8부터는 TSDB Store 사용이 권장이다. 이전에 사용하던 boltdb-shipper보다 효율적이고 빠르며 확장성이 뛰어나다.
       > 참고
         - https://grafana.com/docs/loki/latest/storage/
       {: .prompt-info }
