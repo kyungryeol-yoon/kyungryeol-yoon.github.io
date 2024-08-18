@@ -108,7 +108,7 @@ kubectl -n smb-test create secret generic smb-creds \
     - cache=strict
     - noserverino  # required to prevent data corruption
   ```
-    > Storage Class 참고
+    > **Storage Class 참고**
       - https://github.com/kubernetes-csi/csi-driver-smb/blob/master/deploy/example/storageclass-smb.yaml
     {: .prompt-info }
 
