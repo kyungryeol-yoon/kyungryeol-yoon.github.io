@@ -34,23 +34,22 @@ tags: [K6, Test, JavaScript]
 - 이렇듯 같은 행위를 얼마만큼 안정적으로 반복할 수 있는지를 테스트하는 지표
 
 ## k6의 Lifecycle은 크게 네가지
+```js
+// 1. 초기화 - init code
 
-```
-# 1. 초기화 - init code
-
-# 2. 전처리 - setup code
+// 2. 전처리 - setup code
 export function setup() {
-	#　로그인 토큰취득 등 API실행전에 필요한 처리 구현
+	//　로그인 토큰취득 등 API실행전에 필요한 처리 구현
 }
 
-# 3. API실행(시나리오 실행) - VU code
+// 3. API실행(시나리오 실행) - VU code
 export default function (data) {
-	# API를 실행할 시나리오를 구현
+	/// API를 실행할 시나리오를 구현
 }
 
-# 4. API 실행후 처리 - teardown code
+// 4. API 실행후 처리 - teardown code
 export function teardown(data) {
-	# API 실행후에 필요한 처리가 있다면 구현
+	// API 실행후에 필요한 처리가 있다면 구현
 }
 ```
 
@@ -73,16 +72,14 @@ export function teardown(data) {
 	- teardown은 테스트 끝날때 한번만 수행되며 VU 코드가 종료되고 난뒤 바로 수행
 
 ### setup, teardown 스킵
-
 - `--no-setup` 옵션을 이용하여 셋업을 스킵한다.
 - `--no-teardown` 옵션을 이용하여 teardown 을 스킵한다.
 
-```
+```shell
 k6 run --no-setup --no-teardown ...
 ```
 
 ### setup에서 정의한 데이터를 전달
-
 - setup에서 정의한 데이터를 default function과 teardown 으로 전달
 
 ```js
@@ -111,8 +108,7 @@ export function teardown(data) {
 {: .prompt-info }
 
 ## Test Code 작성 방법
-
-- k6 는 가상 유저를 만들어 애플리케이션에 원하는 요청을 반복적으로 보내게 된다.
+- k6는 가상 유저를 만들어 애플리케이션에 원하는 요청을 반복적으로 보내게 된다.
 
 ```js
 import http from "k6/http"		// http test
@@ -138,8 +134,8 @@ export default function () {
 - [K6 API Test](https://test-api.k6.io)
 {: .prompt-info }
 
-> 1명의 가상 유저가 한번만 default function을 호출하는 것이 아닌, 60초 동안 해당 함수를 계속 호출한다.\\
-즉, default function을 1명씩 1번 호출해서 총 10번 호출하는 것이 아닌, 1명의 가상유저가 5~10번 정도 호출한다.
+> - 1명의 가상 유저가 한번만 default function을 호출하는 것이 아닌, 60초 동안 해당 함수를 계속 호출한다.
+- 즉, default function을 1명씩 1번 호출해서 총 10번 호출하는 것이 아닌, 1명의 가상유저가 5~10번 정도 호출한다.
 {: .prompt-info }
 
 > - Production 환경이 아닌 Dev 또는 Staging 환경에서 진행
@@ -148,7 +144,6 @@ export default function () {
 {: .prompt-warning }
 
 ### Test Code 작성 예시
-
 ```js
 import http from "k6/http";
 import { sleep, check } from "k6";
@@ -225,7 +220,6 @@ export function scenarioFunc(token, data) {
 ```
 
 #### Option 관련
-
 ```js
 export const options = {
   scenarios: {
@@ -242,17 +236,19 @@ export const options = {
 };
 ```
 
-- executor : k6의 실행 엔진을 나타낸다.
+- **executor** : k6의 실행 엔진을 나타낸다.
 	- 여기에서 VU(Virtual user)나 스크립트 실행 패턴을 지정할 수 있다.
 	- 자세한 내용은 k6의 [executors](https://grafana.com/docs/k6/latest/using-k6/scenarios/executors/)를 참조
-- exec : 실행하고자 하는 시나리오를 지정
-- vus : Virtual Users API를 실행할 가상 유저. 필요한 만큼의 병렬 실행 수를 여기에 설정
-- duration : VUS가 반복 시나리오를 실행하는 시간을 설정
-- env : 공통으로 사용되는 변수를 설정
-- 참고 : https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/
+- **exec** : 실행하고자 하는 시나리오를 지정
+- **vus** : Virtual Users API를 실행할 가상 유저. 필요한 만큼의 병렬 실행 수를 여기에 설정
+- **duration** : VUS가 반복 시나리오를 실행하는 시간을 설정
+- **env** : 공통으로 사용되는 변수를 설정
+ 
+> 참고
+  - https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/
+{: .prompt-info }
 
 #### Trend 관련
-
 ```js
 const trends = {
   scenario1: new Trend("scenario1_response_time", true),
@@ -270,7 +266,6 @@ scenario2_response_time.......: avg=1.29s    min=1.25s    med=1.29s max=1.36s   
 ```
 
 #### Setup 관련
-
 ```js
 export function setup() {
   const url = "";
@@ -290,7 +285,6 @@ export function setup() {
 - 로그인이 필요한 서비스를 가정하여 토큰을 취득
 
 #### scenario 관련
-
 ```js
 export function scenarioFunc(token) {
   const scenarioUrl = "";
@@ -318,7 +312,6 @@ export function scenarioFunc(token) {
 - 여기에서 API실행이 성공했는지 실패했는지 확인하고 결과에 기록
 - 실패해도 중간에 멈추지 않고 실행하기 때문에 유연하게 대응할 수 있다.
 
-
 > [K6 HTTP Module](https://grafana.com/docs/k6/latest/javascript-api/k6-http/)
 {: .prompt-info }
 
@@ -326,7 +319,6 @@ export function scenarioFunc(token) {
 {: .prompt-info }
 
 ### Result
-
 ```
           /\      |‾‾| /‾‾/   /‾‾/
      /\  /  \     |  |/  /   /  /
@@ -458,7 +450,6 @@ scenario2 ✓ [======================================] 1 VUS 10s
 - AWS S3 서비스만 봐도 [99.999999999%의 내구성과 99.99%의 가용성을 제공](https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/DataDurability.html)한다고 합니다.
 
 ### [Test 표준 측정 항목](https://grafana.com/docs/k6/latest/using-k6/metrics/reference/#standard-built-in-metrics)
-
 | Metric Name | Type | Description |
 |:-|:-|:-|
 | vus | Gauge | 현재 활성화 된 사용자 유저 |
@@ -471,7 +462,6 @@ scenario2 ✓ [======================================] 1 VUS 10s
 | checks | Rate | 성공적으로 체크된 Rate |
 
 ### [HTTP 측정 항목](https://grafana.com/docs/k6/latest/using-k6/metrics/reference/#http)
-
 | Metric Name | Type | Description |
 |:-|:-|:-|
 | http_reqs | Counter | 총 얼마나 많은 HTTP requests를 k6에서 생성했는지 횟수 |

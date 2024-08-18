@@ -1,6 +1,6 @@
 ---
 title: "[Kubernetes] Grafana Loki"
-date: 2024-02-07
+date: 2024-04-07
 categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Grafana, Loki]
 ---
@@ -32,7 +32,7 @@ tags: [Kubernetes, Grafana, Loki]
 - label의 quality set은 간결하고 효율적인 query 실행을 허용하는 index 생성의 핵심이다.
 - LogQL은 Loki의 query language이다.
 
-- Loki의 특징은 다음과 같다.
+- Loki의 특징
   - log indexing을 위한 효율적인 memory 사용
   - multi-tenancy
   - LogQL - Prometheus의 query language인 PromQL과 유사하며, log data에서 metric을 생성하는 것이 용이함.
@@ -48,14 +48,14 @@ tags: [Kubernetes, Grafana, Loki]
 - Loki는 별도의 stream으로 log를 수신하며 각 steam은 tenant ID와 label set으로 고유하게 식별된다.
 - stream의 log 항목이 도착하면 chunk로 압축되어 chunk 저장소에 저장된다.index는 각 steam의 label set를 저장하고 개별 chunk에 연결한다.
 
-- index에 대해 다음 저장소가 지원된다.
+- index에 대해 다음 저장소가 지원
   - Single Store (boltdb-shipper)
   - Amazon DynamoDB
   - Google Bigtable
   - Apache Cassandra
   - BoltDB
 
-- chunk에 대해 다음 저장소가 지원된다.
+- chunk에 대해 다음 저장소가 지원
   - Amazon DynamoDB
   - Google Bigtable
   - Apache Cassandra
@@ -65,9 +65,9 @@ tags: [Kubernetes, Grafana, Loki]
   - Baidu Object Storage
 
 - 기본 설정은 storage가 filesystem이며 Amazon S3의 경우 로컬에서 개발 시 minio를 사용할 수도 있다.
-  > 참고
-    - https://blog.min.io/how-to-grafana-loki-minio/
-  {: .prompt-info }
+    > 참고
+      - https://blog.min.io/how-to-grafana-loki-minio/
+    {: .prompt-info }
 
 > **설정 파일에 대한 자세한 내용**
   - https://grafana.com/docs/loki/latest/configuration/
@@ -75,7 +75,9 @@ tags: [Kubernetes, Grafana, Loki]
 {: .prompt-info }
 
 - Loki는 component별 microservice로 구성할 수 있다.
-  - https://grafana.com/docs/loki/latest/fundamentals/architecture/components/
+    > 참고
+      - https://grafana.com/docs/loki/latest/fundamentals/architecture/components/
+    {: .prompt-info }
 
 - Loki의 component는 대략 아래와 같이 있다.
   - **Distributor** : client가 수신하는 stream을 처리하는 역할, steam의 유효성을 확인하고 여러 ingester로 병렬로 전송을 적절하게 제어
@@ -98,7 +100,7 @@ tags: [Kubernetes, Grafana, Loki]
 - 이 단일 노드는 다수의 컨테이너로 구성되어 Loki 서버, Prometheus, Grafana 및 Prometheus 메트릭 저장소를 모두 단일 클러스터에 배포한다.
 - 이 단순한 배포 방식은 개발 및 테스트 용도로 적합할 수 있다.
 
-> [loki-stack 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-loki-stack/)
+> [loki-stack 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-loki-stack/)
 {: .prompt-info }
 
 ### 2. loki-distributed
@@ -106,7 +108,7 @@ tags: [Kubernetes, Grafana, Loki]
 - 이 차트는 Loki의 구성 요소들을 다수의 노드로 분산시키고, 데이터를 보다 효율적으로 처리하고 처리 능력을 확장할 수 있도록 도와준다.
 - 분산된 Loki를 사용하면 대량의 로그를 처리하는 데 더 적합하며, 고가용성과 확장성을 갖추기 위해 다양한 구성을 가능하게 한다.
 
-> [loki-distributed 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-loki-distributed/)
+> [loki-distributed 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-loki-distributed/)
 {: .prompt-info }
 
 ## Architecture
@@ -239,9 +241,9 @@ tags: [Kubernetes, Grafana, Loki]
 - chunk 보관주기를 관리하고(retention), 테이블을 단일 인덱스 파일로 압축한다.
 - Compactor를 통한 보존은 boltdb-shipper 또는 tsdb store에서만 지원된다.
   - Loki 2.8부터는 tsdb store사용이 권장이다. 이전에 사용하던 boltdb-shipper보다 효율적이고 빠르며 확장성이 뛰어나다.
-    > 참고
-      - https://grafana.com/docs/loki/latest/storage/
-    {: .prompt-info }
+      > 참고
+        - https://grafana.com/docs/loki/latest/storage/
+      {: .prompt-info }
 
 ### Ruler
 - 사용자가 정의한 경고 규칙 기반으로 경고를 발생시키는 등 로그 데이터에 대한 경고를 관리한다.
@@ -275,4 +277,6 @@ tags: [Kubernetes, Grafana, Loki]
   ```
 
 - Compactor의 Retention은 limits_config에 설정해주면 된다.
-  - https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period
+    > 참고
+      - https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period
+    {: .prompt-info }

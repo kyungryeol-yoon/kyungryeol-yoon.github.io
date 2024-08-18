@@ -1,6 +1,6 @@
 ---
 title: "[Kubernetes] AWX"
-date: 2024-06-02
+date: 2024-02-02
 categories: [Kubernetes, AWX]
 tags: [Kubernetes, AWX, Ansible, Install, Helm]
 ---

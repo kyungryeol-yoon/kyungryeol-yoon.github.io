@@ -35,6 +35,26 @@ helm install loki-stack grafana/loki-stack --namespace [NAMESPACE NAME] --versio
 
 ### Loki
 
+```yaml
+loki:
+  enabled: true
+  isDefault: true
+  url: http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}
+  readinessProbe:
+    httpGet:
+      path: /ready
+      port: http-metrics
+    initialDelaySeconds: 45
+  livenessProbe:
+    httpGet:
+      path: /ready
+      port: http-metrics
+    initialDelaySeconds: 45
+  datasource:
+    jsonData: "{}"
+    uid: ""
+```
+
 
 ### Grafana
 > [Grafana 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-grafana/)
