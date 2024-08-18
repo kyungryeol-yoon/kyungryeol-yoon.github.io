@@ -65,8 +65,7 @@ tags: [Kubernetes, Grafana, Loki, Install]
   - Baidu Object Storage
 
 - 기본 설정은 storage가 filesystem이며 Amazon S3의 경우 로컬에서 개발 시 minio를 사용할 수도 있다.
-    > 참고
-      - https://blog.min.io/how-to-grafana-loki-minio/
+    > [minio 참고](https://blog.min.io/how-to-grafana-loki-minio/)
     {: .prompt-info }
 
 > **설정 파일에 대한 자세한 내용**
@@ -75,8 +74,7 @@ tags: [Kubernetes, Grafana, Loki, Install]
 {: .prompt-info }
 
 - Loki는 component별 microservice로 구성할 수 있다.
-    > 참고
-      - https://grafana.com/docs/loki/latest/fundamentals/architecture/components/
+    > [Component 참고](https://grafana.com/docs/loki/latest/fundamentals/architecture/components/)
     {: .prompt-info }
 
 - Loki의 component는 대략 아래와 같이 있다.
@@ -276,6 +274,5 @@ tags: [Kubernetes, Grafana, Loki, Install]
   ```
 
 - Compactor의 Retention은 limits_config에 설정해주면 된다.
-    > 참고
-      - https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period
+    > [Retention 설정 참고](https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period)
     {: .prompt-info }

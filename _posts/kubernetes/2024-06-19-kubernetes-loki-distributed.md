@@ -67,6 +67,7 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
       prometheus.io/path: "/metrics"
       prometheus.io/port: "3100"
       ```
+
 > [Loki에 대한 모니터링 참고](https://grafana.com/docs/loki/latest/operations/observability/)
 {: .prompt-info }
 
