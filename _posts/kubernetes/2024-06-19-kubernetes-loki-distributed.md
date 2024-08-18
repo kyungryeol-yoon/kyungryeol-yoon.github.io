@@ -9,12 +9,11 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 {: .prompt-info }
 
 ## Install the Loki Distributed Helm charts
-- Loki Distributed 배포
-  ```shell
-  helm repo add grafana https://grafana.github.io/helm-charts
-  helm repo update
-  helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NAME] --version [VERSION]
-  ```
+```shell
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NAME] --version [VERSION]
+```
 
 > **설치 참고**
   - https://grafana.com/docs/loki/latest/setup/install/helm/

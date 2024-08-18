@@ -9,12 +9,11 @@ tags: [Kubernetes, K6, Install, Helm]
 {: .prompt-info }
 
 ## Install k6-operator
-- Helm install
-  ```shell
-  helm repo add grafana https://grafana.github.io/helm-charts
-  helm repo update
-  helm install k6-operator grafana/k6-operator
-  ```
+```shell
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm install k6-operator grafana/k6-operator
+```
 
 > **설치 참고**
   - https://grafana.com/docs/k6/latest/set-up/set-up-distributed-k6/install-k6-operator/

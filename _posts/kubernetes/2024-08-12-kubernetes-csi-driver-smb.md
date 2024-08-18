@@ -9,11 +9,10 @@ tags: [Kubernetes, csi, smb, Install, Helm]
 {: .prompt-info }
 
 ## Install CSI Driver SMB
-- Helm install
-  ```shell
-  helm repo add csi-driver-smb https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
-  helm repo update
-  helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
+```shell
+helm repo add csi-driver-smb https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
+helm repo update
+helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
   ```
 
 > **설치 참고**

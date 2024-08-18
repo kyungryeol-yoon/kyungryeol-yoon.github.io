@@ -9,12 +9,11 @@ tags: [Kubernetes, InfluxDB, Install, Helm]
 {: .prompt-info }
 
 ## Install InfluxDB
-- Helm install
-  ```shell
-  helm repo add influxdata https://helm.influxdata.com/
-  helm repo update
-  helm install influxdb influxdata/influxdb
-  ```
+```shell
+helm repo add influxdata https://helm.influxdata.com/
+helm repo update
+helm install influxdb influxdata/influxdb
+```
 
 > **설치 참고**
   - https://github.com/influxdata/helm-charts
