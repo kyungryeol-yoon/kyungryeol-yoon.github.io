@@ -1,7 +1,7 @@
 ---
 title: "[Python] 원하는 개수만큼 자르기"
 date: 2022-10-22
-# categories: [Programming, Python]
+categories: [Python, Programming]
 tags: [Python, List, Programming]
 ---
 
