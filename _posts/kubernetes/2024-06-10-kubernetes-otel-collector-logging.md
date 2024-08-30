@@ -77,7 +77,7 @@ tags: [Kubernetes, OpenTelemetry, Collector, Logging]
             - type: regex_parser
               id: extract_metadata_from_filepath
               # Pod UID is not always 36 characters long
-              regex: '^.*\/(?P<namespace>\S+)\/(?P<pod_name>\S+)\/(?<log_file_name>\S+)\.log$'
+              regex: '^.*\/(?P<namespace>\S+)\/(?P<pod_name>\S+)\/(?P<log_file_name>\S+)\.log$'
               parse_from: attributes["log.file.path"]
               cache:
                 size: 128 # default maximum amount of Pods per Node is 110

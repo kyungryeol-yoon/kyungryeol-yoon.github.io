@@ -101,6 +101,12 @@ config:
   # @default -- See `values.yaml`
   clients:
     - url: http://loki-gateway/loki/api/v1/push
+    - basic_auth:
+        password: ${LOKI_BASIC_AUTH_PW}
+        username: ${LOKI_BASIC_AUTH_USER}
+      external_labels:
+        cluster: ${CLUSTER}
+      url: ${LOKI_URL}
   # -- Configures where Promtail will save it's positions file, to resume reading after restarts.
   # Must be referenced in `config.file` to configure `positions`
 
@@ -153,6 +159,25 @@ config:
 ...
 
     scrapeConfigs: |
+      - job_name: syslog
+        pipeline_stages:
+          - regex:
+              expression: '^(?P<time>[^ ]* {1,2}[^ ]* [^ ]*) (?P<hostname>[^ ]*) (?P<daemon>[^ :\[]*)(?:\[(?P<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?P<message>.*)$'
+          - labels:
+              time:
+              hostname:
+              daemon:
+              pid:
+              message:
+          - timestamp:
+              source: time
+              format: %b %d %H:%M:%S
+        static_configs:
+        - targets:
+            - localhost
+          labels:
+            job: syslog
+            __path__: /var/log/syslog
       # See also https://github.com/grafana/loki/blob/master/production/ksonnet/promtail/scrape_config.libsonnet for reference
       - job_name: kubernetes-pods
         pipeline_stages:
@@ -227,7 +252,7 @@ config:
 
 #### syslog regex
 ```
-^(?<time>[^ ]* {1,2}[^ ]* [^ ]*) (?<hostname>[^ ]*) (?<daemon>[^ :\[]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?<message>.*)$
+^(?P<time>[^ ]* {1,2}[^ ]* [^ ]*) (?P<hostname>[^ ]*) (?P<daemon>[^ :\[]*)(?:\[(?P<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?P<message>.*)$
 ```
 
 ### Install Customize Default Configuration
