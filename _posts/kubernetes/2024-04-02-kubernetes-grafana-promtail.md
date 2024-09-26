@@ -160,6 +160,12 @@ config:
 
     scrapeConfigs: |
       - job_name: syslog
+        static_configs:
+        - targets:
+            - localhost
+          labels:
+            job: syslog
+            __path__: /var/log/syslog
         pipeline_stages:
           - regex:
               expression: '^(?P<time>[^ ]* {1,2}[^ ]* [^ ]*) (?P<hostname>[^ ]*) (?P<daemon>[^ :\[]*)(?:\[(?P<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?P<message>.*)$'
@@ -169,21 +175,65 @@ config:
               daemon:
               pid:
               message:
-          - timestamp:
-              source: time
-              format: %b %d %H:%M:%S
+          - match:
+              selector: '{daemon=~"kubelet|kernel"}'
+              stages:
+              - regex:
+                  expression: '^(?P<time>[^ ]* {1,2}[^ ]* [^ ]*) (?P<hostname>[^ ]*) (?P<daemon>[^ :\[]*)(?:\[(?P<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?P<message>.*)$'
+              - labels:
+                  time:
+                  hostname:
+                  daemon:
+                  pid:
+                  message:
+              - timestamp:
+                  source: time
+                  format: %b %d %H:%M:%S
+      - job_name: syslog
         static_configs:
         - targets:
             - localhost
           labels:
             job: syslog
-            __path__: /var/log/syslog
+            __path__: /appdata/applog
+        pipeline_stages:
+          - regex:
+              expression: '^(?P<log_type>[^ ]*) '
+          - labels:
+              log_type:
+          - match:
+              selector: '{log_type="type1"}'
+              stages:
+              - regex:
+                  expression: '^(?P<log_type>[^ ]*) (?P<log_level>[^ ]*) ~'
+              - template:
+                  source: log_level
+                  template: 'warning'
+              - labels:
+                  log_type:
+          - match:
+              selector: '{log_type="type2"}'
+              stages:
+              - regex:
+                  expression: '^(?P<log_type>[^ ]*) (?P<log_level>[^ ]*) (?P<message>.*) ~'
+              - template:
+                  source: log_level
+                  template: 'warning'
+              - labels:
+                  log_type:
+                  message:
+
       # See also https://github.com/grafana/loki/blob/master/production/ksonnet/promtail/scrape_config.libsonnet for reference
       - job_name: kubernetes-pods
         pipeline_stages:
           {{- toYaml .Values.config.snippets.pipelineStages | nindent 4 }}
         kubernetes_sd_configs:
           - role: pod
+            namespaces:
+              names:
+              - kube-system
+              - ...
+              - ...
         relabel_configs:
           - source_labels:
               - __meta_kubernetes_pod_controller_name
