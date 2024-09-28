@@ -9,7 +9,7 @@ tags: [Kubernetes, K6, Install, Helm]
 {: .prompt-info }
 
 ## Install k6-operator
-```shell
+```bash
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 helm install k6-operator grafana/k6-operator
@@ -28,11 +28,11 @@ helm install k6-operator grafana/k6-operator
     - https://github.com/grafana/k6-operator/releases
 
 ### Install Customize Default Configuration
-```shell
+```bash
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
 
-```shell
+```bash
 helm install k6-operator grafana/k6-operator -f override-values.yaml -n [NAMESPACE NAME]
 ```
 
@@ -87,12 +87,12 @@ helm install k6-operator grafana/k6-operator -f override-values.yaml -n [NAMESPA
   ```
 
 - 적용
-  ```shell
+  ```bash
   kubectl apply -f /path/to/your/k6-resource.yml
   ```
 
 - 삭제
-  ```shell
+  ```bash
   kubectl delete -f /path/to/your/k6-resource.yml
   ```
 
@@ -205,7 +205,7 @@ export default function () {
 ```
 
 ## 테스트 JavaScript 적용
-```shell
+```bash
 kubectl -n [NAMESPACE NAME] create configmap test-script --from-file /home/documents/k6/scritps.js 
 ```
 
@@ -213,6 +213,6 @@ kubectl -n [NAMESPACE NAME] create configmap test-script --from-file /home/docum
 {: .prompt-info }
 
 ## Uninstall the Chart
-```shell
+```bash
 helm uninstall [RELEASE NAME] -n [NAMESPACE NAME]
 ```

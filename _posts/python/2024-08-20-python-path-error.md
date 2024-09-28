@@ -9,7 +9,7 @@ tags: [Python, List, Programming]
 
 ## 문제점
 - 윈도우10 시스템 변수에 경로(PATH)로 추가하지 않았기 때문에 발생한다.
-```shell
+```bash
 PS F:\Development\python_prj\BoardAPI> python -m venv venv
 Python
 PS F:\Development\python_prj\BoardAPI> python -v

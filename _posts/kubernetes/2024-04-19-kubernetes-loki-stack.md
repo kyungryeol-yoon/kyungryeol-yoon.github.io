@@ -9,7 +9,7 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 {: .prompt-info }
 
 ## Install the Loki Stack Helm charts
-```shell
+```bash
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 helm install loki-stack grafana/loki-stack --namespace [NAMESPACE NAME] --version [VERSION]
@@ -84,15 +84,15 @@ grafana:
 {: .prompt-info }
 
 ### Install Customize Default Configuration
-```shell
+```bash
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
 
-```shell
+```bash
 helm install loki-stack grafana/loki-stack -f override-values.yaml -n [NAMESPACE NAME]
 ```
 
 ## Uninstall the Chart
-```shell
+```bash
 helm uninstall [RELEASE NAME] -n [NAMESPACE NAME]
 ```

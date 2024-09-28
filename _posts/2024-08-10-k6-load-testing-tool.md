@@ -77,7 +77,7 @@ export function teardown(data) {
 - `--no-setup` 옵션을 이용하여 셋업을 스킵한다.
 - `--no-teardown` 옵션을 이용하여 teardown 을 스킵한다.
 
-```shell
+```bash
 k6 run --no-setup --no-teardown ...
 ```
 

@@ -9,7 +9,7 @@ tags: [Kubernetes, InfluxDB, Install, Helm]
 {: .prompt-info }
 
 ## Install InfluxDB
-```shell
+```bash
 helm repo add influxdata https://helm.influxdata.com/
 helm repo update
 helm install influxdb influxdata/influxdb
@@ -70,16 +70,16 @@ initScripts:
 ```
 
 > API Create Database
-```shell
+```bash
 curl -XPOST 'http://[influxdb-svc].[influxdb-namespace].svc:8086/query' --data-urlencode 'q=CREATE DATABASE mydb'
 ```
 {: .prompt-info }
 
 ### Install Customize Default Configuration
-```shell
+```bash
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
 
-```shell
+```bash
 helm install influxdb influxdata/influxdb -f override-values.yaml -n [NAMESPACE NAME]
 ```

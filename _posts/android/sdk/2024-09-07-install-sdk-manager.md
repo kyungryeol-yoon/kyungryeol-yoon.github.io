@@ -40,6 +40,6 @@ tags: [Android, SDK]
 > ⚠️이 도구가 있어야 CLI (명령어)로 설정을 할 수 있다.
 {: .prompt-warning }
 
-```shell
+```bash
 flutter doctor --android-licenses
 ```

@@ -9,7 +9,7 @@ tags: [Python, pip, Package]
 - 아래의 커맨드로 설정 파일 requirements.txt에 작성된 내용에 따라 패키지를 일괄 설치된다.
 - 설정 파일명은 임의로 어떠한 이름으로해도 상관없지만, requirements.txt이라는 이름으로 하는 것이 일반적이다.
 
-```shell
+```bash
 pip install -r requirements.txt
 ```
 
@@ -51,7 +51,7 @@ package >= 1.0, <=2.0
 ## 현재 환경의 설정 파일을 출력하는 pip freeze
 - pip freeze 커맨드로 현재 환경에 설치되어 있는 패키지와 버전이 pip install -r로 사용할 수 있는 설정 파일 형식을 출력해준다.
 
-```shell
+```bash
 pip freeze > requirements.txt
 ```
 

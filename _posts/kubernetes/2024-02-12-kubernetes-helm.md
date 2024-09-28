@@ -10,7 +10,7 @@ tags: [Kubernetes, Helm, Install]
 {: .prompt-info }
 
 ### Script 방식
-```shell
+```bash
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 
 chmod +x get_helm.sh
@@ -32,7 +32,7 @@ scoop install helm
 ```
 
 ### Apt 이용 (Debian/Ubuntu)
-```shell
+```bash
 curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
 sudo apt-get install apt-transport-https --yes
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list

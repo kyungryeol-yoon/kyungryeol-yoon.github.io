@@ -44,11 +44,11 @@ tags: [Flutter, SDK]
 ### **📂~/설치경로/flutter/bin**
 - cd  ~/설치경로/flutter/bin
 
-```shell
+```bash
 flutter doctor
 ```
 
-```shell
+```bash
 Doctor summary (to see all details, run flutter doctor -v):
 [√] Flutter (Channel stable, 3.24.0, on Microsoft Windows [Version 10.0.22631.4169], locale ko-KR)
 [√] Windows Version (Installed version of Windows is version 10 or higher)
@@ -82,7 +82,7 @@ Doctor summary (to see all details, run flutter doctor -v):
 
 
 ### **Andriod 라이센스 승인**
-```shell
+```bash
 flutter doctor --andriod-licenses
 ```
 
@@ -99,6 +99,6 @@ flutter doctor --andriod-licenses
     1. **Android SDK Command-line Tools**
 
 **✅이 도구가 있어야 CLI (명령어)로 설정을 할 수 있다.**
-```shell
+```bash
 flutter doctor --android-licenses
 ```

@@ -62,7 +62,7 @@ spec:
 
 The following command applies the minio-dev.yaml configuration and deploys the objects to Kubernetes:
 
-```shell
+```bash
 kubectl apply -f minio-dev.yaml
 ```
 

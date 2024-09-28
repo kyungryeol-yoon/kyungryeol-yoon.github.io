@@ -9,7 +9,7 @@ tags: [Kubernetes, AWX, Ansible, Install, Helm]
 {: .prompt-info }
 
 ## Install awx-operator
-```shell
+```bash
 helm repo add awx-operator https://ansible.github.io/awx-operator/
 helm repo update
 helm install ansible-awx-operator awx-operator/awx-operator -n awx --create-namespace
@@ -29,16 +29,16 @@ helm install ansible-awx-operator awx-operator/awx-operator -n awx --create-name
 - Release file (.tgz) : https://github.com/ansible/awx-operator/releases
 
 ### Install Customize Default Configuration
-```shell
+```bash
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
 
-```shell
+```bash
 helm install ansible-awx-operator awx-operator/awx-operator -f override-values.yaml -n [NAMESPACE NAME]
 ```
 
 ## Verify AWX operator installation
-```shell
+```bash
 kubectl get pods -n awx
 ```
 
@@ -51,7 +51,7 @@ kubectl get pods -n awx
 
 ### StorageClass
 #### StorageClass 생성 파일 작성
-```shell
+```bash
 vi local-storage-class.yaml
 ```
 
@@ -66,17 +66,17 @@ volumeBindingMode: WaitForFirstConsumer
 ```
 
 #### StorageClass 생성 및 확인
-```shell
+```bash
 kubectl create -f local-storage-class.yaml
 ```
 
-```shell
+```bash
 kubectl get sc -n awx
 ```
 
 ### PersistentVolume
 #### PersistentVolume 생성 파일 작성
-```shell
+```bash
 vi pv.yaml
 ```
 
@@ -107,17 +107,17 @@ spec:
 ```
 
 #### PersistentVolume 생성 및 확인
-```shell
+```bash
 kubectl create -f pv.yaml
 ```
 
-```shell
+```bash
 kubectl get pv -n awx
 ```
 
 ### PersistentVolumeClaim
 #### PersistentVolumeClaim 생성 파일 작성
-```shell
+```bash
 vi pvc.yaml
 ```
 
@@ -137,17 +137,17 @@ spec:
 ```
 
 #### PersistentVolumeClaim 생성 및 확인
-```shell
+```bash
 kubectl create -f pvc.yaml
 ```
 
-```shell
+```bash
 kubectl get pvc -n awx
 ```
 
 ### AWX instance 배포 - admin password 없이 Setting
 #### Instance 생성 파일 작성
-```shell
+```bash
 vi ansible-awx.yaml
 ```
 
@@ -165,31 +165,31 @@ spec:
 ```
 
 #### Instance 배포
-```shell
+```bash
 kubectl create -f ansible-awx.yaml
 ```
 
 #### Instance 확인
-```shell
+```bash
 kubectl get pods -n awx
 ```
 
 ### AWX Web 접속
 #### service 없을 시 아래와 같이 생성
-```shell
+```bash
 kubectl expose deployment ansible-awx-web --name ansible-awx-web-svc --type NodePort -n awx
 ```
 - service 확인
-```shell
+```bash
 kubectl get svc ansible-awx-web-svc -n awx
 ```
 
 #### 기본적으로 관리자는 admin이고 비밀번호는 <resourcename>-admin-password 확인할 수 있다.
-```shell
+```bash
 kubectl get secrets -n awx | grep -i admin-password
 ```
 
-```shell
+```bash
 kubectl get secret ansible-awx-admin-password -o jsonpath="{.data.password}" -n awx | base64 --decode ; echo
 
 or
@@ -198,7 +198,7 @@ kubectl -n awx get secret ansible-awx-admin-password -o go-template={% raw %}'{{
 ```
 
 - Paasword 설정하지 않았을 때 아래와 같이 Secret 조회가 된다.
-```shell
+```bash
 kubectl get secret -n awx
 NAME                                         TYPE                 DATA   AGE
 sh.helm.release.v1.ansible-awx-operator.v1   helm.sh/release.v1   1      33m
@@ -214,7 +214,7 @@ ansible-awx-receptor-work-signing            Opaque               2      24m
 
 ### AWX instance 배포 - admin password 없이 Setting
 #### Instance Secret 파일 작성
-```shell
+```bash
 vi awx-admin-password.yaml
 ```
 
@@ -229,12 +229,12 @@ stringData:
 ```
 
 #### Instance Secret 배포
-```shell
+```bash
 kubectl apply -f awx-admin-password.yaml
 ```
 
 #### Instance 생성 파일 작성
-```shell
+```bash
 vi ansible-awx.yaml
 ```
 
@@ -254,12 +254,12 @@ spec:
 ```
 
 #### Instance 배포
-```shell
+```bash
 kubectl create -f ansible-awx.yaml
 ```
 
 #### Paasword 설정했을 시 아래와 같이 Secret 조회가 된다.
-```shell
+```bash
 kubectl get secret -n awx
 NAME                                         TYPE                 DATA   AGE
 sh.helm.release.v1.ansible-awx-operator.v1   helm.sh/release.v1   1      63m

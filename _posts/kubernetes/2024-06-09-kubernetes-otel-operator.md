@@ -31,14 +31,14 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/do
 
 ## Install OpenTelemetry Operator
 - 1. Install OpenTelemetry Operator
-  ```shell
+  ```bash
   kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
   ```
   > [OpenTelemetry Operator - 설치 참고](https://github.com/open-telemetry/opentelemetry-operator)
   {: .prompt-info }
 
 - 2. Install Helm Chart - OpenTelemetry Operator
-  ```shell
+  ```bash
   helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
   helm repo update
   helm install opentelemetry-operator open-telemetry/opentelemetry-operator --set "manager.collectorImage.repository=otel/opentelemetry-collector-k8s"

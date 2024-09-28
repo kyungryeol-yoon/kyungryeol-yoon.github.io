@@ -10,12 +10,12 @@ tags: [Kubernetes, Grafana, Helm, Install]
 
 ## Install the Grafana Helm charts
 - namespace 생성
-  ```shell
+  ```bash
   kubectl create namespace [NAMESPACE NAME]
   ```
 
 - Grafana 배포
-  ```shell
+  ```bash
   helm repo add grafana https://grafana.github.io/helm-charts
   helm repo update
   helm install grafana grafana/grafana --namespace [NAMESPACE NAME] --set adminPassword=<your_password>
@@ -24,15 +24,15 @@ tags: [Kubernetes, Grafana, Helm, Install]
     {: .prompt-info }
 
 - Password 설정하지 않았을 때, 아래와 같이 찾아보기
-  ```shell
+  ```bash
   kubectl get secret --namespace [NAMESPACE NAME] grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
   ```
 
 - port-forward로 연결하기
-  ```shell
+  ```bash
   kubectl --namespace [NAMESPACE NAME] port-forward $POD_NAME 3000
   ```
-  ```shell
+  ```bash
   k3sctl port-forward svc/grafana 3000:80 -n [NAMESPACE NAME]
   ```
 
@@ -103,15 +103,15 @@ service:
 ```
 
 ### Install Customize Default Configuration
-```shell
+```bash
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
 
-```shell
+```bash
 helm install grafana grafana/grafana -f override-values.yaml -n [NAMESPACE NAME]
 ```
 
 ## Uninstall the Chart
-```shell
+```bash
 helm uninstall [RELEASE NAME] -n [NAMESPACE NAME]
 ```
