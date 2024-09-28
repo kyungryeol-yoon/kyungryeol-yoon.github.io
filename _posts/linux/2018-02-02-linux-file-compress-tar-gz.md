@@ -2,7 +2,7 @@
 title: "[Linux] tar, gz 압축 및 해제"
 date: 2018-02-02
 categories: [Linux, File]
-tags: [Linux, File, Directory, compress, tar, gz]
+tags: [Linux, File, Directory, Compress, tar, gz]
 ---
 
 ## tar로 압축하기

@@ -2,8 +2,8 @@
 # layout: post
 title: "[Kubernetes] mysql pod 생성"
 date: 2020-01-30
-categories: [Kubernetes, pod]
-tags: [Kubernetes, kubectl, MySQL, pod]
+categories: [Kubernetes, Pod]
+tags: [Kubernetes, kubectl, MySQL, Pod]
 # comments: true
 ---
 
