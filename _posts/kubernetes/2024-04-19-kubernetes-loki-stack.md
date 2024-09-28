@@ -35,7 +35,7 @@ promtail:
     logLevel: info
     serverPort: 3101
     clients:
-      - url: http://{{ .Release.Name }}:3100/loki/api/v1/push
+      - url: {% raw %}http://{{ .Release.Name }}:3100/loki/api/v1/push{% endraw %}
 ```
 
 > [Promtail 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-grafana-promtail/)
@@ -43,11 +43,12 @@ promtail:
 
 ### Setting Loki
 ```yaml
-{% raw %}
+
 loki:
   enabled: true
   isDefault: true
-  url: http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}
+  
+  url: {% raw %}'http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}'{% endraw %}
   readinessProbe:
     httpGet:
       path: /ready
@@ -61,7 +62,6 @@ loki:
   datasource:
     jsonData: "{}"
     uid: ""
-{% endraw %}
 ```
 
 > [Loki 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-grafana-loki/)
