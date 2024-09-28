@@ -242,7 +242,7 @@ config:
                       expression: '^(?P<log_type>[^ ]*) (?P<log_level>[^ ]*) (?P<message>.*) ~'
                   - template:
                       source: log_level
-                      template: '{{ if eq .Value "W" }}{{ Replace .Value "W" "WARNING" -1 }}{{ else if eq .Value "E" }}{{ Replace .Value "E" "ERROR" -1 }}{{ else }}{{ .Value }}{{ end }}'
+                      template: {% raw %}'{{ if eq .Value "W" }}{{ Replace .Value "W" "WARNING" -1 }}{{ else if eq .Value "E" }}{{ Replace .Value "E" "ERROR" -1 }}{{ else }}{{ .Value }}{{ end }}'{% endraw %}
                   - labels:
                       log_type:
                       log_level:
@@ -251,7 +251,7 @@ config:
       # See also https://github.com/grafana/loki/blob/master/production/ksonnet/promtail/scrape_config.libsonnet for reference
       - job_name: kubernetes-pods
         pipeline_stages:
-          {{- toYaml .Values.config.snippets.pipelineStages | nindent 4 }}
+          {% raw %}{{- toYaml .Values.config.snippets.pipelineStages | nindent 4 }}{% endraw %}
         kubernetes_sd_configs:
           - role: pod
             namespaces:
@@ -285,14 +285,14 @@ config:
             regex: ^;*([^;]+)(;.*)?$
             action: replace
             target_label: component
-          {{- if .Values.config.snippets.addScrapeJobLabel }}
+          {% raw %}{{- if .Values.config.snippets.addScrapeJobLabel }}{% endraw %}
           - replacement: kubernetes-pods
             target_label: scrape_job
-          {{- end }}
+          {% raw %}{{- end }}
           {{- toYaml .Values.config.snippets.common | nindent 4 }}
           {{- with .Values.config.snippets.extraRelabelConfigs }}
           {{- toYaml . | nindent 4 }}
-          {{- end }}
+          {{- end }}{% endraw %}
 
   # -- Config file contents for Promtail.
   # Must be configured as string.
@@ -300,29 +300,29 @@ config:
   # @default -- See `values.yaml`
   file: |
     server:
-      log_level: {{ .Values.config.logLevel }}
-      log_format: {{ .Values.config.logFormat }}
-      http_listen_port: {{ .Values.config.serverPort }}
-      {{- with .Values.httpPathPrefix }}
-      http_path_prefix: {{ . }}
-      {{- end }}
-      {{- tpl .Values.config.snippets.extraServerConfigs . | nindent 2 }}
+      log_level: {% raw %}{{ .Values.config.logLevel }}{% endraw %}
+      log_format: {% raw %}{{ .Values.config.logFormat }}{% endraw %}
+      http_listen_port: {% raw %}{{ .Values.config.serverPort }}{% endraw %}
+      {% raw %}{{- with .Values.httpPathPrefix }}{% endraw %}
+      http_path_prefix: {% raw %}{{ . }}{% endraw %}
+      {% raw %}{{- end }}{% endraw %}
+      {% raw %}{{- tpl .Values.config.snippets.extraServerConfigs . | nindent 2 }}{% endraw %}
 
     clients:
-      {{- tpl (toYaml .Values.config.clients) . | nindent 2 }}
+      {% raw %}{{- tpl (toYaml .Values.config.clients) . | nindent 2 }}{% endraw %}
 
     positions:
-      {{- tpl (toYaml .Values.config.positions) . | nindent 2 }}
+      {% raw %}{{- tpl (toYaml .Values.config.positions) . | nindent 2 }}{% endraw %}
 
     scrape_configs:
-      {{- tpl .Values.config.snippets.scrapeConfigs . | nindent 2 }}
-      {{- tpl .Values.config.snippets.extraScrapeConfigs . | nindent 2 }}
+      {% raw %}{{- tpl .Values.config.snippets.scrapeConfigs . | nindent 2 }}{% endraw %}
+      {% raw %}{{- tpl .Values.config.snippets.extraScrapeConfigs . | nindent 2 }}{% endraw %}
 
     limits_config:
-      {{- tpl .Values.config.snippets.extraLimitsConfig . | nindent 2 }}
+      {% raw %}{{- tpl .Values.config.snippets.extraLimitsConfig . | nindent 2 }}{% endraw %}
 
     tracing:
-      enabled: {{ .Values.config.enableTracing }}
+      enabled: {% raw %}{{ .Values.config.enableTracing }}{% endraw %}
 ```
 
 #### syslog regex

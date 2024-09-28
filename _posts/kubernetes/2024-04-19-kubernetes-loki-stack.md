@@ -47,8 +47,7 @@ promtail:
 loki:
   enabled: true
   isDefault: true
-  
-  url: {% raw %}'http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}'{% endraw %}
+  url: {% raw %}http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}{% endraw %}
   readinessProbe:
     httpGet:
       path: /ready
