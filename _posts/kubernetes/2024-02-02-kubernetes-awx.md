@@ -194,7 +194,7 @@ kubectl get secret ansible-awx-admin-password -o jsonpath="{.data.password}" -n 
 
 or
 
-kubectl -n awx get secret ansible-awx-admin-password -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+kubectl -n awx get secret ansible-awx-admin-password -o go-template={% raw %}'{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'{% endraw %}
 ```
 
 - Paasword 설정하지 않았을 때 아래와 같이 Secret 조회가 된다.
