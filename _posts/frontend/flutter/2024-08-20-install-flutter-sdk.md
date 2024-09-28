@@ -24,18 +24,18 @@ tags: [Flutter, SDK]
 6. **다양한 패키지 및 플러그인:**
 - 플러터는 다양한 패키지와 플러그인을 제공하여 네트워크 통신, 데이터베이스 연동, 상태 관리 등 다양한 기능을 쉽게 추가할 수 있다.
 
-> [Install | Flutter](https://docs.flutter.dev/get-started/install)
+> [Install Flutter](https://docs.flutter.dev/get-started/install)
 {: .prompt-info }
 
 ## **flutter 시스템 환경 변수 설정**
 1. **시스템 환경 변수 편집**
 2. **[환경 변수]**
 3. **시스템 변수**
-    a. **Path**
-    b. **[편집]**
-    c. **[새로 만들기]**
-    d. **~/설치경로/flutter/bin   (입력)**
-    e. **[확인]**
+    1. **Path**
+    2. **[편집]**
+    3. **[새로 만들기]**
+    4. **~/설치경로/flutter/bin   (입력)**
+    5. **[확인]**
 
 ## **flutter doctor 실행하기**
 ### **💡flutter doctor?**
@@ -82,9 +82,10 @@ Doctor summary (to see all details, run flutter doctor -v):
 
 
 ### Andriod 라이센스 승인
-'''shell
+```shell
 flutter doctor --andriod-licenses
-'''
+```
+
 > ⛔Android **sdkmanager** not found. Update to the latest Android SDK and ensure that the **cmdline-tools** are installed to resolve this.
 {: .prompt-danger }
 
@@ -95,7 +96,7 @@ flutter doctor --andriod-licenses
 1. **Andriod Studio 실행**
 2. **More Actions  SDK Manager**
 3. **SDK Tools**
-    a. **Android SDK Command-line Tools**
+    1. **Android SDK Command-line Tools**
 
 **✅이 도구가 있어야 CLI (명령어)로 설정을 할 수 있다.**
 ```shell

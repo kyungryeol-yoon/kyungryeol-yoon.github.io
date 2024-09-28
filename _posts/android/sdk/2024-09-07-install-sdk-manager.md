@@ -27,15 +27,15 @@ tags: [Android, SDK]
 2. **More Actions ➡️ SDK Manager**
 3. **Edit**
 4. **SDK Components Setup**
-    a. Andriod SDK
-    b. Android SDK Platform
-    c. Android API 34(Version)
+    1. Andriod SDK
+    2. Android SDK Platform
+    3. Android API 34(Version)
 
 ## **cmdline tools 설치**
 1. **Andriod Studio 실행**
 2. **More Actions ➡️ SDK Manager**
 3. **SDK Tools**
-    a. **Android SDK Command-line Tools**
+    1. **Android SDK Command-line Tools**
 
 > ⚠️이 도구가 있어야 CLI (명령어)로 설정을 할 수 있다.
 {: .prompt-warning }
