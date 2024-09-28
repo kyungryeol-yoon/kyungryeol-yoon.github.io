@@ -189,12 +189,12 @@ config:
               - timestamp:
                   source: time
                   format: %b %d %H:%M:%S
-      - job_name: syslog
+      - job_name: custom-log
         static_configs:
         - targets:
             - localhost
           labels:
-            job: syslog
+            job: custom-log
             __path__: /appdata/applog
         pipeline_stages:
           - regex:
@@ -217,11 +217,36 @@ config:
               - regex:
                   expression: '^(?P<log_type>[^ ]*) (?P<log_level>[^ ]*) (?P<message>.*) ~'
               - template:
-                  source: log_level
-                  template: 'warning'
+                  source: log_type
+                  template: 'API'
               - labels:
                   log_type:
+                  log_level:
                   message:
+              - match:
+                  selector: '{log_level="I"}'
+                  stages:
+                  - regex:
+                      expression: '^(?P<log_type>[^ ]*) (?P<log_level>[^ ]*) (?P<message>.*) ~'
+                  - template:
+                      source: log_level
+                      template: 'INFO'
+                  - labels:
+                      log_type:
+                      log_level:
+                      message:
+              - match:
+                  selector: '{log_level=~"W|E"}'
+                  stages:
+                  - regex:
+                      expression: '^(?P<log_type>[^ ]*) (?P<log_level>[^ ]*) (?P<message>.*) ~'
+                  - template:
+                      source: log_level
+                      template: '{{ if eq .Value "W" }}{{ Replace .Value "W" "WARNING" -1 }}{{ else if eq .Value "E" }}{{ Replace .Value "E" "ERROR" -1 }}{{ else }}{{ .Value }}{{ end }}'
+                  - labels:
+                      log_type:
+                      log_level:
+                      message:
 
       # See also https://github.com/grafana/loki/blob/master/production/ksonnet/promtail/scrape_config.libsonnet for reference
       - job_name: kubernetes-pods
