@@ -43,10 +43,11 @@ promtail:
 
 ### Setting Loki
 ```yaml
+{% raw %}
 loki:
   enabled: true
   isDefault: true
-  url: 'http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}'
+  url: http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}
   readinessProbe:
     httpGet:
       path: /ready
@@ -60,6 +61,7 @@ loki:
   datasource:
     jsonData: "{}"
     uid: ""
+{% endraw %}
 ```
 
 > [Loki 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-grafana-loki/)
