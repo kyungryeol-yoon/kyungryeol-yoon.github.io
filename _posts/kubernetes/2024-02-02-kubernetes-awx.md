@@ -3,6 +3,7 @@ title: "[Kubernetes] AWX"
 date: 2024-02-02
 categories: [Kubernetes, AWX]
 tags: [Kubernetes, AWX, Ansible, Install, Helm]
+render_with_liquid: false
 ---
 
 > [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
@@ -194,7 +195,7 @@ kubectl get secret ansible-awx-admin-password -o jsonpath="{.data.password}" -n 
 
 or
 
-kubectl -n awx get secret ansible-awx-admin-password -o go-template={% raw %}'{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'{% endraw %}
+kubectl -n awx get secret ansible-awx-admin-password -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
 ```
 
 - Paasword 설정하지 않았을 때 아래와 같이 Secret 조회가 된다.
