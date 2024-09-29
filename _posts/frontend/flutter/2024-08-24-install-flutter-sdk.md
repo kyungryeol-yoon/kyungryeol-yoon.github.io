@@ -1,5 +1,5 @@
 ---
-title: "[SDK] Flutter SDK"
+title: "[Flutter] SDK"
 date: 2024-08-24
 categories: [Flutter, SDK]
 tags: [Flutter, SDK]

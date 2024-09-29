@@ -1,5 +1,5 @@
 ---
-title: "[SDK] SDK Manager"
+title: "[Android] SDK Manager"
 date: 2024-09-07
 categories: [Android, SDK]
 tags: [Android, SDK]

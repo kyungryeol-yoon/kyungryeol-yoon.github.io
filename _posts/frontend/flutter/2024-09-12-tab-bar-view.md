@@ -1,5 +1,5 @@
 ---
-title: "[Flutter] Flutter TabBarView"
+title: "[Flutter] TabBarView"
 date: 2024-09-12
 categories: [Flutter, Tab]
 tags: [Flutter, TabBarView]
