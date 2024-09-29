@@ -3,6 +3,7 @@ title: "[Kubernetes] Loki Stack"
 date: 2024-04-19
 categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
+render_with_liquid: false
 ---
 
 > [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
@@ -35,7 +36,7 @@ promtail:
     logLevel: info
     serverPort: 3101
     clients:
-      - url: {% raw %}http://{{ .Release.Name }}:3100/loki/api/v1/push{% endraw %}
+      - url: http://{{ .Release.Name }}:3100/loki/api/v1/push
 ```
 
 > [Promtail 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-grafana-promtail/)
@@ -47,7 +48,7 @@ promtail:
 loki:
   enabled: true
   isDefault: true
-  url: {% raw %}http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}{% endraw %}
+  url: http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}
   readinessProbe:
     httpGet:
       path: /ready
