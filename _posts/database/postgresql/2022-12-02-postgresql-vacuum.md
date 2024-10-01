@@ -1,6 +1,6 @@
 ---
 title: "[PostgreSQL] VACUUM"
-date: 2022-12-01
+date: 2022-12-02
 categories: [Database, PostgreSQL]
 tags: [Database, PostgreSQL, VACUUM, Disk, usage]
 ---
