@@ -152,7 +152,7 @@ multipass delete --purge <instance-name>
     - --cloud-init 옵션을 지정하여 Instance 생성
 
 ### ssh key 생성
-    - 명령을 수행하면 $HOME/.ssh 경로에 id_rsa_multipass (개인키), id_rsa_multipass.pub (공개키) 파일이 생성된다.
+- 명령을 수행하면 $HOME/.ssh 경로에 id_rsa_multipass (개인키), id_rsa_multipass.pub (공개키) 파일이 생성된다.
 ```bash
 ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
 ```
