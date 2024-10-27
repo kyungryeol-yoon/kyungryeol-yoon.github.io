@@ -110,18 +110,19 @@ runcmd:
 multipass launch --name my-master --cloud-init cloud-init.yaml ubuntu:22.04
 ```
 
-### 코드를 사용할 때는 주의가 필요합니다.
 - --name: 인스턴스 이름 설정
 - --cloud-init: YAML 파일 지정
 - ubuntu:22.04: 이미지 선택
 
 ### 노드 추가 및 클러스터 구성
-kubeadm join 명령을 사용하여 추가 노드를 클러스터에 추가합니다.
-**CNI (Container Network Interface)**를 설치하여 pod 네트워킹을 구성합니다. (Flannel, Calico 등)
-Ingress Controller를 설치하여 서비스에 대한 외부 접근을 설정합니다. (Nginx Ingress Controller 등)
+
+- kubeadm join 명령을 사용하여 추가 노드를 클러스터에 추가합니다.
+- **CNI (Container Network Interface)**를 설치하여 pod 네트워킹을 구성합니다. (Flannel, Calico 등)
+- Ingress Controller를 설치하여 서비스에 대한 외부 접근을 설정합니다. (Nginx Ingress Controller 등)
 
 ### Instance 생성
-```
+
+```bash
 multipass launch focal --name mp-master --memory 4G --disk 50G --cpus 2 --cloud-init mp-master.yaml
 multipass launch focal --name mp-master --memory 4G --disk 50G --cpus 2 --network name=multipass,mode=manual
 
@@ -226,7 +227,7 @@ sudo vi /var/db/dhcpd_leases
 
 ## 기타
 
-```
+```bash
 multipass launch focal --name mp-master --memory 4G --disk 50G --cpus 2 --cloud-init mp-master.yaml
 multipass launch focal --name mp-master --memory 4G --disk 50G --cpus 2 --network name=multipass,mode=manual
 
