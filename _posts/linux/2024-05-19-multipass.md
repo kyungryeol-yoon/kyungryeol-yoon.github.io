@@ -242,7 +242,7 @@ https://multipass.run/docs/using-aliases#heading--windows 참조
 
 ## Multipass Mount
 - multipass mount 명령을 사용하여 Host와 Instance 간의 데이터를 공유할 수 있다.
-```
+```bash
 # Instance 생성시 Mount
 multipass launch --mount <host-path>:<instance-path>
 # 이미 존재하는 Mount에 대해서 Mount 설정

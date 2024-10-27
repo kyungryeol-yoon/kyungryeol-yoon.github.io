@@ -208,7 +208,7 @@ sudo vi /var/db/dhcpd_leases
 ```
 
 
-```md
+```
 multipass launch focal --name mp-master --memory 4G --disk 50G --cpus 2 --cloud-init mp-master.yaml
 multipass launch focal --name mp-master --memory 4G --disk 50G --cpus 2 --network name=multipass,mode=manual
 
