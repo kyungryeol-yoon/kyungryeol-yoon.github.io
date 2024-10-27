@@ -8,15 +8,8 @@ tags: [Kubernetes, Install, Multipass]
 > [Multipass 설명 참고](https://kyungryeol-yoon.github.io/posts/multipass/)
 {: .prompt-info }
 
-1. Cloud-Init 이해하기
-Cloud-Init은 가상 머신의 초기 설정을 자동화하는 도구입니다.
-YAML 파일을 통해 다양한 설정 (호스트 이름, 사용자, 패키지 설치, 서비스 시작 등)을 정의할 수 있습니다.
-Multipass는 Cloud-Init을 지원하여 인스턴스 생성 시 YAML 파일을 지정할 수 있습니다.
+## cloud-init yaml 구성
 
-2. YAML 파일 작성
-다음은 Kubernetes 마스터 노드를 설치하는 간단한 Cloud-Init YAML 예시입니다. 실제 환경에 맞게 수정해야 합니다.
-
-- cloud-config.YAML
 ```yaml
 write_files:
   - path: /etc/hostname
@@ -39,21 +32,9 @@ runcmd:
 - kubeadm init 실행 (pod 네트워크 CIDR 설정)
 - kubeconfig 파일 복사 및 권한 설정
 
-3. Multipass를 이용한 인스턴스 생성
-Bash
-multipass launch --name my-master --cloud-init cloud-init.yaml ubuntu:22.04
-코드를 사용할 때는 주의가 필요합니다.
 
-- --name: 인스턴스 이름 설정
-- --cloud-init: YAML 파일 지정
-- ubuntu:22.04: 이미지 선택
+### master.yaml
 
-4. 노드 추가 및 클러스터 구성
-kubeadm join 명령을 사용하여 추가 노드를 클러스터에 추가합니다.
-**CNI (Container Network Interface)**를 설치하여 pod 네트워킹을 구성합니다. (Flannel, Calico 등)
-Ingress Controller를 설치하여 서비스에 대한 외부 접근을 설정합니다. (Nginx Ingress Controller 등)
-
-- master.yaml
 ```yaml
 package_update: true
 package_upgrade: true
@@ -96,8 +77,8 @@ runcmd:
   - sudo -u ubuntu /home/ubuntu/k8s-post-init.sh
 ```
 
+### worker.yaml
 
-- worker.yaml
 ```yaml
 package_update: true
 package_upgrade: true
@@ -122,7 +103,39 @@ runcmd:
 ```
 
 
-- network
+
+## Multipass Instance 생성
+
+```Bash
+multipass launch --name my-master --cloud-init cloud-init.yaml ubuntu:22.04
+```
+
+### 코드를 사용할 때는 주의가 필요합니다.
+- --name: 인스턴스 이름 설정
+- --cloud-init: YAML 파일 지정
+- ubuntu:22.04: 이미지 선택
+
+### 노드 추가 및 클러스터 구성
+kubeadm join 명령을 사용하여 추가 노드를 클러스터에 추가합니다.
+**CNI (Container Network Interface)**를 설치하여 pod 네트워킹을 구성합니다. (Flannel, Calico 등)
+Ingress Controller를 설치하여 서비스에 대한 외부 접근을 설정합니다. (Nginx Ingress Controller 등)
+
+### Instance 생성
+```
+multipass launch focal --name mp-master --memory 4G --disk 50G --cpus 2 --cloud-init mp-master.yaml
+multipass launch focal --name mp-master --memory 4G --disk 50G --cpus 2 --network name=multipass,mode=manual
+
+multipass launch focal --name mp-worker-1 --memory 4G --disk 50G --cpus 2 --cloud-init mp-worker.yaml
+multipass launch focal --name mp-worker-1 --memory 4G --disk 50G --cpus 2 --network name=multipass,mode=manual
+
+multipass launch focal --name mp-worker-2 --memory 4G --disk 50G --cpus 2 --cloud-init mp-worker.yaml
+multipass launch focal --name mp-worker-2 --memory 4G --disk 50G --cpus 2 --network name=multipass,mode=manual
+```
+
+## Network - Static IP
+
+### Network for Windows
+
 ```yaml
 # /etc/netplan
 network:
@@ -176,8 +189,9 @@ network:
     version: 2
 ```
 
-- for mac network
-```yaml
+### Network for MacOS
+
+```bash
 sudo vi /var/db/dhcpd_leases
 
 {
@@ -210,6 +224,7 @@ sudo vi /var/db/dhcpd_leases
 }
 ```
 
+## 기타
 
 ```
 multipass launch focal --name mp-master --memory 4G --disk 50G --cpus 2 --cloud-init mp-master.yaml
@@ -221,8 +236,6 @@ multipass launch focal --name mp-worker-1 --memory 4G --disk 50G --cpus 2 --netw
 multipass launch focal --name mp-worker-2 --memory 4G --disk 50G --cpus 2 --cloud-init mp-worker.yaml
 multipass launch focal --name mp-worker-2 --memory 4G --disk 50G --cpus 2 --network name=multipass,mode=manual
 
-multipass launch -n ubuntu_test -c 2 -m 2G -d 10G --network name=multipass,mode=manual
-
 # 네트워크 변경 sudo netplan apply
 
 multipass transfer mp-master:/home/ubuntu/kubeadm_join_cmd.sh ./
@@ -230,5 +243,4 @@ multipass transfer kubeadm_join_cmd.sh mp-worker-1:/home/ubuntu
 multipass transfer kubeadm_join_cmd.sh mp-worker-2:/home/ubuntu
 
 sudo ./kubeadm_join_cmd.sh
-
 ```
