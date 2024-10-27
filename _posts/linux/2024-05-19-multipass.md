@@ -260,35 +260,3 @@ multipass copy-files C:\ProgramData\Multipass\data\ssh-keys\id_rsa primary:/home
 ```bash
 multipass transfer [options] <source> [<source> ...] <destination>
 ```
-
-#### Instance ➡ Host로 파일 전송
-```bash
-# some-instance의 /home/ubuntu/transfer_file을 Host의 $HOME/multipass_shared 경로에 전송한다.
-$ multipass transfer some-instance:/home/ubuntu/transfer_file $HOME/multipass_shared
-
-# some-instance의 /home/ubuntu/transfer_file 내용을 Host의 stdout 으로 출력한다.
-$ multipass transfer some-instance:/home/ubuntu/transfer_file -
-테스트용 전송 데이터
-테스트용 전송 데이터
-```
-
-#### Host ➡ Instance로 파일 전송
-```bash
-# Host의 $HOME/multipass_shared/directory1 Directory 전체를 
-# some-instance의 /home/ubuntu/directory1 으로 전송한다.
-$ multipass transfer -r $HOME/multipass_shared/directory1 some-instance:/home/ubuntu/
-
-# Host의 stdin (사용자 입력) 데이터를 some-instance의 /home/ubuntu/console_output 파일에 저장한다.
-# 참고로 stdin 입력 종료는 Ctrl + D 로 종료한다.
-$ multipass transfer - some-instance:/home/ubuntu/console_output
-this is test message1
-this is test message2
-this is test message3
-Ctrl + D
-
-# some-instance의 /home/ubuntu/console_outpout 파일 확인
-$ multipass exec some-instance -- cat /home/ubuntu/console_output
-this is test message1
-this is test message2
-this is test message3
-```
