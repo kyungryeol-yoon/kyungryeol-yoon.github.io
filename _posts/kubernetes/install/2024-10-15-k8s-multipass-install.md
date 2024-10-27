@@ -5,6 +5,9 @@ categories: [Kubernetes, Install]
 tags: [Kubernetes, Install, Multipass]
 ---
 
+> [Multipass 설명 참고](https://kyungryeol-yoon.github.io/posts/multipass/)
+{: .prompt-info }
+
 1. Cloud-Init 이해하기
 Cloud-Init은 가상 머신의 초기 설정을 자동화하는 도구입니다.
 YAML 파일을 통해 다양한 설정 (호스트 이름, 사용자, 패키지 설치, 서비스 시작 등)을 정의할 수 있습니다.

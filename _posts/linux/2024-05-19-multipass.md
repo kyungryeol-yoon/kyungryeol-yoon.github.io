@@ -6,6 +6,7 @@ tags: [Multipass, Ubuntu, Linux]
 ---
 
 ## Multipass 설치
+
 ```bash
 brew install --cask multipass
 ```
@@ -17,20 +18,25 @@ brew install --cask multipass
 ## Multipass 사용
 ### Instance 생성
 - 현재 multipass를 통해 생성할 수 있는 Instance의 모든 Image 목록이 표시된다.
+
 ```bash
 multipass find
 ```
+
+- Instance 생성
 
 ```bash
 multipass launch
 ```
 
 - 사용할 버전을 명시해줄 수도 있다.
+
 ```bash
 multipass launch 20.04
 ```
 
 - 위와 같은 옵션 값을 통해 Instance의 스펙을 조절해줄 수 있다.
+
 ```bash
 multipass launch --cpus <cpus> --disk <disk> --memory <mem> --name <name> --cloud-init cloud-init.yaml
 ```
@@ -66,12 +72,14 @@ Cloud 초기화 파일을 사용하여 가상 Instance를 설정한다. Cloud �
 
 ### Instance 목록 조회
 - list 명령어로 존재하는 Instance들을 확인할 수 있다. ls로 줄여쓸 수도 있다.
+
 ```bash
 multipass list
 ```
 
 ### Instance Resource 변경
 - local.<instance-name>을 통해서 Resource를 변경할 수 있다.
+
 ```bash
 multipass stop some-instance
 multipass set local.some-instance.cpus=4
@@ -146,12 +154,11 @@ multipass recover <instance name>
 multipass purge
 ```
 
+- delete와 purge를 한 번에 실행할 수 있다.
+
 ```bash
 multipass delete --purge <instance-name>
 ```
-
-> delete와 purge를 한 번에 실행할 수 있다.
-{: .prompt-tip }
 
 ## Multipass ssh 접속
 - 가상 Instance에 일반적인 ssh 명령으로 Shell에 접속 시도하게 되면 permission denied로 접속이 되지 않는다.
