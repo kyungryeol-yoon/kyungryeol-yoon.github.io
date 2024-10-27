@@ -1,14 +1,20 @@
-Multipass에 Kubernetes를 배포하고 Cloud-Init을 통해 자동화된 구성을 설정하려는군요! 훌륭한 선택입니다. 이를 위한 상세한 가이드를 제공해 드리겠습니다.
+---
+title: "[Kubernetes] Install Kubernetes in the Multipass"
+date: 2024-10-15
+categories: [Kubernetes, Install]
+tags: [Kubernetes, Install, Multipass]
+---
 
 1. Cloud-Init 이해하기
 Cloud-Init은 가상 머신의 초기 설정을 자동화하는 도구입니다.
 YAML 파일을 통해 다양한 설정 (호스트 이름, 사용자, 패키지 설치, 서비스 시작 등)을 정의할 수 있습니다.
 Multipass는 Cloud-Init을 지원하여 인스턴스 생성 시 YAML 파일을 지정할 수 있습니다.
+
 2. YAML 파일 작성
 다음은 Kubernetes 마스터 노드를 설치하는 간단한 Cloud-Init YAML 예시입니다. 실제 환경에 맞게 수정해야 합니다.
 
-YAML
-#cloud-config
+- cloud-config.YAML
+```yaml
 write_files:
   - path: /etc/hostname
     content: your-master-node
@@ -21,37 +27,28 @@ runcmd:
   - 'mkdir -p $HOME/.kube'
   - 'sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config'
   - 'sudo chown $(id -u):$(id -g) $HOME/.kube/config'
-코드를 사용할 때는 주의가 필요합니다.
+```
 
-write_files: 호스트 이름과 hosts 파일을 설정합니다.   
-runcmd:
-Docker, kubelet, kubeadm, kubectl 설치
-스왑 비활성화
-kubeadm init 실행 (pod 네트워크 CIDR 설정)
-kubeconfig 파일 복사 및 권한 설정
+- write_files: 호스트 이름과 hosts 파일을 설정합니다.   
+- runcmd:
+- Docker, kubelet, kubeadm, kubectl 설치
+- 스왑 비활성화
+- kubeadm init 실행 (pod 네트워크 CIDR 설정)
+- kubeconfig 파일 복사 및 권한 설정
+
 3. Multipass를 이용한 인스턴스 생성
 Bash
 multipass launch --name my-master --cloud-init cloud-init.yaml ubuntu:22.04
 코드를 사용할 때는 주의가 필요합니다.
 
---name: 인스턴스 이름 설정
---cloud-init: YAML 파일 지정
-ubuntu:22.04: 이미지 선택
+- --name: 인스턴스 이름 설정
+- --cloud-init: YAML 파일 지정
+- ubuntu:22.04: 이미지 선택
+
 4. 노드 추가 및 클러스터 구성
 kubeadm join 명령을 사용하여 추가 노드를 클러스터에 추가합니다.
 **CNI (Container Network Interface)**를 설치하여 pod 네트워킹을 구성합니다. (Flannel, Calico 등)
 Ingress Controller를 설치하여 서비스에 대한 외부 접근을 설정합니다. (Nginx Ingress Controller 등)
-5. 고급 설정
-Network: flannel, calico 등 다양한 CNI를 사용하여 네트워킹을 구성할 수 있습니다.
-Storage: Persistent Volume을 사용하여 영구 저장소를 제공할 수 있습니다.
-Security: RBAC (Role-Based Access Control)를 사용하여 권한을 관리하고, 네트워크 정책을 설정할 수 있습니다.
-High Availability: Control Plane 노드를 복제하여 고가용성을 확보할 수 있습니다.
-주의 사항
-YAML 파일: YAML 문법을 정확히 지켜야 합니다.
-패키지: 필요한 패키지를 모두 설치해야 합니다.
-kubeadm: kubeadm 명령을 실행할 때 공식 문서를 참고하여 정확한 옵션을 사용해야 합니다.
-네트워킹: 네트워킹 설정은 환경에 따라 달라질 수 있습니다.
-보안: Kubernetes 클러스터의 보안을 위해 적절한 조치를 취해야 합니다.
 
 - master.yaml
 ```yaml
@@ -176,6 +173,40 @@ network:
     version: 2
 ```
 
+- for mac network
+```yaml
+sudo vi /var/db/dhcpd_leases
+
+{
+	name=mp-worker-1
+	ip_address=192.168.64.4
+	hw_address=ff,f1:f5:dd:7f:0:2:0:0:ab:11:50:ed:1b:91:59:3e:45:b4
+	identifier=ff,f1:f5:dd:7f:0:2:0:0:ab:11:50:ed:1b:91:59:3e:45:b4
+	lease=0x671daf7a
+}
+{
+	name=mp-master
+	ip_address=192.168.64.3
+	hw_address=ff,f1:f5:dd:7f:0:2:0:0:ab:11:8f:ed:bd:8d:2d:2d:2a:17
+	identifier=ff,f1:f5:dd:7f:0:2:0:0:ab:11:8f:ed:bd:8d:2d:2d:2a:17
+	lease=0x671daf43
+}
+{
+	name=mp-master
+	ip_address=192.168.64.2
+	hw_address=ff,f1:f5:dd:7f:0:2:0:0:ab:11:b2:bc:2c:c6:2b:87:cf:5a
+	identifier=ff,f1:f5:dd:7f:0:2:0:0:ab:11:b2:bc:2c:c6:2b:87:cf:5a
+	lease=0x671dae13
+}
+{
+	name=mp-master
+	ip_address=192.168.64.55
+	hw_address=ff,f1:f5:dd:7f:0:2:0:0:ab:11:fa:4c:c0:e7:17:a6:ae:9a
+	identifier=ff,f1:f5:dd:7f:0:2:0:0:ab:11:fa:4c:c0:e7:17:a6:ae:9a
+	lease=0x671d9fc1
+}
+```
+
 
 ```md
 multipass launch focal --name mp-master --memory 4G --disk 50G --cpus 2 --cloud-init mp-master.yaml
@@ -197,6 +228,4 @@ multipass transfer kubeadm_join_cmd.sh mp-worker-2:/home/ubuntu
 
 sudo ./kubeadm_join_cmd.sh
 
-
-eyJhbGciOiJSUzI1NiIsImtpZCI6IjAtcFk0RnRjdkRpc3NqTl8tSmhOZEl2c0J0T1ZKeHBTcmNYSXNKaExhX2sifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNzI5MDc2NjUzLCJpYXQiOjE3MjkwNzMwNTMsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJhZG1pbi11c2VyIiwidWlkIjoiODk3ZDcyNjctNTFjMS00NGM1LWEyYWMtODE3ODM2YjAwMDZhIn19LCJuYmYiOjE3MjkwNzMwNTMsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDphZG1pbi11c2VyIn0.hzP1Y_sBviimc1EqwKWnn3psOTNmoSVN3Cm0YE1xWZzWTx4ahDVDY63V_vpcjcTJM6nNSKtVq2ACv7NawTm8XOGdxYdgDH1gv_B5Xdi8qDPvgVGUqcfwNaFpG_NnBDirG4VbgPMRK7lx949-oNOFhvyLJZD3mS_B6A_IC2_fDW622feZF5boSrnQ1XCHt2XdJLQB33CkY9eDsH5RzoVbEZYpVO822gNmMq99tj5qJZ2X8mXTgiSoPTyY5YKS589MRafqx3cugdObvyHApofsrW63NdrixO4I4RJ8yqdm52fqdVG9FppvKoLH0POnd_yZSCVguHLRaBc7QwFoWawj0g
 ```
