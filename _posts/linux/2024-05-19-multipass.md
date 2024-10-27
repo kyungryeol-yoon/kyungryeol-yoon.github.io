@@ -217,10 +217,7 @@ multipass unalias --all
 multipass <alias-name> -- <argument>
 ```
 
-> - Shell 설정파일 (.bashrc, .zshrc, ..) 에 PATH 환경 변수에 아래 경로를 등록하면 multipass prefix는 생략 가능하다.
-- 각 OS 마다 경로는 다음과 같지만 환경마다 다를 수 있다.
-- macOS의 경우 alias 등록 시 PATH 환경 변수에 추가할 경로가 안내된다.
-{: .prompt-tip }
+
 ```bash
 #MacOS m1 silicon
 $HOME/Library/Application Support/multipass/bin
