@@ -145,30 +145,6 @@ multipass delete --purge <instance-name>
 > delete와 purge를 한 번에 실행할 수 있다.
 {: .prompt-tip }
 
-## Multipass ssh 접속
-- 가상 Instance에 일반적인 ssh 명령으로 Shell에 접속 시도하게 되면 permission denied로 접속이 되지 않는다.
-- 이를 해결하기 위해서 다음 단계를 수행한다.
-    - ssh 키 생성
-    - Instance 생성시 적용될 yaml 파일 작성
-    - --cloud-init 옵션을 지정하여 Instance 생성
-
-### ssh key 생성
-- 명령을 수행하면 $HOME/.ssh 경로에 id_rsa_multipass (개인키), id_rsa_multipass.pub (공개키) 파일이 생성된다.
-```bash
-ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
-```
-
-### cloud-init 옵션에 적용할 yaml 파일 작성
-- ssh_authorized_keys 설정 항목에 id_rsa_multipass.pub 파일의 내용을 그대로 복사하여 설정하면 Instance 생성 시 지정된 공개키가 Instance에 적용된다.
-- Instance의 $HOME/.ssh/authorized_keys 파일에 공개키가 저장된다.
-```yaml
-users:
-  - default
-  - name: ubuntu
-    sudo: ALL=(ALL) NOPASSWD:ALL
-    ssh_authorized_keys:
-      - <id_rsa_multipass.pub 파일 내용>
-```
 
 ### Instance 생성
 - yaml 파일을 $HOME/multipass/cloud-init/cloud-init-ssh.yaml 경로에 저장한 경우 위와 같이 실행한다.
@@ -259,4 +235,36 @@ multipass copy-files C:\ProgramData\Multipass\data\ssh-keys\id_rsa primary:/home
 ### 전송 명령어
 ```bash
 multipass transfer [options] <source> [<source> ...] <destination>
+```
+
+#### Instance ➡ Host로 파일 전송
+```bash
+# some-instance의 /home/ubuntu/transfer_file을 Host의 $HOME/multipass_shared 경로에 전송한다.
+$ multipass transfer some-instance:/home/ubuntu/transfer_file $HOME/multipass_shared
+
+# some-instance의 /home/ubuntu/transfer_file 내용을 Host의 stdout 으로 출력한다.
+$ multipass transfer some-instance:/home/ubuntu/transfer_file -
+테스트용 전송 데이터
+테스트용 전송 데이터
+```
+
+#### Host ➡ Instance로 파일 전송
+```bash
+# Host의 $HOME/multipass_shared/directory1 Directory 전체를 
+# some-instance의 /home/ubuntu/directory1 으로 전송한다.
+$ multipass transfer -r $HOME/multipass_shared/directory1 some-instance:/home/ubuntu/
+
+# Host의 stdin (사용자 입력) 데이터를 some-instance의 /home/ubuntu/console_output 파일에 저장한다.
+# 참고로 stdin 입력 종료는 Ctrl + D 로 종료한다.
+$ multipass transfer - some-instance:/home/ubuntu/console_output
+this is test message1
+this is test message2
+this is test message3
+Ctrl + D
+
+# some-instance의 /home/ubuntu/console_outpout 파일 확인
+$ multipass exec some-instance -- cat /home/ubuntu/console_output
+this is test message1
+this is test message2
+this is test message3
 ```
