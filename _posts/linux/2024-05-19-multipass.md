@@ -158,8 +158,8 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
 ```
 
 ### cloud-init 옵션에 적용할 yaml 파일 작성
-    - ssh_authorized_keys 설정 항목에 id_rsa_multipass.pub 파일의 내용을 그대로 복사하여 설정하면 Instance 생성 시 지정된 공개키가 Instance에 적용된다.
-    - Instance의 $HOME/.ssh/authorized_keys 파일에 공개키가 저장된다.
+- ssh_authorized_keys 설정 항목에 id_rsa_multipass.pub 파일의 내용을 그대로 복사하여 설정하면 Instance 생성 시 지정된 공개키가 Instance에 적용된다.
+- Instance의 $HOME/.ssh/authorized_keys 파일에 공개키가 저장된다.
 ```yaml
 users:
   - default
