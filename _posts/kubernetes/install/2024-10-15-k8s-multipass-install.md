@@ -163,7 +163,8 @@ network:
     version: 2
 ```
 
-- --network name=multipass | mode 안했을 때(아래는 별도 추가)
+- --network name=multipass | mode 안했을 때 (아래는 별도 추가)
+
 ```yaml
 network:
     ethernets:
