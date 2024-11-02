@@ -131,7 +131,7 @@ network:
             match:
                 macaddress: 52:54:00:f1:f0:e8
             set-name: eth0
-### 추가
+--- 추가
         eth1:
             addresses: [192.168.0.55/24]
             routes:
@@ -139,7 +139,7 @@ network:
                 via: 192.168.0.1
             nameservers:
                 addresses: [8.8.8.8, 1.1.1.1]
-###
+---
     version: 2
 ```
 
@@ -154,12 +154,12 @@ network:
             match:
                 macaddress: 52:54:00:80:6b:21
             set-name: eth0
-### 추가
+--- 추가
         eth1:
             addresses: [192.168.0.55/24]
             gateway4: 192.168.0.1
             dhcp4: no
-###
+---
     version: 2
 ```
 
@@ -180,12 +180,12 @@ network:
                 macaddress: 52:54:00:09:13:61
             optional: true
 
-### 추가
+--- 추가
         eth1:
             addresses: [192.168.0.55/24]
             gateway4: 192.168.0.1
             dhcp4: no
-###
+---
     version: 2
 ```
 
