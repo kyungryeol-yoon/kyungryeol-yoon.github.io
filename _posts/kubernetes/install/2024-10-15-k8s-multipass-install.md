@@ -18,8 +18,16 @@ tags: [Kubernetes, Install, Multipass]
     - pod-network-cidr=10.244.0.0/16
 
   - Cilium 기반 구축
-   - pod-network-cidr=10.0.0.0/8
+    - pod-network-cidr=10.0.0.0/8
 
+```bash
+sudo kubeadm init --pod-network-cidr=10.244.0.0/12 --apiserver-advertise-address=192.168.0.55
+```
+
+- --pod-network-cidr: pod 간 통신할 IP 주소를 지정 합니다. 
+- --apiserver-advertise-address: Control-plane의 api-server가 사용할 IP 주소 입니다. 지정하지 않으면 default network interface 주소를 사용 합니다
+- --service-cidr: 클러스터 내에서 애플리케이션 간 통신을 위해 사용되며, 고유한 IP 주소를 가지게 되며 기본값으로 10.96.0.0/12을 가집니다.
+- pod-network-cidr과 --service-cidr 주소를 겹치지 않게 설정. 겹칠 경우 쿠버네티스가 중복되지 않게 배치함
 
 ### master.yaml
 
@@ -89,23 +97,6 @@ runcmd:
   - sudo apt install -y kubelet kubeadm kubectl
   - sudo systemctl enable kubelet
 ```
-
-
-## Multipass Instance 생성
-
-```Bash
-multipass launch --name my-master --cloud-init cloud-init.yaml ubuntu:22.04
-```
-
-- --name: Instance 이름 설정
-- --cloud-init: YAML 파일 지정
-- ubuntu:22.04: Image 선택
-
-### 노드 추가 및 클러스터 구성
-
-- kubeadm join 명령을 사용하여 추가 노드를 클러스터에 추가합니다.
-- **CNI (Container Network Interface)**를 설치하여 pod 네트워킹을 구성합니다. (Flannel, Calico 등)
-- Ingress Controller를 설치하여 서비스에 대한 외부 접근을 설정합니다. (Nginx Ingress Controller 등)
 
 ### Instance 생성
 
