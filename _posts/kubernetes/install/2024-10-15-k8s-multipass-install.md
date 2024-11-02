@@ -10,27 +10,15 @@ tags: [Kubernetes, Install, Multipass]
 
 ## cloud-init yaml 구성
 
-```yaml
-write_files:
-  - path: /etc/hostname
-    content: your-master-node
-  - path: /etc/hosts
-    content: '127.0.0.1   localhost your-master-node\n'
-runcmd:
-  - 'apt update && apt install -y docker.io kubelet kubeadm kubectl'
-  - 'swapoff -a' # 스왑 비활성화 (Kubernetes 권장)
-  - 'kubeadm init --pod-network-cidr=10.244.0.0/16'
-  - 'mkdir -p $HOME/.kube'
-  - 'sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config'
-  - 'sudo chown $(id -u):$(id -g) $HOME/.kube/config'
-```
+- pod 네트워크 CIDR 설정
+  - Calico 기반 구축
+    - pod-network-cidr=192.168.0.0/16
 
-- write_files: 호스트 이름과 hosts 파일을 설정합니다.   
-- runcmd:
-- Docker, kubelet, kubeadm, kubectl 설치
-- 스왑 비활성화
-- kubeadm init 실행 (pod 네트워크 CIDR 설정)
-- kubeconfig 파일 복사 및 권한 설정
+  - Flannel 기반 구축
+    - pod-network-cidr=10.244.0.0/16
+
+  - Cilium 기반 구축
+   - pod-network-cidr=10.0.0.0/8
 
 
 ### master.yaml
@@ -103,16 +91,15 @@ runcmd:
 ```
 
 
-
 ## Multipass Instance 생성
 
 ```Bash
 multipass launch --name my-master --cloud-init cloud-init.yaml ubuntu:22.04
 ```
 
-- --name: 인스턴스 이름 설정
+- --name: Instance 이름 설정
 - --cloud-init: YAML 파일 지정
-- ubuntu:22.04: 이미지 선택
+- ubuntu:22.04: Image 선택
 
 ### 노드 추가 및 클러스터 구성
 
@@ -137,8 +124,11 @@ multipass launch focal --name mp-worker-2 --memory 4G --disk 50G --cpus 2 --netw
 
 ### Network for Windows
 
+- 아래와 같이 설정 및 추가
+
 ```yaml
-# /etc/netplan
+sudo vi /etc/netplan
+---
 network:
     ethernets:
         eth0:
@@ -146,6 +136,7 @@ network:
             match:
                 macaddress: 52:54:00:f1:f0:e8
             set-name: eth0
+### 추가
         eth1:
             addresses: [192.168.0.55/24]
             routes:
@@ -153,8 +144,10 @@ network:
                 via: 192.168.0.1
             nameservers:
                 addresses: [8.8.8.8, 1.1.1.1]
+###
     version: 2
----'--network name=multipass,mode=manual | (아래는 별도 추가)'
+---
+#--network name=multipass,mode=manual | (아래는 별도 추가)
 network:
     ethernets:
         eth0:
@@ -163,13 +156,16 @@ network:
             match:
                 macaddress: 52:54:00:80:6b:21
             set-name: eth0
+### 추가
         eth1:
             addresses: [192.168.0.55/24]
             gateway4: 192.168.0.1
             dhcp4: no
+###
     version: 2
 version: 2
----'--network name=multipass | mode 안했을 때(아래는 별도 추가)'
+---
+#--network name=multipass | mode 안했을 때(아래는 별도 추가)
 network:
     ethernets:
         default:
@@ -183,39 +179,23 @@ network:
             match:
                 macaddress: 52:54:00:09:13:61
             optional: true
+
+### 추가
         eth1:
             addresses: [192.168.0.55/24]
             gateway4: 192.168.0.1
             dhcp4: no
+###
     version: 2
 ```
 
 ### Network for MacOS
 
+- 아래와 같이 설정 및 추가
+
 ```bash
 sudo vi /var/db/dhcpd_leases
 
-{
-	name=mp-worker-1
-	ip_address=192.168.64.4
-	hw_address=ff,f1:f5:dd:7f:0:2:0:0:ab:11:50:ed:1b:91:59:3e:45:b4
-	identifier=ff,f1:f5:dd:7f:0:2:0:0:ab:11:50:ed:1b:91:59:3e:45:b4
-	lease=0x671daf7a
-}
-{
-	name=mp-master
-	ip_address=192.168.64.3
-	hw_address=ff,f1:f5:dd:7f:0:2:0:0:ab:11:8f:ed:bd:8d:2d:2d:2a:17
-	identifier=ff,f1:f5:dd:7f:0:2:0:0:ab:11:8f:ed:bd:8d:2d:2d:2a:17
-	lease=0x671daf43
-}
-{
-	name=mp-master
-	ip_address=192.168.64.2
-	hw_address=ff,f1:f5:dd:7f:0:2:0:0:ab:11:b2:bc:2c:c6:2b:87:cf:5a
-	identifier=ff,f1:f5:dd:7f:0:2:0:0:ab:11:b2:bc:2c:c6:2b:87:cf:5a
-	lease=0x671dae13
-}
 {
 	name=mp-master
 	ip_address=192.168.64.55
@@ -223,25 +203,35 @@ sudo vi /var/db/dhcpd_leases
 	identifier=ff,f1:f5:dd:7f:0:2:0:0:ab:11:fa:4c:c0:e7:17:a6:ae:9a
 	lease=0x671d9fc1
 }
+{
+	name=mp-worker-1
+	ip_address=192.168.64.56
+	hw_address=ff,f1:f5:dd:7f:0:2:0:0:ab:11:50:ed:1b:91:59:3e:45:b4
+	identifier=ff,f1:f5:dd:7f:0:2:0:0:ab:11:50:ed:1b:91:59:3e:45:b4
+	lease=0x671daf7a
+}
 ```
 
-## 기타
+### Restart Network
+
+- 아래와 같이 network 적용 및 instance를 재시작해주어도 된다.
 
 ```bash
-multipass launch focal --name mp-master --memory 4G --disk 50G --cpus 2 --cloud-init mp-master.yaml
-multipass launch focal --name mp-master --memory 4G --disk 50G --cpus 2 --network name=multipass,mode=manual
+sudo netplan apply
+```
 
-multipass launch focal --name mp-worker-1 --memory 4G --disk 50G --cpus 2 --cloud-init mp-worker.yaml
-multipass launch focal --name mp-worker-1 --memory 4G --disk 50G --cpus 2 --network name=multipass,mode=manual
+## k8s Join
 
-multipass launch focal --name mp-worker-2 --memory 4G --disk 50G --cpus 2 --cloud-init mp-worker.yaml
-multipass launch focal --name mp-worker-2 --memory 4G --disk 50G --cpus 2 --network name=multipass,mode=manual
+- local에서 kubeadm_join_cmd.sh 파일 받아서 worker로 전송
 
-# 네트워크 변경 sudo netplan apply
-
+```bash
 multipass transfer mp-master:/home/ubuntu/kubeadm_join_cmd.sh ./
 multipass transfer kubeadm_join_cmd.sh mp-worker-1:/home/ubuntu
 multipass transfer kubeadm_join_cmd.sh mp-worker-2:/home/ubuntu
+```
 
+- 각 worker 접속하여 master join
+
+```bash
 sudo ./kubeadm_join_cmd.sh
 ```
