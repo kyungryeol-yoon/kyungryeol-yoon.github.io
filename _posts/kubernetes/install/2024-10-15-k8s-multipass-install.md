@@ -191,7 +191,7 @@ network:
 
 ### Network for MacOS
 
-- Local Terminal에서 아래와 같이 설정 및 추가
+- Mac Terminal에서 아래와 같이 설정 및 추가
 
 ```bash
 sudo vi /var/db/dhcpd_leases
