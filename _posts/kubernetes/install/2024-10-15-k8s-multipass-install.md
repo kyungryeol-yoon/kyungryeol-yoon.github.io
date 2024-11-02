@@ -24,10 +24,10 @@ tags: [Kubernetes, Install, Multipass]
 sudo kubeadm init --pod-network-cidr=10.244.0.0/12 --apiserver-advertise-address=192.168.0.55
 ```
 
-- --pod-network-cidr: pod 간 통신할 IP 주소를 지정 합니다. 
-- --apiserver-advertise-address: Control-plane의 api-server가 사용할 IP 주소 입니다. 지정하지 않으면 default network interface 주소를 사용 합니다
-- --service-cidr: 클러스터 내에서 애플리케이션 간 통신을 위해 사용되며, 고유한 IP 주소를 가지게 되며 기본값으로 10.96.0.0/12을 가집니다.
-- pod-network-cidr과 --service-cidr 주소를 겹치지 않게 설정. 겹칠 경우 쿠버네티스가 중복되지 않게 배치함
+- --pod-network-cidr: pod 간 통신할 IP 주소를 지정
+- --apiserver-advertise-address: Control-plane의 api-server가 사용할 IP 주소. 지정하지 않으면 default network interface 주소를 사용
+- --service-cidr: Cluster 내에서 Application 간 통신을 위해 사용되며, 고유한 IP 주소를 가지게 된다. 기본값으로 10.96.0.0/12을 가진다.
+- pod-network-cidr과 --service-cidr 주소를 겹치지 않게 설정. 겹칠 경우 Kubernetes가 중복되지 않게 배치함
 
 ### master.yaml
 
@@ -154,7 +154,6 @@ network:
             dhcp4: no
 ###
     version: 2
-version: 2
 ---
 #--network name=multipass | mode 안했을 때(아래는 별도 추가)
 network:
@@ -211,9 +210,9 @@ sudo vi /var/db/dhcpd_leases
 sudo netplan apply
 ```
 
-## k8s Join
+## Add Cluster Node : Join
 
-- local에서 kubeadm_join_cmd.sh 파일 받아서 worker로 전송
+- kubeadm_join_cmd.sh 파일 받아서 worker로 전송
 
 ```bash
 multipass transfer mp-master:/home/ubuntu/kubeadm_join_cmd.sh ./
