@@ -54,7 +54,7 @@ runcmd:
   - sudo -u ubuntu /home/ubuntu/k8s-post-init.sh
 ```
 
-#### 세부 설정 참고
+#### kubeadm 세부 설정 참고
 
 - pod 네트워크 CIDR 설정
   - Calico 기반 구축
