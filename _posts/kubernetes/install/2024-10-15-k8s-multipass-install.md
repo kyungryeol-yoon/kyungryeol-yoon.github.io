@@ -10,25 +10,6 @@ tags: [Kubernetes, Install, Multipass]
 
 ## cloud-init yaml 구성
 
-- pod 네트워크 CIDR 설정
-  - Calico 기반 구축
-    - pod-network-cidr=192.168.0.0/16
-
-  - Flannel 기반 구축
-    - pod-network-cidr=10.244.0.0/16
-
-  - Cilium 기반 구축
-    - pod-network-cidr=10.0.0.0/8
-
-```bash
-sudo kubeadm init --pod-network-cidr=10.244.0.0/12 --apiserver-advertise-address=192.168.0.55
-```
-
-- --pod-network-cidr: pod 간 통신할 IP 주소를 지정
-- --apiserver-advertise-address: Control-plane의 api-server가 사용할 IP 주소. 지정하지 않으면 default network interface 주소를 사용
-- --service-cidr: Cluster 내에서 Application 간 통신을 위해 사용되며, 고유한 IP 주소를 가지게 된다. 기본값으로 10.96.0.0/12을 가진다.
-- pod-network-cidr과 --service-cidr 주소를 겹치지 않게 설정. 겹칠 경우 Kubernetes가 중복되지 않게 배치함
-
 ### master.yaml
 
 ```yaml
@@ -73,6 +54,27 @@ runcmd:
   - sudo -u ubuntu /home/ubuntu/k8s-post-init.sh
 ```
 
+#### 세부 설정 참고
+
+- pod 네트워크 CIDR 설정
+  - Calico 기반 구축
+    - pod-network-cidr=192.168.0.0/16
+
+  - Flannel 기반 구축
+    - pod-network-cidr=10.244.0.0/16
+
+  - Cilium 기반 구축
+    - pod-network-cidr=10.0.0.0/8
+
+```bash
+sudo kubeadm init --pod-network-cidr=10.244.0.0/12 --apiserver-advertise-address=192.168.0.55
+```
+
+- --pod-network-cidr: pod 간 통신할 IP 주소를 지정
+- --apiserver-advertise-address: Control-plane의 api-server가 사용할 IP 주소. 지정하지 않으면 default network interface 주소를 사용
+- --service-cidr: Cluster 내에서 Application 간 통신을 위해 사용되며, 고유한 IP 주소를 가지게 된다. 기본값으로 10.96.0.0/12을 가진다.
+- pod-network-cidr과 --service-cidr 주소를 겹치지 않게 설정. 겹칠 경우 Kubernetes가 중복되지 않게 배치함
+
 ### worker.yaml
 
 ```yaml
@@ -115,11 +117,13 @@ multipass launch focal --name mp-worker-2 --memory 4G --disk 50G --cpus 2 --netw
 
 ### Network for Windows
 
-- 아래와 같이 설정 및 추가
+- 생성한 VM 접속하여 아래와 같이 설정 및 추가
+
+```bash
+sudo vi /etc/netplan
+```
 
 ```yaml
-sudo vi /etc/netplan
----
 network:
     ethernets:
         eth0:
@@ -137,8 +141,11 @@ network:
                 addresses: [8.8.8.8, 1.1.1.1]
 ###
     version: 2
----
-#--network name=multipass,mode=manual | (아래는 별도 추가)
+```
+
+- --network name=multipass,mode=manual | (아래는 별도 추가)
+
+```yaml
 network:
     ethernets:
         eth0:
@@ -154,8 +161,10 @@ network:
             dhcp4: no
 ###
     version: 2
----
-#--network name=multipass | mode 안했을 때(아래는 별도 추가)
+```
+
+- --network name=multipass | mode 안했을 때(아래는 별도 추가)
+```yaml
 network:
     ethernets:
         default:
@@ -181,7 +190,7 @@ network:
 
 ### Network for MacOS
 
-- 아래와 같이 설정 및 추가
+- Local Terminal에서 아래와 같이 설정 및 추가
 
 ```bash
 sudo vi /var/db/dhcpd_leases
@@ -204,7 +213,7 @@ sudo vi /var/db/dhcpd_leases
 
 ### Restart Network
 
-- 아래와 같이 network 적용 및 instance를 재시작해주어도 된다.
+- 아래와 같이 network 적용 또는 instance를 재시작
 
 ```bash
 sudo netplan apply
@@ -220,7 +229,7 @@ multipass transfer kubeadm_join_cmd.sh mp-worker-1:/home/ubuntu
 multipass transfer kubeadm_join_cmd.sh mp-worker-2:/home/ubuntu
 ```
 
-- 각 worker 접속하여 master join
+- 각 worker 접속하여 join
 
 ```bash
 sudo ./kubeadm_join_cmd.sh
