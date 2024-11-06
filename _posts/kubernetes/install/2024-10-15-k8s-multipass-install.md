@@ -70,10 +70,10 @@ runcmd:
 sudo kubeadm init --pod-network-cidr=10.244.0.0/12 --apiserver-advertise-address=192.168.0.55
 ```
 
-- --pod-network-cidr: pod 간 통신할 IP 주소를 지정
-- --apiserver-advertise-address: Control-plane의 api-server가 사용할 IP 주소. 지정하지 않으면 default network interface 주소를 사용
-- --service-cidr: Cluster 내에서 Application 간 통신을 위해 사용되며, 고유한 IP 주소를 가지게 된다. 기본값으로 10.96.0.0/12을 가진다.
-- pod-network-cidr과 --service-cidr 주소를 겹치지 않게 설정. 겹칠 경우 Kubernetes가 중복되지 않게 배치함
+- `--pod-network-cidr` : pod 간 통신할 IP 주소를 지정
+- `--apiserver-advertise-address` : Control-plane의 api-server가 사용할 IP 주소. 지정하지 않으면 default network interface 주소를 사용
+- `--service-cidr` : Cluster 내에서 Application 간 통신을 위해 사용되며, 고유한 IP 주소를 가지게 된다. 기본값으로 10.96.0.0/12을 가진다.
+- `--pod-network-cidr` 과 `--service-cidr` 주소를 겹치지 않게 설정. 겹칠 경우 Kubernetes가 중복되지 않게 배치함
 
 ### worker.yaml
 
