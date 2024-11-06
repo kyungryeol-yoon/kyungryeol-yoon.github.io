@@ -141,7 +141,7 @@ multipass launch focal --name mp-worker-2 --memory 4G --disk 50G --cpus 2 --netw
       version: 2
   ```
 
-- `--network name=multipass,mode=manual` | (아래 별도 추가)
+- `--network name=multipass,mode=manual`
   ```yaml
   network:
       ethernets:
@@ -160,7 +160,7 @@ multipass launch focal --name mp-worker-2 --memory 4G --disk 50G --cpus 2 --netw
       version: 2
   ```
 
-- `--network name=multipass` | mode 안했을 때 (아래 별도 추가)
+- `--network name=multipass`
   ```yaml
   network:
       ethernets:
