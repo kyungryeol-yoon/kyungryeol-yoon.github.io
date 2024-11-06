@@ -118,120 +118,118 @@ multipass launch focal --name mp-worker-2 --memory 4G --disk 50G --cpus 2 --netw
 ### Network for Windows
 
 - 생성한 VM 접속하여 아래와 같이 설정 및 추가
-
-```bash
-sudo vi /etc/netplan
-```
-
-```yaml
-network:
-    ethernets:
-        eth0:
-            dhcp4: true
-            match:
-                macaddress: 52:54:00:f1:f0:e8
-            set-name: eth0
---- 추가
-        eth1:
-            addresses: [192.168.0.55/24]
-            routes:
-              - to: default
-                via: 192.168.0.1
-            nameservers:
-                addresses: [8.8.8.8, 1.1.1.1]
----
-    version: 2
-```
+  ```bash
+  sudo vi /etc/netplan
+  ```
+  ```yaml
+  network:
+      ethernets:
+          eth0:
+              dhcp4: true
+              match:
+                  macaddress: 52:54:00:f1:f0:e8
+              set-name: eth0
+  --- 추가
+          eth1:
+              addresses: [192.168.0.55/24]
+              routes:
+                - to: default
+                  via: 192.168.0.1
+              nameservers:
+                  addresses: [8.8.8.8, 1.1.1.1]
+  ---
+      version: 2
+  ```
 
 - --network name=multipass,mode=manual | (아래는 별도 추가)
-
-```yaml
-network:
-    ethernets:
-        eth0:
-            dhcp4: true
-            dhcp6: true
-            match:
-                macaddress: 52:54:00:80:6b:21
-            set-name: eth0
---- 추가
-        eth1:
-            addresses: [192.168.0.55/24]
-            gateway4: 192.168.0.1
-            dhcp4: no
----
-    version: 2
-```
+  ```yaml
+  network:
+      ethernets:
+          eth0:
+              dhcp4: true
+              dhcp6: true
+              match:
+                  macaddress: 52:54:00:80:6b:21
+              set-name: eth0
+  --- 추가
+          eth1:
+              addresses: [192.168.0.55/24]
+              gateway4: 192.168.0.1
+              dhcp4: no
+  ---
+      version: 2
+  ```
 
 - --network name=multipass | mode 안했을 때 (아래는 별도 추가)
+  ```yaml
+  network:
+      ethernets:
+          default:
+              dhcp4: true
+              match:
+                  macaddress: 52:54:00:25:1d:ab
+          extra0:
+              dhcp4: true
+              dhcp4-overrides:
+                  route-metric: 200
+              match:
+                  macaddress: 52:54:00:09:13:61
+              optional: true
 
-```yaml
-network:
-    ethernets:
-        default:
-            dhcp4: true
-            match:
-                macaddress: 52:54:00:25:1d:ab
-        extra0:
-            dhcp4: true
-            dhcp4-overrides:
-                route-metric: 200
-            match:
-                macaddress: 52:54:00:09:13:61
-            optional: true
+  --- 추가
+          eth1:
+              addresses: [192.168.0.55/24]
+              gateway4: 192.168.0.1
+              dhcp4: no
+  ---
+      version: 2
+  ```
 
---- 추가
-        eth1:
-            addresses: [192.168.0.55/24]
-            gateway4: 192.168.0.1
-            dhcp4: no
----
-    version: 2
-```
+#### Restart Network
+
+- 아래와 같이 network 적용 또는 instance를 재시작
+  ```bash
+  sudo netplan apply
+  ```
 
 ### Network for MacOS
 
 - Mac Terminal에서 아래와 같이 설정 및 추가
+  ```bash
+  sudo vi /var/db/dhcpd_leases
 
-```bash
-sudo vi /var/db/dhcpd_leases
+  {
+    name=mp-master
+    ip_address=192.168.64.55
+    hw_address=ff,f1:f5:dd:7f:0:2:0:0:ab:11:fa:4c:c0:e7:17:a6:ae:9a
+    identifier=ff,f1:f5:dd:7f:0:2:0:0:ab:11:fa:4c:c0:e7:17:a6:ae:9a
+    lease=0x671d9fc1
+  }
+  {
+    name=mp-worker-1
+    ip_address=192.168.64.56
+    hw_address=ff,f1:f5:dd:7f:0:2:0:0:ab:11:50:ed:1b:91:59:3e:45:b4
+    identifier=ff,f1:f5:dd:7f:0:2:0:0:ab:11:50:ed:1b:91:59:3e:45:b4
+    lease=0x671daf7a
+  }
+  ```
 
-{
-	name=mp-master
-	ip_address=192.168.64.55
-	hw_address=ff,f1:f5:dd:7f:0:2:0:0:ab:11:fa:4c:c0:e7:17:a6:ae:9a
-	identifier=ff,f1:f5:dd:7f:0:2:0:0:ab:11:fa:4c:c0:e7:17:a6:ae:9a
-	lease=0x671d9fc1
-}
-{
-	name=mp-worker-1
-	ip_address=192.168.64.56
-	hw_address=ff,f1:f5:dd:7f:0:2:0:0:ab:11:50:ed:1b:91:59:3e:45:b4
-	identifier=ff,f1:f5:dd:7f:0:2:0:0:ab:11:50:ed:1b:91:59:3e:45:b4
-	lease=0x671daf7a
-}
-```
-
-### Restart Network
-
-- 아래와 같이 network 적용 또는 instance를 재시작
-
-```bash
-sudo netplan apply
-```
+- restart instance
+  ```bash
+  multipass restart mp-master
+  multipass restart mp-worker-1
+  ```
 
 ## Add Cluster Node : Join
 
 - kubeadm_join_cmd.sh 파일 받아서 worker로 전송
-
-```bash
-multipass transfer mp-master:/home/ubuntu/kubeadm_join_cmd.sh ./
-multipass transfer kubeadm_join_cmd.sh mp-worker-1:/home/ubuntu
-multipass transfer kubeadm_join_cmd.sh mp-worker-2:/home/ubuntu
-```
+  ```bash
+  multipass transfer mp-master:/home/ubuntu/kubeadm_join_cmd.sh ./
+  multipass transfer kubeadm_join_cmd.sh mp-worker-1:/home/ubuntu
+  multipass transfer kubeadm_join_cmd.sh mp-worker-2:/home/ubuntu
+  ```
 
 - 각 worker 접속하여 join
-
-```bash
-sudo ./kubeadm_join_cmd.sh
-```
+  ```bash
+  sudo ./kubeadm_join_cmd.sh
+  ```
