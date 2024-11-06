@@ -214,11 +214,11 @@ multipass launch focal --name mp-worker-2 --memory 4G --disk 50G --cpus 2 --netw
   }
   ```
 
-- restart instance
-  ```bash
-  multipass restart mp-master
-  multipass restart mp-worker-1
-  ```
+#### Restart Instance
+```bash
+multipass restart mp-master
+multipass restart mp-worker-1
+```
 
 ## Add Cluster Node : Join
 
