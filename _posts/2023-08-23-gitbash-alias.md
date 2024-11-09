@@ -1,6 +1,6 @@
 ---
 title: "[Git] Git Bash Alias"
-date: 2023-08-21
+date: 2023-08-23
 categories: [Git, Alias]
 tags: [Git, Windows, Alias]
 ---
