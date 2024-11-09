@@ -117,9 +117,21 @@ multipass launch focal --name mp-worker-2 --memory 4G --disk 50G --cpus 2 --netw
 
 ### Network for Windows
 
+- 관리자 권한 파워쉘에서 실행.
+
+```shell
+# 고정된 Switch와 인터넷 통신을 위한 NAT 를 생성한다. 172.16.0.1/16
+New-VMSwitch -SwitchName "MySwitch" -SwitchType Internal
+New-NetIPAddress -IPAddress 172.16.0.1 -PrefixLength 16 -InterfaceAlias "vEthernet (MySwitch)"
+New-NetNat -Name "NATNetwork" -InternalIPInterfaceAddressPrefix "172.16.0.1/16"
+
+# mutipass launch 시 network 를 추가한다.
+multipass launch -n mp-master -c 2 -m 2G -d 20G --network name=MySwitch focal
+```
+
 - 생성한 VM 접속하여 아래와 같이 설정 및 추가
   ```bash
-  sudo vi /etc/netplan
+  sudo vi /etc/netplan/50-cloud-init.yaml
   ```
   ```yaml
   network:
