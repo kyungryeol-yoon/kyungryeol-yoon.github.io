@@ -2,6 +2,7 @@
 # layout: post
 title: "[C++] Rvalue Reference - Move Semantics"
 date: 2016-03-21
+categories: [CPP, Rvalue]
 # excerpt: "Move Semantics란 객체의 리소스(동적으로 할당된 메모리와 같은)를 또 다른 객체로 전송(이동)하는 것을 의미"
 tags: [Move Semantics, Right Value, Reference, cpp, Programming]
 # comments: true

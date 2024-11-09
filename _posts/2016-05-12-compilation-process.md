@@ -2,6 +2,7 @@
 # layout: post
 title: "Compilation Process"
 date: 2016-05-12
+categories: [Programming, Compile]
 # excerpt: "프로그램 코드를 컴퓨터가 이해할 수 있는 언어로 변환하는 작업"
 tags: [Compilation Process, compile languages, byte code languages, interpreter languages, c, cpp, Java, csharp, JavaScript, Python, Ruby, Programming]
 # comments: true
@@ -9,7 +10,7 @@ tags: [Compilation Process, compile languages, byte code languages, interpreter 
 
 컴파일 과정은 프로그램을 만드는 데 있어서 반드시 알아야 하는 내용은 아니지만 이 과정을 머리속에 담고 있는 개발자는 앞으로 무수히 부딪히게 될 많은 문제나 오류들을 이해하는데 **훨씬 큰 이점**을 얻게 될 것입니다.
 
-## 컴파일 과정이란?
+## Compile 과정이란?
 
 컴퓨터 프로그램의 개발은 코드 작성(프로그래밍)부터 시작된다. 이렇게 작성된 코드는 사용자(개발자)가 컴퓨터가 수행해 주기를 원하는 내용을 기술한 것이지만, 컴퓨터가 이해할 수 있는 문법(언어)이 아닌 사용자가 이해할 수 있는 문법이다.
 따라서 작성된 코드는 **컴파일(Compile)** 과정을 거쳐 컴퓨터가 이해할 수 있는 언어로 변환되며, 컴파일된 파일을 **오브젝트 파일(Object File)**이라고 부른다.
