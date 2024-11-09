@@ -6,6 +6,7 @@ tags: [Docker, Image, BackUp]
 ---
 
 ## docker image backup
+
 ```bash
 docker save -o test-image.tar harbor.local.com/test-python/test-api:batch_v1.3
 scp test-image.tar user@ip주소:/home/user

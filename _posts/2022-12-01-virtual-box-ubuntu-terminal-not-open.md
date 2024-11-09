@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "Virtual Box - Ubuntu Terminal Not Open"
+title: "[Virtual Box] Ubuntu Terminal Not Open"
 date: 2022-12-01
 categories: [Virtual Box, Ubuntu]
 tags: [Virtual Box, Ubuntu, Termianl, Error]
