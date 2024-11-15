@@ -5,12 +5,12 @@ categories: [Flutter, SDK]
 tags: [Flutter, SDK]
 ---
 
-**💡Google에서 개발한 오픈 소스 프레임워크로, 모바일 앱뿐만 아니라 웹 및 데스크톱 앱까지 다양한 플랫폼에서 동작하는 크로스 플랫폼 앱을 개발하는 도구**
+**Google에서 개발한 오픈 소스 프레임워크로, 모바일 앱뿐만 아니라 웹 및 데스크톱 앱까지 다양한 플랫폼에서 동작하는 크로스 플랫폼 앱을 개발하는 도구**
 
-## **❓SDK (Software Development Kit) : 소프트웨어 개발 키트**
+## SDK (Software Development Kit) : 소프트웨어 개발 키트
 - 특정한 소프트웨어를 개발하기 위해 필요한 도구, 라이브러리, 문서, 샘플 코드 등이 포함된 패키지이다.
 
-## **Flutter SDK 특징**
+## Flutter SDK 특징
 1. **Dart 언어:**
 - 플러터 앱을 개발하기 위한 주 언어는 Dart. Dart는 간결하고 생산적인 언어로, 플러터 앱의 비즈니스 로직과 UI를 함께 다룰 수 있다.
 2. **위젯:**
@@ -37,8 +37,8 @@ tags: [Flutter, SDK]
     4. **~/설치경로/flutter/bin (입력)**
     5. **[확인]**
 
-## **flutter doctor 실행하기**
-### **💡flutter doctor?**
+## flutter doctor 실행하기
+### **flutter doctor?**
 - 개발 환경의 설정 및 필수 구성 요소를 검사하고 문제를 해결하는 데 도움을 주는 명령어
 
 ### **📂~/설치경로/flutter/bin**
