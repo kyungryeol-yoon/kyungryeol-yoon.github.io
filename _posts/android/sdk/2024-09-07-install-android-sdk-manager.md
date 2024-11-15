@@ -37,7 +37,7 @@ tags: [Android, SDK]
 3. **SDK Tools**
     1. **Android SDK Command-line Tools**
 
-> ⚠️이 도구가 있어야 CLI (명령어)로 설정을 할 수 있다.
+> 이 도구가 있어야 CLI (명령어)로 설정을 할 수 있다.
 {: .prompt-warning }
 
 ```bash

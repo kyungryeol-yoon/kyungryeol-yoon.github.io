@@ -6,9 +6,11 @@ tags: [Git, gitignore, Error]
 ---
 
 ## 💡 문제점
+
 - .gitignore 파일에 추가를 하고 확인해 보았지만 바로 적용이 되지 않은 문제점을 확인
 
 ## 💡 해결방법
+
 - 해당 명령어는 Git에서 Local 저장소에서 파일을 제거하지만 **실제 파일은 유지**되며 Commit을 수행하는 과정을 통해 반영되지 않은 .gitignore를 수행
 
 > 실제 파일은 삭제되지 않는다
@@ -16,16 +18,16 @@ tags: [Git, gitignore, Error]
 
 ```bash
 # 인덱스/스테이징 영역에 있는 영역에서만 Local 파일을 삭제하고 실제 파일은 남겨둔다.
-$ git rm -r --cached .
+git rm -r --cached .
 
 # Local 저장소의 내용을 스테이징 영역으로 올린다.
-$ git add .
+git add .
 
 # 변경 사항을 커밋한다.
-$ git commit -m "커밋 내용"
+git commit -m "커밋 내용"
 
 # 변경 사항을 원격 저장소로 올린다.
-$ git push
+git push
 ```
 
 ### 💡 해결 방법 : 1단계
@@ -42,16 +44,19 @@ $ git push
 
 
 ### 💡 해결방법: 2단계
+
 - Local 저장소의 변경 사항을 스테이징 영역으로 모두 추가
-```bash
-$ git add .
-```
+    ```bash
+    git add .
+    ```
 
 ### 💡 해결 방법 : 3단계
+
 - Local 저장소에 있는 내용들을 Commit하고 Push
+    ```bash
+    git commit -m "Commit 내용"
+    ```
 
-```bash
-$ git commit -m "Commit 내용"
-
-$ git push
-```
+    ```bash
+    git push
+    ```

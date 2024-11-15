@@ -1,5 +1,5 @@
 ---
-title: "[Git] Git Bash Alias"
+title: "[Git] Git Bash Alias - Windows"
 date: 2023-08-23
 categories: [Git, Alias]
 tags: [Git, Windows, Alias]

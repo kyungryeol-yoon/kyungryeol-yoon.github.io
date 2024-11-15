@@ -1,8 +1,8 @@
 ---
 title: "[Mac OS] Setting Alias Mac OS"
 date: 2017-12-01
-categories: [Mac OS, Setting]
-tags: [Setting, Alias, Mac OS]
+categories: [MacOS, Setting]
+tags: [Setting, Alias, MacOS]
 # comments: true
 ---
 
