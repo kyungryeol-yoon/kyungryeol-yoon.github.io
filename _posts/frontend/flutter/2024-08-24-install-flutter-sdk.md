@@ -86,7 +86,7 @@ Doctor summary (to see all details, run flutter doctor -v):
 flutter doctor --andriod-licenses
 ```
 
-> ⛔Android **sdkmanager** not found. Update to the latest Android SDK and ensure that the **cmdline-tools** are installed to resolve this.
+> Android **sdkmanager** not found. Update to the latest Android SDK and ensure that the **cmdline-tools** are installed to resolve this.
 {: .prompt-danger }
 
 #### **✅해결방법: SDK Manager 에서 cmdline-tools 설치**
