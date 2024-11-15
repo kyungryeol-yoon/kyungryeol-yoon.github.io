@@ -5,7 +5,7 @@ categories: [DevOps, SRE]
 tags: [DevOps, SLO, SLI, SLA]
 ---
 
-## ⭐️   ⭐ SLO, SLI 및 SLA란?
+## ⭐️ SLO, SLI 및 SLA란?
 - 서비스 레벨은 일정 기간 내에 사용자에게 제공되는 서비스를 측정 가능한 용어
   - 서비스 레벨 목표(Service-level objectives, SLO)는 시스템에서 기대되는 가용성을 설정한 목표이다.
   - 서비스 레벨 지표(Service-level indicators, SLI)는 시스템의 가용성을 파악하기 위한 핵심 측정치와 지표이다.
@@ -20,7 +20,7 @@ SLA에는 이러한 SLO와 고객과 서비스 공급업체가 합의한 기타 
 분산 시스템의 업타임과 안정성을 유지하기 위한 모범 사례들이 보편화되었다.\\
 2016년 3월, Google은 서비스 레벨 목표부터 시작해 메트릭을 모델링, 선택 및 분석하는 프레임워크에 대해 설명하는 '사이트 안정성 엔지니어링: Google이 프로덕션 시스템 운영하는 방법(Site Reliability Engineering: How Google Runs Production Systems)'을 발표했다.
 
-### ⭐️🌟 SLO란?
+### 🌠🔥💫🌟📒🖥️💻 SLO란?
 - SLO(서비스 레벨 목표)는 시스템에서 기대하는 가용성을 설정한 목표로, 일정 기간 동안의 백분율로 표시된다.
 
 서비스 레벨 목표는 ‘가용성’과 ‘업타임’이라는 공통된 의미를 기반으로 팀들이 협업하는 데 도움이 된다.\\
