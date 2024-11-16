@@ -227,6 +227,7 @@ multipass launch -n mp-master -c 2 -m 2G -d 20G --network name=MySwitch focal
   ```
 
 #### Restart Instance
+
 ```bash
 multipass restart mp-master
 multipass restart mp-worker-1

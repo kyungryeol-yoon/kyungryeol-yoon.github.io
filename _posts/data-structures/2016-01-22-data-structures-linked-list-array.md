@@ -24,6 +24,7 @@ tags: [Data Structures, cpp, Linked List, Array, Programming]
 하지만 반대로, 데이터를 삽입/삭제 할 때에는 물리적 주소에 구애받지 않고 앞/뒤 노드의 주소만 끼워넣을 노드의 주소로 바꿔주면 되기 때문에 삽입/삭제는 배열보다 빠르다.
 
 ## C++로 구현한 양방향 연결 리스트(Double Linked List)
+
 ```c++
 /**
  * 연결리스트(LinkedList)에 사용할 노드 클래스

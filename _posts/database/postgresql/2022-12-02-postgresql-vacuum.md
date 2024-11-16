@@ -9,21 +9,25 @@ tags: [Database, PostgreSQL, VACUUM, Disk, usage]
 {: .prompt-warning }
 
 ## DB 전체 풀 실행
-```terminal
+
+```bash
 vacuum full analyze;
 ```
 
 ## DB 전체 간단하게 실행
-```terminal
+
+```bash
 vacuum verbose analyze;
 ```
 
 ## 해당 테이블만 간단하게 실행
-```terminal
+
+```bash
 vacuum analyse [테이블 명];
 ```
 
 ## 특정 테이블만 풀 실행
-```terminal
+
+```bash
 vacuum full [테이블명];
 ```

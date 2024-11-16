@@ -20,6 +20,7 @@ tags: [Data Structures, cpp, Queue, Deque, Programming]
 - underflow : 자료가 없다면 스택에는 삭제(Dequeue할 때)할 자료가 없다.
 
 ### 큐(Queue)의 연산
+
 큐(Queue)는 **FIFO(First-In-First-Out)** 를 따른다.
 * add(item) : item을 리스트의 끝부분에 추가한다.
 * remove() : 리스트의 첫 번째 항목을 제거한다.
@@ -71,6 +72,7 @@ tags: [Data Structures, cpp, Queue, Deque, Programming]
 - 입력이 한쪽 끝으로만 가능하도록 설정한 데크인 입력제한데크(Scroll), 출력이 한쪽 끝으로만 가능하도록 설정한 데크인 출력제한데크(Shelf)가 있다.
 
 ### C++로 구현한 큐 & 덱 (Queue & Deque)
+
 [이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol-yoon.github.io/posts/data-structures-linked-list-array/)
 
 ```c++

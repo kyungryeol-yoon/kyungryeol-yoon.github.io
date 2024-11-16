@@ -8,10 +8,10 @@ tags: [Setting, Alias, MacOS]
 
 ### alias 등록
 - 맥북은 bash쉘이 아닌 zsh쉘을 기본으로 사용한다.
-- 그렇기 때문에 ~/.bashrc 가 아닌 ~/.zshrc 파일을 열어 수정을 해줘야 한다.
+- 그렇기 때문에 `~/.bashrc`가 아닌 `~/.zshrc` 파일을 열어 수정을 해줘야 한다.
 - zshrc 파일로 영구 등록
 
-```terminal
+```bash
 vi ~/.zshrc
 ```
 
@@ -24,7 +24,7 @@ vi ~/.zshrc
 > 문서의 맨 마지막으로 이동: G
 {: .prompt-tip }
 
-```terminal
+```conf
 # k3s alias
 alias k3sctl="kubectl --kubeconfig=${HOME}/.kube/k3s.yaml"
 

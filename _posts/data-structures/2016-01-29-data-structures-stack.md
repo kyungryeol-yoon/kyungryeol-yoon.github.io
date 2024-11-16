@@ -22,6 +22,7 @@ tags: [Data Structures, cpp, Stack, Programming]
 - underflow : 자료가 없다면(TOP포인터가 주소 0을 가지고 있다면) 스택에는 삭제(POP할 때)할 자료가 없다.
 
 ### 스택(Stack)의 연산
+
 스택(Stack)는 **LIFO(Last In First Out)** 를 따른다. 즉, 가장 최근에 스택에 추가한 항목이 가장 먼저 제거될 항목이다.
 * pop() : 스택에서 가장 위에 있는 항목을 제거한다.
 * push(item) : item 하나를 스택의 가장 윗 부분에 추가한다.
@@ -56,6 +57,7 @@ tags: [Data Structures, cpp, Stack, Programming]
 * 수식계산
 
 ### C++로 구현한 스택 (Stack)
+
 [이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol-yoon.github.io/posts/data-structures-linked-list-array/)
 
 ```c++
