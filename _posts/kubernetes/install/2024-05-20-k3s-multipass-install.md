@@ -90,10 +90,10 @@ k3s-worker2   Ready    <none>                 29m   v1.29.5+k3s1
 
 ```
 kubectl --kubeconfig=${HOME}/.kube/k3s.yaml label node k3s-master node-role.kubernetes.io/master=""
-$ kubectl --kubeconfig=${HOME}/.kube/k3s.yaml label node k3s-worker1 node-role.kubernetes.io/node=""
-$ kubectl --kubeconfig=${HOME}/.kube/k3s.yaml label node k3s-worker2 node-role.kubernetes.io/node=""
-$ kubectl --kubeconfig=${HOME}/.kube/k3s.yaml taint node k3s-master node-role.kubernetes.io/master=effect:NoSchedule
-$ kubectl --kubeconfig=${HOME}/.kube/k3s.yaml get nodes -o wide
+kubectl --kubeconfig=${HOME}/.kube/k3s.yaml label node k3s-worker1 node-role.kubernetes.io/node=""
+kubectl --kubeconfig=${HOME}/.kube/k3s.yaml label node k3s-worker2 node-role.kubernetes.io/node=""
+kubectl --kubeconfig=${HOME}/.kube/k3s.yaml taint node k3s-master node-role.kubernetes.io/master=effect:NoSchedule
+kubectl --kubeconfig=${HOME}/.kube/k3s.yaml get nodes -o wide
 ```
 
 ```

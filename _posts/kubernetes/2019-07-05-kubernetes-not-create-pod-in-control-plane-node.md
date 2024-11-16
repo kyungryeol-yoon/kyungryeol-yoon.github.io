@@ -44,7 +44,7 @@ deployment.apps/nginx-deployment created
 ### Pod 상태 확인 (Pending 상태로 지속 됨)
 
 ```bash
-$ kubectl get pods
+kubectl get pods
 
 NAME                               READY   STATUS    RESTARTS   AGE
 nginx-deployment-6dd86d77d-4rkhf   0/1     Pending   0          20m
@@ -53,7 +53,7 @@ nginx-deployment-6dd86d77d-4rkhf   0/1     Pending   0          20m
 ### Pod 상태 자세히 확인
 
 ```bash
-$ kubectl describe pod nginx-deployment-6dd86d77d-4rkhf
+kubectl describe pod nginx-deployment-6dd86d77d-4rkhf
 
 Name:               nginx-deployment-6dd86d77d-4rkhf
 Namespace:          default
@@ -71,7 +71,7 @@ Events:
 ### Contrl-Plane Node 확인 (아래 master는 Contrl-Plane Node Name)
 
 ```bash
-$ kubectl describe node master | grep Taints
+kubectl describe node master | grep Taints
 
 Taints:             node-role.kubernetes.io/master:NoSchedule
 ```
@@ -81,11 +81,11 @@ Taints:             node-role.kubernetes.io/master:NoSchedule
 ### Taint 설정 해제
 
 ```bash
-$ kubectl taint nodes –all node-role.kubernetes.io/master-
+kubectl taint nodes –all node-role.kubernetes.io/master-
 
 node/master untainted
 Pod 상태 재조회 (자동으로 restart)
-$ kubectl get pods -o wide
+kubectl get pods -o wide
 
 NAME                               READY   STATUS    RESTARTS   AGE   IP           NODE     NOMINATED NODE   READINESS GATES
 nginx-deployment-6dd86d77d-4rkhf   1/1     Running   0          35m   10.244.0.7   master   <none>           <none>
@@ -96,7 +96,7 @@ nginx-deployment-6dd86d77d-4rkhf   1/1     Running   0          35m   10.244.0.7
 ### Taint 설정
 
 ```bash
-$ kubectl taint nodes master node-role.kubernetes.io=master:NoSchedule
+kubectl taint nodes master node-role.kubernetes.io=master:NoSchedule
 
 node/master tainted
 ```
@@ -104,7 +104,7 @@ node/master tainted
 ### 확인
 
 ```bash
-$ kubectl describe node master | grep Taints
+kubectl describe node master | grep Taints
 
 Taints:             node-role.kubernetes.io=master:NoSchedule
 ```

@@ -9,13 +9,13 @@ tags: [Python, FastAPI, Programming]
 파이썬 3.6+ 으로 API서버를 구축하기 위한 모던하고, 빠른 웹 프레임 워크
 
 ### fastapi 설치
-```terminal
-$ pip install fastapi
+```bash
+pip install fastapi
 ```
 
 ### uvicorn 설치
-```terminal
-$ pip install uvicorn
+```bash
+pip install uvicorn
 ```
 
 ## 간단한 실행
@@ -30,8 +30,8 @@ async def root():
 ```
 
 ### fastapi + uvicorn 실행
-```terminal
-$ uvicorn main:app --reload --host=0.0.0.0 --port=8000
+```bash
+uvicorn main:app --reload --host=0.0.0.0 --port=8000
 ```
 
 - main : 여기서 main은 main.py의 main을 말한다
