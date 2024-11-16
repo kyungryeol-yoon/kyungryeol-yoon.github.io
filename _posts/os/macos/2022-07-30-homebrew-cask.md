@@ -54,7 +54,8 @@ brew uninstall wget
 
 #### 특징
 
-- **GUI 애플리케이션**을 설치하는 데 사용된다. 예: `Google Chrome`, `Visual Studio Code`, `Slack`, `Spotify` 등.
+- **GUI 애플리케이션**을 설치하는 데 사용된다.
+    - 예: `Google Chrome`, `Visual Studio Code`, `Slack`, `Spotify` 등.
 - `brew install` 명령어와 비슷하지만, `cask`를 명시적으로 사용해야 한다.
 - 사용자가 직접 다운로드하여 설치하는 것보다 훨씬 더 빠르고 쉽게 앱을 설치할 수 있다.
 
