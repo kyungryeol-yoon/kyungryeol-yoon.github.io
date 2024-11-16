@@ -2,73 +2,96 @@
 # layout: post
 title: "[C++] Lvalue와 Rvalue"
 date: 2016-03-20
-categories: [CPP, Lvalue]
-# excerpt: "C++에서 모든 표현식은 Lvalue와 Rvalue입니다."
+categories: [CPP, Programming]
 tags: [Left Value, Right Value, cpp, Programming]
 # comments: true
 ---
 
-## C++ Lvalue와 Rvalue
+## Lvalue (Left-value)
 
-Lvalue와 Rvalue는 보통 Left-value(왼쪽 값)과 Right-value(오른쪽 값)로 풀어서 씁니다. 이 때문에 대입 연산자(=)를 기준으로 왼쪽에 위치하는 값이 Lvalue이고 오른쪽에 위치하는 값이 Rvalue라고 이해하기 쉽습니다. 이것은 C 표준에 입각하여 살펴보면 완전히 틀린 얘기는 아니지만(C 표준에서는 대입연산자(=)를 기준으로 왼쪽과 오른쪽에 모두 사용될 수 있는 값은 Lvalue이고 오른쪽에만 사용될 수 있는 값이 Rvalue라고 정의하고 있습니다.) 잘못된 이해이며, C++ 관점에서는 전혀 다른 관점에서 해석할 필요가 있습니다. **C++ 표준에서는 더이상 단순하게 L과 R은 Left와 Right를 의미하지 않습니다.** 이제부터는 위에서 언급한 Left, Right의 개념은 잊어버리고 Lvalue와 Rvalue를 단순히 고유명사로만 기억합시다.
+- Lvalue는 "Left-value"의 줄임말로, 메모리 상에 특정 주소를 가지며, 이 값은 변경이 가능하거나 수정 가능한 값이다.
+- 다시 말해, Lvalue는 대입 연산자(=)의 왼쪽에 위치할 수 있는 표현식이다. Lvalue는 항상 메모리에서 특정 주소를 참조하기 때문에, 해당 값은 변수를 통해 접근할 수 있다.
 
-## Lvalue와 Rvalue의 구분
+### 특징
 
-C++에서 모든 표현식은 Lvalue와 Rvalue입니다. **Lvalue은 단일 표현식 이후에도 없어지지 않고 지속되는 객체입니다.** 쉽게 생각해서 이름을 가지는 객체는 Lvalue라고 생각하시면 됩니다. 그러므로 const 타입을 포함한 모든 변수는 Lvalue입니다. **반면에 Rvalue는 표현식이 종료된 이후에는 더 이상 존재하지 않는 임시적인 값입니다.** 상수 또는 임시 객체는 Rvalue라고 생각하시면 됩니다.
+- 메모리 주소를 가지며, 해당 값을 수정할 수 있다.
+- 변수나 객체와 같은 값들이 대표적인 Lvalue입니다.
+- 대입 연산자의 왼쪽에 올 수 있다.
+	```cpp
+	int a = 10;  // 'a'는 Lvalue, 대입 연산자의 왼쪽에 있다.
+	a = 20;      // 'a'는 Lvalue, 값을 변경할 수 있다.
+	```
 
-## Example Source Code
+	```cpp
+	int a = 10;
+	a = 20;  // 'a'는 Lvalue, 대입 연산자의 왼쪽에 위치하고 값이 변경된다.
+	```
 
-```c++
-#include <iostream>
-#include <string>
-using namespace std;
-int main() {
-	int x = 3;
-	const int y = x;
-	int z = x + y;
-	int* p = &x;
-	cout << string("one");
-	
-	++x;
-	x++;
+### Lvalue의 종류
+
+- **일반 변수**: int a = 5;에서 a는 Lvalue입니다.
+- **배열 요소**: arr[3] 같은 배열 요소도 Lvalue입니다.
+- **참조**: int& x = a;에서 x는 Lvalue입니다.
+
+## Rvalue (Right-value)
+
+- Rvalue는 "Right-value"의 줄임말로, 값 자체를 나타내며, 메모리 상의 특정 주소를 가지지 않는 값이다.
+- 대입 연산자의 오른쪽에 위치하는 표현식이 Rvalue에 해당합니다. Rvalue는 일시적인 값으로, 일반적으로 리터럴 값이나 연산 결과로 생성된다.
+- Rvalue는 변경할 수 없거나 수정할 수 없는 값이기도 한다.
+
+### 특징
+
+- 메모리 주소를 가지지 않으며, 보통 값만 존재한다.
+- 대입 연산자의 오른쪽에 올 수 있다.
+- 값이 임시적이거나 일시적이어서, 해당 값을 수정할 수 없다.
+	```cpp
+	int a = 10;  // 'a'는 Lvalue
+	a = 20;      // '20'은 Rvalue, 대입 연산자의 오른쪽에 있다.
+	```
+
+	```cpp
+	int a = 10;
+	a = 20;  // '20'은 Rvalue, 대입 연산자의 오른쪽에 위치하며 변경할 수 없다.
+	```
+
+### Rvalue의 종류
+
+- **리터럴**: 10 같은 상수 값은 Rvalue이다.
+- **연산 결과**: a + b와 같은 표현식은 Rvalue이다. 이 표현식은 값을 계산하지만, 해당 값은 메모리의 특정 위치에 존재하지 않는다.
+- **임시 객체**: std::vector<int>(5)와 같이 임시로 생성된 객체도 Rvalue이다
+
+## Lvalue와 Rvalue 구분
+
+```cpp
+int a = 5;       // 'a'는 Lvalue
+int b = a + 3;   // 'a + 3'은 Rvalue, 계산된 결과는 임시 객체로 존재
+b = a + 5;       // 'a + 5'는 Rvalue, 'b'는 Lvalue (대입 연산자의 왼쪽)
+```
+
+## Lvalue와 Rvalue의 관계
+
+- Lvalue를 Rvalue로 사용할 수 있는 경우
+	- Lvalue는 Rvalue로 변환될 수 있다. 예를 들어, a는 Lvalue이지만 a + 1은 Rvalue이다.
+	- Lvalue는 Rvalue로 "읽히기" 위해 사용될 수 있다. 예를 들어, int x = a + 1;에서 a + 1은 Rvalue이다.
+
+- Rvalue를 Lvalue로 사용할 수 있는 경우
+	- Rvalue는 직접적으로 Lvalue로 변환될 수 없지만, Rvalue를 참조할 수 있는 임시 객체 참조(rvalue reference)를 이용하여 간접적으로 Lvalue처럼 다룰 수 있다.
+
+## C++11에서 추가된 Rvalue 참조와 Move Semantics
+
+- C++11부터 도입된 **Rvalue 참조(T&&)**와 Move Semantics은 Rvalue 개념을 보다 발전시킨 것이다.
+- Rvalue 참조는 임시 객체나 이동 가능한 객체를 이동할 수 있게 해 주며, 이를 통해 성능을 크게 개선할 수 있다.
+
+```cpp
+void func(int&& x) {
+    // x는 Rvalue 참조로, x를 이동할 수 있다.
 }
 ```
 
-x, y, z, p 등의 이름을 가지는 변수는 모두 Lvalue이지만 상수값 3, 임시객체 string("one")은 표현식이 종료되면 더 이상 참조할 수 없는 값이기 떄문에 Rvalue입니다. x + y, &x와 같은 표현식도 마찬가지로 Rvalue입니다. 또 한가지 흥미로운 점은 ++x는 Lvalue이지만 x++은 Rvalue라는 점입니다. 둘 다 증가된 값을 리턴하지만 ++x는 증가된 x 자신을 리턴하기 때문에 Lvalue인 반면에 x++은 증가되기 전의 복사본을 리턴하기 때문에 Rvalue입니다.
-**아직도 Lvalue와 Rvalue가 잘 이해가 되지 않으신다면 조금 더 확실하게 구분하는 방법이 있습니다. 바로 표현식에 주소 연산자 &를 붙여보는 겁니다. &연산자는 Lvalue를 요구하기 때문에 표현식이 Rvalue라면 compile error가 나타날겁니다.**
+- T&&는 일반적으로 Rvalue 참조를 의미하며, 주로 임시 객체를 다룰 때 사용된다.
+- Move Semantics은 자원을 복사하는 대신 자원의 소유권을 이동하는 방법을 제공한다.
 
-```c++
-&(++x);
-&(x++); // error C2102: '&' requires l-value
-```
+## 결론
 
-## Rvalue 참조자 &&
-
-C++에서 int& a = b; 형탤 사용하였던 참조자(Reference)는 Lvalue 참조자입니다. C++ 11 표준에서부터 Lvalue 참조자 이외에도 Rvalue를 참조할 수 있는 Rvalue 참조자가 추가되었습니다. Lvalue 참조자는 Lvalue만 참조할 수 있고 Rvalue 참조자는 Rvalue만 참조할 수 있습니다.
-(Rvalue 참조자는 Visual Studio 2010 이상 버전의 compiler에서 사용 가능합니다.)
-
-```c++
-int rvalue() {
-	return 10;
-}
-
-int main() {
-	int lvalue = 10;
-	
-	int& a = lvalue;
-	int& b = rvalue(); // error C2440: 'initializing' : cannot convert from 'int' to 'int &'
-	
-	int&& c = lvalue; // error C2440: 'initializing' : cannot convert from 'int' to 'int &&'
-	int&& d = rvalue();
-}
-```
-
-Lvalue 참조 타입에 Rvalue를 대입하려고 하거나 Rvalue 참조 타입에 Lvalue를 대입하려고 하면 compile error가 나는 것을 볼 수 있습니다.
-여기서 왜 Rvalue 참조자가 필요한 것일까요?
-표현식이 종료되면 더 이상 존재하지 않는 임시적인 값을 참조해서 무엇을 하려는지에 대해서 **[Move Semantics](https://kyungryeol1101.github.io/cpp-rvalue-reference/)**의 post를 참고해주시기 바랍니다.
-
-### Reference
-
-- [MSDN - Lvalues and Rvalues](https://msdn.microsoft.com/en-us/library/f90831hc.aspx)
-- [MSDN - Rvalue Reference Declarator: &&](https://msdn.microsoft.com/en-us/library/dd293668.aspx)
-- [Rvalue Reference: C++0x Features in VC10, Part 2](https://blogs.msdn.microsoft.com/vcblog/2009/02/03/rvalue-references-c0x-features-in-vc10-part-2/)
+- **Lvalue**: 메모리 주소를 가지며, 수정 가능한 값(변수 등).
+- **Rvalue**: 메모리 주소를 가지지 않으며, 주로 임시적인 값(리터럴, 연산 결과 등)

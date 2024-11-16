@@ -18,12 +18,17 @@ Spring project를 생성하고 바로 실행하면 browser에 home.jsp가 실행
 5. View에 출력
 
 ### DispatcherServlet
+
 #### Model, Controller, View를 조합하여 browser로 출력해주는 역할을 수행하는 class
+
 ![](/images/spring/dispatcher-servlet.png)
 
 ### 01. /WEB-INF/web.xml
+
 #### 웹프로젝트의 배치 기술서(deploy descriptor, 웹프로젝트의 환경 설정 파일)
+
 * Spring project가 실행되면 가장 먼저 web.xml을 읽어 들이게 되고 위에서부터 차례대로 태그들을 해석하기 시작한다.
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
@@ -69,7 +74,9 @@ Spring project를 생성하고 바로 실행하면 browser에 home.jsp가 실행
 ```
 
 ### 02. /WEB-INF/spring/root-context.xml
+
 #### Spring의 환경 설정 파일
+
 * 현재는 별다른 내용을 작성하지 않았기 때문에 web.xml에서는 root-context.xml을 건너 뛰게 된다.
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
