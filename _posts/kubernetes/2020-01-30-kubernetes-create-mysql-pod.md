@@ -15,14 +15,15 @@ tags: [Kubernetes, kubectl, MySQL, Pod]
 
 ## kubectl create or run
 
-run을 통해 이미지와 replicas 등 스펙들을 설정할 수 있다.
+- run을 통해 이미지와 replicas 등 스펙들을 설정할 수 있다.
 
-```
+```bash
 kubectl run mysql-test --image=mysql:5.7.8 --port=3306 --replicas=1 --env="MYSQL_ROOT_PASSWORD=testpw" --env="MYSQL_DATABASE=testdb"
 ```
 
 ## kubectl apply
-```
+
+```bash
 kubectl apply -f mysql-test.yaml mysql-test
 ```
 
@@ -31,7 +32,7 @@ kubectl apply -f mysql-test.yaml mysql-test
 yaml을 통해 세부적으로 작성하기 편하며,
 혹시나 pod에 대한 속성을 수정할 일이 있다면, 이전에는 어떻게 구성하였는지 확인하기 위해 yaml파일을 폴더 별로 관리를 추천한다.
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:

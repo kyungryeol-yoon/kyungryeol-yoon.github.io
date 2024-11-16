@@ -14,7 +14,8 @@ fzf를 설치하면 대화식 메뉴를 제공하기 때문에, 더욱 편리하
 {: .prompt-info }
 
 ## kubectx 명령을 실행하면, Context 목록을 보여줍니다.
-```terminal
+
+```bash
 $ kubectx
 coffee
 minikube
@@ -22,13 +23,15 @@ test
 ```
 
 ## Context를 변경하기 위해서는, Context 명을 입력하면 됩니다.
-```terminal
+
+```bash
 $ kubectx minikube
 Switched to context "minikube".
 ```
 
 ## 만약 fzf가 설치되어 있으면, kubectx 명령을 실행하면 대화식 메뉴를 보여줍니다.
-```terminal
+
+```bash
 $ kubectx
 > coffee
   minikube

@@ -10,7 +10,8 @@ Context와 Namespace를 보는게 불편하다면,\\
 kubeoff 명령어를 실행해서 kube-ps을 비활성화 시킬수도 있습니다.
 
 ## kube-ps1의 설치가 완료되면, 셀의 프롬프트가 다음처럼 표시됩니다.
-```terminal
+
+```bash
 (⎈ |[context]:[namespace]) $
 (⎈ |greentea:kube-system) $
 ```

@@ -13,6 +13,21 @@ tags: [Kubernetes, kubectl, Alias]
 alias k='kubectl'
 alias kg='kubectl get'
 alias kgpo='kubectl get pod'
+
+alias ksysgpo='kubectl --namespace=kube-system get pod'
+
+alias krm='kubectl delete'
+alias krmf='kubectl delete -f'
+alias krming='kubectl delete ingress'
+alias krmingl='kubectl delete ingress -l'
+alias krmingall='kubectl delete ingress --all-namespaces'
+
+alias kgsvcoyaml='kubectl get service -o=yaml'
+alias kgsvcwn='kubectl get service --watch --namespace'
+alias kgsvcslwn='kubectl get service --show-labels --watch --namespace'
+
+alias kgwf='kubectl get --watch -f'
+...
 ```
 
 > 자주 쓰는 명령어는 [kubectl-aliases](https://github.com/ahmetb/kubectl-aliases)에 정의되어 있습니다.

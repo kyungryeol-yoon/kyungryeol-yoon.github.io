@@ -13,6 +13,7 @@ tags: [Kubernetes, kubectl-neat]
 - k neat를 사용하여 정리된 yaml 을 얻을 수 있다.
 
 ## Install krew first
+
 - Krew는 kubectl plugin을 쉽게 사용할 수 있게 해주는 도구입니다.
 
 > Install krew 참고 https://github.com/kubernetes-sigs/krew
@@ -32,22 +33,22 @@ tags: [Kubernetes, kubectl-neat]
 
 ### Add Env to bashrc or zshrc
 
-```
+```bash
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 ```
 
 ### 기본 구조
 
-```
+```bash
 kubectl krew [command]
 ```
 
-> [명령어] --help를 입력하면 더 다양한 옵션들을 찾을 수 있다.
+> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 {: .prompt-info }
 
 ## Install neat with krew
 
-```
+```bash
 kubectl krew install neat
 ```
 
@@ -57,7 +58,7 @@ kubectl krew install neat
 ### 기본 구조
 - 끝에 `k neat`를붙여준다.
 
-```
+```bash
 kubectl get pod [pod-name] -o yaml | k neat
 ```
 

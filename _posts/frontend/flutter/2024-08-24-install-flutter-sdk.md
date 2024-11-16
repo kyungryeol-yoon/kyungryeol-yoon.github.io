@@ -69,15 +69,15 @@ Doctor summary (to see all details, run flutter doctor -v):
 ! Doctor found issues in 3 categories.
 ```
 
-## **❌표시로 나오는 부분은 추가로 설치할 항목이 필요하거나 설정이 필요한 내용**
-- **❌cmdline-tools component is missing.**
+## **❌ 표시로 나오는 부분은 추가로 설치할 항목이 필요하거나 설정이 필요한 내용**
+- **❌ cmdline-tools component is missing.**
     - **➡️cmdline-tools 라는 플러그인 설치가 필요합니다.**
-- **❌Anroid license status unknown.**
+- **❌ Anroid license status unknown.**
     - **➡️안드로이드 관련 라이센스 동의가 필요합니다.**
         > 명령어를 입력하여 라이센스 동의를 하라고 알려주고 있는데, 먼저 명령어를 사용하기 위해서는 cmdline-tools 라는 플러그인이 설치되어야 명령어를 사용할 수 있다.
         {: .prompt-info }
 
-- **❌Visual Studio not installed: this is necessary to develop Windows apps**
+- **❌ Visual Studio not installed: this is necessary to develop Windows apps**
     - **➡️**Visual Studio 개발 앱이 설치되어 있지 않다. (Visual Studio를 사용하지 않는다면, 무시해도 좋다. cf. VS Code 와 다르다.)
 
 
@@ -89,7 +89,7 @@ flutter doctor --andriod-licenses
 > Android **sdkmanager** not found. Update to the latest Android SDK and ensure that the **cmdline-tools** are installed to resolve this.
 {: .prompt-danger }
 
-#### **✅해결방법: SDK Manager 에서 cmdline-tools 설치**
+#### **해결방법: SDK Manager 에서 cmdline-tools 설치**
 > [SDK Manager 설치 참고](https://kyungryeol-yoon.github.io/posts/install-sdk-manager/)
 {: .prompt-info }
 
@@ -98,7 +98,7 @@ flutter doctor --andriod-licenses
 3. **SDK Tools**
     1. **Android SDK Command-line Tools**
 
-**✅이 도구가 있어야 CLI (명령어)로 설정을 할 수 있다.**
+**이 도구가 있어야 CLI (명령어)로 설정을 할 수 있다.**
 ```bash
 flutter doctor --android-licenses
 ```

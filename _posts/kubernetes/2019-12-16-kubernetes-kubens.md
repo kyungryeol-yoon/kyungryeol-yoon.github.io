@@ -10,7 +10,8 @@ kubens는 기본 Namespace를 변경할 수 있도록 도와줍니다.\\
 fzf를 설치하면 대화식 메뉴를 제공하기 때문에, 더욱 편리하게 사용할 수 있습니다.
 
 ## kubens 명령을 실행하면, Namespace 목록을 보여줍니다.
-```terminal
+
+```bash
 $ kubens
 kube-system
 kube-public
@@ -19,14 +20,16 @@ default
 ```
 
 ## Namespace를 변경하기 위해서는, Namespace 명을 입력하면 됩니다.
-```terminal
+
+```bash
 $ kubens kube-system
 Context "minikube" modified.
 Active namespace is "kube-system".
 ```
 
 ## 만약 fzf가 설치되어 있으면, kubens 명령을 실행하면 대화식 메뉴를 보여줍니다.
-```terminal
+
+```bash
 $ kubens
 > kube-system
   kube-public
