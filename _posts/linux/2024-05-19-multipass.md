@@ -1,5 +1,5 @@
 ---
-title: "Multipass - Install Ubuntu"
+title: "[Multipass] Install Ubuntu"
 date: 2024-05-19
 categories: [Multipass, Ubuntu, Linux]
 tags: [Multipass, Ubuntu, Linux]
