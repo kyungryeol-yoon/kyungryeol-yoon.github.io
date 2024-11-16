@@ -455,7 +455,8 @@ UserService userService;
 - HTTP/2 프로토콜은 HTTP/1.1 과 몇가지 근본적인 차이가 있는데요. 몇가지가 적혀있는데, 가장 핵심적인 부분은 HTTP/1.1이 텍스트 프로토콜이라면 HTTP/2는 이진 프로토콜이라는 점 같습니다.
 
 - 하지만, 대략적으로 추측을 해보자면, 텍스트 형태의 리소스는 바이너리 형태에 비해 당연히 효율이 나쁠 것 같아요. 텍스트는 사람이 이해하기 좋을 뿐 컴퓨터는 어짜피 결론적으로 바이너리 형태로 이해할태니까요. 간추리면 브라우저에서 데이터를 바이너리 값으로 변환하여 서버로 보내고 서버는 그 바이너리 값을 해석하여 처리하겠죠? ‘Google ? Web Fundamentals’의 문서를 참고하면 아래와 같이 데이터를 바이너리 프레이밍 값으로 캡슐화하여 주고 받는 것 같습니다.
-{% highlight xml %}
+
+```xml
 # HTTP 1.1
 POST /upload HTTP/1.1
 Host: www.example.org
@@ -463,13 +464,14 @@ Content-Type: application/json
 COntent-Length: 15
 ...
 {"msg": "hello"}
-{% endhighlight %}
+```
 
-{% highlight xml %}
+```xml
 # HTTP 2.0
 HEADER frame
 DATA frame
-{% endhighlight %}
+```
+
 - 그리고 이러한 바이너리 프레이밍 구조가 이후에 나오게 될 HTTP2의 특징이나 장점에 기본이 되는 부분인 것 같습니다. 저의 지식이 얕기 때문에 프로토콜의 원리에 대해 이해하고 이야기하는 것은 어려울 것 같고 간단하게 특징을 적어보려합니다.
 
 4-1. 요청 및 응답 다중화

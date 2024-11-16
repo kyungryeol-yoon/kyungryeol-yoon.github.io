@@ -6,7 +6,8 @@ tags: [Android, Programming, Java, Facebook, Login]
 ---
 
 ## AndroidManifest.xml
-{% highlight xml %}
+
+```xml
 <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="페이스북APP_ID"/>
 <activity android:name="com.facebook.FacebookActivity"
     android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -16,11 +17,13 @@ tags: [Android, Programming, Java, Facebook, Login]
 <provider android:authorities="com.facebook.app.FacebookContentProvider페이스북APP_ID"
     android:name="com.facebook.FacebookContentProvider"
     android:exported="true" />
-{% endhighlight %}
+```
 
 ## Login 요청 버튼 구현
+
 > Arrays.asList를 이용하여 권한을 추가로 요청하실 수 있습니다. 일부 권한은 페이스북 앱 리뷰를 통과해야 합니다.
 {: .prompt-info }
+
 ```java
 private void isLoginFacebook() {
     FacebookSdk.sdkInitialize(getApplicationContext());
@@ -47,6 +50,7 @@ private void isLoginFacebook() {
 ```
 
 ## 사용자 정보 획득
+
 ```java
 GraphRequest request = GraphRequest.newMeRequest( 엑세스토큰 ,
     new GraphRequest.GraphJSONObjectCallback() {
@@ -75,6 +79,7 @@ request.executeAsync();
 ```
 
 ## callbackManager 호출
+
 ```java
 @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
