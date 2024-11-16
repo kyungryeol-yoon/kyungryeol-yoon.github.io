@@ -10,6 +10,7 @@ tags: [Android, SDK]
 - Android 개발에 필요한 소프트웨어 개발 키트(Software Development Kit) 및 관련 도구, 플랫폼 및 시스템 이미지를 설치하고 관리하는 도구
 
 ### 주요 기능
+
 1. **SDK 및 도구 설치**
     - Android SDK Manager를 통해 Android 버전에 맞는 SDK 플랫폼, 빌드 도구, 플랫폼 도구, 시스템 이미지 등을 다운로드하고 설치할 수 있다.
 2. **라이브러리 및 추가 컴포넌트 관리**
@@ -24,6 +25,7 @@ tags: [Android, SDK]
     - Android SDK Manager는 주로 안드로이드 스튜디오(Android Studio)와 함께 사용되며, 스튜디오에서도 SDK 관리 기능이 일부 내장되어 있다.
 
 ## Android SDK 설치
+
 1. **Andriod Studio 실행**
 2. **More Actions ➡️ SDK Manager**
 3. **Edit**
@@ -33,6 +35,7 @@ tags: [Android, SDK]
     3. Android API 34(Version)
 
 ## cmdline tools 설치
+
 1. **Andriod Studio 실행**
 2. **More Actions ➡️ SDK Manager**
 3. **SDK Tools**
