@@ -70,7 +70,7 @@ public class TestApplicationTests {
 - MVC를 위한 테스트, 웹에서 테스트하기 힘든 Controller를 테스트하는데 적합하다.
 - 웹상에서 요청과 응답에 대한 테스트 진행
 - Security 혹은 필터까지 자동으로 테스트하며 수동으로 추가/삭제 가능
-- @WebMvcTest Annotation을 사용하면 MVC 관련된 설정인 @Controller, @ControllerAdvice, @JsonCompoent와 Filter, WebMvcConfiguer, HandlerMetohdAgumentResolver만 로드되기 때문에 @SpringBootTest Annotation 보다 가볍게 테스트할수 있다.
+- `@WebMvcTest` Annotation을 사용하면 MVC 관련된 설정인 `@Controller`, `@ControllerAdvice`, `@JsonCompoent`와 `Filter`, `WebMvcConfiguer`, `HandlerMetohdAgumentResolver`만 로드되기 때문에 `@SpringBootTest` Annotation 보다 가볍게 테스트할수 있다.
 
 ```java
 @RunWith(SpringRunner.class)
