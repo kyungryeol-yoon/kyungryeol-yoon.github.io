@@ -1,6 +1,6 @@
 ---
 title: "[Python] 가상환경 venv 사용하기"
-date: 2021-07-15
+date: 2021-07-02
 categories: [Python, venv]
 tags: [Python, venv, Programming]
 ---
