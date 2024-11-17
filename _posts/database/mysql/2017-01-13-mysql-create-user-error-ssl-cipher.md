@@ -1,8 +1,8 @@
 ---
 # layout: post
-title: "MySQL user 생성시 ERROR 1364 (HY000)"
+title: "[MySQL] MySQL user 생성시 ERROR 1364 (HY000)"
 date: 2017-01-13
-categories: [Database, MySQL, Error]
+categories: [Database, MySQL]
 tags: [Database, MySQL, Error]
 # comments: true
 ---

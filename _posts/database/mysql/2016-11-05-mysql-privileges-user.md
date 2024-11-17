@@ -1,5 +1,5 @@
 ---
-title: "MySQL 사용자에게 데이터베이스 사용권한 부여"
+title: "[MySQL] MySQL 사용자에게 데이터베이스 사용권한 부여"
 date: 2016-11-05
 categories: [Database, MySQL]
 tags: [Database, MySQL, Privileges]
