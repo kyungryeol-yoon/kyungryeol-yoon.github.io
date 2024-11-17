@@ -1,6 +1,6 @@
 ---
 title: "[Android] Facebook 로그인 구현하기"
-date: 2019-06-01
+date: 2017-01-25
 categories: [Android, Login]
 tags: [Android, Programming, Java, Facebook, Login]
 ---
