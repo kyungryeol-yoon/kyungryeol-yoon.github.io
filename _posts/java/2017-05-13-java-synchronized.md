@@ -15,7 +15,7 @@ tags: [Java, Synchronized]
 1. Method에 synchronized 하기
 2. 블록에 synchronized 하기
 
-## 먼저 Multi-Thread 환경에서 synchronized를 사용하지 않을 경우
+## **먼저 Multi-Thread 환경에서 synchronized를 사용하지 않을 경우**
 
 1. 계좌에는 1000원이 있다.
 2. 100 ~ 300 으로 랜덤하게 계좌에서 출금을 할 수 있다.
@@ -90,7 +90,7 @@ No.2 balance : -100
 - 사용자가 의도한 대로 정상적인 결과를 얻으려면 객체, 함수, 또는 변수에 synchronized를 사용해야 한다.
 
 
-## Method에 synchronized
+## **Method에 synchronized**
 
 - Instance Method의 동기화는 이 Method를 가진 Instance를 기준으로 이루어진다.
 - 그러므로 한 클래스에 synchronized를 사용한 Method를 가진다면, 여기서 동기화는 Instance를 기준으로 이루어진다.
@@ -122,7 +122,7 @@ public synchronized void withDraw(int money) {
 }
 ```
 
-## 블록에 synchronized
+## **블록에 synchronized**
 
 - 아래 synchronized 키워드 괄호 사이에 락(Lock)이라 부르는 객체를 볼 수 있다.
 - 위에서 설명했듯이 동기화과 공유 자원에 대한 접근을 허락한다고 정의한 바 있다.
