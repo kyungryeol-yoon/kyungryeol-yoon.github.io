@@ -118,7 +118,7 @@ public class BookApiTest {
 
 - `@DataJpaTest` Annotation은 JPA 관련된 설정만 로드한다.
 - 데이터소스의 설정이 정상적인지, JPA를 사용하서 데이터를 제대로 생성, 수정, 삭제하는지 등의 테스트가 가능하다.
-- 기본적으로 인메모리 데이터베이스를 이용한다.
+- 기본적으로 inMemory 데이터베이스를 이용한다.
 - `@Entity` 클래스를 스캔하여 스프링 데이터 JPA 저장소를 구성한다.
 
 ```java

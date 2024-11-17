@@ -14,7 +14,7 @@ tags: [Virtual Box, Ubuntu, Termianl, Error]
 sudo locale-gen --purge
 ```
 
-재부팅 후 Termianl 실행
+- 재부팅 후 Termianl 실행
 
 
 ```

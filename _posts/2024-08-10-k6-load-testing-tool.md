@@ -14,28 +14,33 @@ tags: [K6, Test, JavaScript]
 {: .prompt-info }
 
 ## 주요 성능 지표
+
 - 퍼포먼스 테스트의 결과를 분석 할때, 반드시 알아야 할 주요 성능 지표가 있다.
 	- Latency(지연시간)
 	- Throughput(처리량)
 	- Iterations(반복)
 
 ### Latency(지연시간)
+
 - 고객이 배달 앱을 통해 식당에 음식을 주문하고 문 앞까지 도착하는 시간에 비유할 수 있다.
 - 주문하는데 1분이 걸렸고, 요리하는데 10분, 배달 오는데 10분 총 21 분이 소요되었다. 이때는 21 분의 지연시간이 걸렸다고 할 수 있다.
 - 인터넷에서 요청을 보내고 응답을 받기 전까지를 측정한 지표
 
 ### Throuput(처리량)
+
 - 이번엔 한 식당에 100 명의 고객이 웨이팅하고 있다고 가정
 - Throuput은 식당이 1시간 동안 100 명의 고객에게 음식을 대접할 수 있는지에 비유할 수 있다.
 - 식당이 높은 Throuput을 가졌다면, 1시간 동안 100 명의 고객에게 모두 음식을 대접할 수 있을 것이고, 낮은 Throuput을 가졌다면 고객들은 더 많은 시간을 기다려야 할 것이다.
 
 ### Iterations(반복)
+
 - "A 고객이 음식을 주문하고, 식당은 음식을 조리하고, 고객에게 음식을 제공합니다."
 - "B 고객이 음식을 주문하고, 식당은 음식을 조리하고, 고객에게 음식을 제공합니다."
 - "C 고객이 음식을 주문하고, 식당은 음식을 조리하고, 고객에게 음식을 제공합니다."
 - 이렇듯 같은 행위를 얼마만큼 안정적으로 반복할 수 있는지를 테스트하는 지표
 
 ## k6의 Lifecycle은 크게 네가지
+
 ```js
 // 1. 초기화 - init code
 
@@ -74,6 +79,7 @@ export function teardown(data) {
 	- teardown은 테스트 끝날때 한번만 수행되며 VU 코드가 종료되고 난뒤 바로 수행
 
 ### setup, teardown 스킵
+
 - `--no-setup` 옵션을 이용하여 셋업을 스킵한다.
 - `--no-teardown` 옵션을 이용하여 teardown 을 스킵한다.
 
@@ -82,6 +88,7 @@ k6 run --no-setup --no-teardown ...
 ```
 
 ### setup에서 정의한 데이터를 전달
+
 - setup에서 정의한 데이터를 default function과 teardown 으로 전달
 
 ```js
@@ -110,6 +117,7 @@ export function teardown(data) {
 {: .prompt-info }
 
 ## Test Code 작성 방법
+
 - k6는 가상 유저를 만들어 애플리케이션에 원하는 요청을 반복적으로 보내게 된다.
 
 ```js
@@ -146,6 +154,7 @@ export default function () {
 {: .prompt-warning }
 
 ### Test Code 작성 예시
+
 ```js
 import http from "k6/http";
 import { sleep, check } from "k6";
@@ -251,6 +260,7 @@ export const options = {
 {: .prompt-info }
 
 #### Trend 관련
+
 ```js
 const trends = {
   scenario1: new Trend("scenario1_response_time", true),
@@ -268,6 +278,7 @@ scenario2_response_time.......: avg=1.29s    min=1.25s    med=1.29s max=1.36s   
 ```
 
 #### Setup 관련
+
 ```js
 export function setup() {
   const url = "";
@@ -287,6 +298,7 @@ export function setup() {
 - 로그인이 필요한 서비스를 가정하여 토큰을 취득
 
 #### scenario 관련
+
 ```js
 export function scenarioFunc(token) {
   const scenarioUrl = "";
@@ -321,6 +333,7 @@ export function scenarioFunc(token) {
 {: .prompt-info }
 
 ### Result
+
 ```
           /\      |‾‾| /‾‾/   /‾‾/
      /\  /  \     |  |/  /   /  /
@@ -435,11 +448,13 @@ scenario2 ✓ [======================================] 1 VUS 10s
 	- 의미 : 최대 Virtual Users, 시나리오의 최대 실행유저수(병렬)
 
 ### p(90)과 p(95)의 의미
+
 - p는 percentile을 의미하고 뒤에 90, 95는 각각 90%, 95%를 의미
 	- p(90)은 "90%의 요청이 주어진 지연보다 빠르거나 동일한 시간 안에 완료된다는 것을 의미"
 	- p(95)는 "95%의 요청이 주어진 지연보다 빠르거나 동일한 시간 안에 완료된다는 것을 의미"
 
 #### 500명의 고객들이 햄버거를 주문했다고 가정
+
 1. 80%인 400명은 20초 안에 햄버거를 받았고, 20%인 100명은 햄버거를 받기까지 10분 이상이 걸렸다.
 2. 이때 평균적으로 한 고객이 햄버거를 받기까지 약 4분이 소요
 3. 대부분의 사람들이 20초 내에 햄버거를 받았음에도 불구하고 평균 시간은 4분으로 측정되기 때문에 햄버거를 받기까지의 시간이 오래 걸린다고 생각할 수 있다. 
@@ -448,6 +463,7 @@ scenario2 ✓ [======================================] 1 VUS 10s
 - 따라서 퍼포먼스 측정을 진행 할 때는 평균을 보는 것에 주의를 주어야 하며, 평균보다는 p(90)과 p(95)가 더 중요하다.
 
 #### 100만 건의 요청을 보냈을 때, 모든 요청은 1초 내에 이루어져야 하는데, 딱 하나의 요청만이 1분이 걸렸다고 가정
+
 - 일반적인 관점에서는 실패로 볼 수 있지만, Service Level Objective(SLO) 관점에서 바라보면 성공. 왜냐하면 SLO에서 100%는 있을 수 없기 때문이다.
 - AWS S3 서비스만 봐도 [99.999999999%의 내구성과 99.99%의 가용성을 제공](https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/DataDurability.html)한다고 합니다.
 
