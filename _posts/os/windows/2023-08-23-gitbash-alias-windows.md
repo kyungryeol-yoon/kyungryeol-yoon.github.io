@@ -9,11 +9,13 @@ tags: [Git, Windows, Alias]
 
 - `C:\Program Files\Git\etc\profile.d` 경로의 `aliases.sh` 파일에 아래와 같이 추가
     ```bash
-    alias mgmt='cp -f %USERPROFILE%/.kube/config_mgmt %USERPROFILE%/.kube/config; kubectl get node -o wide'
-    alias prod='cp -f %USERPROFILE%/.kube/config_prod %USERPROFILE%/.kube/config; kubectl get node -o wide'
-    alias stg='cp -f %USERPROFILE%/.kube/config_stg %USERPROFILE%/.kube/config; kubectl get node -o wide'
-    alias dev='cp -f %USERPROFILE%/.kube/config_dev %USERPROFILE%/.kube/config; kubectl get node -o wide'
-    alias beta='cp -f %USERPROFILE%/.kube/config_beta %USERPROFILE%/.kube/config; kubectl get node -o wide'
+    alias mgmt='cp -f $HOME/.kube/config_mgmt $HOME/.kube/config; kubectl get node -o wide'
+    alias prod='cp -f $HOME/.kube/config_prod $HOME/.kube/config; kubectl get node -o wide'
+    alias stg='cp -f $HOME/.kube/config_stg $HOME/.kube/config; kubectl get node -o wide'
+    alias dev='cp -f $HOME/.kube/config_dev $HOME/.kube/config; kubectl get node -o wide'
+    alias beta='cp -f $HOME/.kube/config_beta $HOME/.kube/config; kubectl get node -o wide'
+    alias ls='ls -F --color=auto --show-control-chars'
+    alias ll='ls -l'
     ```
 
 - `C:\Program Files\Git\etc` 경로로 이동, `bash.bashrc` 파일에 아래와 같이 추가
