@@ -197,6 +197,25 @@ multipass launch -n mp-master -c 2 -m 2G -d 20G --network name=MySwitch focal
       version: 2
   ```
 
+- worker Node에도 추가
+  ```yaml
+  network:
+      ethernets:
+          eth0:
+              dhcp4: true
+              dhcp6: true
+              match:
+                  macaddress: 52:54:00:80:6b:21
+              set-name: eth0
+  --- 추가
+          eth1:
+              addresses: [192.168.0.56/24]
+              gateway4: 192.168.0.1
+              dhcp4: no
+  ---
+      version: 2
+  ```
+
 #### Restart Network
 
 - 아래와 같이 network 적용 또는 instance를 재시작
