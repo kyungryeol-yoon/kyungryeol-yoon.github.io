@@ -107,3 +107,15 @@ docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 ```bash
 cat initial_root_password
 ```
+
+## root 관리자 암호 변경(command)
+
+```bash
+sudo docker exec -ti gitlab /bin/bash
+
+root@gitlab:/# gitlab-rake "gitlab:password:reset"
+Enter username: root
+Enter password: 
+Confirm password:
+Password successfully updated for user with username root.
+```
