@@ -9,7 +9,7 @@ tags: [Kubernetes, OpenTelemetry, Operator, Cert-manager, Install, Helm]
 {: .prompt-info }
 
 ## Install Cert-manager
-```
+```bash
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.yaml
 ```
 
