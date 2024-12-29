@@ -24,45 +24,45 @@ tags: [Java, Synchronized]
 
 ```java
 class Account {
-    int balance = 1000;
-    
-    public void withDraw(int money) {
-        if(balance >= money) {
-            try {
-                Thread thread = Thread.currentThread();
-                System.out.println(thread.getName() + " money : " + money);
-                Thread.sleep(1000);
-                balance -= money;
-                System.out.println(thread.getName() + " balance : " + balance);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+  int balance = 1000;
+  
+  public void withDraw(int money) {
+    if(balance >= money) {
+      try {
+        Thread thread = Thread.currentThread();
+        System.out.println(thread.getName() + " money : " + money);
+        Thread.sleep(1000);
+        balance -= money;
+        System.out.println(thread.getName() + " balance : " + balance);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
         }
+      }
     }
+  }
 
 class Task implements Runnable {
-    Account acc = new Account();
+  Account acc = new Account();
 
-    @Override
-    public void run() {
-        while(acc.balance > 0) {
-            int money = (int)((Math.random() * 3) + 1) * 100;
-            acc.withDraw(money);
-        }
+  @Override
+  public void run() {
+    while(acc.balance > 0) {
+      int money = (int)((Math.random() * 3) + 1) * 100;
+      acc.withDraw(money);
     }
+  }
 }
 
 public class ThreadSynchronizedTest {
-    public static void main(String[] args) {
-        Task task = new Task();
-        Thread thread1 = new Thread(task);
-        thread1.setName("No.1");
-        Thread thread2 = new Thread(task);
-        thread2.setName("No.2");
-        thread1.start();
-        thread2.start();
-    }
+  public static void main(String[] args) {
+    Task task = new Task();
+    Thread thread1 = new Thread(task);
+    thread1.setName("No.1");
+    Thread thread2 = new Thread(task);
+    thread2.setName("No.2");
+    thread1.start();
+    thread2.start();
+  }
 }
 ```
 
@@ -108,17 +108,17 @@ public synchronized void synchronizedTest () {
 
 ```java
 public synchronized void withDraw(int money) {
-    if(balance >= money) {
-        try {
-            Thread thread = Thread.currentThread();
-            System.out.println(thread.getName() + " money : " + money);
-            Thread.sleep(1000);
-            balance -= money;
-            System.out.println(thread.getName() + " balance : " + balance);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+  if(balance >= money) {
+    try {
+      Thread thread = Thread.currentThread();
+      System.out.println(thread.getName() + " money : " + money);
+      Thread.sleep(1000);
+      balance -= money;
+      System.out.println(thread.getName() + " balance : " + balance);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
+  }
 }
 ```
 
@@ -136,19 +136,19 @@ synchronized([락(Lock) 객체]) {
 
 ```java
 public void withDraw(int money) {
-    synchronized(this) {
-        if(balance >= money) {
-            try {
-                Thread thread = Thread.currentThread();
-                System.out.println(thread.getName() + " money : " + money);
-                Thread.sleep(1000);
-                balance -= money;
-                System.out.println(thread.getName() + " balance : " + balance);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+  synchronized(this) {
+    if(balance >= money) {
+      try {
+        Thread thread = Thread.currentThread();
+        System.out.println(thread.getName() + " money : " + money);
+        Thread.sleep(1000);
+        balance -= money;
+        System.out.println(thread.getName() + " balance : " + balance);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
     }
+  }
 }
 ```
 

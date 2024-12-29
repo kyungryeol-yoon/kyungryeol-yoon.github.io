@@ -9,11 +9,11 @@ tags: [Spring, Security, JWT]
 
 - Spring Security를 베이스로 JWT를 사용해서 해당 프로젝트의 인증과 인가를 구현한다.
 - 이와 관련돼서 생성된 Class는 다음과 같다.
-    - SecurityConfig : Spring Security관련 설정
-    - UserAccount : Spring Security에서 인증 요소(principal)로 사용되는 객체. Userdetails를 상속받고 Account의 정보를 갖는다.
-    - PrincipalDetailService : 인증 시, DB에서 Account를 찾고 UserAccount로 반환하는 loadUserByUsername Method를 갖는다.
-    - JwtAutienticationFilter : jwt를 사용해서 인증 처리
-    - JwtAutiorizationFilter : jwt를 사용해서 인가 처리
+  - SecurityConfig : Spring Security관련 설정
+  - UserAccount : Spring Security에서 인증 요소(principal)로 사용되는 객체. Userdetails를 상속받고 Account의 정보를 갖는다.
+  - PrincipalDetailService : 인증 시, DB에서 Account를 찾고 UserAccount로 반환하는 loadUserByUsername Method를 갖는다.
+  - JwtAutienticationFilter : jwt를 사용해서 인증 처리
+  - JwtAutiorizationFilter : jwt를 사용해서 인가 처리
 
 ### **SecurityConfig**
 
@@ -25,66 +25,66 @@ tags: [Spring, Security, JWT]
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final AccountRepository accountRepository;
-    private final JwtProcessor jwtProcessor;
+  private final AccountRepository accountRepository;
+  private final JwtProcessor jwtProcessor;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .formLogin().disable()
-                .httpBasic().disable();
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http
+          .csrf().disable()
+          .formLogin().disable()
+          .httpBasic().disable();
 
-        http
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    http
+          .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http
-                .addFilter(corsFilter())
-                .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtProcessor))
-                .addFilter(new JwtAuthorizationFilter(authenticationManager(), accountRepository, jwtProcessor));
+    http
+          .addFilter(corsFilter())
+          .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtProcessor))
+          .addFilter(new JwtAuthorizationFilter(authenticationManager(), accountRepository, jwtProcessor));
 
-        http
-                .authorizeRequests()
-                .mvcMatchers("/home", "/login").permitAll() //** 홈페이지, login
-                .anyRequest().hasAuthority("ROLE_USER");
-    }
+    http
+          .authorizeRequests()
+          .mvcMatchers("/home", "/login").permitAll() //** 홈페이지, login
+          .anyRequest().hasAuthority("ROLE_USER");
+  }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
-    }
+  @Override
+  public void configure(WebSecurity web) throws Exception {
+    web
+          .ignoring()
+          .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+  }
 
-    @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedOriginPattern("*");
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
-        source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
-    }
+  @Bean
+  public CorsFilter corsFilter() {
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    CorsConfiguration config = new CorsConfiguration();
+    config.setAllowCredentials(true);
+    config.addAllowedOriginPattern("*");
+    config.addAllowedHeader("*");
+    config.addAllowedMethod("*");
+    source.registerCorsConfiguration("/**", config);
+    return new CorsFilter(source);
+  }
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+  @Bean
+  @Override
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+  }
 ```
 
 #### **기본 설정**
 
 ```java
 http
-        .csrf().disable()
-        .formLogin().disable()
-        .httpBasic().disable();
+      .csrf().disable()
+      .formLogin().disable()
+      .httpBasic().disable();
 
 http
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+      .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 ```
 
 - **csrf.disable()** : API를 작성하는데 프런트가 정해져있지 않기 때문에 csrf설정은 우선 꺼놓는다.
@@ -96,9 +96,9 @@ http
 
 ```java
 http
-        .addFilter(corsFilter())
-        .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtProcessor))
-        .addFilter(new JwtAuthorizationFilter(authenticationManager(), accountRepository, jwtProcessor));
+      .addFilter(corsFilter())
+      .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtProcessor))
+      .addFilter(new JwtAuthorizationFilter(authenticationManager(), accountRepository, jwtProcessor));
 ```
 
 #### **corsFilter**
@@ -106,24 +106,24 @@ http
 ```java
 @Bean
 public CorsFilter corsFilter() {
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    CorsConfiguration config = new CorsConfiguration();
-    config.setAllowCredentials(true);
-    config.addAllowedOriginPattern("*");
-    config.addAllowedHeader("*");
-    config.addAllowedMethod("*");
-    source.registerCorsConfiguration("/**", config);
-    return new CorsFilter(source);
+  UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+  CorsConfiguration config = new CorsConfiguration();
+  config.setAllowCredentials(true);
+  config.addAllowedOriginPattern("*");
+  config.addAllowedHeader("*");
+  config.addAllowedMethod("*");
+  source.registerCorsConfiguration("/**", config);
+  return new CorsFilter(source);
 }
 ```
 
 - cors관련 설정을 포함한 필터.
 - 기본적으로 서버 또는 지정된 특정 도메인의 요청만 허용하지만 프런트가 정해져있지 않기 때문에 모든 도메인을 허용하는 방식으로 설정.
-    - **setAllowCredentials** : 내 서버가 응답을 할 때 json을 자바스크립트에서 처리할수 있게 할지를 설정
-    - **addAllowedOriginPattern** : 허용할 도메인 목록
-    - **addAllowedHeader** : 허용할 헤더 목록
-    - **addAllowedMethod** : 허용할 Method(GET, PUT, 등) 목록
-    - **source.registerCorsConfiguration** : 지정한 url에 config 적용
+  - **setAllowCredentials** : 내 서버가 응답을 할 때 json을 자바스크립트에서 처리할수 있게 할지를 설정
+  - **addAllowedOriginPattern** : 허용할 도메인 목록
+  - **addAllowedHeader** : 허용할 헤더 목록
+  - **addAllowedMethod** : 허용할 Method(GET, PUT, 등) 목록
+  - **source.registerCorsConfiguration** : 지정한 url에 config 적용
 
 #### **JwtAuthenticationFilter**
 
@@ -137,26 +137,26 @@ public CorsFilter corsFilter() {
 
 ```java
 http
-            .authorizeRequests()
-            .mvcMatchers("/home", "/login").permitAll() //** 홈페이지, 로그인
-            .anyRequest().hasAuthority("ROLE_USER");
+          .authorizeRequests()
+          .mvcMatchers("/home", "/login").permitAll() //** 홈페이지, 로그인
+          .anyRequest().hasAuthority("ROLE_USER");
 ```
 
 - **authorizationRequest** : 요청에 따른 인가 설정
-    - 기본적으로 모든 uri은 ROLE_USER의 권한만 허용
-    - 홈페이지와 로그인, 스웨거 관련 uri은 모두 허용
-    - **configure(WebSecurity web)** : HttpSecurity에서 설정하지 않은 정적리소스와 HTML 등에 관한 권한을 설정한다.
-        - **web.ignoring().requestMathers(PathRequest.toStaticResources().atCommonLocations())**
-            - static 리소스의 자원을 Security에서 제외(Security에서 걸러지지 않고 접근 가능)
+  - 기본적으로 모든 uri은 ROLE_USER의 권한만 허용
+  - 홈페이지와 로그인, 스웨거 관련 uri은 모두 허용
+  - **configure(WebSecurity web)** : HttpSecurity에서 설정하지 않은 정적리소스와 HTML 등에 관한 권한을 설정한다.
+    - **web.ignoring().requestMathers(PathRequest.toStaticResources().atCommonLocations())**
+      - static 리소스의 자원을 Security에서 제외(Security에서 걸러지지 않고 접근 가능)
 
 #### **authenticationManagerBean**
 
 ```java
 @Override
 public void configure(WebSecurity web) throws Exception {
-    web
-            .ignoring()
-            .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+  web
+        .ignoring()
+        .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
 }
 ```
 
@@ -174,49 +174,49 @@ public void configure(WebSecurity web) throws Exception {
 @Getter
 public class UserAccount implements UserDetails {
 
-    private Account account;
+  private Account account;
 
-    public UserAccount(Account account) {
-        this.account = account;
-    }
+  public UserAccount(Account account) {
+    this.account = account;
+  }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        String roleName = account.getRole().getRoleName();
-        authorities.add(() -> roleName);
-        return authorities;
-    }
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    Collection<GrantedAuthority> authorities = new ArrayList<>();
+    String roleName = account.getRole().getRoleName();
+    authorities.add(() -> roleName);
+    return authorities;
+  }
 
-    @Override
-    public String getPassword() {
-        return account.getPassword();
-    }
+  @Override
+  public String getPassword() {
+    return account.getPassword();
+  }
 
-    @Override
-    public String getUsername() {
-        return account.getUsername();
-    }
+  @Override
+  public String getUsername() {
+    return account.getUsername();
+  }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+  @Override
+  public boolean isEnabled() {
+    return true;
+  }
 }
 ```
 
@@ -235,14 +235,14 @@ public class UserAccount implements UserDetails {
 @RequiredArgsConstructor
 public class PrincipalDetailService implements UserDetailsService {
 
-    private final AccountRepository accountRepository;
+  private final AccountRepository accountRepository;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = accountRepository.findByUsername(username)
-                .orElseThrow(() -> new NonExistResourceException("해당 username을 갖는 Account를 찾을 수 없습니다."));
-        return new UserAccount(account);
-    }
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    Account account = accountRepository.findByUsername(username)
+          .orElseThrow(() -> new NonExistResourceException("해당 username을 갖는 Account를 찾을 수 없습니다."));
+    return new UserAccount(account);
+  }
 }
 ```
 
@@ -253,9 +253,9 @@ public class PrincipalDetailService implements UserDetailsService {
 ```java
 @Override
 public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    Account account = accountRepository.findByUsername(username)
-            .orElseThrow(() -> new NonExistResourceException("해당 username을 갖는 Account를 찾을 수 없습니다."));
-    return new UserAccount(account);
+  Account account = accountRepository.findByUsername(username)
+        .orElseThrow(() -> new NonExistResourceException("해당 username을 갖는 Account를 찾을 수 없습니다."));
+  return new UserAccount(account);
 }
 ```
 
@@ -266,7 +266,7 @@ public UserDetails loadUserByUsername(String username) throws UsernameNotFoundEx
 ```java
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
-    Optional<Account> findByUsername(String username);
+  Optional<Account> findByUsername(String username);
 }
 ```
 
@@ -283,26 +283,26 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 @Component
 public class JwtProcessor {
 
-    public String createAuthJwtToken(UserAccount userAccount) {
-        return JWT.create()
-                .withSubject(userAccount.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
-                .withClaim("id", userAccount.getAccount().getId())
-                .withClaim("username", userAccount.getAccount().getUsername())
-                .sign(Algorithm.HMAC512(JwtProperties.SECRET));
-    }
+  public String createAuthJwtToken(UserAccount userAccount) {
+    return JWT.create()
+          .withSubject(userAccount.getUsername())
+          .withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
+          .withClaim("id", userAccount.getAccount().getId())
+          .withClaim("username", userAccount.getAccount().getUsername())
+          .sign(Algorithm.HMAC512(JwtProperties.SECRET));
+  }
 
-    public String decodeJwtToken(String jwtToken, String secretKey, String claim) {
-        return JWT.require(Algorithm.HMAC512(secretKey)).build()
-                .verify(jwtToken)
-                .getClaim(claim)
-                .asString();
-    }
+  public String decodeJwtToken(String jwtToken, String secretKey, String claim) {
+    return JWT.require(Algorithm.HMAC512(secretKey)).build()
+          .verify(jwtToken)
+          .getClaim(claim)
+          .asString();
+  }
 
-    public String extractBearer(String jwtHeader) {
-        int pos = jwtHeader.lastIndexOf(" ");
-        return jwtHeader.substring(pos + 1);
-    }
+  public String extractBearer(String jwtHeader) {
+    int pos = jwtHeader.lastIndexOf(" ");
+    return jwtHeader.substring(pos + 1);
+  }
 }
 ```
 
@@ -310,12 +310,12 @@ public class JwtProcessor {
 
 ```java
 public String createAuthJwtToken(UserAccount userAccount) {
-    return JWT.create()
-            .withSubject(userAccount.getUsername())
-            .withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
-            .withClaim("id", userAccount.getAccount().getId())
-            .withClaim("username", userAccount.getAccount().getUsername())
-            .sign(Algorithm.HMAC512(JwtProperties.SECRET));
+  return JWT.create()
+        .withSubject(userAccount.getUsername())
+        .withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
+        .withClaim("id", userAccount.getAccount().getId())
+        .withClaim("username", userAccount.getAccount().getUsername())
+        .sign(Algorithm.HMAC512(JwtProperties.SECRET));
 }
 ```
 
@@ -330,10 +330,10 @@ public String createAuthJwtToken(UserAccount userAccount) {
 
 ```java
 public String decodeJwtToken(String jwtToken, String secretKey, String claim) {
-    return JWT.require(Algorithm.HMAC512(secretKey)).build()
-            .verify(jwtToken)
-            .getClaim(claim)
-            .asString();
+  return JWT.require(Algorithm.HMAC512(secretKey)).build()
+        .verify(jwtToken)
+        .getClaim(claim)
+        .asString();
 }
 ```
 
@@ -343,8 +343,8 @@ public String decodeJwtToken(String jwtToken, String secretKey, String claim) {
 
 ```java
 public String extractBearer(String jwtHeader) {
-    int pos = jwtHeader.lastIndexOf(" ");
-    return jwtHeader.substring(pos + 1);
+  int pos = jwtHeader.lastIndexOf(" ");
+  return jwtHeader.substring(pos + 1);
 }
 ```
 
@@ -354,10 +354,10 @@ public String extractBearer(String jwtHeader) {
 
 ```java
 public interface JwtProperties {
-    String SECRET = (JWT 암호화시 사용할 SecretKey);
-    int EXPIRATION_TIME = 60000 * 60;
-    String TOKEN_PREFIX = "Bearer";
-    String HEADER_STRING = "Authorization";
+  String SECRET = (JWT 암호화시 사용할 SecretKey);
+  int EXPIRATION_TIME = 60000 * 60;
+  String TOKEN_PREFIX = "Bearer";
+  String HEADER_STRING = "Authorization";
 }
 ```
 
@@ -369,32 +369,32 @@ public interface JwtProperties {
 ```java
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-    private final AuthenticationManager authenticationManager;
-    private final JwtProcessor jwtProcessor;
+  private final AuthenticationManager authenticationManager;
+  private final JwtProcessor jwtProcessor;
 
-    @SneakyThrows
-    @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-            throws AuthenticationException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        Account account = objectMapper.readValue(request.getInputStream(), Account.class);
+  @SneakyThrows
+  @Override
+  public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
+        throws AuthenticationException {
+    ObjectMapper objectMapper = new ObjectMapper();
+    Account account = objectMapper.readValue(request.getInputStream(), Account.class);
 
-        UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(account.getUsername(), account.getPassword());
+    UsernamePasswordAuthenticationToken authenticationToken =
+          new UsernamePasswordAuthenticationToken(account.getUsername(), account.getPassword());
 
-        Authentication authentication = authenticationManager.authenticate(authenticationToken);
-        return authentication;
-    }
+    Authentication authentication = authenticationManager.authenticate(authenticationToken);
+    return authentication;
+  }
 
-    @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
-                                            Authentication authResult) throws IOException, ServletException {
-        UserAccount userAccount = (UserAccount) authResult.getPrincipal();
+  @Override
+  protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
+                                          Authentication authResult) throws IOException, ServletException {
+    UserAccount userAccount = (UserAccount) authResult.getPrincipal();
 
-        String jwtToken = jwtProcessor.createAuthJwtToken(userAccount);
+    String jwtToken = jwtProcessor.createAuthJwtToken(userAccount);
 
-        response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX + " " + jwtToken);
-    }
+    response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX + " " + jwtToken);
+  }
 }
 ```
 
@@ -410,15 +410,15 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 @SneakyThrows
 @Override
 public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-        throws AuthenticationException {
-    ObjectMapper objectMapper = new ObjectMapper();
-    Account account = objectMapper.readValue(request.getInputStream(), Account.class);
+      throws AuthenticationException {
+  ObjectMapper objectMapper = new ObjectMapper();
+  Account account = objectMapper.readValue(request.getInputStream(), Account.class);
 
-    UsernamePasswordAuthenticationToken authenticationToken =
-            new UsernamePasswordAuthenticationToken(account.getUsername(), account.getPassword());
+  UsernamePasswordAuthenticationToken authenticationToken =
+        new UsernamePasswordAuthenticationToken(account.getUsername(), account.getPassword());
 
-    Authentication authentication = authenticationManager.authenticate(authenticationToken);
-    return authentication;
+  Authentication authentication = authenticationManager.authenticate(authenticationToken);
+  return authentication;
 }
 ```
 
@@ -431,12 +431,12 @@ public Authentication attemptAuthentication(HttpServletRequest request, HttpServ
 ```java
 @Override
 protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
-                                        Authentication authResult) throws IOException, ServletException {
-    UserAccount userAccount = (UserAccount) authResult.getPrincipal();
+                                      Authentication authResult) throws IOException, ServletException {
+  UserAccount userAccount = (UserAccount) authResult.getPrincipal();
 
-    String jwtToken = jwtProcessor.createAuthJwtToken(userAccount);
+  String jwtToken = jwtProcessor.createAuthJwtToken(userAccount);
 
-    response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX + " " + jwtToken);
+  response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX + " " + jwtToken);
 }
 ```
 
@@ -448,41 +448,41 @@ protected void successfulAuthentication(HttpServletRequest request, HttpServletR
 ```java
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
-    private final AccountRepository accountRepository;
-    private final JwtProcessor jwtProcessor;
+  private final AccountRepository accountRepository;
+  private final JwtProcessor jwtProcessor;
 
-    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, AccountRepository accountRepository,
-                                  JwtProcessor jwtProcessor) {
-        super(authenticationManager);
-        this.accountRepository = accountRepository;
-        this.jwtProcessor = jwtProcessor;
+  public JwtAuthorizationFilter(AuthenticationManager authenticationManager, AccountRepository accountRepository,
+                                JwtProcessor jwtProcessor) {
+    super(authenticationManager);
+    this.accountRepository = accountRepository;
+    this.jwtProcessor = jwtProcessor;
+  }
+
+  @Override
+  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+          throws IOException, ServletException {
+    String jwtHeader = request.getHeader(JwtProperties.HEADER_STRING);
+
+    if (jwtHeader == null || !jwtHeader.startsWith(JwtProperties.TOKEN_PREFIX)) {
+      chain.doFilter(request, response);
+      return;
     }
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
-        String jwtHeader = request.getHeader(JwtProperties.HEADER_STRING);
+    String jwtToken = jwtProcessor.extractBearer(jwtHeader);
+    String username = jwtProcessor.decodeJwtToken(jwtToken, JwtProperties.SECRET, "username");
 
-        if (jwtHeader == null || !jwtHeader.startsWith(JwtProperties.TOKEN_PREFIX)) {
-            chain.doFilter(request, response);
-            return;
-        }
+    if (username != null) {
+      Account account = accountRepository.findByUsername(username)
+              .orElseThrow(() -> new NonExistResourceException("해당 username을 갖는 Account를 찾을 수 없습니다."));
 
-        String jwtToken = jwtProcessor.extractBearer(jwtHeader);
-        String username = jwtProcessor.decodeJwtToken(jwtToken, JwtProperties.SECRET, "username");
+      UserAccount userAccount = new UserAccount(account);
+      Authentication authentication = new UsernamePasswordAuthenticationToken(userAccount, null,
+              userAccount.getAuthorities());
 
-        if (username != null) {
-            Account account = accountRepository.findByUsername(username)
-                    .orElseThrow(() -> new NonExistResourceException("해당 username을 갖는 Account를 찾을 수 없습니다."));
-
-            UserAccount userAccount = new UserAccount(account);
-            Authentication authentication = new UsernamePasswordAuthenticationToken(userAccount, null,
-                    userAccount.getAuthorities());
-
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        }
-        chain.doFilter(request, response);
+      SecurityContextHolder.getContext().setAuthentication(authentication);
     }
+    chain.doFilter(request, response);
+  }
 }
 ```
 
@@ -496,27 +496,27 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 @Override
 protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
         throws IOException, ServletException {
-    String jwtHeader = request.getHeader(JwtProperties.HEADER_STRING);
+  String jwtHeader = request.getHeader(JwtProperties.HEADER_STRING);
 
-    if (jwtHeader == null || !jwtHeader.startsWith(JwtProperties.TOKEN_PREFIX)) {
-        chain.doFilter(request, response);
-        return;
-    }
-
-    String jwtToken = jwtProcessor.extractBearer(jwtHeader);
-    String username = jwtProcessor.decodeJwtToken(jwtToken, JwtProperties.SECRET, "username");
-
-    if (username != null) {
-        Account account = accountRepository.findByUsername(username)
-                .orElseThrow(() -> new NonExistResourceException("해당 username을 갖는 Account를 찾을 수 없습니다."));
-
-        UserAccount userAccount = new UserAccount(account);
-        Authentication authentication = new UsernamePasswordAuthenticationToken(userAccount, null,
-                userAccount.getAuthorities());
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-    }
+  if (jwtHeader == null || !jwtHeader.startsWith(JwtProperties.TOKEN_PREFIX)) {
     chain.doFilter(request, response);
+    return;
+  }
+
+  String jwtToken = jwtProcessor.extractBearer(jwtHeader);
+  String username = jwtProcessor.decodeJwtToken(jwtToken, JwtProperties.SECRET, "username");
+
+  if (username != null) {
+    Account account = accountRepository.findByUsername(username)
+            .orElseThrow(() -> new NonExistResourceException("해당 username을 갖는 Account를 찾을 수 없습니다."));
+
+    UserAccount userAccount = new UserAccount(account);
+    Authentication authentication = new UsernamePasswordAuthenticationToken(userAccount, null,
+            userAccount.getAuthorities());
+
+    SecurityContextHolder.getContext().setAuthentication(authentication);
+  }
+  chain.doFilter(request, response);
 }
 ```
 

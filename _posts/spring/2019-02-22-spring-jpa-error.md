@@ -86,15 +86,15 @@ at org.hibernate.tuple.entity.PojoEntityTuplizer.<init>(PojoEntityTuplizer.java:
 - JPA(Hibernate)라는 것은 결국 BCI방식으로 class load시점에 entity와 JPA Interface를 이용하여 SQL문을 자동 생성하여 삽입시켜주는 역할
 - 로그를 보면 org.hibernate.persister.entity.SingleTableEntityPersister의 생성자에서 그 역할을 하는듯 하다. 
 - 그런데 openjdk11에서는 javaassist가 removed 되었는지 entityManagerFactory 빈을 생성할 때 
-    - `at javassist.util.proxy.SecurityActions.setAccessible(SecurityActions.java:103)`에서 NullPointerException이 발생한다. 
+  - `at javassist.util.proxy.SecurityActions.setAccessible(SecurityActions.java:103)`에서 NullPointerException이 발생한다. 
 
 ## 해결
 
 - pom.xml에 javassist에 대한 dependency를 추가해주면 된다.
-    ```xml
-    <dependency>
-        <groupId>org.javassist</groupId>
-        <artifactId>javassist</artifactId>
-        <version>3.23.1-GA</version>
-    </dependency>
-    ```
+  ```xml
+  <dependency>
+    <groupId>org.javassist</groupId>
+    <artifactId>javassist</artifactId>
+    <version>3.23.1-GA</version>
+  </dependency>
+  ```

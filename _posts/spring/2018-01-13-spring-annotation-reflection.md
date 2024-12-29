@@ -30,71 +30,71 @@ Java와 같은 객체 지향 프로그래밍 언어에서 Reflection을 사용�
 
 ```java
 public class Member {
-    private String name;
-    protected int age;
-    public String nickname;
+  private String name;
+  protected int age;
+  public String nickname;
 
-    public Member() {
-    }
+  public Member() {
+  }
 
-    public Member(String name, int age, String nickname) {
-        this.name = name;
-        this.age = age;
-        this.nickname = nickname;
-    }
+  public Member(String name, int age, String nickname) {
+    this.name = name;
+    this.age = age;
+    this.nickname = nickname;
+  }
 
-    public void speak(String message) {
-        System.out.println(message);
-    }
+  public void speak(String message) {
+    System.out.println(message);
+  }
 
-    private void secret() {
-        System.out.println("비밀번호 486 입니다.");
-    }
+  private void secret() {
+    System.out.println("비밀번호 486 입니다.");
+  }
 
-    @Override
-    public String toString() {
-        return "Member{" +
-            "name='" + name + '\'' +
-            ", age=" + age +
-            ", nickname='" + nickname + '\'' +
-            '}';
-    }
+  @Override
+  public String toString() {
+    return "Member{" +
+        "name='" + name + '\'' +
+        ", age=" + age +
+        ", nickname='" + nickname + '\'' +
+        '}';
+  }
 }
 
 public class Main {
-    public static void main(String[] args) throws ClassNotFoundException {
-        Class<Member> memberClass = Member.class;
-        System.out.println(System.identityHashCode(memberClass));
+  public static void main(String[] args) throws ClassNotFoundException {
+    Class<Member> memberClass = Member.class;
+    System.out.println(System.identityHashCode(memberClass));
 
-        Member member = new Member("KyungRyeol", 22, "Chris");
-        Class<? extends Member> memberClass2 = member.getClass();
-        System.out.println(System.identityHashCode(memberClass2));
+    Member member = new Member("KyungRyeol", 22, "Chris");
+    Class<? extends Member> memberClass2 = member.getClass();
+    System.out.println(System.identityHashCode(memberClass2));
 
-        Class<?> memberClass3 = Class.forName("{패키지명}.Member");
-        System.out.println(System.identityHashCode(memberClass3));
-    }
+    Class<?> memberClass3 = Class.forName("{패키지명}.Member");
+    System.out.println(System.identityHashCode(memberClass3));
+  }
 }
 ```
 
 #### getConstructor()를 통해 생성자를 얻어 오고, newInstance()를 통해 Member 인스턴스를 동적으로 생성해 줄 수 있다.
 ```java
 public class Main {
-    public static void main(String[] args) throws Exception {
-        // Member의 모든 생성자 출력
-        Member member = new Member();
-        Class<? extends Member> memberClass = member.getClass();
-        Arrays.stream(memberClass.getConstructors()).forEach(System.out::println);
+  public static void main(String[] args) throws Exception {
+    // Member의 모든 생성자 출력
+    Member member = new Member();
+    Class<? extends Member> memberClass = member.getClass();
+    Arrays.stream(memberClass.getConstructors()).forEach(System.out::println);
 
-        // Member의 기본 생성자를 통한 인스턴스 생성
-        Constructor<? extends Member> constructor = memberClass.getConstructor();
-        Member member2 = constructor.newInstance();
-        System.out.println("member2 = " + member2);
+    // Member의 기본 생성자를 통한 인스턴스 생성
+    Constructor<? extends Member> constructor = memberClass.getConstructor();
+    Member member2 = constructor.newInstance();
+    System.out.println("member2 = " + member2);
 
-        // Member의 다른 생성자를 통한 인스턴스 생성
-        Constructor<? extends Member> fullConstructor =  memberClass.getConstructor(String.class, int.class, String.class);
-        Member member3 = fullConstructor.newInstance("KyungRyeol", 2, "dev doodles");
-        System.out.println("member3 = " + member3);
-    }
+    // Member의 다른 생성자를 통한 인스턴스 생성
+    Constructor<? extends Member> fullConstructor =  memberClass.getConstructor(String.class, int.class, String.class);
+    Member member3 = fullConstructor.newInstance("KyungRyeol", 2, "dev doodles");
+    System.out.println("member3 = " + member3);
+  }
 }
 ```
 
@@ -108,27 +108,27 @@ getDeclaredFileds()를 통해 클래스의 인스턴스 변수를 모두 가져�
 
 ```java
 public class Main {
-    public static void main(String[] args) throws Exception {
-        Member member = new Member("KyungRyeol", 2, "dev doodles");
-        Class<? extends Member> memberClass = member.getClass();
+  public static void main(String[] args) throws Exception {
+    Member member = new Member("KyungRyeol", 2, "dev doodles");
+    Class<? extends Member> memberClass = member.getClass();
 
-        // 필드 접근
-        Field[] fields = memberClass.getDeclaredFields();
-        for (Field field : fields) {
-            field.setAccessible(true);
-            System.out.println(field.get(member));
-        }
-        fields[0].set(member, "KyungRyeol");
-        System.out.println(member);
-
-        // 메소드 접근
-        Method speakMethod = memberClass.getDeclaredMethod("speak", String.class);
-        speakMethod.invoke(member, "Reflection Test");
-
-        Method secretMethod = memberClass.getDeclaredMethod("secret");
-        secretMethod.setAccessible(true);
-        secretMethod.invoke(member);
+    // 필드 접근
+    Field[] fields = memberClass.getDeclaredFields();
+    for (Field field : fields) {
+        field.setAccessible(true);
+        System.out.println(field.get(member));
     }
+    fields[0].set(member, "KyungRyeol");
+    System.out.println(member);
+
+    // 메소드 접근
+    Method speakMethod = memberClass.getDeclaredMethod("speak", String.class);
+    speakMethod.invoke(member, "Reflection Test");
+
+    Method secretMethod = memberClass.getDeclaredMethod("secret");
+    secretMethod.setAccessible(true);
+    secretMethod.invoke(member);
+  }
 }
 ```
 

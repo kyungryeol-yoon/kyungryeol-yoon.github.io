@@ -33,8 +33,8 @@ git push
 ### **해결 방법 : 1단계**
 
 - Git 인덱스 또는 스테이징 영역에서 모든 파일과 디렉터리를 삭제하지만 Local 파일 시스템에서는 삭제하지 않고 남겨둘 때 사용된다.
-    > 실제 파일은 삭제되지 않는다
-    {: .prompt-info }
+  > 실제 파일은 삭제되지 않는다
+  {: .prompt-info }
 
 - **git** : Git의 명령 줄 인터페이스
 - **rm** : 파일 또는 디렉토리를 삭제하는 명령
@@ -46,17 +46,17 @@ git push
 ### **해결방법 : 2단계**
 
 - Local 저장소의 변경 사항을 스테이징 영역으로 모두 추가
-    ```bash
-    git add .
-    ```
+  ```bash
+  git add .
+  ```
 
 ### **해결 방법 : 3단계**
 
 - Local 저장소에 있는 내용들을 Commit하고 Push
-    ```bash
-    git commit -m "Commit 내용"
-    ```
+  ```bash
+  git commit -m "Commit 내용"
+  ```
 
-    ```bash
-    git push
-    ```
+  ```bash
+  git push
+  ```

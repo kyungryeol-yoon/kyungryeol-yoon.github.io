@@ -16,43 +16,43 @@ tags: [Spring, Java, Programming, Test]
 ## **Spring Boot Test**
 
 - `@SpringBootTest`는 통합 테스트를 제공하는 기본적인 스프링 부트 테스트 Annotation이다.
-    - 애플리케이션이 실행 될 때의 설정을 임의로 바꾸어 테스트를 진행할 수 있으며 여러 단위 테스트를 하나의 통합된 테스트로 수행할 때 접합한다.
+  - 애플리케이션이 실행 될 때의 설정을 임의로 바꾸어 테스트를 진행할 수 있으며 여러 단위 테스트를 하나의 통합된 테스트로 수행할 때 접합한다.
 - `@SpringBootTest`는 만능이다. 실제 구동되는 애플리케이션과 똑같이 애플리케이션 컨텍스트를 도르하여 테스트하기 때문에 하고 싶은 테스트를 모두수행할 수 있다.
 - 애플리케이션의 설정을 모두 로드하기 때문에 애플리케이션 규모가 클수록 느려진다. 이렇게되면 단위 테스트라는 의미가 희석된다.
 - Test Scope Dependencies 아래의 의존성을 자동으로 갖는다.
-    - JUnit: The de-facto standard for unit testing Java applications.
-    - Spring Test & Spring Boot Test: Utilities and integration test support for Spring Boot applications.
-    - AssertJ: A fluent assertion library.
-    - Hamcrest: A library of matcher objects (also known as constraints or predicates).
-    - Mockito: A Java mocking framework.
-    - JSONassert: An assertion library for JSON.
-    - JsonPath: XPath for JSON.
+  - JUnit: The de-facto standard for unit testing Java applications.
+  - Spring Test & Spring Boot Test: Utilities and integration test support for Spring Boot applications.
+  - AssertJ: A fluent assertion library.
+  - Hamcrest: A library of matcher objects (also known as constraints or predicates).
+  - Mockito: A Java mocking framework.
+  - JSONassert: An assertion library for JSON.
+  - JsonPath: XPath for JSON.
 - `@RunWith` 어노태이션을 사용하면 JUnit에 내장된 러너를 사용하는 대신 Annotation의 정의된 러너 클래스를 사용한다.
 - `@SpringBootTest` Annotation을 사용하려면 JUnit의 SpringJUnit4ClassRunner 클래스를 상속 받는 `@RunWith(SpringRynnver.class)`를 꼭 붙여서 사용해야 정상동작한다.
 
 ```java
 @RunWith(SpringRunner.class)
 @SpringBootTest(
-        properties = {
-                "property.value=propertyTest",
-                "value=test"
-        },
-        classes = {TestApplication.class},
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
+      properties = {
+              "property.value=propertyTest",
+              "value=test"
+      },
+      classes = {TestApplication.class},
+      webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 public class TestApplicationTests {
 
-    @Value("${value}")
-    private String value;
+  @Value("${value}")
+  private String value;
 
-    @Value("${property.value}")
-    private String propertyValue;
+  @Value("${property.value}")
+  private String propertyValue;
 
-    @Test
-    public void contextLoads() {
-        assertThat(value, is("test"));
-        assertThat(propertyValue, is("propertyTest"));
-    }
+  @Test
+  public void contextLoads() {
+    assertThat(value, is("test"));
+    assertThat(propertyValue, is("propertyTest"));
+  }
 
 }
 ```
@@ -77,33 +77,33 @@ public class TestApplicationTests {
 @WebMvcTest(BookApi.class)
 public class BookApiTest {
 
-    @Autowired
-    private MockMvc mvc;
+  @Autowired
+  private MockMvc mvc;
 
-    @MockBean
-    private BookService bookService;
+  @MockBean
+  private BookService bookService;
 
-    @Test
-    public void getBook_test() throws Exception {
-        //given
-        final Book book = new Book(1L, "title", 1000D);
+  @Test
+  public void getBook_test() throws Exception {
+    //given
+    final Book book = new Book(1L, "title", 1000D);
 
-        given(bookService.getBook()).willReturn(book);
+    given(bookService.getBook()).willReturn(book);
 
-        //when
-        final ResultActions actions = mvc.perform(get("/books/{id}", 1L)
-                .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andDo(print());
+    //when
+    final ResultActions actions = mvc.perform(get("/books/{id}", 1L)
+          .contentType(MediaType.APPLICATION_JSON_UTF8))
+          .andDo(print());
 
-        //then
-        actions
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("id").value(1L))
-                .andExpect(jsonPath("title").value("title"))
-                .andExpect(jsonPath("price").value(1000D))
-        ;
+    //then
+    actions
+          .andExpect(status().isOk())
+          .andExpect(jsonPath("id").value(1L))
+          .andExpect(jsonPath("title").value("title"))
+          .andExpect(jsonPath("price").value(1000D))
+    ;
 
-    }
+  }
 }
 ```
 
@@ -128,24 +128,23 @@ public class BookApiTest {
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class BookJpaTest {
 
+  @Autowired
+  private BookRepository bookRepository;
 
-    @Autowired
-    private BookRepository bookRepository;
+  @Test
+  public void book_save_test() {
+    final Book book = new Book("title", 1000D);
+    final Book saveBook = bookRepository.save(book);
+    assertThat(saveBook.getId(), is(notNullValue()));
+  }
 
-    @Test
-    public void book_save_test() {
-        final Book book = new Book("title", 1000D);
-        final Book saveBook = bookRepository.save(book);
-        assertThat(saveBook.getId(), is(notNullValue()));
-    }
-
-    @Test
-    public void book_save_and_find() {
-        final Book book = new Book("title", 1000D);
-        final Book saveBook = bookRepository.save(book);
-        final Book findBook = bookRepository.findById(saveBook.getId()).get();
-        assertThat(findBook.getId(), is(notNullValue()));
-    }
+  @Test
+  public void book_save_and_find() {
+    final Book book = new Book("title", 1000D);
+    final Book saveBook = bookRepository.save(book);
+    final Book findBook = bookRepository.findById(saveBook.getId()).get();
+    assertThat(findBook.getId(), is(notNullValue()));
+  }
 }
 ```
 
@@ -164,29 +163,29 @@ public class BookJpaTest {
 @RestClientTest(BookRestService.class)
 public class BookRestServiceTest {
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
+  @Rule
+  public ExpectedException thrown = ExpectedException.none();
 
-    @Autowired
-    private BookRestService bookRestService;
+  @Autowired
+  private BookRestService bookRestService;
 
-    @Autowired
-    private MockRestServiceServer server;
+  @Autowired
+  private MockRestServiceServer server;
 
-    @Test
-    public void rest_test() {
+  @Test
+  public void rest_test() {
 
-        server.expect(requestTo("/rest/test"))
-                .andRespond(
-                        withSuccess(new ClassPathResource("/test.json", getClass()), MediaType.APPLICATION_JSON));
+    server.expect(requestTo("/rest/test"))
+          .andRespond(
+                  withSuccess(new ClassPathResource("/test.json", getClass()), MediaType.APPLICATION_JSON));
 
-        Book book = bookRestService.getRestBook();
+    Book book = bookRestService.getRestBook();
 
-        assertThat(book.getId(), is(notNullValue()));
-        assertThat(book.getTitle(), is("title"));
-        assertThat(book.getPrice(), is(1000D));
+    assertThat(book.getId(), is(notNullValue()));
+    assertThat(book.getTitle(), is("title"));
+    assertThat(book.getPrice(), is(1000D));
 
-    }
+  }
 }
 ```
 
@@ -214,25 +213,25 @@ public class BookRestServiceTest {
 @JsonTest
 public class BookJsonTest {
 
-    @Autowired
-    private JacksonTester<Book> json;
+  @Autowired
+  private JacksonTester<Book> json;
 
-    @Test
-    public void json_test() throws IOException {
+  @Test
+  public void json_test() throws IOException {
 
-        final Book book = new Book("title", 1000D);
+    final Book book = new Book("title", 1000D);
 
-        String content= "{\n" +
-                "  \"id\": 0,\n" +
-                "  \"title\": \"title\",\n" +
-                "  \"price\": 1000\n" +
-                "}";
+    String content= "{\n" +
+            "  \"id\": 0,\n" +
+            "  \"title\": \"title\",\n" +
+            "  \"price\": 1000\n" +
+            "}";
 
 
-        assertThat(json.parseObject(content).getTitle()).isEqualTo(book.getTitle());
+    assertThat(json.parseObject(content).getTitle()).isEqualTo(book.getTitle());
 
-        assertThat(json.write(book)).isEqualToJson("/test.json");
-    }
+    assertThat(json.write(book)).isEqualToJson("/test.json");
+  }
 }
 ```
 
