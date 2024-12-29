@@ -345,7 +345,7 @@ sudo crictl pull harbor.kryoon.io/mgmt-system/gitlab/gitlab-ce:17.6.2-ce.0
 ```
 
 
-## 접속 및 로그인
+## 접속
 
 - IP 주소로 접속(192.168.77.163)해보면 NET::ERR_CERT_AUTHORITY_INVALID 에러가 뜬다.
 
@@ -356,6 +356,21 @@ sudo crictl pull harbor.kryoon.io/mgmt-system/gitlab/gitlab-ce:17.6.2-ce.0
 ![](/images/kubernetes/docker/harbor/docker-harbar-5.png)
 
 - 인증서 설치
+
+### Windows
+
+### Mac
+
+- keychain Access 실행 및 가져오기
+  ![](/images/kubernetes/docker/harbor/harbar-mac-1.png)
+
+- 인증서 **항상 신뢰**로 설정
+  ![](/images/kubernetes/docker/harbor/harbar-mac-2.png)
+
+- 확인
+  ![](/images/kubernetes/docker/harbor/harbar-mac-3.png)
+
+## 로그인
 
 - reg.mydomain.com:8443
   - admin
