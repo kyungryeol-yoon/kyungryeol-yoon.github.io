@@ -1,9 +1,12 @@
 ---
-title: "[Docker] Gitlab Runner"
+title: "[Docker] Install Gitlab Runner"
 date: 2021-08-11
 categories: [Docker, Gitlab]
-tags: [Docker, Gitlab, Runner]
+tags: [Docker, Install, Gitlab, Runner]
 ---
+
+> [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose/)
+{: .prompt-info }
 
 ## GitLab Runner 설치
 
@@ -240,9 +243,3 @@ deploy_prod:
   only:
     - production
 ```
-
-> [Docker Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/docker-gitlab-runner/)
-{: .prompt-info }
-
-> [Kubernetes Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-gitlab-runner/)
-{: .prompt-info }

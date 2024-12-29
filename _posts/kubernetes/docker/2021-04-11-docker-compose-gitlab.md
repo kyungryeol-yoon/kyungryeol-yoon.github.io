@@ -1,9 +1,12 @@
 ---
-title: "[Docker-Compose] Gitlab"
+title: "[Docker-Compose] Install Gitlab"
 date: 2021-04-11
 categories: [Docker, Gitlab]
-tags: [Docker, Gitlab, Docker-Compose]
+tags: [Docker, Install, Gitlab, Docker-Compose]
 ---
+
+> [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose/)
+{: .prompt-info }
 
 ## GitLab Docker 이미지
 
@@ -81,7 +84,7 @@ sudo chmod -R 755 /data/gitlab
     docker-compose up -d
     ```
     ```bash
-    docker-compose -f docker-compose_gitlab.yaml up -d
+    docker-compose -f docker-compose-gitlab.yml up -d
     ```
 
 ## GitLab 구동 로그를 확인
@@ -120,3 +123,8 @@ Confirm password:
 Password successfully updated for user with username root.
 ```
 
+> [Docker Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/docker-gitlab-runner/)
+{: .prompt-info }
+
+> [Kubernetes Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-gitlab-runner/)
+{: .prompt-info }

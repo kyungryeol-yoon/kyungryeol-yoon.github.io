@@ -27,9 +27,9 @@ rules:
    verbs: ["get", "watch", "list"]
 ```
 
-ClusterRole : Cluster 의 Secret 정보에 대한 읽기 권한을 설정하고 secret-read 라고 정의함. (Node, Endpoint, Namespace, Service 등 모든 권한 설정)
+- ClusterRole : Cluster 의 Secret 정보에 대한 읽기 권한을 설정하고 secret-read 라고 정의함. (Node, Endpoint, Namespace, Service 등 모든 권한 설정)
 
-ClusterRole은 namespace 영역이 아니기 때문에 생략된다.
+- ClusterRole은 namespace 영역이 아니기 때문에 생략된다.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -42,7 +42,7 @@ rules:
   verbs: ["get", "watch", "list"]
 ```
 
-Sample (admin-manager.yaml)
+- Sample (admin-manager.yaml)
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -54,9 +54,9 @@ metadata:
 
 ## RoleBinding & ClusterRoleBinding
 
-RoleBinding 은 User, Team 단위의 권한 부여 기능이며, ClusterRoleBinding은 클러스터 단위의 권한 부여 기능을 나타낸다.
+- RoleBinding 은 User, Team 단위의 권한 부여 기능이며, ClusterRoleBinding은 클러스터 단위의 권한 부여 기능을 나타낸다.
 
-RoleBinding : Reference 라는 User 에게 Pod-read 권한 설정. 즉, Reference 라는 User는 Namespace가 Default인 모든 Pod을 읽기가 가능하다.
+- RoleBinding : Reference 라는 User 에게 Pod-read 권한 설정. 즉, Reference 라는 User는 Namespace가 Default인 모든 Pod을 읽기가 가능하다.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -74,7 +74,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-ClusterRoleBinding : ManagerGroup 에게 Secret-Read 권한 설정. 즉, Manager-Group 의 모든 사용자가 모든 Namespace에서  Secret 을 읽을 수 있다.
+- ClusterRoleBinding : ManagerGroup 에게 Secret-Read 권한 설정. 즉, Manager-Group 의 모든 사용자가 모든 Namespace에서  Secret 을 읽을 수 있다.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -91,7 +91,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-Sample (admin-rolebinding.yaml)
+- Sample (admin-rolebinding.yaml)
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -110,11 +110,9 @@ roleRef:
 
 ## K8s API 호출 권한
 
-K8s api 호출시 RBAC role 에 의한 접근 불가 오류 메세지 출력되면
+- K8s api 호출시 RBAC role 에 의한 접근 불가 오류 메세지 출력되면 K8s api 호출 error example - kryoon에서 pod에 대한 정보를 요청할 때 RBAC role에 막혔다
 
-K8s api 호출 error example - kryoon에서 pod에 대한 정보를 요청할 때 RBAC role에 막혔다
-
-```
+```bash
 GET /api/v1/namespaces/{namespace}/pods/{name}/log
 
 WARNING: Failed to count the # of live instances on Kubernetes
@@ -126,7 +124,7 @@ User "system:serviceaccount:kryoon:default" cannot list pods in the namespace "k
 Unknown user "system:serviceaccount:kryoon:default".
 ```
 
-아래와 같이 pod(resource), log(subresource of pods)에 대한 권한을 추가해야 한다.
+- 아래와 같이 pod(resource), log(subresource of pods)에 대한 권한을 추가해야 한다.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
