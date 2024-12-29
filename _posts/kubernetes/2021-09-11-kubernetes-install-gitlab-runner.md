@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Gitlab Runner"
+title: "[Kubernetes] Install Gitlab Runner"
 date: 2021-09-11
 categories: [Kubernetes, Gitlab]
 tags: [Kubernetes, Gitlab, Runner]
@@ -70,7 +70,7 @@ tags: [Kubernetes, Gitlab, Runner]
     - rbac.resource	: rbac으로 접근가능한 resource를 설정한다.
     - rbac.verbs : rbac으로 resource에 대해 부여할 권한을 설정한다.
 
-- 이미 존재하는 서비스 계정을 사용하려면 아래의 명령어를 사용 (아래 **Kubernetes RBAC 설정** 설명 참고)
+- 이미 존재하는 서비스 계정을 사용하려면 아래의 명령어를 사용 (아래 [Kubernetes RBAC 설정](https://kyungryeol-yoon.github.io/posts/kubernetes-gitlab-runner/#kubernetes-rbac-%EC%84%A4%EC%A0%95) 설명 참고)
     ```yaml
     rbac:
       create: false
