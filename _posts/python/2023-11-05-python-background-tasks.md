@@ -31,14 +31,14 @@ from fastapi import BackgroundTasks, FastAPI
 app = FastAPI()
 
 def write_notification(email: str, message=""):
-    with open("log.txt", mode="w") as email_file:
-        content = f"notification for {email}: {message}"
-        email_file.write(content)
+  with open("log.txt", mode="w") as email_file:
+    content = f"notification for {email}: {message}"
+    email_file.write(content)
 
 @app.post("/send-notification/{email}")
 async def send_notification(email: str, background_tasks: BackgroundTasks):
-    background_tasks.add_task(write_notification, email, message="some notification")
-    return {"message": "Notification sent in the background"}
+  background_tasks.add_task(write_notification, email, message="some notification")
+  return {"message": "Notification sent in the background"}
 ```
 
 ### task function
@@ -48,10 +48,10 @@ async def send_notification(email: str, background_tasks: BackgroundTasks):
 
 ```py
 def add_task(
-        self, func: typing.Callable[P, typing.Any], *args: P.args, **kwargs: P.kwargs
+      self, func: typing.Callable[P, typing.Any], *args: P.args, **kwargs: P.kwargs
     ) -> None:
-        task = BackgroundTask(func, *args, **kwargs)
-        self.tasks.append(task)
+      task = BackgroundTask(func, *args, **kwargs)
+      self.tasks.append(task)
 ```
 
 - BackgroundTasks로 추가하기 위해서는 Background에서 실행할 task function과 arguments들을 add_task 함수로 입력해주면 된다.
@@ -59,9 +59,9 @@ def add_task(
 
 ```py
 def write_notification(email: str, message=""):
-    with open("log.txt", mode="w") as email_file:
-        content = f"notification for {email}: {message}"
-        email_file.write(content)
+  with open("log.txt", mode="w") as email_file:
+    content = f"notification for {email}: {message}"
+    email_file.write(content)
 
 ...
     background_tasks.add_task(write_notification, email, message="some notification")
@@ -92,34 +92,34 @@ write_notification(email, message="some notification")
 
 ```py
 class BackgroundTask:
-    def __init__(
-        self, func: typing.Callable[P, typing.Any], *args: P.args, **kwargs: P.kwargs
-    ) -> None:
-        self.func = func
-        self.args = args
-        self.kwargs = kwargs
-        self.is_async = is_async_callable(func)
+  def __init__(
+    self, func: typing.Callable[P, typing.Any], *args: P.args, **kwargs: P.kwargs
+  ) -> None:
+    self.func = func
+    self.args = args
+    self.kwargs = kwargs
+    self.is_async = is_async_callable(func)
 
-    async def __call__(self) -> None:
-        if self.is_async:
-            await self.func(*self.args, **self.kwargs)
-        else:
-            await run_in_threadpool(self.func, *self.args, **self.kwargs)
+  async def __call__(self) -> None:
+    if self.is_async:
+      await self.func(*self.args, **self.kwargs)
+    else:
+      await run_in_threadpool(self.func, *self.args, **self.kwargs)
 
 
 class BackgroundTasks(BackgroundTask):
-    def __init__(self, tasks: typing.Optional[typing.Sequence[BackgroundTask]] = None):
-        self.tasks = list(tasks) if tasks else []
+  def __init__(self, tasks: typing.Optional[typing.Sequence[BackgroundTask]] = None):
+    self.tasks = list(tasks) if tasks else []
 
-    def add_task(
-        self, func: typing.Callable[P, typing.Any], *args: P.args, **kwargs: P.kwargs
-    ) -> None:
-        task = BackgroundTask(func, *args, **kwargs)
-        self.tasks.append(task)
+  def add_task(
+    self, func: typing.Callable[P, typing.Any], *args: P.args, **kwargs: P.kwargs
+  ) -> None:
+    task = BackgroundTask(func, *args, **kwargs)
+    self.tasks.append(task)
 
-    async def __call__(self) -> None:
-        for task in self.tasks:
-            await task()
+  async def __call__(self) -> None:
+    for task in self.tasks:
+      await task()
 ```
 
 ### BackgroundTasks injection
@@ -130,9 +130,9 @@ class BackgroundTasks(BackgroundTask):
 ```py
 ...
 if dependant.background_tasks_param_name:
-        if background_tasks is None:
-            background_tasks = BackgroundTasks()
-        values[dependant.background_tasks_param_name] = background_tasks
+  if background_tasks is None:
+    background_tasks = BackgroundTasks()
+  values[dependant.background_tasks_param_name] = background_tasks
 ...
 ```
 
@@ -157,7 +157,5 @@ if dependant.background_tasks_param_name:
 
 - 하지만 Celery는 message queu와 여러 설정들을 추가로 해주어야 하고, 다른 프로세스에서 실행되는 만큼 변수와 메모리 등을 공유할 수 없기 때문에 상황에 잘맞는 방식으로 Background 구조를 선택해야 한다.
 
-
 > [FastAPI Background Tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/)
 {: .prompt-info }
-

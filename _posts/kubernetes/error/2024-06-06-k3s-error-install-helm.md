@@ -14,7 +14,7 @@ Error: INSTALLATION FAILED: Kubernetes cluster unreachable: Get "http://localhos
 ## 아래와 같이 설정
 
 - 검색을 해보면 KUBECONFIG를 /etc/rancher/k3s/k3s.yaml 파일로 잡으라는 설명이 나온다.
-    ```bash
-    echo 'export KUBECONFIG=/etc/rancher/k3s/k3s.yaml' >> ~/.bashrc
-    source ~/.bashrc
-    ```
+  ```bash
+  echo 'export KUBECONFIG=/etc/rancher/k3s/k3s.yaml' >> ~/.bashrc
+  source ~/.bashrc
+  ```

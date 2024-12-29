@@ -15,11 +15,11 @@ Got permission denied while trying to connect to the Docker daemon socket at uni
 
 ### 해결
 - /var/run/docker.sock 파일의 권한을 666으로 변경하여 그룹 내 다른 사용자도 접근 가능하게 변경
-    ```bash
-    sudo chmod 666 /var/run/docker.sock
-    ```
+  ```bash
+  sudo chmod 666 /var/run/docker.sock
+  ```
 
 - 또는 chown 으로 group ownership 변경
-    ```bash
-    sudo chown root:docker /var/run/docker.sock
-    ```
+  ```bash
+  sudo chown root:docker /var/run/docker.sock
+  ```

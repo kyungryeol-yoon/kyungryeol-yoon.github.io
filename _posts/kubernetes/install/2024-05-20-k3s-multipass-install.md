@@ -8,24 +8,24 @@ tags: [Kubernetes, K3S, Multipass, Ubuntu, Linux]
 ## VM deployments used multipass on mac
 
 - master node 생성
-    ```bash
-    multipass launch --name k3s-master --cpus 2 --memory 4G --disk 50G focal
-    ```
+  ```bash
+  multipass launch --name k3s-master --cpus 2 --memory 4G --disk 50G focal
+  ```
 
 - worker1 node 생성
-    ```bash
-    multipass launch --name k3s-worker1 --cpus 2 --memory 4G --disk 50G focal
-    ```
+  ```bash
+  multipass launch --name k3s-worker1 --cpus 2 --memory 4G --disk 50G focal
+  ```
 
 - worker2 node 생성
-    ```bash
-    multipass launch --name k3s-worker2 --cpus 2 --memory 4G --disk 50G focal
-    ```
+  ```bash
+  multipass launch --name k3s-worker2 --cpus 2 --memory 4G --disk 50G focal
+  ```
 
 - registry node 생성
-    ```bash
-    multipass launch --name registry --cpus 2 --memory 4G --disk 100G focal
-    ```
+  ```bash
+  multipass launch --name registry --cpus 2 --memory 4G --disk 100G focal
+  ```
 
 ## ubuntu 구동 확인
 
@@ -44,46 +44,46 @@ multipass info --all
 ## ubuntu swapoff
 
 - master node swapoff
-    ```bash
-    multipass exec k3s-master -- /bin/bash -c "sudo swapoff -a"
-    ```
+  ```bash
+  multipass exec k3s-master -- /bin/bash -c "sudo swapoff -a"
+  ```
 
 - worker1 node swapoff
-    ```bash
-    multipass exec k3s-worker1 -- /bin/bash -c "sudo swapoff -a"
-    ```
+  ```bash
+  multipass exec k3s-worker1 -- /bin/bash -c "sudo swapoff -a"
+  ```
 
 - worker2 node swapoff
-    ```bash
-    multipass exec k3s-worker2 -- /bin/bash -c "sudo swapoff -a"
-    ```
+  ```bash
+  multipass exec k3s-worker2 -- /bin/bash -c "sudo swapoff -a"
+  ```
 
 - registry node swapoff
-    ```bash
-    multipass exec registry -- /bin/bash -c "sudo swapoff -a"
-    ```
+  ```bash
+  multipass exec registry -- /bin/bash -c "sudo swapoff -a"
+  ```
 
 ## ubuntu 메모리 사용량 확인
 
 - master node 메모리 사용량 확인
-    ```bash
-    multipass exec k3s-master -- /bin/bash -c "free -m"
-    ```
+  ```bash
+  multipass exec k3s-master -- /bin/bash -c "free -m"
+  ```
 
 - worker1 node 메모리 사용량 확인
-    ```bash
-    multipass exec k3s-worker1 -- /bin/bash -c "free -m"
-    ```
+  ```bash
+  multipass exec k3s-worker1 -- /bin/bash -c "free -m"
+  ```
 
 - worker2 node 메모리 사용량 확인
-    ```bash
-    multipass exec k3s-worker2 -- /bin/bash -c "free -m"
-    ```
+  ```bash
+  multipass exec k3s-worker2 -- /bin/bash -c "free -m"
+  ```
 
 - registry node 메모리 사용량 확인
-    ```bash
-    multipass exec registry -- /bin/bash -c "free -m"
-    ```
+  ```bash
+  multipass exec registry -- /bin/bash -c "free -m"
+  ```
 
 ## k3s master 설치
 

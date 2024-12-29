@@ -11,38 +11,38 @@ tags: [Docker, Install, Gitlab, Runner]
 ## GitLab Runner 설치
 
 - GitLab Runner 작업 디렉토리 (Working directory)와 데이터를 영속적(Persistent)으로 저장하기 위한 바인드 마운트(Bind mount)용 디렉토리를 생성
-    ```bash
-    sudo mkdir -p /data/gitlab-runner/config && cd /data/gitlab-runner
-    ```
+  ```bash
+  sudo mkdir -p /data/gitlab-runner/config && cd /data/gitlab-runner
+  ```
 
 - `gitlab-runner` 디렉토리의 소유권을 `$USER`로 변경하고 권한을 변경
-    ```bash
-    sudo chown -R $USER:$USER /data/gitlab-runner
-    ```
+  ```bash
+  sudo chown -R $USER:$USER /data/gitlab-runner
+  ```
 
 - docker-compose.yml 파일을 생성
-    ```yaml
-    version: '3.9'
-    services:
-    gitlab-runner:
-        image: 'gitlab/gitlab-runner:v17.6.1'
-        container_name: gitlab-runner
-        restart: always
-        volumes:
-        - './config:/etc/gitlab-runner'
-        - '/var/run/docker.sock:/var/run/docker.sock'
-    ```
+  ```yaml
+  version: '3.9'
+  services:
+  gitlab-runner:
+      image: 'gitlab/gitlab-runner:v17.6.1'
+      container_name: gitlab-runner
+      restart: always
+      volumes:
+      - './config:/etc/gitlab-runner'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+  ```
 
 ## GitLab Runner 시작
-- `docker-compose up -d` 명령을 실행하여 Runner를 시작
 
+- `docker-compose up -d` 명령을 실행하여 Runner를 시작
 
 ## GitLab Runner 등록
 
 - GitLab UI에는 액세스 할 사용자에 따라 세 가지 유형의 Runner가 있다.
-    - 공유 러너는 GitLab 인스턴스의 모든 그룹 및 프로젝트에서 사용할 수 있다. (Admin Area의 **CI/CD > Runners**)
-    - 그룹 러너는 그룹의 모든 프로젝트와 하위 그룹에서 사용할 수 있다. (그룹의 **Settings > CI/CD > Runners 섹션**)
-    - 특정 러너는 특정 프로젝트와 연결됩니다. 일반적으로 특정 러너는 하나의 프로젝트에서만 사용된다. (프로젝트의 **Settings > CI/CD > Runners** 섹션)
+  - 공유 러너는 GitLab 인스턴스의 모든 그룹 및 프로젝트에서 사용할 수 있다. (Admin Area의 **CI/CD > Runners**)
+  - 그룹 러너는 그룹의 모든 프로젝트와 하위 그룹에서 사용할 수 있다. (그룹의 **Settings > CI/CD > Runners 섹션**)
+  - 특정 러너는 특정 프로젝트와 연결됩니다. 일반적으로 특정 러너는 하나의 프로젝트에서만 사용된다. (프로젝트의 **Settings > CI/CD > Runners** 섹션)
 - 여기에서는 **공유 러너(Shared runner)** 를 등록하는 방법을 설명 (Admin 권한 필요)
 
 ### GitLab Admin Area 페이지로 이동한다.
@@ -72,8 +72,8 @@ docker exec -it gitlab-runner bash
 ```
 
 - 프로젝트와 연동하는 방법은 두가지가 있다.
-    - 비대화식 모드(non-interactive mode)로 등록
-    - 대화식 모드(interactive mode)로 등록
+  - 비대화식 모드(non-interactive mode)로 등록
+  - 대화식 모드(interactive mode)로 등록
 
 ### 비대화식 모드(non-interactive mode)
 
@@ -104,12 +104,12 @@ Runner registered successfully. Feel free to start it, but if it's running alrea
 ### 대화식 모드(interactive mode)
 
 - `gitlab-runner register ~` 명령을 실행하고 지침에 따라 아래 항목을 입력
-    - Enter the GitLab instance URL : 아무것도 입력하지 않고 Enter 키를 누른다. `--url` 값이 설정된다.
-    - Enter the registration token : 아무것도 입력하지 않고 Enter 키를 누른다. `--token` 값이 설정된다.
-    - Enter a description for the runner : 러너에 대한 설명을 입력하고 Enter 키를 누른다. (예: `docker runner`)
-    - Enter tags for the runner : 아무것도 입력하지 않고 Enter 키를 누른다.
-    - Enter an executor : `docker`을 입력하고 Enter 키를 누른다.
-    - Enter the default Docker image : `alpine:latest`을 입력하고 Enter 키를 누른다.
+  - Enter the GitLab instance URL : 아무것도 입력하지 않고 Enter 키를 누른다. `--url` 값이 설정된다.
+  - Enter the registration token : 아무것도 입력하지 않고 Enter 키를 누른다. `--token` 값이 설정된다.
+  - Enter a description for the runner : 러너에 대한 설명을 입력하고 Enter 키를 누른다. (예: `docker runner`)
+  - Enter tags for the runner : 아무것도 입력하지 않고 Enter 키를 누른다.
+  - Enter an executor : `docker`을 입력하고 Enter 키를 누른다.
+  - Enter the default Docker image : `alpine:latest`을 입력하고 Enter 키를 누른다.
 
 ```bash
 ubuntu@mp-repo:/data/gitlab-runner$ sudo docker exec -it gitlab-runner bash
@@ -169,14 +169,14 @@ build:
 
 - `[runners.docker]` 섹션에서 `privileged = true`로 설정합니다.
 - 위에서 언급한 Runner 옵션을 수정하려면 Runner 작업 디렉토리(예: `/data/gitlab-runner`)에서 아래 명령을 실행하고 수정한다. 또는 gitlab-runner bash에 접속하여 `/etc/gitlab-runner`에서 `config.toml`를 수정하여도 된다.
-    ```bash
-    sudo vi config/config.toml
-    ```
+  ```bash
+  sudo vi config/config.toml
+  ```
 
 - gitlab-runner restart
-    ```bash
-    sudo docker restart [gitlab-runner 컨테이너 id]
-    ```
+  ```bash
+  sudo docker restart [gitlab-runner 컨테이너 id]
+  ```
 
 ```yml
 variables:

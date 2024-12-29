@@ -11,9 +11,9 @@ tags: [Kubernetes, kubectl]
 ## The connection to the server localhost:8080 was refused 오류 해결법
 
 - kubectl 명령어를 입력하면 다음 오류 메시지가 발생하는 경우가 있습니다.
-    ```bash
-    The connection to the server localhost:8080 was refused - did you specify the right host or port?
-    ```
+  ```bash
+  The connection to the server localhost:8080 was refused - did you specify the right host or port?
+  ```
 
 ### 이 문제는 다음 명령어를 입력하면 해결이 됩니다.
 

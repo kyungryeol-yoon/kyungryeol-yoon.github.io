@@ -8,9 +8,9 @@ tags: [Docker, Install, Docker-Compose]
 ## Docker-Compose  설치하기
 
 - curl 명령어를 통해 Docker-Compose를 설치
-    ```bash
-    sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    ```
+  ```bash
+  sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  ```
 
 > 최신 버전을 다운로드하고 싶을 경우, [GitHub에서 버전 확인](https://github.com/docker/compose/releases) 후 다운로드
 {: .prompt-info }

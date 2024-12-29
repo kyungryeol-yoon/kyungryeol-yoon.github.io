@@ -14,9 +14,9 @@ tags: [Python, venv, Programming]
 ## 가상환경 생성
 
 - 예를 들어 바탕화면에 `my_project`라는 폴더를 만들어 작업을 한다면, 그 폴더 안에서 `python -m venv [가상환경이름]`이라고 쳐주면 된다.
-    ```bash
-    C:\Users\kryoon\Desktop\my_project>python -m venv [가상환경이름]
-    ```
+  ```bash
+  C:\Users\kryoon\Desktop\my_project>python -m venv [가상환경이름]
+  ```
 
 - 이러면 `my_project`라는 폴더 안에 [가상환경이름]으로 하위폴더가 하나 생성된다. 실제 작업은 프로젝트 폴더 내에서 하면 된다.
 - 가상환경이름은 그냥 `venv`라고 만드는 걸 추천한다.
@@ -32,9 +32,9 @@ C:\Users\kryoon\Desktop\my_project>python -m venv [가상환경이름] --system-
 ## 가상환경 활성화/비활성화
 
 - 프로젝트 폴더 안에서 `가상환경이름\Scripts\activate.bat` 이라고 쳐주면 가상환경이 활성화된다.
-    ```bash
-    C:\Users\kryoon\Desktop\my_project>가상환경이름\Scripts\activate.bat
-    ```
+  ```bash
+  C:\Users\kryoon\Desktop\my_project>가상환경이름\Scripts\activate.bat
+  ```
 
 - 만약 `venv`라고 가상환경이름을 만들었다면 `venv\Scripts\activate.bat`
 
@@ -43,8 +43,8 @@ C:\Users\kryoon\Desktop\my_project>python -m venv [가상환경이름] --system-
 ## 가상환경 내에서 패키지 설치, 삭제
 
 - 가상환경 내에서 패키지를 설치하려면, 가상환경을 활성화 한 상태에서 평소처럼 `pip install`로 패키지 설치를 하면 된다. (삭제는 `pip uninstall`)
-    ```bash
-    (venv) C:\Users\kryoon\Desktop\my_project>pip install 패키지이름
-    ```
+  ```bash
+  (venv) C:\Users\kryoon\Desktop\my_project>pip install 패키지이름
+  ```
 
 - 가상환경 활성화 상태에서 `pip freeze`라고 명령어를 쳐보면 설치된 패키지 목록들을 볼 수 있다.

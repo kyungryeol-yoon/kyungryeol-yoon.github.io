@@ -16,7 +16,6 @@ sudo locale-gen --purge
 
 - 재부팅 후 Termianl 실행
 
-
 ```
 Ctrl+Alt+F1: Returns you to the graphical desktop environment log in screen
 Ctrl+Alt+F2: Returns you to the graphical desktop environment
