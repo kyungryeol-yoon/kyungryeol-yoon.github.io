@@ -153,7 +153,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
   kubectl get serviceaccounts hello-sa -o yaml
   ```
 
-## Role 생성
+### Role 생성
 
 - `hello-role`이라는 이름의 Role을 생성
   ```bash
@@ -178,7 +178,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
   kubectl get roles hello-role -o yaml
   ```
 
-## Role Binding 생성
+### Role Binding 생성
 
 - `hello-rb`라는 이름의 Role Binding을 생성하여 `hello-sa` Service Account와 `hello-role` Role을 바인딩.
   ```bash
