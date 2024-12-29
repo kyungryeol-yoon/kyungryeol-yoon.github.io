@@ -349,6 +349,10 @@ sudo crictl pull harbor.kryoon.io/mgmt-system/gitlab/gitlab-ce:17.6.2-ce.0
 
 - IP 주소로 접속(192.168.77.163)해보면 NET::ERR_CERT_AUTHORITY_INVALID 에러가 뜬다.
 
+![](/images/kubernetes/docker/harbor/docker-harbor-1.png)
+
+![](/images/kubernetes/docker/harbor/docker-harbor-2.png)
+
 - 접속한 웹사이트의 SSL/TLS 인증서가 신뢰할 수 있는 인증 기관(CA)에서 발급한 것이 아닌 경우에 발생하는데, 자체 서명된 인증서라 로컬에 인증서를 등록해야 https 연결이 가능하다(로컬에서만 연결됨).
 
 ![](/images/kubernetes/docker/harbor/docker-harbor-4.png)

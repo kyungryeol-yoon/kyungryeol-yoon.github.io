@@ -60,9 +60,17 @@ tags: [Kubernetes, Gitlab, Runner]
     ```yaml
     rbac:
       create: true
-    ```
 
-- 이미 존재하는 서비스 계정을 사용하려면 아래의 명령어를 사용
+      ## Define specific rbac permissions.
+      ## DEPRECATED: see .Values.rbac.rules
+      resources: ["pods", "pods/exec", "secrets"]
+      verbs: ["get", "list", "watch", "create", "patch", "delete"]
+    ```
+    - rbac.create	: rbac을 생성한다. (create를 권장)
+    - rbac.resource	: rbac으로 접근가능한 resource를 설정한다.
+    - rbac.verbs : rbac으로 resource에 대해 부여할 권한을 설정한다.
+
+- 이미 존재하는 서비스 계정을 사용하려면 아래의 명령어를 사용 (아래 **Kubernetes RBAC 설정** 설명 참고)
     ```yaml
     rbac:
       create: false
@@ -76,6 +84,8 @@ tags: [Kubernetes, Gitlab, Runner]
     Using Kubernetes executor with image alpine ...
     ERROR: Job failed (system failure): secrets is forbidden: User "system:serviceaccount:gitlab:default" cannot create resource "secrets" in API group "" in the namespace "gitlab"
     ```
+
+
 
 ## helm 설치하기(`values.yaml` 파일이 있는 폴더에서 아래 명령어를 수행)
 
@@ -98,3 +108,98 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
 
 > GitLab Runner Helm Chart를 최신 버전이 아닌 특정 버전으로 업데이트하길 원한다면, helm upgrade 명령어에 --version <RUNNER_HELM_CHART_VERSION>을 추가
 {: .prompt-info }
+
+## Kubernetes RBAC 설정
+
+- 특정 Namespace에 Runner를 사용하기 위해서는 몇 가지 설정이 필요
+
+### Namespace 생성
+
+- Namespace의 경우 그룹이나 팀, 혹은 파트별로 구성
+  - 예시: group-a, group-b, team-a, team-b, part-a, part-b, dep-a, dep-b
+- 아래 명령어를 실행하여 hello-world라는 Namespace를 생성
+  ```bash
+  kubectl create namespace hello-world
+  ```
+
+- 생성된 Namespace 확인
+  ```bash
+  kubectl get namespaces
+  ```
+
+- 생성된 Namespace로 이동(kubens가 설치되지 않았을 때 get 명령어에 -n 옵션으로 네임스페이스를 지정하면 된다.)
+  ```bash
+  kubens hello-world
+  ```
+
+### Service Account 생성
+
+- Namespace를 관리할 Service Account 생성하여 관리
+  - 예시: sa-group-a, sa-group-b, sa-team-a, sa-team-b
+- 아래 명령어를 실행하여 hello-sa라는 이름의 Service Account 생성
+  - namespace를 지정(예시는 hello-world namespace를 연결)
+    ```bash
+    cat <<EOF | kubectl apply -f -
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: hello-sa
+      namespace: hello-world
+    EOF
+    ```
+
+- Service Account 정보 확인
+  ```bash
+  kubectl get serviceaccounts hello-sa -o yaml
+  ```
+
+## Role 생성
+
+- `hello-role`이라는 이름의 Role을 생성
+  ```bash
+  cat <<EOF | kubectl apply -f -
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    namespace: hello-world
+    name: hello-role
+  rules:
+  - apiGroups: ["extensions", "apps"]
+    resources: ["deployments"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["pods","services","secrets","pods/exec", "serviceaccounts"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  EOF
+  ```
+
+- Role 정보 확인
+  ```bash
+  kubectl get roles hello-role -o yaml
+  ```
+
+## Role Binding 생성
+
+- `hello-rb`라는 이름의 Role Binding을 생성하여 `hello-sa` Service Account와 `hello-role` Role을 바인딩.
+  ```bash
+  cat <<EOF | kubectl apply -f -
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    namespace: hello-world
+    name: hello-rb
+  subjects:
+  - kind: ServiceAccount
+    name: hello-sa
+    namespace: hello-world
+  roleRef:
+    kind: Role
+    name: hello-role
+    apiGroup: rbac.authorization.k8s.io
+  EOF
+  ```
+
+- Role Binding 정보를 확인
+  ```bash
+  kubectl get rolebindings hello-rb -o yaml
+  ```
