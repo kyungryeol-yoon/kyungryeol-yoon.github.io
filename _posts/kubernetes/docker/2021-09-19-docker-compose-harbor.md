@@ -279,7 +279,7 @@ Login Succeeded
   ```
 
 - Web Page에서 확인
-  ![](/images/kubernetes/docker/harbor/docker-harbar-3.png)
+  ![](/images/kubernetes/docker/harbor/docker-harbor-3.png)
 
 #### containerd
 
@@ -351,24 +351,24 @@ sudo crictl pull harbor.kryoon.io/mgmt-system/gitlab/gitlab-ce:17.6.2-ce.0
 
 - 접속한 웹사이트의 SSL/TLS 인증서가 신뢰할 수 있는 인증 기관(CA)에서 발급한 것이 아닌 경우에 발생하는데, 자체 서명된 인증서라 로컬에 인증서를 등록해야 https 연결이 가능하다(로컬에서만 연결됨).
 
-![](/images/kubernetes/docker/harbor/docker-harbar-4.png)
+![](/images/kubernetes/docker/harbor/docker-harbor-4.png)
 
-![](/images/kubernetes/docker/harbor/docker-harbar-5.png)
+![](/images/kubernetes/docker/harbor/docker-harbor-5.png)
 
-- 인증서 설치
+### 인증서 설치
 
-### Windows
+#### Windows
 
-### Mac
+#### Mac
 
 - keychain Access 실행 및 가져오기
-  ![](/images/kubernetes/docker/harbor/harbar-mac-1.png)
+  ![](/images/kubernetes/docker/harbor/harbor-mac-1.png)
 
 - 인증서 **항상 신뢰**로 설정
-  ![](/images/kubernetes/docker/harbor/harbar-mac-2.png)
+  ![](/images/kubernetes/docker/harbor/harbor-mac-2.png)
 
 - 확인
-  ![](/images/kubernetes/docker/harbor/harbar-mac-3.png)
+  ![](/images/kubernetes/docker/harbor/harbor-mac-3.png)
 
 ## 로그인
 
