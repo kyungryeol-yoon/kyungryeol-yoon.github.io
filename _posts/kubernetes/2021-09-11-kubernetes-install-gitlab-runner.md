@@ -173,6 +173,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
 ### Role 생성
 
 - `hello-role`이라는 이름의 Role을 생성
+
   ```bash
   cat <<EOF | kubectl apply -f -
   apiVersion: rbac.authorization.k8s.io/v1
@@ -218,6 +219,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
   ```
 
 - Role Binding 정보를 확인
+
   ```bash
   kubectl get rolebindings hello-rb -o yaml
   ```
