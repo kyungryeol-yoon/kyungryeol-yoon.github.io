@@ -84,7 +84,11 @@ tags: [Kubernetes, Gitlab, Runner]
   - rbac.verbs : rbac으로 resource에 대해 부여할 권한을 설정한다.
 
 ```bash
-WARNING: You enabled `rbac` without specifying if a service account should be created.
+#############################################################################################
+## WARNING: You enabled `rbac` without specifying if a service account should be created.  ##
+## Please set `serviceAccount.create` to either `true` or `false`.                         ##
+## For backwards compatibility a service account will be created.                          ##
+#############################################################################################
 ```
 
 - 위와 같은 경고가 뜬다면, 아래와 같이 `values.yaml` 파일에 추가
@@ -168,8 +172,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
 
 ### Role 생성
 
-- `hello-role`이라는 이름의 Role을 생성
-- `kubectl apply -f hello-role.yaml`
+- `hello-role`이라는 이름의 Role을 생성 (`kubectl apply -f hello-role.yaml`)
   ```bash
   apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
@@ -192,8 +195,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
 
 ### Role Binding 생성
 
-- `hello-rb`라는 이름의 Role Binding을 생성하여 `hello-sa` Service Account와 `hello-role` Role을 바인딩
-- `kubectl apply -f hello-rb.yaml`
+- `hello-rb`라는 이름의 Role Binding을 생성하여 `hello-sa` Service Account와 `hello-role` Role을 바인딩 (`kubectl apply -f hello-rb.yaml`)
   ```bash
   apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
