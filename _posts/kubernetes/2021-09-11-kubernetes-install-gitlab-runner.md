@@ -172,9 +172,9 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
 
 ### Role 생성
 
-- `hello-role`이라는 이름의 Role을 생성 (`kubectl apply -f hello-role.yaml`)
-
-  ```yaml
+- `hello-role`이라는 이름의 Role을 생성
+  ```bash
+  cat <<EOF | kubectl apply -f -
   apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
   metadata:
@@ -187,6 +187,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
   - apiGroups: [""]
     resources: ["pods","services","secrets","pods/exec", "serviceaccounts"]
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  EOF
   ```
 
 - Role 정보 확인
@@ -196,9 +197,9 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
 
 ### Role Binding 생성
 
-- `hello-rb`라는 이름의 Role Binding을 생성하여 `hello-sa` Service Account와 `hello-role` Role을 바인딩 (`kubectl apply -f hello-rb.yaml`)
-
-  ```yaml
+- `hello-rb`라는 이름의 Role Binding을 생성하여 `hello-sa` Service Account와 `hello-role` Role을 바인딩
+  ```bash
+  cat <<EOF | kubectl apply -f -
   apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
@@ -212,6 +213,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
     kind: Role
     name: hello-role
     apiGroup: rbac.authorization.k8s.io
+  EOF
   ```
 
 - Role Binding 정보를 확인
