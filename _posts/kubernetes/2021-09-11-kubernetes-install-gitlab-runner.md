@@ -14,14 +14,14 @@ tags: [Kubernetes, Gitlab, Runner]
 ## Helm Chart를 사용하여 GitLab Runner 설치
 
 - GitLab Helm 리포지터리를 추가
-    ```bash
-    helm repo add gitlab https://charts.gitlab.io
-    ```
+  ```bash
+  helm repo add gitlab https://charts.gitlab.io
+  ```
 
 - `values.yaml` 파일을 사용하여 실행
-    ```bash
-    helm install --namespace <NAMESPACE> gitlab-runner -f <CONFIG_VALUES_FILE> gitlab/gitlab-runner
-    ```
+  ```bash
+  helm install --namespace <NAMESPACE> gitlab-runner -f <CONFIG_VALUES_FILE> gitlab/gitlab-runner
+  ```
 
 - `<NAMESPACE>`는 GitLab 러너를 설치하기 원하는 Kubernetes Namespace
 - `<CONFIG_VALUES_FILE>`은 커스텀 설정이 포함된 파일의 경로. Helm Chart를 사용
@@ -32,60 +32,73 @@ tags: [Kubernetes, Gitlab, Runner]
 {: .prompt-info }
 
 - gitlab과 연결을 위해 아래와 같이 설정
-    ```yaml
-    gitlabUrl: https://gitlab.com # gitlab url 입력
-    runnerRegistrationToken: a-trnA24KR77Mh***** # registration token 생성(CI/CD > Runner > New Project Runner)
-    ```
+  ```yaml
+  gitlabUrl: https://gitlab.com # gitlab url 입력
+  runnerRegistrationToken: a-trnA24KR77Mh***** # registration token 생성(CI/CD > Runner > New Project Runner)
+  ```
 
 ![](/images/kubernetes/docker/gitlab/gitlab-runner-step4.png)
 
 ### 만약 ci를 사용하여 image build를 하는 경우
+
 - Docker In Docker (Dind) 혹은 buildah 같은 image를 사용하여 container 안에서 image를 생성해야 하는데 이 경우 gitlab-runner의 옵션을 추가해야 한다.
-    ```yaml
-    runners:
-      config: |
-        [[runners]]
-          [runners.kubernetes]
-            namespace = "{{.Release.Namespace}}"
-            image = "ubuntu:20.04"
-            privileged = true
-    ```
+  ```yaml
+  runners:
+    config: |
+      [[runners]]
+        [runners.kubernetes]
+          namespace = "{{.Release.Namespace}}"
+          image = "ubuntu:20.04"
+          privileged = true
+  ```
 
 - 기본 runner 설정은 ubuntu 이미지를 base로 사용하도록 되어있는데 이 부분에 `privileged = true` 옵션을 추가해야 container 내부에서 image를 생성할 수 있는 권한이 추가된다.
 
 ### RBAC 지원 활성화하기
 
-- 만약 클러스터가 RBAC를 사용하도록 설정한 경우, 차트가 자신의 서비스 계정을 만들거나 이미 만들어진 것을 사용하는 것을 선택할 수 있다.
-- 차트에서 서비스 계정을 만들려면 rbac.create를 true로 설정
-    ```yaml
-    rbac:
-      create: true
-
-      ## Define specific rbac permissions.
-      ## DEPRECATED: see .Values.rbac.rules
-      resources: ["pods", "pods/exec", "secrets"]
-      verbs: ["get", "list", "watch", "create", "patch", "delete"]
-    ```
-    - rbac.create	: rbac을 생성한다. (create를 권장)
-    - rbac.resource	: rbac으로 접근가능한 resource를 설정한다.
-    - rbac.verbs : rbac으로 resource에 대해 부여할 권한을 설정한다.
-
-- 이미 존재하는 서비스 계정을 사용하려면 아래의 명령어를 사용 (아래 [Kubernetes RBAC 설정](https://kyungryeol-yoon.github.io/posts/kubernetes-gitlab-runner/#kubernetes-rbac-%EC%84%A4%EC%A0%95) 설명 참고)
-    ```yaml
-    rbac:
-      create: false
-      serviceAccountName: your-service-account
-    ```
-
 - `ERROR: Job failed (system failure): secrets is forbidden`
 
 - 만약 다음 에러가 발생한다면 RBAC 기능을 활성화해야 한다.
-    ```bash
-    Using Kubernetes executor with image alpine ...
-    ERROR: Job failed (system failure): secrets is forbidden: User "system:serviceaccount:gitlab:default" cannot create resource "secrets" in API group "" in the namespace "gitlab"
-    ```
+  ```bash
+  Using Kubernetes executor with image alpine ...
+  ERROR: Job failed (system failure): secrets is forbidden: User "system:serviceaccount:gitlab:default" cannot create resource "secrets" in API group "" in the namespace "gitlab"
+  ```
 
+- 만약 클러스터가 RBAC를 사용하도록 설정한 경우, 차트가 자신의 서비스 계정을 만들거나 이미 만들어진 것을 사용하는 것을 선택할 수 있다.
+- 차트에서 서비스 계정을 만들려면 rbac.create를 true로 설정
+  ```yaml
+  rbac:
+    create: true
+    rules:
+      - resources: ["configmaps", "events", "pods", "pods/attach", "pods/exec", "secrets", "services"]
+        verbs: ["get", "list", "watch", "create", "patch", "update", "delete"]
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["create", "patch", "delete"]
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get"]
+  ```
+  - rbac.create	: rbac을 생성한다. (create를 권장)
+  - rbac.resource	: rbac으로 접근가능한 resource를 설정한다.
+  - rbac.verbs : rbac으로 resource에 대해 부여할 권한을 설정한다.
 
+```bash
+WARNING: You enabled `rbac` without specifying if a service account should be created.
+```
+
+- 위와 같은 경고가 뜬다면, 아래와 같이 `values.yaml` 파일에 추가
+  ```yaml
+  serviceAccount:
+    create: true
+  ```
+
+- 이미 존재하는 서비스 계정을 사용하려면 아래의 명령어를 사용 (아래 [Kubernetes RBAC 설정](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner/#kubernetes-rbac-%EC%84%A4%EC%A0%95) 설명 참고)
+  ```yaml
+  rbac:
+    create: false
+    serviceAccountName: your-service-account
+  ```
 
 ## helm 설치하기(`values.yaml` 파일이 있는 폴더에서 아래 명령어를 수행)
 
@@ -203,3 +216,18 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
   ```bash
   kubectl get rolebindings hello-rb -o yaml
   ```
+
+> 만약 gitlab-ci.yml 에서 runner의 tag 또는 name을 지정할 경우 helm의 values.yaml에서 tags 혹은 name에 값을 설정해주면 된다.
+{: .prompt-info }
+
+```yaml
+  ## Specify the tags associated with the runner. Comma-separated list of tags.
+  ##
+  ## ref: https://docs.gitlab.com/ee/ci/runners/configure_runners.html#use-tags-to-control-which-jobs-a-runner-can-run
+  ##
+  tags: "my-runner"
+
+  ## Specify the name for the runner.
+  ##
+  # name: ""
+```
