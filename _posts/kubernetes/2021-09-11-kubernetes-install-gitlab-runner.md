@@ -174,8 +174,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
 
 - `hello-role`이라는 이름의 Role을 생성
 - `kubectl apply -f hello-role.yaml`
-
-  ```bash
+  ```yaml
   apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
   metadata:
@@ -199,8 +198,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
 
 - `hello-rb`라는 이름의 Role Binding을 생성하여 `hello-sa` Service Account와 `hello-role` Role을 바인딩 
 - `kubectl apply -f hello-rb.yaml`
-
-  ```bash
+  ```yaml
   apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
