@@ -1,8 +1,8 @@
 ---
-title: "[Kubernetes] Install Gitlab Runner"
-date: 2021-09-11
+title: "[Kubernetes] Gitlab CI"
+date: 2021-09-15
 categories: [Kubernetes, Gitlab]
-tags: [Kubernetes, Gitlab, Runner]
+tags: [Kubernetes, Gitlab, CI]
 ---
 
 > [gitlab runner 참고](https://docs.gitlab.com/runner/install/kubernetes.html)
