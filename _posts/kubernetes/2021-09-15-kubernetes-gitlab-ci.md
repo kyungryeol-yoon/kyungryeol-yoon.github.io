@@ -5,7 +5,7 @@ categories: [Kubernetes, Gitlab]
 tags: [Kubernetes, Gitlab, CI]
 ---
 
-> [gitlab runner 참고](https://docs.gitlab.com/runner/install/kubernetes.html)
+> [Install Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner/)
 {: .prompt-info }
 
 
@@ -49,6 +49,49 @@ test:
     - docker run my-image test
   when: manual
 
+```
+
+```yml
+stages:
+- build
+- test
+docker-build:
+  stage: build
+  only:
+  - master
+  variables:
+      DOCKER_HOST: tcp://docker:2376
+      DOCKER_TLS_CERTDIR: /certs
+      DOCKER_TLS_VERIFY: "1"
+      DOCKER_CERT_PATH: $DOCKER_TLS_CERTDIR/client
+      RND: ""
+      CI_DOCKER_CONFIG: ""
+      CI_IMAGE: "harbor.localhost.com/sample-api/sample-api"
+      IMAGE_TAG: "1.0.1"
+  image: mgmt-system/library-docker:latest
+  services:
+  - name: mgmt-system/docker-runner:dind
+      alias: docker
+  before_script:
+  - echo "run.. CI_REGISTRY = $CI_REGISTRY"
+  - echo "run.. CI_DOCKER_CONFIG = $CI_DOCKER_CONFIG"
+  script:
+  - mkdir ~/.docker
+  - echo "$CI_DOCKER_CONFIG" | base64 -d > ~/.docker/config.json
+  - cat ~/.docker/config.json
+  - docker build --no-cache -t "$CI_IMAGE":"$IMAGE_TAG" .
+  - docker push "$CI_IMAGE":"$IMAGE_TAG"
+  when: manual
+unit_test:
+  stage: test
+  image: system/system-python3.8.8:1.0
+  script:
+  - echo "Running unit tests..."
+  - python3 -m venv venv
+  - source venv/bin/activate
+  - pip install --no-cache-dir -r requirements.txt -i http://nexus.com/repo/pypi/simple --trusted-host nexus.com
+  - pytest test
+  when: manual
 ```
 
 ## error (docker:19.03.12-dind, docker:19.03.12)
