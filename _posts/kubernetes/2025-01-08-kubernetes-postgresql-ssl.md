@@ -33,7 +33,6 @@ tags: [Kubernetes, PostgreSQL, SSL]
 - `pg_hba.conf` 파일에서 SSL 모드를 활성화하려면, `hostssl` 키워드를 사용하여 SSL 연결만 허용하도록 설정할 수 있습니다.
 
 ```sql
-코드 복사
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 hostssl  all             all             0.0.0.0/0               md5
 hostssl  all             all             ::/0                    md5
@@ -50,7 +49,6 @@ hostssl  all             all             ::/0                    md5
 - Kubernetes ConfigMap 또는 Secret을 생성하여 `pg_hba.conf`와 `postgresql.conf`를 제공할 수 있습니다.
 
 ```yaml
-코드 복사
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -72,7 +70,6 @@ data:
 - `server.crt`, `server.key`, `root.crt` 파일을 Kubernetes Secret으로 생성합니다.
 
 ```yaml
-코드 복사
 apiVersion: v1
 kind: Secret
 metadata:
