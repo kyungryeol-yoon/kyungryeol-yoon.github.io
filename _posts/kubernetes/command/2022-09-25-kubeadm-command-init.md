@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubeadm init command"
 date: 2022-09-25
 categories: [Kubeadm, Command]
-tags: [kubeadm, command, init]
+tags: [kubeadm, Command, init]
 # comments: true
 # pin: true
 ---

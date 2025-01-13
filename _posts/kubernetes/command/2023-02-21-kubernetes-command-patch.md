@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl patch command"
 date: 2023-02-21
 categories: [Kubernetes, Command]
-tags: [Kubernetes, kubectl, command, patch]
+tags: [Kubernetes, kubectl, Command, patch]
 # comments: true
 ---
 

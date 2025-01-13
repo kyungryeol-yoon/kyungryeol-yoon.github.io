@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl api-resources command"
 date: 2023-09-12
 categories: [Kubernetes, Command]
-tags: [Kubernetes, kubectl, command, api-resources]
+tags: [Kubernetes, kubectl, Command, api-resources]
 # comments: true
 ---
 

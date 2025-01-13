@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl auth can-i command"
 date: 2023-08-11
 categories: [Kubernetes, Command]
-tags: [Kubernetes, kubectl, command, auth can-i]
+tags: [Kubernetes, kubectl, Command, auth can-i]
 # comments: true
 ---
 

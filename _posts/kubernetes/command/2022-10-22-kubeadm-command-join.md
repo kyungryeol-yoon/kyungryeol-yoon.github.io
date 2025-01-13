@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubeadm join command"
 date: 2022-10-22
 categories: [Kubeadm, Command]
-tags: [kubeadm, command, join]
+tags: [kubeadm, Command, join]
 # comments: true
 # pin: true
 ---

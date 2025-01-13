@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl apply command"
 date: 2023-01-10
 categories: [Kubernetes, Command]
-tags: [Kubernetes, kubectl, command, apply]
+tags: [Kubernetes, kubectl, Command, apply]
 # comments: true
 ---
 

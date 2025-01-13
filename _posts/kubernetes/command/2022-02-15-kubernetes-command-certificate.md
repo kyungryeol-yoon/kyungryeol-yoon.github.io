@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl certificate command"
 date: 2022-02-15
 categories: [Kubernetes, Command]
-tags: [Kubernetes, kubectl, command, certificate]
+tags: [Kubernetes, kubectl, Command, certificate]
 # comments: true
 # pin: true
 ---

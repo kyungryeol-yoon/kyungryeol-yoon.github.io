@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl proxy command"
 date: 2022-06-25
 categories: [Kubernetes, Command]
-tags: [Kubernetes, kubectl, command, proxy]
+tags: [Kubernetes, kubectl, Command, proxy]
 # comments: true
 # pin: true
 ---

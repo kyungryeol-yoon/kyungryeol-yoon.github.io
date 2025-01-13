@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl get command"
 date: 2022-01-22
 categories: [Kubernetes, Command]
-tags: [Kubernetes, kubectl, command, get]
+tags: [Kubernetes, kubectl, Command, get]
 # comments: true
 pin: true
 ---

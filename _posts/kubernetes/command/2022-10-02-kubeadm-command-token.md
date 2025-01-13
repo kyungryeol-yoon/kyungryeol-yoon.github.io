@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubeadm token command"
 date: 2022-10-02
 categories: [Kubeadm, Command]
-tags: [kubeadm, command, token]
+tags: [kubeadm, Command, token]
 # comments: true
 # pin: true
 ---
