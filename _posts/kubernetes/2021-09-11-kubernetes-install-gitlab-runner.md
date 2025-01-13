@@ -47,7 +47,7 @@ tags: [Kubernetes, Gitlab, Runner]
     config: |
       [[runners]]
         [runners.kubernetes]
-          namespace = "{{.Release.Namespace}}"
+          namespace = {% raw %}"{{.Release.Namespace}}"{% endraw %}
           image = "ubuntu:20.04"
           privileged = true
   ```
