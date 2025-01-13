@@ -2,7 +2,7 @@
 title: "[Linux] Network - ping 상대 호스트와 연결 가능 여부 확인"
 date: 2018-01-02
 categories: [Linux, Network]
-tags: [Linux, Network, ping, host]
+tags: [Linux, Network, Ping, Host]
 ---
 
 ## ping 명령어

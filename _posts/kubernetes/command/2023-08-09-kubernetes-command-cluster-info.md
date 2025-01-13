@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl cluster-info command"
 date: 2023-08-09
-categories: [Kubernetes, command]
+categories: [Kubernetes, Command]
 tags: [Kubernetes, kubectl, command, cluster-info]
 # comments: true
 ---

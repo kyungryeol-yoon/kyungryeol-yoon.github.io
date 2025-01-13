@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl get command"
 date: 2022-01-22
-categories: [Kubernetes, command]
+categories: [Kubernetes, Command]
 tags: [Kubernetes, kubectl, command, get]
 # comments: true
 pin: true

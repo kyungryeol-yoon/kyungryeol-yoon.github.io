@@ -40,7 +40,7 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 ### 기본 구조
 
 ```bash
-kubectl krew [command]
+kubectl krew [Command]
 ```
 
 > [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.

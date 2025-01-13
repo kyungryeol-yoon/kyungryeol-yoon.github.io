@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl auth reconcile command"
 date: 2022-11-10
-categories: [Kubernetes, command]
+categories: [Kubernetes, Command]
 tags: [Kubernetes, kubectl, command, auth reconcile]
 # comments: true
 # pin: true

@@ -2,8 +2,8 @@
 # layout: post
 title: "[Kubernetes] kubectl delete command"
 date: 2023-05-15
-categories: [Kubernetes, command]
-tags: [Kubernetes, kubectl, command, delete]
+categories: [Kubernetes, Command]
+tags: [Kubernetes, kubectl, Command, Delete]
 # comments: true
 # pin: true
 ---

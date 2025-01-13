@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl api-resources command"
 date: 2023-09-12
-categories: [Kubernetes, command]
+categories: [Kubernetes, Command]
 tags: [Kubernetes, kubectl, command, api-resources]
 # comments: true
 ---

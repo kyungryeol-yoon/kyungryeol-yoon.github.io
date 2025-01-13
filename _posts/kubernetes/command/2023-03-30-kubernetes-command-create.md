@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl create command"
 date: 2023-03-30
-categories: [Kubernetes, command]
+categories: [Kubernetes, Command]
 tags: [Kubernetes, kubectl, command, Create]
 # comments: true
 ---

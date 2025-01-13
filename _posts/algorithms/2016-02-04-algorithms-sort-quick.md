@@ -3,8 +3,8 @@
 title: "[Algorithms | C++] Quick sort : 퀵 정렬"
 date: 2016-02-04
 # excerpt: "분할 정복 알고리즘의 하나, 평균적으로 매우 빠른 수행 속도를 자랑하는 정렬 방법"
-categories: [Algorithms, Quick sort, cpp]
-tags: [Algorithms, cpp, Quick sort, Programming]
+categories: [Algorithms, Quick sort]
+tags: [Algorithms, CPP, Quick sort, Programming]
 # comments: true
 ---
 

@@ -4,7 +4,7 @@ title: "RestController와 Controller (ResponseBody, ResponseEntity)"
 date: 2016-10-20
 categories: [Java, Spring]
 # excerpt: "Restful한 Spring @ResponseBody, @RestController, @Controller VS, ResponseEntity"
-tags: [Spring, Framework, Java, Programming, controller, MVC, restcontroller]
+tags: [Spring, Framework, Java, Programming, Controller, MVC, restcontroller]
 # comments: true
 ---
 
