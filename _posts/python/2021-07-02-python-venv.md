@@ -11,11 +11,22 @@ tags: [Python, venv, Programming]
 - 특정 패키지 버전을 업데이트 할 때 다른 것들이 호환되지 않아 문제가 생기는 경우가 발생한다.
 - 그리고 작업환경이 바뀌더라도, 예를 들면 PC를 교체하더라도 필요한 패키지들을 동일한 버전으로 설치해 작업할 수 있기 때문에 무조건 사용하는 게 좋다.
 
+> [venv와 virtualenv 차이 참고](https://kyungryeol-yoon.github.io/posts/python-venv-virtualenv/)
+{: .prompt-info }
+
 ## 가상환경 생성
 
 - 예를 들어 바탕화면에 `my_project`라는 폴더를 만들어 작업을 한다면, 그 폴더 안에서 `python -m venv [가상환경이름]`이라고 쳐주면 된다.
   ```bash
   C:\Users\kryoon\Desktop\my_project>python -m venv [가상환경이름]
+  ```
+
+- Version 지정하여 설치
+
+  ```bash
+  C:\Users\kryoon\Desktop\my_project>py -[Version] -m venv [가상환경이름]
+
+  C:\Users\kryoon\Desktop\my_project>py -3.8 -m venv [가상환경이름]
   ```
 
 - 이러면 `my_project`라는 폴더 안에 [가상환경이름]으로 하위폴더가 하나 생성된다. 실제 작업은 프로젝트 폴더 내에서 하면 된다.

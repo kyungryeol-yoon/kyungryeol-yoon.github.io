@@ -1,5 +1,5 @@
 ---
-title: "[Python] Python PATH Problem"
+title: "[Python] Python Setup Package"
 date: 2024-10-19
 categories: [Python, Package]
 tags: [Python, Package, Programming]
