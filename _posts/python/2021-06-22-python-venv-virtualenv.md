@@ -34,7 +34,8 @@ py -버전 -m venv [가상환경이름]
 
 ### virtualenv Version 지정하여 설치
 
-- pip Version 지정 설치치
+- pip Version 지정 설치
+
   ```bash
   py -버전 -m pip install virtualenv
 
@@ -42,11 +43,12 @@ py -버전 -m venv [가상환경이름]
   ```
 
 - virtualenv 가상환경 생성
-```bash
-virtualenv 가상환경이름 --python=[Python Version]
 
-virtualenv myenv --python=3.7
-```
+  ```bash
+  virtualenv 가상환경이름 --python=[Python Version]
+
+  virtualenv myenv --python=3.7
+  ```
 
 > https://docs.python.org/3/library/venv.htm
 {: .prompt-info }
