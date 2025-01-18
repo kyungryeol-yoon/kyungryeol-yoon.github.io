@@ -3,6 +3,7 @@ title: "[Kubernetes] Install Gitlab Runner"
 date: 2021-09-11
 categories: [Kubernetes, Gitlab]
 tags: [Kubernetes, Gitlab, Runner]
+render_with_liquid: false
 ---
 
 > [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
@@ -47,7 +48,7 @@ tags: [Kubernetes, Gitlab, Runner]
     config: |
       [[runners]]
         [runners.kubernetes]
-          namespace = {% raw %}"{{.Release.Namespace}}"{% endraw %}
+          namespace = "{{.Release.Namespace}}"
           image = "ubuntu:20.04"
           privileged = true
   ```
