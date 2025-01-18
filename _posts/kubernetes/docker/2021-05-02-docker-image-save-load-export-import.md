@@ -71,7 +71,7 @@ tags: [Docker, Image, ]
 > root 권한으로 실행하지 않을 경우, 액세스 권한이 없는 파일들이 포함되지 않는 문제가 발생할 수 있다.
 {: .prompt-info }
 
-## export - import 와 save - load의 차이
+## Export & Import 와 Save & Load의 차이
 
 - docker export의 경우 Container를 동작하는데 필요한 모든 파일이 압축된다.
 - 즉, tar파일에 Container의 Root 파일시스템 전체가 들어있는 것이다.

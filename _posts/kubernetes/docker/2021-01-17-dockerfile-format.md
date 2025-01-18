@@ -17,11 +17,11 @@ tags: [Docker, Dockerfile]
   - 작업 Directory를 지정하면 그 이후 명령어는 해당 Directory를 기준으로 동작한다.
   - cd 명령어와 동일하다.
 - **EXPOSE** : Dockerfile의 빌드로 생성된 Image에서 열어줄 포트를 의미한다.
-  - 호스트 머신과 Container의 포트 Mapping시에 사용된다.
+  - Host 머신과 Container의 포트 Mapping시에 사용된다.
   - Container 생성 시 -p 옵션의 Container 포트 값으로 EXPOSE 값을 적어야한다.
 - **USER** : Image를 어떤 계정에서 실행 하는지 지정
   - 기본적으로 root에서 해준다.
-- **COPY / ADD** : build 명령 중간에 호스트의 파일 또는 폴더를 Image에 가져오는 것
+- **COPY / ADD** : build 명령 중간에 Host의 파일 또는 폴더를 Image에 가져오는 것
   - ADD 명령문은 좀 더 파워풀한 COPY 명령문이라고 생각할 수 있다.
   - ADD 명령문은 일반 파일 뿐만 아니라 압축 파일이나 네트워크 상의 파일도 사용할 수 있다.
   - 이렇게 특수한 파일을 다루는 게 아니라면 COPY 명령문을 사용하는 것이 권장된다.
@@ -36,7 +36,7 @@ tags: [Docker, Dockerfile]
     - Container를 시작할 때마다 실행됩니다. (`docker start`)
     - Container 시작 시, 추가적인 명령어 존재 여부와 상관 없이 무조건 실행된다.
   - **명령어 형식**
-    - CMD ["<Command>", "<Parameter1>", "<Parameter2>"]
-    - CMD <Command> <Parameter1> <Parameter2>
-    - ENTRYPOINT ["<Command>", "<Parameter1>", "<Parameter2>"]
-    - ENTRYPOINT <Command> <Parameter1> <Parameter2>
+    - `CMD ["<Command>", "<Parameter1>", "<Parameter2>"]`
+    - `CMD <Command> <Parameter1> <Parameter2>`
+    - `ENTRYPOINT ["<Command>", "<Parameter1>", "<Parameter2>"]`
+    - `ENTRYPOINT <Command> <Parameter1> <Parameter2>`
