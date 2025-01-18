@@ -5,16 +5,19 @@ categories: [Blog, Chirpy]
 tags: [Blog, Chirpy]
 ---
 
-> Linux 환경에서 작업
+> Linux 환경에서 작업 (아래 중에 하나 선택)
 - WSL(Windows Subsystem for Linux)
 - Docker
 - Mac OS
 {: .prompt-info }
 
 
-> - bundle 실행 전 반드시 ruby 버전이 최소 3 버전 이상인지 확인해야 한다.
-  - 이 상태에서 bundle을 통해 모듈을 설치할 경우 Chirpy에서 사용하는 모듈과 호환되지 않아 블로그 기능(다크모드, 검색, 이미지 표시, 모바일 환경 비정상 동작 등)이 정상적으로 동작하지 않는다.
+> - bundle 실행 전 반드시 ruby Version이 최소 3 Version 이상인지 확인해야 한다.
+  - Ruby 2.x Version인 bundle을 통해 모듈을 설치할 경우
+    - Chirpy에서 사용하는 모듈과 호환되지 않아 정상적으로 동작하지 않는다.
+      - 블로그 기능(Dark Mode, 검색, 이미지 표시, Mobile 환경 비정상 동작 등)
 - Node.js Version 20 이상 추천한다.
+  - Node.js Version이 낮을 경우, 몇몇 npm module이 설치가 되지 않을 때가 있다.
 {: .prompt-tip }
 
 
