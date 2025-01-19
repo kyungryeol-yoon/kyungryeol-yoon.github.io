@@ -13,6 +13,7 @@ fzf를 설치하면 대화식 메뉴를 제공하기 때문에, 더욱 편리하
 
 ```bash
 $ kubens
+
 kube-system
 kube-public
 istio-system
@@ -23,6 +24,7 @@ default
 
 ```bash
 $ kubens kube-system
+
 Context "minikube" modified.
 Active namespace is "kube-system".
 ```
@@ -31,6 +33,7 @@ Active namespace is "kube-system".
 
 ```bash
 $ kubens
+
 > kube-system
   kube-public
   istio-system
