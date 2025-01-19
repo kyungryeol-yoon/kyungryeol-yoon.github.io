@@ -30,7 +30,7 @@ tags: [Docker, Image, Save, Load, Export, Import]
 
 ## Docker load (tar file → docker image)
 
-- tar파일로 만들어진 Image를 다시 docker image로 되돌리기 위해서는 docker load 커맨드를 사용한다.
+- tar파일로 만들어진 Image를 다시 docker image로 되돌리기 위해서는 docker load Command를 사용한다.
 
   ```bash
   docker load -i [tar 파일명]
@@ -58,7 +58,7 @@ tags: [Docker, Image, Save, Load, Export, Import]
 
 ## Docker import (tar file → docker image)
 
-- export 커맨드를 통해 만들어진 tar 파일을 다시 docker image로 생성하는 명령어이다.
+- export Command를 통해 만들어진 tar 파일을 다시 docker image로 생성하는 명령어이다.
 
   ```bash
   docker import <파일 or URL> - [image name[:tag name]]
