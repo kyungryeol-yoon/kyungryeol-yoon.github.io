@@ -9,6 +9,7 @@ tags: [Database, PostgreSQL, BackUp, Recovery]
 
 - `pg_dumpall -U admin > /var/lib/postgresql/dump/backup_20231205.sql`
 - `psql -U admin > -f /var/lib/postgresql/dump/backup_20231205.sql testdb`
+
   ```yaml
   command:
   - /bin/bash
@@ -35,6 +36,7 @@ tags: [Database, PostgreSQL, BackUp, Recovery]
   ```
 
 - `pg_restore -U admin -C -Fc -d postgres 20231205010801.sql`
+
   ```yaml
   command:
   - /bin/bash
