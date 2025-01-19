@@ -36,14 +36,14 @@ kubectl port-forward service/mongo 28015:27017
 
 - `--namespace`: 리소스가 포함된 Namespace를 지정
     ```bash
-    # (my-namespace Namespace에 속한 my-service 이름의 서비스 내부의 80번 포트를 로컬 시스템의 8080번 포트와 연결
-    kubectl port-forward my-service --namespace my-namespace 8080:80
+    # (my-namespace Namespace에 속한 my-service 이름의 서비스 내부의 80번 포트를 로컬 시스템의 8080번 포트와 연결
+    kubectl port-forward my-service --namespace my-namespace 8080:80
     ```
 
-- `--address`: 로컬 주소를 지정
+- `--address`: 로컬 주소를 지정
     ```bash
-    # my-pod 이름의 Pod 내부의 80번 포트를 로컬 시스템의 127.0.0.1 주소의 8080번 포트와 연결
-    kubectl port-forward my-pod 127.0.0.1:8080:80
+    # my-pod 이름의 Pod 내부의 80번 포트를 로컬 시스템의 127.0.0.1 주소의 8080번 포트와 연결
+    kubectl port-forward my-pod 127.0.0.1:8080:80
     ```
 
 > 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

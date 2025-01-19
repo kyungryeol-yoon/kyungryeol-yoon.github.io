@@ -24,17 +24,17 @@ kubectl create certificate my-cert --cert=./my-cert.crt --key=./my-cert.key
 
 - `--cert`: 인증서 파일 경로를 지정
     ```bash
-    # my-cert.crt 파일을 사용하여 인증서를 생성
-    kubectl create certificate my-cert --cert=./my-cert.crt --key=./my-cert.key
+    # my-cert.crt 파일을 사용하여 인증서를 생성
+    kubectl create certificate my-cert --cert=./my-cert.crt --key=./my-cert.key
     ```
 
-- `--key`: 개인 키 파일 경로를 지정
+- `--key`: 개인 키 파일 경로를 지정
     ```bash
-    # my-cert.key 파일을 사용하여 인증서를 생성
-    kubectl create certificate my-cert --cert=./my-cert.crt --key=./my-cert.key
+    # my-cert.key 파일을 사용하여 인증서를 생성
+    kubectl create certificate my-cert --cert=./my-cert.crt --key=./my-cert.key
     ```
 
-- `--namespace`: 네임스페이스를 지정
+- `--namespace`: 네임스페이스를 지정
     ```bash
     # my-namespace 네임스페이스에 my-cert 인증서를 생성
     kubectl create certificate my-cert --cert=./my-cert.crt --key=./my-cert.key --namespace=my-namespace

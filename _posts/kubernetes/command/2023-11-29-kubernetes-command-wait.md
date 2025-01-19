@@ -24,20 +24,20 @@ kubectl wait pod my-pod --for=condition=Ready
 
 - `--for`: 대기할 조건을 지정
     ```bash
-    # Ready 조건이 충족될 때까지 대기
-    kubectl wait pod my-pod --for=condition=Ready
+    # Ready 조건이 충족될 때까지 대기
+    kubectl wait pod my-pod --for=condition=Ready
     ```
 
-- `--timeout`: 대기 시간을 지정. 이 시간을 초과하면 명령어가 종료
+- `--timeout`: 대기 시간을 지정. 이 시간을 초과하면 명령어가 종료
     ```bash
-    # Ready 조건이 충족될 때까지 60초 동안 대기
-    kubectl wait pod my-pod --for=condition=Ready --timeout=60s
+    # Ready 조건이 충족될 때까지 60초 동안 대기
+    kubectl wait pod my-pod --for=condition=Ready --timeout=60s
     ```
 
-- `--namespace`: Namespace를 지정
+- `--namespace`: Namespace를 지정
     ```bash
-    # my-namespace Namespace에 있는 my-pod Pod가 Ready 상태가 될 때까지 대기
-    kubectl wait pod my-pod --for=condition=Ready --namespace=my-namespace
+    # my-namespace Namespace에 있는 my-pod Pod가 Ready 상태가 될 때까지 대기
+    kubectl wait pod my-pod --for=condition=Ready --namespace=my-namespace
     ```
 
 > 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

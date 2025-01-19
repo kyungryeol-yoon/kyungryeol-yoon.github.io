@@ -11,7 +11,7 @@ tags: [Kubernetes, kubectl, Command, edit]
 ## 기본 구조
 
 ```bash
-kubectl edit [리소스 종류] [리소스 이름]
+kubectl edit [리소스 종류] [리소스 이름]
 
 # my-deployment 이름의 deployment 리소스의 YAML 구성 파일을 열고 직접 수정할 수 있다.
 kubectl edit deployment my-deployment
@@ -27,20 +27,20 @@ kubectl edit deployment my-deployment
 
 - `--namespace`: 리소스가 포함된 namespace를 지정
     ```bash
-    # my-namespace namespace에 속한 my-deployment 이름의 deployment 리소스의 YAML 구성 파일을 열고 직접 수정할 수 있다.
-    kubectl edit deployment my-deployment --namespace my-namespace
+    # my-namespace namespace에 속한 my-deployment 이름의 deployment 리소스의 YAML 구성 파일을 열고 직접 수정할 수 있다.
+    kubectl edit deployment my-deployment --namespace my-namespace
     ```
 
-- `--filename`: 파일에서 YAML 구성을 읽어온다.
+- `--filename`: 파일에서 YAML 구성을 읽어온다.
     ```bash
-    # my-deployment.yaml 파일에서 deployment 리소스의 YAML 구성을 읽어와 수정할 수 있다.
-    kubectl edit --filename=my-deployment.yaml
+    # my-deployment.yaml 파일에서 deployment 리소스의 YAML 구성을 읽어와 수정할 수 있다.
+    kubectl edit --filename=my-deployment.yaml
     ```
 
-- `--output`: 출력 형식을 지정
+- `--output`: 출력 형식을 지정
     ```bash
     # my-deployment 이름의 deployment 리소스의 YAML 구성을 편집한 후, YAML 형식으로 출력
-    kubectl edit deployment my-deployment --output=yaml
+    kubectl edit deployment my-deployment --output=yaml
     ```
 
 > 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

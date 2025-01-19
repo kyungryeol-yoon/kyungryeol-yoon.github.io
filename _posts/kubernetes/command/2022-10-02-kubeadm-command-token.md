@@ -11,13 +11,13 @@ tags: [kubeadm, Command, token]
 ## 기본 구조
 
 ```bash
-# Token 생성 - kubeadm join 명령어를 사용하여 Woker Node를 Cluster에 추가할 때 사용
+# Token 생성 - kubeadm join 명령어를 사용하여 Woker Node를 Cluster에 추가할 때 사용
 kubeadm token create
 
-# Token 조회 - 현재 사용 가능한 Token 목록을 조회
+# Token 조회 - 현재 사용 가능한 Token 목록을 조회
 kubeadm token list
 
-# Token 삭제 - 특정 Token을 삭제
+# Token 삭제 - 특정 Token을 삭제
 kubeadm token delete [Token]
 ```
 
@@ -28,17 +28,17 @@ kubeadm token delete [Token]
 
 - `create`: 새로운 Token을 생성
     ```bash
-    # 24시간 동안 유효한 Token을 생성하고, kubeadm join 명령어를 출력
-    kubeadm token create --ttl 24h --print-join-command
+    # 24시간 동안 유효한 Token을 생성하고, kubeadm join 명령어를 출력
+    kubeadm token create --ttl 24h --print-join-command
     ```
 
-- `delete`: Token을 삭제
+- `delete`: Token을 삭제
     ```bash
-    # abcdef.1234567890abcdef Token을 삭제
-    kubeadm token delete abcdef.1234567890abcdef
+    # abcdef.1234567890abcdef Token을 삭제
+    kubeadm token delete abcdef.1234567890abcdef
     ```
 
-- `list`: 사용 가능한 Token 목록을 조회
+- `list`: 사용 가능한 Token 목록을 조회
     ```bash
     # 사용 가능한 Token 목록을 조회
     kubeadm token list

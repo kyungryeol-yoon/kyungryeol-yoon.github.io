@@ -22,14 +22,14 @@ kubectl cp /path/to/local/file my-pod:/path/to/destination
 ### Option
 - `-c`, `--container`: 컨테이너 이름을 지정
     ```bash
-    # my-pod 파드의 my-container 컨테이너 내부의 /path/to/destination 경로에 로컬 머신의 /path/to/local/file 파일을 복사
-    kubectl cp /path/to/local/file my-pod:/path/to/destination -c my-container
+    # my-pod 파드의 my-container 컨테이너 내부의 /path/to/destination 경로에 로컬 머신의 /path/to/local/file 파일을 복사
+    kubectl cp /path/to/local/file my-pod:/path/to/destination -c my-container
     ```
 
-- `--no-preserve`: 파일 속성을 유지하지 않는다.
+- `--no-preserve`: 파일 속성을 유지하지 않는다.
     ```bash
-    # my-pod 파드의 /path/to/destination 경로에 로컬 머신의 /path/to/local/file 파일을 복사하되, 속성은 유지하지 않는다.
-    kubectl cp /path/to/local/file my-pod:/path/to/destination --no-preserve
+    # my-pod 파드의 /path/to/destination 경로에 로컬 머신의 /path/to/local/file 파일을 복사하되, 속성은 유지하지 않는다.
+    kubectl cp /path/to/local/file my-pod:/path/to/destination --no-preserve
     ```
 
 > 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

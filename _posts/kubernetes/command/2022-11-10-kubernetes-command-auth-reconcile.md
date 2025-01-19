@@ -24,14 +24,14 @@ kubectl auth reconcile -f ./rbac.yaml
 
 - `-f`, `--filename`: 대상 파일을 지정
     ```bash
-    # ./rbac.yaml 파일의 권한 부여를 재조정
-    kubectl auth reconcile -f ./rbac.yaml
+    # ./rbac.yaml 파일의 권한 부여를 재조정
+    kubectl auth reconcile -f ./rbac.yaml
     ```
 
-- `--dry-run`: 실제 작업을 수행하지 않고 결과만 확인
+- `--dry-run`: 실제 작업을 수행하지 않고 결과만 확인
     ```bash
     # 실제 작업을 수행하지 않고 ./rbac.yaml 파일의 재조정 결과만 확인
-    kubectl auth reconcile -f ./rbac.yaml --dry-run
+    kubectl auth reconcile -f ./rbac.yaml --dry-run
     ```
 
 > 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

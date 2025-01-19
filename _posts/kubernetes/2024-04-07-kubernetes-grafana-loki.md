@@ -10,7 +10,7 @@ tags: [Kubernetes, Grafana, Loki, Install]
 - 이런 최소 인덱싱 접근 방식은 다른 솔루션보다 적은 저장 공간이 필요함을 의미한다.
 - Loki를 위해 만들어진 로그 수집 도구인 Promtail 또는 OpenTelemetry를 통해 로그를 가져와 로그를 저장한다.
 - 이후 Grafana에서 LogQL이라는 쿼리 언어를 통해 로그를 검색하게 된다.
-- 또한 경고 규칙을 설정하여 Prometheus Alertmanager로 경고를 보낼 수 있다.
+- 또한 경고 규칙을 설정하여 Prometheus Alertmanager로 경고를 보낼 수 있다.
 
 > [Loki 참고](https://github.com/grafana/loki)
 {: .prompt-info }
@@ -182,8 +182,8 @@ tags: [Kubernetes, Grafana, Loki, Install]
   5. querier는 수신된 모든 데이터를 반복하고 중복을 제거하여 HTTP/1 연결을 통해 최종 데이터 세트를 반환한다.
 
 #### Read
-1. Read 요청 시 querier에서 해당 요청을 수신한다.
-2. querier는 ingester의  in-memory를 조회한다.
+1. Read 요청 시 querier에서 해당 요청을 수신한다.
+2. querier는 ingester의  in-memory를 조회한다.
 3. ingester에 캐시 된 데이터가 있는 경우 querier에게 반환하고, 데이터가 없는 경우 백업 저장소(S3)에서 데이터를 조회한다.
 4. querier는 수신된 데이터가 중복 됐는지 확인 후 중복제거 진행하여 log를 제공한다.
 
@@ -242,11 +242,11 @@ tags: [Kubernetes, Grafana, Loki, Install]
 ### Ruler
 - 사용자가 정의한 경고 규칙 기반으로 경고를 발생시키는 등 로그 데이터에 대한 경고를 관리한다.
 
-### WAL(Write Ahead Log)
-- Loki에서는 WAL(Write Ahead Log)이라는 걸 사용하는데, 아래와 같은 예기치 않은 장애 상황을 방지해 준다.
+### WAL(Write Ahead Log)
+- Loki에서는 WAL(Write Ahead Log)이라는 걸 사용하는데, 아래와 같은 예기치 않은 장애 상황을 방지해 준다.
   1. 데이터(chunk)가 Ingesters로 들어오면, 먼저 이 데이터를 메모리 적재 및 WAL에 기록한다. WAL은 로컬 파일 시스템에 저장된다.
   2. 예기치 않은 장애로 프로세스가 갑자기 중단되거나 다운되면, 메모리에 있는 데이터가 손실된다.
-  3. 장애가 복구되어 프로세스가 다시 시작되면 WAL에 저장된 데이터를 읽어와 메모리에 적재하여  장애 전의 상태로 복구된다.
+  3. 장애가 복구되어 프로세스가 다시 시작되면 WAL에 저장된 데이터를 읽어와 메모리에 적재하여  장애 전의 상태로 복구된다.
 
 ### Chunk Store
 - Loki의 로그를 장기 저장하기 위한 저장소이다.

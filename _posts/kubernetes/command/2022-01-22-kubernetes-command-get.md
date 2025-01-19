@@ -36,65 +36,65 @@ kubectl get [리소스 종류] [옵션]
     kubectl get pods --all-namespaces
     ```
 
-- `--selector`, `-l`: 라벨 셀렉터를 사용하여 특정 리소스를 조회
+- `--selector`, `-l`: 라벨 셀렉터를 사용하여 특정 리소스를 조회
     ```bash
-    kubectl get pods -l app=myapp
+    kubectl get pods -l app=myapp
     ```
 
 - `--output`, `-o`: 출력 형식을 지정
     ```bash
-    kubectl get pods -o wide
+    kubectl get pods -o wide
     ```
 
-- `--watch`, `-w`: 리소스 변경 사항을 실시간으로 모니터링
+- `--watch`, `-w`: 리소스 변경 사항을 실시간으로 모니터링
     ```bash
-    kubectl get pods -w
+    kubectl get pods -w
     ```
 
-- `--sort-by`: 조회 결과를 정렬
+- `--sort-by`: 조회 결과를 정렬
     ```bash
-    # "--sort-by=.metadata.creationTimestamp" 명령은 생성된 시간에 따라 정렬
-    kubectl get pods --sort-by=.status.phase
+    # "--sort-by=.metadata.creationTimestamp" 명령은 생성된 시간에 따라 정렬
+    kubectl get pods --sort-by=.status.phase
     ```
 
--` --field-selector`: 필드 셀렉터를 사용하여 특정 필드의 값을 기준으로 리소스를 조회
+-` --field-selector`: 필드 셀렉터를 사용하여 특정 필드의 값을 기준으로 리소스를 조회
     ```bash
-    kubectl get pods --field-selector=status.phase=Running
+    kubectl get pods --field-selector=status.phase=Running
     ```
 
-- `--show-labels`: 리소스에 대한 라벨 정보를 표시
+- `--show-labels`: 리소스에 대한 라벨 정보를 표시
     ```bash
-    kubectl get pods --show-labels
+    kubectl get pods --show-labels
     ```
 
-- `--no-headers`: 표 헤더를 표시하지 않는다.
+- `--no-headers`: 표 헤더를 표시하지 않는다.
     ```bash
-    kubectl get pods --no-headers
+    kubectl get pods --no-headers
     ```
 
 - `--export`: 출력 결과에서 불필요한 정보를 제거
     ```bash
     # "my-pod" 이름을 가진 파드의 YAML 파일을 생성, 이 때 --export 옵션을 사용하면 출력 결과에서 상태 및 메타데이터와 같은 불필요한 정보가 제거
-    kubectl get pod my-pod -o yaml --export > my-pod.yaml
+    kubectl get pod my-pod -o yaml --export > my-pod.yaml
     ```
 
-- `--field-selector`와 함께 사용할 수 있는 필드는 다양
-    - `"status.phase"` 필드는 파드의 실행 상태를 나타내며, `"metadata.name"` 필드는 파드의 이름을 나타낸다.
+- `--field-selector`와 함께 사용할 수 있는 필드는 다양
+    - `"status.phase"` 필드는 파드의 실행 상태를 나타내며, `"metadata.name"` 필드는 파드의 이름을 나타낸다.
 
 - `--show-kind`: 조회 결과에 리소스 유형을 표시
     ```bash
     kubectl get pods --show-kind
     ```
 
-- `--ignore-not-found`: 조회 결과가 없는 경우 에러를 발생시키지 않고 정상적으로 종료
+- `--ignore-not-found`: 조회 결과가 없는 경우 에러를 발생시키지 않고 정상적으로 종료
     ```bash
-    kubectl get pods my-pod --ignore-not-found
+    kubectl get pods my-pod --ignore-not-found
     ```
 
-- `--timeout`: 조회 시간 제한을 설정
+- `--timeout`: 조회 시간 제한을 설정
     ```bash
-    # "--timeout=5s" 명령은 5초 동안 조회를 시도
-    kubectl get pods --timeout=10s
+    # "--timeout=5s" 명령은 5초 동안 조회를 시도
+    kubectl get pods --timeout=10s
     ```
 
 - `--selector`와 함께 사용할 수 있는 라벨 셀렉터의 사용 예시는 다음과 같다.

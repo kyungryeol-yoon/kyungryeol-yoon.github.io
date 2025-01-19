@@ -23,11 +23,11 @@ kubectl patch deployment my-deployment -p '{"spec":{"replicas":3}}'
 
 - `-p`, `--patch`: JSON 포맷으로 수정 내용을 지정
     ```bash
-    # my-deployment 이름의 배포의 replica 수를 3으로 변경
-    kubectl patch deployment my-deployment -p '{"spec":{"replicas":3}}'
+    # my-deployment 이름의 배포의 replica 수를 3으로 변경
+    kubectl patch deployment my-deployment -p '{"spec":{"replicas":3}}'
     ```
 
-- `--type`: 수정 내용의 포맷을 지정. json, merge, strategic 중 하나를 지정할 수 있다. 기본값은 strategic
+- `--type`: 수정 내용의 포맷을 지정. json, merge, strategic 중 하나를 지정할 수 있다. 기본값은 strategic
     ```bash
     # my-deployment 이름의 배포의 replica 수를 3으로 변경합니다. --type=json 옵션을 사용하여 JSON 포맷으로 수정 내용을 지정
     kubectl patch deployment my-deployment --type=json -p '[{"op":"replace","path":"/spec/replicas","value":3}]'

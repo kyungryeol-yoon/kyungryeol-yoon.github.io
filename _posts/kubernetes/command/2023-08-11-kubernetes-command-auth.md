@@ -23,20 +23,20 @@ kubectl auth can-i get pods
 
 - `--namespace`: 네임스페이스를 지정
     ```bash
-    # my-namespace 네임스페이스 내 파드를 가져올 수 있는지 여부를 확인
-    kubectl auth can-i get pods --namespace=my-namespace
+    # my-namespace 네임스페이스 내 파드를 가져올 수 있는지 여부를 확인
+    kubectl auth can-i get pods --namespace=my-namespace
     ```
 
-- `--subresource`: 서브리소스를 지정
+- `--subresource`: 서브리소스를 지정
     ```bash
-    # 이벤트의 watch 서브리소스를 가져올 수 있는지 여부를 확인
-    kubectl auth can-i get events --subresource=watch
+    # 이벤트의 watch 서브리소스를 가져올 수 있는지 여부를 확인
+    kubectl auth can-i get events --subresource=watch
     ```
 
-- `--list`: 리소스 목록을 출력
+- `--list`: 리소스 목록을 출력
     ```bash
     # 현재 사용자가 모든 파드를 가져올 수 있는지 여부와 함께 파드 목록을 출력
-    kubectl auth can-i list pods --list
+    kubectl auth can-i list pods --list
     ```
 
 > 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

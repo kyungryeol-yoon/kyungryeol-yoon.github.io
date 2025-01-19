@@ -24,14 +24,14 @@ kubectl attach my-pod -c my-container
 
 - `-c`, `--container`: 컨테이너 이름을 지정
     ```bash
-    # my-pod 파드의 my-container 컨테이너 내부의 터미널 세션에 접속
-    kubectl attach my-pod -c my-container
+    # my-pod 파드의 my-container 컨테이너 내부의 터미널 세션에 접속
+    kubectl attach my-pod -c my-container
     ```
 
-- `--stdin`, `--tty`: 터미널 입력/출력을 가능하게 한다.
+- `--stdin`, `--tty`: 터미널 입력/출력을 가능하게 한다.
     ```bash
     # my-pod 파드의 my-container 컨테이너 내부의 터미널 세션에 접속하면서 터미널 입력/출력을 가능하게 한다.
-    kubectl attach my-pod -c my-container --stdin --tty
+    kubectl attach my-pod -c my-container --stdin --tty
     ```
 
 > 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

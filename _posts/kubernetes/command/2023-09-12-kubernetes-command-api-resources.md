@@ -21,20 +21,20 @@ tags: [Kubernetes, kubectl, Command, api-resources]
 
 - `--namespaced`: 네임스페이스를 사용하는 리소스만 출력
     ```bash
-    # namespace를 사용하는 리소스 종류만 출력
-    kubectl api-resources --namespaced
+    # namespace를 사용하는 리소스 종류만 출력
+    kubectl api-resources --namespaced
     ```
 
-- `--verbs`: 지정한 액션을 수행할 수 있는 리소스만 출력
+- `--verbs`: 지정한 액션을 수행할 수 있는 리소스만 출력
     ```bash
-    # get과 delete 액션을 수행할 수 있는 리소스 종류만 출력
-    kubectl api-resources --verbs=get,delete
+    # get과 delete 액션을 수행할 수 있는 리소스 종류만 출력
+    kubectl api-resources --verbs=get,delete
     ```
 
-- `--api-group`: 지정한 API 그룹에 속한 리소스만 출력
+- `--api-group`: 지정한 API 그룹에 속한 리소스만 출력
     ```bash
     # apps API 그룹에 속한 리소스 종류만 출력
-    kubectl api-resources --api-group=apps
+    kubectl api-resources --api-group=apps
     ```
 
 > 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

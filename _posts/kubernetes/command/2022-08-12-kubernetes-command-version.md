@@ -22,20 +22,20 @@ kubectl version
 
 - `--short`: 간략한 버전 정보를 출력
     ```bash
-    # kubectl 명령어와 Cluster의 버전 정보를 간략하게 출력
-    kubectl version --short
+    # kubectl 명령어와 Cluster의 버전 정보를 간략하게 출력
+    kubectl version --short
     ```
 
-- `--client`: 클라이언트의 버전 정보만 출력
+- `--client`: 클라이언트의 버전 정보만 출력
     ```bash
-    # kubectl 명령어의 버전 정보만 출력
-    kubectl version --client
+    # kubectl 명령어의 버전 정보만 출력
+    kubectl version --client
     ```
 
-- `--server`: 서버의 버전 정보만 출력
+- `--server`: 서버의 버전 정보만 출력
     ```bash
     # Cluster의 API 서버 버전 정보만 출력
-    kubectl version --server
+    kubectl version --server
     ```
 
 > 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

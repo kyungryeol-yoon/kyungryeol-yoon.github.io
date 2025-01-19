@@ -23,14 +23,14 @@ kubectl annotate pods my-pod description="This is my pod"
 
 - `--overwrite`: 이미 존재하는 주석 값을 덮어쓰기 한다.
     ```bash
-    # my-pod 이름의 Pod에 이미 존재하는 description 주석 값을 This is my new pod으로 덮어쓴다.
-    kubectl annotate pods my-pod description="This is my new pod" --overwrite
+    # my-pod 이름의 Pod에 이미 존재하는 description 주석 값을 This is my new pod으로 덮어쓴다.
+    kubectl annotate pods my-pod description="This is my new pod" --overwrite
     ```
 
-- `--namespace`: 리소스가 포함된 Namespace를 지정한다.
+- `--namespace`: 리소스가 포함된 Namespace를 지정한다.
     ```bash
     # my-namespace Namespace에 속한 my-pod 이름의 Pod에 description="This is my pod" 주석을 추가
-    kubectl annotate pods my-pod description="This is my pod" --namespace my-namespace
+    kubectl annotate pods my-pod description="This is my pod" --namespace my-namespace
     ```
 
 > 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

@@ -25,16 +25,16 @@ kubectl top nodes
 
 ### Option
 
-- `--containers`: Container 단위의 리소스 사용량을 확인
+- `--containers`: Container 단위의 리소스 사용량을 확인
     ```bash
-    # 모든 파드의 Container 단위의 리소스 사용량을 확인
-    kubectl top pods --containers
+    # 모든 파드의 Container 단위의 리소스 사용량을 확인
+    kubectl top pods --containers
     ```
 
-- `--kryoon-namespace`: kryoon의 Namespace를 지정
+- `--kryoon-namespace`: kryoon의 Namespace를 지정
     ```bash
     # kryoon가 설치된 kube-system Namespace에 대한 Pod의 리소스 사용량을 확인
-    kubectl top pods --kryoon-namespace=kube-system
+    kubectl top pods --kryoon-namespace=kube-system
     ```
 
 > 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

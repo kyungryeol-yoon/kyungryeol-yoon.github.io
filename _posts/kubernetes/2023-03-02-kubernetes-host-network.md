@@ -70,18 +70,18 @@ spec:
 ### spec.hostNetwork
 
 - true와 false 두가지 옵션이 존재한다(미 설정시, Default: false).
-- 해당 값을 true로 설정 시, Pod의 IP가 Pod가 배포된 Node의 IP로 설정된다. 
- 
+- 해당 값을 true로 설정 시, Pod의 IP가 Pod가 배포된 Node의 IP로 설정된다. 
+ 
 ### spec.containers[].ports[].containerPort
 
 - 해당 설정을 명시한다고해서 해당 container의 Port가 open되는 것은 아니다.
 - 해당 옵션을 원하는 Port로 사용하기 위해서는 반드시 해당 container에 원하는 Port를 사용하는 서비스 등이 동작중이여야 한다.
 - 즉, container가 자체적으로 Port를 사용하고 있어야한다.
- 
+ 
 ### spec.containers[].ports[].hostIP
 
-- 아무 IP나 사용하면안되고 Node 중 하나의 IP를 사용하여야한다. 
- 
+- 아무 IP나 사용하면안되고 Node 중 하나의 IP를 사용하여야한다. 
+ 
 ### spec.containers[].ports[].hostPort
 
 - 0 < port < 65536 중에서 Port를 사용하면 된다.
