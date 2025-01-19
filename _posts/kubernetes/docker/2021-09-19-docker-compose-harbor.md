@@ -245,7 +245,7 @@ Login Succeeded
 
 #### docker
 
-- 만약 /etc/docker 디렉토리에 daemon.json 파일이 없는 경우 새롭게 생성
+- 만약 /etc/docker Directory에 daemon.json 파일이 없는 경우 새롭게 생성
 - vi /etc/docker/daemon.json (아래 insecure 입력)
   ```json
   {

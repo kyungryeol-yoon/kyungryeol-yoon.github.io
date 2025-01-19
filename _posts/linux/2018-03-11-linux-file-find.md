@@ -1,24 +1,24 @@
 ---
-title: "[Linux] 파일 관리 - find 파일/디렉토리 검색"
+title: "[Linux] 파일 관리 - find 파일/Directory 검색"
 date: 2018-03-11
 categories: [Linux, File]
 tags: [Linux, File, find]
 ---
 
 ## find 명령어
-파일및 디렉토리 검색한다.
+파일및 Directory 검색한다.
 ```
-find [경로] [-name] [파일 및 디렉토리 명] [-type d/f]
+find [경로] [-name] [파일 및 Directory 명] [-type d/f]
 ```
 
 ### 예제 1)
-/etc안에서 이름이 config인 파일 및 디렉토리 검색
+/etc안에서 이름이 config인 파일 및 Directory 검색
 ```
 find /etc/ -name config
 ```
 
 ### 예제 2)
-최상위에서 이름이 home이고 타입이 디렉토리인 것만 검색한다.
+최상위에서 이름이 home이고 타입이 Directory인 것만 검색한다.
 ```
 find / -name home -type d
 ```
@@ -67,9 +67,9 @@ find [경로] [-mmin] [+n] (-n일 경우 n분 이내)
 ```
 
 ### 예제 7)
-[파일 및 디렉토리 명]이 생성후 수정된 모든 파일 및 디렉토리 검색한다.
+[파일 및 Directory 명]이 생성후 수정된 모든 파일 및 Directory 검색한다.
 ```
-find [경로] [-newer] [파일 및 디렉토리 명]
+find [경로] [-newer] [파일 및 Directory 명]
 ```
 
 ### 예제 8)

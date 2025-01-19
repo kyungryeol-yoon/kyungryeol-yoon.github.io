@@ -20,13 +20,13 @@ scp {복사하려는 파일명}  {서버 사용자 아이디}@{서버 주소}:{�
 
 ## scp 명령어 사용 예제
 ### 예제) 파일 복사
-로컬에 있는 test.txt 라는 파일을 서버에 /home/kryoon 의 디렉토리에 복사한다.
+로컬에 있는 test.txt 라는 파일을 서버에 /home/kryoon 의 Directory에 복사한다.
 ```
 scp ./test.txt kryoon@192.168.0.10:/home/kryoon
 ```
 
-### 예제) 디렉토리 복사
-로컬에 있는 test_dir 디렉토리를 서버에 /home/kryoon 의 디렉토리에 복사한다.
+### 예제) Directory 복사
+로컬에 있는 test_dir Directory를 서버에 /home/kryoon 의 Directory에 복사한다.
 ```
 scp -r ./test_dir kryoon@192.168.0.10:/home/kryoon
 ```

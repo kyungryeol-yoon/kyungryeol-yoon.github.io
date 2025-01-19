@@ -1,5 +1,5 @@
 ---
-title: "[Linux] 파일 관리 - chmod 파일/디렉토리 권한 변경"
+title: "[Linux] 파일 관리 - chmod 파일/Directory 권한 변경"
 date: 2018-05-01
 categories: [Linux, File]
 tags: [Linux, File, Directory, chmod]

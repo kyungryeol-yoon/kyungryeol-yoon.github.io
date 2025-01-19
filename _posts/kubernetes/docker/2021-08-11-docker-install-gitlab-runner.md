@@ -10,12 +10,12 @@ tags: [Docker, Install, Gitlab, Runner]
 
 ## GitLab Runner 설치
 
-- GitLab Runner 작업 디렉토리 (Working directory)와 데이터를 영속적(Persistent)으로 저장하기 위한 바인드 마운트(Bind mount)용 디렉토리를 생성
+- GitLab Runner 작업 Directory (Working directory)와 데이터를 영속적(Persistent)으로 저장하기 위한 바인드 마운트(Bind mount)용 Directory를 생성
   ```bash
   sudo mkdir -p /data/gitlab-runner/config && cd /data/gitlab-runner
   ```
 
-- `gitlab-runner` 디렉토리의 소유권을 `$USER`로 변경하고 권한을 변경
+- `gitlab-runner` Directory의 소유권을 `$USER`로 변경하고 권한을 변경
   ```bash
   sudo chown -R $USER:$USER /data/gitlab-runner
   ```
@@ -168,7 +168,7 @@ build:
 ```
 
 - `[runners.docker]` 섹션에서 `privileged = true`로 설정합니다.
-- 위에서 언급한 Runner 옵션을 수정하려면 Runner 작업 디렉토리(예: `/data/gitlab-runner`)에서 아래 명령을 실행하고 수정한다. 또는 gitlab-runner bash에 접속하여 `/etc/gitlab-runner`에서 `config.toml`를 수정하여도 된다.
+- 위에서 언급한 Runner 옵션을 수정하려면 Runner 작업 Directory(예: `/data/gitlab-runner`)에서 아래 명령을 실행하고 수정한다. 또는 gitlab-runner bash에 접속하여 `/etc/gitlab-runner`에서 `config.toml`를 수정하여도 된다.
   ```bash
   sudo vi config/config.toml
   ```

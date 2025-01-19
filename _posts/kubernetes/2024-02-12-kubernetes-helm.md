@@ -145,7 +145,7 @@ sudo apt-get install helm
 
 - 내 차트 만들기
     - `helm create [name]`
-    - 디렉토리에 차트가 생김
+    - Directory에 차트가 생김
 
 ### helm package
 

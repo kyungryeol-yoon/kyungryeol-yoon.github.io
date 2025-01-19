@@ -14,7 +14,7 @@ tags: [Docker, Install, Gitlab, Docker-Compose]
   - [GitLab CE Docker image](https://hub.docker.com/r/gitlab/gitlab-ce/)
   - [GitLab EE Docker image](https://hub.docker.com/r/gitlab/gitlab-ee/)
 
-## 설치 디렉토리 생성
+## 설치 Directory 생성
 
 ```bash
 sudo mkdir -p /data/gitlab && cd /data/gitlab
@@ -25,7 +25,7 @@ sudo mkdir data logs config
 - `logs` (`/var/log/gitlab`) : 로그 저장용
 - `config` (`/etc/gitlab`) : GitLab 구성 파일 저장용
 
-### Gitlab 디렉토리의 소유권을 $USER로 변경
+### Gitlab Directory의 소유권을 $USER로 변경
 
 ```bash
 sudo chown -R $USER:$USER /data/gitlab
@@ -39,7 +39,7 @@ sudo chmod -R 755 /data/gitlab
 
 ## `docker-compose.yml` or `docker-compose_gitlab` 파일 준비
 
-- GitLab 작업 디렉토리(예: `/data/gitlab/`)에 `docker-compose.yml` 파일을 생성
+- GitLab 작업 Directory(예: `/data/gitlab/`)에 `docker-compose.yml` 파일을 생성
   ```bash
   vi docker-compose.yml
   ```

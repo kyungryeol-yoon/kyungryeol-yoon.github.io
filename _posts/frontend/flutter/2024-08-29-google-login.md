@@ -19,7 +19,7 @@ cd my_project
   1. 패키지 이름을 입력합니다.
     - 예: com.example.my_project
   2. google-services.json 파일을 다운로드한다.
-3. 다운로드한 google-services.json 파일을 android/app 디렉토리에 추가한다.
+3. 다운로드한 google-services.json 파일을 android/app Directory에 추가한다.
 
 ### Dependencies 추가
 

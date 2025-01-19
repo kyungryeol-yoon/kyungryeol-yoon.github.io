@@ -120,7 +120,7 @@ Spring project를 생성하고 바로 실행하면 browser에 home.jsp가 실행
   <!-- view resolver(뷰리졸버, 뷰 해석기) -->
   <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <!-- 뷰(jsp)의 접두어, 접미어 설정 : 파일명만 작성할 수 있게 세팅 -->
-    <!-- 접두어(디렉토리) -->
+    <!-- 접두어(Directory) -->
     <beans:property name="prefix" value="/WEB-INF/views/" />
     <!-- 접미어(확장자) -->
     <beans:property name="suffix" value=".jsp" />
@@ -169,7 +169,7 @@ public class HomeController {
     // servlet-context.xml
     // <beans:property name="prefix" value="/WEB-INF/views/" />
     // <beans:property name="suffix" value=".jsp" />
-    // 디렉토리(접두어)와 jsp(접미어)확장자를 제외하고 이름만 작성하도록 세팅
+    // Directory(접두어)와 jsp(접미어)확장자를 제외하고 이름만 작성하도록 세팅
     return "home";
   }
 }

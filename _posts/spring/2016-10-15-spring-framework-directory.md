@@ -67,7 +67,7 @@ tags: [Spring, Framework, Java, Programming]
 : **Maven Dependencies :** 라이브러리 관리도구 (Maven에서 다운받은 jar 파일)
 
 ![](/images/spring/directory/src-main-webapp.png)
-: **src :** web 디렉토리
+: **src :** web Directory
 : **src/main/webapp/resources :** js, css, image 등을 관리
 : **src/main/webapp/WEB-INF/classes :** 컴파일된 클래스
 : **src/main/webapp/WEB-INF/spirng :** Spring 환경 설정 파일 (root-context.xml, servlet-context.xml)
