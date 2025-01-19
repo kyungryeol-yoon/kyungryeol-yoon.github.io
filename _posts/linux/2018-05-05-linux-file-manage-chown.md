@@ -77,4 +77,4 @@ chown -R {소유권자}:{그룹식별자} {소유권을 변경하고 싶은 Dire
 chown -R aaa:bbb /home/test
 ```
 
-- 위 명령어로 Directory 소유권은 변경하게 되면 /home/test Directory는 물론 이하 모든 Directory 소유권이 변경된다.
+- 위 명령어로 Directory 소유권은 변경하게 되면 `/home/test Directory`는 물론 이하 모든 Directory 소유권이 변경된다.

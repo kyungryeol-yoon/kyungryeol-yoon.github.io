@@ -189,8 +189,9 @@ public class BookRestServiceTest {
 }
 ```
 
+- `test.json`
+
 ```json
-// test.json
 {
   "id": 1,
   "title": "title",
