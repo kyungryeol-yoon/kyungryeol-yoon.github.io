@@ -15,27 +15,30 @@ brew install --cask multipass
 
 - https://multipass.run 공식 홈페이지에서 직접 pkg를 받아 다운로드받을 수도 있다. 맥 OS 말고도 리눅스와 윈도우도 지원한다.
 
-
 ## Multipass 사용
 
 ### Instance 생성
 
 - 현재 multipass를 통해 생성할 수 있는 Instance의 모든 Image 목록이 표시된다.
+
   ```bash
   multipass find
   ```
 
 - Instance 생성
+
   ```bash
   multipass launch
   ```
 
 - 사용할 버전을 명시해줄 수도 있다.
+
   ```bash
   multipass launch 20.04
   ```
 
 - 위와 같은 옵션 값을 통해 Instance의 스펙을 조절해줄 수 있다.
+
   ```bash
   multipass launch --cpus <cpus> --disk <disk> --memory <mem> --name <name> --cloud-init cloud-init.yaml
   ```
@@ -72,6 +75,7 @@ brew install --cask multipass
 ### Instance 목록 조회
 
 - list 명령어로 존재하는 Instance들을 확인할 수 있다. ls로 줄여쓸 수도 있다.
+
   ```bash
   multipass list
   ```
@@ -79,6 +83,7 @@ brew install --cask multipass
 ### Instance Resource 변경
 
 - local.<instance-name>을 통해서 Resource를 변경할 수 있다.
+
   ```bash
   multipass stop some-instance
   multipass set local.some-instance.cpus=4
@@ -93,6 +98,7 @@ brew install --cask multipass
 #### 다음과 같이 파티션을 수동으로 확장해야 한다.
 
 - some-instance Shell에 접속
+
   ```bash
   $ multipass shell some-instance
   ubuntu@some-instance$ sudo parted /dev/sda resizepart 1 100%
@@ -107,13 +113,15 @@ brew install --cask multipass
 ### Instance Shell 접속
 
 - shell 명령어를 통해 해당 Instance의 쉘에 접근할 수 있다.
+
   ```bash
   multipass shell <instance name>
   ```
 
 ### Instance 명령 실행
 
-- 어느 Instance가 특정한 명령을 수행하길 원한다면, exec 명령어를 사용하면 된다. `--` 하이픈 두개 뒤에 수행할 명령어를 기입해주자.
+- 어느 Instance가 특정한 명령을 수행하길 원한다면, exec 명령어를 사용하면 된다. `--` 하이픈 두개 뒤에 수행할 명령어를 기입해준다.
+
   ```bash
   multipass exec <instance name> -- <명령어>
   ```
@@ -121,6 +129,7 @@ brew install --cask multipass
 ### Instance 정지
 
 - stop 명령어를 통해 Instance를 정지시킬 수 있다. 정지된 Instance는 State가 Stopped가 된다.
+
   ```bash
   multipass stop <instance name>
   ```
@@ -128,6 +137,7 @@ brew install --cask multipass
 ### Instance 시작
 
 - start 명령어를 통해 정지되어 있던(Stopped 상태) Instance를 실행시킬 수 있다.
+
   ```bash
   multipass start <instance name>
   ```
@@ -136,6 +146,7 @@ brew install --cask multipass
 
 - delete 명령어를 통해 Instance를 삭제할 수 있다. 해당 명령어를 통해 Instance를 삭제할 경우, 완전히 없어지는 것이 아니다.
 - ls 명령을 통해 Instance 목록을 조회할 시, State가 deleted인 상태로 남아있다.
+
   ```bash
   multipass delete <instance name>
   ```
@@ -143,6 +154,7 @@ brew install --cask multipass
 ### Instance 복구
 
 - recover 명령어를 통해 deleted 상태인 Instance를 복구할 수 있다. 복구된 Instance는 Stopped 상태가 된다.
+
   ```bash
   multipass recover <instance name>
   ```
@@ -150,11 +162,13 @@ brew install --cask multipass
 ### Instance 영구 삭제
 
 - purge 명령어를 통해 deleted 상태인 Instance를 영구 삭제한다.
+
   ```bash
   multipass purge
   ```
 
 - delete와 purge를 한 번에 실행할 수 있다.
+
   ```bash
   multipass delete --purge <instance-name>
   ```
@@ -170,6 +184,7 @@ brew install --cask multipass
 ### ssh key 생성
 
 - 명령을 수행하면 `$HOME/.ssh` 경로에 id_rsa_multipass (개인키), id_rsa_multipass.pub (공개키) 파일이 생성된다.
+
   ```bash
   ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
   ```
@@ -178,6 +193,7 @@ brew install --cask multipass
 
 - ssh_authorized_keys 설정 항목에 id_rsa_multipass.pub 파일의 내용을 그대로 복사하여 설정하면 Instance 생성 시 지정된 공개키가 Instance에 적용된다.
 - Instance의 `$HOME/.ssh/authorized_keys` 파일에 공개키가 저장된다.
+
   ```yaml
   users:
     - default
@@ -190,16 +206,19 @@ brew install --cask multipass
 ### Instance 생성
 
 - yaml 파일을 `$HOME/multipass/cloud-init/cloud-init-ssh.yaml` 경로에 저장한 경우 위와 같이 실행한다.
+
   ```bash
   multipass launch focal --name some-instance --cloud-init ~/multipass/cloud-init/cloud-init-ssh.yaml
   ```
 
 - ssh 접속
+
   ```bash
   ssh -i $HOME/.ssh/id_rsa_multipass ubuntu@192.168.64.2
   ```
 
 - `-i` 옵션과 함께 개인키 경로를 매번 지정하기 귀찮다면 `$HOME/.ssh/config` 파일에 다음과 같이 설정한다.
+
   ```conf
   Host multipass-some-instance
     User ubuntu
@@ -208,6 +227,7 @@ brew install --cask multipass
   ```
 
 - ssh 간편하게 접속
+
   ```bash
   ssh multipass-some-instance
   ```
@@ -258,6 +278,7 @@ https://multipass.run/docs/using-aliases#heading--windows 참조
 ```
 
 - PATH 환경 변수에 경로가 추가되면 다음과 같이 multipass prefix 없이 사용 가능하다.
+
   ```bash
   <alias-name> --help
   <alias-name>
@@ -266,6 +287,7 @@ https://multipass.run/docs/using-aliases#heading--windows 참조
 ## Multipass Mount
 
 - multipass mount 명령을 사용하여 Host와 Instance 간의 데이터를 공유할 수 있다.
+
   ```bash
   # Instance 생성시 Mount
   multipass launch --mount <host-path>:<instance-path>

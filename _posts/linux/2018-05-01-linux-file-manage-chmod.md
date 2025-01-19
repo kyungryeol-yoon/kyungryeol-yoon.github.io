@@ -6,11 +6,13 @@ tags: [Linux, File, Directory, chmod]
 ---
 
 ## chmod 명령어
-파일의 권한을 변경한다.
-chmod는 change mod의 약자이다.
+
+- 파일의 권한을 변경한다.
+- chmod는 change mod의 약자이다.
 
 ### 사용법
-```
+
+```bash
 chmod [option (ex.744)] [변경할 파일 위치/이름]
 ```
 

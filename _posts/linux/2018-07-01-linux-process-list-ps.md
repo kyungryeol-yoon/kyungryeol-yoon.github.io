@@ -6,14 +6,17 @@ tags: [Linux, Process, List, ps]
 ---
 
 ## ps 명령어
-현재 작동하는 프로세스의 목록을 출력한다.
+
+- 현재 작동하는 프로세스의 목록을 출력한다.
 
 ### 사용법
-```
+
+```bash
 ps (옵션)
 ```
 
 ### option
+
 - `-e` : 모든 프로세스 정보 출력
 - `-f` : 프로세스의 다양한 정보 출력
 - `-a` : 실행중인 전체 사용자의 모든 프로세스 출력
@@ -22,14 +25,18 @@ ps (옵션)
 
 ## ps 명령어 사용예제
 ### 예제 1)
-PID와 PPID를 확인할 수 있다.
-```
+
+- PID와 PPID를 확인할 수 있다.
+
+```bash
 ps -ef |grep *** (동작중인 프로세스) : 
 ```
 
 ### 예제 2)
-USER, PID, %CPU, %MEM, RSS, TTY, STAT, START를 확인할 수 있다.
-```
+
+- USER, PID, %CPU, %MEM, RSS, TTY, STAT, START를 확인할 수 있다.
+
+```bash
 -> ps -aux |grep *** (동작된 프로세스) : 
 ```
 

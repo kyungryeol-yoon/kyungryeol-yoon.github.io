@@ -6,25 +6,31 @@ tags: [Linux, Directory, tree]
 ---
 
 ## tree란?
-터미널에서 Directory 구조 조회를 용이하게 해준다.
 
-ls 명령어를 사용해서 Directory 내부를 확인할 수 있기는 하지만, 서브 Directory 내부에 포함된 파일을 확인하려면 다시 cd, ls 명령어를 중복 사용해야 하는 불편함이 있다. 이럴 때 tree 명령어를 활용하면 한 눈에 Directory 구조를 파악할 수 있어 매우 유용하다.
+- 터미널에서 Directory 구조 조회를 용이하게 해준다.
+
+- ls 명령어를 사용해서 Directory 내부를 확인할 수 있기는 하지만, 서브 Directory 내부에 포함된 파일을 확인하려면 다시 cd, ls 명령어를 중복 사용해야 하는 불편함이 있다.
+- 이럴 때 tree 명령어를 활용하면 한 눈에 Directory 구조를 파악할 수 있어 매우 유용하다.
 
 ## tree 설치
-기본적으로 tree 명령은 설치되지 않습니다.
+
+- 기본적으로 tree 명령은 설치되지 않습니다.
 
 ### RHEL / CentOS / Fedora Linux 환경에서 yum 으로 설치
-```
+
+```bash
 yum install tree
 ```
 
 ### Debian / Mint / Ubuntu Linux 환경에서 apt-get 으로 설치
-```
+
+```bash
 sudo apt-get install tree
 ```
 
 ### Mac OS 환경 에서 homebrew로 설치
-```
+
+```bash
 brew install tree
 Updating Homebrew...
 ==> Downloading https://homebrew.bintray.com/bottles/tree-1.7.0.yosemite.bottle.1.tar.gz
@@ -35,12 +41,14 @@ Updating Homebrew...
 
 ## tree 사용법
 ### 사용법
-```
+
+```bash
 tree (옵션)
 ```
 
 ### Directory 구조 조회
-```
+
+```bash
 tree
 .
 ├── build.gradle
