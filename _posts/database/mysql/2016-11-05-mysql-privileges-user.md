@@ -67,8 +67,11 @@ mysql> SHOW GRANTS FOR test@'200.100.100.50';
 ```
 
 ## 사용자에게 데이터베이스 사용권한 제거
+
+- 모든 권한을 삭제
+
 ```sql
-revoke all on DB_NAME.TABLE_NAME from USER_ID;  //모든 권한을 삭제
+revoke all on DB_NAME.TABLE_NAME from USER_ID;
 ```
 
 ## 사용자 계정 삭제
