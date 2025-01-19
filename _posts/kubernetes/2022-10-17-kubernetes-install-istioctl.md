@@ -12,7 +12,8 @@ curl -sL https://istio.io/downloadIstioctl | sh -
 export PATH=$PATH:$HOME/.istioctl/bin
 ```
 
-https://github.com/istio/istio/releases
+> [istioctl 참고](https://github.com/istio/istio/releases)
+{: .prompt-info }
 
 ## istio 관련 배포 확인
 
