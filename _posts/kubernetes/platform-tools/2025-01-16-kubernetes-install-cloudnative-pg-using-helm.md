@@ -91,13 +91,13 @@ spec:
 ```
 
 > Cluster Sample Yaml 참고
-- https://github.com/cloudnative-pg/cloudnative-pg/blob/main/docs/src/samples/cluster-example-full.yaml
+- <https://github.com/cloudnative-pg/cloudnative-pg/blob/main/docs/src/samples/cluster-example-full.yaml>
 {: .prompt-info }
 
 > Cluster Sample Init DB Yaml 참고
-- https://github.com/cloudnative-pg/cloudnative-pg/blob/main/docs/src/samples/cluster-example-initdb.yaml
+- <https://github.com/cloudnative-pg/cloudnative-pg/blob/main/docs/src/samples/cluster-example-initdb.yaml>
 {: .prompt-info }
 
 > Cluster Sample Init DB SQL Refs Yaml 참고
-- https://github.com/cloudnative-pg/cloudnative-pg/blob/main/docs/src/samples/cluster-example-initdb-sql-refs.yaml
+- <https://github.com/cloudnative-pg/cloudnative-pg/blob/main/docs/src/samples/cluster-example-initdb-sql-refs.yaml>
 {: .prompt-info }
