@@ -13,7 +13,7 @@ tags: [Git, gitignore, Error]
 
 - 해당 명령어는 Git에서 Local 저장소에서 파일을 제거하지만 **실제 파일은 유지**되며 Commit을 수행하는 과정을 통해 반영되지 않은 .gitignore를 수행
 
-> 실제 파일은 삭제되지 않는다
+> 실제 파일은 삭제되지 않는다.
 {: .prompt-info }
 
 ```bash

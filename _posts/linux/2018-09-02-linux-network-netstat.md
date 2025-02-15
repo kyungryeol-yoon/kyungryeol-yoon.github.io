@@ -28,7 +28,7 @@ tags: [Linux, Network, netstat]
 - `TCP` : 속도↓, 상호 통신(신뢰성↑), 질의응답 o, stream
 - `UDP` : 속도↑, 일방 통신(신뢰성↓), 질의응답 x, datagram(dgram)
 
-> netstat 옵션은 주로 -lntup를 쓴다. 그 외에 `-antup`, `-ltup`, `-atup` 등을 쓴다.
+> netstat 옵션은 주로 `-lntup`를 쓴다. 그 외에 `-antup`, `-ltup`, `-atup` 등을 쓴다.
 {: .prompt-info }
 
 > /etc/services는 서비스 명 및 포트 정의 파일이고 포트 넘버를 확인 가능하다.

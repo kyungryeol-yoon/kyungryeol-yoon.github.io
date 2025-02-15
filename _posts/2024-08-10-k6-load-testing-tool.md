@@ -256,7 +256,7 @@ export const options = {
 - **env** : 공통으로 사용되는 변수를 설정
  
 > 참고
-  - https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/
+  - <https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/>
 {: .prompt-info }
 
 #### Trend 관련

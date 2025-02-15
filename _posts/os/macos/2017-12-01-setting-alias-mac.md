@@ -18,10 +18,10 @@ vi ~/.zshrc
 - 원하는 alias를 등록해준다.
 - alias [별명]=[linux 명령어] 
 
-> 문서의 맨 처음으로 이동: gg 또는 1G
+> 문서의 맨 처음으로 이동: `gg` 또는 `1G`
 {: .prompt-tip }
 
-> 문서의 맨 마지막으로 이동: G
+> 문서의 맨 마지막으로 이동: `G`
 {: .prompt-tip }
 
 ```conf

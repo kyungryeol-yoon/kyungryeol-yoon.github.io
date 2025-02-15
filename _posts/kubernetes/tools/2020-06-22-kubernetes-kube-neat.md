@@ -16,7 +16,8 @@ tags: [Kubernetes, kubectl-neat]
 
 - Krew는 kubectl plugin을 쉽게 사용할 수 있게 해주는 도구입니다.
 
-> Install krew 참고 https://github.com/kubernetes-sigs/krew
+> Install krew 참고
+- <https://github.com/kubernetes-sigs/krew>
 {: .prompt-info }
 
 ```

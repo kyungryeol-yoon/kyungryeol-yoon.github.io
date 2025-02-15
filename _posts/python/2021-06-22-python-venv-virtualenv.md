@@ -50,5 +50,6 @@ py -버전 -m venv [가상환경이름]
   virtualenv myenv --python=3.7
   ```
 
-> https://docs.python.org/3/library/venv.htm
+> venv 참고
+- <https://docs.python.org/3/library/venv.htm>
 {: .prompt-info }

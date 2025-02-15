@@ -23,9 +23,9 @@ helm install influxdb influxdata/influxdb
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
   - Chart
-    - https://github.com/influxdata/helm-charts/tree/master/charts/influxdb
+    - <https://github.com/influxdata/helm-charts/tree/master/charts/influxdb>
   - Release file (.tgz)
-    - https://github.com/influxdata/helm-charts/releases
+    - <https://github.com/influxdata/helm-charts/releases>
 
 > [InfluxDB 설정 및 사용법 참고](https://kyungryeol-yoon.github.io/posts/influxdb/)
 {: .prompt-tip }

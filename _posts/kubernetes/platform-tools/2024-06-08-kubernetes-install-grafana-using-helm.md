@@ -41,9 +41,9 @@ tags: [Kubernetes, Grafana, Helm, Install]
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
   - Chart
-    - https://github.com/grafana/helm-charts/tree/main/charts/grafana
+    - <https://github.com/grafana/helm-charts/tree/main/charts/grafana>
   - Release file (.tgz)
-    - https://github.com/grafana/helm-charts/releases
+    - <https://github.com/grafana/helm-charts/releases>
 
 ### Setting Admin
 ```yaml

@@ -23,9 +23,9 @@ helm install k6-operator grafana/k6-operator
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
   - Chart
-    - https://github.com/grafana/k6-operator/tree/main/charts/k6-operator
+    - <https://github.com/grafana/k6-operator/tree/main/charts/k6-operator>
   - Release file (.tgz)
-    - https://github.com/grafana/k6-operator/releases
+    - <https://github.com/grafana/k6-operator/releases>
 
 ### Install Customize Default Configuration
 ```bash
@@ -97,11 +97,11 @@ helm install k6-operator grafana/k6-operator -f override-values.yaml -n [NAMESPA
   ```
 
 > **Run k6 사용법**
-  - https://grafana.com/docs/k6/latest/set-up/set-up-distributed-k6/usage/
+  - <https://grafana.com/docs/k6/latest/set-up/set-up-distributed-k6/usage/>
 {: .prompt-info }
 
 > **Stream real-time**
-  - https://grafana.com/docs/k6/latest/results-output/real-time/
+  - <https://grafana.com/docs/k6/latest/results-output/real-time/>
 {: .prompt-info }
 
 > [InfluxDB 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-influxdb-using-helm/)

@@ -23,9 +23,9 @@ helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
   - Chart
-    - https://github.com/kubernetes-csi/csi-driver-smb/tree/master/charts
+    - <https://github.com/kubernetes-csi/csi-driver-smb/tree/master/charts>
   - Release file (.tgz)
-    - https://github.com/kubernetes-csi/csi-driver-smb/releases
+    - <https://github.com/kubernetes-csi/csi-driver-smb/releases>
 
 ### Install Customize Default Configuration
 ```bash
@@ -110,7 +110,7 @@ mountOptions:
 ```
 
 > **Storage Class 참고**
-  - https://github.com/kubernetes-csi/csi-driver-smb/blob/master/deploy/example/storageclass-smb.yaml
+  - <https://github.com/kubernetes-csi/csi-driver-smb/blob/master/deploy/example/storageclass-smb.yaml>
 {: .prompt-info }
 
 ### 4. PersistentVolumeClaim 생성
