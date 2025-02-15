@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Loki Distributed"
+title: "[Kubernetes] Install Loki Distributed Using Helm Chart"
 date: 2024-06-19
 categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]

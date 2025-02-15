@@ -27,8 +27,8 @@ alias kgsvcwn='kubectl get service --watch --namespace'
 alias kgsvcslwn='kubectl get service --show-labels --watch --namespace'
 
 alias kgwf='kubectl get --watch -f'
-...
+...✂...
 ```
-
+     
 > 자주 쓰는 명령어는 [kubectl-aliases](https://github.com/ahmetb/kubectl-aliases)에 정의되어 있습니다.
 {: .prompt-info }

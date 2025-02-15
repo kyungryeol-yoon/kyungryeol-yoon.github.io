@@ -128,12 +128,12 @@ class BackgroundTasks(BackgroundTask):
 - 그 이유는 FastAPI에서 request의 endpoint path에 맞는 handler를 찾고 request의 값들을 파싱하여 해당 handler function의 arguments로 입력하는 과정에서 BackgroundTasks 객체를 주입해주기 때문이다.
 
 ```py
-...
+...✂...
 if dependant.background_tasks_param_name:
   if background_tasks is None:
     background_tasks = BackgroundTasks()
   values[dependant.background_tasks_param_name] = background_tasks
-...
+...✂...
 ```
 
 - 위의 코드는 FastAPI에서 함수의 인자로 BackgroundTasks 객체를 생성하여 입력해주는 코드의 일부를 가져온 것이다.

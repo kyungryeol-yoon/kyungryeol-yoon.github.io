@@ -44,7 +44,7 @@ cd my_project
   ```groovy
   buildscript {
       dependencies {
-          ...
+          ...✂...
           classpath 'com.google.gms:google-services:4.3.15'  // 최신 버전 확인
       }
   }
@@ -55,9 +55,9 @@ cd my_project
   apply plugin: 'com.google.gms.google-services'
 
   android {
-      ...
+      ...✂...
       defaultConfig {
-          ...
+          ...✂...
           minSdkVersion 21
       }
   }

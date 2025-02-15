@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Grafana Tempo"
+title: "[Kubernetes] Install Grafana Tempo Using Helm Chart"
 date: 2024-05-09
 categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Grafana, Tempo, Install]

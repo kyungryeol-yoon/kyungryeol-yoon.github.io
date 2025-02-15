@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Grafana Loki"
+title: "[Kubernetes] Install Grafana Loki Using Helm Chart"
 date: 2024-04-07
 categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Grafana, Loki, Install]

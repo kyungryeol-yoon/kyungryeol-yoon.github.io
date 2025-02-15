@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Install Gitlab Runner"
+title: "[Kubernetes] Install Gitlab Runner Using Helm Chart"
 date: 2021-09-11
 categories: [Kubernetes, Gitlab]
 tags: [Kubernetes, Gitlab, Runner]

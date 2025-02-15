@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] InfluxDB"
+title: "[Kubernetes] Install InfluxDB Using Helm Chart"
 date: 2024-07-28
 categories: [Kubernetes, InfluxDB]
 tags: [Kubernetes, InfluxDB, Install, Helm]
@@ -32,7 +32,7 @@ helm install influxdb influxdata/influxdb
 
 ### Setting config
 ```
-...
+...✂...
 config:
   reporting_disabled: false
   rpc:
@@ -55,18 +55,18 @@ config:
   udp: {}
   continuous_queries: {}
   tls: {}
-...
+...✂...
 ```
 
 ### Setting create database
 ```
-...
+...✂...
 initScripts:
   enabled: false
   scripts:
     init.iql: |+
       CREATE DATABASE "telegraf" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
-...
+...✂...
 ```
 
 > API Create Database

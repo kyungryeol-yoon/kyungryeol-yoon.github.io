@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Grafana Promtail"
+title: "[Kubernetes] Install Grafana Promtail Using Helm Chart"
 date: 2024-04-02
 categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Grafana, Promtail, Install]
@@ -111,7 +111,7 @@ config:
   # -- Configures where Promtail will save it's positions file, to resume reading after restarts.
   # Must be referenced in `config.file` to configure `positions`
 
-...
+...✂...
 
   snippets:
     pipelineStages:
@@ -157,7 +157,7 @@ config:
           - __meta_kubernetes_pod_container_name
         target_label: __path__
 
-...
+...✂...
 
     scrapeConfigs: |
       - job_name: syslog
@@ -258,8 +258,8 @@ config:
             namespaces:
               names:
               - kube-system
-              - ...
-              - ...
+              - ...✂...
+              - ...✂...
         relabel_configs:
           - source_labels:
               - __meta_kubernetes_pod_controller_name

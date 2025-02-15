@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Grafana"
+title: "[Kubernetes] Install Grafana Using Helm Chart"
 date: 2024-06-08
 categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Grafana, Helm, Install]
@@ -47,16 +47,16 @@ tags: [Kubernetes, Grafana, Helm, Install]
 
 ### Setting Admin
 ```yaml
-...
+...✂...
 # Administrator credentials when not using an existing secret (see below)
 adminUser: admin
 adminPassword: <your_password>
-...
+...✂...
 ```
 
 ### Enable persistent storage (recommended)
 ```yaml
-...
+...✂...
 persistence:
   type: pvc
   enabled: true
@@ -74,12 +74,12 @@ persistence:
   # existingClaim:
   ## Extra labels to apply to a PVC.
   extraPvcLabels: {}
-...
+...✂...
 ```
 
 ### 외부 접속을 위한 NodePort 설정
 ```yaml
-...
+...✂...
 ## Expose the grafana service to be accessed from outside the cluster (LoadBalancer service).
 ## or access it from within the cluster (ClusterIP service). Set the service type and the port to serve it.
 ## ref: http://kubernetes.io/docs/user-guide/services/
@@ -99,7 +99,7 @@ service:
   portName: service
   # Adds the appProtocol field to the service. This allows to work with istio protocol selection. Ex: "http" or "tcp"
   appProtocol: ""
-...
+...✂...
 ```
 
 ### Install Customize Default Configuration

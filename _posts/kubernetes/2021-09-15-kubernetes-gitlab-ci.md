@@ -8,8 +8,6 @@ tags: [Kubernetes, Gitlab, CI]
 > [Install Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner/)
 {: .prompt-info }
 
-
-
 ```yml
 stages:
   - build

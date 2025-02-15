@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] minio"
+title: "[Kubernetes] Deploy MinIO"
 date: 2024-08-26
 categories: [Kubernetes, minio]
 tags: [Kubernetes, minio]

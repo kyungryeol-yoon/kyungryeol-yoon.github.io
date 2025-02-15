@@ -58,7 +58,7 @@ kubectl describe pod nginx-deployment-6dd86d77d-4rkhf
 Name:               nginx-deployment-6dd86d77d-4rkhf
 Namespace:          default
 
-... 생략 ...
+...✂...
 
 Events:
   Type     Reason            Age                 From               Message                                                                    

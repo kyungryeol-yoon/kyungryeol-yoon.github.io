@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] CSI Driver SMB for Kubernetes"
+title: "[Kubernetes] Install CSI Driver SMB for Kubernetes Using Helm Chart"
 date: 2024-08-12
 categories: [Kubernetes, CSI]
 tags: [Kubernetes, csi, smb, Install, Helm]

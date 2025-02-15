@@ -1,6 +1,6 @@
 ---
 # layout: post
-title: "[Kubernetes] mysql pod 생성"
+title: "[Kubernetes] Deploy MySQL"
 date: 2020-01-30
 categories: [Kubernetes, Pod]
 tags: [Kubernetes, kubectl, MySQL, Pod]
