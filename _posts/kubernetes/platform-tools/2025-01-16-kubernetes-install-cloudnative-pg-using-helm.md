@@ -14,6 +14,10 @@ tags: [Kubernetes, CloudNativePG, PostgreSQL, Operator]
 helm repo add cnpg https://cloudnative-pg.github.io/charts
 ```
 
+```bash
+helm repo update
+```
+
 ## 자신의 환경에 맞게 values.yaml 파일 수정
 
 ```yaml
@@ -53,7 +57,7 @@ affinity: {}
 ## Helm으로 Operator 설치
 
 ```bash
-helm install cnpg cnpg/cloudnative-pg -f values.yaml
+helm install cnpg cnpg/cloudnative-pg --namespace [NAMESPACE NAME] -f values.yaml
 ```
 
 ## postgresql 배포

@@ -23,6 +23,7 @@ tags: [Kubernetes, Grafana, Tempo, Install]
 {: .prompt-info }
 
 ## Install the Tempo Helm charts
+
 ```bash
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
@@ -33,6 +34,7 @@ helm install tempo grafana/tempo --namespace [NAMESPACE NAME]
 {: .prompt-info }
 
 ## Customize Default Configuration
+
 - values.yaml 수정
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
@@ -44,6 +46,7 @@ helm install tempo grafana/tempo --namespace [NAMESPACE NAME]
 ### Setting Config
 
 ### Install Customize Default Configuration
+
 ```bash
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
@@ -53,6 +56,7 @@ helm install tempo grafana/tempo -f override-values.yaml -n [NAMESPACE NAME]
 ```
 
 ## Uninstall the Chart
+
 ```bash
 helm uninstall [RELEASE NAME] -n [NAMESPACE NAME]
 ```
