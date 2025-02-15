@@ -98,7 +98,7 @@ render_with_liquid: false
     create: true
   ```
 
-- 이미 존재하는 서비스 계정을 사용하려면 아래의 명령어를 사용 (아래 [Kubernetes RBAC 설정](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner/#kubernetes-rbac-%EC%84%A4%EC%A0%95) 설명 참고)
+- 이미 존재하는 서비스 계정을 사용하려면 아래의 명령어를 사용 (아래 [Kubernetes RBAC 설정](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner-using-helm/#kubernetes-rbac-%EC%84%A4%EC%A0%95) 설명 참고)
   ```yaml
   rbac:
     create: false

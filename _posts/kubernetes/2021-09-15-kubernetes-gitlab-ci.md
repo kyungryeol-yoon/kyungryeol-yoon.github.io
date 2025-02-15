@@ -5,7 +5,7 @@ categories: [Kubernetes, Gitlab]
 tags: [Kubernetes, Gitlab, CI]
 ---
 
-> [Install Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner/)
+> [Install Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner-using-helm/)
 {: .prompt-info }
 
 ```yml

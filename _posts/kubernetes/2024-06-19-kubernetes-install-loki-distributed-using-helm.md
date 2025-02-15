@@ -129,7 +129,7 @@ storage_config:
 ```
 
 
-[minio 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-minio/)
+[minio 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-deploy-minio/)
 
 ### Install Customize Default Configuration
 ```bash

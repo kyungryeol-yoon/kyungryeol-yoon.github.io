@@ -104,7 +104,7 @@ helm install k6-operator grafana/k6-operator -f override-values.yaml -n [NAMESPA
   - https://grafana.com/docs/k6/latest/results-output/real-time/
 {: .prompt-info }
 
-> [InfluxDB 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-influxdb/)
+> [InfluxDB 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-influxdb-using-helm/)
 {: .prompt-info }
 
 ### Dockerfile Build with xk6-output-influxdb

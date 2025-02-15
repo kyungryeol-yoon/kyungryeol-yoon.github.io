@@ -5,7 +5,7 @@ categories: [Kubernetes, Install]
 tags: [Kubernetes, Install, Multipass]
 ---
 
-> [Multipass 설명 참고](https://kyungryeol-yoon.github.io/posts/multipass/)
+> [Multipass 설명 참고](https://kyungryeol-yoon.github.io/posts/linux-multipass/)
 {: .prompt-info }
 
 ## cloud-init yaml 구성

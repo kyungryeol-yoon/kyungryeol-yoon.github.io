@@ -125,5 +125,5 @@ Password successfully updated for user with username root.
 > [Docker Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/docker-install-gitlab-runner/)
 {: .prompt-info }
 
-> [Kubernetes Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner/)
+> [Kubernetes Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner-using-helm/)
 {: .prompt-info }
