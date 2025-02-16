@@ -312,3 +312,23 @@ tags: [Kubernetes, Grafana, Loki, Install]
   > Retention 설정 참고
   - <https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period>
   {: .prompt-info }
+
+## API
+
+- 특정 데이터를 지우기 (Query 작성)
+  - 시간은 RFC3339, RFC3339Nano format만 지원한다.
+  - post: `/loki/api/v1/delete?query={namespace="testns", app="testapp"}&start=1721166554&end=17263647383`
+  - Compactor 설정한 시간 후에 삭제된다.
+
+- 삭제 요청한 id를 삭제
+  - del: `/loki/api/v1/delete?request_id=7148cf15`
+
+- 삭제 요청한 id 모두 삭제
+  - del: `/loki/api/v1/delete`
+
+- 삭제 요청한 id 조회
+  - get: `/loki/api/v1/delete`
+
+> API 참고
+- <https://grafana.com/docs/loki/latest/reference/loki-http-api/>
+{: .prompt-info }
