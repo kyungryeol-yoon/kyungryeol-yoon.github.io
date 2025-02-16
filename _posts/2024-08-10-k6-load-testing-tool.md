@@ -142,10 +142,8 @@ export default function () {
 
 - 10명의 가상 유저가 10s 동안 <http://test.k6.io> 을 호출
 
-> K6 Web Page Test
-- <https://test.k6.io>
-K6 API Test
-- <https://test-api.k6.io>
+> - K6 Web Page Test : <https://test.k6.io>
+- K6 API Test : <https://test-api.k6.io>
 {: .prompt-info }
 
 > - 1명의 가상 유저가 한번만 default function을 호출하는 것이 아닌, 60초 동안 해당 함수를 계속 호출한다.
