@@ -90,6 +90,7 @@ grafana:
 {: .prompt-info }
 
 ### Install Customize Default Configuration
+
 ```bash
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
@@ -99,6 +100,7 @@ helm install loki-stack grafana/loki-stack -f override-values.yaml -n [NAMESPACE
 ```
 
 ## Uninstall the Chart
+
 ```bash
 helm uninstall [RELEASE NAME] -n [NAMESPACE NAME]
 ```

@@ -1,11 +1,12 @@
 ---
-title: "[Kubernetes] Install Grafana Tempo Using Helm Chart"
+title: "[Kubernetes] Install Tempo Using Helm Chart"
 date: 2024-05-09
 categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Grafana, Tempo, Install]
 ---
 
 ## Tempo
+
 - 트레이스(Trace)는 시스템, 소프트웨어 응용 프로그램 또는 사용자의 이벤트 또는 활동이 시간 순서대로 기록된 정보를 나타낸다.
 - Application이 단일 데이터베이스가 있는 모놀리식이든 여러 서비스가 있는 분산 시스템이든 관계없이 Application에서 요청이 취하는 전체 "경로"를 이해하려면 트레이스가 필수적이다.
 - 메트릭(Metric)과 로그(Log)은 특정 시스템 내부에서의 동작을 볼 수 있지만, 분산 시스템에서의 문제 해결에는 부족하다.
@@ -17,7 +18,6 @@ tags: [Kubernetes, Grafana, Tempo, Install]
   - Jaeger, Zipkin 또는 OpenTelemetry를 포함한 오픈 소스 추적 프로토콜과 함께 Tempo를 사용할 수 있다.
   - Tempo는 LogQL과 PromQL에서 영감을 얻은 추적 우선 쿼리 언어인 TraceQL을 구현한다.
     - 이 쿼리 언어를 사용하면 사용자는 매우 정확하고 쉽게 스팬(Span)을 선택하고 지정된 조건을 충족하는 스팬으로 바로 이동할 수 있다.
-
 
 > [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 {: .prompt-info }

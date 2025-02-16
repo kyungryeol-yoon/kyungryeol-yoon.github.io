@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Grafana Loki"
+title: "[Kubernetes] Loki"
 date: 2024-04-07
 categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Grafana, Loki, Install]

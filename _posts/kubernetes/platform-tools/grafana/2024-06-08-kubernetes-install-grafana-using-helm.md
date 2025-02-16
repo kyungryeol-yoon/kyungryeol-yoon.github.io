@@ -28,19 +28,23 @@ tags: [Kubernetes, Grafana, Helm, Install]
     {: .prompt-info }
 
 - Password 설정하지 않았을 때, 아래와 같이 찾아보기
+
   ```bash
   kubectl get secret --namespace [NAMESPACE NAME] grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
   ```
 
 - port-forward로 연결하기
+
   ```bash
   kubectl --namespace [NAMESPACE NAME] port-forward $POD_NAME 3000
   ```
+
   ```bash
   k3sctl port-forward svc/grafana 3000:80 -n [NAMESPACE NAME]
   ```
 
 ## Customize Default Configuration
+
 - values.yaml 수정
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
@@ -50,17 +54,22 @@ tags: [Kubernetes, Grafana, Helm, Install]
     - <https://github.com/grafana/helm-charts/releases>
 
 ### Setting Admin
+
 ```yaml
 ...✂...
+
 # Administrator credentials when not using an existing secret (see below)
 adminUser: admin
 adminPassword: <your_password>
+
 ...✂...
 ```
 
 ### Enable persistent storage (recommended)
+
 ```yaml
 ...✂...
+
 persistence:
   type: pvc
   enabled: true
@@ -78,12 +87,15 @@ persistence:
   # existingClaim:
   ## Extra labels to apply to a PVC.
   extraPvcLabels: {}
+
 ...✂...
 ```
 
 ### 외부 접속을 위한 NodePort 설정
+
 ```yaml
 ...✂...
+
 ## Expose the grafana service to be accessed from outside the cluster (LoadBalancer service).
 ## or access it from within the cluster (ClusterIP service). Set the service type and the port to serve it.
 ## ref: http://kubernetes.io/docs/user-guide/services/
@@ -103,10 +115,12 @@ service:
   portName: service
   # Adds the appProtocol field to the service. This allows to work with istio protocol selection. Ex: "http" or "tcp"
   appProtocol: ""
+
 ...✂...
 ```
 
 ### Install Customize Default Configuration
+
 ```bash
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
@@ -116,6 +130,7 @@ helm install grafana grafana/grafana -f override-values.yaml -n [NAMESPACE NAME]
 ```
 
 ## Uninstall the Chart
+
 ```bash
 helm uninstall [RELEASE NAME] -n [NAMESPACE NAME]
 ```
