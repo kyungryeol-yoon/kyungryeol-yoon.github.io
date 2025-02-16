@@ -24,8 +24,10 @@ helm install loki-stack grafana/loki-stack --namespace [NAMESPACE NAME] --versio
 ## Customize Default Configuration
 
 - values.yaml 수정
+
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
+  
   - Chart
     - <https://github.com/grafana/helm-charts/tree/main/charts/loki-stack>
   - Release file (.tgz)
@@ -43,7 +45,7 @@ promtail:
       - url: http://{{ .Release.Name }}:3100/loki/api/v1/push
 ```
 
-> [Promtail 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-grafana-promtail-using-helm/)
+> [Promtail 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-promtail-using-helm/)
 {: .prompt-info }
 
 ### Setting Loki
@@ -68,7 +70,7 @@ loki:
     uid: ""
 ```
 
-> [Loki 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-grafana-loki-using-helm/)
+> [Loki 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-loki/)
 {: .prompt-info }
 
 ### Setting Grafana
