@@ -67,9 +67,9 @@ tags: [Kubernetes, Grafana, Loki, Install]
 
 - 기본 설정은 storage가 filesystem이며 Amazon S3의 경우 로컬에서 개발 시 minio를 사용할 수도 있다.
 
-    > minio 참고
-    - <https://blog.min.io/how-to-grafana-loki-minio/>
-    {: .prompt-info }
+  > minio 참고
+  - <https://blog.min.io/how-to-grafana-loki-minio/>
+  {: .prompt-info }
 
 ### Loki 설정
 
@@ -80,9 +80,9 @@ tags: [Kubernetes, Grafana, Loki, Install]
 
 - Loki는 component별 microservice로 구성할 수 있다.
 
-    > Component 참고
-    - <https://grafana.com/docs/loki/latest/fundamentals/architecture/components/>
-    {: .prompt-info }
+  > Component 참고
+  - <https://grafana.com/docs/loki/latest/fundamentals/architecture/components/>
+  {: .prompt-info }
 
 - Loki의 component는 대략 아래와 같이 있다.
   - **Distributor** : client가 수신하는 stream을 처리하는 역할, steam의 유효성을 확인하고 여러 ingester로 병렬로 전송을 적절하게 제어
@@ -309,6 +309,6 @@ tags: [Kubernetes, Grafana, Loki, Install]
 
 - Compactor의 Retention은 `limits_config`에 설정해주면 된다.
 
-    > Retention 설정 참고
-    - <https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period>
-    {: .prompt-info }
+  > Retention 설정 참고
+  - <https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period>
+  {: .prompt-info }

@@ -26,7 +26,7 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
 
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
-  
+
   - Chart
     - <https://github.com/grafana/helm-charts/tree/main/charts/loki-distributed>
   - Release file (.tgz)
@@ -52,8 +52,8 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
     - 복제 요소가 데이터 손실을 방지하는 유일한 요소는 아니며, 주요 목적은 롤아웃 및 재시작 중에 쓰기가 중단되지 않도록 하는 것이다.
 
 > 참고
-  - <https://grafana.com/docs/loki/latest/best-practices/>
-  - <https://grafana.com/blog/2021/02/16/the-essential-config-settings-you-should-use-so-you-wont-drop-logs-in-loki/>
+- <https://grafana.com/docs/loki/latest/best-practices/>
+- <https://grafana.com/blog/2021/02/16/the-essential-config-settings-you-should-use-so-you-wont-drop-logs-in-loki/>
 {: .prompt-info }
 
 - Request Validation, Rate-Limit 에러
@@ -63,19 +63,19 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
     - ingestion_burst_size_mb: 40
 
 > 참고
-  - <https://grafana.com/docs/loki/latest/operations/request-validation-rate-limits/>
-  - <https://grafana.com/docs/loki/latest/configuration/#limits_config>
+- <https://grafana.com/docs/loki/latest/operations/request-validation-rate-limits/>
+- <https://grafana.com/docs/loki/latest/configuration/#limits_config>
 {: .prompt-info }
 
 - Loki Grafana 모니터링
   - Loki는 기본적으로 /metrics 엔드포인트로부터 각 Components들의 Metric들을 확인할 수 있다.
   - 모든 컴포넌트들의 Service annotation에 아래의 문구를 추가해준다.
     - 이렇게 하면 Prometheus가 자동으로 /metrics 엔드포인트로 메트릭들을 scrape 해간다.
-        ```yaml
-        prometheus.io/scrape: "true"
-        prometheus.io/path: "/metrics"
-        prometheus.io/port: "3100"
-        ```
+      ```yaml
+      prometheus.io/scrape: "true"
+      prometheus.io/path: "/metrics"
+      prometheus.io/port: "3100"
+      ```
 
 > Loki에 대한 모니터링 참고
 - <https://grafana.com/docs/loki/latest/operations/observability/>
@@ -96,6 +96,7 @@ analytics:
 - 만약 Compactor로 Retention을 적용한다면 Table Manager는 필요로 하지 않게 될 수 있다.
 
 - Compactor 설정 예시
+
   ```yaml
   compactor:
     retention_delete_delay: 2h
