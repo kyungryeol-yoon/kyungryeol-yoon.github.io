@@ -50,6 +50,8 @@ render_with_liquid: false
 - Docker In Docker (Dind) 혹은 buildah 같은 image를 사용하여 container 안에서 image를 생성해야 하는데 이 경우 gitlab-runner의 옵션을 추가해야 한다.
 
   ```yaml
+  ...✂...
+
   runners:
     config: |
       [[runners]]
@@ -57,6 +59,7 @@ render_with_liquid: false
           namespace = "{{.Release.Namespace}}"
           image = "ubuntu:20.04"
           privileged = true
+  ...✂...
   ```
 
 - 기본 runner 설정은 ubuntu 이미지를 base로 사용하도록 되어있는데 이 부분에 `privileged = true` 옵션을 추가해야 container 내부에서 image를 생성할 수 있는 권한이 추가된다.
