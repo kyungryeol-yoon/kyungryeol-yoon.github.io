@@ -9,18 +9,22 @@ tags: [Kubernetes, Grafana, Helm, Install]
 {: .prompt-info }
 
 ## Install the Grafana Helm charts
+
 - namespace 생성
+
   ```bash
   kubectl create namespace [NAMESPACE NAME]
   ```
 
 - Grafana 배포
+
   ```bash
   helm repo add grafana https://grafana.github.io/helm-charts
   helm repo update
   helm install grafana grafana/grafana --namespace [NAMESPACE NAME] --set adminPassword=<your_password>
   ```
-    > [Grafana - Helm 설치 참고](https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm)
+    > Grafana - Helm 설치 참고
+    - <https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm>
     {: .prompt-info }
 
 - Password 설정하지 않았을 때, 아래와 같이 찾아보기

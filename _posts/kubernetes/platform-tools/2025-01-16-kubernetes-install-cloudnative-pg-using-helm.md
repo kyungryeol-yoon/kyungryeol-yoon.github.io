@@ -51,7 +51,8 @@ affinity: {}
 
 ```
 
-> [values 참고](https://github.com/cloudnative-pg/charts/blob/main/charts/cloudnative-pg/values.yaml)
+> Values 참고
+- <https://github.com/cloudnative-pg/charts/blob/main/charts/cloudnative-pg/values.yaml>
 {: .prompt-info }
 
 ## Helm으로 Operator 설치

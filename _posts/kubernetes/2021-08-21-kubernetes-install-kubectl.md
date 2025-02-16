@@ -5,7 +5,8 @@ categories: [Kubernetes, kubectl]
 tags: [Kubernetes, Install, kubectl]
 ---
 
-> [Reference](https://kubernetes.io/ko/docs/tasks/tools/install-kubectl-linux/)
+> 참고
+- <https://kubernetes.io/ko/docs/tasks/tools/install-kubectl-linux/>
 {: .prompt-info }
 
 

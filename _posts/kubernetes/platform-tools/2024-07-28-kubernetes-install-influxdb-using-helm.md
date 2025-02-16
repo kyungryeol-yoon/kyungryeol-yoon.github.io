@@ -9,16 +9,19 @@ tags: [Kubernetes, InfluxDB, Install, Helm]
 {: .prompt-info }
 
 ## Install InfluxDB
+
 ```bash
 helm repo add influxdata https://helm.influxdata.com/
 helm repo update
 helm install influxdb influxdata/influxdb
 ```
 
-> [InfluxDB - Helm 설치 참고](https://github.com/influxdata/helm-charts)
+> InfluxDB - Helm 설치 참고
+- <https://github.com/influxdata/helm-charts>
 {: .prompt-info }
 
 ## Customize Default Configuration
+
 - values.yaml 수정
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }

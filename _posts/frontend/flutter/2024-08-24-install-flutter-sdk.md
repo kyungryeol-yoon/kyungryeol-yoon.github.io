@@ -26,7 +26,8 @@ tags: [Flutter, SDK]
 6. **다양한 패키지 및 플러그인:**
 - 플러터는 다양한 패키지와 플러그인을 제공하여 네트워크 통신, 데이터베이스 연동, 상태 관리 등 다양한 기능을 쉽게 추가할 수 있다.
 
-> [Install Flutter](https://docs.flutter.dev/get-started/install)
+> Install Flutter
+- <https://docs.flutter.dev/get-started/install>
 {: .prompt-info }
 
 ## **flutter 시스템 환경 변수 설정**

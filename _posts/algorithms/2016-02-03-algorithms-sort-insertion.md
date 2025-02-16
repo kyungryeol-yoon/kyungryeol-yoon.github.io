@@ -9,6 +9,7 @@ tags: [Algorithms, CPP, Insertion sort, Programming]
 ---
 
 ## 삽입 정렬(Insertion sort) 알고리즘 개념
+
 - 손안의 카드를 정렬하는 방법과 유사하다.
   - 새로운 카드를 기존의 정렬된 카드 사이의 올바른 자리를 찾아 삽입한다.
   - 새로 삽입될 카드의 수만큼 반복하게 되면 전체 카드가 정렬된다.
@@ -17,6 +18,7 @@ tags: [Algorithms, CPP, Insertion sort, Programming]
 
 
 ## 삽입 정렬(Insertion sort) 알고리즘의 예제
+
 - 배열에 8, 5, 6, 2, 4가 저장되어 있다고 가정하고 자료를 오름차순으로 정렬해 보자.
 
 - ![](/images/algorithms/insertion-sort/insertion-sort.png){: width="900" height="950"}
@@ -37,7 +39,8 @@ tags: [Algorithms, CPP, Insertion sort, Programming]
   - Key 값 4와 첫 번째 자료인 2를 비교한다. 2가 Key 값보다 작으므로 4를 두 번째 자리에 기억시킨다.
 
 ### C++로 구현한 삽입 정렬 (Insertion sort)
-[이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol-yoon.github.io/posts/data-structures-linked-list-array/)
+
+- [이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol-yoon.github.io/posts/data-structures-linked-list-array/)
 
 ```c++
 void DoubleList::InsertSort() {
@@ -79,6 +82,7 @@ void DoubleList::InsertSort() {
 ```
 
 ## 삽입 정렬(Insertion sort) 알고리즘의 특징
+
 - 장점
   - 안정한 정렬 방법
   - 레코드의 수가 적을 경우 알고리즘 자체가 매우 간단하므로 다른 복잡한 정렬 방법보다 유리할 수 있다.
@@ -88,6 +92,7 @@ void DoubleList::InsertSort() {
   - 레코드 수가 많고 레코드 크기가 클 경우에 적합하지 않다.
 
 ## 삽입 정렬(Insertion sort)의 시간복잡도
+
 시간복잡도를 계산한다면
 - 최선의 경우
   - 비교 횟수
@@ -104,8 +109,7 @@ void DoubleList::InsertSort() {
     - n(n-1)/2 + 2(n-1) = (n^2+3n-4)/2 = **O(n^2)**
   - Worst T(n) = **O(n^2)**
 
-
-# 정렬 알고리즘 시간복잡도 비교
+## 정렬 알고리즘 시간복잡도 비교
 
 ![](/images/algorithms/insertion-sort/sort-time-complexity.png)
 
@@ -114,6 +118,6 @@ void DoubleList::InsertSort() {
 - 복잡하지만 효율적인 방법
   - 퀵 정렬, 힙 정렬, 합병 정렬, 기수 정렬
 
-### References
-
-- [삽입 정렬 - 위키백과](https://ko.wikipedia.org/wiki/%EC%82%BD%EC%9E%85_%EC%A0%95%EB%A0%AC)
+> 삽입 정렬 - 위키백과 참고
+- <https://ko.wikipedia.org/wiki/%EC%82%BD%EC%9E%85_%EC%A0%95%EB%A0%AC>
+{: .prompt-info }

@@ -9,6 +9,7 @@ tags: [Algorithms, CPP, Quick sort, Programming]
 ---
 
 ## 퀵 정렬(Quick sort) 알고리즘의 개념 요약
+
 - '찰스 앤터니 리처드 호어(Charles Antony Richard Hoare)'가 개발한 정렬 알고리즘
 - 퀵 정렬은 **불안정 정렬** 에 속하며, 다른 원소와의 비교만으로 정렬을 수행하는 **비교 정렬** 에 속한다.
 - 분할 정복 알고리즘의 하나로, 평균적으로 <span style="color:#4d0000">**매우 빠른 수행 속도를**</span> 자랑하는 정렬 방법
@@ -27,6 +28,7 @@ tags: [Algorithms, CPP, Quick sort, Programming]
 - ![](/images/algorithms/quick-sort/quick-sort-concepts.png)
 
 ## 퀵 정렬(Quick sort) 알고리즘의 구체적인 개념
+
 - 하나의 리스트를 피벗(pivot)을 기준으로 두 개의 비균등한 크기로 분할하고 분할된 부분 리스트를 정렬한 다음, 두 개의 정렬된 부분 리스트를 합하여 전체가 정렬된 리스트가 되게 하는 방법이다.
 - 퀵 정렬은 다음의 단계들로 이루어진다.
   - **분할(Divide):** 입력 배열을 피벗을 기준으로 비균등하게 2개의 부분 배열(피벗을 중심으로 왼쪽: 피벗보다 작은 요소들, 오른쪽: 피벗보다 큰 요소들)로 분할한다.
@@ -37,6 +39,7 @@ tags: [Algorithms, CPP, Quick sort, Programming]
 
 
 ## 퀵 정렬(Quick sort) 알고리즘의 예제
+
 - 배열에 5, 3, 8, 4, 9, 1, 6, 2, 7이 저장되어 있다고 가정하고 자료를 오름차순으로 정렬해 보자.
 - *퀵 정렬에서 피벗을 기준으로 두 개의 리스트로 나누는 과정(c언어 코드의 partition 함수의 내용)*
 - ![](/images/algorithms/quick-sort/quick-sort2.png)
@@ -54,7 +57,8 @@ tags: [Algorithms, CPP, Quick sort, Programming]
   - 위와 동일한 방법으로 반복한다.
 
 ### C++로 구현한 퀵 정렬 (Quick sort)
-[이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol-yoon.github.io/posts/data-structures-linked-list-array/)
+
+- [이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol-yoon.github.io/posts/data-structures-linked-list-array/)
 
 ```c++
 void DoubleList::QuickSort(int Left, int Right)
@@ -94,6 +98,7 @@ int DoubleList::Partition(int Left, int Right)
 ```
 
 ## 퀵 정렬(quick sort) 알고리즘의 특징
+
 - 장점
   1. 속도가 빠르다.
     - 시간 복잡도가 O(nlog₂n)를 가지는 다른 정렬 알고리즘과 비교했을 때도 가장 빠르다.
@@ -106,6 +111,7 @@ int DoubleList::Partition(int Left, int Right)
 
 
 ## 퀵 정렬(quick sort)의 시간복잡도
+
 - 최선의 경우
   - 비교 횟수
     - ![](/images/algorithms/quick-sort/sort-time-complexity-etc1.png)
@@ -139,7 +145,8 @@ int DoubleList::Partition(int Left, int Right)
   - 퀵 정렬이 불필요한 데이터의 이동을 줄이고 먼 거리의 데이터를 교환할 뿐만 아니라, 한 번 결정된 피벗	들이 추후 연산에서 제외되는 특성 때문이다.
 
 
-# 정렬 알고리즘 시간복잡도 비교
+## 정렬 알고리즘 시간복잡도 비교
+
 ![](/images/algorithms/quick-sort/sort-time-complexity.png)
 
 - 단순(구현 간단)하지만 비효율적인 방법
@@ -147,6 +154,6 @@ int DoubleList::Partition(int Left, int Right)
 - 복잡하지만 효율적인 방법
   - **퀵 정렬**, 힙 정렬, 합병 정렬, 기수 정렬
 
-### References
-
-- [퀵 정렬 - 위키백과](https://ko.wikipedia.org/wiki/%ED%80%B5_%EC%A0%95%EB%A0%AC)
+> 퀵 정렬 - 위키백과 참고
+- <https://ko.wikipedia.org/wiki/%ED%80%B5_%EC%A0%95%EB%A0%AC>
+{: .prompt-info }

@@ -28,8 +28,8 @@ helm install ansible-awx-operator awx-operator/awx-operator -n awx --create-name
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
 
-- Chart : https://github.com/ansible/awx-operator/tree/{tags}/.helm/starter
-- Release file (.tgz) : https://github.com/ansible/awx-operator/releases
+- Chart : <https://github.com/ansible/awx-operator/tree/{tags}/.helm/starter>
+- Release file (.tgz) : <https://github.com/ansible/awx-operator/releases>
 
 ### Install Customize Default Configuration
 

@@ -43,5 +43,6 @@ render_with_liquid: false
   ---
   ```
 
-> [Jekyll Liquid 참고](https://jekyllrb-ko.github.io/docs/liquid/tags/)
+> Jekyll Liquid 참고
+- <https://jekyllrb-ko.github.io/docs/liquid/tags/>
 {: .prompt-info }

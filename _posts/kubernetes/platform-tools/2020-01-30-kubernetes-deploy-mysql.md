@@ -9,7 +9,7 @@ tags: [Kubernetes, kubectl, MySQL, Pod]
 
 - 컨테이너 이미지가 존재한다는 가정하에 가능하다.
 - 만약 이미지가 없다면 Docker Hub에서 들고온다.
-(https://hub.docker.com/search?image_filter=official&type=image)
+(<https://hub.docker.com/search?image_filter=official&type=image>)
 - Docker Hub의 공식적인 이미지가 아닌 것은 직접 만들어야 하며, 그 이미지를 Docker Hub에 올릴 수 있다.
 (물론 전체 공개이며, 개인적으로 사용하고 싶다면 Private를 구매해야 한다.)
 

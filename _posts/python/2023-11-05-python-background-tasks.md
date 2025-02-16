@@ -158,5 +158,5 @@ if dependant.background_tasks_param_name:
 - 하지만 Celery는 message queu와 여러 설정들을 추가로 해주어야 하고, 다른 프로세스에서 실행되는 만큼 변수와 메모리 등을 공유할 수 없기 때문에 상황에 잘맞는 방식으로 Background 구조를 선택해야 한다.
 
 > FastAPI Background Tasks 참고
-- https://fastapi.tiangolo.com/tutorial/background-tasks/
+- <https://fastapi.tiangolo.com/tutorial/background-tasks/>
 {: .prompt-info }

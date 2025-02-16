@@ -39,5 +39,6 @@ spec:
         emptyDir: {} # node-ephemeral volume https://kubernetes.io/docs/concepts/storage/volumes/#emptydir
 ```
 
-> [Redis Insight 설치 참고](https://redis.io/docs/latest/operate/redisinsight/install/install-on-k8s)
+> Redis Insight 설치 참고
+- <https://redis.io/docs/latest/operate/redisinsight/install/install-on-k8s>
 {: .prompt-info }

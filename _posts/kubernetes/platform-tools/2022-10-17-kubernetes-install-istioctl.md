@@ -12,7 +12,8 @@ curl -sL https://istio.io/downloadIstioctl | sh -
 export PATH=$PATH:$HOME/.istioctl/bin
 ```
 
-> [istioctl 참고](https://github.com/istio/istio/releases)
+> istioctl 참고
+- <https://github.com/istio/istio/releases>
 {: .prompt-info }
 
 ## istio 관련 배포 확인
@@ -24,5 +25,5 @@ kubectl -n istio-system get deploy
 ## 특정 Namespace에 Istio 설정
 
 ```bash
-kubectl label namespace <네임스페이스이름> istio-injection=enabled
+kubectl label namespace <namespace> istio-injection=enabled
 ```

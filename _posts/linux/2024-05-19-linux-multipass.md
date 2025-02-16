@@ -13,7 +13,7 @@ brew install --cask multipass
 
 ### 공식 홈페이지
 
-- https://multipass.run 공식 홈페이지에서 직접 pkg를 받아 다운로드받을 수도 있다. 맥 OS 말고도 리눅스와 윈도우도 지원한다.
+- <https://multipass.run> 공식 홈페이지에서 직접 pkg를 받아 다운로드받을 수도 있다. 맥 OS 말고도 리눅스와 윈도우도 지원한다.
 
 ## Multipass 사용
 

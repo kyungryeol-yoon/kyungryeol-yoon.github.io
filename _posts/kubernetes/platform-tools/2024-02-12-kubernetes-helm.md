@@ -7,7 +7,8 @@ tags: [Kubernetes, Helm, Install]
 
 ## Install Helm
 
-> [설치 참고](https://helm.sh/docs/intro/install/)
+> 설치 참고
+- <https://helm.sh/docs/intro/install/>
 {: .prompt-info }
 
 ### Script 방식
@@ -48,7 +49,8 @@ sudo apt-get install helm
 
 ## Helm Chart 명령어
 
-> [Helm Commands 참고](https://helm.sh/ko/docs/helm/)
+> Helm Commands 참고
+- <https://helm.sh/ko/docs/helm/>
 {: .prompt-info }
 
 ### helm search
@@ -154,7 +156,8 @@ sudo apt-get install helm
 
 ### Chart
 
-> [Chart 참고](https://helm.sh/ko/docs/topics/charts/)
+> Chart 참고
+- <https://helm.sh/ko/docs/topics/charts/>
 {: .prompt-info }
 
 - Chart.yaml

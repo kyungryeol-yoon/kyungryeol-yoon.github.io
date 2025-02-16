@@ -7,7 +7,7 @@ tags: [Kubernetes, minio]
 
 ## Create MinIO Object
 
-```
+```bash
 curl https://raw.githubusercontent.com/minio/docs/master/source/extra/examples/minio-dev.yaml -O
 ```
 
@@ -54,7 +54,8 @@ spec:
       type: DirectoryOrCreate # The path to the last directory must exist
 ```
 
-> [minio 설치 참고](https://min.io/docs/minio/kubernetes/upstream/index.html)
+> minio 설치 참고
+- <https://min.io/docs/minio/kubernetes/upstream/index.html>
 {: .prompt-info }
 
 
@@ -110,6 +111,6 @@ To configure long term access to the pod, configure Ingress or similar network c
 
 ## Connect your Browser to the MinIO Server
 
-Access the MinIO Console by opening a browser on the local machine and navigating to http://127.0.0.1:9001.
+Access the MinIO Console by opening a browser on the local machine and navigating to <http://127.0.0.1:9001>.
 
 Log in to the Console with the credentials minioadmin | minioadmin. These are the default root user credentials.
