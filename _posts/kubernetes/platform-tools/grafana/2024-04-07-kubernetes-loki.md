@@ -33,7 +33,7 @@ tags: [Kubernetes, Grafana, Loki, Install]
 
 - log indexing을 위한 효율적인 memory 사용
 - multi-tenancy
-- LogQL - Prometheus의 query language인 PromQL과 유사하며, log data에서 metric을 생성하는 것이 용이함.
+- LogQL - Prometheus의 Query Language인 PromQL과 유사하며, log data에서 metric을 생성하는 것이 용이함.
 - Scalability - 단일 바이너리로 사용할 수도 있으나 component 별 microservice로 실행될 수도 있음
 - Flexibility - 많은 agent가 플러그인을 지원
 - Grafana 통합
@@ -74,8 +74,8 @@ tags: [Kubernetes, Grafana, Loki, Install]
 ### Loki 설정
 
 > **설정 파일에 대한 자세한 내용**
-  - <https://grafana.com/docs/loki/latest/configuration/>
-  - common 아래에 설정을 하면 전체가 공통으로 사용할 설정을 하게 된다.
+- <https://grafana.com/docs/loki/latest/configuration/>
+- common 아래에 설정을 하면 전체가 공통으로 사용할 설정을 하게 된다.
 {: .prompt-info }
 
 - Loki는 component별 microservice로 구성할 수 있다.
@@ -265,6 +265,7 @@ tags: [Kubernetes, Grafana, Loki, Install]
 - chunk 보관주기를 관리하고(retention), 테이블을 단일 인덱스 파일로 압축한다.
 - Compactor를 통한 보존은 boltdb-shipper 또는 tsdb store에서만 지원된다.
   - Loki 2.8부터는 TSDB Store 사용이 권장이다. 이전에 사용하던 boltdb-shipper보다 효율적이고 빠르며 확장성이 뛰어나다.
+
     > Loki Storage 참고
     - <https://grafana.com/docs/loki/latest/storage/>
     {: .prompt-info }

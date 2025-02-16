@@ -37,8 +37,10 @@ helm install tempo grafana/tempo --namespace [NAMESPACE NAME]
 ## Customize Default Configuration
 
 - values.yaml 수정
+
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
+  
   - Chart
     - <https://github.com/grafana/helm-charts/tree/main/charts/tempo>
   - Release file (.tgz)

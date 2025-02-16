@@ -23,8 +23,10 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
 ## Customize Default Configuration
 
 - values.yaml 수정
+
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
+  
   - Chart
     - <https://github.com/grafana/helm-charts/tree/main/charts/loki-distributed>
   - Release file (.tgz)
@@ -105,6 +107,7 @@ analytics:
     compaction_interval: 5m
   ```
 - Compactor의 Retention은 limits_config에 설정해주면 된다.
+
   > Retention 설정 참고
   - <https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period>
   {: .prompt-info }
