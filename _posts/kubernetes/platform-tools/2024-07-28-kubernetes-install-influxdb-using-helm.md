@@ -23,8 +23,10 @@ helm install influxdb influxdata/influxdb
 ## Customize Default Configuration
 
 - values.yaml 수정
+
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
+  
   - Chart
     - <https://github.com/influxdata/helm-charts/tree/master/charts/influxdb>
   - Release file (.tgz)
@@ -34,8 +36,10 @@ helm install influxdb influxdata/influxdb
 {: .prompt-tip }
 
 ### Setting config
-```
+
+```yaml
 ...✂...
+
 config:
   reporting_disabled: false
   rpc:
@@ -58,17 +62,21 @@ config:
   udp: {}
   continuous_queries: {}
   tls: {}
+
 ...✂...
 ```
 
 ### Setting create database
-```
+
+```yaml
 ...✂...
+
 initScripts:
   enabled: false
   scripts:
     init.iql: |+
       CREATE DATABASE "telegraf" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
+
 ...✂...
 ```
 
@@ -79,6 +87,7 @@ curl -XPOST 'http://[influxdb-svc].[influxdb-namespace].svc:8086/query' --data-u
 {: .prompt-info }
 
 ### Install Customize Default Configuration
+
 ```bash
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```

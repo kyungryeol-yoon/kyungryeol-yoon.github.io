@@ -71,6 +71,7 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
   - Loki는 기본적으로 /metrics 엔드포인트로부터 각 Components들의 Metric들을 확인할 수 있다.
   - 모든 컴포넌트들의 Service annotation에 아래의 문구를 추가해준다.
     - 이렇게 하면 Prometheus가 자동으로 /metrics 엔드포인트로 메트릭들을 scrape 해간다.
+
       ```yaml
       prometheus.io/scrape: "true"
       prometheus.io/path: "/metrics"
@@ -107,6 +108,7 @@ analytics:
     apply_retention_interval: 1h
     compaction_interval: 5m
   ```
+
 - Compactor의 Retention은 limits_config에 설정해주면 된다.
 
   > Retention 설정 참고
