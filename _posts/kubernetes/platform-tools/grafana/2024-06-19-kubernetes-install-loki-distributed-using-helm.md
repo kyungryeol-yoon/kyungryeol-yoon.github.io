@@ -9,26 +9,31 @@ tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
 {: .prompt-info }
 
 ## Install the Loki Distributed Helm charts
+
 ```bash
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NAME] --version [VERSION]
 ```
 
-> [Loki Distributed - Helm 설치 참고](https://grafana.com/docs/loki/latest/setup/install/helm/)
+> Loki Distributed - Helm 설치 참고
+- <https://grafana.com/docs/loki/latest/setup/install/helm/>
 {: .prompt-info }
 
 ## Customize Default Configuration
+
 - values.yaml 수정
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
   - Chart
-    - https://github.com/grafana/helm-charts/tree/main/charts/loki-distributed
+    - <https://github.com/grafana/helm-charts/tree/main/charts/loki-distributed>
   - Release file (.tgz)
-    - https://github.com/grafana/helm-charts/releases
+    - <https://github.com/grafana/helm-charts/releases>
 
 ### Loki Configurations
-> [Loki 설정 값 문서](https://grafana.com/docs/loki/latest/configuration/)
+
+> Loki 설정 값 문서
+- <https://grafana.com/docs/loki/latest/configuration/>
 {: .prompt-info }
 
 - Grafana Loki 모범 사례
@@ -45,8 +50,8 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
     - 복제 요소가 데이터 손실을 방지하는 유일한 요소는 아니며, 주요 목적은 롤아웃 및 재시작 중에 쓰기가 중단되지 않도록 하는 것이다.
 
 > 참고
-  - https://grafana.com/docs/loki/latest/best-practices/
-  - https://grafana.com/blog/2021/02/16/the-essential-config-settings-you-should-use-so-you-wont-drop-logs-in-loki/
+  - <https://grafana.com/docs/loki/latest/best-practices/>
+  - <https://grafana.com/blog/2021/02/16/the-essential-config-settings-you-should-use-so-you-wont-drop-logs-in-loki/>
 {: .prompt-info }
 
 - Request Validation, Rate-Limit 에러
@@ -56,8 +61,8 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
     - ingestion_burst_size_mb: 40
 
 > 참고
-  - https://grafana.com/docs/loki/latest/operations/request-validation-rate-limits/
-  - https://grafana.com/docs/loki/latest/configuration/#limits_config
+  - <https://grafana.com/docs/loki/latest/operations/request-validation-rate-limits/>
+  - <https://grafana.com/docs/loki/latest/configuration/#limits_config>
 {: .prompt-info }
 
 - Loki Grafana 모니터링
@@ -70,7 +75,8 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
         prometheus.io/port: "3100"
         ```
 
-> [Loki에 대한 모니터링 참고](https://grafana.com/docs/loki/latest/operations/observability/)
+> Loki에 대한 모니터링 참고
+- <https://grafana.com/docs/loki/latest/operations/observability/>
 {: .prompt-info }
 
 #### analytics false
@@ -81,6 +87,7 @@ analytics:
 ```
 
 #### Compactor와 Table Manager
+
 - Grafana Loki의 로그 보존(Retention)은 Compactor 혹은 Table Manager에 의해 수행된다.
 - 현재 Table Manager를 통한 Retention은 TTL을 통해 달성되며 boltdb-shipper, chunk/index store 모두 작동한다.
 - Compactor를 통한 Retention은 boltdb-shipper 저장소에서만 지원된다.
@@ -98,7 +105,8 @@ analytics:
     compaction_interval: 5m
   ```
 - Compactor의 Retention은 limits_config에 설정해주면 된다.
-  > [Retention 설정 참고](https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period)
+  > Retention 설정 참고
+  - <https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period>
   {: .prompt-info }
 
 #### storage
@@ -128,10 +136,11 @@ storage_config:
       server_address: dns:///index-gateway.<namespace>.svc.cluster.local:9095
 ```
 
-
-[minio 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-deploy-minio/)
+> [minio 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-deploy-minio/)
+{: .prompt-info }
 
 ### Install Customize Default Configuration
+
 ```bash
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
@@ -141,6 +150,7 @@ helm install loki-distributed grafana/loki-distributed -f override-values.yaml -
 ```
 
 ## Uninstall the Chart
+
 ```bash
 helm uninstall [RELEASE NAME] -n [NAMESPACE NAME]
 ```

@@ -10,25 +10,29 @@ render_with_liquid: false
 {: .prompt-info }
 
 ## Install the Loki Stack Helm charts
+
 ```bash
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 helm install loki-stack grafana/loki-stack --namespace [NAMESPACE NAME] --version [VERSION]
 ```
 
-> [Loki Stack - Helm 설치 참고](https://grafana.com/docs/loki/latest/setup/install/helm/)
+> Loki Stack - Helm 설치 참고
+- <https://grafana.com/docs/loki/latest/setup/install/helm/>
 {: .prompt-info }
 
 ## Customize Default Configuration
+
 - values.yaml 수정
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
   - Chart
-    - https://github.com/grafana/helm-charts/tree/main/charts/loki-stack
+    - <https://github.com/grafana/helm-charts/tree/main/charts/loki-stack>
   - Release file (.tgz)
-    - https://github.com/grafana/helm-charts/releases
+    - <https://github.com/grafana/helm-charts/releases>
 
 ### Setting Promtail
+
 ```yaml
 promtail:
   enabled: true
@@ -43,8 +47,8 @@ promtail:
 {: .prompt-info }
 
 ### Setting Loki
-```yaml
 
+```yaml
 loki:
   enabled: true
   isDefault: true
@@ -68,6 +72,7 @@ loki:
 {: .prompt-info }
 
 ### Setting Grafana
+
 ```yaml
 grafana:
   enabled: false

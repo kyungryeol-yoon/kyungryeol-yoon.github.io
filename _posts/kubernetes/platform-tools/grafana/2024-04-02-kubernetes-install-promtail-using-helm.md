@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Install Grafana Promtail Using Helm Chart"
+title: "[Kubernetes] Install Promtail Using Helm Chart"
 date: 2024-04-02
 categories: [Kubernetes, Grafana]
 tags: [Kubernetes, Grafana, Promtail, Install]
@@ -7,6 +7,7 @@ render_with_liquid: false
 ---
 
 ## Promtail
+
 - Loki가 로그를 저장하는 역할을 하면 Promtail은 application에서 로그를 전달하는 agent의 역할을 한다.
 - Promtail 이외에도 Bit, Fluentd, LogStash 등을 사용할 수 있다.
 - kubernetes는 node 별로 /var/log/pods 아래에 모든 pod의 로그가 기록된다.
@@ -24,25 +25,29 @@ render_with_liquid: false
 {: .prompt-info }
 
 ## Install the Promtail Helm charts
+
 ```bash
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 helm install promtail grafana/promtail --namespace [NAMESPACE NAME]
 ```
 
-> [Promtail - Helm 설치 참고](https://grafana.com/docs/loki/latest/clients/promtail/installation/)
+> Promtail 설치 참고
+- <https://grafana.com/docs/loki/latest/clients/promtail/installation/>
 {: .prompt-info }
 
 ## Customize Default Configuration
+
 - values.yaml 수정
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
   - Chart
-    - https://github.com/grafana/helm-charts/tree/main/charts/promtail
+    - <https://github.com/grafana/helm-charts/tree/main/charts/promtail>
   - Release file (.tgz)
-    - https://github.com/grafana/helm-charts/releases
+    - <https://github.com/grafana/helm-charts/releases>
 
 ### Setting Volumes
+
 ```yaml
 # -- Default volumes that are mounted into pods. In most cases, these should not be changed.
 # Use `extraVolumes`/`extraVolumeMounts` for additional custom volumes.
@@ -78,6 +83,7 @@ defaultVolumeMounts:
 ```
 
 ### Setting Config
+
 ```yaml
 config:
   # -- Enable Promtail config from Helm chart
@@ -327,11 +333,13 @@ config:
 ```
 
 #### syslog regex
+
 ```
 ^(?P<time>[^ ]* {1,2}[^ ]* [^ ]*) (?P<hostname>[^ ]*) (?P<daemon>[^ :\[]*)(?:\[(?P<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?P<message>.*)$
 ```
 
 ### Install Customize Default Configuration
+
 ```bash
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
@@ -341,6 +349,7 @@ helm install promtail grafana/promtail -f override-values.yaml -n [NAMESPACE NAM
 ```
 
 ## Uninstall the Chart
+
 ```bash
 helm uninstall [RELEASE NAME] -n [NAMESPACE NAME]
 ```

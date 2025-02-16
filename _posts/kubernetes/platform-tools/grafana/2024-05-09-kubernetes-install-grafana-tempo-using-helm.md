@@ -30,7 +30,8 @@ helm repo update
 helm install tempo grafana/tempo --namespace [NAMESPACE NAME]
 ```
 
-> [Tempo - Helm 설치 참고](https://grafana.com/docs/tempo/latest/setup/helm-chart/)
+> Tempo - Helm 설치 참고
+- <https://grafana.com/docs/tempo/latest/setup/helm-chart/>
 {: .prompt-info }
 
 ## Customize Default Configuration
@@ -39,9 +40,9 @@ helm install tempo grafana/tempo --namespace [NAMESPACE NAME]
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
   - Chart
-    - https://github.com/grafana/helm-charts/tree/main/charts/tempo
+    - <https://github.com/grafana/helm-charts/tree/main/charts/tempo>
   - Release file (.tgz)
-    - https://github.com/grafana/helm-charts/releases
+    - <https://github.com/grafana/helm-charts/releases>
 
 ### Setting Config
 

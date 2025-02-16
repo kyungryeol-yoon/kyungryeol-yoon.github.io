@@ -11,7 +11,8 @@ tags: [Kubernetes, Centos, Install]
 ## Configure the master node
 Preparation
 Run the following commands to pass bridged IP traffic to iptables chains
-```
+
+```bash
 [root@test-vm1 ~]$ yum update -y
 [root@test-vm1 ~]$ modprobe br_netfilter
 
@@ -21,8 +22,10 @@ net.bridge.bridge-nf-call-iptables = 1
 EOF
 [root@test-vm1 ~]$ sysctl --system
 ```
+
 2a) Allow the necessary ports trough the firewall when you’re working in an unsafe environment or in production
-```
+
+```bash
 firewall-cmd --zone=public --add-port=6443/tcp --permanent
 firewall-cmd --zone=public --add-port=80/tcp --permanent
 firewall-cmd --zone=public --add-port=443/tcp --permanent
@@ -30,31 +33,42 @@ firewall-cmd --zone=public --add-port=18080/tcp --permanent
 firewall-cmd --zone=public --add-port=10254/tcp --permanent
 firewall-cmd --reload
 ```
+
 2b) If you’re just testing this in a safe lab environment you can disable the firewall.
-```
+
+```bash
 [root@test-vm1 ~]$ systemctl stop firewalld && systemctl disable firewalld
 ```
+
 Check if selinux is Enabled with the following command
-```
+
+```bash
 [root@test-vm1 ~]$ sestatus
 ```
+
 If the current mode is enforcing then you need to change the mode to permissive or disabled.
-```
+
+```bash
 [root@test-vm1 ~]$ sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/sysconfig/selinux
 [root@test-vm1 ~]$ setenforce 0
 ```
+
 Kubernetes doesn’t want to use swap so it can offer the best performance, so we have to disable it.
-```
+
+```bash
 [root@test-vm1 ~]$ swapoff -a
 ```
-```
+
+```bash
 [root@test-vm1 ~]$ vi /etc/fstab
 
 
 #/dev/mapper/centos-swap swap                    swap    defaults        0 0
 ```
+
 6a) Add the kubernetes repository to yum
-```
+
+```bash
 [root@test-vm1 ~]$ cat <<EOF > /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
@@ -65,27 +79,37 @@ repo_gpgcheck=1
 gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 EOF
 ```
+
 6b) Add the official docker repo to yum
-```
+
+```bash
 [root@test-vm1 ~]$ yum remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine
 [root@test-vm1 ~]$ yum install -y yum-utils device-mapper-persistent-data lvm2
 [root@test-vm1 ~]$ yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 ```
+
 Installation
 Install kubeadm and docker
-```
+
+```bash
 [root@test-vm1 ~]$ yum install -y ebtables ethtool docker-ce kubelet kubeadm kubectl
 ```
+
 Start docker and enable it at boot
-```
+
+```bash
 [root@test-vm1 ~]$ systemctl start docker && systemctl enable docker
 ```
+
 Start kubelet and enable it at boot
-```
+
+```bash
 [root@test-vm1 ~]$ systemctl start kubelet && systemctl enable kubelet
 ```
+
 Initialize kubernetes. Be aware, for some pod network implementations you might need to add a specific ‘–pod-network-cidr=’ setting. Please check https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#pod-network before continuing.
-```
+
+```bash
 [root@test-vm1 ~]$ kubeadm init --pod-network-cidr=10.244.0.0/16
 I0715 12:50:01.543998    1958 feature_gate.go:230] feature gates: &{map[]}
 [init] using Kubernetes version: v1.11.0
@@ -154,8 +178,10 @@ as root:
 
   kubeadm join 192.168.1.221:6443 --token e8yb38.hqq4pz9dmlq77jha --discovery-token-ca-cert-hash sha256:50b01f19d8060ba593a009d134912d62b95ca80fdbe76f3995c8ba6c4a92c705
 ```
+
 Create admin user
-```
+
+```bash
 [root@test-vm1 ~]$ groupadd -g 1000 k8sadm
 [root@test-vm1 ~]$ useradd -u 1000 -g k8sadm -G wheel k8sadm
 [root@test-vm1 ~]$ passwd k8sadm
@@ -168,21 +194,26 @@ passwd: all authentication tokens updated successfully.
 [k8sadm@test-vm1 ~]$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 [k8sadm@test-vm1 ~]$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
+
 Configure the pod network
-```
+
+```bash
 [k8sadm@test-vm1 ~]$ kubectl get nodes
 NAME                STATUS     ROLES     AGE       VERSION
 test-vm1.home.lcl   NotReady   master    2m        v1.11.0
 ```
-```
+
+```bash
 [k8sadm@test-vm1 ~]$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
-```
+
+```bash
 [k8sadm@test-vm1 ~]$ kubectl get nodes
 NAME                STATUS    ROLES     AGE       VERSION
 test-vm1.home.lcl   Ready     master    3m        v1.11.0
 ```
-```
+
+```bash
 [k8sadm@test-vm1 ~]$ kubectl get pods --all-namespaces
 NAMESPACE     NAME                                        READY     STATUS    RESTARTS   AGE
 kube-system   coredns-78fcdf6894-g7rg4                    1/1       Running   0          2h
@@ -196,33 +227,43 @@ kube-system   kube-flannel-ds-45d87                       1/1       Running   1 
 kube-system   kube-flannel-ds-bqh8j                       1/1       Running   1          2h
 kube-system   kube-flannel-ds-dfldc                       1/1       Running   1          2h
 ```
+
 ## Configure the worker nodes
 Repeat steps 1 to 6 on all worker nodes
 
 Install docker and kubeadm
-```
+
+```bash
 [root@test-vm2 ~]$ yum install -y kubeadm docker-ce kubelet
 [root@test-vm3 ~]$ yum install -y kubeadm docker-ce kubelet
 ```
+
 Start docker and enable it at boot
-```
+
+```bash
 [root@test-vm2 ~]$ systemctl start docker && systemctl enable docker
 [root@test-vm3 ~]$ systemctl start docker && systemctl enable docker
 ```
+
 Start kubelet and enable it at boot
-```
+
+```bash
 [root@test-vm2 ~]$ systemctl start kubelet && systemctl enable kubelet
 [root@test-vm3 ~]$ systemctl start kubelet && systemctl enable kubelet
 ```
+
 Join the workers to the master
 use the command kubeadm returned in step 10
-```
+
+```bash
 [root@test-vm2 ~]$ kubeadm join 192.168.1.221:6443 --token e8yb38.hqq4pz9dmlq77jha --discovery-token-ca-cert-hash sha256:50b01f19d8060ba593a009d134912d62b95ca80fdbe76f3995c8ba6c4a92c705
 [root@test-vm3 ~]$ kubeadm join 192.168.1.221:6443 --token e8yb38.hqq4pz9dmlq77jha --discovery-token-ca-cert-hash sha256:50b01f19d8060ba593a009d134912d62b95ca80fdbe76f3995c8ba6c4a92c705
 ```
+
 verify the status
 after a little while you will see
-```
+
+```bash
 [k8sadm@test-vm1 ~]$ kubectl get nodes
 NAME                STATUS    ROLES     AGE       VERSION
 test-vm1.home.lcl   Ready     master    26m       v1.11.1

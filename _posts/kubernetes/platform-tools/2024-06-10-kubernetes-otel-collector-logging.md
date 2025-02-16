@@ -6,15 +6,19 @@ tags: [Kubernetes, OpenTelemetry, Collector, Logging]
 ---
 
 ## Opentelemetry Collector
-아키텍쳐는 OTel Collector와 기존의 로그 수집 도구를 혼합해 구성한 Plan A와 OTel Collector만으로 구성한 Plan B로 나눌 수 있다.
+
+- 아키텍쳐는 OTel Collector와 기존의 로그 수집 도구를 혼합해 구성한 Plan A와 OTel Collector만으로 구성한 Plan B로 나눌 수 있다.
 
 ## OpenTelemetry Collector 배포 및 구성
+
 - vi /etc/rsyslog.conf에 아래의 Code 추가
+
   ```conf
   *.* action(type="omfwd" target="0.0.0.0" port="54527" protocol="tcp" action.resumeRetryCount="10" queue.type="linkedList" queue.size="10000")
   ```
 
 - syslog 및 container log
+
   ```yaml
   apiVersion: opentelemetry.io/v1beta1
   kind: OpenTelemetryCollector
@@ -195,6 +199,7 @@ tags: [Kubernetes, OpenTelemetry, Collector, Logging]
   ```
 
 - 변경될 Container Log 수집 방법
+
   ```yaml
   apiVersion: opentelemetry.io/v1beta1
   kind: OpenTelemetryCollector
@@ -251,47 +256,52 @@ tags: [Kubernetes, OpenTelemetry, Collector, Logging]
             processors: [resource]
             exporters: [loki]
   ```
-  > 참고 : https://opentelemetry.io/blog/2024/otel-collector-container-log-parser/
+
+  > 참고 : <https://opentelemetry.io/blog/2024/otel-collector-container-log-parser/>
   {: .prompt-info }
 
 ### Receiver Configuration - Plan A
-Receiver는 Promtail 및 EventExporter로부터 Log 데이터를 받는 진입점을 위한 loki receiver를 사용합니다.
-loki receiver를 사용하면 Otel Collector에 기존의 Loki가 노출하는 endpoint를 동일하게 노출시켜 기존의 Log 수집 컴포넌트들이 동일한 방법으로 OTel Collector에 Log를 보낼 수 있도록 구성할 수 있습니다.
+
+- Receiver는 Promtail 및 EventExporter로부터 Log 데이터를 받는 진입점을 위한 loki receiver를 사용한다.
+- loki receiver를 사용하면 Otel Collector에 기존의 Loki가 노출하는 endpoint를 동일하게 노출시켜 기존의 Log 수집 컴포넌트들이 동일한 방법으로 OTel Collector에 Log를 보낼 수 있도록 구성할 수 있다.
 
 #### Receiver Configuration - Plan B
-Receiver는 Container Log 수집을 위한 filelog, System Log 수집을 위한 filelog, Kubernetes Event Log 수집을 위한 k8s_event 3개를 사용합니다.
 
-Container Log는 filelog receiver로 /var/log/pods/*/*/*.log 경로에서 수집하고, 수집한 파일들을 기반으로 Path 및 Body를 분석해 Container 명, Pod 명, Namespace 명 등의 정보를 추출합니다.
+- Receiver는 Container Log 수집을 위한 filelog, System Log 수집을 위한 filelog, Kubernetes Event Log 수집을 위한 k8s_event 3개를 사용한다.
 
-System Log는 별도의 filelog receiver로 /var/log 경로에서 수집한 dmesg, messages, secure 파일들에서 syslog_parser로 정보를 추출해 수집합니다. 
+- Container Log는 filelog receiver로 `/var/log/pods/*/*/*.log` 경로에서 수집하고, 수집한 파일들을 기반으로 Path 및 Body를 분석해 Container 명, Pod 명, Namespace 명 등의 정보를 추출한다.
 
-Kubernetes Event Log는 k8s_event receiver를 이용해 Kubernetes API로부터 수집합니다.
+- System Log는 별도의 filelog receiver로 `/var/log` 경로에서 수집한 dmesg, messages, secure 파일들에서 syslog_parser로 정보를 추출해 수집한다. 
+
+- Kubernetes Event Log는 k8s_event receiver를 이용해 Kubernetes API로부터 수집한다.
 
 
 ### Processor Configuration
-Processor는 Log에 Kubernetes Attribute를 부착하기 위한 k8sattributes, Loki Label을 구성하기 위한 resource, OOM 방지를 위한 memory_limiter, Log를 batch성으로 전송하기 위한 batch 4개를 사용합니다.
 
-k8sattributes Processor는 filelog로부터 수집한 Container log를 기반으로 이와 일치하는 Pod, Deployment, Cluster 등의 정보를 데이터에 부착합니다.
+- Processor는 Log에 Kubernetes Attribute를 부착하기 위한 k8sattributes, Loki Label을 구성하기 위한 resource, OOM 방지를 위한 memory_limiter, Log를 batch성으로 전송하기 위한 batch 4개를 사용한다.
 
-resource Processor는 위에서 부착한 정보를 Loki의 indexing에 필요한 Label로 변환하는 작업을 수행합니다.
+- k8sattributes Processor는 filelog로부터 수집한 Container log를 기반으로 이와 일치하는 Pod, Deployment, Cluster 등의 정보를 데이터에 부착한다.
 
-batch와 memory_limiter Processor는 가공한 Log 데이터를 Export하는 방법을 제공합니다.
+- resource Processor는 위에서 부착한 정보를 Loki의 indexing에 필요한 Label로 변환하는 작업을 수행한다.
+
+- batch와 memory_limiter Processor는 가공한 Log 데이터를 Export하는 방법을 제공한다.
 
 ### Exporter Configuration
-Exporter는 Log를 Loki로 전송하기 위한 loki exporter를 사용합니다.
 
-loki의 endpoint 어트리뷰트에 loki 주소의 "/loki/api/v1/push" Path를 붙여 로그 진입점을 값으로 넣어 수집한 Log를 Loki로 전송합니다.
+- Exporter는 Log를 Loki로 전송하기 위한 loki exporter를 사용한다.
+
+- loki의 endpoint Attribute에 loki 주소의 `/loki/api/v1/push` Path를 붙여 로그 진입점을 값으로 넣어 수집한 Log를 Loki로 전송한다.
 
 ### Pipeline Configuration
-마지막으로 위에서 정의한 Receiver, Processor, Exporter를 순서에 맞게 조합하는 Pipeline을 정의합니다.
 
-특히 Processor 요소들의 배치 순서에 따라 Log를 가공하는 순서가 달라지기 때문에, 위의 순서를 준수하는 것이 중요합니다.
+- 마지막으로 위에서 정의한 Receiver, Processor, Exporter를 순서에 맞게 조합하는 Pipeline을 정의한다.
 
-Loki Receiver에서 Log 데이터를 수집해 k8sattributes, resource, memory_limiter, batch 순으로 가공한 뒤, Loki Exporter를 사용해 Loki backend로 전송합니다.
+- 특히 Processor 요소들의 배치 순서에 따라 Log를 가공하는 순서가 달라지기 때문에, 위의 순서를 준수하는 것이 중요하다.
 
+- Loki Receiver에서 Log 데이터를 수집해 k8sattributes, resource, memory_limiter, batch 순으로 가공한 뒤, Loki Exporter를 사용해 Loki backend로 전송한다.
 
 #### Pipeline Configuration - Plan B
-filelog, k8s_events Receiver에서 Log 데이터를 수집해k8sattributes, resource, memory_limiter, batch순으로 가공한 뒤, Loki Exporter를 사용해 Loki backend로 전송합니다.
+filelog, k8s_events Receiver에서 Log 데이터를 수집해 k8sattributes, resource, memory_limiter, batch순으로 가공한 뒤, Loki Exporter를 사용해 Loki backend로 전송한다.
 
 ## Node Collector(Daemonset)
 - File Logs
@@ -464,6 +474,7 @@ spec:
 ```
 
 ## Cluster Collector(Single Pod)
+
 - k8s events(log)
 - k8s objects(metrics)
 
@@ -472,12 +483,14 @@ spec:
 두 receiver 모두 cluster 관점에서 추출하기 때문이라고. 이에 따라 deployment type에 1개의 replica로 설정한다.
 
 ### Log | Kubernetes Objects
+
 주로 Kubernetes event 수집용으로 Kubernetes API server 출처의 objects(전체 목록은 kubectl api-resources 로 확인) 수집에도 사용한다.
 
 - Receiver: [Kubernetes Objects Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubernetes-objects-receiver)
 - Exporter: [Loki exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/lokiexporter)
 
 ### Metric | Kubernetes Cluster
+
 사실 상 Kube State Metrics의 대체로 Kubernetes API server에서 cluster level의 metric과 entity events를 추출한다.
 
 - Receiver: [Kubernetes Cluster Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubernetes-cluster-receiver)
@@ -697,9 +710,11 @@ spec:
 ```
 
 ## prometheus Collector(statefulset)
+
 - prometheus metrics
 
 ## OTLP Collector(Deployment)
+
 - Traces(OTEL)
 - Generic OTEL Logs
 - Generic OTEL metrics
@@ -708,18 +723,21 @@ spec:
 제약이 없을 경우 가장 운용에 유리한 배포 패턴인 Deployment 를 사용한다. MLT 모두를 대상으로 한다.
 
 ### Trace | Generic OTEL trace
+
 [Jaeger](https://www.jaegertracing.io/docs/next-release/deployment/) 및 [Grafana Tempo](https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/)는 OTLP Receiver를 자체적으로 지원한다. 
 
 - Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
 - Exporter: [OTLP Exporter (gRPC)](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/otlpexporter)
 
 ### Metric | Generic OTEL metric
+
 앞서 논한 metric 이외의 app level metrics 등의 여타 metric 수집을 위한 endpoint이다.
 
 - Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
 - Exporter: OTLP/HTTP Exporter
 
 ### Log | Generic OTEL log
+
 Istio의 OTel access log를 포함한 여타 log 수집을 위한 endpoint이다.
 
 - Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)

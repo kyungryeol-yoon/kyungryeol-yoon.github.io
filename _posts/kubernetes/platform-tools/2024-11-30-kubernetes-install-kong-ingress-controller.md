@@ -8,7 +8,8 @@ tags: [Kubernetes, Kong, Ingress, Controller, Gateway, API]
 > [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 {: .prompt-info }
 
-> [Kong Ingress Controller 참고](https://docs.konghq.com/kubernetes-ingress-controller/latest/)
+> Kong Ingress Controller 참고
+- <https://docs.konghq.com/kubernetes-ingress-controller/latest/>
 {: .prompt-info }
 
 

@@ -9,11 +9,13 @@ tags: [Kubernetes, OpenTelemetry, Operator, Cert-manager, Install, Helm]
 {: .prompt-info }
 
 ## Install Cert-manager
+
 ```bash
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.yaml
 ```
 
 ### OTel(OpenTelemetry) 설치 시 Cert-manager가 필요한 이유
+
 - HTTPS 통신 보안
   OTel(OpenTelemetry) Collector는 기본적으로 HTTP를 통해 데이터를 수집하고 전송하지만,\\
   HTTPS를 사용하여 보안을 강화하는 것이 좋다.\\
@@ -30,14 +32,18 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/do
 {: .prompt-warning }
 
 ## Install OpenTelemetry Operator
+
 - 1. Install OpenTelemetry Operator
+
   ```bash
   kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
   ```
+
   > [OpenTelemetry Operator - 설치 참고](https://github.com/open-telemetry/opentelemetry-operator)
   {: .prompt-info }
 
 - 2. Install Helm Chart - OpenTelemetry Operator
+
   ```bash
   helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
   helm repo update
@@ -242,12 +248,14 @@ spec:
 두 receiver 모두 cluster 관점에서 추출하기 때문이라고. 이에 따라 deployment type에 1개의 replica로 설정한다.
 
 #### Log | Kubernetes Objects
+
 주로 Kubernetes event 수집용으로 Kubernetes API server 출처의 objects(전체 목록은 kubectl api-resources 로 확인) 수집에도 사용한다.
 
 - Receiver: [Kubernetes Objects Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubernetes-objects-receiver)
 - Exporter: [Loki exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/lokiexporter)
 
 #### Metric | Kubernetes Cluster
+
 사실 상 Kube State Metrics의 대체로 Kubernetes API server에서 cluster level의 metric과 entity events를 추출한다.
 
 - Receiver: [Kubernetes Cluster Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubernetes-cluster-receiver)

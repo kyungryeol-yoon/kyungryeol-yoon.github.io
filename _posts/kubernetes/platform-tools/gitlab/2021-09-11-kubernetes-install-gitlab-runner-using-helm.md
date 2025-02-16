@@ -9,17 +9,20 @@ render_with_liquid: false
 > [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 {: .prompt-info }
 
-> [gitlab runner 참고](https://docs.gitlab.com/runner/install/kubernetes.html)
+> gitlab runner 참고
+- <https://docs.gitlab.com/runner/install/kubernetes.html>
 {: .prompt-info }
 
 ## Helm Chart를 사용하여 GitLab Runner 설치
 
 - GitLab Helm 리포지터리를 추가
+
   ```bash
   helm repo add gitlab https://charts.gitlab.io
   ```
 
 - `values.yaml` 파일을 사용하여 실행
+
   ```bash
   helm install --namespace <NAMESPACE> gitlab-runner -f <CONFIG_VALUES_FILE> gitlab/gitlab-runner
   ```
@@ -29,10 +32,12 @@ render_with_liquid: false
 
 ## Values 작성
 
-> [values.yaml 참고](https://gitlab.com/gitlab-org/charts/gitlab-runner/blob/main/values.yaml)
+> values.yaml 참고
+- <https://gitlab.com/gitlab-org/charts/gitlab-runner/blob/main/values.yaml>
 {: .prompt-info }
 
 - gitlab과 연결을 위해 아래와 같이 설정
+
   ```yaml
   gitlabUrl: https://gitlab.com # gitlab url 입력
   runnerRegistrationToken: a-trnA24KR77Mh***** # registration token 생성(CI/CD > Runner > New Project Runner)
@@ -124,7 +129,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
 - `<CONFIG_VALUES_FILE>`은 커스텀 설정이 포함된 파일의 경로. Helm Chart를 사용하여 GitLab Runner 설정하기를 참고
 - `<RELEASE-NMAE>`은 차트를 설치할 때 지어주는 이름. Helm Chart를 사용하여 GitLab Runner 설치하기에서는 gitlab-runner라고 했다.
 
-> GitLab Runner Helm Chart를 최신 버전이 아닌 특정 버전으로 업데이트하길 원한다면, helm upgrade 명령어에 --version <RUNNER_HELM_CHART_VERSION>을 추가
+> GitLab Runner Helm Chart를 최신 버전이 아닌 특정 버전으로 업데이트하길 원한다면, `helm upgrade` 명령어에 `--version <RUNNER_HELM_CHART_VERSION>`을 추가
 {: .prompt-info }
 
 ## Kubernetes RBAC 설정
