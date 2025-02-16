@@ -40,11 +40,13 @@ sudo chmod -R 755 /data/gitlab
 ## `docker-compose.yml` or `docker-compose_gitlab` 파일 준비
 
 - GitLab 작업 Directory(예: `/data/gitlab/`)에 `docker-compose.yml` 파일을 생성
+
   ```bash
   vi docker-compose.yml
   ```
 
 - `hostname`과 `external_url`은 설치할 서버의 IP 또는 도메인으로 반드시 수정
+
   ```yaml
   version: '3.9'
 
@@ -79,9 +81,11 @@ sudo chmod -R 755 /data/gitlab
 ## GitLab 시작
 
 - 아래 명령어 실행 (작업 Directory에 파일이 있는지 확인)
+
   ```bash
   docker-compose up -d
   ```
+
   ```bash
   docker-compose -f docker-compose-gitlab.yml up -d
   ```
@@ -97,6 +101,7 @@ docker-compose logs -f
 ```bash
 docker-compose ps
 ```
+
 ```bash
 docker ps -a
 ```
@@ -106,6 +111,7 @@ docker ps -a
 ```bash
 docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 ```
+
 ```bash
 cat initial_root_password
 ```

@@ -27,7 +27,7 @@ render_with_liquid: false
   helm install --namespace <NAMESPACE> gitlab-runner -f <CONFIG_VALUES_FILE> gitlab/gitlab-runner
   ```
 
-- `<NAMESPACE>`는 GitLab 러너를 설치하기 원하는 Kubernetes Namespace
+- `<NAMESPACE>`는 GitLab Runner를 설치하기 원하는 Kubernetes Namespace
 - `<CONFIG_VALUES_FILE>`은 커스텀 설정이 포함된 파일의 경로. Helm Chart를 사용
 
 ## Values 작성
@@ -48,6 +48,7 @@ render_with_liquid: false
 ### 만약 ci를 사용하여 image build를 하는 경우
 
 - Docker In Docker (Dind) 혹은 buildah 같은 image를 사용하여 container 안에서 image를 생성해야 하는데 이 경우 gitlab-runner의 옵션을 추가해야 한다.
+
   ```yaml
   runners:
     config: |
@@ -65,6 +66,7 @@ render_with_liquid: false
 - `ERROR: Job failed (system failure): secrets is forbidden`
 
 - 만약 다음 에러가 발생한다면 RBAC 기능을 활성화해야 한다.
+
   ```bash
   Using Kubernetes executor with image alpine ...
   ERROR: Job failed (system failure): secrets is forbidden: User "system:serviceaccount:gitlab:default" cannot create resource "secrets" in API group "" in the namespace "gitlab"
@@ -72,6 +74,7 @@ render_with_liquid: false
 
 - 만약 클러스터가 RBAC를 사용하도록 설정한 경우, 차트가 자신의 서비스 계정을 만들거나 이미 만들어진 것을 사용하는 것을 선택할 수 있다.
 - 차트에서 서비스 계정을 만들려면 rbac.create를 true로 설정
+
   ```yaml
   rbac:
     create: true
@@ -98,12 +101,14 @@ render_with_liquid: false
 ```
 
 - 위와 같은 경고가 뜬다면, 아래와 같이 `values.yaml` 파일에 추가
+
   ```yaml
   serviceAccount:
     create: true
   ```
 
 - 이미 존재하는 서비스 계정을 사용하려면 아래의 명령어를 사용 (아래 [Kubernetes RBAC 설정](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner-using-helm/#kubernetes-rbac-%EC%84%A4%EC%A0%95) 설명 참고)
+
   ```yaml
   rbac:
     create: false
@@ -118,14 +123,14 @@ helm install --namespace hello-world gitlab-runner -f values.yaml gitlab/gitlab-
 
 ## Helm Chart를 사용하여 GitLab Runner 업그레이드
 
-- GitLab 러너를 업그레이드하기 전에, GitLab에 러너를 중지시키고 모든 Job이 끝났는지 확인
-- 러너를 중지시키는 것은 완료 시 권한부여 오류같이 Job에서 발생하는 문제를 방지할 수 있다.
+- GitLab Runner를 업그레이드하기 전에, GitLab에 Runner를 중지시키고 모든 Job이 끝났는지 확인
+- Runner를 중지시키는 것은 완료 시 권한부여 오류같이 Job에서 발생하는 문제를 방지할 수 있다.
 
 ```bash
 helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitlab/gitlab-runner
 ```
 
-- `<NAMESPACE>`는 GitLab 러너를 설치하기 원하는 Kubernetes Namespace
+- `<NAMESPACE>`는 GitLab Runner를 설치하기 원하는 Kubernetes Namespace
 - `<CONFIG_VALUES_FILE>`은 커스텀 설정이 포함된 파일의 경로. Helm Chart를 사용하여 GitLab Runner 설정하기를 참고
 - `<RELEASE-NMAE>`은 차트를 설치할 때 지어주는 이름. Helm Chart를 사용하여 GitLab Runner 설치하기에서는 gitlab-runner라고 했다.
 
@@ -141,16 +146,19 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
 - Namespace의 경우 그룹이나 팀, 혹은 파트별로 구성
   - 예시: group-a, group-b, team-a, team-b, part-a, part-b, dep-a, dep-b
 - 아래 명령어를 실행하여 hello-world라는 Namespace를 생성
+
   ```bash
   kubectl create namespace hello-world
   ```
 
 - 생성된 Namespace 확인
+
   ```bash
   kubectl get namespaces
   ```
 
 - 생성된 Namespace로 이동(kubens가 설치되지 않았을 때 get 명령어에 -n 옵션으로 네임스페이스를 지정하면 된다.)
+
   ```bash
   kubens hello-world
   ```
@@ -161,6 +169,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
   - 예시: sa-group-a, sa-group-b, sa-team-a, sa-team-b
 - 아래 명령어를 실행하여 hello-sa라는 이름의 Service Account 생성
   - namespace를 지정(예시는 hello-world namespace를 연결)
+
     ```bash
     cat <<EOF | kubectl apply -f -
     apiVersion: v1
@@ -172,6 +181,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
     ```
 
 - Service Account 정보 확인
+
   ```bash
   kubectl get serviceaccounts hello-sa -o yaml
   ```
@@ -198,6 +208,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
   ```
 
 - Role 정보 확인
+
   ```bash
   kubectl get roles hello-role -o yaml
   ```
