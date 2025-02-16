@@ -91,7 +91,7 @@ maven은 빌드와 관련된 정보를 프로젝트 객체모델(Project Object 
 
 pom.xml에서 dependency 태그를 추가하고 설정하고 싶은 라이브러리를 추가하면 된다.\\
 라이브러리는 maven repository에서 원하는 라이브러리를 검색하여 내용을 복사하여 추가해주면 maven이 알아서 jar파일을 로컬저장소에 다운받아준다.\\
-https://mvnrepository.com/
+<https://mvnrepository.com/>
 
 여기서 Spring의 장점 중에 하나를 알 수 있다.\\
 기존의 웹프로젝트의 경우에는 프로젝트에 필요한 모든 라이브러리 파일을 직접 다운로드 받아 해당 라이브러리 폴더에 적용시켜줘야했고, 각각의 프로젝트마다 다시 또 적용해야하는 불편함이 있었는데 Spring의 경우에는 denpendency 태그를 적용시켜주면 알아서 다운로드 받고 해당 프로젝트에 적용할 수 있다.\\
