@@ -10,7 +10,8 @@ tags: [K6, Test, JavaScript]
   - Pod의 resources를 지정해줘야 하는데 어느 정도 값을 줘야 하는 지 모를 때가 있다.
   - 이때 k6 의 Load Test 를 진행하면 보다 수월하게 값을 지정할 수 있다.
 
-> [Load Test Type](https://grafana.com/docs/k6/latest/testing-guides/test-types/)
+> Load Test Type
+- <https://grafana.com/docs/k6/latest/testing-guides/test-types/>
 {: .prompt-info }
 
 ## 주요 성능 지표
@@ -113,7 +114,8 @@ export function teardown(data) {
 	- 데이터가 너무 크면 더 많은 메모리가 사용된다.
 	- default() 에서 데이터를 변경할 수 없다.
 
-> [Test Life Cycle](https://grafana.com/docs/k6/latest/using-k6/test-lifecycle/)
+> Test Life Cycle
+- <https://grafana.com/docs/k6/latest/using-k6/test-lifecycle/>
 {: .prompt-info }
 
 ## Test Code 작성 방법
@@ -138,10 +140,12 @@ export default function () {
 }
 ```
 
-- 10명의 가상 유저가 10s 동안 http://test.k6.io 을 호출
+- 10명의 가상 유저가 10s 동안 <http://test.k6.io> 을 호출
 
-> - [K6 Web Page Test](https://test.k6.io)
-- [K6 API Test](https://test-api.k6.io)
+> K6 Web Page Test
+- <https://test.k6.io>
+K6 API Test
+- <https://test-api.k6.io>
 {: .prompt-info }
 
 > - 1명의 가상 유저가 한번만 default function을 호출하는 것이 아닌, 60초 동안 해당 함수를 계속 호출한다.
@@ -326,10 +330,12 @@ export function scenarioFunc(token) {
 - 여기에서 API실행이 성공했는지 실패했는지 확인하고 결과에 기록
 - 실패해도 중간에 멈추지 않고 실행하기 때문에 유연하게 대응할 수 있다.
 
-> [K6 HTTP Module](https://grafana.com/docs/k6/latest/javascript-api/k6-http/)
+> K6 HTTP Module
+- <https://grafana.com/docs/k6/latest/javascript-api/k6-http/>
 {: .prompt-info }
 
-> [K6 JavaScript API](https://grafana.com/docs/k6/latest/javascript-api/)
+> K6 JavaScript API
+- <https://grafana.com/docs/k6/latest/javascript-api/>
 {: .prompt-info }
 
 ### Result
@@ -495,14 +501,18 @@ scenario2 ✓ [======================================] 1 VUS 10s
 | http_req_failed | Rate | [setResponseCallback](https://k6.io/docs/javascript-api/k6-http/setresponsecallback/) 에 따른 요칭 실패 비율. |
 
 
-> [출력 가능한 옵션](https://grafana.com/docs/k6/latest/results-output/real-time/)
+> 출력 가능한 옵션
+- <https://grafana.com/docs/k6/latest/results-output/real-time/>
 {: .prompt-info }
 
-> [Swagger API 관련](https://k6.io/blog/load-testing-your-api-with-swagger-openapi-and-k6/)
+> Swagger API 관련
+- <https://k6.io/blog/load-testing-your-api-with-swagger-openapi-and-k6/>
 {: .prompt-info }
 
-> [Postman 관련](https://grafana.com/blog/2020/04/19/load-testing-your-api-with-postman/)
+> Postman 관련
+- <https://grafana.com/blog/2020/04/19/load-testing-your-api-with-postman/>
 {: .prompt-info }
 
-> [k6-learn](https://github.com/grafana/k6-learn)
+> k6-learn
+- <https://github.com/grafana/k6-learn>
 {: .prompt-info }
