@@ -140,7 +140,7 @@ export default function () {
 }
 ```
 
-- 10명의 가상 유저가 10s 동안 <http://test.k6.io> 을 호출
+- 10명의 가상 유저가 10s 동안 <https://test.k6.io> 을 호출
 
 > - K6 Web Page Test : <https://test.k6.io>
 - K6 API Test : <https://test-api.k6.io>
