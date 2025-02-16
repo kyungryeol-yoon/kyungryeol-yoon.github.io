@@ -59,6 +59,7 @@ render_with_liquid: false
           namespace = "{{.Release.Namespace}}"
           image = "ubuntu:20.04"
           privileged = true
+  
   ...✂...
   ```
 
@@ -127,7 +128,7 @@ helm install --namespace hello-world gitlab-runner -f values.yaml gitlab/gitlab-
 ## Helm Chart를 사용하여 GitLab Runner 업그레이드
 
 - GitLab Runner를 업그레이드하기 전에, GitLab에 Runner를 중지시키고 모든 Job이 끝났는지 확인
-- Runner를 중지시키는 것은 완료 시 권한부여 오류같이 Job에서 발생하는 문제를 방지할 수 있다.
+- Runner를 중지시키는 것은 완료 시 권한부여 오류 같이 Job에서 발생하는 문제를 방지할 수 있다.
 
 ```bash
 helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitlab/gitlab-runner
