@@ -42,3 +42,7 @@ spec:
 > Redis Insight 설치 참고
 - <https://redis.io/docs/latest/operate/redisinsight/install/install-on-k8s>
 {: .prompt-info }
+
+> Redis Insight Configuration Settings 참고
+- <https://redis.io/docs/latest/operate/redisinsight/configuration>
+{: .prompt-info }
