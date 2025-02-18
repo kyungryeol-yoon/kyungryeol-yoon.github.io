@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] RBAC"
 date: 2020-02-01
-categories: [Kubernetes, RBAC]
+categories: [Kubernetes, API]
 tags: [Kubernetes, kubectl, RBAC]
 # comments: true
 ---

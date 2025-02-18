@@ -1,7 +1,7 @@
 ---
 title: "[K6] K6 Load Testing Tool"
 date: 2024-08-10
-categories: [Software, K6]
+categories: [Tool, K6]
 tags: [K6, Test, JavaScript, Open Source]
 ---
 
