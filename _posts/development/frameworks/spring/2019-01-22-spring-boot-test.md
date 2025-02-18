@@ -1,8 +1,8 @@
 ---
 title: "[Spring Boot] Spring Boot Test"
 date: 2019-01-22
-categories: [Programming, Spring]
-tags: [Spring, Java, Programming, Test]
+categories: [Framework, Spring]
+tags: [Spring, Java, Test]
 ---
 
 | Annotation | 설명 | Bean |

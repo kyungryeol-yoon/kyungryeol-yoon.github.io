@@ -1,8 +1,8 @@
 ---
 title: "[Flutter] TabBarView"
 date: 2024-09-12
-categories: [Programming, Flutter]
-tags: [Flutter, TabBarView, Programming]
+categories: [Framework, Flutter]
+tags: [Flutter, TabBarView]
 ---
 
 ## RootTab

@@ -1,8 +1,8 @@
 ---
 title: "[Flutter] Google Login"
 date: 2024-08-29
-categories: [Programming, Flutter]
-tags: [Flutter, Google, Login, Programming]
+categories: [Framework, Flutter]
+tags: [Flutter, Google, Login]
 ---
 
 ### Flutter 프로젝트 설정

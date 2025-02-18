@@ -3,8 +3,8 @@
 title: "Spring framework 특징 및 구성, 구조"
 date: 2016-10-15
 # excerpt: "Spring framework 특징 및 구성, 구조(Directory)"
-categories: [Programming, Spring]
-tags: [Spring, Framework, Java, Programming]
+categories: [Framework, Spring]
+tags: [Spring, Framework, Java]
 # comments: true
 ---
 
