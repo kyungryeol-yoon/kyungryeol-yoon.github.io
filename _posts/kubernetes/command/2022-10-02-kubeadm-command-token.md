@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubeadm token command"
 date: 2022-10-02
-categories: [Kubeadm, Command]
+categories: [Kubernetes, Kubeadm]
 tags: [kubeadm, Command, token]
 # comments: true
 # pin: true

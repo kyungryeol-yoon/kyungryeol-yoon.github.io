@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl patch command"
 date: 2023-02-21
-categories: [Kubernetes, Command]
+categories: [Kubernetes, Kubectl]
 tags: [Kubernetes, kubectl, Command, patch]
 # comments: true
 ---

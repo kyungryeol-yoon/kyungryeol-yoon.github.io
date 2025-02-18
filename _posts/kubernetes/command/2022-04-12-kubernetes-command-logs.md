@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl logs command"
 date: 2022-04-12
-categories: [Kubernetes, Command]
+categories: [Kubernetes, Kubectl]
 tags: [Kubernetes, kubectl, Command, logs]
 # comments: true
 # pin: true

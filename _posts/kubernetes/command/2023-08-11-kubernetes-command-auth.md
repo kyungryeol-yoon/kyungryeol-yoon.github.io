@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl auth can-i command"
 date: 2023-08-11
-categories: [Kubernetes, Command]
+categories: [Kubernetes, Kubectl]
 tags: [Kubernetes, kubectl, Command, auth can-i]
 # comments: true
 ---

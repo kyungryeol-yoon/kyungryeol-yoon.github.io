@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubeadm list command"
 date: 2022-09-22
-categories: [Kubeadm, Command]
+categories: [Kubernetes, Kubeadm]
 tags: [kubeadm, Command, List]
 # comments: true
 # pin: true

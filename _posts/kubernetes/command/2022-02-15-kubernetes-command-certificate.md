@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl certificate command"
 date: 2022-02-15
-categories: [Kubernetes, Command]
+categories: [Kubernetes, Kubectl]
 tags: [Kubernetes, kubectl, Command, certificate]
 # comments: true
 # pin: true

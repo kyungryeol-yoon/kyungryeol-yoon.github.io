@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl attach command"
 date: 2022-03-05
-categories: [Kubernetes, Command]
+categories: [Kubernetes, Kubectl]
 tags: [Kubernetes, kubectl, Command, attach]
 # comments: true
 # pin: true

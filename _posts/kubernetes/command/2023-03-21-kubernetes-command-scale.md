@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl scale command"
 date: 2023-03-21
-categories: [Kubernetes, Command]
+categories: [Kubernetes, Kubectl]
 tags: [Kubernetes, kubectl, Command, scale]
 # comments: true
 ---

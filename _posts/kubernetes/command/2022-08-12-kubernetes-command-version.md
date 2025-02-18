@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl version command"
 date: 2022-08-12
-categories: [Kubernetes, Command]
+categories: [Kubernetes, Kubectl]
 tags: [Kubernetes, kubectl, Command, version]
 # comments: true
 # pin: true

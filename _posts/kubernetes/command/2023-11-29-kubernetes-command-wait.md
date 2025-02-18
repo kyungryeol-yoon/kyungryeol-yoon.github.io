@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl wait command"
 date: 2023-11-29
-categories: [Kubernetes, Command]
+categories: [Kubernetes, Kubectl]
 tags: [Kubernetes, kubectl, Command, wait]
 # comments: true
 # pin: true

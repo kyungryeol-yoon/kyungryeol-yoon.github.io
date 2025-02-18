@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl exec command"
 date: 2023-11-21
-categories: [Kubernetes, Command]
+categories: [Kubernetes, Kubectl]
 tags: [Kubernetes, kubectl, Command, exec]
 # comments: true
 # pin: true

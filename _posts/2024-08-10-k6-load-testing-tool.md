@@ -1,8 +1,8 @@
 ---
 title: "[K6] K6 Load Testing Tool"
 date: 2024-08-10
-categories: [K6, Test]
-tags: [K6, Test, JavaScript]
+categories: [software, K6]
+tags: [K6, Test, JavaScript, Open Source]
 ---
 
 - Smoke Test, Load Test, Stress Test 등 다양한 테스트 지원

@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl drain command"
 date: 2023-07-27
-categories: [Kubernetes, Command]
+categories: [Kubernetes, Kubectl]
 tags: [Kubernetes, kubectl, Command, drain]
 # comments: true
 ---

@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl proxy command"
 date: 2022-06-25
-categories: [Kubernetes, Command]
+categories: [Kubernetes, Kubectl]
 tags: [Kubernetes, kubectl, Command, proxy]
 # comments: true
 # pin: true

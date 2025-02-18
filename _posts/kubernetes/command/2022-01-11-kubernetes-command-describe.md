@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl describe command"
 date: 2022-01-11
-categories: [Kubernetes, Command]
+categories: [Kubernetes, Kubectl]
 tags: [Kubernetes, kubectl, Command, describe]
 # comments: true
 # pin: true
