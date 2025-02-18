@@ -1,8 +1,8 @@
 ---
 title: "[Flutter] SDK"
 date: 2024-08-24
-categories: [Flutter, SDK]
-tags: [Flutter, SDK]
+categories: [Programming, Flutter]
+tags: [Flutter, SDK, Programming]
 ---
 
 **Google에서 개발한 오픈 소스 프레임워크로, 모바일 앱뿐만 아니라 웹 및 데스크톱 앱까지 다양한 플랫폼에서 동작하는 크로스 플랫폼 앱을 개발하는 도구**

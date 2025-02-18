@@ -1,7 +1,7 @@
 ---
 title: "객체지향 설계 5원칙 SOLID"
 date: 2018-03-25
-categories: [Object-Oriented, Solid]
+categories: [Programming, Object-Oriented]
 tags: [Object-Oriented, Solid, SRP, OCP, LSP, ISP, DIP]
 ---
 
