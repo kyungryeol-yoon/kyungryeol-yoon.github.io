@@ -46,7 +46,6 @@ test:
   script:
     - docker run my-image test
   when: manual
-
 ```
 
 ```yml

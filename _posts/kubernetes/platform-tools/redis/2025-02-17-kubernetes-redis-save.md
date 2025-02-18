@@ -10,6 +10,7 @@ Kubernetes(K8s)에서 Redis의 데이터 저장 방식을 변경하려면, Redis
 아래는 `redis-cli`를 통해 Redis의 저장 방식을 변경하는 방법입니다.
 
 ## Redis 접속
+
 Kubernetes에서 Redis에 접속하려면 먼저 Redis Pod의 이름을 확인하고, `kubectl exec`를 사용하여 해당 Pod에 접속해야 합니다.
 
 ```bash

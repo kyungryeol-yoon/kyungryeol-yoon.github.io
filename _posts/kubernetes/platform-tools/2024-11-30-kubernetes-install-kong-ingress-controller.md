@@ -12,8 +12,6 @@ tags: [Kubernetes, Kong, Ingress, Controller, Gateway, API]
 - <https://docs.konghq.com/kubernetes-ingress-controller/latest/>
 {: .prompt-info }
 
-
-
 ## Install the experimental Gateway API CRDs
 
 ```bash
@@ -81,14 +79,17 @@ helm repo update
 
 ```yaml
 ...✂...
+
 ingressController:
   enabled: true
   env:
     anonymous_reports: false
+
 ...✂...
-...✂...
+
 postgresql:
   enabled: true
+
 ...✂...
 ```
 

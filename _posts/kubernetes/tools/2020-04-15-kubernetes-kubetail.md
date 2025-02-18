@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] kubetail"
 date: 2020-04-15
-categories: [Kubernetes, kubetail]
+categories: [Kubernetes, Tool]
 tags: [Kubernetes, kubetail]
 ---
 

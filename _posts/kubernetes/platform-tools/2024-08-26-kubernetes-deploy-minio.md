@@ -1,8 +1,8 @@
 ---
 title: "[Kubernetes] Deploy MinIO"
 date: 2024-08-26
-categories: [Kubernetes, minio]
-tags: [Kubernetes, minio]
+categories: [Kubernetes, MinIO]
+tags: [Kubernetes, MinIO]
 ---
 
 ## Create MinIO Object

@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] Deploy MySQL"
 date: 2020-01-30
-categories: [Kubernetes, Pod]
+categories: [Kubernetes, MySQL]
 tags: [Kubernetes, kubectl, MySQL, Pod]
 # comments: true
 ---

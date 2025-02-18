@@ -11,16 +11,19 @@ tags: [Docker, Install, Gitlab, Runner]
 ## GitLab Runner 설치
 
 - GitLab Runner 작업 Directory (Working directory)와 데이터를 영속적(Persistent)으로 저장하기 위한 바인드 마운트(Bind mount)용 Directory를 생성
+
   ```bash
   sudo mkdir -p /data/gitlab-runner/config && cd /data/gitlab-runner
   ```
 
 - `gitlab-runner` Directory의 소유권을 `$USER`로 변경하고 권한을 변경
+
   ```bash
   sudo chown -R $USER:$USER /data/gitlab-runner
   ```
 
 - docker-compose.yml 파일을 생성
+
   ```yaml
   version: '3.9'
   services:
@@ -65,7 +68,7 @@ tags: [Docker, Install, Gitlab, Runner]
 gitlab-runner register  --url http://192.168.0.54  --token glrt-t1__YKDoWm-di4smDhcNoCX
 ```
 
-### gitlab-runner 컨네이너에 대화형(interactive) bash 셸을 실행
+### gitlab-runner 컨네이너에 대화형(interactive) Bash Shell을 실행
 
 ```bash
 docker exec -it gitlab-runner bash
@@ -85,8 +88,7 @@ gitlab-runner register -n \
 --executor shell \
 --tag-list deploy-1
 
-..
-..
+...✂...
 
 Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
 ```
@@ -167,79 +169,107 @@ build:
   - docker push my-image
 ```
 
-- `[runners.docker]` 섹션에서 `privileged = true`로 설정합니다.
 - 위에서 언급한 Runner 옵션을 수정하려면 Runner 작업 Directory(예: `/data/gitlab-runner`)에서 아래 명령을 실행하고 수정한다. 또는 gitlab-runner bash에 접속하여 `/etc/gitlab-runner`에서 `config.toml`를 수정하여도 된다.
+
   ```bash
   sudo vi config/config.toml
   ```
 
+- `[runners.docker]`에서 `privileged = true`로 설정한다.
+
+  ```
+  ...✂...
+
+  concurrent = 2
+  check_interval = 0
+  connection_max_age = "15m0s"
+  shutdown_timeout = 0
+
+  [session_server]
+    session_timeout = 1800
+
+  [[runners]]
+
+    ...✂...
+
+    [runners.docker]
+      tls_verify = false
+      image = "alpine:latest"
+      privileged = true
+
+  ...✂...
+  ```
+
 - gitlab-runner restart
+
   ```bash
   sudo docker restart [gitlab-runner 컨테이너 id]
   ```
 
-```yml
-variables:
-  AWS_ACCOUNT_ID: [AWS 계정 아이디]
-  DOCKER_REGISTRY: dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-  CPU: 1024
-  MEMORY: 2048
-  DOCKER_HOST: tcp://localhost:2375
-  DOCKER_DRIVER: overlay2
-  DOCKER_TLS_CERTDIR: ''
+- gitlab ci yml 구성
 
-build_prod:
-  stage: build
-  image:
-    name: docker:stable
-  services:
-    - name: docker:20-dind
-      alias: localhost
-      command: ['--tls=false']
+  ```yml
   variables:
-    ECR_REPOSITORIES: [레포지토리명]
-  before_script:
-    - apk add --no-cache curl python3 py3-pip
-    - pip install awscli botocore==1.29.21
-    - aws s3 cp $AWS_S3_BUCKET_URI/$APP_NAME ./ --recursive --exclude="*.development" --exclude="prisma/*"
-    - aws s3 cp $AWS_S3_BUCKET_URI/$APP_NAME/prisma/production/.env ./prisma/.env
-    - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.$DOCKER_REGISTRY
-    - export DOCKER_HOST=tcp://localhost:2375
-    - aws --version
-    - docker info
-    - docker --version
-  script:
-    - echo "Building image..."
-    - docker build -f Dockerfile.prod -t $ECR_REPOSITORIES:$CI_COMMIT_SHORT_SHA .
-    - echo "Tagging image..."
-    - docker tag $ECR_REPOSITORIES:$CI_COMMIT_SHORT_SHA $AWS_ACCOUNT_ID.$DOCKER_REGISTRY/$ECR_REPOSITORIES:latest
-    - echo "Pushing image..."
-    - docker push $AWS_ACCOUNT_ID.$DOCKER_REGISTRY/$ECR_REPOSITORIES:latest
-  only:
-    - production
+    AWS_ACCOUNT_ID: [AWS 계정 아이디]
+    DOCKER_REGISTRY: dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+    CPU: 1024
+    MEMORY: 2048
+    DOCKER_HOST: tcp://localhost:2375
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ''
 
-deploy_prod:
-  stage: deploy
-  image:
-    name: docker:stable
-  services:
-    - name: docker:20-dind
-      alias: localhost
-      command: ['--tls=false']
-  variables:
-    ECR_REPOSITORIES: [레포지토리명]
-    TASK_DEFINITION_NAME: [테스크명]
-    CLUSTER_NAME: [클러스터명]
-    SERVICE_NAME: [서비스명]
-  needs: [build_prod]
-  before_script:
-    - apk add --no-cache curl jq python3 py3-pip
-    - pip install awscli botocore==1.29.21
-    - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.$DOCKER_REGISTRY
-  script:
-    - echo $DOCKER_REGISTRY/$APP_NAME:latest
-    - echo "Updating the service..."
-    - aws ecs update-service --region "$AWS_DEFAULT_REGION" --cluster "$CLUSTER_NAME" --service "$SERVICE_NAME" --task-definition "$TASK_DEFINITION_NAME" --force-new-deployment
-  only:
-    - production
-```
+  build_prod:
+    stage: build
+    image:
+      name: docker:stable
+    services:
+      - name: docker:20-dind
+        alias: localhost
+        command: ['--tls=false']
+    variables:
+      ECR_REPOSITORIES: [레포지토리명]
+    before_script:
+      - apk add --no-cache curl python3 py3-pip
+      - pip install awscli botocore==1.29.21
+      - aws s3 cp $AWS_S3_BUCKET_URI/$APP_NAME ./ --recursive --exclude="*.development" --exclude="prisma/*"
+      - aws s3 cp $AWS_S3_BUCKET_URI/$APP_NAME/prisma/production/.env ./prisma/.env
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.$DOCKER_REGISTRY
+      - export DOCKER_HOST=tcp://localhost:2375
+      - aws --version
+      - docker info
+      - docker --version
+    script:
+      - echo "Building image..."
+      - docker build -f Dockerfile.prod -t $ECR_REPOSITORIES:$CI_COMMIT_SHORT_SHA .
+      - echo "Tagging image..."
+      - docker tag $ECR_REPOSITORIES:$CI_COMMIT_SHORT_SHA $AWS_ACCOUNT_ID.$DOCKER_REGISTRY/$ECR_REPOSITORIES:latest
+      - echo "Pushing image..."
+      - docker push $AWS_ACCOUNT_ID.$DOCKER_REGISTRY/$ECR_REPOSITORIES:latest
+    only:
+      - production
+
+  deploy_prod:
+    stage: deploy
+    image:
+      name: docker:stable
+    services:
+      - name: docker:20-dind
+        alias: localhost
+        command: ['--tls=false']
+    variables:
+      ECR_REPOSITORIES: [레포지토리명]
+      TASK_DEFINITION_NAME: [테스크명]
+      CLUSTER_NAME: [클러스터명]
+      SERVICE_NAME: [서비스명]
+    needs: [build_prod]
+    before_script:
+      - apk add --no-cache curl jq python3 py3-pip
+      - pip install awscli botocore==1.29.21
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.$DOCKER_REGISTRY
+    script:
+      - echo $DOCKER_REGISTRY/$APP_NAME:latest
+      - echo "Updating the service..."
+      - aws ecs update-service --region "$AWS_DEFAULT_REGION" --cluster "$CLUSTER_NAME" --service "$SERVICE_NAME" --task-definition "$TASK_DEFINITION_NAME" --force-new-deployment
+    only:
+      - production
+  ```
