@@ -9,6 +9,7 @@ tags: [Kubernetes, csi, smb, Install, Helm]
 {: .prompt-info }
 
 ## Install CSI Driver SMB
+
 ```bash
 helm repo add csi-driver-smb https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
 helm repo update
@@ -20,6 +21,7 @@ helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
 {: .prompt-info }
 
 ## Customize Default Configuration
+
 - values.yaml 수정
   > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   {: .prompt-info }
@@ -29,6 +31,7 @@ helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
     - <https://github.com/kubernetes-csi/csi-driver-smb/releases>
 
 ### Install Customize Default Configuration
+
 ```bash
 helm install [RELEASE NAME] [Chart.yaml 경로] -f [YAML 파일 또는 URL에 값 지정 (여러 개를 지정가능)] -n [NAMESPACE NAME]
 ```
@@ -38,12 +41,15 @@ helm install csi-driver-smb csi-driver-smb/csi-driver-smb -f override-values.yam
 ```
 
 ## Test
+
 ### 1. Namespace 생성
+
 ```bash
 kubectl create ns smb-test
 ```
 
 ### 2. Secret 생성
+
 ```bash
 kubectl -n smb-test create secret generic smb-creds \
 --from-literal username=testuser \
@@ -52,7 +58,9 @@ kubectl -n smb-test create secret generic smb-creds \
 ```
 
 ### 3. PersistentVolume or StorageClass 생성
+
 #### PersistentVolume
+
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -82,6 +90,7 @@ spec:
 ```
 
 #### StorageClass
+
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -115,6 +124,7 @@ mountOptions:
 {: .prompt-info }
 
 ### 4. PersistentVolumeClaim 생성
+
 ```yaml
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -132,6 +142,7 @@ spec:
 ```
 
 ### 5. Deployment 생성
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -169,6 +180,7 @@ spec:
 ```
 
 ### 6. 확인
+
 ```bash
 kubectl -n smb-test exec -it deploy-smb-pod-8569fdd89c-dmlzh -- ls -rtl /mnt/smb
 
@@ -177,11 +189,13 @@ total 28
 ```
 
 ### 7. test.txt 파일 생성
+
 ```bash
 kubectl -n smb-test exec -it deploy-smb-pod-8569fdd89c-dmlzh -- touch /mnt/smb/test.txt
 ```
 
 ### 8. 확인2
+
 ```bash
 kubectl -n smb-test exec -it deploy-smb-pod-8569fdd89c-dmlzh -- ls -la /mnt/smb
 

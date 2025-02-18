@@ -1,8 +1,8 @@
 ---
 title: "[Docker-Compose] Install Gitlab"
 date: 2021-04-11
-categories: [Docker, Gitlab]
-tags: [Docker, Install, Gitlab, Docker-Compose]
+categories: [Docker, Docker-Compose]
+tags: [Docker, Install, Gitlab]
 ---
 
 > [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose/)

@@ -1,7 +1,7 @@
 ---
 title: "[Docker-Compose] Install Docker-Compose"
 date: 2021-02-02
-categories: [Docker, Install]
+categories: [Docker, Docker-Compose]
 tags: [Docker, Install, Docker-Compose]
 ---
 

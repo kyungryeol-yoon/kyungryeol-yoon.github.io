@@ -1,7 +1,7 @@
 ---
 title: "[Docker] Install Gitlab Runner"
 date: 2021-08-11
-categories: [Docker, Gitlab]
+categories: [Docker, Docker-Compose]
 tags: [Docker, Install, Gitlab, Runner]
 ---
 

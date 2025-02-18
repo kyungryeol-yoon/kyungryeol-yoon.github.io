@@ -2,7 +2,7 @@
 title: "[Kubernetes] Install K3S in the Multipass"
 date: 2024-05-20
 categories: [Kubernetes, Install]
-tags: [Kubernetes, K3S, Multipass, Ubuntu, Linux]
+tags: [Kubernetes, K3S, Multipass, Ubuntu, Linux, Install]
 ---
 
 ## VM deployments used multipass on mac
