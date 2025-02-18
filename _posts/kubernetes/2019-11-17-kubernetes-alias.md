@@ -27,6 +27,7 @@ alias kgsvcwn='kubectl get service --watch --namespace'
 alias kgsvcslwn='kubectl get service --show-labels --watch --namespace'
 
 alias kgwf='kubectl get --watch -f'
+
 ...✂...
 ```
      
