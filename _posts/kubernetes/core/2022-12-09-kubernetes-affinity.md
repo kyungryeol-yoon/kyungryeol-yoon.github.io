@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Affinity"
 date: 2022-12-09
-categories: [Kubernetes, Concept]
+categories: [Kubernetes, Core]
 tags: [Kubernetes, Affinity]
 ---
 

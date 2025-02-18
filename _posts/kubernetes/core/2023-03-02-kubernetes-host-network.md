@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Host Network"
 date: 2023-03-02
-categories: [Kubernetes, Concept]
+categories: [Kubernetes, Core]
 tags: [Kubernetes, Host, Network]
 render_with_liquid: false
 ---
