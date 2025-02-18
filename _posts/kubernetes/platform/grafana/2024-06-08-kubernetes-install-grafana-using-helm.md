@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Install Grafana Using Helm Chart"
 date: 2024-06-08
-categories: [Kubernetes, Grafana]
+categories: [Kubernetes, Platform]
 tags: [Kubernetes, Grafana, Helm, Install]
 ---
 

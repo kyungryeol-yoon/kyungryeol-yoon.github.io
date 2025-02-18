@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Gitlab CI"
 date: 2021-09-15
-categories: [Kubernetes, Gitlab]
+categories: [Kubernetes, Platform]
 tags: [Kubernetes, Gitlab, CI]
 ---
 

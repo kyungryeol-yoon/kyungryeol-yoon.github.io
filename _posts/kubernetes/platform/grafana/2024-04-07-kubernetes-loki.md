@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Loki"
 date: 2024-04-07
-categories: [Kubernetes, Grafana]
+categories: [Kubernetes, Platform]
 tags: [Kubernetes, Grafana, Loki, Install]
 ---
 

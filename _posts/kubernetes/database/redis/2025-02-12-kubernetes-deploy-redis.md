@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Deploy Redis"
 date: 2025-02-12
-categories: [Kubernetes, Redis]
+categories: [Kubernetes, Database]
 tags: [Kubernetes, Redis]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Deploy P3X Redis UI"
 date: 2025-02-13
-categories: [Kubernetes, Redis]
+categories: [Kubernetes, Database]
 tags: [Kubernetes, Redis, UI]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] PostgreSQL SSL Mode 설정"
 date: 2025-01-08
-categories: [Kubernetes, PostgreSQL]
+categories: [Kubernetes, Database]
 tags: [Kubernetes, PostgreSQL, SSL]
 ---
 

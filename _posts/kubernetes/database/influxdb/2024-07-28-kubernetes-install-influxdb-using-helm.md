@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Install InfluxDB Using Helm Chart"
 date: 2024-07-28
-categories: [Kubernetes, InfluxDB]
+categories: [Kubernetes, Database]
 tags: [Kubernetes, InfluxDB, Install, Helm]
 ---
 

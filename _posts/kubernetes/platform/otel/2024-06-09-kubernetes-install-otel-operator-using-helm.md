@@ -1,319 +1,80 @@
 ---
-title: "[Kubernetes] OTel(OpenTelemetry) Collector - Logging"
-date: 2024-06-10
-categories: [Kubernetes, OpenTelemetry]
-tags: [Kubernetes, OpenTelemetry, Collector, Logging]
+title: "[Kubernetes] Install OTel(OpenTelemetry) Operator Using Helm Chart"
+date: 2024-06-09
+categories: [Kubernetes, Platform]
+tags: [Kubernetes, OpenTelemetry, Operator, Cert-manager, Install, Helm]
 ---
 
-## Opentelemetry Collector
+> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+{: .prompt-info }
 
-- 아키텍쳐는 OTel Collector와 기존의 로그 수집 도구를 혼합해 구성한 Plan A와 OTel Collector만으로 구성한 Plan B로 나눌 수 있다.
+## Install Cert-manager
 
-## OpenTelemetry Collector 배포 및 구성
+```bash
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.yaml
+```
 
-- vi /etc/rsyslog.conf에 아래의 Code 추가
+### OTel(OpenTelemetry) 설치 시 Cert-manager가 필요한 이유
 
-  ```conf
-  *.* action(type="omfwd" target="0.0.0.0" port="54527" protocol="tcp" action.resumeRetryCount="10" queue.type="linkedList" queue.size="10000")
+- HTTPS 통신 보안
+  OTel(OpenTelemetry) Collector는 기본적으로 HTTP를 통해 데이터를 수집하고 전송하지만,\\
+  HTTPS를 사용하여 보안을 강화하는 것이 좋다.\\
+  Cert-manager는 인증서 발급 및 관리를 자동화하여 OTel(OpenTelemetry) Collector가 안전하게 HTTPS를 사용하도록 설정하는 데 도움을 준다.
+
+- 인증서 자동 갱신
+  HTTPS 인증서는 만료 기간이 있으며, 만료되면 OTel(OpenTelemetry) Collector가 작동하지 않게 된다.\\
+  Cert-manager는 인증서가 만료되기 전에 자동으로 갱신하여 서비스 중단을 방지한다.
+
+- 사용 편의성 향상
+  Cert-manager를 사용하면 수동으로 인증서를 발급하고 관리하는 번거로움 없이 OpenTelemetry Collector를 안전하게 배포하고 운영할 수 있다.
+
+> OTel(OpenTelemetry) 설치 시 반드시 Cert-manager가 필요한 것은 아니지만, HTTPS를 사용하여 보안을 강화하려는 경우 필수. Cert-manager는 Kubernetes 환경에서만 사용 가능.
+{: .prompt-warning }
+
+## Install OpenTelemetry Operator
+
+- 1. Install OpenTelemetry Operator
+
+  ```bash
+  kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
   ```
 
-- syslog 및 container log
-
-  ```yaml
-  apiVersion: opentelemetry.io/v1beta1
-  kind: OpenTelemetryCollector
-  metadata:
-    name: otel-log
-  spec:
-    mode: daemonset
-    hostNetwork: true
-    podSecurityContext:
-      runAsUser: 0
-      runAsGroup: 0
-    tolerations:
-      - operator: Exists
-    volumes:
-      # Typically the collector will want access to pod logs and container logs
-      - name: varlogpods
-        hostPath:
-          path: /var/log/pods
-      - name: varlibdockercontainers
-        hostPath:
-          path: /var/lib/docker/containers
-      - name: applogs
-        hostPath:
-          path: /appdata/applog
-    volumeMounts:
-      # Mount the volumes to the collector container
-      - name: varlogpods
-        mountPath: /var/log/pods
-        readOnly: true
-      - name: varlibdockercontainers
-        mountPath: /var/lib/docker/containers
-        readOnly: true
-      - name: applogs
-        mountPath: /appdata/applog
-        readOnly: true
-    config:
-      # This is a new configuration file - do not merge this with your metrics configuration!
-      receivers:
-        syslog:
-          tcp:
-            listen_address: '0.0.0.0:54527'
-          protocol: rfc3164
-          location: UTC or Asia/Seoul # specify server timezone here
-          operators:
-            - type: move
-              from: attributes.message
-              to: body
-            - type: move
-              from: attributes.hostname
-              to: resource["hostname"]
-            - type: move
-              from: attributes.appname
-              to: resource["daemon"]
-
-        filelog/applog:
-          include:
-            - /appdata/applog/*/*/*.log
-          operators:
-            # Extract metadata from file path
-            - type: regex_parser
-              id: extract_metadata_from_filepath
-              # Pod UID is not always 36 characters long
-              regex: '^.*\/(?P<namespace>\S+)\/(?P<pod_name>\S+)\/(?P<log_file_name>\S+)\.log$'
-              parse_from: attributes["log.file.path"]
-              cache:
-                size: 128 # default maximum amount of Pods per Node is 110
-            # Rename attributes
-            - type: move
-              from: attributes["log.file.path"]
-              to: resource["filename"]
-            - type: move
-              from: attributes.namespace
-              to: resource["namespace"]
-            - type: move
-              from: attributes.pod_name
-              to: resource["pod"]
-            - type: add
-              field: resource["cluster"]
-              value: 'your-cluster-name'
-
-        filelog:
-          include:
-            - /var/log/pods/*/*/*.log
-          exclude:
-            # Exclude logs from all containers named otel-collector
-            - /var/log/pods/*/otel-collector/*.log
-          start_at: beginning
-          include_file_path: true
-          include_file_name: false
-          operators:
-            # Find out which format is used by kubernetes
-            - type: router
-              id: get-format
-              routes:
-                - output: parser-docker
-                  expr: 'body matches "^\\{"'
-                - output: parser-crio
-                  expr: 'body matches "^[^ Z]+ "'
-                - output: parser-containerd
-                  expr: 'body matches "^[^ Z]+Z"'
-            # Parse CRI-O format
-            - type: regex_parser
-              id: parser-crio
-              regex: '^(?P<time>[^ Z]+) (?P<stream>stdout|stderr) (?P<logtag>[^ ]*) ?(?P<log>.*)$'
-              output: extract_metadata_from_filepath
-              timestamp:
-                parse_from: attributes.time
-                layout_type: gotime
-                layout: '2006-01-02T15:04:05.999999999Z07:00'
-            # Parse CRI-Containerd format
-            - type: regex_parser
-              id: parser-containerd
-              regex: '^(?P<time>[^ ^Z]+Z) (?P<stream>stdout|stderr) (?P<logtag>[^ ]*) ?(?P<log>.*)$'
-              output: extract_metadata_from_filepath
-              timestamp:
-                parse_from: attributes.time
-                layout: '%Y-%m-%dT%H:%M:%S.%LZ'
-            # Parse Docker format
-            - type: json_parser
-              id: parser-docker
-              output: extract_metadata_from_filepath
-              timestamp:
-                parse_from: attributes.time
-                layout: '%Y-%m-%dT%H:%M:%S.%LZ'
-            # Extract metadata from file path
-            - type: regex_parser
-              id: extract_metadata_from_filepath
-              # Pod UID is not always 36 characters long
-              regex: '^.*\/(?P<namespace>[^_]+)_(?P<pod_name>[^_]+)_(?P<uid>[a-f0-9\-]{16,36})\/(?P<container_name>[^\._]+)\/(?P<restart_count>\d+)\.log$'
-              parse_from: attributes["log.file.path"]
-              cache:
-                size: 128 # default maximum amount of Pods per Node is 110
-            # Rename attributes
-            - type: move
-              from: attributes["log.file.path"]
-              to: resource["filename"]
-            - type: move
-              from: attributes.container_name
-              to: resource["container"]
-            - type: move
-              from: attributes.namespace
-              to: resource["namespace"]
-            - type: move
-              from: attributes.pod_name
-              to: resource["pod"]
-            - type: add
-              field: resource["cluster"]
-              value: 'your-cluster-name' # Set your cluster name here
-            - type: move
-              from: attributes.log
-              to: body
-
-      processors:
-        attributes:
-          actions:
-          - action: insert
-            key: loki.resource.labels
-            value: hostname, daemon
-        resource:
-          attributes:
-            - action: insert
-              key: loki.format
-              value: raw
-            - action: insert
-              key: loki.resource.labels
-              value: pod, namespace, container, cluster, filename
-
-      exporters:
-        loki:
-          endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push or http://<Loki-svc>.<Loki-Namespace>.svc/loki/api/v1/push
-
-      service:
-        pipelines:
-          logs:
-            receivers: [syslog, filelog/applog, filelog]
-            processors: [attributes, resource]
-            exporters: [loki]
-  ```
-
-- 변경될 Container Log 수집 방법
-
-  ```yaml
-  apiVersion: opentelemetry.io/v1beta1
-  kind: OpenTelemetryCollector
-  metadata:
-    name: otel-log
-  spec:
-    mode: daemonset
-    hostNetwork: true
-    volumes:
-      # Typically the collector will want access to pod logs and container logs
-      - name: varlogpods
-        hostPath:
-          path: /var/log/pods
-      - name: varlibdockercontainers
-        hostPath:
-          path: /var/lib/docker/containers
-    volumeMounts:
-      # Mount the volumes to the collector container
-      - name: varlogpods
-        mountPath: /var/log/pods
-        readOnly: true
-      - name: varlibdockercontainers
-        mountPath: /var/lib/docker/containers
-        readOnly: true
-    config:
-      # This is a new configuration file - do not merge this with your metrics configuration!
-      receivers:
-        filelog:
-          include_file_path: true
-          include:
-            - /var/log/pods/*/*/*.log
-          operators:
-            - id: container-parser
-              type: container
-
-      processors:
-        resource:
-          attributes:
-            - action: insert
-              key: loki.format
-              value: raw
-            - action: insert
-              key: loki.resource.labels
-              value: pod, namespace, container, cluster, filename
-
-      exporters:
-        loki:
-          endpoint: https://LOKI_USERNAME:ACCESS_POLICY_TOKEN@LOKI_URL/loki/api/v1/push or http://<Loki-svc>.<Loki-Namespace>.svc/loki/api/v1/push
-
-      service:
-        pipelines:
-          logs:
-            receivers: [filelog]
-            processors: [resource]
-            exporters: [loki]
-  ```
-
-  > 참고 : <https://opentelemetry.io/blog/2024/otel-collector-container-log-parser/>
+  > [OpenTelemetry Operator - 설치 참고](https://github.com/open-telemetry/opentelemetry-operator)
   {: .prompt-info }
 
-### Receiver Configuration - Plan A
+- 2. Install Helm Chart - OpenTelemetry Operator
 
-- Receiver는 Promtail 및 EventExporter로부터 Log 데이터를 받는 진입점을 위한 loki receiver를 사용한다.
-- loki receiver를 사용하면 Otel Collector에 기존의 Loki가 노출하는 endpoint를 동일하게 노출시켜 기존의 Log 수집 컴포넌트들이 동일한 방법으로 OTel Collector에 Log를 보낼 수 있도록 구성할 수 있다.
+  ```bash
+  helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
+  helm repo update
+  helm install opentelemetry-operator open-telemetry/opentelemetry-operator --set "manager.collectorImage.repository=otel/opentelemetry-collector-k8s"
+  ```
 
-#### Receiver Configuration - Plan B
+  > [OpenTelemetry Operator - Helm 설치 참고](https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator)
+  {: .prompt-info }
 
-- Receiver는 Container Log 수집을 위한 filelog, System Log 수집을 위한 filelog, Kubernetes Event Log 수집을 위한 k8s_event 3개를 사용한다.
+### Opentelemetry Operator가 관리하는 기능 두가지
 
-- Container Log는 filelog receiver로 `/var/log/pods/*/*/*.log` 경로에서 수집하고, 수집한 파일들을 기반으로 Path 및 Body를 분석해 Container명, Pod명, Namespace명 등의 정보를 추출한다.
+- Opentelemetry Collector
+- auto-instrumentation of the workloads using OpenTelemetry instrumentation libraries
 
-- System Log는 별도의 filelog receiver로 `/var/log` 경로에서 수집한 dmesg, messages, secure 파일들에서 syslog_parser로 정보를 추출해 수집한다. 
+프로젝트가 다수일 경우 매번 Opentelemetry Collector와 auto-instrumentation agent를 같이 띄울 필요 없이 Operator를 활용하여, 프로젝트별로 Collector를 설치할 수 있고 각 서버마다 agent를 명세할 필요 없이 annotation을 통하여 Operator가 해당 Pod에 sidecar 형태로 추가해준다.
 
-- Kubernetes Event Log는 k8s_event receiver를 이용해 Kubernetes API로부터 수집한다.
+## OpenTelemetry Operator 사용하여 OpenTelemetry Collector 배포 할 수 있다.
+### OpenTelemetry Collector
+- collector에 대한 배포판은 3가지
+  - **opentelemetry-collector** : 핵심 기능을 제공
+  - **opentelemetry-collector-contrib** : Contrib은 opentelemetry-collector 확장하여 다양한 환경에서 사용될 수 있도록 제작
+  - **opentelemetry-collector-k8s** : opentelemetry-collector와 contrib의 구성요소 중 k8s cluster와 구성요소를 모니터링할 수 있도록 특별히 제작
 
-
-### Processor Configuration
-
-- Processor는 Log에 Kubernetes Attribute를 부착하기 위한 k8sattributes, Loki Label을 구성하기 위한 resource, OOM 방지를 위한 memory_limiter, Log를 batch성으로 전송하기 위한 batch 4개를 사용한다.
-
-- k8sattributes Processor는 filelog로부터 수집한 Container log를 기반으로 이와 일치하는 Pod, Deployment, Cluster 등의 정보를 데이터에 부착한다.
-
-- resource Processor는 위에서 부착한 정보를 Loki의 indexing에 필요한 Label로 변환하는 작업을 수행한다.
-
-- batch와 memory_limiter Processor는 가공한 Log 데이터를 Export하는 방법을 제공한다.
-
-### Exporter Configuration
-
-- Exporter는 Log를 Loki로 전송하기 위한 loki exporter를 사용한다.
-
-- loki의 endpoint Attribute에 loki 주소의 `/loki/api/v1/push` Path를 붙여 로그 진입점을 값으로 넣어 수집한 Log를 Loki로 전송한다.
-
-### Pipeline Configuration
-
-- 마지막으로 위에서 정의한 Receiver, Processor, Exporter를 순서에 맞게 조합하는 Pipeline을 정의한다.
-
-- 특히 Processor 요소들의 배치 순서에 따라 Log를 가공하는 순서가 달라지기 때문에, 위의 순서를 준수하는 것이 중요하다.
-
-- Loki Receiver에서 Log 데이터를 수집해 k8sattributes, resource, memory_limiter, batch 순으로 가공한 뒤, Loki Exporter를 사용해 Loki backend로 전송한다.
-
-#### Pipeline Configuration - Plan B
-
-filelog, k8s_events Receiver에서 Log 데이터를 수집해 k8sattributes, resource, memory_limiter, batch순으로 가공한 뒤, Loki Exporter를 사용해 Loki backend로 전송한다.
-
-## Node Collector(Daemonset)
-
+### Node Collector(Daemonset)
 - File Logs
 - Host metrics
 - Kubelet state metrics
 
 - 공식 문서에서 DaemonSet을 권장하는 receiver가 모인 collector이다.
 
-### Log | Filelog
-
+#### Log | Filelog
 수집 대상은 stdout/stderr로 생성된 Kubernetes, app log으로,\\
 사실상 Fluentbit를 대체한다.\\
 이를 위해 log scraping 및 전달 뿐 아니라 Processors 에서 언급한 다양한 processor 사용을 고려해야 한다.
@@ -321,16 +82,14 @@ filelog, k8s_events Receiver에서 Log 데이터를 수집해 k8sattributes, res
 - Receiver: [Filelog Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#filelog-receiver)
 - Exporter: [Loki exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/lokiexporter)
 
-### Metric | Kubelet Stats
-
+#### Metric | Kubelet Stats
 node, pod, container, volume, filesystem network I/O and error metrics 등 CPU, memory 등 infra resource에 관한 metric을 다루어,\\
 각 노드의 kubelet이 노출하는 API에서 추출한다. 사실 상 cAdvisor의 대체이다.
 
 - Receiver: [Kubelet Stats Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubeletstats-receiver)
 - Exporter: OTLP/HTTP Exporter
 
-### Metric | Host Metrics
-
+#### Metric | Host Metrics
 수집 대상은 node (cpu, disk, CPU load, filesystem, memory, network, paging, process..)의 metric으로,\\
 사실 상 Prometheus Node Exporter를 대체한다.\\
 Kubelet Stats Receiver와 일부 항목이 겹치므로 동시 운용 시 중복 처리가 필요하다.
@@ -478,8 +237,7 @@ spec:
           insecure: true
 ```
 
-## Cluster Collector(Single Pod)
-
+### Cluster Collector(Single Pod)
 - k8s events(log)
 - k8s objects(metrics)
 
@@ -487,14 +245,14 @@ spec:
 이들 receiver는 2개 이상의 instance 사용 시 중복이 발생 가능하기 때문이라고 공식 문서에서 논한다.\\
 두 receiver 모두 cluster 관점에서 추출하기 때문이라고. 이에 따라 deployment type에 1개의 replica로 설정한다.
 
-### Log | Kubernetes Objects
+#### Log | Kubernetes Objects
 
 주로 Kubernetes event 수집용으로 Kubernetes API server 출처의 objects(전체 목록은 kubectl api-resources 로 확인) 수집에도 사용한다.
 
 - Receiver: [Kubernetes Objects Receiver](https://opentelemetry.io/docs/kubernetes/collector/components/#kubernetes-objects-receiver)
 - Exporter: [Loki exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/lokiexporter)
 
-### Metric | Kubernetes Cluster
+#### Metric | Kubernetes Cluster
 
 사실 상 Kube State Metrics의 대체로 Kubernetes API server에서 cluster level의 metric과 entity events를 추출한다.
 
@@ -714,12 +472,10 @@ spec:
           exporters: [loki]
 ```
 
-## prometheus Collector(statefulset)
-
+### prometheus Collector(statefulset)
 - prometheus metrics
 
-## OTLP Collector(Deployment)
-
+### OTLP Collector(Deployment)
 - Traces(OTEL)
 - Generic OTEL Logs
 - Generic OTEL metrics
@@ -727,22 +483,19 @@ spec:
 공용 receiver, exporter 공통적으로 otlp 프로토콜을 사용하고 replica 개수 제약이 없는 signal 대상 collector로서,\\
 제약이 없을 경우 가장 운용에 유리한 배포 패턴인 Deployment 를 사용한다. MLT 모두를 대상으로 한다.
 
-### Trace | Generic OTEL trace
-
+#### Trace | Generic OTEL trace
 [Jaeger](https://www.jaegertracing.io/docs/next-release/deployment/) 및 [Grafana Tempo](https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/)는 OTLP Receiver를 자체적으로 지원한다. 
 
 - Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
 - Exporter: [OTLP Exporter (gRPC)](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/otlpexporter)
 
-### Metric | Generic OTEL metric
-
+#### Metric | Generic OTEL metric
 앞서 논한 metric 이외의 app level metrics 등의 여타 metric 수집을 위한 endpoint이다.
 
 - Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)
 - Exporter: OTLP/HTTP Exporter
 
-### Log | Generic OTEL log
-
+#### Log | Generic OTEL log
 Istio의 OTel access log를 포함한 여타 log 수집을 위한 endpoint이다.
 
 - Receiver: [OTLP Receiver](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/otlpreceiver)

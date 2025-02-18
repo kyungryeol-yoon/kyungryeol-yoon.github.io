@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] PostgreSQL initdb 설정"
 date: 2022-11-19
-categories: [Kubernetes, PostgreSQL]
+categories: [Kubernetes, Database]
 tags: [Kubernetes, PostgreSQL]
 ---
 

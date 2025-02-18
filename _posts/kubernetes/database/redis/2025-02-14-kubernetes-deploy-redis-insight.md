@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Deploy Redis Insight"
 date: 2025-02-14
-categories: [Kubernetes, Redis]
+categories: [Kubernetes, Database]
 tags: [Kubernetes, Redis, UI]
 ---
 

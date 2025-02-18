@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Redis Save"
 date: 2025-02-17
-categories: [Kubernetes, Redis]
+categories: [Kubernetes, Database]
 tags: [Kubernetes, Redis]
 ---
 
