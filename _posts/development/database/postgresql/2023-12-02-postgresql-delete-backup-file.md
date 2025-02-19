@@ -2,7 +2,7 @@
 title: "[PostgreSQL] Delete BackUp File"
 date: 2023-12-02
 categories: [Database, PostgreSQL]
-tags: [database, postgresql, delete, backUp, file]
+tags: [database, postgresql, delete, backup, file]
 ---
 
 ## BackUp File 삭제 Command
