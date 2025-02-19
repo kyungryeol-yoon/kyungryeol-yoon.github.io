@@ -1,7 +1,7 @@
 ---
 title: "[Multipass] Install Ubuntu"
 date: 2024-05-19
-categories: [OS, Linux]
+categories: [Virtualization, Multipass]
 tags: [multipass, ubuntu, linux]
 ---
 
