@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl logs command"
 date: 2022-04-12
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, logs]
+tags: [kubernetes, kubectl, command, logs]
 # comments: true
 # pin: true
 ---

@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl wait command"
 date: 2023-11-29
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, wait]
+tags: [kubernetes, kubectl, command, wait]
 # comments: true
 # pin: true
 ---

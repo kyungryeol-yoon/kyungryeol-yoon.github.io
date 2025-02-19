@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl port-forward command"
 date: 2022-11-19
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, port-forward]
+tags: [kubernetes, kubectl, command, port-forward]
 # comments: true
 # pin: true
 ---

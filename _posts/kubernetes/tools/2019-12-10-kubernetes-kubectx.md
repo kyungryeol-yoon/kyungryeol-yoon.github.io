@@ -2,7 +2,7 @@
 title: "[Kubernetes] kubectx"
 date: 2019-12-10
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectx]
+tags: [kubernetes, kubectx]
 ---
 
 Kubernetes의 Context를 여러개 사용하고 있다면,\\

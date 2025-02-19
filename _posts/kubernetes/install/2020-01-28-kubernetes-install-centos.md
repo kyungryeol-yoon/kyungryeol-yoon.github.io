@@ -4,7 +4,7 @@ title: "[Kubernetes] install Centos"
 date: 2020-01-28
 # excerpt: "Kubernetes Centos 설치법"
 categories: [Kubernetes, Install]
-tags: [Kubernetes, Centos, Install]
+tags: [kubernetes, centos, install]
 # comments: true
 ---
 

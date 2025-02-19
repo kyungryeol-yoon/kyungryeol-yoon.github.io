@@ -2,7 +2,7 @@
 title: "[Kubernetes] About Argo CD"
 date: 2021-10-17
 categories: [Kubernetes, DevOps]
-tags: [Argo CD, Kubernetes, GitOps, DevOps]
+tags: [argo cd, kubernetes, gitops, devops]
 ---
 
 - Argo CD는 GitOps 스타일의 배포를 지원하는 CD 도구

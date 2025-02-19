@@ -2,7 +2,7 @@
 title: "[Kubernetes] Install Loki Distributed Using Helm Chart"
 date: 2024-06-19
 categories: [Kubernetes, Observability]
-tags: [Kubernetes, Promtail, Loki, Grafana, Install, Helm]
+tags: [kubernetes, promtail, loki, grafana, install, helm]
 ---
 
 > [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)

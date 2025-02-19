@@ -2,7 +2,7 @@
 title: "[Linux] 네트워크 - nslookup 도메인 정보 확인"
 date: 2018-09-07
 categories: [OS, Linux]
-tags: [Linux, Network, nslookup]
+tags: [linux, network, nslookup]
 ---
 
 ## nslookup 명령어

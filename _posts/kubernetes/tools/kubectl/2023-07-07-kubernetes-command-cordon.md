@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl cordon command"
 date: 2023-07-07
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, cordon]
+tags: [kubernetes, kubectl, command, cordon]
 # comments: true
 ---
 

@@ -2,7 +2,7 @@
 title: "[Blog] Chirpy"
 date: 2025-01-15
 categories: [Blog, Chirpy]
-tags: [Blog, Chirpy]
+tags: [blog, chirpy]
 ---
 
 > Linux 환경에서 작업 (아래 중에 하나 선택)

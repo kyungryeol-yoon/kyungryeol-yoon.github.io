@@ -2,7 +2,7 @@
 title: "[Docker] Docker Image Save & Load, Export & Import"
 date: 2021-05-02
 categories: [Docker, Image]
-tags: [Docker, Image, Save, Load, Export, Import]
+tags: [docker, image, save, load, export, import]
 ---
 
 - Docker를 tar 파일로 저장하는 데는 save, export 두 가지 명령어가 있다.

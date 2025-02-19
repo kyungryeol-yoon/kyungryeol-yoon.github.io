@@ -2,7 +2,7 @@
 title: "[Linux] 파일 관리 - pwd, cd"
 date: 2018-01-09
 categories: [OS, Linux]
-tags: [Linux, File, cd, pwd, Directory]
+tags: [linux, file, cd, pwd, directory]
 ---
 
 ## pwd 명령어

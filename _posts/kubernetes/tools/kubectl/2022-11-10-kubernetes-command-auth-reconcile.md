@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl auth reconcile command"
 date: 2022-11-10
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, auth reconcile]
+tags: [kubernetes, kubectl, command, auth reconcile]
 # comments: true
 # pin: true
 ---

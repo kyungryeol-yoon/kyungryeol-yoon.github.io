@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl edit command"
 date: 2023-10-19
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, edit]
+tags: [kubernetes, kubectl, command, edit]
 # comments: true
 # pin: true
 ---

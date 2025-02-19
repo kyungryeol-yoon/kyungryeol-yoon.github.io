@@ -3,7 +3,7 @@
 title: "Spring framework home.jsp 구동 과정과 web.xml, servlet-context.xml은 무엇인가?"
 date: 2016-10-16
 categories: [Framework, Spring]
-tags: [Spring, Framework, Java, Process]
+tags: [spring, framework, java, process]
 # comments: true
 ---
 

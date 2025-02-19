@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl create command"
 date: 2023-03-30
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, Create]
+tags: [kubernetes, kubectl, command, create]
 # comments: true
 ---
 

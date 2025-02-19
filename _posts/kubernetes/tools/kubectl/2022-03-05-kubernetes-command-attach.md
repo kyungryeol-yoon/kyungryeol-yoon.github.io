@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl attach command"
 date: 2022-03-05
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, attach]
+tags: [kubernetes, kubectl, command, attach]
 # comments: true
 # pin: true
 ---

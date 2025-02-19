@@ -2,7 +2,7 @@
 title: "[Kubernetes] Kubekey Artifact Upgrade"
 date: 2024-03-05
 categories: [Kubernetes, Upgrade]
-tags: [Kubernetes, Kubekey, Artifact, Upgrade]
+tags: [kubernetes, kubekey, artifact, upgrade]
 ---
 
 ## offline 설치 위한 artifact 파일 생성

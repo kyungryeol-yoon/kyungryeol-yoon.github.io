@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl copy command"
 date: 2023-06-11
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, copy]
+tags: [kubernetes, kubectl, command, copy]
 # comments: true
 ---
 

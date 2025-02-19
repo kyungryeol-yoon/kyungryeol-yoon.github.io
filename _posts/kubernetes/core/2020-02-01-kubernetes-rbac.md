@@ -3,7 +3,7 @@
 title: "[Kubernetes] RBAC"
 date: 2020-02-01
 categories: [Kubernetes, Core]
-tags: [Kubernetes, kubectl, RBAC]
+tags: [kubernetes, kubectl, rbac]
 # comments: true
 ---
 

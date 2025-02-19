@@ -2,7 +2,7 @@
 title: "[MySQL] MySQL 사용자 추가(권한추가)"
 date: 2016-11-02
 categories: [Database, MySQL]
-tags: [Database, MySQL, Create, User]
+tags: [database, mysql, create, user]
 ---
 
 ## 사용자 추가

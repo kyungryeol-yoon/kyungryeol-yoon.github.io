@@ -2,7 +2,7 @@
 title: "[Kubernetes] Install Grafana Using Helm Chart"
 date: 2024-06-08
 categories: [Kubernetes, Observability]
-tags: [Kubernetes, Grafana, Helm, Install]
+tags: [kubernetes, grafana, helm, install]
 ---
 
 > [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)

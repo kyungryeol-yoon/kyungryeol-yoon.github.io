@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl describe command"
 date: 2022-01-11
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, describe]
+tags: [kubernetes, kubectl, command, describe]
 # comments: true
 # pin: true
 ---

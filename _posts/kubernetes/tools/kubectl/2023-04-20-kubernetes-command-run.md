@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl run command"
 date: 2023-04-20
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, run]
+tags: [kubernetes, kubectl, command, run]
 # comments: true
 ---
 

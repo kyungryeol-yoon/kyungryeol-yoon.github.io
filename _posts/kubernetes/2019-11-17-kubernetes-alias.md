@@ -2,7 +2,7 @@
 title: "[Kubernetes] Alias"
 date: 2019-11-17
 categories: [Kubernetes, Alias]
-tags: [Kubernetes, kubectl, Alias]
+tags: [kubernetes, kubectl, alias]
 ---
 
 ## 별칭 주기

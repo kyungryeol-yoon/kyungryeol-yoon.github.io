@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl label command"
 date: 2023-11-11
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, label]
+tags: [kubernetes, kubectl, command, label]
 # comments: true
 ---
 

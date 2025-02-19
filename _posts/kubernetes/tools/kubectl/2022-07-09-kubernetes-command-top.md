@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl top command"
 date: 2022-07-09
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, top]
+tags: [kubernetes, kubectl, command, top]
 # comments: true
 # pin: true
 ---

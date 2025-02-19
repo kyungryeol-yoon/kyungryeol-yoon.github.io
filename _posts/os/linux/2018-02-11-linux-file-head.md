@@ -2,7 +2,7 @@
 title: "[Linux] 파일 관리 - head 파일 내용 윗줄부터 출력"
 date: 2018-02-11
 categories: [OS, Linux]
-tags: [Linux, File, head]
+tags: [linux, file, head]
 ---
 
 ## head 명령어

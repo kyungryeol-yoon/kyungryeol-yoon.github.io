@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl rollout command"
 date: 2023-09-17
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, rollout]
+tags: [kubernetes, kubectl, command, rollout]
 # comments: true
 ---
 

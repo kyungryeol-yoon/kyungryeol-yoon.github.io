@@ -2,7 +2,7 @@
 title: "[Docker] Permission Denied 발생하는 경우"
 date: 2021-03-11
 categories: [Docker, Permission]
-tags: [Docker, Permission, Denied]
+tags: [docker, permission, denied]
 ---
 
 ## docker 설치 후 /var/run/docker.sock의 permission denied 발생하는 경우

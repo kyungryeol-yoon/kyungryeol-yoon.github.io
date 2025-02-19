@@ -2,7 +2,7 @@
 title: "[Kubernetes] Install Kubernetes in the Multipass"
 date: 2024-10-15
 categories: [Kubernetes, Install]
-tags: [Kubernetes, Install, Multipass]
+tags: [kubernetes, install, multipass]
 ---
 
 > [Multipass 설명 참고](https://kyungryeol-yoon.github.io/posts/linux-multipass/)

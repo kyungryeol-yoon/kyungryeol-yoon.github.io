@@ -2,7 +2,7 @@
 title: "[Kubernetes] Install AWX Using Helm Chart"
 date: 2024-02-02
 categories: [Kubernetes, Platform]
-tags: [Kubernetes, AWX, Ansible, Install, Helm]
+tags: [kubernetes, awx, ansible, install, helm]
 render_with_liquid: false
 ---
 

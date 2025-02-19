@@ -2,7 +2,7 @@
 title: "[Blog] Jekyll Liquid Tag Template"
 date: 2024-12-29
 categories: [Blog, Jekyll]
-tags: [Blog, Jekyll, Liquid, Tag, Template]
+tags: [blog, jekyll, liquid, tag, template]
 render_with_liquid: false
 ---
 
@@ -38,7 +38,7 @@ render_with_liquid: false
   title: "[Blog] Jekyll Liquid Tag Template"
   date: 2024-12-29
   categories: [Blog, Jekyll]
-  tags: [Blog, Jekyll, Liquid, Tag, Template]
+  tags: [blog, jekyll, liquid, tag, template]
   render_with_liquid: false
   ---
   ```

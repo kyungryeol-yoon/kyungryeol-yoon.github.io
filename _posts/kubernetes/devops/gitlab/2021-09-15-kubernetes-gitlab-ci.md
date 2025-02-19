@@ -2,7 +2,7 @@
 title: "[Kubernetes] Gitlab CI"
 date: 2021-09-15
 categories: [Kubernetes, DevOps]
-tags: [Kubernetes, Gitlab, CI]
+tags: [kubernetes, gitlab, ci]
 ---
 
 > [Install Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner-using-helm/)

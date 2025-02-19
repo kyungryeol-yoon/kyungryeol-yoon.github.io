@@ -2,7 +2,7 @@
 title: "[Python] pip install Package"
 date: 2021-06-05
 categories: [Programming, Python]
-tags: [Python, pip, Package]
+tags: [python, pip, package]
 ---
 
 ## pip의 일괄 설치 옵션 : -r requirements.txt

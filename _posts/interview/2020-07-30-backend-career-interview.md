@@ -3,7 +3,7 @@
 title: "Backend & Web 경력직(3~5) 면접 정리"
 date: 2020-07-30
 # excerpt: "BackEnd & Web 경력직(3~5) 면접과 관련하여 정리"
-tags: [Web, Spring, Java, Programming, MVC, Interview, Backend, JPA, MyBatis, collection]
+tags: [web, spring, java, programming, mvc, interview, backend, jpa, mybatis, collection]
 # comments: true
 ---
 

@@ -2,7 +2,7 @@
 title: "[Kubernetes] Install Kubernetes using kubespray in the Virtual Box"
 date: 2024-06-01
 categories: [Kubernetes, Install]
-tags: [Kubernetes, Kubespray, VirtualBox, Vagrant, Install]
+tags: [kubernetes, kubespray, virtual box, vagrant, install]
 ---
 
 ## Kubespray?

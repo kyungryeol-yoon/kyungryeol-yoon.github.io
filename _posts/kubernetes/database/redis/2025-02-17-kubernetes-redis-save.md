@@ -2,7 +2,7 @@
 title: "[Kubernetes] Redis Save"
 date: 2025-02-17
 categories: [Kubernetes, Database]
-tags: [Kubernetes, Redis]
+tags: [kubernetes, redis]
 ---
 
 Kubernetes(K8s)에서 Redis의 데이터 저장 방식을 변경하려면, Redis의 설정을 수정해야 합니다. Redis는 기본적으로 메모리 기반 저장소이지만, 데이터를 디스크에 저장하기 위해 `RDB` 또는 `AOF` 모드를 사용할 수 있습니다. 이를 설정 파일에서 조정하거나, `redis-cli` 명령어를 통해 실시간으로 변경할 수 있습니다.

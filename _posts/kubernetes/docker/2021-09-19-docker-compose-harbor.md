@@ -2,7 +2,7 @@
 title: "[Docker-Compose] Install Harbor"
 date: 2021-09-19
 categories: [Docker, Docker-Compose]
-tags: [Docker, Install, Harbor, Docker-Compose]
+tags: [docker, install, harbor, docker-compose]
 ---
 
 > [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose/)

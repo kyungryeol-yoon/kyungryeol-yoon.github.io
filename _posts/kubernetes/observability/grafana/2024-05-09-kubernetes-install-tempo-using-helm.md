@@ -2,7 +2,7 @@
 title: "[Kubernetes] Install Tempo Using Helm Chart"
 date: 2024-05-09
 categories: [Kubernetes, Observability]
-tags: [Kubernetes, Grafana, Tempo, Install]
+tags: [kubernetes, grafana, tempo, install]
 ---
 
 ## Tempo

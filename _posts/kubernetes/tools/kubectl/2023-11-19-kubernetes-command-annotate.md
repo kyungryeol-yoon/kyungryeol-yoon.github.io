@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl annotate command"
 date: 2023-11-19
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, annotate]
+tags: [kubernetes, kubectl, command, annotate]
 # comments: true
 ---
 

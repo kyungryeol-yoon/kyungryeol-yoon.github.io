@@ -2,7 +2,7 @@
 title: "[Kubernetes] kubens"
 date: 2019-12-16
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubens]
+tags: [kubernetes, kubens]
 ---
 
 Kubernetes의 Namespace를 여러개 사용하고 있다면,\\

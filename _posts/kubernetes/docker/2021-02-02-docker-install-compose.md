@@ -2,7 +2,7 @@
 title: "[Docker-Compose] Install Docker-Compose"
 date: 2021-02-02
 categories: [Docker, Docker-Compose]
-tags: [Docker, Install, Docker-Compose]
+tags: [docker, install, docker-compose]
 ---
 
 ## Docker-Compose  설치하기

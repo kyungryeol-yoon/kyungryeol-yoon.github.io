@@ -2,7 +2,7 @@
 title: "[Linux] df, du란?"
 date: 2023-04-14
 categories: [OS, Linux]
-tags: [Linux, Disk, usage, Command, df, du]
+tags: [linux, disk, usage, command, df, du]
 ---
 
 ## df ( Disk Free )

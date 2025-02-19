@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl version command"
 date: 2022-08-12
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, version]
+tags: [kubernetes, kubectl, command, version]
 # comments: true
 # pin: true
 ---

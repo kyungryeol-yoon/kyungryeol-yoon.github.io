@@ -2,7 +2,7 @@
 title: "[Linux] 네트워크 - wget 웹 다운로드"
 date: 2018-09-25
 categories: [OS, Linux]
-tags: [Linux, Network, wget]
+tags: [linux, network, wget]
 ---
 
 - 리눅스에서 wget는 웹 상에 존재하는 파일을 쉽게 다운로드 할 때 사용하는 명령어이다.

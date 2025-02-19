@@ -2,7 +2,7 @@
 title: "[Kubernetes] Install Gitlab Runner Using Helm Chart"
 date: 2021-09-11
 categories: [Kubernetes, DevOps]
-tags: [Kubernetes, Gitlab, Runner]
+tags: [kubernetes, gitlab, runner]
 render_with_liquid: false
 ---
 

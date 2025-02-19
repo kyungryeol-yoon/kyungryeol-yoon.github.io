@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl scale command"
 date: 2023-03-21
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, scale]
+tags: [kubernetes, kubectl, command, scale]
 # comments: true
 ---
 

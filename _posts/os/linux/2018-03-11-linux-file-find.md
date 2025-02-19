@@ -2,7 +2,7 @@
 title: "[Linux] 파일 관리 - find 파일/Directory 검색"
 date: 2018-03-11
 categories: [OS, Linux]
-tags: [Linux, File, find]
+tags: [linux, file, find]
 ---
 
 ## find 명령어

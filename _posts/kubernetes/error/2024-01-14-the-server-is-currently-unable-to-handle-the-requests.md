@@ -4,7 +4,7 @@ title: "[Error] kubectl commands error - the server is currently unable to handl
 date: 2024-01-14
 # excerpt: "The connection to the server localhost:8080 was refused 오류 해결법"
 categories: [Kubernetes, Error]
-tags: [Kubernetes, kubectl]
+tags: [kubernetes, kubectl]
 # comments: true
 ---
 

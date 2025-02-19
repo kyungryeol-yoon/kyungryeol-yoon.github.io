@@ -2,7 +2,7 @@
 title: "[Spring] Annotation & Reflection이란?"
 date: 2018-01-13
 categories: [Framework, Spring]
-tags: [Spring, Java, Annotation, Reflection]
+tags: [spring, java, annotation, reflection]
 ---
 
 ## Annotation이란?

@@ -3,7 +3,7 @@
 title: "[Kubernetes] Deploy MySQL"
 date: 2020-01-30
 categories: [Kubernetes, Database]
-tags: [Kubernetes, kubectl, MySQL, Pod]
+tags: [kubernetes, kubectl, mysql, pod]
 # comments: true
 ---
 

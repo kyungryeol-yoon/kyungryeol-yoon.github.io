@@ -2,7 +2,7 @@
 title: "[Linux] 파일 관리 - mkdir Directory 생성"
 date: 2018-01-11
 categories: [OS, Linux]
-tags: [Linux, File, mkdir, Directory]
+tags: [linux, file, mkdir, directory]
 ---
 
 ## mkdir 명령어

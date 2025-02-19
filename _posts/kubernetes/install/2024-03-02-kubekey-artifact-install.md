@@ -2,7 +2,7 @@
 title: "[Kubernetes] Kubekey Artifact Install"
 date: 2024-03-02
 categories: [Kubernetes, Install]
-tags: [Kubernetes, Kubekey, Artifact, Install]
+tags: [kubernetes, kubekey, artifact, install]
 ---
 
 ## offline 설치 위한 artifact 파일 생성

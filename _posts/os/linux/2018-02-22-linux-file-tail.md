@@ -2,7 +2,7 @@
 title: "[Linux] 파일 관리 - tail 파일 내용 제일 아래줄부터 출력"
 date: 2018-02-22
 categories: [OS, Linux]
-tags: [Linux, File, tail]
+tags: [linux, file, tail]
 ---
 
 ## tail 명령어

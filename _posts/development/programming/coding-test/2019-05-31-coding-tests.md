@@ -4,7 +4,7 @@ title: "[Coding] Coding Test 정리"
 date: 2019-05-31
 # excerpt: "코딩 테스트 관련하여 정리"
 categories: [Programming, Coding Test]
-tags: [CPP, Programming, Coding Test]
+tags: [c++, programming, coding test]
 # comments: true
 ---
 

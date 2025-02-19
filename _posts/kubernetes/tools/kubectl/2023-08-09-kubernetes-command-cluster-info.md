@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl cluster-info command"
 date: 2023-08-09
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, cluster-info]
+tags: [kubernetes, kubectl, command, cluster-info]
 # comments: true
 ---
 

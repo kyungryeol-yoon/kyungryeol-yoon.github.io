@@ -2,7 +2,7 @@
 title: "[Python] Background Tasks"
 date: 2023-11-05
 categories: [Programming, Python]
-tags: [Python, BackgroundTasks]
+tags: [python, backgroundtasks]
 ---
 
 - 서버에서 요청을 처리할 때, 작업이 오래 걸리는 요청에 대해서는 응답을 먼저 보내주고 Background에서 나머지 작업을 수행하도록 한다.

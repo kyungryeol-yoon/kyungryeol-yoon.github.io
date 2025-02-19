@@ -2,7 +2,7 @@
 title: "[Git] Git Bash Alias - Windows"
 date: 2023-08-23
 categories: [OS, Windows]
-tags: [Git, Windows, Alias]
+tags: [git, windows, alias]
 ---
 
 ## Windows Git Bash에서 Alias 설정

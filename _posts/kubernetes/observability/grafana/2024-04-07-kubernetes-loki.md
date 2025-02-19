@@ -2,7 +2,7 @@
 title: "[Kubernetes] Loki"
 date: 2024-04-07
 categories: [Kubernetes, Observability]
-tags: [Kubernetes, Grafana, Loki, Install]
+tags: [kubernetes, grafana, loki, install]
 ---
 
 ## Loki

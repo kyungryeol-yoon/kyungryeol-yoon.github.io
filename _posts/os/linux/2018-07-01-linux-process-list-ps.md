@@ -2,7 +2,7 @@
 title: "[Linux] 프로세스 관리 - ps 프로세스 목록"
 date: 2018-07-01
 categories: [OS, Linux]
-tags: [Linux, Process, List, ps]
+tags: [linux, process, list, ps]
 ---
 
 ## ps 명령어

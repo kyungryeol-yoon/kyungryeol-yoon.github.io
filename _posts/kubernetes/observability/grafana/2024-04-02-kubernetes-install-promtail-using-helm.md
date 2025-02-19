@@ -2,7 +2,7 @@
 title: "[Kubernetes] Install Promtail Using Helm Chart"
 date: 2024-04-02
 categories: [Kubernetes, Observability]
-tags: [Kubernetes, Grafana, Promtail, Install]
+tags: [kubernetes, grafana, promtail, install]
 render_with_liquid: false
 ---
 

@@ -2,7 +2,7 @@
 title: "[Kubernetes] PostgreSQL initdb 설정"
 date: 2022-11-19
 categories: [Kubernetes, Database]
-tags: [Kubernetes, PostgreSQL]
+tags: [kubernetes, postgresql]
 ---
 
 - PV 또는 PVC 설정이 되어 있지 않았을 때

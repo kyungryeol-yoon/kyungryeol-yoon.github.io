@@ -2,7 +2,7 @@
 title: "[Kubernetes] Install Kubekey"
 date: 2024-03-01
 categories: [Kubernetes, Install]
-tags: [Kubernetes, Kubekey, Install]
+tags: [kubernetes, kubekey, install]
 ---
 
 ## KubeKey 설치

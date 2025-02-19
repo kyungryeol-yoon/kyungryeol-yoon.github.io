@@ -2,7 +2,7 @@
 title: "[Kubernetes] Install K6-operator Using Helm Chart"
 date: 2024-07-29
 categories: [Kubernetes, K6]
-tags: [Kubernetes, K6, Install, Helm]
+tags: [kubernetes, k6, install, helm]
 ---
 
 > [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)

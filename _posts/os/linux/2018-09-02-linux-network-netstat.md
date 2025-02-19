@@ -2,7 +2,7 @@
 title: "[Linux] 네트워크 - netstat 네트워크 상태 확인"
 date: 2018-09-02
 categories: [OS, Linux]
-tags: [Linux, Network, netstat]
+tags: [linux, network, netstat]
 ---
 
 ## netstat 명령어

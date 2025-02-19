@@ -2,7 +2,7 @@
 title: "[Mac OS] Homebrew and Cask"
 date: 2022-07-30
 categories: [OS, MacOS]
-tags: [Homebrew, Cask, MacOS]
+tags: [homebrew, cask, macos]
 # comments: true
 ---
 

@@ -3,7 +3,7 @@
 title: "[Java] Synchronized"
 date: 2017-05-13
 categories: [Programming, Java]
-tags: [Java, Synchronized]
+tags: [java, synchronized]
 # comments: true
 ---
 

@@ -2,7 +2,7 @@
 title: "[Kubernetes] Install Kong Ingress Controller - Gateway API"
 date: 2024-11-30
 categories: [Kubernetes, Platform]
-tags: [Kubernetes, Kong, Ingress, Controller, Gateway, API]
+tags: [kubernetes, kong, ingress, controller, gateway, api]
 ---
 
 > [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)

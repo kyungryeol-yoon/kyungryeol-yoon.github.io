@@ -2,7 +2,7 @@
 title: "[SRE] SLO, SLI 및 SLA란?"
 date: 2024-08-11
 categories: [DevOps, SRE]
-tags: [DevOps, SLO, SLI, SLA]
+tags: [devops, slo, sli, sla]
 ---
 
 ## **SLO, SLI 및 SLA란?**

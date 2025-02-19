@@ -2,7 +2,7 @@
 title: "[Python] 가상환경 venv 사용하기"
 date: 2021-07-02
 categories: [Programming, Python]
-tags: [Python, venv, Programming]
+tags: [python, venv, programming]
 ---
 
 ## 가상환경을 사용하는 이유

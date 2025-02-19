@@ -2,7 +2,7 @@
 title: "[Python] Fast API"
 date: 2021-07-15
 categories: [Programming, Python]
-tags: [Python, FastAPI, Programming]
+tags: [python, fastapi, programming]
 ---
 
 ## FastAPI란?

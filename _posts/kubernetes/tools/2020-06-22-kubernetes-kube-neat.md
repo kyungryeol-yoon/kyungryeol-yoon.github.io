@@ -2,7 +2,7 @@
 title: "[Kubernetes] kubectl neat"
 date: 2020-06-22
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl-neat]
+tags: [kubernetes, kubectl-neat]
 ---
 
 - `-o yaml` 로 기존 리소스를 저장하면 아래와 같은 불필요한 정보도 추가되어 저장된다.

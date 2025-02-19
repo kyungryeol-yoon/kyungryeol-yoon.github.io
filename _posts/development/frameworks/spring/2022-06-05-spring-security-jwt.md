@@ -2,7 +2,7 @@
 title: "[Spring] Spring Security, JWT, 인증, 인가"
 date: 2022-06-05
 categories: [Framework, Spring]
-tags: [Spring, Security, JWT]
+tags: [spring, security, jwt]
 ---
 
 ## **Spring Security, JWT, 인증, 인가**

@@ -2,7 +2,7 @@
 title: "[Kubernetes] Affinity"
 date: 2022-12-09
 categories: [Kubernetes, Core]
-tags: [Kubernetes, Affinity]
+tags: [kubernetes, affinity]
 ---
 
 ## Affinity?

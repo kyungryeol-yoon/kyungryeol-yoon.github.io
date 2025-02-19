@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl explain command"
 date: 2023-08-07
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, explain]
+tags: [kubernetes, kubectl, command, explain]
 # comments: true
 ---
 

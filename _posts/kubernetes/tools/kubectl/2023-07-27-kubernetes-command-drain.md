@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl drain command"
 date: 2023-07-27
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, drain]
+tags: [kubernetes, kubectl, command, drain]
 # comments: true
 ---
 

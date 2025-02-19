@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubeadm join command"
 date: 2022-10-22
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubeadm, Command, join]
+tags: [kubernetes, kubeadm, command, join]
 # comments: true
 # pin: true
 ---

@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubeadm list command"
 date: 2022-09-22
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubeadm, Command, List]
+tags: [kubernetes, kubeadm, command, list]
 # comments: true
 # pin: true
 ---

@@ -3,7 +3,7 @@
 title: "[MySQL] MySQL user 생성시 ERROR 1364 (HY000)"
 date: 2017-01-13
 categories: [Database, MySQL]
-tags: [Database, MySQL, Error]
+tags: [database, MySQL, Error]
 # comments: true
 ---
 

@@ -2,7 +2,7 @@
 title: "[Kubernetes] Install OTel(OpenTelemetry) Operator Using Helm Chart"
 date: 2024-06-09
 categories: [Kubernetes, Platform]
-tags: [Kubernetes, OpenTelemetry, Operator, Cert-manager, Install, Helm]
+tags: [kubernetes, opentelemetry, operator, cert-manager, install, helm]
 ---
 
 > [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)

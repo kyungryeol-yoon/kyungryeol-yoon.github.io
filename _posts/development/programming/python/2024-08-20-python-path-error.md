@@ -2,7 +2,7 @@
 title: "[Error] Python PATH Problem"
 date: 2024-08-20
 categories: [Programming, Python]
-tags: [Python, List, Programming]
+tags: [python, list, programming]
 ---
 
 - Command 상에서 python 파일명.py를 써서 실행하면 Python이라는 응답이 나오는 것을 볼 수 있다.

@@ -2,7 +2,7 @@
 title: "[Kubernetes] kube-ps1"
 date: 2019-12-22
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kube-ps1]
+tags: [kubernetes, kube-ps1]
 ---
 
 kube-ps1를 사용하면, 현재 사용하고 있는 Kubernetes Context 및 Namespace를 보여줍니다.\\

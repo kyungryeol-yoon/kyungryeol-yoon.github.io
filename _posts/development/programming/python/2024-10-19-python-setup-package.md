@@ -2,7 +2,7 @@
 title: "[Python] Python Setup Package"
 date: 2024-10-19
 categories: [Programming, Python]
-tags: [Python, Package, Programming]
+tags: [python, package, programming]
 ---
 
 ## Package Directory 구조 만들기

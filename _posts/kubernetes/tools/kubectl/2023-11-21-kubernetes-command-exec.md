@@ -3,7 +3,7 @@
 title: "[Kubernetes] kubectl exec command"
 date: 2023-11-21
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubectl, Command, exec]
+tags: [kubernetes, kubectl, command, exec]
 # comments: true
 # pin: true
 ---

@@ -2,7 +2,7 @@
 title: "[Linux] eBPF란?"
 date: 2024-10-17
 categories: [OS, Linux]
-tags: [Linux, eBPF]
+tags: [linux, ebpf]
 ---
 
 ## **eBPF (Extended Berkeley Packet Filter) 개요**

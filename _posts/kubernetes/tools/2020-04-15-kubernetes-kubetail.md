@@ -2,7 +2,7 @@
 title: "[Kubernetes] kubetail"
 date: 2020-04-15
 categories: [Kubernetes, Tool]
-tags: [Kubernetes, kubetail]
+tags: [kubernetes, kubetail]
 ---
 
 - 여러 POD의 로그를 동시에 조회하는 기능

@@ -2,7 +2,7 @@
 title: "[Kubernetes] Install CloudNativePG Using Helm Chart"
 date: 2025-01-16
 categories: [Kubernetes, Database]
-tags: [Kubernetes, CloudNativePG, PostgreSQL, Operator]
+tags: [kubernetes, cloudnativepg, postgresql, operator]
 ---
 
 > [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)

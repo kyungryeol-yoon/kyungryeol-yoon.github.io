@@ -2,7 +2,7 @@
 title: "[Error] BusyBox initramfs 발생할 때"
 date: 2024-03-05
 categories: [OS, Linux]
-tags: [VirtualBox, Ubuntu, BusyBox, initramfs]
+tags: [virtual box, ubuntu, busyBox, initramfs]
 ---
 
 - VirtualBox의 Ubuntu 제대로 종료되지 않아 올바른 파티션을 찾지 못해 BusyBox 진입했다.
