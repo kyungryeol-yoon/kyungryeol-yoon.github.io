@@ -2,7 +2,7 @@
 title: "[MySQL] MySQL 접속 및 데이터베이스 추가"
 date: 2016-11-07
 categories: [Database, MySQL]
-tags: [database, MySQL, Create]
+tags: [database, mysql, create]
 ---
 
 ## DB 접속

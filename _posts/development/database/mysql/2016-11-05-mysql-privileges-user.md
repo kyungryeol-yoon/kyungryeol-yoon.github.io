@@ -2,7 +2,7 @@
 title: "[MySQL] MySQL 사용자에게 데이터베이스 사용권한 부여"
 date: 2016-11-05
 categories: [Database, MySQL]
-tags: [database, MySQL, Privileges]
+tags: [database, mysql, privileges]
 ---
 
 MySQL은 사용자 이름, 비밀번호, 접속 호스트로 인증한다.\\

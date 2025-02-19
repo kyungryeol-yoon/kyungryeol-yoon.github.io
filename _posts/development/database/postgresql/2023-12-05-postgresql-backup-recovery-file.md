@@ -2,7 +2,7 @@
 title: "[PostgreSQL] BackUp 및 Recovery 방법"
 date: 2023-12-05
 categories: [Database, PostgreSQL]
-tags: [database, PostgreSQL, BackUp, Recovery]
+tags: [database, postgresql, backup, recovery]
 ---
 
 ## BackUp 및 Recovery 방법
