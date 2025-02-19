@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] OTel(OpenTelemetry) Collector - Logging"
 date: 2024-06-10
-categories: [Kubernetes, Platform]
+categories: [Kubernetes, Observability]
 tags: [kubernetes, opentelemetry, collector, logging]
 ---
 

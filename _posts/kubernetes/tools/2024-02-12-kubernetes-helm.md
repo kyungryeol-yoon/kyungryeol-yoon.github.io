@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Helm"
 date: 2024-02-12
-categories: [Kubernetes, Helm]
+categories: [Kubernetes, Tool]
 tags: [kubernetes, helm, install]
 ---
 
