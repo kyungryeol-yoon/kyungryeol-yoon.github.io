@@ -1,5 +1,5 @@
 ---
-title: "[PostgreSQL] Delete BackUp File"
+title: "[PostgreSQL] Delete Back up File"
 date: 2023-12-02
 categories: [Database, PostgreSQL]
 tags: [database, postgresql, delete, backup, file]
