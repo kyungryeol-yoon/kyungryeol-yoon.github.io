@@ -1,7 +1,7 @@
 ---
 title: "[Docker-Compose] Install Harbor"
 date: 2021-09-19
-categories: [Docker, Docker-Compose]
+categories: [DevOps, Harbor]
 tags: [docker, install, harbor, docker-compose]
 ---
 

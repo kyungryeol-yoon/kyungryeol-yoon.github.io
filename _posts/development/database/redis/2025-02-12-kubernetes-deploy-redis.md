@@ -5,7 +5,7 @@ categories: [Database, Redis]
 tags: [kubernetes, redis]
 ---
 
-## Command를 통해 Redis ACL 설정하여 배포
+## Command를 통해 Redis ACL 설정하여 배포 + PVC 설정
 
 ```yaml
 apiVersion: apps/v1
@@ -102,7 +102,7 @@ data:
   REDIS_PASSWORD: MTIzNQ==  # 1235를 base64로 인코딩한 값
 ```
 
-## ConfigMap을 통해 Redis 배포
+## Redis ACL 설정을 ConfigMap을 통해 Redis 배포
 
 ```yaml
 apiVersion: apps/v1
@@ -145,7 +145,123 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  name: redis-acl-config
+  namespace: redis-namespace
+data:
+  redis.acl: |
+    # default 계정 No Password
+    user default on nopass ~* +@all
+
+    # admin 계정 Password 설정
+    user admin on >password ~* +@all
+
+    또는
+
+    # 모든 key 읽기 권한만 부여
+    user default on >password allkeys +@read
+
+    또는
+
+    # 관리자 계정
+    user default on +@all
+
+    # 사용자 계정 (readonly 권한)
+    user myuser on >password +@read
+
+    # 관리자 권한을 가진 사용자
+    user admin on >adminpassword +@all
+```
+
+
+## ACL, Redis 설정 관련 ConfigMap을 통해 Command로 배포
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: redis-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:latest
+          ports:
+            - containerPort: 6379
+          command:
+            - sh
+            - '-c'
+          args:
+            - "nohup sh -c 'sleep 15 && redis-cli -a $REDIS_PASSWORD ACL SETUSER $REDIS_USERNAME on +@all ~* \\>$REDIS_PASSWORD' & redis-server /etc/redis/redis.conf --aclfile /etc/redis/redis.acl --requirepass $REDIS_PASSWORD"
+          env:
+          - name: REDIS_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: redis-credentials
+                key: REDIS_USERNAME
+          - name: REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: redis-credentials
+                key: REDIS_PASSWORD
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data
+            - name: redis-acl-config
+              mountPath: /etc/redis
+              subPath: redis.acl
+            - name: redis-config
+              mountPath: /etc/redis
+              subPath: redis.conf
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis-pvc
+        - name: redis-acl-config
+          configMap:
+            name: redis-acl-config
+        - name: redis-config
+          configMap:
+            name: redis-config
+```
+
+### Redis ConfigMap 설정
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
   name: redis-config
+  namespace: redis-namespace
+data:
+  redis.conf: |
+    # Redis의 기본 설정 예시
+    save 900 1
+    save 300 10
+    save 60 10000
+
+    appendonly yes
+    appendfsync everysec
+
+    # 아래와 같이 ACL 파일 경로 설정하지 않는다면 command에서 실행
+    aclfile /etc/redis/redis.acl
+```
+
+### Redis ACL ConfigMap 설정
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-acl-config
   namespace: redis-namespace
 data:
   redis.acl: |
