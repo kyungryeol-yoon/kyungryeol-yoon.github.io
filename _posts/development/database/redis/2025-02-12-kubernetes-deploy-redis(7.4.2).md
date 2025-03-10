@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Deploy Redis"
+title: "[Kubernetes] Deploy Redis(7.4.2)"
 date: 2025-02-12
 categories: [Database, Redis]
 tags: [kubernetes, redis, message broker]

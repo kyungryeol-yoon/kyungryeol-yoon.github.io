@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Install Loki Stack Using Helm Chart"
+title: "[Kubernetes] Install Loki(v2.9.4) Stack Using Helm Chart"
 date: 2024-04-19
 categories: [Observability, Loki]
 tags: [kubernetes, promtail, loki, grafana, install, helm]

@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Deploy Redis Insight"
+title: "[Kubernetes] Deploy Redis Insight(2.64.1)"
 date: 2025-02-14
 categories: [Database, Redis]
 tags: [kubernetes, redis, ui]

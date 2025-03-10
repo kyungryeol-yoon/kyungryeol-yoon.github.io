@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Loki"
+title: "[Kubernetes] Loki(v2.9.4)"
 date: 2024-04-07
 categories: [Observability, Loki]
 tags: [kubernetes, grafana, loki, install]
@@ -107,7 +107,7 @@ tags: [kubernetes, grafana, loki, install]
 - 이 단일 노드는 다수의 컨테이너로 구성되어 Loki 서버, Prometheus, Grafana 및 Prometheus 메트릭 저장소를 모두 단일 클러스터에 배포한다.
 - 이 단순한 배포 방식은 개발 및 테스트 용도로 적합할 수 있다.
 
-> [loki-stack 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-loki-stack-using-helm/)
+> [loki-stack 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-loki(v2.9.4)-stack-using-helm/)
 {: .prompt-info }
 
 ### 2. loki-distributed
@@ -116,7 +116,7 @@ tags: [kubernetes, grafana, loki, install]
 - 이 차트는 Loki의 구성 요소들을 다수의 노드로 분산시키고, 데이터를 보다 효율적으로 처리하고 처리 능력을 확장할 수 있도록 도와준다.
 - 분산된 Loki를 사용하면 대량의 로그를 처리하는 데 더 적합하며, 고가용성과 확장성을 갖추기 위해 다양한 구성을 가능하게 한다.
 
-> [loki-distributed 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-loki-distributed-using-helm/)
+> [loki-distributed 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-loki(v3.1.1)-distributed-using-helm/)
 {: .prompt-info }
 
 ## Architecture
