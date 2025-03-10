@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Kubekey Artifact Install"
+title: "[Kubernetes] Kubekey Artifact Install (v3.0.7)"
 date: 2024-03-02
 categories: [Kubernetes, Install]
 tags: [kubernetes, kubekey, artifact, install]

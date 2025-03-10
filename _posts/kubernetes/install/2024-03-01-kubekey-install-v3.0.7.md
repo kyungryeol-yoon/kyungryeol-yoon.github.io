@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Install Kubekey"
+title: "[Kubernetes] Install Kubekey (v3.0.7)"
 date: 2024-03-01
 categories: [Kubernetes, Install]
 tags: [kubernetes, kubekey, install]

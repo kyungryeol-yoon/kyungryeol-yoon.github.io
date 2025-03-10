@@ -2,7 +2,7 @@
 title: "[Redis] Save"
 date: 2025-02-17
 categories: [Database, Redis]
-tags: [redis, save]
+tags: [redis, save, message broker]
 ---
 
 - Redis는 기본적으로 메모리 기반 저장소이지만, 데이터를 디스크에 저장하기 위해 `RDB` 또는 `AOF` 모드를 사용할 수 있다.

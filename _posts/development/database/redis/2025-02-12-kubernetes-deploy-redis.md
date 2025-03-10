@@ -2,7 +2,7 @@
 title: "[Kubernetes] Deploy Redis"
 date: 2025-02-12
 categories: [Database, Redis]
-tags: [kubernetes, redis]
+tags: [kubernetes, redis, message broker]
 ---
 
 ## Command를 통해 Redis ACL 설정하여 배포 + PVC 설정
