@@ -45,7 +45,7 @@ promtail:
       - url: http://{{ .Release.Name }}:3100/loki/api/v1/push
 ```
 
-> [Promtail 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-promtail-using-helm/)
+> [Promtail 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-promtail(v2.9.4)-using-helm/)
 {: .prompt-info }
 
 ### Setting Loki
@@ -70,7 +70,7 @@ loki:
     uid: ""
 ```
 
-> [Loki 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-loki/)
+> [Loki 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-loki(v2.9.4)/)
 {: .prompt-info }
 
 ### Setting Grafana
@@ -88,7 +88,7 @@ grafana:
     tag: 10.3.3
 ```
 
-> [Grafana 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-grafana-using-helm/)
+> [Grafana 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-grafana(v9.5.21)-using-helm/)
 {: .prompt-info }
 
 ### Install Customize Default Configuration
