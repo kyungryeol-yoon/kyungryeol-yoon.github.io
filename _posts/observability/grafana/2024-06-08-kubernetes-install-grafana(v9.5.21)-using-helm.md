@@ -41,7 +41,7 @@ tags: [kubernetes, grafana, helm, install]
   ```
 
   ```bash
-  k3sctl port-forward svc/grafana 3000:80 -n [NAMESPACE NAME]
+  kubectl port-forward svc/grafana 3000:80 -n [NAMESPACE NAME]
   ```
 
 ## Customize Default Configuration

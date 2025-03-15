@@ -26,9 +26,10 @@ tags: [kubernetes, message broker, strimzi, operator]
   kubectl create -f 'https://strimzi.io/install/latest?namespace=kafka' -n kafka
   ```
 
-> watchNamespaces
+>
+- watchNamespaces
   - 특정 Namespace에서만 Resource를 감시(watch)하도록 지정하는 기능
-watchAnyNamespace
+- watchAnyNamespace
   - Kafka 및 관련 Resource를 관리할 때, 여러 Namespace에서 발생하는 변경 사항을 감시(watch)할 수 있도록 설정하는 옵션
   - 여러 Namespace에서 Kafka 관련 Resource의 생성, 삭제, 업데이트 등을 실시간으로 추적할 수 있다.
 
@@ -38,6 +39,7 @@ watchAnyNamespace
 watchNamespaces: []
 watchAnyNamespace: false
 ```
+
 - <https://github.com/strimzi/strimzi-kafka-operator/blob/main/helm-charts/helm3/strimzi-kafka-operator/values.yaml>
 {: .prompt-info }
 
