@@ -38,6 +38,47 @@ tags: [kubernetes, alloy, helm, install]
   - Release file (.tgz)
     - <https://github.com/grafana/helm-charts/releases>
 
+### kafka 연결
+
+```yaml
+...✂...
+
+alloy:
+  configMap:
+    # -- Create a new ConfigMap for the config file.
+    create: true
+    # -- Content to assign to the new ConfigMap.  This is passed into `tpl` allowing for templating from values.
+    content: |
+      loki.source.kafka "raw" {
+        brokers                = ["kafka:9092"]
+        topics                 = ["loki"]
+        forward_to             = [loki.write.http.receiver]
+        relabel_rules          = loki.relabel.kafka.rules
+        version                = "2.0.0"
+        labels                = {service_name = "raw_kafka"}
+      }
+
+      loki.relabel "kafka" {
+        forward_to      = [loki.write.http.receiver]
+        rule {
+          source_labels = ["__meta_kafka_topic"]
+          target_label  = "topic"
+        }
+      }
+
+      loki.write "http" {
+        endpoint {
+          url = "http://loki:3100/loki/api/v1/push"
+        }
+      }
+
+    # -- Name of existing ConfigMap to use. Used when create is false.
+    name: null
+    # -- Key in ConfigMap to get config from.
+    key: null
+
+...✂...
+```
 
 ### 외부 접속을 위한 NodePort 설정
 
