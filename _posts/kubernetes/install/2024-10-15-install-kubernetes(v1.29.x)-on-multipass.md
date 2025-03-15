@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Install Kubernetes(v1.29) on Multipass"
+title: "[Kubernetes] Install Kubernetes(v1.29.x) on Multipass"
 date: 2024-10-15
 categories: [Kubernetes, Install]
 tags: [kubernetes, install, multipass]
