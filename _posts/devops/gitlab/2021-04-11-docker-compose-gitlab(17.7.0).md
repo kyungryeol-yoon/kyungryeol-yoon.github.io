@@ -1,11 +1,11 @@
 ---
-title: "[Docker-Compose] Install Gitlab"
+title: "[Docker-Compose] Install Gitlab(17.7.0)"
 date: 2021-04-11
 categories: [DevOps, Gitlab]
 tags: [docker, install, gitlab]
 ---
 
-> [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose/)
+> [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose(1.27.4)/)
 {: .prompt-info }
 
 ## GitLab Docker 이미지
@@ -52,7 +52,7 @@ sudo chmod -R 755 /data/gitlab
 
   services:
   gitlab:
-      image: 'gitlab/gitlab-ce:17.6.2-ce.0' or 'gitlab/gitlab-ee:17.7.0-ee.0'
+      image: 'gitlab/gitlab-ce:17.7.0-ce.0' or 'gitlab/gitlab-ee:17.7.0-ee.0'
       container_name: gitlab
       restart: always
       hostname: 'gitlab.local'

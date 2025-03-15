@@ -1,11 +1,11 @@
 ---
-title: "[Docker] Install Gitlab Runner"
+title: "[Docker] Install Gitlab Runner(v17.6.1)"
 date: 2021-08-11
 categories: [DevOps, Gitlab]
 tags: [docker, install, gitlab, runner]
 ---
 
-> [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose/)
+> [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose(1.27.4)/)
 {: .prompt-info }
 
 ## GitLab Runner 설치
