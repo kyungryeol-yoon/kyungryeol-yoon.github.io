@@ -74,7 +74,7 @@ docker-compose --version
 
 ## 도커 컴포즈 CURL 오류 발생 시
 
-- 우분투 22.04 서버에서 도커 컴포즈 CURL 설치 시 아래와 같은 오류가 발생하는 경우가 있다.
+- 우분투 22.04 서버에서 도커 컴포즈 `CURL` 설치 시 아래와 같은 오류가 발생하는 경우가 있다.
 
 ### 오류 코드를 살펴보면 아래와 같다.
 
@@ -83,7 +83,7 @@ Failed to create the file /usr/local/bin/docker-compose: No such file or directo
 curl: (23) Failure writing output to destination 오류 발생
 ```
  
-- 위 오류는 설치하려는 대상 디렉토리인 /usr/local/bin 폴더가 없어서 나는 오류이므로 폴더를 만들어주면 간단히 해결된다.
+- 위 오류는 설치하려는 대상 디렉토리인 `/usr/local/bin` 폴더가 없어서 나는 오류이므로 폴더를 만들어주면 간단히 해결된다.
 
 ### `/usr/local/bin` 폴더 생성
 
@@ -91,7 +91,7 @@ curl: (23) Failure writing output to destination 오류 발생
 sudo mkdir -p /usr/local/bin
 ```
 
-- 이후 다시 CURL 명령어를 실행하면 잘 설치가 된다.
+- 이후 다시 `CURL` 명령어를 실행하면 잘 설치가 된다.
 
 ### 도커 권한 부여
 
