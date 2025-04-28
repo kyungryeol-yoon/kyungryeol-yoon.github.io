@@ -345,6 +345,5 @@ this is test message3
 ```
 
 
-> cloud init examples
-- <https://cloudinit.readthedocs.io/en/latest/reference/examples.html>
+> cloud init examples : <https://cloudinit.readthedocs.io/en/latest/reference/examples.html>
 {: .prompt-info }
