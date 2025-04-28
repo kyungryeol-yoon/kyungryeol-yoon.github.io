@@ -179,7 +179,7 @@ brew install --cask multipass
 - 이를 해결하기 위해서 다음 단계를 수행한다.
     - ssh 키 생성
     - Instance 생성시 적용될 yaml 파일 작성
-    - --cloud-init 옵션을 지정하여 Instance 생성
+    - `--cloud-init` 옵션을 지정하여 Instance 생성
 
 ### ssh key 생성
 
