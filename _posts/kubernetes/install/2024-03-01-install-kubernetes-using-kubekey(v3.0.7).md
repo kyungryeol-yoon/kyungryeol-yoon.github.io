@@ -87,6 +87,8 @@ metadata:
   name: sample
 spec:
   hosts:
+  - {name: master, address: 192.168.0.1, internalAddress: 192.168.0.1, privateKeyPath: "~/.ssh/id_rsa"}
+
   - {name: master, address: 192.168.0.1, internalAddress: 192.168.0.1, user: root, password: Testing123}
   - {name: worker1, address: 192.168.0.2, internalAddress: 192.168.0.2, user: root, password: Testing123}
   - {name: worker2, address: 192.168.0.3, internalAddress: 192.168.0.3, user: root, password: Testing123}
@@ -114,8 +116,6 @@ spec:
     registryMirrors: []
     insecureRegistries: []
   addons: []
-hosts:
-- {name: master, address: 192.168.0.1, internalAddress: 192.168.0.1, privateKeyPath: "~/.ssh/id_rsa"}
 ```
 
 ### 5. Install Cluster
