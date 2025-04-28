@@ -1,5 +1,5 @@
 ---
-title: "[Multipass] Install Ubuntu"
+title: "[Multipass] Setting Ubuntu"
 date: 2024-05-19
 categories: [Virtualization, Multipass]
 tags: [multipass, ubuntu, linux]
@@ -231,6 +231,47 @@ brew install --cask multipass
   ```bash
   ssh multipass-some-instance
   ```
+
+## Multipass Snapshot
+
+### Snapshot 생성
+
+```bash
+multipass snapshot <instance name> -n, --name <snapshot name> --comment, -c, -m <comment>
+multipass snapshot kk-repo -n kk-repo-snap-test -c test
+```
+
+> Snapshot 이름 없이 생성 했을 시, snapshot(1,2,3...)으로 자동 저장된다.
+{: .prompt-tip }
+
+### Snapshot 조회
+
+```bash
+multipass list --snapshots
+
+Instance   Snapshot            Parent   Comment
+kk-repo    kk-repo-snap-test   --       test
+```
+
+### Snapshot 복원
+
+```bash
+multipass restore <instance name>.<snapshot name>
+multipass restore kk-repo.kk-repo-snap-test
+
+Do you want to take a snapshot of kk-repo before discarding its current state? (Yes/no): yes
+Snapshot taken: kk-repo.snapshot2
+Snapshot restored: kk-repo.kk-repo-snap-test
+```
+
+### Snapshot 삭제
+
+```bash
+multipass delete [options] <instance>[.snapshot] [<instance>[.snapshot] ...]
+multipass delete kk-repo.snapshot2
+
+Snapshots can only be purged (after deletion, they cannot be recovered). Are you sure you want to continue? (Yes/no): yes
+```
 
 ## Multipass Alias
 
