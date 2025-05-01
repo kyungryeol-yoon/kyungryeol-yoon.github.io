@@ -975,6 +975,7 @@ sudo vi /etc/hosts
 127.0.0.1 localhost
 
 ## 추가
+192.168.0.100 cr.harbor.kubekey.com
 192.168.0.101 lb.kubesphere.local
 ##
 
