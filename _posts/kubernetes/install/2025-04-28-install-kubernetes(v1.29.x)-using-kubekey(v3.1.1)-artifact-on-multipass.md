@@ -1,11 +1,11 @@
 ---
-title: "[Kubernetes] Install Kuberntes using Kubekey(v3.0.7) Artifact"
-date: 2024-03-02
+title: "[Kubernetes] Install Kuberntes(v1.29.x) using Kubekey(v3.1.1) Artifact on Multipass"
+date: 2025-04-28
 categories: [Kubernetes, Install]
 tags: [kubernetes, kubekey, artifact, install]
 ---
 
-## offline 설치 위한 artifact 파일 생성
+## offline 설치 위한 artifact 참고
 
 - version 참고
   - kubernetes와 관련된 image는 <https://github.com/kubesphere/ks-installer/releases>에서 주요 release에만 포함되는 image-list.txt파일을 참고
@@ -16,26 +16,172 @@ tags: [kubernetes, kubekey, artifact, install]
   - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
 
 - 참고
-  - <https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest_and_artifact.md>
+  - <https://github.com/kubesphere/kubekey/blob/v3.1.1/docs/manifest_and_artifact.md>
   - <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
   - <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
-  - <https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest-example.md>
+  - <https://github.com/kubesphere/kubekey/blob/v3.1.1/docs/manifest-example.md>
 
-## kubekey artifact 설치
-
-### 1. script 다운로드
+## Multipass 접속을 위한 ssh key 생성
 
 ```bash
-curl -sfL https://get-kk.kubesphere.io | VERSION=v3.0.7 sh -
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
 ```
 
-### 2. artifact-3.0.7.yaml 작성
+## Multipass 생성
+
+### cloud-init 구성
+
+#### cloud-init 생성
+
+```bash
+vi cloud-init.yaml
+```
+
+#### cloud-init 작성
+
+```yaml
+users:
+  - default
+  - name: root
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - <content of YOUR public key>
+
+  - name: ubuntu
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - <content of YOUR public key>
+
+runcmd:
+  - sudo apt-get update
+  - sudo timedatectl set-timezone "Asia/Seoul"
+  - sudo swapoff -a
+  - sudo sed -i "/swap/d" /etc/fstab
+  - sudo apt-get install -y conntrack
+  - sudo apt-get install -y socat
+```
+
+> cloud-init의 ssh_authorized_keys 설정을 하지 않았을 시
+- 각 Node의 `~/.ssh` 경로의 있는 `authorized_keys`에 `id_rsa_multipass.pub` 내용 붙여넣기
+  ```bash
+  cat $HOME/.ssh/id_rsa_multipass.pub
+  ```
+
+- root 계정일 때
+  ```bash
+  sudo -i
+
+  vi .ssh/authorized_keys
+  ```
+{: .prompt-info }
+
+### Repository 생성
+
+```bash
+multipass launch focal --name kk-repo --memory 8G --disk 100G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
+```
+
+### Master 생성
+
+```bash
+multipass launch focal --name kk-master --memory 8G --disk 50G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
+```
+
+### Worker-1 생성
+
+```bash
+multipass launch focal --name kk-worker-1 --memory 8G --disk 50G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
+```
+
+### Worker-2 생성
+
+```bash
+multipass launch focal --name kk-worker-1 --memory 8G --disk 50G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
+```
+
+## Multipass 접속
+
+- kk-repo
+  ```bash
+  ssh -i $HOME/.ssh/id_rsa_multipass ubuntu@192.168.0.100
+  ```
+
+  ```bash
+  multipass shell kk-repo
+  ```
+
+- kk-master
+  ```bash
+  ssh -i $HOME/.ssh/id_rsa_multipass ubuntu@192.168.0.101
+  ```
+  
+  ```bash
+  multipass shell kk-master
+  ```
+
+- kk-worker-1
+  ```bash
+  ssh -i $HOME/.ssh/id_rsa_multipass ubuntu@192.168.0.102
+  ```
+  
+  ```bash
+  multipass shell kk-worker-1
+  ```
+
+- kk-worker-2
+  ```bash
+  ssh -i $HOME/.ssh/id_rsa_multipass ubuntu@192.168.0.103
+  ```
+  
+  ```bash
+  multipass shell kk-worker-2
+  ```
+
+## Static IP 설정
+
+```bash
+sudo vi /etc/netplan/50-cloud-init.yaml
+```
+
+```yaml
+network:
+    ethernets:
+        eth0:
+            dhcp4: true
+            dhcp6: true
+            match:
+                macaddress: 52:54:00:80:6b:21
+            set-name: eth0
+--- 추가
+        eth1:
+            addresses: [192.168.0.55/24]
+            gateway4: 192.168.0.1
+            dhcp4: no
+---
+    version: 2
+```
+
+## kubekey artifact 구성
+
+### script 다운로드
+
+```bash
+curl -sfL https://get-kk.kubesphere.io | VERSION=v3.1.1 sh -
+```
+
+### ubuntu-20.04-debs-amd64.iso 다운로드
+
+```bash
+wget https://github.com/kubesphere/kubekey/releases/download/v3.1.1/ubuntu-20.04-debs-amd64.iso
+```
+
+### artifact-3.1.1.yaml 작성
 
 ```yaml
 apiVersion: kubekey.kubesphere.io/v1alpha2
 kind: Manifest
 metadata:
-  name: artifact-v3.0.7
+  name: artifact-v3.1.1
 spec:
   arches:
   - amd64
@@ -47,59 +193,42 @@ spec:
     osImage: Ubuntu 20.04.4 LTS
     repository:
       iso:
-        localPath: ""
-        url: "https://github.com/kubesphere/kubekey/releases/download/v3.0.7/ubuntu-20.04-debs-amd64.iso"
+        localPath: "/home/ubuntu/kk_install/ubuntu-20.04-debs-amd64.iso"
+        # url: "https://github.com/kubesphere/kubekey/releases/download/v3.1.1/ubuntu-20.04-debs-amd64.iso"
   kubernetesDistributions:
   - type: kubernetes
-    version: v1.24.9
+    version: v1.29.3
   components:
     helm:
-      version: v3.9.0
+      version: v3.14.3
     cni:
-      version: v0.9.1
+      version: v1.2.0
     etcd:
-      version: v3.4.13
+      version: v3.5.13
     calicoctl:
-      version: v3.23.2
+      version: v3.27.3
     ## For now, if your cluster container runtime is containerd, KubeKey will add a docker 20.10.8 container runtime in the below list.
     ## The reason is KubeKey creates a cluster with containerd by installing a docker first and making kubelet connect the socket file of containerd which docker contained.
     containerRuntimes:
     - type: docker
-      version: 20.10.8
+      version: 24.0.9
     - type: containerd
-      version: 1.6.4
+      version: 1.7.13
     crictl:
-      version: v1.24.0
+      version: v1.29.0
     docker-registry:
       version: "2"
     harbor:
-      version: v2.5.3
+      version: v2.10.1
     docker-compose:
-      version: v2.2.2
+      version: v2.26.1
   images:
-  - docker.io/kubesphere/kube-apiserver:v1.27.2
-  - docker.io/kubesphere/kube-apiserver:v1.26.5
-  - docker.io/kubesphere/kube-apiserver:v1.25.10
-  - docker.io/kubesphere/kube-apiserver:v1.24.9
-  - docker.io/kubesphere/kube-controller-manager:v1.27.2
-  - docker.io/kubesphere/kube-controller-manager:v1.26.5
-  - docker.io/kubesphere/kube-controller-manager:v1.25.10
-  - docker.io/kubesphere/kube-controller-manager:v1.24.9
-  - docker.io/kubesphere/kube-scheduler:v1.27.2
-  - docker.io/kubesphere/kube-scheduler:v1.26.5
-  - docker.io/kubesphere/kube-scheduler:v1.25.10
-  - docker.io/kubesphere/kube-scheduler:v1.24.9
-  - docker.io/kubesphere/kube-proxy:v1.27.2
-  - docker.io/kubesphere/kube-proxy:v1.26.5
-  - docker.io/kubesphere/kube-proxy:v1.25.10
-  - docker.io/kubesphere/kube-proxy:v1.24.9
-  - docker.io/kubesphere/pause:3.8
-  - docker.io/kubesphere/pause:3.7
-  - docker.io/kubesphere/pause:3.6
-  - docker.io/kubesphere/pause:3.5
-  - docker.io/kubesphere/pause:3.4.1
-  - docker.io/coredns/coredns:1.8.6
-  - docker.io/coredns/coredns:1.8.0
+  - docker.io/kubesphere/kube-apiserver:v1.29.3
+  - docker.io/kubesphere/kube-controller-manager:v1.29.3
+  - docker.io/kubesphere/kube-scheduler:v1.29.3
+  - docker.io/kubesphere/kube-proxy:v1.29.3
+  - docker.io/kubesphere/pause:3.9
+  - docker.io/coredns/coredns:1.9.3
   - docker.io/calico/cni:v3.23.2
   - docker.io/calico/kube-controllers:v3.23.2
   - docker.io/calico/node:v3.23.2
@@ -114,23 +243,16 @@ spec:
   # https://github.com/kubesphere/ks-installer/releases/download/v3.3.2/images-list.txt
   ##kubesphere-images
   - docker.io/kubesphere/ks-installer:v3.4.1
-  - docker.io/kubesphere/ks-installer:v3.3.2
   - docker.io/kubesphere/ks-apiserver:v3.4.1
-  - docker.io/kubesphere/ks-apiserver:v3.3.2
   - docker.io/kubesphere/ks-console:v3.4.1
-  - docker.io/kubesphere/ks-console:v3.3.2
   - docker.io/kubesphere/ks-controller-manager:v3.4.1
-  - docker.io/kubesphere/ks-controller-manager:v3.3.2
   - docker.io/kubesphere/kubectl:v1.22.0
-  - docker.io/kubesphere/kubectl:v1.20.0
   - docker.io/kubesphere/kubefed:v0.8.1
   - docker.io/kubesphere/tower:v0.2.1
-  - docker.io/kubesphere/tower:v0.2.0
   - docker.io/minio/minio:RELEASE.2019-08-07T01-59-21Z
   - docker.io/minio/mc:RELEASE.2019-08-07T23-14-43Z
   - docker.io/csiplugin/snapshot-controller:v4.0.0
   - docker.io/kubesphere/nginx-ingress-controller:v1.3.1
-  - docker.io/kubesphere/nginx-ingress-controller:v1.1.0
   - docker.io/mirrorgooglecontainers/defaultbackend-amd64:1.4
   - docker.io/kubesphere/metrics-server:v0.4.2
   - docker.io/library/redis:5.0.14-alpine
@@ -140,7 +262,6 @@ spec:
   - docker.io/kubesphere/netshoot:v1.0
   ##kubeedge-images
   - docker.io/kubeedge/cloudcore:v1.13.0
-  - docker.io/kubeedge/cloudcore:v1.9.2
   - docker.io/kubesphere/iptables-manager:v1.13.0
   - docker.io/kubeedge/iptables-manager:v1.9.2
   - docker.io/kubesphere/edgeservice:v0.3.0
@@ -151,13 +272,9 @@ spec:
   - docker.io/kubesphere/openpitrix-jobs:v3.3.2
   ##kubesphere-devops-images
   - docker.io/kubesphere/devops-apiserver:ks-v3.4.1
-  - docker.io/kubesphere/devops-apiserver:ks-v3.3.2
   - docker.io/kubesphere/devops-controller:ks-v3.4.1
-  - docker.io/kubesphere/devops-controller:ks-v3.3.2
   - docker.io/kubesphere/devops-tools:ks-v3.4.1
-  - docker.io/kubesphere/devops-tools:ks-v3.3.2
   - docker.io/kubesphere/ks-jenkins:v3.4.0-2.319.3-1
-  - docker.io/kubesphere/ks-jenkins:v3.3.0-2.319.1
   - docker.io/jenkins/inbound-agent:4.10-2
   - docker.io/kubesphere/builder-base:v3.2.2
   - docker.io/kubesphere/builder-nodejs:v3.2.0
@@ -201,25 +318,18 @@ spec:
   - docker.io/library/redis:6.2.6-alpine
   ##kubesphere-monitoring-images
   - docker.io/jimmidyson/configmap-reload:v0.7.1
-  - docker.io/jimmidyson/configmap-reload:v0.5.0
   - docker.io/prom/prometheus:v2.39.1
-  - docker.io/prom/prometheus:v2.34.0
   - docker.io/kubesphere/prometheus-config-reloader:v0.55.1
   - docker.io/kubesphere/prometheus-operator:v0.55.1
   - docker.io/kubesphere/kube-rbac-proxy:v0.11.0
   - docker.io/kubesphere/kube-state-metrics:v2.6.0
-  - docker.io/kubesphere/kube-state-metrics:v2.5.0
   - docker.io/prom/node-exporter:v1.3.1
   - docker.io/prom/alertmanager:v0.23.0
   - docker.io/thanosio/thanos:v0.31.0
-  - docker.io/thanosio/thanos:v0.25.2
   - docker.io/grafana/grafana:8.3.3
   - docker.io/kubesphere/kube-rbac-proxy:v0.11.0
-  - docker.io/kubesphere/kube-rbac-proxy:v0.8.0
   - docker.io/kubesphere/notification-manager-operator:v2.3.0
-  - docker.io/kubesphere/notification-manager-operator:v1.4.0
   - docker.io/kubesphere/notification-manager:v2.3.0
-  - docker.io/kubesphere/notification-manager:v1.4.0
   - docker.io/kubesphere/notification-tenant-sidecar:v3.2.0
   ##kubesphere-logging-images
   - docker.io/kubesphere/elasticsearch-curator:v5.7.6
@@ -228,39 +338,24 @@ spec:
   - docker.io/opensearchproject/opensearch:2.6.0
   - docker.io/opensearchproject/opensearch-dashboards:2.6.0
   - docker.io/kubesphere/fluentbit-operator:v0.14.0
-  - docker.io/kubesphere/fluentbit-operator:v0.13.0
   - docker.io/library/docker:19.03
   - docker.io/kubesphere/fluent-bit:v1.9.4
-  - docker.io/kubesphere/fluent-bit:v1.8.11
   - docker.io/kubesphere/log-sidecar-injector:v1.2.0
   - docker.io/elastic/filebeat:6.7.0
   - docker.io/kubesphere/kube-events-operator:v0.6.0
-  - docker.io/kubesphere/kube-events-operator:v0.4.0
-  - docker.io/kubesphere/kube-events-exporter:v0.6.0
-  - docker.io/kubesphere/kube-events-exporter:v0.4.0
   - docker.io/kubesphere/kube-events-ruler:v0.6.0
-  - docker.io/kubesphere/kube-events-ruler:v0.4.0
   - docker.io/kubesphere/kube-auditing-operator:v0.2.0
   - docker.io/kubesphere/kube-auditing-webhook:v0.2.0
   ##istio-images
   - docker.io/istio/pilot:1.14.6
-  - docker.io/istio/pilot:1.11.1
   - docker.io/istio/proxyv2:1.14.6
-  - docker.io/istio/proxyv2:1.11.1
   - docker.io/jaegertracing/jaeger-operator:1.29
-  - docker.io/jaegertracing/jaeger-operator:1.27
   - docker.io/jaegertracing/jaeger-agent:1.29
-  - docker.io/jaegertracing/jaeger-agent:1.27
   - docker.io/jaegertracing/jaeger-collector:1.29
-  - docker.io/jaegertracing/jaeger-collector:1.27
   - docker.io/jaegertracing/jaeger-query:1.29
-  - docker.io/jaegertracing/jaeger-query:1.27
   - docker.io/jaegertracing/jaeger-es-index-cleaner:1.29
-  - docker.io/jaegertracing/jaeger-es-index-cleaner:1.27
   - docker.io/kubesphere/kiali-operator:v1.50.1
-  - docker.io/kubesphere/kiali-operator:v1.38.1
   - docker.io/kubesphere/kiali:v1.50
-  - docker.io/kubesphere/kiali:v1.38
   # ##example-images
   # - docker.io/library/busybox:1.31.1
   # - docker.io/library/nginx:1.14-alpine
@@ -284,16 +379,29 @@ spec:
         password: "password"
 ```
 
-### 3. Export Artifact
+#### components version 확인(지원하는 version이 없을 시 아래와 같이 Error)
 
-```bash
-sudo ./kk artifact export -m artifact-3.0.7.yaml -o artifact-3.0.7.tar.gz
+```
+Failed to download docker binary: curl -L -o /home/ubuntu/kk_install/kubekey/artifact/docker/20.10.8/amd64/docker-20.10.8.tgz https://download.docker.com/linux/static/stable/x86_64/docker-20.10.8.tgz error: No SHA256 found for docker. 20.10.8 is not supported.
+17:40:24 KST failed: [LocalHost]
+error: Pipeline[ArtifactExportPipeline] execute failed: Module[ArtifactBinariesModule] exec failed:
+failed: [LocalHost] [DownloadBinaries] exec failed after 1 retries: Failed to download docker binary: curl -L -o /home/ubuntu/kk_install/kubekey/artifact/docker/20.10.8/amd64/docker-20.10.8.tgz https://download.docker.com/linux/static/stable/x86_64/docker-20.10.8.tgz error: No SHA256 found for docker. 20.10.8 is not supported.
 ```
 
-### 4. Cluster 설치를 위한 config 파일 생성 및 작성
+> Components 참고
+  - <https://github.com/kubesphere/kubekey/blob/v3.1.1/version/components.json>
+{: .prompt-info }
+
+### Export Artifact
 
 ```bash
-sudo ./kk create config --with-kubesphere v3.3.2 --with-kubernetes v1.24.9 -f config-sample.yaml
+sudo ./kk artifact export -m artifact-3.1.1.yaml -o artifact-3.1.1.tar.gz
+```
+
+### Cluster 설치를 위한 config 파일 생성 및 작성
+
+```bash
+sudo ./kk create config --with-kubesphere v3.3.2 --with-kubernetes v1.29.3 -f config-3.1.1.yaml
 ```
 
 ```yaml
@@ -303,36 +411,56 @@ metadata:
   name: sample
 spec:
   hosts:
-  - {name: manage-master, address: 192.168.10.100, internalAddress: 192.168.10.100, user: root, password: vagrant}
-  - {name: manage-worker-1, address: 192.168.10.110, internalAddress: 192.168.10.110, user: root, password: vagrant}
-  - {name: manage-worker-2, address: 192.168.10.120, internalAddress: 192.168.10.120, user: root, password: vagrant}
+  - {name: kk-repo, address: 192.168.0.100, internalAddress: 192.168.0.100, privateKeyPath: "/home/ubuntu/.ssh/id_rsa_multipass"}
+  - {name: kk-master, address: 192.168.0.101, internalAddress: 192.168.0.101, privateKeyPath: "/home/ubuntu/.ssh/id_rsa_multipass"}
+  - {name: kk-worker-1, address: 192.168.0.102, internalAddress: 192.168.0.102, privateKeyPath: "/home/ubuntu/.ssh/id_rsa_multipass"}
+  - {name: kk-worker-2, address: 192.168.0.103, internalAddress: 192.168.0.103, privateKeyPath: "/home/ubuntu/.ssh/id_rsa_multipass"}
   roleGroups:
     etcd:
-    - manage-master
+    - kk-master
     control-plane:
-    - manage-master
+    - kk-master
     worker:
-    - manage-worker-1
-    - manage-worker-2
+    - kk-worker-1
+    - kk-worker-2
     registry:
-    - manage-worker-1
+    - kk-repo
   controlPlaneEndpoint:
     ## Internal loadbalancer for apiservers
     # internalLoadbalancer: haproxy
 
-    #domain: lb.kubesphere.local
-    domain: 192.168.10.100
-    address: ""
+    domain: lb.kubesphere.local
+    # domain: 192.168.0.101
+    address: "192.168.0.101"
     port: 6443
   kubernetes:
-    version: v1.24.9
+    version: v1.29.3
+    imageRepo: kubesphere
     clusterName: cluster.local
+    masqueradeAll: false
+    maxPods: 150
+    nodeCidrMaskSize: 24
+    proxyMode: ipvs
     autoRenewCerts: true
     containerManager: containerd
-  etcd:
-    type: kubekey
+    featureGates:
+      RotateKubeletServerCertificate: true
+    apiserverArgs:
+    - default-not-ready-toleration-seconds=30
+    - default-unreachable-toleration-seconds=30
+    controllerManagerArgs:
+    - node-monitor-period=2s
+    - node-monitor-grace-period=16s
+    kubeletConfiguration:
+      nodeStatusUpdateFrequency: 4s
+  # etcd:
+    # type: kubekey
   network:
     plugin: calico
+    calico:
+      ipipMode: Always
+      vxianMode: Never
+      vethMTU: 1440
     kubePodsCIDR: 10.233.64.0/18
     kubeServiceCIDR: 10.233.0.0/18
     ## multus support. https://github.com/k8snetworkplumbingwg/multus-cni
@@ -341,22 +469,22 @@ spec:
   registry:
     type: harbor
     auths:
-      "dockerhub.kubekey.local":
+      "cr.harbor.kubekey.com":
         username: admin
         password: Harbor12345
-    privateRegistry: "dockerhub.kubekey.local"
+    privateRegistry: "cr.harbor.kubekey.com"
     namespaceOverride: "kubesphereio"
     registryMirrors: []
-    insecureRegistries: []
+    insecureRegistries: ["cr.harbor.kubekey.com"]
   addons: []
 ---
-apiVersion: installer.kubesphere.io/v1alpha1
+apiVersion: installer.kubesphere.io/v1alpha2
 kind: ClusterConfiguration
 metadata:
   name: ks-installer
   namespace: kubesphere-system
   labels:
-    version: v3.3.2
+    version: v3.4.1
 spec:
   persistence:
     storageClass: ""
@@ -526,51 +654,78 @@ spec:
     timeout: 600
 ```
 
-### 5. registry 설치
+### Repo에서 각 Node 접속을 위해 `id_rsa_multipass` 파일 복사
 
 ```bash
-sudo ./kk init registry -f config-sample.yaml -a artifact-3.0.7.tar.gz
+multipass copy-files $HOME/.ssh/id_rsa_multipass repo:/home/ubuntu/.ssh/id_rsa_multipass
 ```
 
-#### [ERROR] ssh error
+### Registry 설치
 
+```bash
+sudo ./kk init registry -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
+```
+
+> harbor 주소 : [harbor 설치한 ip]:80
+{: .prompt-info }
+
+> [ERROR] ssh error
 - 각 node 별로 ssh가 안될시 root passwd가 맞지 않아 발생함.
-- vagrant에서 vm이 생성되면 root 비번을 설정해줘야 하는 듯
+- Multipass에서 vm이 생성되면 root 비번을 설정해줘야 하는 듯
   ```bash
   sudo passwd root
   ```
+{: .prompt-info }
 
-### 6. Harbor 인증서 복사 및 업데이트 (harbor curl: (60) SSL certificate problem: unable to get local issuer certificate)
+### Harbor 인증서 복사 및 업데이트 (`harbor curl: (60) SSL certificate problem: unable to get local issuer certificate`)
+
+#### Repo 및 각 Node의 인증서 복사
 
 ```bash
-sudo cp /etc/docker/certs.d/dockerhub.kubekey.local/ca.crt /usr/local/share/ca-certificates/harbor-ca.crt
-scp -i /home/vagrant/.ssh/id_rsa /usr/local/share/ca-certificates/harbor-ca.crt root@192.168.10.110:/usr/local/share/ca-certificates/harbor-ca.crt
-scp -i /home/vagrant/.ssh/id_rsa /usr/local/share/ca-certificates/harbor-ca.crt root@192.168.10.120:/usr/local/share/ca-certificates/harbor-ca.crt
-
-# 각 node 별로 아래 작업
-sudo update-ca-certificates
-
-# 인증서 적용 확인
-ls -lrt /etc/ssl/certs
-- harbor-ca.pem -> /usr/local/share/ca-certificates/harbor-ca.crt
-- ca-certificates.crt
-
-systemctl restart containerd
+sudo cp /etc/docker/certs.d/cr.harbor.kubekey.com/ca.crt /usr/local/share/ca-certificates/harbor-ca.crt
+sudo scp -i /home/ubuntu/.ssh/id_rsa_multipass /usr/local/share/ca-certificates/harbor-ca.crt root@192.168.0.101:/usr/local/share/ca-certificates/harbor-ca.crt
+sudo scp -i /home/ubuntu/.ssh/id_rsa_multipass /usr/local/share/ca-certificates/harbor-ca.crt root@192.168.0.102:/usr/local/share/ca-certificates/harbor-ca.crt
+sudo scp -i /home/ubuntu/.ssh/id_rsa_multipass /usr/local/share/ca-certificates/harbor-ca.crt root@192.168.0.103:/usr/local/share/ca-certificates/harbor-ca.crt
 ```
 
-- harbor 주소 : [harbor 설치한 ip]:80
+#### 각 Node 별로 인증서 업데이트
 
-### 7. Harbor 수정
+```bash
+sudo update-ca-certificates
+```
+
+#### 인증서 적용 확인
+
+```bash
+ls -lrt /etc/ssl/certs
+```
+
+```
+- harbor-ca.pem -> /usr/local/share/ca-certificates/harbor-ca.crt
+- ca-certificates.crt
+```
+
+#### Container Restart
+
+```bash
+sudo systemctl restart containerd
+```
+
+### Harbor Project 생성
+
+#### Sample Bash 파일 다운로드
 
 ```bash
 curl -O https://raw.githubusercontent.com/kubesphere/ks-installer/master/scripts/create_project_harbor.sh
 ```
 
-#### url 수정 : <https://dockerhub.kubekey.local>
+#### url 수정 : <https://cr.harbor.kubekey.com>
 
 ```bash
 vi create_project_harbor.sh
----
+```
+
+```bash
 #!/usr/bin/env bash
 
 # Copyright 2018 The KubeSphere Authors.
@@ -587,7 +742,7 @@ vi create_project_harbor.sh
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-url="https://dockerhub.kubekey.local"  #Change the value of url to https://dockerhub.kubekey.local.
+url="https://cr.harbor.kubekey.com"  #Change the value of url to https://cr.harbor.kubekey.com.
 user="admin"
 passwd="Harbor12345"
 
@@ -625,36 +780,44 @@ for project in "${harbor_projects[@]}"; do
 done
 ```
 
+#### 파일 권한 변경
+
 ```bash
 chmod +x create_project_harbor.sh
 ```
+
+#### 실행
 
 ```bash
 ./create_project_harbor.sh
 ```
 
-- image 별도로 push 방법
-  ```bash
-  sudo ./kk artifact image push -f config-sample.yaml -a artifact-3.0.7.tar.gz
-  ```
-
-- [ERROR] Harbor에 image push 할 때 Unauthorized 에러 발생 때
-  - 다시 로그인
-  ```bash
-  docker login [your.host.com]:port -u username -p password
-  ```
-
-### 8. Cluster 설치
+### Cluster 설치
 
 ```bash
-sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz
-sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz --with-packages
+sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
+sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz --with-packages
 ```
 
-- `--skip-push-images`를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
+> image 별도로 push 방법
   ```bash
-  sudo ./kk create cluster --skip-push-images -f config-sample.yaml -a artifact-3.0.7.tar.gz
+  sudo ./kk artifact image push -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
   ```
+{: .prompt-tip }
+
+> [ERROR] Harbor에 image push 할 때 Unauthorized 에러 발생 때
+- 다시 로그인
+  ```bash
+  docker login [your.host.com]:port -u username -p password
+  sudo docker login https://cr.harbor.kubekey.com -u admin -p Harbor12345
+  ```
+{: .prompt-tip }
+
+> `--skip-push-images`를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
+  ```bash
+  sudo ./kk create cluster --skip-push-images -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
+  ```
+{: .prompt-tip }
 
 #### Cluster 설치하면서 log 확인
 

@@ -1,5 +1,5 @@
 ---
-title: "[Kubernetes] Install Kubernetes using Kubekey(v3.0.7)"
+title: "[Kubernetes] Install Kubernetes using Kubekey(v3.0.7) on VirtualBox"
 date: 2024-03-01
 categories: [Kubernetes, Install]
 tags: [kubernetes, kubekey, install]
