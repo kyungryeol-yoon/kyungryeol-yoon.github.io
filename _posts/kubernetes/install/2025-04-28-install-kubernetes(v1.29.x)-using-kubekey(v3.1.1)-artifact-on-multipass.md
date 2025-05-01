@@ -84,7 +84,7 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
 - Worker-2 생성
 
   ```bash
-  multipass launch focal --name kk-worker-1 --memory 8G --disk 50G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
+  multipass launch focal --name kk-worker-2 --memory 8G --disk 50G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
   ```
 
 ## Multipass 접속
@@ -188,7 +188,7 @@ sudo vi /etc/netplan/50-cloud-init.yaml
               set-name: eth0
   --- 추가
           eth1:
-              addresses: [192.168.0.101/24]
+              addresses: [192.168.0.102/24]
               gateway4: 192.168.0.1
               dhcp4: no
   ---
@@ -208,14 +208,14 @@ sudo vi /etc/netplan/50-cloud-init.yaml
               set-name: eth0
   --- 추가
           eth1:
-              addresses: [192.168.0.101/24]
+              addresses: [192.168.0.103/24]
               gateway4: 192.168.0.1
               dhcp4: no
   ---
       version: 2
   ```
 
-## kubekey artifact 구성
+## kubekey artifact 구성 및 설치
 
 ### script 다운로드
 
@@ -283,8 +283,11 @@ spec:
   - docker.io/kubesphere/kube-proxy:v1.29.3
   - docker.io/kubesphere/pause:3.9
   - docker.io/coredns/coredns:1.9.3
+  - docker.io/calico/cni:v3.27.3
   - docker.io/calico/cni:v3.23.2
+  - docker.io/calico/kube-controllers:v3.27.3
   - docker.io/calico/kube-controllers:v3.23.2
+  - docker.io/calico/node:v3.27.3
   - docker.io/calico/node:v3.23.2
   - docker.io/calico/pod2daemon-flexvol:v3.23.2
   - docker.io/calico/typha:v3.23.2
@@ -293,6 +296,7 @@ spec:
   - docker.io/openebs/linux-utils:3.3.0
   - docker.io/library/haproxy:2.3
   - docker.io/kubesphere/nfs-subdir-external-provisioner:v4.0.2
+  - docker.io/kubesphere/k8s-dns-node-cache:1.22.20
   - docker.io/kubesphere/k8s-dns-node-cache:1.15.12
   # https://github.com/kubesphere/ks-installer/releases/download/v3.3.2/images-list.txt
   ##kubesphere-images
@@ -455,7 +459,11 @@ sudo ./kk artifact export -m artifact-3.1.1.yaml -o artifact-3.1.1.tar.gz
 ### Cluster 설치를 위한 config 파일 생성 및 작성
 
 ```bash
-sudo ./kk create config --with-kubesphere v3.3.2 --with-kubernetes v1.29.3 -f config-3.1.1.yaml
+sudo ./kk create config --with-kubesphere v3.3.2 --with-kubernetes v1.29.3 -f config-v1.29.3.yaml
+```
+
+```bash
+vi config-v1.29.3.yaml
 ```
 
 ```yaml
@@ -532,7 +540,7 @@ spec:
     insecureRegistries: ["cr.harbor.kubekey.com"]
   addons: []
 ---
-apiVersion: installer.kubesphere.io/v1alpha2
+apiVersion: installer.kubesphere.io/v1alpha1
 kind: ClusterConfiguration
 metadata:
   name: ks-installer
@@ -711,7 +719,7 @@ spec:
 ### Repo에서 각 Node 접속을 위해 `id_rsa_multipass` 파일 복사
 
 ```bash
-multipass copy-files $HOME/.ssh/id_rsa_multipass repo:/home/ubuntu/.ssh/id_rsa_multipass
+multipass copy-files $HOME/.ssh/id_rsa_multipass kk-repo:/home/ubuntu/.ssh/id_rsa_multipass
 ```
 
 ### Registry 설치
@@ -902,6 +910,36 @@ chmod 750 /var/lib/kubelet/pods
 systemctl restart kubelet
 ```
 {: .prompt-danger }
+
+### Cluster 설치 완료
+
+```bash
+#####################################################
+###              Welcome to KubeSphere!           ###
+#####################################################
+
+Console: http://192.168.0.101:30880
+Account: admin
+Password: P@88w0rd
+NOTES：
+  1. After you log into the console, please check the
+     monitoring status of service components in
+     "Cluster Management". If any service is not
+     ready, please wait patiently until all components
+     are up and running.
+  2. Please change the default password after login.
+
+#####################################################
+https://kubesphere.io             2025-05-01 22:32:53
+#####################################################
+22:32:54 KST success: [kk-master]
+22:32:54 KST Pipeline[CreateClusterPipeline] execute successfully
+Installation is complete.
+
+Please check the result using the command:
+
+        kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
+```
 
 ## offline 설치 위한 artifact 참고
 
