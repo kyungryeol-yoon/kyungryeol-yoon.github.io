@@ -741,6 +741,14 @@ sudo passwd root
 
 ### Harbor 인증서 복사 및 업데이트 (`harbor curl: (60) SSL certificate problem: unable to get local issuer certificate`)
 
+> 인증서 업데이트를 하지 않았을 시, 아래와 같이 Error
+```
+[WARNING ImagePull]: failed to pull image cr.harbor.kubekey.com/kubesphereio/kube-apiserver:v1.29.3: output: E0501 22:53:12.616927    4525 remote_image.go:180] "PullImage from image service failed" err="rpc error: code = Unknown desc = failed to pull and unpack image \"cr.harbor.kubekey.com/kubesphereio/kube-apiserver:v1.29.3\": failed to resolve reference \"cr.harbor.kubekey.com/kubesphereio/kube-apiserver:v1.29.3\": failed to do request: Head \"https://cr.harbor.kubekey.com:443/v2/kubesphereio/kube-apiserver/manifests/v1.29.3\": tls: failed to verify certificate: x509: certificate signed by unknown authority" image="cr.harbor.kubekey.com/kubesphereio/kube-apiserver:v1.29.3"
+time="2025-05-01T22:53:12+09:00" level=fatal msg="pulling image: failed to pull and unpack image \"cr.harbor.kubekey.com/kubesphereio/kube-apiserver:v1.29.3\": failed to resolve reference \"cr.harbor.kubekey.com/kubesphereio/kube-apiserver:v1.29.3\": failed to do request: Head \"https://cr.harbor.kubekey.com:443/v2/kubesphereio/kube-apiserver/manifests/v1.29.3\": tls: failed to verify certificate: x509: certificate signed by unknown authority"
+, error: exit status 1
+```
+{: .prompt-danger }
+
 #### Repo 및 각 Node의 인증서 복사
 
 ```bash
