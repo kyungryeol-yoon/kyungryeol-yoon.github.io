@@ -14,11 +14,13 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
 ## cloud-init 구성
 
 - cloud-init 생성
+
   ```bash
   vi cloud-init.yaml
   ```
 
 - cloud-init 작성
+
   ```yaml
   users:
     - default
@@ -44,11 +46,13 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
 > cloud-init의 ssh_authorized_keys 설정을 하지 않았을 시
 
 - 각 Node의 `~/.ssh` 경로의 있는 `authorized_keys`에 `id_rsa_multipass.pub` 내용 붙여넣기
+
   ```bash
   cat $HOME/.ssh/id_rsa_multipass.pub
   ```
 
 - root 계정일 때
+
   ```bash
   sudo -i
 
@@ -59,21 +63,25 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
 ## Multipass 생성
 
 - Repository 생성
+
   ```bash
   multipass launch focal --name kk-repo --memory 8G --disk 100G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
   ```
 
 - Master 생성
+
   ```bash
   multipass launch focal --name kk-master --memory 8G --disk 50G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
   ```
 
 - Worker-1 생성
+
   ```bash
   multipass launch focal --name kk-worker-1 --memory 8G --disk 50G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
   ```
 
 - Worker-2 생성
+
   ```bash
   multipass launch focal --name kk-worker-1 --memory 8G --disk 50G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
   ```
@@ -81,6 +89,7 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
 ## Multipass 접속
 
 - kk-repo
+
   ```bash
   ssh -i $HOME/.ssh/id_rsa_multipass ubuntu@192.168.0.100
   ```
@@ -90,6 +99,7 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
   ```
 
 - kk-master
+
   ```bash
   ssh -i $HOME/.ssh/id_rsa_multipass ubuntu@192.168.0.101
   ```
@@ -99,6 +109,7 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
   ```
 
 - kk-worker-1
+
   ```bash
   ssh -i $HOME/.ssh/id_rsa_multipass ubuntu@192.168.0.102
   ```
@@ -108,6 +119,7 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
   ```
 
 - kk-worker-2
+
   ```bash
   ssh -i $HOME/.ssh/id_rsa_multipass ubuntu@192.168.0.103
   ```
@@ -123,6 +135,7 @@ sudo vi /etc/netplan/50-cloud-init.yaml
 ```
 
 - kk-repo
+
   ```yaml
   network:
       ethernets:
@@ -142,6 +155,7 @@ sudo vi /etc/netplan/50-cloud-init.yaml
   ```
 
 - kk-master
+
   ```yaml
   network:
       ethernets:
@@ -161,6 +175,7 @@ sudo vi /etc/netplan/50-cloud-init.yaml
   ```
 
 - kk-worker-1
+
   ```yaml
   network:
       ethernets:
@@ -180,6 +195,7 @@ sudo vi /etc/netplan/50-cloud-init.yaml
   ```
 
 - kk-worker-2
+
   ```yaml
   network:
       ethernets:
