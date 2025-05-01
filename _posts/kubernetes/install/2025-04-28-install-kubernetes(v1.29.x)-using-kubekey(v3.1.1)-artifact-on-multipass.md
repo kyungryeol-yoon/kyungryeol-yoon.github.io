@@ -726,7 +726,6 @@ sudo ./kk init registry -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
 > [ERROR] ssh error
 - 각 node 별로 ssh가 안될시 root passwd가 맞지 않아 발생함.
 - Multipass에서 vm이 생성되면 root 비번을 설정해줘야 하는 듯
-
 ```bash
 sudo passwd root
 ```
