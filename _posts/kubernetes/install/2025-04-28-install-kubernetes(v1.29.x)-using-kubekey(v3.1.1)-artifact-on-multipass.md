@@ -955,6 +955,8 @@ Please check the result using the command:
 Unable to connect to the server: dial tcp: lookup lb.kubesphere.local on 127.0.0.53:53: server misbehaving
 ```
 
+- kk-master, kk-worker-1, kk-worker-2 각 Node의 `/etc/hosts` 수정
+
 ```bash
 sudo vi /etc/hosts
 ```
@@ -972,7 +974,9 @@ sudo vi /etc/hosts
 127.0.1.1 kk-worker-1 kk-worker-1
 127.0.0.1 localhost
 
-192.168.0.101 lb.kubesphere.local             < 추가 >
+## 추가
+192.168.0.101 lb.kubesphere.local
+##
 
 # The following lines are desirable for IPv6 capable hosts
 ::1 localhost ip6-localhost ip6-loopback
