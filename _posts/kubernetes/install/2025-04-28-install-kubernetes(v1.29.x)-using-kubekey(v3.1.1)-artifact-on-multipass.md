@@ -5,63 +5,44 @@ categories: [Kubernetes, Install]
 tags: [kubernetes, kubekey, artifact, install]
 ---
 
-## offline 설치 위한 artifact 참고
-
-- version 참고
-  - kubernetes와 관련된 image는 <https://github.com/kubesphere/ks-installer/releases>에서 주요 release에만 포함되는 image-list.txt파일을 참고
-  - kubekey의 버전별로 kubernetes, kubesphere의 최신 지원 버전이 있음
-      - kubekey/version/components.json
-      - kubekey/cmd/kk/pkg/version/kubesphere/version_enum.go
-      - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
-  - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
-
-- 참고
-  - <https://github.com/kubesphere/kubekey/blob/v3.1.1/docs/manifest_and_artifact.md>
-  - <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
-  - <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
-  - <https://github.com/kubesphere/kubekey/blob/v3.1.1/docs/manifest-example.md>
-
 ## Multipass 접속을 위한 ssh key 생성
 
 ```bash
 ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
 ```
 
-## Multipass 생성
+## cloud-init 구성
 
-### cloud-init 구성
+- cloud-init 생성
+  ```bash
+  vi cloud-init.yaml
+  ```
 
-#### cloud-init 생성
+- cloud-init 작성
+  ```yaml
+  users:
+    - default
+    - name: root
+      sudo: ALL=(ALL) NOPASSWD:ALL
+      ssh_authorized_keys:
+        - <content of YOUR public key>
 
-```bash
-vi cloud-init.yaml
-```
+    - name: ubuntu
+      sudo: ALL=(ALL) NOPASSWD:ALL
+      ssh_authorized_keys:
+        - <content of YOUR public key>
 
-#### cloud-init 작성
-
-```yaml
-users:
-  - default
-  - name: root
-    sudo: ALL=(ALL) NOPASSWD:ALL
-    ssh_authorized_keys:
-      - <content of YOUR public key>
-
-  - name: ubuntu
-    sudo: ALL=(ALL) NOPASSWD:ALL
-    ssh_authorized_keys:
-      - <content of YOUR public key>
-
-runcmd:
-  - sudo apt-get update
-  - sudo timedatectl set-timezone "Asia/Seoul"
-  - sudo swapoff -a
-  - sudo sed -i "/swap/d" /etc/fstab
-  - sudo apt-get install -y conntrack
-  - sudo apt-get install -y socat
-```
+  runcmd:
+    - sudo apt-get update
+    - sudo timedatectl set-timezone "Asia/Seoul"
+    - sudo swapoff -a
+    - sudo sed -i "/swap/d" /etc/fstab
+    - sudo apt-get install -y conntrack
+    - sudo apt-get install -y socat
+  ```
 
 > cloud-init의 ssh_authorized_keys 설정을 하지 않았을 시
+
 - 각 Node의 `~/.ssh` 경로의 있는 `authorized_keys`에 `id_rsa_multipass.pub` 내용 붙여넣기
   ```bash
   cat $HOME/.ssh/id_rsa_multipass.pub
@@ -75,29 +56,27 @@ runcmd:
   ```
 {: .prompt-info }
 
-### Repository 생성
+## Multipass 생성
 
-```bash
-multipass launch focal --name kk-repo --memory 8G --disk 100G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
-```
+- Repository 생성
+  ```bash
+  multipass launch focal --name kk-repo --memory 8G --disk 100G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
+  ```
 
-### Master 생성
+- Master 생성
+  ```bash
+  multipass launch focal --name kk-master --memory 8G --disk 50G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
+  ```
 
-```bash
-multipass launch focal --name kk-master --memory 8G --disk 50G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
-```
+- Worker-1 생성
+  ```bash
+  multipass launch focal --name kk-worker-1 --memory 8G --disk 50G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
+  ```
 
-### Worker-1 생성
-
-```bash
-multipass launch focal --name kk-worker-1 --memory 8G --disk 50G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
-```
-
-### Worker-2 생성
-
-```bash
-multipass launch focal --name kk-worker-1 --memory 8G --disk 50G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
-```
+- Worker-2 생성
+  ```bash
+  multipass launch focal --name kk-worker-1 --memory 8G --disk 50G --cpus 4 --network name=multipass,mode=manual --cloud-init cloud-init.yaml
+  ```
 
 ## Multipass 접속
 
@@ -137,29 +116,87 @@ multipass launch focal --name kk-worker-1 --memory 8G --disk 50G --cpus 4 --netw
   multipass shell kk-worker-2
   ```
 
-## Static IP 설정
+### 각 Node별로 Static IP 설정
 
 ```bash
 sudo vi /etc/netplan/50-cloud-init.yaml
 ```
 
-```yaml
-network:
-    ethernets:
-        eth0:
-            dhcp4: true
-            dhcp6: true
-            match:
-                macaddress: 52:54:00:80:6b:21
-            set-name: eth0
---- 추가
-        eth1:
-            addresses: [192.168.0.55/24]
-            gateway4: 192.168.0.1
-            dhcp4: no
----
-    version: 2
-```
+- kk-repo
+  ```yaml
+  network:
+      ethernets:
+          eth0:
+              dhcp4: true
+              dhcp6: true
+              match:
+                  macaddress: 52:54:00:80:6b:21
+              set-name: eth0
+  --- 추가
+          eth1:
+              addresses: [192.168.0.100/24]
+              gateway4: 192.168.0.1
+              dhcp4: no
+  ---
+      version: 2
+  ```
+
+- kk-master
+  ```yaml
+  network:
+      ethernets:
+          eth0:
+              dhcp4: true
+              dhcp6: true
+              match:
+                  macaddress: 52:54:00:80:6b:21
+              set-name: eth0
+  --- 추가
+          eth1:
+              addresses: [192.168.0.101/24]
+              gateway4: 192.168.0.1
+              dhcp4: no
+  ---
+      version: 2
+  ```
+
+- kk-worker-1
+  ```yaml
+  network:
+      ethernets:
+          eth0:
+              dhcp4: true
+              dhcp6: true
+              match:
+                  macaddress: 52:54:00:80:6b:21
+              set-name: eth0
+  --- 추가
+          eth1:
+              addresses: [192.168.0.101/24]
+              gateway4: 192.168.0.1
+              dhcp4: no
+  ---
+      version: 2
+  ```
+
+- kk-worker-2
+  ```yaml
+  network:
+      ethernets:
+          eth0:
+              dhcp4: true
+              dhcp6: true
+              match:
+                  macaddress: 52:54:00:80:6b:21
+              set-name: eth0
+  --- 추가
+          eth1:
+              addresses: [192.168.0.101/24]
+              gateway4: 192.168.0.1
+              dhcp4: no
+  ---
+      version: 2
+  ```
 
 ## kubekey artifact 구성
 
@@ -825,7 +862,7 @@ sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz --with-
 kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
-### Kubernetes 일반 유저 일 때
+#### Kubernetes 일반 유저 일 때
 
 ```bash
 mkdir -p $HOME/.kube
@@ -833,13 +870,13 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-#### 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
+> 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
 
-- error: error loading config file "/etc/kubernetes/admin.conf": open /etc/kubernetes/admin.conf: permission denied
-- 아래 명령어를 입력하면 sudo 없이 사용 가능하다.
-  ```bash
-  export KUBECONFIG=$HOME/.kube/config
-  ```
+- [ERROR]  error loading config file `/etc/kubernetes/admin.conf`: open /etc/kubernetes/admin.conf: permission denied
+  - 아래 명령어를 입력하면 sudo 없이 사용 가능하다.
+    ```bash
+    export KUBECONFIG=$HOME/.kube/config
+    ```
 
 - [ERROR] error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
   ```bash
@@ -847,3 +884,20 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
   chmod 750 /var/lib/kubelet/pods
   systemctl restart kubelet
   ```
+{: .prompt-tip }
+
+## offline 설치 위한 artifact 참고
+
+- version 참고
+  - kubernetes와 관련된 image는 <https://github.com/kubesphere/ks-installer/releases>에서 주요 release에만 포함되는 image-list.txt파일을 참고
+  - kubekey의 버전별로 kubernetes, kubesphere의 최신 지원 버전이 있음
+      - kubekey/version/components.json
+      - kubekey/cmd/kk/pkg/version/kubesphere/version_enum.go
+      - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
+  - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
+
+- 참고
+  - <https://github.com/kubesphere/kubekey/blob/v3.1.1/docs/manifest_and_artifact.md>
+  - <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
+  - <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
+  - <https://github.com/kubesphere/kubekey/blob/v3.1.1/docs/manifest-example.md>
