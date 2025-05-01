@@ -43,7 +43,7 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
     - sudo apt-get install -y socat
   ```
 
-> cloud-init의 ssh_authorized_keys 설정을 하지 않았을 시
+### cloud-init의 ssh_authorized_keys 설정을 하지 않았을 시
 
 - 각 Node의 `~/.ssh` 경로의 있는 `authorized_keys`에 `id_rsa_multipass.pub` 내용 붙여넣기
 
@@ -54,11 +54,12 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa_multipass
 - root 계정일 때
 
   ```bash
+  # root 접속
   sudo -i
 
+  # 수정 또는 .ssh 폴더 생성 후 authorized_keys 작성
   vi .ssh/authorized_keys
   ```
-{: .prompt-info }
 
 ## Multipass 생성
 
@@ -725,6 +726,7 @@ sudo ./kk init registry -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
 > [ERROR] ssh error
 - 각 node 별로 ssh가 안될시 root passwd가 맞지 않아 발생함.
 - Multipass에서 vm이 생성되면 root 비번을 설정해줘야 하는 듯
+
   ```bash
   sudo passwd root
   ```
@@ -853,6 +855,7 @@ sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz --with-
 ```
 
 > image 별도로 push 방법
+
   ```bash
   sudo ./kk artifact image push -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
   ```
@@ -860,6 +863,7 @@ sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz --with-
 
 > [ERROR] Harbor에 image push 할 때 Unauthorized 에러 발생 때
 - 다시 로그인
+
   ```bash
   docker login [your.host.com]:port -u username -p password
   sudo docker login https://cr.harbor.kubekey.com -u admin -p Harbor12345
@@ -867,6 +871,7 @@ sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz --with-
 {: .prompt-tip }
 
 > `--skip-push-images`를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
+
   ```bash
   sudo ./kk create cluster --skip-push-images -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
   ```
@@ -887,14 +892,16 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 > 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
-
 - [ERROR]  error loading config file `/etc/kubernetes/admin.conf`: open /etc/kubernetes/admin.conf: permission denied
   - 아래 명령어를 입력하면 sudo 없이 사용 가능하다.
+
     ```bash
     export KUBECONFIG=$HOME/.kube/config
     ```
+{: .prompt-tip }
 
-- [ERROR] error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
+> [ERROR] error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
+
   ```bash
   chown -R kubelet:kubelet /var/lib/kubelet/pods
   chmod 750 /var/lib/kubelet/pods
