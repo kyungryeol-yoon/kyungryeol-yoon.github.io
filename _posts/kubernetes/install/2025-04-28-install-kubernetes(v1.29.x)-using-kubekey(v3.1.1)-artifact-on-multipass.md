@@ -729,7 +729,7 @@ sudo ./kk init registry -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
 ```bash
 sudo passwd root
 ```
-{: .prompt-error }
+{: .prompt-danger }
 
 ### Harbor 인증서 복사 및 업데이트 (`harbor curl: (60) SSL certificate problem: unable to get local issuer certificate`)
 
@@ -865,7 +865,7 @@ sudo ./kk artifact image push -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
 docker login [your.host.com]:port -u username -p password
 sudo docker login https://cr.harbor.kubekey.com -u admin -p Harbor12345
 ```
-{: .prompt-error }
+{: .prompt-danger }
 
 > `--skip-push-images`를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
 ```bash
@@ -893,7 +893,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
     ```bash
     export KUBECONFIG=$HOME/.kube/config
     ```
-{: .prompt-error }
+{: .prompt-danger }
 
 > [ERROR] error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
 ```bash
@@ -901,7 +901,7 @@ chown -R kubelet:kubelet /var/lib/kubelet/pods
 chmod 750 /var/lib/kubelet/pods
 systemctl restart kubelet
 ```
-{: .prompt-error }
+{: .prompt-danger }
 
 ## offline 설치 위한 artifact 참고
 
