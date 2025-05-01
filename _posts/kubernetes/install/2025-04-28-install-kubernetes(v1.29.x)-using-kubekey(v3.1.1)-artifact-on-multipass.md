@@ -949,6 +949,41 @@ Please check the result using the command:
         kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
+## Cluster 다시 시작하고 연결이 되지 않을 때
+
+```bash
+Unable to connect to the server: dial tcp: lookup lb.kubesphere.local on 127.0.0.53:53: server misbehaving
+```
+
+```bash
+sudo vi /etc/hosts
+```
+
+- 아래 추가
+
+```
+# Your system has configured 'manage_etc_hosts' as True.
+# As a result, if you wish for changes to this file to persist
+# then you will need to either
+# a.) make changes to the master file in /etc/cloud/templates/hosts.debian.tmpl
+# b.) change or remove the value of 'manage_etc_hosts' in
+#     /etc/cloud/cloud.cfg or cloud-config from user-data
+#
+127.0.1.1 kk-worker-1 kk-worker-1
+127.0.0.1 localhost
+
+192.168.0.101 lb.kubesphere.local             < 추가 >
+
+# The following lines are desirable for IPv6 capable hosts
+::1 localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+```
+
+```
+192.168.0.101 lb.kubesphere.local
+```
+
 ## offline 설치 위한 artifact 참고
 
 - version 참고
