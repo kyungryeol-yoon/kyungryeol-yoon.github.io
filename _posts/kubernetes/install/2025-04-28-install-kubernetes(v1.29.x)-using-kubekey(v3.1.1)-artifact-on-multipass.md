@@ -949,7 +949,7 @@ Please check the result using the command:
         kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
-## Cluster 다시 시작하고 연결이 되지 않을 때
+## Cluster 재시작 이후, 연결이 되지 않을 때
 
 ```bash
 Unable to connect to the server: dial tcp: lookup lb.kubesphere.local on 127.0.0.53:53: server misbehaving
@@ -985,8 +985,46 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ```
 
+### 다만, 재시작하면 다시 초기화 됨
+
+- `/etc/cloud/templates/hosts.debian.tmpl` 해당 파일을 수정해야 다시 시작하더라도 변경됨
+
+```bash
+sudo vi /etc/cloud/templates/hosts.debian.tmpl
 ```
+
+```
+# Your system has configured 'manage_etc_hosts' as True.
+# As a result, if you wish for changes to this file to persist
+# then you will need to either
+# a.) make changes to the master file in /etc/cloud/templates/hosts.debian.tmpl
+# b.) change or remove the value of 'manage_etc_hosts' in
+#     /etc/cloud/cloud.cfg or cloud-config from user-data
+#
+127.0.1.1 kk-worker-1 kk-worker-1
+127.0.0.1 localhost
+
+## 추가
+192.168.0.100 cr.harbor.kubekey.com
 192.168.0.101 lb.kubesphere.local
+##
+
+# The following lines are desirable for IPv6 capable hosts
+::1 localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+```
+
+## Harbor Login 실패 또는 Cluster에서 Image를 가져오지 못할 때
+
+```bash
+sudo docker restart [nginx docker]
+```
+
+```bash
+sudo -i
+cd /opt/harbor
+docker-compose restart
 ```
 
 ## offline 설치 위한 artifact 참고
