@@ -77,18 +77,21 @@ docker-compose restart
 ```bash
 docker-compose restart [서비스명]
 ```
-{: .prompt-info }
+{: .prompt-tip }
 
-## docker-compose로 생성한 Container들을 일괄 삭제 한다. (삭제 전, 관련 Container들을 종료 시켜두어야 한다.)
+## docker-compose로 생성한 Container들을 일괄 삭제 한다. 
 
 ```bash
 docker-compose rm
 ```
 
+> 삭제 전, 관련 Container들을 종료 시켜두어야 한다.
+{: .prompt-info }
+
 ## 실행중인 Container를 강제로 정지 시킨다.
 
-- `-s`옵션을 사용하여 시그널을 지정해줄 수 있는데, 아래 코드에서는 SIGINT를 사용 하였다. `-s` 옵션을 사용하지 않고 docker-compose kill만 사용할 경우 SIGKILL 이 전송된다.
-
+- `-s`옵션을 사용하여 시그널을 지정해줄 수 있는데, 아래 코드에서는 SIGINT를 사용 하였다.
+- `-s` 옵션을 사용하지 않고 docker-compose kill만 사용할 경우 SIGKILL 이 전송된다.
 - kill 뒤에 서비스를 지정하여 특정 서비스만 kill할 수 있다.
 
 ```bash
@@ -105,10 +108,10 @@ docker-compose down
 - 만약 `docker-compose down --rmi all` 명령을 사용한다면 모든 이미지까지 삭제한다.
 
 
-## 서비스 프라이빗 포트 번호의 설정을 확인할 수 있다.
+## 서비스 포트 번호의 설정을 확인할 수 있다.
 
 ```bash
-# docker-compose port [서비스명] [프라이빗 포트 번호]
+# docker-compose port [서비스명] [포트 번호]
 docker-compose port nginx 80
 ```
 
