@@ -1,6 +1,6 @@
 ---
 title: "[Docker-Compose] Docker-Compose Command"
-date: 2025-04-05
+date: 2022-05-25
 categories: [Docker, Docker-Compose]
 tags: [docker, command, docker-compose]
 ---
@@ -11,7 +11,7 @@ tags: [docker, command, docker-compose]
 docker-compose --version
 ```
 
-## Container를 생성 및 실행
+## Container 생성 및 실행
 
 - `-d` : 백그라운드 실행
 - `--no-deps` : 링크 서비스 실행하지 않음
@@ -25,13 +25,13 @@ docker-compose up [옵션] [서비스명]
 > 특정 서비스들의 경우, 백그라운드로 실행하지 않으면 Container가 생성 및 실행되며, 바로 종료될 수 있다.
 {: .prompt-info }
 
-## 현재 동작중인 Container들의 상태를 확인할 수 있다.
+## 현재 동작중인 Container 상태를 확인
 
 ```bash
 docker-compose ps
 ```
 
-## Container들의 Log를 출력
+## Container Log 출력
 
 ```bash
 docker-compose logs
@@ -46,8 +46,10 @@ docker-compose run
 ```
 
 - 만약 특정 서비스에서 `/bin/bash`를 실행시켜 Shell 환경으로 진입하고 싶다면 아래와 같은 명령어를 이용하면 된다.
+
 > 참고로 서비스명과 Container명은 다르다.
 {: .prompt-info }
+
 - 서비스명은 `docker-compose.yml`의 `services:` 밑에 작성한 서비스 이름이다.
 
 ```bash
@@ -55,7 +57,7 @@ docker-compose run
 docker-compose run redis /bin/bash
 ```
 
-## 여러 개의 서비스 또는 특정 서비스를 시작 or 정지 or 일시정지 or 재시작을 할 수 있다.
+## 서비스 제어
 
 ```bash
 # 서비스 시작
@@ -80,7 +82,7 @@ docker-compose restart [서비스명]
 ```
 {: .prompt-tip }
 
-## docker-compose로 생성한 Container들을 일괄 삭제한다. 
+## docker-compose로 생성한 Container들을 일괄 삭제
 
 ```bash
 docker-compose rm
@@ -89,7 +91,7 @@ docker-compose rm
 > 삭제 전, 관련 Container들을 종료 시켜두어야 한다.
 {: .prompt-info }
 
-## 실행중인 Container를 강제로 정지 시킨다.
+## 실행중인 Container를 강제로 정지
 
 - `-s` 옵션을 사용하여 시그널을 지정해줄 수 있는데, 아래 코드에서는 SIGINT를 사용하였다.
 - `-s` 옵션을 사용하지 않고 `docker-compose kill`만 사용할 경우 SIGKILL이 전송된다.
@@ -100,7 +102,7 @@ docker-compose rm
 docker-compose kill -s SIGINT
 ```
 
-## 네트워크 정보, 볼륨, Container들을 일괄 정지 및 삭제 처리한다.
+## 네트워크 정보, 볼륨, Container들을 일괄 정지 및 삭제 처리
 
 ```bash
 docker-compose down
@@ -109,14 +111,14 @@ docker-compose down
 > `docker-compose down --rmi all` 명령을 사용한다면 모든 Image까지 삭제한다.
 {: .prompt-info }
 
-## 서비스 포트 번호의 설정을 확인할 수 있다.
+## 서비스 포트 번호의 설정 확인
 
 ```bash
 # docker-compose port [서비스명] [포트 번호]
 docker-compose port nginx 80
 ```
 
-## docker-compose 구성 파일의 내용을 확인할 수 있다.
+## docker-compose 구성 파일의 내용을 확인
 
 ```bash
 docker-compose config
