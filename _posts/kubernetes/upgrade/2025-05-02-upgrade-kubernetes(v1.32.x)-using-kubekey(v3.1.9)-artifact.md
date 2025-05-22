@@ -5,7 +5,7 @@ categories: [Kubernetes, Upgrade]
 tags: [kubernetes, kubekey, artifact, upgrade]
 ---
 
-## kubekey artifact 구성 및 설치
+## kubekey artifact 구성 및 업그레이드
 
 ### script 다운로드
 
