@@ -56,8 +56,6 @@ spec:
       version: 1.7.13
     crictl:
       version: v1.29.0
-    docker-registry:
-      version: "2"
     harbor:
       version: v2.10.1
     docker-compose:
