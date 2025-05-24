@@ -5,6 +5,20 @@ categories: [Kubernetes, Upgrade]
 tags: [kubernetes, kubekey, artifact, upgrade]
 ---
 
+> offline 설치 위한 artifact 참고
+- version 참고
+  - kubernetes와 관련된 image는 <https://github.com/kubesphere/ks-installer/releases>에서 주요 release에만 포함되는 image-list.txt파일을 참고
+  - kubekey의 버전별로 kubernetes, kubesphere의 최신 지원 버전이 있음
+      - kubekey/version/components.json
+      - kubekey/cmd/kk/pkg/version/kubesphere/version_enum.go
+      - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
+  - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
+- <https://github.com/kubesphere/kubekey/blob/v3.1.9/docs/manifest_and_artifact.md>
+- <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
+- <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
+- <https://github.com/kubesphere/kubekey/blob/v3.1.9/docs/manifest-example.md>
+{: .prompt-info }
+
 ## script 다운로드
 
 ```bash
@@ -200,17 +214,11 @@ spec:
   addons: []
 ```
 
-## Cluster 업그레이드
+## Upgrade
 
 ```bash
 sudo ./kk upgrade cluster -f config-v1.32.4.yaml -a artifact-3.1.9.tar.gz
 ```
-
-> Upgrade하면서 log 확인
-```bash
-kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
-```
-{: .prompt-tip }
 
 > `--skip-dependency-check`를 추가하면 Kubernetes 및 KubeSphere 버전 의존성 검사를 생략할 수 있다.
 ```bash
@@ -236,16 +244,8 @@ sudo docker login https://cr.harbor.kubekey.com -u admin -p Harbor12345
 - <https://github.com/kubesphere/kubekey/blob/master/docs/commands/kk-upgrade.md>
 {: .prompt-info }
 
-> offline 설치 위한 artifact 참고
-- version 참고
-  - kubernetes와 관련된 image는 <https://github.com/kubesphere/ks-installer/releases>에서 주요 release에만 포함되는 image-list.txt파일을 참고
-  - kubekey의 버전별로 kubernetes, kubesphere의 최신 지원 버전이 있음
-      - kubekey/version/components.json
-      - kubekey/cmd/kk/pkg/version/kubesphere/version_enum.go
-      - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
-  - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
-- <https://github.com/kubesphere/kubekey/blob/v3.1.9/docs/manifest_and_artifact.md>
-- <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
-- <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
-- <https://github.com/kubesphere/kubekey/blob/v3.1.9/docs/manifest-example.md>
-{: .prompt-info }
+### Upgrade log 확인
+
+```bash
+kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
+```

@@ -1,9 +1,23 @@
 ---
-title: "[Kubernetes] Install Kuberntes(v1.29.x) using Kubekey(v3.1.1) Artifact on Multipass"
+title: "[Kubernetes] Install Kubernetes(v1.29.x) using Kubekey(v3.1.1) Artifact on Multipass"
 date: 2025-04-28
 categories: [Kubernetes, Install]
 tags: [kubernetes, kubekey, artifact, install]
 ---
+
+> offline 설치 위한 artifact 참고
+- version 참고
+  - kubernetes와 관련된 image는 <https://github.com/kubesphere/ks-installer/releases>에서 주요 release에만 포함되는 image-list.txt파일을 참고
+  - kubekey의 버전별로 kubernetes, kubesphere의 최신 지원 버전이 있음
+      - kubekey/version/components.json
+      - kubekey/cmd/kk/pkg/version/kubesphere/version_enum.go
+      - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
+  - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
+- <https://github.com/kubesphere/kubekey/blob/v3.1.1/docs/manifest_and_artifact.md>
+- <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
+- <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
+- <https://github.com/kubesphere/kubekey/blob/v3.1.1/docs/manifest-example.md>
+{: .prompt-info }
 
 ## Multipass 접속을 위한 ssh key 생성
 
@@ -458,263 +472,269 @@ sudo ./kk artifact export -m artifact-3.1.1.yaml -o artifact-3.1.1.tar.gz
 
 ### Cluster 설치를 위한 config 파일 생성 및 작성
 
-```bash
-sudo ./kk create config --with-kubesphere v3.3.2 --with-kubernetes v1.29.3 -f config-v1.29.3.yaml
-```
+- config 파일 생성
 
-```bash
-vi config-v1.29.3.yaml
-```
+  ```bash
+  sudo ./kk create config --with-kubesphere v3.3.2 --with-kubernetes v1.29.3 -f config-v1.29.3.yaml
+  ```
 
-```yaml
-apiVersion: kubekey.kubesphere.io/v1alpha2
-kind: Cluster
-metadata:
-  name: sample
-spec:
-  hosts:
-  - {name: kk-repo, address: 192.168.0.100, internalAddress: 192.168.0.100, privateKeyPath: "/home/ubuntu/.ssh/id_rsa_multipass"}
-  - {name: kk-master, address: 192.168.0.101, internalAddress: 192.168.0.101, privateKeyPath: "/home/ubuntu/.ssh/id_rsa_multipass"}
-  - {name: kk-worker-1, address: 192.168.0.102, internalAddress: 192.168.0.102, privateKeyPath: "/home/ubuntu/.ssh/id_rsa_multipass"}
-  - {name: kk-worker-2, address: 192.168.0.103, internalAddress: 192.168.0.103, privateKeyPath: "/home/ubuntu/.ssh/id_rsa_multipass"}
-  roleGroups:
-    etcd:
-    - kk-master
-    control-plane:
-    - kk-master
-    worker:
-    - kk-worker-1
-    - kk-worker-2
+- config 파일 편집
+
+  ```bash
+  vi config-v1.29.3.yaml
+  ```
+
+- config 파일 작성
+
+  ```yaml
+  apiVersion: kubekey.kubesphere.io/v1alpha2
+  kind: Cluster
+  metadata:
+    name: sample
+  spec:
+    hosts:
+    - {name: kk-repo, address: 192.168.0.100, internalAddress: 192.168.0.100, privateKeyPath: "/home/ubuntu/.ssh/id_rsa_multipass"}
+    - {name: kk-master, address: 192.168.0.101, internalAddress: 192.168.0.101, privateKeyPath: "/home/ubuntu/.ssh/id_rsa_multipass"}
+    - {name: kk-worker-1, address: 192.168.0.102, internalAddress: 192.168.0.102, privateKeyPath: "/home/ubuntu/.ssh/id_rsa_multipass"}
+    - {name: kk-worker-2, address: 192.168.0.103, internalAddress: 192.168.0.103, privateKeyPath: "/home/ubuntu/.ssh/id_rsa_multipass"}
+    roleGroups:
+      etcd:
+      - kk-master
+      control-plane:
+      - kk-master
+      worker:
+      - kk-worker-1
+      - kk-worker-2
+      registry:
+      - kk-repo
+    controlPlaneEndpoint:
+      ## Internal loadbalancer for apiservers
+      # internalLoadbalancer: haproxy
+
+      domain: lb.kubesphere.local
+      # domain: 192.168.0.101
+      address: "192.168.0.101"
+      port: 6443
+    kubernetes:
+      version: v1.29.3
+      imageRepo: kubesphere
+      clusterName: cluster.local
+      masqueradeAll: false
+      maxPods: 150
+      nodeCidrMaskSize: 24
+      proxyMode: ipvs
+      autoRenewCerts: true
+      containerManager: containerd
+      featureGates:
+        RotateKubeletServerCertificate: true
+      apiserverArgs:
+      - default-not-ready-toleration-seconds=30
+      - default-unreachable-toleration-seconds=30
+      controllerManagerArgs:
+      - node-monitor-period=2s
+      - node-monitor-grace-period=16s
+      kubeletConfiguration:
+        nodeStatusUpdateFrequency: 4s
+    # etcd:
+      # type: kubekey
+    network:
+      plugin: calico
+      calico:
+        ipipMode: Always
+        vxianMode: Never
+        vethMTU: 1440
+      kubePodsCIDR: 10.233.64.0/18
+      kubeServiceCIDR: 10.233.0.0/18
+      ## multus support. https://github.com/k8snetworkplumbingwg/multus-cni
+      multusCNI:
+        enabled: false
     registry:
-    - kk-repo
-  controlPlaneEndpoint:
-    ## Internal loadbalancer for apiservers
-    # internalLoadbalancer: haproxy
-
-    domain: lb.kubesphere.local
-    # domain: 192.168.0.101
-    address: "192.168.0.101"
-    port: 6443
-  kubernetes:
-    version: v1.29.3
-    imageRepo: kubesphere
-    clusterName: cluster.local
-    masqueradeAll: false
-    maxPods: 150
-    nodeCidrMaskSize: 24
-    proxyMode: ipvs
-    autoRenewCerts: true
-    containerManager: containerd
-    featureGates:
-      RotateKubeletServerCertificate: true
-    apiserverArgs:
-    - default-not-ready-toleration-seconds=30
-    - default-unreachable-toleration-seconds=30
-    controllerManagerArgs:
-    - node-monitor-period=2s
-    - node-monitor-grace-period=16s
-    kubeletConfiguration:
-      nodeStatusUpdateFrequency: 4s
-  # etcd:
-    # type: kubekey
-  network:
-    plugin: calico
-    calico:
-      ipipMode: Always
-      vxianMode: Never
-      vethMTU: 1440
-    kubePodsCIDR: 10.233.64.0/18
-    kubeServiceCIDR: 10.233.0.0/18
-    ## multus support. https://github.com/k8snetworkplumbingwg/multus-cni
-    multusCNI:
-      enabled: false
-  registry:
-    type: harbor
-    auths:
-      "cr.harbor.kubekey.com":
-        username: admin
-        password: Harbor12345
-    privateRegistry: "cr.harbor.kubekey.com"
-    namespaceOverride: "kubesphereio"
-    registryMirrors: []
-    insecureRegistries: ["cr.harbor.kubekey.com"]
-  addons: []
----
-apiVersion: installer.kubesphere.io/v1alpha1
-kind: ClusterConfiguration
-metadata:
-  name: ks-installer
-  namespace: kubesphere-system
-  labels:
-    version: v3.4.1
-spec:
-  persistence:
-    storageClass: ""
-  authentication:
-    jwtSecret: ""
-  zone: ""
-  local_registry: ""
-  namespace_override: ""
-  # dev_tag: ""
-  etcd:
-    monitoring: false
-    endpointIps: localhost
-    port: 2379
-    tlsEnable: true
-  common:
-    core:
-      console:
-        enableMultiLogin: true
-        port: 30880
-        type: NodePort
-    # apiserver:
-    #  resources: {}
-    # controllerManager:
-    #  resources: {}
-    redis:
-      enabled: false
-      volumeSize: 2Gi
-    openldap:
-      enabled: false
-      volumeSize: 2Gi
-    minio:
-      volumeSize: 20Gi
-    monitoring:
-      # type: external
-      endpoint: http://prometheus-operated.kubesphere-monitoring-system.svc:9090
-      GPUMonitoring:
+      type: harbor
+      auths:
+        "cr.harbor.kubekey.com":
+          username: admin
+          password: Harbor12345
+      privateRegistry: "cr.harbor.kubekey.com"
+      namespaceOverride: "kubesphereio"
+      registryMirrors: []
+      insecureRegistries: ["cr.harbor.kubekey.com"]
+    addons: []
+  ---
+  apiVersion: installer.kubesphere.io/v1alpha1
+  kind: ClusterConfiguration
+  metadata:
+    name: ks-installer
+    namespace: kubesphere-system
+    labels:
+      version: v3.4.1
+  spec:
+    persistence:
+      storageClass: ""
+    authentication:
+      jwtSecret: ""
+    zone: ""
+    local_registry: ""
+    namespace_override: ""
+    # dev_tag: ""
+    etcd:
+      monitoring: false
+      endpointIps: localhost
+      port: 2379
+      tlsEnable: true
+    common:
+      core:
+        console:
+          enableMultiLogin: true
+          port: 30880
+          type: NodePort
+      # apiserver:
+      #  resources: {}
+      # controllerManager:
+      #  resources: {}
+      redis:
         enabled: false
-    gpu:
-      kinds:
-      - resourceName: "nvidia.com/gpu"
-        resourceType: "GPU"
-        default: true
-    es:
-      # master:
-      #   volumeSize: 4Gi
+        volumeSize: 2Gi
+      openldap:
+        enabled: false
+        volumeSize: 2Gi
+      minio:
+        volumeSize: 20Gi
+      monitoring:
+        # type: external
+        endpoint: http://prometheus-operated.kubesphere-monitoring-system.svc:9090
+        GPUMonitoring:
+          enabled: false
+      gpu:
+        kinds:
+        - resourceName: "nvidia.com/gpu"
+          resourceType: "GPU"
+          default: true
+      es:
+        # master:
+        #   volumeSize: 4Gi
+        #   replicas: 1
+        #   resources: {}
+        # data:
+        #   volumeSize: 20Gi
+        #   replicas: 1
+        #   resources: {}
+        logMaxAge: 7
+        elkPrefix: logstash
+        basicAuth:
+          enabled: false
+          username: ""
+          password: ""
+        externalElasticsearchHost: ""
+        externalElasticsearchPort: ""
+    alerting:
+      enabled: false
+      # thanosruler:
       #   replicas: 1
       #   resources: {}
-      # data:
-      #   volumeSize: 20Gi
-      #   replicas: 1
+    auditing:
+      enabled: false
+      # operator:
       #   resources: {}
-      logMaxAge: 7
-      elkPrefix: logstash
-      basicAuth:
-        enabled: false
-        username: ""
-        password: ""
-      externalElasticsearchHost: ""
-      externalElasticsearchPort: ""
-  alerting:
-    enabled: false
-    # thanosruler:
-    #   replicas: 1
-    #   resources: {}
-  auditing:
-    enabled: false
-    # operator:
-    #   resources: {}
-    # webhook:
-    #   resources: {}
-  devops:
-    enabled: false
-    # resources: {}
-    jenkinsMemoryLim: 8Gi
-    jenkinsMemoryReq: 4Gi
-    jenkinsVolumeSize: 8Gi
-  events:
-    enabled: false
-    # operator:
-    #   resources: {}
-    # exporter:
-    #   resources: {}
-    # ruler:
-    #   enabled: true
-    #   replicas: 2
-    #   resources: {}
-  logging:
-    enabled: false
-    logsidecar:
-      enabled: true
-      replicas: 2
+      # webhook:
+      #   resources: {}
+    devops:
+      enabled: false
       # resources: {}
-  metrics_server:
-    enabled: false
-  monitoring:
-    storageClass: ""
-    node_exporter:
-      port: 9100
-      # resources: {}
-    # kube_rbac_proxy:
-    #   resources: {}
-    # kube_state_metrics:
-    #   resources: {}
-    # prometheus:
-    #   replicas: 1
-    #   volumeSize: 20Gi
-    #   resources: {}
-    #   operator:
-    #     resources: {}
-    # alertmanager:
-    #   replicas: 1
-    #   resources: {}
-    # notification_manager:
-    #   resources: {}
-    #   operator:
-    #     resources: {}
-    #   proxy:
-    #     resources: {}
-    gpu:
-      nvidia_dcgm_exporter:
-        enabled: false
-        # resources: {}
-  multicluster:
-    clusterRole: none
-  network:
-    networkpolicy:
+      jenkinsMemoryLim: 8Gi
+      jenkinsMemoryReq: 4Gi
+      jenkinsVolumeSize: 8Gi
+    events:
       enabled: false
-    ippool:
-      type: none
-    topology:
-      type: none
-  openpitrix:
-    store:
+      # operator:
+      #   resources: {}
+      # exporter:
+      #   resources: {}
+      # ruler:
+      #   enabled: true
+      #   replicas: 2
+      #   resources: {}
+    logging:
       enabled: false
-  servicemesh:
-    enabled: false
-    istio:
-      components:
-        ingressGateways:
-        - name: istio-ingressgateway
-          enabled: false
-        cni:
-          enabled: false
-  edgeruntime:
-    enabled: false
-    kubeedge:
-      enabled: false
-      cloudCore:
-        cloudHub:
-          advertiseAddress:
-            - ""
-        service:
-          cloudhubNodePort: "30000"
-          cloudhubQuicNodePort: "30001"
-          cloudhubHttpsNodePort: "30002"
-          cloudstreamNodePort: "30003"
-          tunnelNodePort: "30004"
-        # resources: {}
-        # hostNetWork: false
-      iptables-manager:
+      logsidecar:
         enabled: true
-        mode: "external"
+        replicas: 2
         # resources: {}
-      # edgeService:
+    metrics_server:
+      enabled: false
+    monitoring:
+      storageClass: ""
+      node_exporter:
+        port: 9100
+        # resources: {}
+      # kube_rbac_proxy:
       #   resources: {}
-  terminal:
-    timeout: 600
-```
+      # kube_state_metrics:
+      #   resources: {}
+      # prometheus:
+      #   replicas: 1
+      #   volumeSize: 20Gi
+      #   resources: {}
+      #   operator:
+      #     resources: {}
+      # alertmanager:
+      #   replicas: 1
+      #   resources: {}
+      # notification_manager:
+      #   resources: {}
+      #   operator:
+      #     resources: {}
+      #   proxy:
+      #     resources: {}
+      gpu:
+        nvidia_dcgm_exporter:
+          enabled: false
+          # resources: {}
+    multicluster:
+      clusterRole: none
+    network:
+      networkpolicy:
+        enabled: false
+      ippool:
+        type: none
+      topology:
+        type: none
+    openpitrix:
+      store:
+        enabled: false
+    servicemesh:
+      enabled: false
+      istio:
+        components:
+          ingressGateways:
+          - name: istio-ingressgateway
+            enabled: false
+          cni:
+            enabled: false
+    edgeruntime:
+      enabled: false
+      kubeedge:
+        enabled: false
+        cloudCore:
+          cloudHub:
+            advertiseAddress:
+              - ""
+          service:
+            cloudhubNodePort: "30000"
+            cloudhubQuicNodePort: "30001"
+            cloudhubHttpsNodePort: "30002"
+            cloudstreamNodePort: "30003"
+            tunnelNodePort: "30004"
+          # resources: {}
+          # hostNetWork: false
+        iptables-manager:
+          enabled: true
+          mode: "external"
+          # resources: {}
+        # edgeService:
+        #   resources: {}
+    terminal:
+      timeout: 600
+  ```
 
 ### Repo에서 각 Node 접속을 위해 `id_rsa_multipass` 파일 복사
 
@@ -789,66 +809,70 @@ sudo systemctl restart containerd
 curl -O https://raw.githubusercontent.com/kubesphere/ks-installer/master/scripts/create_project_harbor.sh
 ```
 
-#### url 수정 : <https://cr.harbor.kubekey.com>
+#### Harbor 프로젝트 수정 및 url 수정(<https://dockerhub.kubekey.local>)
 
-```bash
-vi create_project_harbor.sh
-```
+- 파일 편집
 
-```bash
-#!/usr/bin/env bash
+  ```bash
+  vi create_project_harbor.sh
+  ```
 
-# Copyright 2018 The KubeSphere Authors.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+- url 수정(<https://dockerhub.kubekey.local>)
 
-url="https://cr.harbor.kubekey.com"  #Change the value of url to https://cr.harbor.kubekey.com.
-user="admin"
-passwd="Harbor12345"
+  ```bash
+  #!/usr/bin/env bash
 
-harbor_projects=(library
-    kubesphereio
-    kubesphere
-    argoproj
-    calico
-    coredns
-    openebs
-    csiplugin
-    minio
-    mirrorgooglecontainers
-    osixia
-    prom
-    thanosio
-    jimmidyson
-    grafana
-    elastic
-    istio
-    jaegertracing
-    jenkins
-    weaveworks
-    openpitrix
-    joosthofman
-    nginxdemos
-    fluent
-    kubeedge
-    openpolicyagent
-)
+  # Copyright 2018 The KubeSphere Authors.
+  #
+  # Licensed under the Apache License, Version 2.0 (the "License");
+  # you may not use this file except in compliance with the License.
+  # You may obtain a copy of the License at
+  #
+  #     http://www.apache.org/licenses/LICENSE-2.0
+  #
+  # Unless required by applicable law or agreed to in writing, software
+  # distributed under the License is distributed on an "AS IS" BASIS,
+  # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  # See the License for the specific language governing permissions and
+  # limitations under the License.
 
-for project in "${harbor_projects[@]}"; do
-    echo "creating $project"
-    curl -u "${user}:${passwd}" -X POST -H "Content-Type: application/json" "${url}/api/v2.0/projects" -d "{ \"project_name\": \"${project}\", \"public\": true}" -k #Add -k at the end of the curl command.
-done
-```
+  url="https://cr.harbor.kubekey.com"  #Change the value of url to https://cr.harbor.kubekey.com.
+  user="admin"
+  passwd="Harbor12345"
+
+  harbor_projects=(library
+      kubesphereio
+      kubesphere
+      argoproj
+      calico
+      coredns
+      openebs
+      csiplugin
+      minio
+      mirrorgooglecontainers
+      osixia
+      prom
+      thanosio
+      jimmidyson
+      grafana
+      elastic
+      istio
+      jaegertracing
+      jenkins
+      weaveworks
+      openpitrix
+      joosthofman
+      nginxdemos
+      fluent
+      kubeedge
+      openpolicyagent
+  )
+
+  for project in "${harbor_projects[@]}"; do
+      echo "creating $project"
+      curl -u "${user}:${passwd}" -X POST -H "Content-Type: application/json" "${url}/api/v2.0/projects" -d "{ \"project_name\": \"${project}\", \"public\": true}" -k #Add -k at the end of the curl command.
+  done
+  ```
 
 #### 파일 권한 변경
 
@@ -872,11 +896,17 @@ sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
 ```bash
 sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz --with-packages
 ```
-{: .prompt-info }
+{: .prompt-tip }
 
 > image 별도로 push 방법
 ```bash
 sudo ./kk artifact image push -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
+```
+{: .prompt-tip }
+
+> `--skip-push-images`를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
+```bash
+sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz --skip-push-images
 ```
 {: .prompt-tip }
 
@@ -888,11 +918,9 @@ sudo docker login https://cr.harbor.kubekey.com -u admin -p Harbor12345
 ```
 {: .prompt-danger }
 
-> `--skip-push-images`를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
-```bash
-sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz --skip-push-images
-```
-{: .prompt-tip }
+> kubekey command 참고
+- <https://github.com/kubesphere/kubekey/blob/master/docs/commands/kk-upgrade.md>
+{: .prompt-info }
 
 #### Cluster 설치하면서 log 확인
 
@@ -1035,19 +1063,3 @@ Unable to connect to the server: dial tcp: lookup lb.kubesphere.local on 127.0.0
   cd /opt/harbor
   docker-compose restart
   ```
-
-## offline 설치 위한 artifact 참고
-
-- version 참고
-  - kubernetes와 관련된 image는 <https://github.com/kubesphere/ks-installer/releases>에서 주요 release에만 포함되는 image-list.txt파일을 참고
-  - kubekey의 버전별로 kubernetes, kubesphere의 최신 지원 버전이 있음
-      - kubekey/version/components.json
-      - kubekey/cmd/kk/pkg/version/kubesphere/version_enum.go
-      - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
-  - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
-
-- 참고
-  - <https://github.com/kubesphere/kubekey/blob/v3.1.1/docs/manifest_and_artifact.md>
-  - <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
-  - <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
-  - <https://github.com/kubesphere/kubekey/blob/v3.1.1/docs/manifest-example.md>

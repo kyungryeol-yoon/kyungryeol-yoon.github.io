@@ -5,6 +5,20 @@ categories: [Kubernetes, Install]
 tags: [kubernetes, kubekey, artifact, install]
 ---
 
+> offline 설치 위한 artifact 참고
+- version 참고
+  - kubernetes와 관련된 image는 <https://github.com/kubesphere/ks-installer/releases>에서 주요 release에만 포함되는 image-list.txt파일을 참고
+  - kubekey의 버전별로 kubernetes, kubesphere의 최신 지원 버전이 있음
+      - kubekey/version/components.json
+      - kubekey/cmd/kk/pkg/version/kubesphere/version_enum.go
+      - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
+  - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
+- <https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest_and_artifact.md>
+- <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
+- <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
+- <https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest-example.md>
+{: .prompt-info }
+
 ## script 다운로드
 
 ```bash
@@ -624,7 +638,7 @@ curl -O https://raw.githubusercontent.com/kubesphere/ks-installer/master/scripts
   chmod +x create_project_harbor.sh
   ```
 
-- 실행 및 프로젝트 생성
+- 실행
 
   ```bash
   ./create_project_harbor.sh
@@ -653,7 +667,7 @@ sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```bash
 sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz --with-packages
 ```
-{: .prompt-info }
+{: .prompt-tip }
 
 > `--skip-push-images`를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
 ```bash
@@ -680,30 +694,17 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 > 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
-- error: error loading config file "/etc/kubernetes/admin.conf": open /etc/kubernetes/admin.conf: permission denied
-- 아래 명령어를 입력하면 sudo 없이 사용 가능하다.
-  ```bash
-  export KUBECONFIG=$HOME/.kube/config
-  ```
-- [ERROR] error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
-  ```bash
-  chown -R kubelet:kubelet /var/lib/kubelet/pods
-  chmod 750 /var/lib/kubelet/pods
-  systemctl restart kubelet
-  ```
-{: .prompt-info }
+- [ERROR]  error loading config file `/etc/kubernetes/admin.conf`: open /etc/kubernetes/admin.conf: permission denied
+  - 아래 명령어를 입력하면 sudo 없이 사용 가능하다.
+    ```bash
+    export KUBECONFIG=$HOME/.kube/config
+    ```
+{: .prompt-danger }
 
-
-> offline 설치 위한 artifact 참고
-- version 참고
-  - kubernetes와 관련된 image는 <https://github.com/kubesphere/ks-installer/releases>에서 주요 release에만 포함되는 image-list.txt파일을 참고
-  - kubekey의 버전별로 kubernetes, kubesphere의 최신 지원 버전이 있음
-      - kubekey/version/components.json
-      - kubekey/cmd/kk/pkg/version/kubesphere/version_enum.go
-      - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
-  - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
-- <https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest_and_artifact.md>
-- <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
-- <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
-- <https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest-example.md>
-{: .prompt-info }
+> [ERROR] error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
+```bash
+chown -R kubelet:kubelet /var/lib/kubelet/pods
+chmod 750 /var/lib/kubelet/pods
+systemctl restart kubelet
+```
+{: .prompt-danger }
