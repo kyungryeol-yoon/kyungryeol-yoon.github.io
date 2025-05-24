@@ -561,78 +561,88 @@ systemctl restart containerd
 > harbor 주소 : [harbor 설치한 ip]:80
 {: .prompt-info }
 
-### 7. Harbor 수정
+### 7. Harbor 프로젝트 생성 및 수정
 
 ```bash
 curl -O https://raw.githubusercontent.com/kubesphere/ks-installer/master/scripts/create_project_harbor.sh
 ```
 
-#### url 수정 : <https://dockerhub.kubekey.local>
+#### Harbor 프로젝트 수정 및 url 수정(<https://dockerhub.kubekey.local>)
 
-```bash
-vi create_project_harbor.sh
----
-#!/usr/bin/env bash
+- 파일 편집
 
-# Copyright 2018 The KubeSphere Authors.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+  ```bash
+  vi create_project_harbor.sh
+  ```
 
-url="https://dockerhub.kubekey.local"  #Change the value of url to https://dockerhub.kubekey.local.
-user="admin"
-passwd="Harbor12345"
+- url 수정(<https://dockerhub.kubekey.local>)
 
-harbor_projects=(library
-    kubesphereio
-    kubesphere
-    argoproj
-    calico
-    coredns
-    openebs
-    csiplugin
-    minio
-    mirrorgooglecontainers
-    osixia
-    prom
-    thanosio
-    jimmidyson
-    grafana
-    elastic
-    istio
-    jaegertracing
-    jenkins
-    weaveworks
-    openpitrix
-    joosthofman
-    nginxdemos
-    fluent
-    kubeedge
-    openpolicyagent
-)
+  ```bash
+  #!/usr/bin/env bash
 
-for project in "${harbor_projects[@]}"; do
-    echo "creating $project"
-    curl -u "${user}:${passwd}" -X POST -H "Content-Type: application/json" "${url}/api/v2.0/projects" -d "{ \"project_name\": \"${project}\", \"public\": true}" -k #Add -k at the end of the curl command.
-done
-```
+  # Copyright 2018 The KubeSphere Authors.
+  #
+  # Licensed under the Apache License, Version 2.0 (the "License");
+  # you may not use this file except in compliance with the License.
+  # You may obtain a copy of the License at
+  #
+  #     http://www.apache.org/licenses/LICENSE-2.0
+  #
+  # Unless required by applicable law or agreed to in writing, software
+  # distributed under the License is distributed on an "AS IS" BASIS,
+  # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  # See the License for the specific language governing permissions and
+  # limitations under the License.
 
-```bash
-chmod +x create_project_harbor.sh
-```
+  url="https://dockerhub.kubekey.local"  #Change the value of url to https://dockerhub.kubekey.local.
+  user="admin"
+  passwd="Harbor12345"
 
-```bash
-./create_project_harbor.sh
-```
+  harbor_projects=(library
+      kubesphereio
+      kubesphere
+      argoproj
+      calico
+      coredns
+      openebs
+      csiplugin
+      minio
+      mirrorgooglecontainers
+      osixia
+      prom
+      thanosio
+      jimmidyson
+      grafana
+      elastic
+      istio
+      jaegertracing
+      jenkins
+      weaveworks
+      openpitrix
+      joosthofman
+      nginxdemos
+      fluent
+      kubeedge
+      openpolicyagent
+  )
+
+  for project in "${harbor_projects[@]}"; do
+      echo "creating $project"
+      curl -u "${user}:${passwd}" -X POST -H "Content-Type: application/json" "${url}/api/v2.0/projects" -d "{ \"project_name\": \"${project}\", \"public\": true}" -k #Add -k at the end of the curl command.
+  done
+  ```
+
+- 파일 권한 변경
+
+  ```bash
+  chmod +x create_project_harbor.sh
+  ```
+
+- 실행 및 프로젝트 생성
+
+  ```bash
+  ./create_project_harbor.sh
+  ```
 
 #### image 별도로 push 방법
 
@@ -675,7 +685,7 @@ sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz --skip-p
 kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
-### Kubernetes 일반 유저 일 때
+#### Kubernetes 일반 유저 일 때
 
 ```bash
 mkdir -p $HOME/.kube
@@ -684,13 +694,11 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 > 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
-
 - error: error loading config file "/etc/kubernetes/admin.conf": open /etc/kubernetes/admin.conf: permission denied
 - 아래 명령어를 입력하면 sudo 없이 사용 가능하다.
   ```bash
   export KUBECONFIG=$HOME/.kube/config
   ```
-
 - [ERROR] error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
   ```bash
   chown -R kubelet:kubelet /var/lib/kubelet/pods

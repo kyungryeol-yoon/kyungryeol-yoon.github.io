@@ -138,19 +138,16 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-#### 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
-
+> 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
 - error: error loading config file "/etc/kubernetes/admin.conf": open /etc/kubernetes/admin.conf: permission denied
-- 아래 명령어를 입력하면 sudo 없이 사용 가능합니다.
-
+- 아래 명령어를 입력하면 sudo 없이 사용 가능하다.
   ```bash
   export KUBECONFIG=$HOME/.kube/config
   ```
-
-- error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
-
+- [ERROR] error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
   ```bash
   chown -R kubelet:kubelet /var/lib/kubelet/pods
   chmod 750 /var/lib/kubelet/pods
   systemctl restart kubelet
   ```
+{: .prompt-info }
