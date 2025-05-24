@@ -206,8 +206,13 @@ spec:
 
 ```bash
 sudo ./kk upgrade cluster -f config-v1.32.4.yaml -a artifact-3.1.9.tar.gz
-sudo ./kk create cluster -f config-v1.32.4.yaml -a artifact-3.1.9.tar.gz --with-packages
 ```
+
+> `--skip-dependency-check`를 추가하면 Kubernetes 및 KubeSphere 버전 의존성 검사를 생략할 수 있다.
+```bash
+sudo ./kk upgrade cluster -f config-v1.32.4.yaml -a artifact-3.1.9.tar.gz --skip-dependency-check
+```
+{: .prompt-tip }
 
 > image 별도로 push 방법
 ```bash

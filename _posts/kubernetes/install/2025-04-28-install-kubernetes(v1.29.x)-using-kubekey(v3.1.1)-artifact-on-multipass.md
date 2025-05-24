@@ -866,8 +866,13 @@ chmod +x create_project_harbor.sh
 
 ```bash
 sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
+```
+
+> Install operating system packages
+```bash
 sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz --with-packages
 ```
+{: .prompt-info }
 
 > image 별도로 push 방법
 ```bash

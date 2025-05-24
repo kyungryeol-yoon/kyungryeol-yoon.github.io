@@ -648,13 +648,19 @@ chmod +x create_project_harbor.sh
 
 ```bash
 sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz
-sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz --with-packages
 ```
 
-- `--skip-push-images`를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
-  ```bash
-  sudo ./kk create cluster --skip-push-images -f config-sample.yaml -a artifact-3.0.7.tar.gz
-  ```
+> Install operating system packages
+```bash
+sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz --with-packages
+```
+{: .prompt-info }
+
+> `--skip-push-images`를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
+```bash
+sudo ./kk create cluster --skip-push-images -f config-sample.yaml -a artifact-3.0.7.tar.gz
+```
+{: .prompt-tip }
 
 #### Cluster 설치하면서 log 확인
 
