@@ -228,12 +228,9 @@ sudo docker login https://cr.harbor.kubekey.com -u admin -p Harbor12345
 ```
 {: .prompt-danger }
 
-> `--skip-push-images`를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
-```bash
-sudo ./kk create cluster --skip-push-images -f config-v1.32.4.yaml -a artifact-3.1.9.tar.gz
-```
-{: .prompt-tip }
-
+> kubekey command 참고
+- <https://github.com/kubesphere/kubekey/blob/master/docs/commands/kk-upgrade.md>
+{: .prompt-info }
 
 ### Cluster 업그레이드 완료
 

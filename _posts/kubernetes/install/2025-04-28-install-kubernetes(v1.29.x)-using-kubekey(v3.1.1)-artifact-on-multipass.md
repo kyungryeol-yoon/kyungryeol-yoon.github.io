@@ -890,7 +890,7 @@ sudo docker login https://cr.harbor.kubekey.com -u admin -p Harbor12345
 
 > `--skip-push-images`를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
 ```bash
-sudo ./kk create cluster --skip-push-images -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
+sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz --skip-push-images
 ```
 {: .prompt-tip }
 

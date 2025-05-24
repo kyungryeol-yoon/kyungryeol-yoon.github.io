@@ -568,6 +568,10 @@ sudo ./kk upgrade -f config-sample.yaml -a artifact-3.0.13.tar.gz --skip-depende
 ```
 {: .prompt-tip }
 
+> kubekey command 참고
+- <https://github.com/kubesphere/kubekey/blob/master/docs/commands/kk-upgrade.md>
+{: .prompt-info }
+
 ### image 별도로 push 방법
 
 ```bash
