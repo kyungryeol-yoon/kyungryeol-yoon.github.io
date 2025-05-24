@@ -982,7 +982,9 @@ Please check the result using the command:
         kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
-## Cluster 재시작 이후, 연결이 되지 않을 때
+## 설치 후, 이상 증세
+
+### Cluster 재시작 이후, 연결이 되지 않을 때
 
 ```bash
 Unable to connect to the server: dial tcp: lookup lb.kubesphere.local on 127.0.0.53:53: server misbehaving
@@ -1020,7 +1022,7 @@ Unable to connect to the server: dial tcp: lookup lb.kubesphere.local on 127.0.0
     ff02::2 ip6-allrouters
     ```
 
-### 다만, 재시작하면 다시 초기화 됨
+#### 다만, 재시작하면 다시 초기화 됨
 
 - `/etc/cloud/templates/hosts.debian.tmpl` 해당 파일을 수정해야 다시 시작하더라도 변경됨
 
@@ -1054,7 +1056,7 @@ Unable to connect to the server: dial tcp: lookup lb.kubesphere.local on 127.0.0
     ff02::2 ip6-allrouters
     ```
 
-## Harbor Login 실패 또는 Cluster에서 Image를 가져오지 못할 때
+### Harbor Login 실패 또는 Cluster에서 Image를 가져오지 못할 때
 
 - 아래와 같이 docker-compose 재시작
 
