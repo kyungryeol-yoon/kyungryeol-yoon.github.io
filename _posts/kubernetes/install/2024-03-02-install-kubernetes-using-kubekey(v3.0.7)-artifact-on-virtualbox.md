@@ -558,7 +558,8 @@ ls -lrt /etc/ssl/certs
 systemctl restart containerd
 ```
 
-- harbor 주소 : [harbor 설치한 ip]:80
+> harbor 주소 : [harbor 설치한 ip]:80
+{: .prompt-info }
 
 ### 7. Harbor 수정
 
@@ -633,16 +634,18 @@ chmod +x create_project_harbor.sh
 ./create_project_harbor.sh
 ```
 
-- image 별도로 push 방법
-  ```bash
-  sudo ./kk artifact image push -f config-sample.yaml -a artifact-3.0.7.tar.gz
-  ```
+#### image 별도로 push 방법
 
-- [ERROR] Harbor에 image push 할 때 Unauthorized 에러 발생 때
-  - 다시 로그인
-  ```bash
-  docker login [your.host.com]:port -u username -p password
-  ```
+```bash
+sudo ./kk artifact image push -f config-sample.yaml -a artifact-3.0.7.tar.gz
+```
+
+> [ERROR] Harbor에 image push 할 때 Unauthorized 에러 발생 때
+- 다시 로그인
+```bash
+docker login [your.host.com]:port -u username -p password
+```
+{: .prompt-info }
 
 ### 8. Cluster 설치
 
@@ -662,6 +665,10 @@ sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz --skip-p
 ```
 {: .prompt-tip }
 
+> kubekey command 참고
+- <https://github.com/kubesphere/kubekey/blob/master/docs/commands/kk-upgrade.md>
+{: .prompt-info }
+
 #### Cluster 설치하면서 log 확인
 
 ```bash
@@ -676,7 +683,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-#### 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
+> 만약 일반 계정에서 아래와 sudo 명령어 없이 kubectl 명령어 사용시 아래와 같은 오류가 발생하면
 
 - error: error loading config file "/etc/kubernetes/admin.conf": open /etc/kubernetes/admin.conf: permission denied
 - 아래 명령어를 입력하면 sudo 없이 사용 가능하다.
@@ -690,3 +697,4 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
   chmod 750 /var/lib/kubelet/pods
   systemctl restart kubelet
   ```
+{: .prompt-info }
