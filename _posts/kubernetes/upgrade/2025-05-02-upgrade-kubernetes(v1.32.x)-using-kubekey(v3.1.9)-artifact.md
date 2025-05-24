@@ -5,21 +5,19 @@ categories: [Kubernetes, Upgrade]
 tags: [kubernetes, kubekey, artifact, upgrade]
 ---
 
-## kubekey artifact 구성 및 업그레이드
-
-### script 다운로드
+## script 다운로드
 
 ```bash
 curl -sfL https://get-kk.kubesphere.io | VERSION=v3.1.9 sh -
 ```
 
-### ubuntu-20.04-debs-amd64.iso 다운로드
+## ubuntu-20.04-debs-amd64.iso 다운로드
 
 ```bash
 wget https://github.com/kubesphere/kubekey/releases/download/v3.1.9/ubuntu-20.04-debs-amd64.iso
 ```
 
-### artifact-3.1.9.yaml 작성
+## artifact-3.1.9.yaml 작성
 
 ```yaml
 apiVersion: kubekey.kubesphere.io/v1alpha2
@@ -98,7 +96,7 @@ spec:
         password: "password"
 ```
 
-#### components version 확인(지원하는 version이 없을 시 아래와 같이 Error)
+### components version 확인(지원하는 version이 없을 시 아래와 같이 Error)
 
 ```
 Failed to download docker binary: curl -L -o /home/ubuntu/kk_install/kubekey/artifact/docker/20.10.8/amd64/docker-20.10.8.tgz https://download.docker.com/linux/static/stable/x86_64/docker-20.10.8.tgz error: No SHA256 found for docker. 20.10.8 is not supported.
@@ -111,13 +109,13 @@ failed: [LocalHost] [DownloadBinaries] exec failed after 1 retries: Failed to do
   - <https://github.com/kubesphere/kubekey/blob/v3.1.9/version/components.json>
 {: .prompt-info }
 
-### Export Artifact
+## Export Artifact
 
 ```bash
 sudo ./kk artifact export -m artifact-3.1.9.yaml -o artifact-3.1.9.tar.gz
 ```
 
-### Cluster 업그레이드를 위한 config 파일 생성 및 작성
+## Cluster 업그레이드를 위한 config 파일 생성 및 작성
 
 ```bash
 sudo ./kk create config --with-kubesphere v3.3.2 --with-kubernetes v1.32.4 -f config-v1.32.4.yaml
@@ -202,11 +200,17 @@ spec:
   addons: []
 ```
 
-### Cluster 업그레이드
+## Cluster 업그레이드
 
 ```bash
 sudo ./kk upgrade cluster -f config-v1.32.4.yaml -a artifact-3.1.9.tar.gz
 ```
+
+> Upgrade하면서 log 확인
+```bash
+kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
+```
+{: .prompt-tip }
 
 > `--skip-dependency-check`를 추가하면 Kubernetes 및 KubeSphere 버전 의존성 검사를 생략할 수 있다.
 ```bash
@@ -232,15 +236,7 @@ sudo docker login https://cr.harbor.kubekey.com -u admin -p Harbor12345
 - <https://github.com/kubesphere/kubekey/blob/master/docs/commands/kk-upgrade.md>
 {: .prompt-info }
 
-### Cluster 업그레이드 완료
-
-```bash
-
-```
-
-
-## offline 설치 위한 artifact 참고
-
+> offline 설치 위한 artifact 참고
 - version 참고
   - kubernetes와 관련된 image는 <https://github.com/kubesphere/ks-installer/releases>에서 주요 release에만 포함되는 image-list.txt파일을 참고
   - kubekey의 버전별로 kubernetes, kubesphere의 최신 지원 버전이 있음
@@ -248,9 +244,8 @@ sudo docker login https://cr.harbor.kubekey.com -u admin -p Harbor12345
       - kubekey/cmd/kk/pkg/version/kubesphere/version_enum.go
       - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
   - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
-
-- 참고
-  - <https://github.com/kubesphere/kubekey/blob/v3.1.9/docs/manifest_and_artifact.md>
-  - <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
-  - <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
-  - <https://github.com/kubesphere/kubekey/blob/v3.1.9/docs/manifest-example.md>
+- <https://github.com/kubesphere/kubekey/blob/v3.1.9/docs/manifest_and_artifact.md>
+- <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
+- <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
+- <https://github.com/kubesphere/kubekey/blob/v3.1.9/docs/manifest-example.md>
+{: .prompt-info }

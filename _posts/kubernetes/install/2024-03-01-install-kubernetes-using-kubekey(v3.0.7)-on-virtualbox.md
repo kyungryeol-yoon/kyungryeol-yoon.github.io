@@ -5,9 +5,7 @@ categories: [Kubernetes, Install]
 tags: [kubernetes, kubekey, install]
 ---
 
-## KubeKey 설치
-
-### 1. script 다운로드
+## script 다운로드
 
 ```bash
 curl -sfL https://get-kk.kubesphere.io | VERSION=v3.0.7 sh -
@@ -17,11 +15,11 @@ or
 curl -sfL https://get-kk.kubesphere.io | sh -
 ```
 
-### 2. Binary Downloads
+## Binary Downloads
 
 - <https://github.com/kubesphere/kubekey/releases>
 
-### 3. Build Binary from Source Code
+## Build Binary from Source Code
 
 ```bash
 git clone https://github.com/kubesphere/kubekey.git
@@ -29,12 +27,12 @@ cd kubekey
 make kk
 ```
 
-### Quick Start
+## Quick Start
 
 - Quick Start is for all-in-one installation which is a good start to get familiar with Kubernetes and KubeSphere.
 - Note: Since Kubernetes temporarily does not support uppercase NodeName, contains uppercase letters in the hostname will lead to subsequent installation error
 
-#### Command
+### Command
 
 - If you have problem to access <https://storage.googleapis.com>, execute first export KKZONE=cn.
 
@@ -42,7 +40,7 @@ make kk
   ./kk create cluster [--with-kubernetes versio] [--with-kubesphere version]
   ```
 
-#### Examples
+### Examples
 
 - Create a pure Kubernetes cluster with default version (Kubernetes v1.23.10).
 
@@ -62,7 +60,7 @@ make kk
   ./kk create cluster --with-kubesphere v3.2.1
   ```
 
-### 4. 세부 설정을 위한 Create Config
+## 세부 설정을 위한 Create Config
 
 ```bash
 ./kk create config [--with-kubernetes version] [--with-kubesphere version] [(-f | --filename) path]
@@ -78,7 +76,7 @@ make kk
   ./kk create config --with-kubernetes v1.20.4
   ```
 
-#### vi config-sample.yaml
+### vi config-sample.yaml
 
 ```yaml
 apiVersion: kubekey.kubesphere.io/v1alpha1
@@ -118,19 +116,19 @@ spec:
   addons: []
 ```
 
-### 5. Install Cluster
+## Install Cluster
 
 ```bash
 ./kk create cluster -f config-sample.yaml
 ```
 
-#### Cluster 설치하면서 log 확인
+### Cluster 설치하면서 log 확인
 
 ```bash
 kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
-#### Kubernetes 일반 유저 일 때
+### Kubernetes 일반 유저 일 때
 
 ```bash
 mkdir -p $HOME/.kube

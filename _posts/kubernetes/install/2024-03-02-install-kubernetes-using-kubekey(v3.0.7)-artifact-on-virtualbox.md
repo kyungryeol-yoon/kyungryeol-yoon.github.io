@@ -1,35 +1,17 @@
 ---
-title: "[Kubernetes] Install Kuberntes using Kubekey(v3.0.7) Artifact on VirtualBox"
+title: "[Kubernetes] Install Kubernetes using Kubekey(v3.0.7) Artifact on VirtualBox"
 date: 2024-03-02
 categories: [Kubernetes, Install]
 tags: [kubernetes, kubekey, artifact, install]
 ---
 
-## offline 설치 위한 artifact 파일 생성
-
-- version 참고
-  - kubernetes와 관련된 image는 <https://github.com/kubesphere/ks-installer/releases>에서 주요 release에만 포함되는 image-list.txt파일을 참고
-  - kubekey의 버전별로 kubernetes, kubesphere의 최신 지원 버전이 있음
-      - kubekey/version/components.json
-      - kubekey/cmd/kk/pkg/version/kubesphere/version_enum.go
-      - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
-  - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
-
-- 참고
-  - <https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest_and_artifact.md>
-  - <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
-  - <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
-  - <https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest-example.md>
-
-## kubekey artifact 설치
-
-### 1. script 다운로드
+## script 다운로드
 
 ```bash
 curl -sfL https://get-kk.kubesphere.io | VERSION=v3.0.7 sh -
 ```
 
-### 2. artifact-3.0.7.yaml 작성
+## artifact-3.0.7.yaml 작성
 
 ```yaml
 apiVersion: kubekey.kubesphere.io/v1alpha2
@@ -284,263 +266,267 @@ spec:
         password: "password"
 ```
 
-### 3. Export Artifact
+## Export Artifact
 
 ```bash
 sudo ./kk artifact export -m artifact-3.0.7.yaml -o artifact-3.0.7.tar.gz
 ```
 
-### 4. Cluster 설치를 위한 config 파일 생성 및 작성
+## Cluster 설치를 위한 config 파일 생성 및 작성
 
-```bash
-sudo ./kk create config --with-kubesphere v3.3.2 --with-kubernetes v1.24.9 -f config-sample.yaml
-```
+- config 파일 생성
 
-```yaml
-apiVersion: kubekey.kubesphere.io/v1alpha2
-kind: Cluster
-metadata:
-  name: sample
-spec:
-  hosts:
-  - {name: manage-master, address: 192.168.10.100, internalAddress: 192.168.10.100, user: root, password: vagrant}
-  - {name: manage-worker-1, address: 192.168.10.110, internalAddress: 192.168.10.110, user: root, password: vagrant}
-  - {name: manage-worker-2, address: 192.168.10.120, internalAddress: 192.168.10.120, user: root, password: vagrant}
-  roleGroups:
+  ```bash
+  sudo ./kk create config --with-kubesphere v3.3.2 --with-kubernetes v1.24.9 -f config-sample.yaml
+  ```
+
+- config 파일 작성
+
+  ```yaml
+  apiVersion: kubekey.kubesphere.io/v1alpha2
+  kind: Cluster
+  metadata:
+    name: sample
+  spec:
+    hosts:
+    - {name: manage-master, address: 192.168.10.100, internalAddress: 192.168.10.100, user: root, password: vagrant}
+    - {name: manage-worker-1, address: 192.168.10.110, internalAddress: 192.168.10.110, user: root, password: vagrant}
+    - {name: manage-worker-2, address: 192.168.10.120, internalAddress: 192.168.10.120, user: root, password: vagrant}
+    roleGroups:
+      etcd:
+      - manage-master
+      control-plane:
+      - manage-master
+      worker:
+      - manage-worker-1
+      - manage-worker-2
+      registry:
+      - manage-worker-1
+    controlPlaneEndpoint:
+      ## Internal loadbalancer for apiservers
+      # internalLoadbalancer: haproxy
+
+      #domain: lb.kubesphere.local
+      domain: 192.168.10.100
+      address: ""
+      port: 6443
+    kubernetes:
+      version: v1.24.9
+      clusterName: cluster.local
+      autoRenewCerts: true
+      containerManager: containerd
     etcd:
-    - manage-master
-    control-plane:
-    - manage-master
-    worker:
-    - manage-worker-1
-    - manage-worker-2
+      type: kubekey
+    network:
+      plugin: calico
+      kubePodsCIDR: 10.233.64.0/18
+      kubeServiceCIDR: 10.233.0.0/18
+      ## multus support. https://github.com/k8snetworkplumbingwg/multus-cni
+      multusCNI:
+        enabled: false
     registry:
-    - manage-worker-1
-  controlPlaneEndpoint:
-    ## Internal loadbalancer for apiservers
-    # internalLoadbalancer: haproxy
-
-    #domain: lb.kubesphere.local
-    domain: 192.168.10.100
-    address: ""
-    port: 6443
-  kubernetes:
-    version: v1.24.9
-    clusterName: cluster.local
-    autoRenewCerts: true
-    containerManager: containerd
-  etcd:
-    type: kubekey
-  network:
-    plugin: calico
-    kubePodsCIDR: 10.233.64.0/18
-    kubeServiceCIDR: 10.233.0.0/18
-    ## multus support. https://github.com/k8snetworkplumbingwg/multus-cni
-    multusCNI:
-      enabled: false
-  registry:
-    type: harbor
-    auths:
-      "dockerhub.kubekey.local":
-        username: admin
-        password: Harbor12345
-    privateRegistry: "dockerhub.kubekey.local"
-    namespaceOverride: "kubesphereio"
-    registryMirrors: []
-    insecureRegistries: []
-  addons: []
----
-apiVersion: installer.kubesphere.io/v1alpha1
-kind: ClusterConfiguration
-metadata:
-  name: ks-installer
-  namespace: kubesphere-system
-  labels:
-    version: v3.3.2
-spec:
-  persistence:
-    storageClass: ""
-  authentication:
-    jwtSecret: ""
-  zone: ""
-  local_registry: ""
-  namespace_override: ""
-  # dev_tag: ""
-  etcd:
-    monitoring: false
-    endpointIps: localhost
-    port: 2379
-    tlsEnable: true
-  common:
-    core:
-      console:
-        enableMultiLogin: true
-        port: 30880
-        type: NodePort
-    # apiserver:
-    #  resources: {}
-    # controllerManager:
-    #  resources: {}
-    redis:
-      enabled: false
-      volumeSize: 2Gi
-    openldap:
-      enabled: false
-      volumeSize: 2Gi
-    minio:
-      volumeSize: 20Gi
-    monitoring:
-      # type: external
-      endpoint: http://prometheus-operated.kubesphere-monitoring-system.svc:9090
-      GPUMonitoring:
+      type: harbor
+      auths:
+        "dockerhub.kubekey.local":
+          username: admin
+          password: Harbor12345
+      privateRegistry: "dockerhub.kubekey.local"
+      namespaceOverride: "kubesphereio"
+      registryMirrors: []
+      insecureRegistries: []
+    addons: []
+  ---
+  apiVersion: installer.kubesphere.io/v1alpha1
+  kind: ClusterConfiguration
+  metadata:
+    name: ks-installer
+    namespace: kubesphere-system
+    labels:
+      version: v3.3.2
+  spec:
+    persistence:
+      storageClass: ""
+    authentication:
+      jwtSecret: ""
+    zone: ""
+    local_registry: ""
+    namespace_override: ""
+    # dev_tag: ""
+    etcd:
+      monitoring: false
+      endpointIps: localhost
+      port: 2379
+      tlsEnable: true
+    common:
+      core:
+        console:
+          enableMultiLogin: true
+          port: 30880
+          type: NodePort
+      # apiserver:
+      #  resources: {}
+      # controllerManager:
+      #  resources: {}
+      redis:
         enabled: false
-    gpu:
-      kinds:
-      - resourceName: "nvidia.com/gpu"
-        resourceType: "GPU"
-        default: true
-    es:
-      # master:
-      #   volumeSize: 4Gi
+        volumeSize: 2Gi
+      openldap:
+        enabled: false
+        volumeSize: 2Gi
+      minio:
+        volumeSize: 20Gi
+      monitoring:
+        # type: external
+        endpoint: http://prometheus-operated.kubesphere-monitoring-system.svc:9090
+        GPUMonitoring:
+          enabled: false
+      gpu:
+        kinds:
+        - resourceName: "nvidia.com/gpu"
+          resourceType: "GPU"
+          default: true
+      es:
+        # master:
+        #   volumeSize: 4Gi
+        #   replicas: 1
+        #   resources: {}
+        # data:
+        #   volumeSize: 20Gi
+        #   replicas: 1
+        #   resources: {}
+        logMaxAge: 7
+        elkPrefix: logstash
+        basicAuth:
+          enabled: false
+          username: ""
+          password: ""
+        externalElasticsearchHost: ""
+        externalElasticsearchPort: ""
+    alerting:
+      enabled: false
+      # thanosruler:
       #   replicas: 1
       #   resources: {}
-      # data:
-      #   volumeSize: 20Gi
-      #   replicas: 1
+    auditing:
+      enabled: false
+      # operator:
       #   resources: {}
-      logMaxAge: 7
-      elkPrefix: logstash
-      basicAuth:
-        enabled: false
-        username: ""
-        password: ""
-      externalElasticsearchHost: ""
-      externalElasticsearchPort: ""
-  alerting:
-    enabled: false
-    # thanosruler:
-    #   replicas: 1
-    #   resources: {}
-  auditing:
-    enabled: false
-    # operator:
-    #   resources: {}
-    # webhook:
-    #   resources: {}
-  devops:
-    enabled: false
-    # resources: {}
-    jenkinsMemoryLim: 8Gi
-    jenkinsMemoryReq: 4Gi
-    jenkinsVolumeSize: 8Gi
-  events:
-    enabled: false
-    # operator:
-    #   resources: {}
-    # exporter:
-    #   resources: {}
-    # ruler:
-    #   enabled: true
-    #   replicas: 2
-    #   resources: {}
-  logging:
-    enabled: false
-    logsidecar:
-      enabled: true
-      replicas: 2
+      # webhook:
+      #   resources: {}
+    devops:
+      enabled: false
       # resources: {}
-  metrics_server:
-    enabled: false
-  monitoring:
-    storageClass: ""
-    node_exporter:
-      port: 9100
-      # resources: {}
-    # kube_rbac_proxy:
-    #   resources: {}
-    # kube_state_metrics:
-    #   resources: {}
-    # prometheus:
-    #   replicas: 1
-    #   volumeSize: 20Gi
-    #   resources: {}
-    #   operator:
-    #     resources: {}
-    # alertmanager:
-    #   replicas: 1
-    #   resources: {}
-    # notification_manager:
-    #   resources: {}
-    #   operator:
-    #     resources: {}
-    #   proxy:
-    #     resources: {}
-    gpu:
-      nvidia_dcgm_exporter:
-        enabled: false
-        # resources: {}
-  multicluster:
-    clusterRole: none
-  network:
-    networkpolicy:
+      jenkinsMemoryLim: 8Gi
+      jenkinsMemoryReq: 4Gi
+      jenkinsVolumeSize: 8Gi
+    events:
       enabled: false
-    ippool:
-      type: none
-    topology:
-      type: none
-  openpitrix:
-    store:
+      # operator:
+      #   resources: {}
+      # exporter:
+      #   resources: {}
+      # ruler:
+      #   enabled: true
+      #   replicas: 2
+      #   resources: {}
+    logging:
       enabled: false
-  servicemesh:
-    enabled: false
-    istio:
-      components:
-        ingressGateways:
-        - name: istio-ingressgateway
-          enabled: false
-        cni:
-          enabled: false
-  edgeruntime:
-    enabled: false
-    kubeedge:
-      enabled: false
-      cloudCore:
-        cloudHub:
-          advertiseAddress:
-            - ""
-        service:
-          cloudhubNodePort: "30000"
-          cloudhubQuicNodePort: "30001"
-          cloudhubHttpsNodePort: "30002"
-          cloudstreamNodePort: "30003"
-          tunnelNodePort: "30004"
-        # resources: {}
-        # hostNetWork: false
-      iptables-manager:
+      logsidecar:
         enabled: true
-        mode: "external"
+        replicas: 2
         # resources: {}
-      # edgeService:
+    metrics_server:
+      enabled: false
+    monitoring:
+      storageClass: ""
+      node_exporter:
+        port: 9100
+        # resources: {}
+      # kube_rbac_proxy:
       #   resources: {}
-  terminal:
-    timeout: 600
-```
+      # kube_state_metrics:
+      #   resources: {}
+      # prometheus:
+      #   replicas: 1
+      #   volumeSize: 20Gi
+      #   resources: {}
+      #   operator:
+      #     resources: {}
+      # alertmanager:
+      #   replicas: 1
+      #   resources: {}
+      # notification_manager:
+      #   resources: {}
+      #   operator:
+      #     resources: {}
+      #   proxy:
+      #     resources: {}
+      gpu:
+        nvidia_dcgm_exporter:
+          enabled: false
+          # resources: {}
+    multicluster:
+      clusterRole: none
+    network:
+      networkpolicy:
+        enabled: false
+      ippool:
+        type: none
+      topology:
+        type: none
+    openpitrix:
+      store:
+        enabled: false
+    servicemesh:
+      enabled: false
+      istio:
+        components:
+          ingressGateways:
+          - name: istio-ingressgateway
+            enabled: false
+          cni:
+            enabled: false
+    edgeruntime:
+      enabled: false
+      kubeedge:
+        enabled: false
+        cloudCore:
+          cloudHub:
+            advertiseAddress:
+              - ""
+          service:
+            cloudhubNodePort: "30000"
+            cloudhubQuicNodePort: "30001"
+            cloudhubHttpsNodePort: "30002"
+            cloudstreamNodePort: "30003"
+            tunnelNodePort: "30004"
+          # resources: {}
+          # hostNetWork: false
+        iptables-manager:
+          enabled: true
+          mode: "external"
+          # resources: {}
+        # edgeService:
+        #   resources: {}
+    terminal:
+      timeout: 600
+  ```
 
-### 5. registry 설치
+## registry 설치
 
 ```bash
 sudo ./kk init registry -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```
 
-#### [ERROR] ssh error
-
+> [ERROR] ssh error
 - 각 node 별로 ssh가 안될시 root passwd가 맞지 않아 발생함.
 - vagrant에서 vm이 생성되면 root 비번을 설정해줘야 하는 듯
   ```bash
   sudo passwd root
   ```
+{: .prompt-info }
 
-### 6. Harbor 인증서 복사 및 업데이트 (harbor curl: (60) SSL certificate problem: unable to get local issuer certificate)
+## Harbor 인증서 복사 및 업데이트 (harbor curl: (60) SSL certificate problem: unable to get local issuer certificate)
 
 ```bash
 sudo cp /etc/docker/certs.d/dockerhub.kubekey.local/ca.crt /usr/local/share/ca-certificates/harbor-ca.crt
@@ -561,13 +547,13 @@ systemctl restart containerd
 > harbor 주소 : [harbor 설치한 ip]:80
 {: .prompt-info }
 
-### 7. Harbor 프로젝트 생성 및 수정
+## Harbor 프로젝트 생성 및 수정
 
 ```bash
 curl -O https://raw.githubusercontent.com/kubesphere/ks-installer/master/scripts/create_project_harbor.sh
 ```
 
-#### Harbor 프로젝트 수정 및 url 수정(<https://dockerhub.kubekey.local>)
+### Harbor 프로젝트 수정 및 url 수정(<https://dockerhub.kubekey.local>)
 
 - 파일 편집
 
@@ -644,7 +630,7 @@ curl -O https://raw.githubusercontent.com/kubesphere/ks-installer/master/scripts
   ./create_project_harbor.sh
   ```
 
-#### image 별도로 push 방법
+### image 별도로 push 방법
 
 ```bash
 sudo ./kk artifact image push -f config-sample.yaml -a artifact-3.0.7.tar.gz
@@ -657,7 +643,7 @@ docker login [your.host.com]:port -u username -p password
 ```
 {: .prompt-info }
 
-### 8. Cluster 설치
+## Cluster 설치
 
 ```bash
 sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz
@@ -679,13 +665,13 @@ sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz --skip-p
 - <https://github.com/kubesphere/kubekey/blob/master/docs/commands/kk-upgrade.md>
 {: .prompt-info }
 
-#### Cluster 설치하면서 log 확인
+### Cluster 설치하면서 log 확인
 
 ```bash
 kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
-#### Kubernetes 일반 유저 일 때
+### Kubernetes 일반 유저 일 때
 
 ```bash
 mkdir -p $HOME/.kube
@@ -705,4 +691,19 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
   chmod 750 /var/lib/kubelet/pods
   systemctl restart kubelet
   ```
+{: .prompt-info }
+
+
+> offline 설치 위한 artifact 참고
+- version 참고
+  - kubernetes와 관련된 image는 <https://github.com/kubesphere/ks-installer/releases>에서 주요 release에만 포함되는 image-list.txt파일을 참고
+  - kubekey의 버전별로 kubernetes, kubesphere의 최신 지원 버전이 있음
+      - kubekey/version/components.json
+      - kubekey/cmd/kk/pkg/version/kubesphere/version_enum.go
+      - kubekey/cmd/kk/pkg/version/kubernetes/version_enum.go
+  - default 버전에 대한 설정은 kubekey/cmd/kk/apis/kubekey/v1alpha2/default.go 파일에 있다
+- <https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest_and_artifact.md>
+- <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
+- <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
+- <https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest-example.md>
 {: .prompt-info }
