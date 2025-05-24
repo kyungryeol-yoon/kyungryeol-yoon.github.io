@@ -1,8 +1,8 @@
 ---
-title: "[Linux] Stress"
-date: 2025-05-17
-categories: [OS, Linux]
-tags: [linux, stress]
+title: "[Kubernetes] Stress"
+date: 2025-05-19
+categories: [Kubernetes, Stress]
+tags: [kubernetes, stress]
 ---
 
 ## stress 설치
@@ -33,38 +33,4 @@ Usage: stress [OPTION [ARG]] ...
      --vm-keep      redirty memory instead of freeing and reallocating
  -d, --hdd N        spawn N workers spinning on write()/unlink()
      --hdd-bytes B  write B bytes per hdd worker (default is 1GB)
-```
-
-## Example
-
-```bash
-stress --cpu 8 --io 4 --vm 2 --vm-bytes 128M --timeout 10s
-```
-
-## CPU 부하
-
-```bash
-stress -c <Core 수>
-```
-
-## Memory 부하
-
-- 사용할 크기의 단위 : b(byte) ,k(killo byte) , m(mega byte) , g(giga byte)
-
-```bash
-stress –vm <프로세스 수> –vm-bytes <사용할 크기>
-ex)stress -vm 2 –vm-bytes 2048m
-```
-
-## HDD write 부하
-
-```bash
-stress –hdd <write에 사용할 worker 수> –hdd-bytes <사용할 크기>
-ex) stress –hdd 3 -hdd-bytes 1024m
-```
-
-## I/O  부하
-
-```bash
-stress -i <sync를 사용하여 i/o 부하를 발생 시킬 worker의수>
 ```
