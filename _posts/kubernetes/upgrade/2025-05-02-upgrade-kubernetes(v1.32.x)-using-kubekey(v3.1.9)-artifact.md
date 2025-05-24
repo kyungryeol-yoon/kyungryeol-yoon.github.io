@@ -61,36 +61,30 @@ spec:
     docker-compose:
       version: v2.26.1
   images:
-  - docker.io/kubesphere/kube-apiserver:v1.29.3
   - docker.io/kubesphere/kube-apiserver:v1.30.12
   - docker.io/kubesphere/kube-apiserver:v1.31.8
   - docker.io/kubesphere/kube-apiserver:v1.32.4
-  - docker.io/kubesphere/kube-apiserver:v1.33.0
-  - docker.io/kubesphere/kube-controller-manager:v1.29.3
   - docker.io/kubesphere/kube-controller-manager:v1.30.12
   - docker.io/kubesphere/kube-controller-manager:v1.31.8
   - docker.io/kubesphere/kube-controller-manager:v1.32.4
-  - docker.io/kubesphere/kube-controller-manager:v1.33.0
-  - docker.io/kubesphere/kube-scheduler:v1.29.3
   - docker.io/kubesphere/kube-scheduler:v1.30.12
   - docker.io/kubesphere/kube-scheduler:v1.31.8
   - docker.io/kubesphere/kube-scheduler:v1.32.4
-  - docker.io/kubesphere/kube-scheduler:v1.33.0
-  - docker.io/kubesphere/kube-proxy:v1.29.3
   - docker.io/kubesphere/kube-proxy:v1.30.12
   - docker.io/kubesphere/kube-proxy:v1.31.8
   - docker.io/kubesphere/kube-proxy:v1.32.4
-  - docker.io/kubesphere/kube-proxy:v1.33.0
   - docker.io/kubesphere/pause:3.9
   - docker.io/coredns/coredns:1.9.3
   - docker.io/calico/cni:v3.23.2
   - docker.io/calico/cni:v3.27.3
   - docker.io/calico/kube-controllers:v3.23.2
-  - docker.io/calico/kube-controllers:v3.27.3
+  - docker.io/calico/kube-controllers:v3.27.4
   - docker.io/calico/node:v3.23.2
-  - docker.io/calico/node:v3.27.3
+  - docker.io/calico/node:v3.27.4
   - docker.io/calico/pod2daemon-flexvol:v3.23.2
+  - docker.io/calico/pod2daemon-flexvol:v3.27.4
   - docker.io/calico/typha:v3.23.2
+  - docker.io/calico/typha:v3.27.4
   - docker.io/kubesphere/flannel:v0.12.0
   - docker.io/openebs/provisioner-localpv:3.3.0
   - docker.io/openebs/linux-utils:3.3.0
