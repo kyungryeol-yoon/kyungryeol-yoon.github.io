@@ -18,7 +18,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: stress-script
-  namespace: chip-anlyzer
+  namespace: chip-analyzer
 data:
   stress-control.sh: |
     #!/bin/bash
@@ -27,7 +27,7 @@ data:
     echo "TARGET_CPU_USAGE = $TARGET_CPU_USAGE"
 
     TARGET_MEMORY_USAGE=$TARGET_MEM
-    echo "TARGET_MEMORY_USAGE=$TARGET_MEMORY_USAGE"
+    echo "TARGET_MEMORY_USAGE = $TARGET_MEMORY_USAGE"
 
     TIMEOUT=$TIMEOUT
     echo "TIMEOUT = $TIMEOUT"
@@ -55,7 +55,7 @@ data:
 
       echo "##### Memory Check #####"
       TOTAL_MEMORY=$(grep MemTotal /proc/meminfo | awk '{print $2}')
-      echo "TOTAL_MEMORY = $TOTAL_MEMORY
+      echo "TOTAL_MEMORY = $TOTAL_MEMORY"
 
       FREE_MEMORY=$(grep MemFree /proc/meminfo | awk '{print $2}')
       echo "FREE_MEMORY = $FREE_MEMORY"
@@ -66,7 +66,7 @@ data:
       CACHED=$(grep "^Cached" /proc/meminfo | awk '{print $2}')
       echo "CACHED = $CACHED"
 
-      USED_MEMORY=$((TOTAL_MEMORY - FRESS_MEMORY - BUFFERS - CACHED))
+      USED_MEMORY=$((TOTAL_MEMORY - FREE_MEMORY - BUFFERS - CACHED))
       echo "USED_MEMORY = $USED_MEMORY"
 
       TARGET_MEMORY=$(echo "$TOTAL_MEMORY * $TARGET_MEMORY_USAGE / 100" | bc)
