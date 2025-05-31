@@ -103,7 +103,7 @@ data:
 
 ```yaml
 apiVersion: apps/v1
-kind: DaemoSet
+kind: DaemonSet
 metadata:
   labels:
     app: chip-analyzer-master
@@ -125,7 +125,7 @@ spec:
     spec:
       affinity:
         nodeAffinity:
-          requiredDuringSchedulingIgnoreDuringExecution:
+          requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
                 - key: node-role.kubernetes.io/control-plane
