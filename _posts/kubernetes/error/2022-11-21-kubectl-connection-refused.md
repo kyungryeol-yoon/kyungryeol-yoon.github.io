@@ -110,7 +110,7 @@ sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/conf
 sudo systemctl restart containerd
 ```
 
-수정 후 kubelet도 재시작합니다:
+수정 후 kubelet도 재시작합니다.
 
 ```bash
 sudo systemctl restart kubelet
