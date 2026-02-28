@@ -1,12 +1,12 @@
 ---
-title: "[Kubernetes] Kubernetes kubectl Connection Refused 문제 분석 및 해결"
+title: "[Kubernetes] kubectl Connection Refused 문제 분석 및 해결"
 date: 2022-11-21
 description: "Windows 환경에서 Ubuntu Multipass를 이용해 k3s 기반 Kubernetes 클러스터를 구축하는 실전 설치 가이드"
 categories: [Kubernetes, Error]
 tags: [kubernetes, troubleshooting, containerd, connection refused]
 ---
 
-# Kubernetes kubectl Connection Refused 문제 분석 및 해결
+# kubectl Connection Refused 문제 분석 및 해결
 
 Kubernetes 환경에서 `kubectl` 명령이 정상 동작하다가 간헐적으로 아래와 같은 오류가 발생하는 문제가 있었습니다.
 
