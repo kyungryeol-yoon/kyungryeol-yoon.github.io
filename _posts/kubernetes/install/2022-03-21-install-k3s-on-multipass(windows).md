@@ -43,7 +43,7 @@ multipass launch -n k3s-master -c 2 -m 2G -d 20G impish
 multipass launch -n k3s-node1 -c 2 -m 2G -d 20G impish
 multipass launch -n k3s-node2 -c 2 -m 2G -d 20G impish
 multipass launch -n k3s-node3 -c 2 -m 2G -d 20G impish
-````
+```
 
 > 각 VM은 CPU 2코어, 메모리 2GB, 디스크 20GB로 설정합니다.
 
