@@ -1,5 +1,5 @@
 ---
-title: "[Redis] Install containerd on Ubuntu 22.04"
+title: "[Ubuntu] Install containerd on Ubuntu 22.04"
 date: 2022-03-23
 description: "Ubuntu 22.04 서버에 containerd 컨테이너 런타임을 설치하고 Kubernetes 환경에 맞게 설정하는 과정입니다."
 categories: [OS, Linux]
