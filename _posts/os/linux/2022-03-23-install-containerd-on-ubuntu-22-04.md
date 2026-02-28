@@ -29,7 +29,7 @@ APT로 containerd를 설치하기 위해 Docker 저장소를 추가합니다.
 ```bash
 sudo apt update
 sudo apt install -y ca-certificates curl gnupg lsb-release
-````
+```
 
 그 다음 Docker 공식 GPG 키를 추가하고 저장소를 등록합니다.
 
@@ -116,8 +116,6 @@ Ubuntu 22.04에 containerd를 설치하고 Kubernetes 환경에 맞게 설정하
 4. 서비스 재시작 및 상태 확인
 
 이제 이 노드에서 컨테이너를 실행하거나 Kubernetes 클러스터 환경을 구성할 준비가 되었습니다.
-
-```
 
 ---
 
