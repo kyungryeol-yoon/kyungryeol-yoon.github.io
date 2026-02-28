@@ -1,11 +1,11 @@
 ---
 title: "[AI New] 🚀 Hacker News Top 20 요약"
-date: YYYY-02-Feb 27, 2026 19:38:41
+date: 2026-02-27
 categories: [News, AI]
 tags: [new, ai]
 ---
 
-# 🚀 오늘의 Hacker News 요약 (YYYY-02-Feb 27, 2026)
+# 🚀 오늘의 Hacker News 요약 (2026-02-27)
 
 **제목:** AI가 소프트웨어 개발을 혁신적으로 바꾸는 방식  
 
