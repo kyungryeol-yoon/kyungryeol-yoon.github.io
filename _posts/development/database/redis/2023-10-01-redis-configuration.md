@@ -38,7 +38,7 @@ systemctl enable redis
 # Redis 상태 확인
 systemctl status redis
 netstat -lntp | grep 6379
-````
+```
 
 위 예시는 **Firewalld 환경에서 Redis 포트(6379)을 열고 서비스로 등록**하는 방법입니다.
 
@@ -138,7 +138,7 @@ Redis를 외부에서 안전하게 노출하기 위해서는 **bind와 protected
 | 옵션           | 설명                       |
 | ------------ | ------------------------ |
 | `replicaof`  | Redis replication(복제) 설정 |
-| `masterauth` | 복제 시 마스터 인증 비밀번호         |
+| `masterauth` | 복제 시 마스터 인증 비밀번호      |
 
 Replica 서버가 Master와 연결을 유지하고 복제하기 위해 필요한 옵션입니다.
 
