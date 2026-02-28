@@ -36,7 +36,7 @@ Windows 환경에서 **Multipass + Ubuntu VM**을 활용해 **k3s 기반 Kuberne
 
 ## 🐧 1. Ubuntu VM 생성 (Multipass)
 
-Windows에서 다음과 같이 Ubuntu 인스턴스 4대를 띄웁니다:
+Windows에서 다음과 같이 Ubuntu 인스턴스 4대를 띄웁니다.
 
 ```powershell
 multipass launch -n k3s-master -c 2 -m 2G -d 20G impish
@@ -51,7 +51,7 @@ multipass launch -n k3s-node3 -c 2 -m 2G -d 20G impish
 
 ## 🚫 2. Swap 비활성화
 
-각 Ubuntu VM에서 Swap을 끕니다 (k3s/k8s 필수):
+각 Ubuntu VM에서 Swap을 끕니다. (k3s/k8s 필수)
 
 ```bash
 sudo swapoff -a
@@ -79,13 +79,13 @@ Hyper-V 내부 스위치를 생성하고 NAT로 네트워크를 구성해 고정
 
 ## ☸️ 4. k3s 설치 – Master
 
-Master 노드에서 다음 명령으로 k3s를 설치합니다:
+Master 노드에서 다음 명령으로 k3s를 설치합니다.
 
 ```bash
 curl -sfL https://get.k3s.io | sh -
 ```
 
-설치가 완료되면 다음 파일을 복사합니다:
+설치가 완료되면 다음 파일을 복사합니다.
 
 ```bash
 sudo cat /var/lib/rancher/k3s/server/node-token
@@ -97,7 +97,7 @@ sudo cat /var/lib/rancher/k3s/server/node-token
 
 ## 👷 5. k3s 설치 – Worker 노드 조인
 
-Master에서 받은 토큰을 이용하여 각 Worker 노드를 클러스터에 조인합니다:
+Master에서 받은 토큰을 이용하여 각 Worker 노드를 클러스터에 조인합니다.
 
 ```bash
 curl -sfL https://get.k3s.io | K3S_TOKEN="<토큰>" K3S_URL="https://<MASTER_IP>:6443" sh -
@@ -109,7 +109,7 @@ curl -sfL https://get.k3s.io | K3S_TOKEN="<토큰>" K3S_URL="https://<MASTER_IP>
 
 ## 🔧 6. kubectl 설정 (관리 PC)
 
-Master VM에서 kubeconfig 파일을 복사하여 로컬 kubectl에서 활용합니다:
+Master VM에서 kubeconfig 파일을 복사하여 로컬 kubectl에서 활용합니다.
 
 ```bash
 multipass exec k3s-master -- sudo cat /etc/rancher/k3s/k3s.yaml > k3s.yaml
@@ -121,7 +121,7 @@ multipass exec k3s-master -- sudo cat /etc/rancher/k3s/k3s.yaml > k3s.yaml
 server: https://<MASTER_IP>:6443
 ```
 
-그 후 로컬에서 아래처럼 kubectl을 실행합니다:
+그 후 로컬에서 아래처럼 kubectl을 실행합니다.
 
 ```bash
 export KUBECONFIG=$(pwd)/k3s.yaml
