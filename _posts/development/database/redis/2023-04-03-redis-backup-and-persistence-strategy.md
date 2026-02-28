@@ -53,7 +53,7 @@ save 3600 1
 save 300 100
 save 60 10000
 
-````
+```
 
 이는 세 조건 중 하나라도 만족되면 스냅샷이 실행됩니다.
 
@@ -110,7 +110,7 @@ docker run \
   -v $(pwd)/redis.conf:/redis.conf \
   --name redis-rdb \
   redis redis-server /redis.conf
-````
+```
 
 Redis에 데이터 입력 후 RDB 조건 만족 여부를 확인해 보세요.
 
