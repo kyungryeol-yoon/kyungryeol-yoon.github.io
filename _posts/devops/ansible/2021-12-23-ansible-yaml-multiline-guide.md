@@ -34,11 +34,11 @@ my_pattern: |
   This is line one
   This is line two
   Line three
-````
+```
 
 위와 같이 작성하면 출력 결과는 **정확히 입력한 줄바꿈까지 그대로 반영**됩니다.
 
-이는 아래와 같은 상황에서 유용합니다:
+이는 아래와 같은 상황에서 유용합니다.
 
 * Shell script 삽입
 * 여러 줄 리터럴 텍스트
@@ -131,7 +131,5 @@ Ansible Playbook에서 YAML Multiline은 다음과 같이 이해하면 됩니다
 * 추가적인 `+`, `-`를 통해 줄바꿈 유지/삭제 옵션 조정 가능
 
 YAML 멀티라인을 잘 활용하면 Playbook을 더 읽기 좋고 유지보수하기 쉬운 코드로 작성할 수 있습니다.
-
-```
 
 ---
