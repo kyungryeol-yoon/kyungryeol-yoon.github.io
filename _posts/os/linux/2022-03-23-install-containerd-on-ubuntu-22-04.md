@@ -31,7 +31,7 @@ sudo apt update
 sudo apt install -y ca-certificates curl gnupg lsb-release
 ````
 
-그 다음 Docker 공식 GPG 키를 추가하고 저장소를 등록합니다:
+그 다음 Docker 공식 GPG 키를 추가하고 저장소를 등록합니다.
 
 ```bash
 sudo mkdir -p /etc/apt/keyrings
@@ -53,7 +53,7 @@ sudo apt update
 sudo apt install -y containerd.io
 ```
 
-설치 후 서비스 상태를 확인합니다:
+설치 후 서비스 상태를 확인합니다.
 
 ```bash
 sudo systemctl status containerd
