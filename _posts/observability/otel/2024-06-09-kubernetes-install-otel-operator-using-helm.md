@@ -8,6 +8,18 @@ tags: [kubernetes, opentelemetry, operator, cert-manager, install, helm]
 > [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 {: .prompt-info }
 
+# 🔀 OTEL 예시 흐름:
+
+```
+Application → OTel SDK
+                     ↓
+                OTel Collector
+               /      |      \
+         Logs   Metrics   Traces
+           ↓        ↓         ↓
+         Loki   Prometheus  Tempo/Jaeger
+```
+
 ## Install Cert-manager
 
 ```bash
