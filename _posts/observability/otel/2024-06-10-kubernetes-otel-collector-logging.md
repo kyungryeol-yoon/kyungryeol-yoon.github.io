@@ -5,6 +5,19 @@ categories: [Observability, OpenTelemetry]
 tags: [kubernetes, opentelemetry, collector, logging]
 ---
 
+예시 흐름:
+
+```
+Application → OTel SDK
+                     ↓
+                OTel Collector
+               /      |      \
+         Logs   Metrics   Traces
+           ↓        ↓         ↓
+         Loki   Prometheus  Tempo/Jaeger
+```
+
+
 ## Opentelemetry Collector
 
 - 아키텍쳐는 OTel Collector와 기존의 로그 수집 도구를 혼합해 구성한 Plan A와 OTel Collector만으로 구성한 Plan B로 나눌 수 있다.
