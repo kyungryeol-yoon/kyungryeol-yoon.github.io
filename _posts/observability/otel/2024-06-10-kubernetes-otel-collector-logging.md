@@ -5,7 +5,7 @@ categories: [Observability, OpenTelemetry]
 tags: [kubernetes, opentelemetry, collector, logging]
 ---
 
-예시 흐름:
+# 🔀 OTEL 예시 흐름:
 
 ```
 Application → OTel SDK
@@ -16,7 +16,6 @@ Application → OTel SDK
            ↓        ↓         ↓
          Loki   Prometheus  Tempo/Jaeger
 ```
-
 
 ## Opentelemetry Collector
 
