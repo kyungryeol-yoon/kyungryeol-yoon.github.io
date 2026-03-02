@@ -1,7 +1,7 @@
 ---
 title: "[Clean Code] 현실적인 관점에서 바라본 클린 코드"
 date: 2020-11-02
-categories: [Dev, Software-Engineering]
+categories: [Development, Software-Engineering]
 tags: [clean-code, architecture, code-review, backend, frontend]
 ---
 
