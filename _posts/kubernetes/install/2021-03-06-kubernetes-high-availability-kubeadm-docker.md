@@ -2,123 +2,173 @@
 title: "[Kubernetes] kubeadm으로 마스터 노드 고가용성(HA) 클러스터 구축하기(Docker)"
 date: 2021-03-06
 categories: [Kubernetes, HA]
-tags: [kubernetes, kubeadm, high-availability, haproxy, keepalived]
+tags: [kubernetes, docker, kubeadm, highavailability, haproxy, keepalived, cluster]
 ---
 
-# Kubernetes 마스터 노드 고가용성(HA) 클러스터 구성
+# ☸️ Docker 환경에서 쿠버네티스 HA 클러스터 구축하기 (Stacked etcd)
 
-단일 마스터 노드 구성은 해당 노드에 장애가 발생할 경우 클러스터 전체의 제어가 불가능해지는 **Single Point of Failure(SPOF)** 문제가 있습니다. 이를 해결하기 위해 Load Balancer를 활용한 마스터 노드 고가용성 클러스터를 구축해 보겠습니다.
+안녕하세요! 오늘은 가장 익숙한 컨테이너 런타임인 **Docker**를 사용하여, 서비스 중단 없는 **고가용성(High Availability, HA) 쿠버네티스 클러스터**를 구축하는 방법을 상세히 알아보겠습니다. 🚀
 
-
-
----
-
-## 1. 클러스터 구성 개요
-
-본 가이드에서는 **Stacked etcd** 방식(마스터 노드 내에 etcd를 함께 배포)을 기준으로 설명합니다.
-
-* **Load Balancer (2대)**: HAProxy + Keepalived (Virtual IP 활용)
-* **Master Nodes (3대)**: 고가용성을 위해 홀수 개(최소 3대) 구성 권장
-* **Worker Nodes (N대)**: 실제 워크로드가 실행되는 노드
+운영 환경에서는 마스터 노드 한 대가 죽더라도 클러스터가 유지되어야 하므로, 로드밸런서를 활용한 HA 구성은 필수입니다.
 
 ---
 
-## 2. 사전 준비 (모든 노드 공통)
+## 🏗️ 1. 클러스터 구성 및 아키텍처
 
-모든 노드에 Docker(또는 Containerd), kubeadm, kubectl, kubelet이 설치되어 있어야 하며, Swap은 비활성화되어야 합니다.
+본 가이드는 마스터 노드 안에 etcd를 함께 배포하는 **Stacked etcd** 방식을 사용합니다.
 
+* **Load Balancer (VIP)**: HAProxy + Keepalived (대표 IP: `192.168.0.100`)
+* **Master Nodes**: 최소 3대 권장 (홀수 구성)
+* **Worker Nodes**: 실제 서비스가 구동될 노드들
+
+
+
+---
+
+## ⚙️ 2. 사전 준비 (모든 노드 공통)
+
+모든 노드(마스터, 워커, 로드밸런서)에서 기본적인 시스템 설정을 진행합니다.
+
+### 2.1 Swap 및 방화벽 설정 🛑
 ```bash
 # Swap 비활성화
-sudo swapoff -a && sudo sed -i '/swap/s/^/#/' /etc/fstab
+sudo swapoff -a
+sudo sed -i '/swap/s/^/#/' /etc/fstab
 
-# 기본 네트워크 설정
+# 방화벽 해제 (학습용 환경 기준)
+sudo ufw disable
+
+```
+
+### 2.2 커널 모듈 및 네트워크 브리지 설정
+
+```bash
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 br_netfilter
 EOF
+
 sudo modprobe br_netfilter
+
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+EOF
+
 sudo sysctl --system
 
 ```
 
 ---
 
-## 3. Load Balancer 설정 (LB 노드 전용)
+## 📦 3. Docker 설치 및 Cgroup Driver 설정
 
-마스터 노드들의 API Server(6443 포트)로 트래픽을 분산하기 위해 **HAProxy**와 **Keepalived**를 설정합니다.
+쿠버네티스와 Docker의 자원 관리 방식(Cgroup)을 일치시키는 것이 매우 중요합니다.
 
-### 3.1 HAProxy 설정
+```bash
+# Docker 설치
+sudo apt-get update && sudo apt-get install -y docker.io
+sudo systemctl enable --now docker
 
-`/etc/haproxy/haproxy.cfg` 파일 하단에 마스터 노드 정보를 추가합니다.
+# 🚨 중요: Docker Cgroup Driver를 systemd로 변경
+# K8s 1.22 버전 이상부터는 systemd가 기본이자 권장사항입니다.
+cat <<EOF | sudo tee /etc/docker/daemon.json
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+
+sudo systemctl restart docker
+
+```
+
+---
+
+## ⚖️ 4. 로드밸런서(LB) 구성 (LB 노드)
+
+마스터 노드들의 API Server(6443 포트)로 트래픽을 분산해 줄 **HAProxy**를 설정합니다.
+
+**`/etc/haproxy/haproxy.cfg` 설정:**
 
 ```haproxy
 frontend k8s-api
     bind *:6443
     mode tcp
-    option tcplog
-    default_backend k8s-api-backend
+    default_backend k8s-api-nodes
 
-backend k8s-api-backend
+backend k8s-api-nodes
     mode tcp
-    option tcp-check
     balance roundrobin
-    server master1 <MASTER1_IP>:6443 check
-    server master2 <MASTER2_IP>:6443 check
-    server master3 <MASTER3_IP>:6443 check
+    server master1 192.168.0.11:6443 check
+    server master2 192.168.0.12:6443 check
+    server master3 192.168.0.13:6443 check
 
 ```
 
-### 3.2 Keepalived 설정 (Virtual IP)
-
-두 대의 LB 중 한 대가 죽더라도 **VIP(Virtual IP)**를 통해 접속이 유지되도록 설정합니다.
-
 ---
 
-## 4. 클러스터 초기화 (첫 번째 마스터 노드)
+## 🚩 5. 클러스터 초기화 (첫 번째 마스터)
 
-첫 번째 마스터 노드에서만 실행합니다. 핵심은 `--control-plane-endpoint` 옵션에 **Load Balancer의 VIP**를 지정하는 것입니다.
+### ⚠️ [주의] VIP 설정을 절대 빠뜨리지 마세요!
+
+고가용성 클러스터의 핵심은 모든 노드가 **로드밸런서의 VIP**를 바라보게 하는 것입니다. `--control-plane-endpoint` 옵션을 **빠뜨리면(누락하면)** HA 구성이 무의미해집니다.
 
 ```bash
-sudo kubeadm init --control-plane-endpoint "<LB_VIP>:6443" --upload-certs --pod-network-cidr=10.244.0.0/16
+# 첫 번째 마스터에서 실행 (VIP 주소 사용)
+sudo kubeadm init \
+  --control-plane-endpoint "192.168.0.100:6443" \
+  --upload-certs \
+  --pod-network-cidr=10.244.0.0/16
 
 ```
 
-* `--upload-certs`: 인증서를 자동으로 클러스터에 업로드하여 다른 마스터 노드가 조인할 때 공유받을 수 있게 합니다.
-* **결과값 저장**: 실행 후 출력되는 `kubeadm join ... --control-plane` 명령어를 반드시 복사해 두세요.
+성공 시 화면에 나타나는 `kubeadm join ... --control-plane` 명령어를 복사해 두세요. ✨
 
 ---
 
-## 5. 추가 마스터 및 워커 노드 조인
+## 🤝 6. 마스터 및 워커 노드 조인 (Join)
 
-### 5.1 추가 마스터 노드 (Master 2, 3)
+### 6.1 추가 마스터 노드 (Master 2, 3)
 
-복사해둔 명령어에 `--control-plane`과 `--certificate-key`가 포함된 구문을 실행합니다.
+복사해둔 명령어에 `--control-plane` 옵션이 포함되어 있는지 확인 후 실행합니다.
 
 ```bash
-sudo kubeadm join <LB_VIP>:6443 --token <TOKEN> \
+sudo kubeadm join 192.168.0.100:6443 --token <TOKEN> \
     --discovery-token-ca-cert-hash sha256:<HASH> \
     --control-plane --certificate-key <KEY>
 
 ```
 
-### 5.2 워커 노드 (Worker Nodes)
+### 6.2 워커 노드 (Worker)
 
-일반적인 join 명령어를 실행합니다.
+일반 조인 명령어를 실행합니다.
 
 ```bash
-sudo kubeadm join <LB_VIP>:6443 --token <TOKEN> \
+sudo kubeadm join 192.168.0.100:6443 --token <TOKEN> \
     --discovery-token-ca-cert-hash sha256:<HASH>
 
 ```
 
 ---
 
-## 6. 설치 확인
+## ✅ 7. 최종 상태 확인
 
-마스터 노드에서 아래 명령어를 통해 모든 노드가 `Ready` 상태인지 확인합니다.
+모든 설정이 끝났습니다. 마스터 노드에서 전체 노드 상태를 확인합니다.
 
 ```bash
 kubectl get nodes
 
 ```
 
-모든 마스터 노드의 `ROLES`가 `control-plane,master`로 표시되고 상태가 정상이라면 고가용성 클러스터 구축이 완료된 것입니다.
+**STATUS**가 모두 `Ready`라면, Docker 기반의 견고한 HA 클러스터 구축이 완료되었습니다! 🎉
+
+### 💡 요약 포인트:
+
+1. Docker 설치 후 **Systemd Cgroup Driver** 설정은 필수입니다.
+2. `kubeadm init` 시 **로드밸런서 VIP**를 **빠뜨리지 말아야** 진정한 고가용성이 구현됩니다.
+3. `--upload-certs` 옵션은 마스터 노드 간 인증서 공유를 아주 편하게 해줍니다.
