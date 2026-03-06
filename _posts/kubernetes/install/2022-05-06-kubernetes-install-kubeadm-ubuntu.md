@@ -1,4 +1,3 @@
-
 ---
 title: "[Kubernetes] kubeadm으로 쿠버네티스 클러스터 설치하기 (Ubuntu/Debian)"
 date: 2022-05-06
