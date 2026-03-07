@@ -5,7 +5,7 @@ categories: [Network, IP]
 tags: [network, ip, subnet, cidr, dhcp, devops]
 ---
 
-# 📡 IP 주소와 주소 공간
+## 📡 IP 주소와 주소 공간
 
 IP 주소는 네트워크 상 장치를 식별하고 통신하게 하는 필수 요소입니다.  
 개발자 관점에서 IP 주소 공간을 이해하면 **컨테이너 네트워크, VPC 설계, 서비스 접속 문제** 해결이 수월합니다.
