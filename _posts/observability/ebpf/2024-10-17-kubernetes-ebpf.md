@@ -5,7 +5,7 @@ categories: [Observability, eBPF]
 tags: [kubernetes, ebpf, tracing, monitoring, devops, performance]
 ---
 
-# 🔍 eBPF: 개발자 관점에서 보는 커널 레벨 모니터링
+## 🔍 eBPF: 개발자 관점에서 보는 커널 레벨 모니터링
 
 쿠버네티스 환경에서 성능 분석, 네트워크 모니터링, 보안 트레이싱을 위해 **eBPF**가 점점 주목받고 있습니다.  
 개발자 입장에서 이해하면 **애플리케이션과 커널 단위를 어떻게 실시간으로 관측하는지** 명확해집니다.
