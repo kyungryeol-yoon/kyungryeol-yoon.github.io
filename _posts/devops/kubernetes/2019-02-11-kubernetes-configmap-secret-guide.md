@@ -30,17 +30,6 @@ Kubernetes에서는 이 문제를 해결하기 위해 **ConfigMap**과 **Secret*
 
 ---
 
-## Kubernetes 시리즈
-
-1️⃣ Kubernetes 핵심 개념 정리  
-2️⃣ Controller / ReplicaSet / Deployment  
-3️⃣ Service와 Networking  
-4️⃣ Ingress 구조  
-5️⃣ ConfigMap / Secret  
-6️⃣ Storage (PV / PVC)
-
----
-
 ## Kubernetes 설정 관리 구조
 
 ConfigMap과 Secret은 **Pod 외부에서 설정을 관리하는 리소스**입니다.
