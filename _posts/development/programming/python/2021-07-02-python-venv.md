@@ -25,7 +25,6 @@ pin: true
 ```bash
 # python -m venv [가상환경이름]
 python -m venv venv
-
 ```
 
 ### 특정 버전으로 생성 (설치된 경우)
@@ -36,10 +35,9 @@ py -3.10 -m venv venv
 
 # macOS / Linux
 python3.10 -m venv venv
-
 ```
 
-> **💡 Tip**: `--system-site-packages` 옵션을 붙이면 시스템에 이미 설치된 전역 패키지들을 포함한 상태로 가상환경을 시작할 수 있습니다.
+> **Tip**: `--system-site-packages` 옵션을 붙이면 시스템에 이미 설치된 전역 패키지들을 포함한 상태로 가상환경을 시작할 수 있습니다.
 {: .prompt-tip }
 
 ---
@@ -63,7 +61,6 @@ python3.10 -m venv venv
 
 ```bash
 deactivate
-
 ```
 
 ---
@@ -78,7 +75,6 @@ deactivate
 pip install pandas       # 설치
 pip uninstall pandas     # 삭제
 pip list                 # 설치된 패키지 목록 확인
-
 ```
 
 ### 협업의 핵심: requirements.txt
@@ -91,7 +87,6 @@ pip freeze > requirements.txt
 
 # 2. 파일에 기록된 패키지 한 번에 설치 (새 환경에서)
 pip install -r requirements.txt
-
 ```
 
 ---
@@ -107,10 +102,9 @@ pip install -r requirements.txt
 venv/
 __pycache__/
 *.pyc
-
 ```
 
 ---
 
-참고 자료: [venv와 virtualenv 차이*](https://kyungryeol-yoon.github.io/posts/python-venv-virtualenv/)
+> 참고 자료: [venv와 virtualenv 차이*](https://kyungryeol-yoon.github.io/posts/python-venv-virtualenv/)
 {: .prompt-info }
