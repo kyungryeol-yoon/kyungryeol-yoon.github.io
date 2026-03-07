@@ -3,21 +3,24 @@ title: "[Kubernetes] Install OTel(OpenTelemetry) Operator Using Helm Chart"
 date: 2024-06-09
 categories: [Observability, OpenTelemetry]
 tags: [kubernetes, opentelemetry, operator, cert-manager, install, helm]
+mermaid: true
 ---
 
 > [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 {: .prompt-info }
 
-# 🔀 OTEL 예시 흐름:
+## 🔀 OTEL 예시 흐름:
 
-```
-Application → OTel SDK
-                     ↓
-                OTel Collector
-               /      |      \
-         Logs   Metrics   Traces
-           ↓        ↓         ↓
-         Loki   Prometheus  Tempo/Jaeger
+```mermaid
+graph TD
+  A[Application] --> B[OTel SDK]
+  B --> C[OTel Collector]
+  C --> D[Logs]
+  C --> E[Metrics]
+  C --> F[Traces]
+  D --> G[Loki]
+  E --> H[Prometheus]
+  F --> I[Tempo/Jaeger]
 ```
 
 ## Install Cert-manager
