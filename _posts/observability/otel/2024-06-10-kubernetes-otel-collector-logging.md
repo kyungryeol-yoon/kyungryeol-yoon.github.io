@@ -3,18 +3,21 @@ title: "[Kubernetes] OTel(OpenTelemetry) Collector - Logging"
 date: 2024-06-10
 categories: [Observability, OpenTelemetry]
 tags: [kubernetes, opentelemetry, collector, logging]
+mermaid: true
 ---
 
-# 🔀 OTEL 예시 흐름:
+## 🔀 OTEL 예시 흐름:
 
-```
-Application → OTel SDK
-                     ↓
-                OTel Collector
-               /      |      \
-         Logs   Metrics   Traces
-           ↓        ↓         ↓
-         Loki   Prometheus  Tempo/Jaeger
+```mermaid
+graph TD
+  A[Application] --> B[OTel SDK]
+  B --> C[OTel Collector]
+  C --> D[Logs]
+  C --> E[Metrics]
+  C --> F[Traces]
+  D --> G[Loki]
+  E --> H[Prometheus]
+  F --> I[Tempo/Jaeger]
 ```
 
 ## Opentelemetry Collector
