@@ -5,7 +5,7 @@ categories: [Kubernetes, eBPF]
 tags: [kubernetes, ebpf, cilium, observability, networking, devops]
 ---
 
-# 🔍 eBPF + Cilium: 개발자 관점에서 보는 심층 모니터링
+## 🔍 eBPF + Cilium: 개발자 관점에서 보는 심층 모니터링
 
 쿠버네티스에서 **애플리케이션 + 클러스터 호스트 수준** Observability를 확보하려면  
 OTel과 eBPF를 활용하는 것이 효과적입니다.  
