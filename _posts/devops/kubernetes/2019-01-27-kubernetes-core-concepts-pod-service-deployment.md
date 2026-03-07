@@ -4,6 +4,7 @@ date: 2019-01-27
 categories: [DevOps, Kubernetes]
 tags: [kubernetes, container, devops, docker, deployment, cloud, pod, service]
 description: "Kubernetes를 이해하기 위한 핵심 개념 정리. Pod, Service, Volume, Deployment와 기본 배포 전략(Blue-Green, Rolling Update)을 실제 구조 중심으로 설명합니다."
+mermaid: true
 ---
 
 # ☸️ Kubernetes 핵심 개념 정리
