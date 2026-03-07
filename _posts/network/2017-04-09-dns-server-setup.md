@@ -5,7 +5,7 @@ categories: [Network, DNS]
 tags: [dns, domain, network, server, devops]
 ---
 
-# 🖥️ 도메인 서버(DNS) 구축
+## 🖥️ 도메인 서버(DNS) 구축
 
 DNS는 도메인 이름을 IP로 변환하여 서비스 접근을 가능하게 합니다.  
 개발자 관점에서 직접 DNS를 이해하고 구축할 수 있으면 **서비스 장애 대응과 인프라 관리**에 강점이 됩니다.
