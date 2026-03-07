@@ -5,7 +5,7 @@ categories: [Backend, Software Design]
 tags: [netty, java, network, nio, asynchronous, reactor, tcp, udp]
 ---
 
-# ⚡ Netty in Action 요약과 실무 활용
+## ⚡ Netty in Action 요약과 실무 활용
 
 **Netty**는 Java 기반의 **비동기 이벤트 기반 네트워크 애플리케이션 프레임워크**입니다.  
 책 *Netty in Action*은 Netty의 핵심 개념과 실무 적용법을 자세히 설명합니다.
@@ -20,7 +20,7 @@ tags: [netty, java, network, nio, asynchronous, reactor, tcp, udp]
 
 ---
 
-# 1️⃣ Netty 핵심 개념
+## 1️⃣ Netty 핵심 개념
 
 - **비동기(Asynchronous)**: 모든 I/O 작업이 논블로킹 방식  
 - **이벤트 기반(Event-driven)**: 이벤트 발생 시 Handler가 동작  
@@ -30,7 +30,7 @@ tags: [netty, java, network, nio, asynchronous, reactor, tcp, udp]
 
 ---
 
-# 2️⃣ 아키텍처 개요
+## 2️⃣ 아키텍처 개요
 
 Netty의 아키텍처는 **Channel → Pipeline → Handler** 구조를 중심으로 이해합니다.
 
@@ -48,7 +48,7 @@ Channel ──> Pipeline ──> Handler
 
 ---
 
-# 3️⃣ EventLoop와 Thread 모델
+## 3️⃣ EventLoop와 Thread 모델
 
 - Netty는 **Reactor + EventLoop** 모델 사용  
 - EventLoop가 I/O 이벤트를 감지하고 등록된 Handler 호출  
@@ -66,7 +66,7 @@ EventLoopGroup
 
 ---
 
-# 4️⃣ TCP 서버 예제
+## 4️⃣ TCP 서버 예제
 
 ```java
 EventLoopGroup bossGroup = new NioEventLoopGroup(1);
@@ -95,7 +95,7 @@ try {
 
 ---
 
-# 5️⃣ UDP 서버 예제
+## 5️⃣ UDP 서버 예제
 
 ```java
 Bootstrap b = new Bootstrap();
@@ -115,7 +115,7 @@ b.bind(9999).sync().channel().closeFuture().await();
 
 ---
 
-# 6️⃣ 실무 활용 팁
+## 6️⃣ 실무 활용 팁
 
 * 📝 **Handler 분리**: 인코딩/디코딩과 비즈니스 로직을 분리
 * 📝 **Pipeline 활용**: ChannelPipeline을 통해 이벤트 흐름 제어
@@ -125,7 +125,7 @@ b.bind(9999).sync().channel().closeFuture().await();
 
 ---
 
-# 7️⃣ 요약
+## 7️⃣ 요약
 
 * **Netty** = 비동기 + 이벤트 기반 + Reactor 패턴 기반 네트워크 프레임워크
 * **핵심 구조**: Channel → Pipeline → Handler
