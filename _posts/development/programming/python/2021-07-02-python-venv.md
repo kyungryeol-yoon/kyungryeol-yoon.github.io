@@ -1,62 +1,116 @@
 ---
-title: "[Python] 가상환경 venv 사용하기"
+title: "[Python] 가상환경 venv 사용법"
 date: 2021-07-02
 categories: [Programming, Python]
-tags: [python, venv, programming]
+tags: [python, venv, programming, backend, devops]
 pin: true
 ---
 
-## 가상환경을 사용하는 이유
+# 🐍 왜 파이썬 가상환경(venv)을 써야 할까?
 
-- 당연히 Python 패키지(라이브러리) 간 의존성 때문에 쓰는 거다.
-- 특정 패키지 버전을 업데이트 할 때 다른 것들이 호환되지 않아 문제가 생기는 경우가 발생한다.
-- 그리고 작업환경이 바뀌더라도, 예를 들면 PC를 교체하더라도 필요한 패키지들을 동일한 버전으로 설치해 작업할 수 있기 때문에 무조건 사용하는 게 좋다.
+파이썬 프로젝트를 진행하다 보면 "A 프로젝트에서는 Django 3.2가 필요한데, B 프로젝트에서는 4.0이 필요하네?" 같은 상황이 발생합니다. 이때 시스템에 패키지를 전역으로 설치하면 버전 충돌로 인해 코드가 깨질 수 있습니다. 😱
 
-> [venv와 virtualenv 차이 참고](https://kyungryeol-yoon.github.io/posts/python-venv-virtualenv/)
-{: .prompt-info }
+**가상환경(Virtual Environment)**은 프로젝트마다 독립된 방을 만들어 주는 것과 같습니다.
+- **의존성 분리**: 프로젝트별로 필요한 패키지 버전을 독립적으로 관리합니다.
+- **깔끔한 환경**: 시스템 파이썬 환경을 더럽히지 않고 필요한 것만 골라 설치합니다.
+- **협업 용이**: 팀원들과 동일한 패키지 환경을 공유하기 매우 쉬워집니다.
 
-## 가상환경 생성
+---
 
-- 예를 들어 바탕화면에 `my_project`라는 폴더를 만들어 작업을 한다면, 그 폴더 안에서 `python -m venv [가상환경이름]`이라고 쳐주면 된다.
-  ```bash
-  C:\Users\kryoon\Desktop\my_project>python -m venv [가상환경이름]
-  ```
+## 🛠️ 1. 가상환경 생성하기
 
-- Version 지정하여 설치
+프로젝트 루트 폴더(예: `my_project`)로 이동한 뒤 아래 명령어를 입력합니다. 가상환경 이름은 관례적으로 `venv`를 가장 많이 사용합니다.
 
-  ```bash
-  C:\Users\kryoon\Desktop\my_project>py -[Version] -m venv [가상환경이름]
-
-  C:\Users\kryoon\Desktop\my_project>py -3.8 -m venv [가상환경이름]
-  ```
-
-- 이러면 `my_project`라는 폴더 안에 [가상환경이름]으로 하위폴더가 하나 생성된다. 실제 작업은 프로젝트 폴더 내에서 하면 된다.
-- 가상환경이름은 그냥 `venv`라고 만드는 걸 추천한다.
-- `python -m venv venv` 이런 식으로. 어떤 프로젝트든 가상환경을 활성화 하고 싶을 때 `venv`라는 이름으로만 사용하면 되기 때문이다.
-
-> 애초에 가상환경을 만들 때 내가 시스템 기본 파이썬을 사용하면서 설치했던 전역 패키지들을 깔고 시작하는 방법도 있다. 명령어 칠 때 뒤에 `--system-site-packages`라고 붙여주면 된다.
-{: .prompt-tip }
-
+### 기본 생성
 ```bash
-C:\Users\kryoon\Desktop\my_project>python -m venv [가상환경이름] --system-site-packages
+# python -m venv [가상환경이름]
+python -m venv venv
+
 ```
 
-## 가상환경 활성화/비활성화
+### 특정 버전으로 생성 (설치된 경우)
 
-- 프로젝트 폴더 안에서 `가상환경이름\Scripts\activate.bat` 이라고 쳐주면 가상환경이 활성화된다.
-  ```bash
-  C:\Users\kryoon\Desktop\my_project>가상환경이름\Scripts\activate.bat
-  ```
+```bash
+# Windows
+py -3.10 -m venv venv
 
-- 만약 `venv`라고 가상환경이름을 만들었다면 `venv\Scripts\activate.bat`
+# macOS / Linux
+python3.10 -m venv venv
 
-- 가상환경을 비활성화 하고 싶다면 `deactivate`
+```
 
-## 가상환경 내에서 패키지 설치, 삭제
+> **💡 Tip**: `--system-site-packages` 옵션을 붙이면 시스템에 이미 설치된 전역 패키지들을 포함한 상태로 가상환경을 시작할 수 있습니다.
+{: .prompt-tip }
 
-- 가상환경 내에서 패키지를 설치하려면, 가상환경을 활성화 한 상태에서 평소처럼 `pip install`로 패키지 설치를 하면 된다. (삭제는 `pip uninstall`)
-  ```bash
-  (venv) C:\Users\kryoon\Desktop\my_project>pip install 패키지이름
-  ```
+---
 
-- 가상환경 활성화 상태에서 `pip freeze`라고 명령어를 쳐보면 설치된 패키지 목록들을 볼 수 있다.
+## 🚀 2. 가상환경 활성화 & 비활성화
+
+가상환경을 만들었으면 그 '방'으로 들어가야 합니다. 운영체제에 따라 명령어가 다르니 주의하세요!
+
+### 활성화 (Activate)
+
+| 운영체제 | 터미널 (Shell) | 명령어 |
+| --- | --- | --- |
+| **Windows** | CMD / PowerShell | `venv\Scripts\activate` |
+| **macOS / Linux** | bash / zsh | `source venv/bin/activate` |
+
+활성화되면 터미널 프롬프트 앞에 `(venv)`라는 표시가 나타납니다.
+
+### 비활성화 (Deactivate)
+
+작업이 끝났다면 어느 환경에서든 아래 명령어 한 줄이면 됩니다.
+
+```bash
+deactivate
+
+```
+
+---
+
+## 📦 3. 패키지 관리 (설치 및 공유)
+
+가상환경이 활성화된 상태에서 패키지를 관리하는 방법입니다.
+
+### 패키지 설치 및 확인
+
+```bash
+pip install pandas       # 설치
+pip uninstall pandas     # 삭제
+pip list                 # 설치된 패키지 목록 확인
+
+```
+
+### 협업의 핵심: requirements.txt
+
+내가 사용한 패키지 목록을 파일로 만들어 팀원에게 전달하거나, 서버에 배포할 때 사용합니다.
+
+```bash
+# 1. 현재 환경의 패키지 목록 추출
+pip freeze > requirements.txt
+
+# 2. 파일에 기록된 패키지 한 번에 설치 (새 환경에서)
+pip install -r requirements.txt
+
+```
+
+---
+
+## ⚠️ 4. 주의사항 (Git 관리)
+
+가상환경 폴더(`venv/`)는 용량이 크고 사용자의 로컬 경로에 의존적입니다. 따라서 **Git에 절대 올리지 않습니다.** 🙅‍♂️
+
+`.gitignore` 파일에 반드시 아래 내용을 추가해 주세요.
+
+```text
+# .gitignore
+venv/
+__pycache__/
+*.pyc
+
+```
+
+---
+
+참고 자료: [venv와 virtualenv 차이*](https://kyungryeol-yoon.github.io/posts/python-venv-virtualenv/)
+{: .prompt-info }
