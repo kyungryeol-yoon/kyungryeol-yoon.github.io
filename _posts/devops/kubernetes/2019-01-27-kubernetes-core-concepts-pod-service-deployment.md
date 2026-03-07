@@ -55,6 +55,17 @@ D --> K[Pod]
 
 Control Plane은 클러스터 전체를 관리하는 영역입니다.
 
+```mermaid
+graph TD
+
+A[Control Plane]
+
+A --> B[API Server]
+A --> C[Scheduler]
+A --> D[Controller Manager]
+A --> E[etcd]
+```
+
 주요 역할은 다음과 같습니다.
 
 * 클러스터 상태 관리
@@ -77,6 +88,17 @@ Control Plane은 클러스터 전체를 관리하는 영역입니다.
 
 Worker Node는 **실제로 컨테이너가 실행되는 서버**입니다.
 
+```mermaid
+graph TD
+
+A[Worker Node]
+
+A --> B[kubelet]
+A --> C[kube-proxy]
+A --> D[Container Runtime]
+A --> E[Pods]
+```
+
 각 Node에는 다음 구성요소가 포함됩니다.
 
 * kubelet
@@ -88,6 +110,15 @@ Node는 다음 환경에서 실행될 수 있습니다.
 * 물리 서버
 * 가상 머신
 * 클라우드 인스턴스
+
+각 구성요소
+
+| Component         | 설명           |
+| ----------------- | ------------ |
+| kubelet           | Node의 Pod 관리 |
+| kube-proxy        | 네트워크 처리      |
+| Container Runtime | 컨테이너 실행      |
+| Pods              | 실제 애플리케이션    |
 
 ---
 
@@ -134,7 +165,7 @@ Pod는 Kubernetes에서 **가장 작은 배포 단위**입니다.
 
 대신 컨테이너를 **Pod 안에서 실행합니다.**
 
-### Pod 특징
+## Pod 특징
 
 * 하나 이상의 컨테이너 포함
 * 동일한 네트워크 사용
@@ -147,9 +178,10 @@ graph TD
 
 A[Pod]
 
-A --> B[Container - Application]
+A --> B[Container - App]
 A --> C[Container - Sidecar]
-A --> D[Shared Volume]
+A --> D[Shared Network]
+A --> E[Shared Volume]
 ```
 
 이 구조를 이용하면 다음과 같은 패턴이 가능합니다.
@@ -160,6 +192,43 @@ A --> D[Shared Volume]
 * Log Collector Container
 
 애플리케이션이 생성한 로그를 **Sidecar Container가 수집**하는 방식입니다.
+
+## Pod Networking
+
+Pod는 각각 **고유한 IP**를 가집니다.
+
+```mermaid
+graph LR
+
+A[Pod A] --> B[Pod B]
+B --> C[Pod C]
+```
+
+Kubernetes 특징
+
+* Pod 간 직접 통신 가능
+* NAT 없이 Pod IP 사용
+
+## Service 구조
+
+Pod는 생성/삭제될 때마다 IP가 바뀝니다.
+
+이 문제를 해결하는 것이 **Service**입니다.
+
+```mermaid
+graph TD
+
+A[Service]
+
+A --> B[Pod 1]
+A --> C[Pod 2]
+A --> D[Pod 3]
+```
+
+Service 역할
+
+* Pod 로드밸런싱
+* 고정된 접근 포인트 제공
 
 ---
 
@@ -316,6 +385,57 @@ A3[Old Pod] --> B3[New Pod]
 * 문제 발생 시 롤백 가능
 
 Deployment의 기본 배포 방식이기도 합니다.
+
+---
+
+# 🌐 Kubernetes Networking 구조
+
+외부 트래픽은 다음 경로를 통해 Pod로 전달됩니다.
+
+```mermaid
+graph TD
+
+A[User]
+
+A --> B[Ingress]
+
+B --> C[Service]
+
+C --> D[Pod]
+C --> E[Pod]
+```
+
+구성 요소
+
+| Component | 역할       |
+| --------- | -------- |
+| Ingress   | HTTP 라우팅 |
+| Service   | 로드밸런싱    |
+| Pod       | 애플리케이션   |
+
+---
+
+# 🏛️ Kubernetes 전체 아키텍처
+
+지금까지 설명한 구조를 하나로 합치면 다음과 같습니다.
+
+```mermaid
+graph TD
+
+A[User]
+
+A --> B[Ingress]
+
+B --> C[Service]
+
+C --> D[Pod]
+
+D --> E[Worker Node]
+
+E --> F[Kubernetes Cluster]
+
+F --> G[Control Plane]
+```
 
 ---
 
