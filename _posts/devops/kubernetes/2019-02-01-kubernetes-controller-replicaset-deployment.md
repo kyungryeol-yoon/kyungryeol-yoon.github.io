@@ -26,16 +26,6 @@ Kubernetes의 대부분 기능은 **Controller 패턴**으로 동작합니다.
 
 ---
 
-## Kubernetes 시리즈
-
-1️⃣ Kubernetes 핵심 개념 정리  
-2️⃣ Controller / ReplicaSet / Deployment  
-3️⃣ Service와 Networking  
-4️⃣ ConfigMap / Secret  
-5️⃣ Ingress 구조
-
----
-
 ## Controller란 무엇인가
 
 Controller는 Kubernetes에서 **클러스터 상태를 원하는 상태(Desired State)로 유지하는 컴포넌트**입니다.
