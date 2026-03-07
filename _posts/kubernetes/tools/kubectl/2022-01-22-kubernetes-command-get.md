@@ -5,7 +5,6 @@ date: 2022-01-22
 categories: [Kubernetes, Tool]
 tags: [kubernetes, kubectl, command, get]
 # comments: true
-pin: true
 ---
 
 ## 기본 구조
