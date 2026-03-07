@@ -27,16 +27,6 @@ Service를 사용하면 Pod에 접근할 수 있지만
 
 ---
 
-## Kubernetes 시리즈
-
-1️⃣ Kubernetes 핵심 개념 정리  
-2️⃣ Controller / ReplicaSet / Deployment  
-3️⃣ Service와 Networking  
-4️⃣ Ingress 구조  
-5️⃣ ConfigMap / Secret
-
----
-
 ## Kubernetes 외부 트래픽 흐름
 
 외부에서 Kubernetes 서비스로 접근하는 기본 흐름은 다음과 같습니다.
