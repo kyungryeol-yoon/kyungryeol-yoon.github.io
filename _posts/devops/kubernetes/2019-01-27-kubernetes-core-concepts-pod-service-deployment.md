@@ -443,19 +443,19 @@ F --> G[Control Plane]
 
 Kubernetes를 이해하기 위해 가장 중요한 개념은 다음과 같습니다.
 
-### Cluster 구조
+## Cluster 구조
 
 * Control Plane
 * Worker Node
 
-### 핵심 Object
+## 핵심 Object
 
 * Pod
 * Service
 * Volume
 * Deployment
 
-### 배포 전략
+## 배포 전략
 
 * Blue-Green
 * Rolling Update
