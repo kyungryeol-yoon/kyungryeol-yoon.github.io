@@ -5,7 +5,7 @@ categories: [Network, Networking]
 tags: [network, tcp, udp, protocol, devops]
 ---
 
-# 🌐 네트워크 기초 개념
+## 🌐 네트워크 기초 개념
 
 개발자라면 네트워크 기본 구조를 이해해야 애플리케이션 통신, 컨테이너 연결, 클라우드 인프라 문제를 해결하기 쉽습니다.
 
