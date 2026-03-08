@@ -38,7 +38,7 @@ Kubernetes는 **클러스터 기반 인프라**이기 때문에 보안이 매우
 로그인 → Authentication
 권한 체크 → Authorization
 
-````
+```
 
 ---
 
@@ -61,7 +61,7 @@ A --> B
 B --> C
 C --> D
 D --> E
-````
+```
 
 흐름
 
