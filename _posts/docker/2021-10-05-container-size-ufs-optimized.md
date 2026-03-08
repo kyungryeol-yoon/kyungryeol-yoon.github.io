@@ -5,14 +5,14 @@ categories: [Docker, UFS]
 tags: [docker, container, ufs, union filesystem, image, layer, optimization, multi-stage build]
 ---
 
-# 🐳 컨테이너 이미지 최적화와 UFS(Union File System) 심화
+## 🐳 컨테이너 이미지 최적화와 UFS(Union File System) 심화
 
 Docker 컨테이너를 다루다 보면 **이미지 사이즈**와 **Union File System(UFS)**를 이해하는 것이 필수입니다.  
 이번 글에서는 **이미지 구조 분석, UFS 동작 원리, 최적화 실전 예제**까지 다룹니다.
 
 ---
 
-# 1️⃣ 컨테이너 이미지 사이즈(Container Size) 이해
+## 1️⃣ 컨테이너 이미지 사이즈(Container Size) 이해
 
 컨테이너 이미지는 **애플리케이션 코드 + 런타임 + 라이브러리 + OS 레이어**가 합쳐진 패키지입니다.
 
@@ -29,7 +29,7 @@ Container Image = Base OS Layer + App Dependencies + Application Code
 
 ---
 
-# 2️⃣ UFS(Union File System) 이해
+## 2️⃣ UFS(Union File System) 이해
 
 **Union File System**은 컨테이너 이미지의 **레이어 구조**를 합쳐서 관리하는 파일 시스템입니다.
 
@@ -52,7 +52,7 @@ Merged View → 컨테이너에서 하나의 파일 시스템처럼 보임
 
 ---
 
-## 2.1 UFS 동작 원리
+### 2.1 UFS 동작 원리
 
 1. **Read-Only 레이어**  
    - 이미지 빌드 시 생성  
@@ -69,7 +69,7 @@ Merged View → 컨테이너에서 하나의 파일 시스템처럼 보임
 
 ---
 
-# 3️⃣ 이미지 최적화 실전 예제
+## 3️⃣ 이미지 최적화 실전 예제
 
 ### 3.1 불필요 파일 제거
 
@@ -100,7 +100,7 @@ ENTRYPOINT ["java", "-jar", "myapp.jar"]
 
 ---
 
-# 4️⃣ 이미지 레이어 확인
+## 4️⃣ 이미지 레이어 확인
 
 ```bash
 # 로컬 이미지 사이즈 확인
@@ -114,7 +114,7 @@ docker history <image-name>
 
 ---
 
-# 5️⃣ 실무 팁
+## 5️⃣ 실무 팁
 
 * 📝 `.dockerignore` 활용 → 불필요 파일 제외
 * 📝 자주 변경되는 파일은 하위 레이어에 두어 **캐시 활용**
@@ -123,7 +123,7 @@ docker history <image-name>
 
 ---
 
-# 6️⃣ 요약
+## 6️⃣ 요약
 
 * **컨테이너 이미지 사이즈** = OS + 라이브러리 + 애플리케이션 코드
 * **UFS(Union File System)** = 레이어를 합쳐 **읽기 전용 + 쓰기 레이어** 구조 제공
