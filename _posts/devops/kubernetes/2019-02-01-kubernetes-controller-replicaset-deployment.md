@@ -38,7 +38,7 @@ Controller는 Kubernetes에서 **클러스터 상태를 원하는 상태(Desired
 → Kubernetes가 실제 상태를 확인
 → 차이가 있으면 자동 수정
 
-````
+```
 
 이를 **Reconciliation Loop**라고 합니다.
 
@@ -59,7 +59,7 @@ A --> C
 B --> C
 
 C --> D[Create / Delete / Update Resources]
-````
+```
 
 Controller는 다음 작업을 수행합니다.
 
