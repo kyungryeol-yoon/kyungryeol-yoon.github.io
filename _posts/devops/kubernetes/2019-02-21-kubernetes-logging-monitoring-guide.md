@@ -89,7 +89,7 @@ spec:
 
 ## Prometheus 설정 예시
 
-```yaml id="p4d2qb"
+```yaml
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -110,7 +110,7 @@ spec:
 
 ## Grafana 대시보드 예시
 
-```mermaid id="gfdash1"
+```mermaid
 graph TD
 
 A[Prometheus]
@@ -129,7 +129,7 @@ A --> B --> C
 
 ## Logging & Monitoring 전체 아키텍처
 
-```mermaid id="kmlog1"
+```mermaid
 graph TD
 
 A[Pod / Container]
