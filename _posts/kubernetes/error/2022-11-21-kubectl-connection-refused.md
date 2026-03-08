@@ -6,20 +6,6 @@ categories: [Kubernetes, Error]
 tags: [kubernetes, troubleshooting, containerd, connection refused]
 ---
 
-# kubectl Connection Refused 문제 분석 및 해결
-
-Kubernetes 환경에서 `kubectl` 명령이 정상 동작하다가 간헐적으로 아래와 같은 오류가 발생하는 문제가 있었습니다.
-
-```
-
-The connection to the server <IP>:6443 was refused - did you specify the right host or port?
-
-```
-
-API Server(6443)로의 연결이 주기적으로 거부되는 현상이었습니다.
-
----
-
 ## 🧪 문제 발생 환경
 
 - Ubuntu 22.04 (VirtualBox VM)
