@@ -103,7 +103,7 @@ Kubernetes에서는 두 가지 계정을 사용합니다.
 
 ### Service Account
 
-Service Account는 **Pod나 애플리케이션이 Kubernetes API를 사용할 때 사용하는 계정**입니다. ([조대협의 블로그][1])
+Service Account는 **Pod나 애플리케이션이 Kubernetes API를 사용할 때 사용하는 계정**입니다.
 
 예를 들어
 
@@ -139,7 +139,7 @@ B --> C
 C --> D
 ```
 
-ServiceAccount는 **API 인증을 위한 Token을 Secret에 저장합니다.** ([조대협의 블로그][1])
+ServiceAccount는 **API 인증을 위한 Token을 Secret에 저장합니다.**
 
 ---
 
@@ -214,7 +214,7 @@ proxy가 자동으로 인증 정보를 추가합니다.
 
 인증 이후에는 **권한 검사**가 진행됩니다.
 
-Kubernetes는 기본적으로 **RBAC(Role Based Access Control)** 을 사용합니다. ([조대협의 블로그][1])
+Kubernetes는 기본적으로 **RBAC(Role Based Access Control)** 을 사용합니다.
 
 ---
 
