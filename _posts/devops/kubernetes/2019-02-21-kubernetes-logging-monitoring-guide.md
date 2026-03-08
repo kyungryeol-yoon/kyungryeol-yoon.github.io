@@ -66,7 +66,7 @@ A --> B --> C
 
 ## Fluentd 예시
 
-```yaml id="f7w2mb"
+```yaml
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
