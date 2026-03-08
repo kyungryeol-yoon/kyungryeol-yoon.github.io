@@ -42,7 +42,7 @@ B[Secret]
 
 A --> C[Pod]
 B --> C
-````
+```
 
 Pod는 실행될 때 ConfigMap과 Secret 값을 **주입받아 사용**합니다.
 
