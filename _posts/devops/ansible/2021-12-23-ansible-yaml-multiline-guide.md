@@ -6,13 +6,6 @@ categories: [DevOps, Ansible]
 tags: [ansible, yaml, multiline, playbook]
 ---
 
-# Ansible YAML에서 Multiline 처리
-
-Ansible Playbook을 작성할 때 종종 **멀티라인 문자열(Multiline)** 을 다뤄야 합니다.  
-예를 들어 셸 스크립트를 playbook에 직접 넣거나, 여러 줄 텍스트를 변수로 정의할 때 YAML의 멀티라인 문법을 이해하고 있어야 합니다.
-
----
-
 ## Multiline 스타일 종류
 
 YAML에서 멀티라인을 표현하는 가장 대표적인 두 가지 스타일은 다음과 같습니다.
