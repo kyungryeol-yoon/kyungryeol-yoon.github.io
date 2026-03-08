@@ -5,13 +5,6 @@ categories: [Kubernetes, Error]
 tags: [kubernetes, kubeadm, error, br_netfilter]
 ---
 
-# 🛠️ kubeadm init 중 발생하는 네트워크 브리지 에러 해결하기
-
-쿠버네티스 클러스터를 초기화하는 `kubeadm init` 과정은 생각보다 까다로울 수 있습니다. 특히 네트워크 설정 단계에서 발생하는 **"bridge-nf-call-iptables"** 관련 에러는 입문자들이 가장 당황하는 부분 중 하나입니다. 🔍
-
-
----
-
 ## 🚨 1. 문제 상황 (The Error)
 
 `kubeadm init` 명령어를 실행하면 시스템의 사전 상태를 점검(Pre-flight check)하는데, 이때 아래와 같은 치명적인 에러(Fatal Error)를 마주하게 됩니다.
