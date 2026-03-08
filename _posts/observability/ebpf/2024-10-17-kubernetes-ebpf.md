@@ -59,7 +59,7 @@ sudo apt install bpfcc-tools linux-headers-$(uname -r)
 
 # 간단한 syscall 트레이싱
 sudo execsnoop
-````
+```
 
 * bcc/bpftrace 도구를 이용하면 커널 이벤트를 쉽게 추적 가능
 * Kubernetes에서는 **DaemonSet 형태로 eBPF agent** 배포 가능 (Cilium, Pixie 등)
