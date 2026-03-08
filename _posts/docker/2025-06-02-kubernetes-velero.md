@@ -5,7 +5,7 @@ categories: [Kubernetes, Storage]
 tags: [kubernetes, backup, restore, velero, disaster-recovery, migration]
 ---
 
-# 🛡️ Velero란?
+## 🛡️ Velero란?
 
 **Velero**는 쿠버네티스 클러스터의 **리소스와 데이터를 백업/복원하고, 클러스터 간 마이그레이션**을 지원하는 도구입니다.  
 재해 복구(Disaster Recovery)와 테스트/스테이징 환경 관리에 유용합니다.
