@@ -5,7 +5,7 @@ categories: [Kubernetes, Storage]
 tags: [kubernetes, storage, performance, benchmark, kubestr, pvc, pv]
 ---
 
-# 📦 Kubestr란?
+## 📦 Kubestr란?
 
 **Kubestr**는 쿠버네티스 클러스터에서 **스토리지(Storage) 리소스의 성능과 상태를 점검**하는 도구입니다.  
 Persistent Volume, StorageClass, PVC 등을 대상으로 **벤치마크와 분석**을 수행할 수 있습니다.
