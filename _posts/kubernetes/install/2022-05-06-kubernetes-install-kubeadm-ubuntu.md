@@ -5,10 +5,6 @@ categories: [Kubernetes, Kubeadm]
 tags: [kubernetes, kubeadm, ubuntu, debian, docker]
 ---
 
-# ☸️ kubeadm을 이용한 쿠버네티스 클러스터 구축 (Step-by-Step)
-
----
-
 ## 🏗️ 1. 클러스터 구성 환경
 본 가이드는 **Ubuntu 20.04 LTS** 이상 환경을 기준으로 작성되었습니다.
 
@@ -33,7 +29,6 @@ sudo sed -i '/swap/s/^/#/' /etc/fstab
 
 # 확인 (Swap 항목이 0B여야 함)
 free -h
-
 ```
 
 ### 2.2 네트워크 브리지 및 커널 모듈 설정 🌐
@@ -53,7 +48,6 @@ EOF
 
 # 설정 적용
 sudo sysctl --system
-
 ```
 
 ---
@@ -86,7 +80,6 @@ cat <<EOF | sudo tee /etc/docker/daemon.json
 EOF
 
 sudo systemctl restart docker
-
 ```
 
 ---
@@ -108,7 +101,6 @@ sudo apt-get install -y kubelet kubeadm kubectl
 
 # 버전 업데이트로 인한 혼란 방지를 위해 버전 고정
 sudo apt-mark hold kubelet kubeadm kubectl
-
 ```
 
 ---
@@ -120,7 +112,6 @@ sudo apt-mark hold kubelet kubeadm kubectl
 ```bash
 # pod-network-cidr은 이후 설치할 CNI(예: Flannel)에 맞춰 설정합니다.
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
-
 ```
 
 ### 💡 초기화 완료 후 설정 (일반 사용자용)
@@ -131,7 +122,6 @@ sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
 ```
 
 > **주의!** 마지막에 출력되는 `kubeadm join ...` 명령어를 별도로 메모장 등에 꼭 저장해 두세요. 워커 노드를 연결할 때 필요합니다.
@@ -144,7 +134,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ```bash
 kubectl apply -f [https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml](https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml)
-
 ```
 
 ---
@@ -156,12 +145,10 @@ kubectl apply -f [https://raw.githubusercontent.com/flannel-io/flannel/master/Do
 ```bash
 sudo kubeadm join <MASTER_IP>:6443 --token <TOKEN> \
     --discovery-token-ca-cert-hash sha256:<HASH>
-
 ```
 
 마지막으로 마스터 노드에서 상태를 확인합니다.
 
 ```bash
 kubectl get nodes
-
 ```
