@@ -5,19 +5,9 @@ categories: [Kubernetes, Network]
 tags: [kubernetes, network, nodeport, loadbalancer, external-traffic, infrastructure, devops]
 ---
 
-# 🌐 쿠버네티스 네트워킹 기초 (3): 우리 앱을 세상 밖으로!
-
-지난 시간에는 클러스터 내부에서만 통신할 수 있는 가상 IP인 `ClusterIP`를 알아봤습니다. 하지만 서비스는 결국 사용자가 접속해야 의미가 있죠. 🌍
-
-오늘은 내부망에 갇혀있는 서비스를 외부로 꺼내는 두 가지 핵심 방법, **NodePort**와 **LoadBalancer**의 원리를 파헤쳐 보겠습니다.
-
----
-
 ## 🚪 1. 가장 단순한 외부 노출: NodePort
 
 **NodePort**는 말 그대로 모든 노드(서버)의 특정 포트를 개방하여 내부 서비스로 연결하는 방식입니다.
-
-
 
 ### 💡 동작 원리
 1. 모든 노드의 동일한 포트(기본 범위: 30000-32767)를 엽니다.
@@ -33,8 +23,6 @@ tags: [kubernetes, network, nodeport, loadbalancer, external-traffic, infrastruc
 ## ⚖️ 2. 클라우드의 표준: LoadBalancer
 
 대부분의 클라우드 환경(AWS, GCP, Azure 등)에서 사용하는 가장 대중적인 방식입니다.
-
-
 
 ### 💡 동작 원리
 1. `Service`를 생성하면 클라우드 공급자에게 로드밸런서 생성을 요청합니다.
