@@ -6,7 +6,7 @@ categories: [Kubernetes, Dashboard]
 tags: [kubernetes, k3s, multipass, ubuntu, devops]
 ---
 
-# k3s로 손쉬운 Kubernetes 클러스터 만들기 (Windows + Multipass + Ubuntu)
+## k3s로 손쉬운 Kubernetes 클러스터 만들기 (Windows + Multipass + Ubuntu)
 
 Windows 환경에서 **Multipass + Ubuntu VM**을 활용해 **k3s 기반 Kubernetes 클러스터**를 만드는 실습 가이드입니다.  
 가볍고 빠르게 Kubernetes 클러스터를 실험해보고 싶을 때, k3s는 매우 적합합니다.
