@@ -6,13 +6,6 @@ categories: [Database, Redis]
 tags: [redis, database, configuration]
 ---
 
-# Redis 설정 옵션 완전 정리
-
-Redis는 빠르고 가벼운 인메모리 데이터 저장소로 널리 사용됩니다.  
-이 문서는 Redis 공식 설정 파일(`redis.conf`)에서 **자주 사용하는 옵션들을 중심으로 정리**한 내용입니다.
-
----
-
 ## 🧰 설치 및 기본 서버 준비
 
 아래는 기본적인 설치 및 방화벽 포트 설정 예시입니다.
