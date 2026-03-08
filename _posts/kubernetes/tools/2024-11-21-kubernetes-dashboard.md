@@ -5,13 +5,6 @@ categories: [Kubernetes, Dashboard]
 tags: [kubernetes, dashboard]
 ---
 
-# Kubernetes Dashboard 설치 및 외부 접속 가이드
-
-> Kubernetes 클러스터에 Dashboard를 설치하고, 외부 접속 및 인증 토큰 발급까지 진행하는 과정을 정리합니다.
-> 실습 환경 또는 사내 Dev Cluster 기준으로 작성했습니다.
-
----
-
 ## 📌 1. Kubernetes Dashboard란?
 
 Kubernetes Dashboard는 클러스터 리소스를 **웹 UI로 시각화하고 관리할 수 있는 공식 웹 인터페이스**입니다.
