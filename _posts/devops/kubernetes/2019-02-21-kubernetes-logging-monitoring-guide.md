@@ -35,7 +35,7 @@ A[Pod / Container]
 
 B[Fluentd DaemonSet]
 
-C[Log Storage (ElasticSearch, S3, etc.)]
+C[Log Storage]
 
 A --> B --> C
 ```
