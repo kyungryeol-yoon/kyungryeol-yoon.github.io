@@ -6,15 +6,6 @@ categories: [DevOps, GitLab]
 tags: [gitlab, kubernetes, runner, serviceaccount, rbac]
 ---
 
-# GitLab Runner Kubernetes 설치 시 ServiceAccount 권한 에러 해결
-
-Kubernetes 기반에서 GitLab Runner를 설치하여 사용하려고 할 때, 
-Helm 차트로 설치 후 **CI 파이프라인에서 kubectl 권한 오류가 발생**하는 경우가 있습니다.
-
-이 글에서는 해당 에러의 원인과 해결 방법을 단계별로 정리합니다.
-
----
-
 ## 🔎 문제 상황
 
 Helm 기반으로 GitLab Runner를 설치하면 다음 리소스가 생성됩니다.
