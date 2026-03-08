@@ -5,7 +5,7 @@ categories: [Docker, DFOREGROUND]
 tags: [docker, container, foreground, background, apache, daemon]
 ---
 
-# ⚡ DFOREGROUND 옵션이란?
+## ⚡ DFOREGROUND 옵션이란?
 
 `DFOREGROUND`는 일반적으로 **컨테이너나 리눅스 서비스**에서 사용되는 옵션으로,  
 **프로세스를 포그라운드(Foreground)에서 실행**하라는 의미입니다.
