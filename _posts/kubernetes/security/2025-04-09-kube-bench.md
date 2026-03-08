@@ -5,7 +5,7 @@ categories: [Kubernetes, Security]
 tags: [kubernetes, security, cis, kube-bench, audit, devsecops]
 ---
 
-# 🔒 CIS Kubernetes Benchmark와 kube-bench란?
+## 🔒 CIS Kubernetes Benchmark와 kube-bench란?
 
 쿠버네티스 클러스터의 **보안 상태를 점검하고 규정을 준수**하기 위한 도구와 기준입니다.
 
