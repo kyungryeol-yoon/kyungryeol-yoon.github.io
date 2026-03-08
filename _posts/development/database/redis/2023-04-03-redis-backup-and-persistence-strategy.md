@@ -6,7 +6,7 @@ categories: [Database, Redis]
 tags: [redis, rdb, aof, persistence, backup]
 ---
 
-# Redis 백업 및 영속화 전략
+## Redis 백업 및 영속화 전략
 
 Redis는 기본적으로 **메모리 기반 데이터 저장소**입니다.
 이는 빠른 속도의 장점이 있지만, 서버가 리부팅되거나 장애가 발생하면 메모리 데이터가 사라지는 특성이 있습니다. 이를 해결하기 위해 Redis는 **디스크에 데이터를 저장하는 영속화(Persistence)** 기능을 제공합니다.
