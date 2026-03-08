@@ -5,14 +5,6 @@ categories: [Kubernetes, HA]
 tags: [kubernetes, docker, kubeadm, highavailability, haproxy, keepalived, cluster]
 ---
 
-# ☸️ Docker 환경에서 쿠버네티스 HA 클러스터 구축하기 (Stacked etcd)
-
-안녕하세요! 오늘은 가장 익숙한 컨테이너 런타임인 **Docker**를 사용하여, 서비스 중단 없는 **고가용성(High Availability, HA) 쿠버네티스 클러스터**를 구축하는 방법을 상세히 알아보겠습니다. 🚀
-
-운영 환경에서는 마스터 노드 한 대가 죽더라도 클러스터가 유지되어야 하므로, 로드밸런서를 활용한 HA 구성은 필수입니다.
-
----
-
 ## 🏗️ 1. 클러스터 구성 및 아키텍처
 
 본 가이드는 마스터 노드 안에 etcd를 함께 배포하는 **Stacked etcd** 방식을 사용합니다.
@@ -20,8 +12,6 @@ tags: [kubernetes, docker, kubeadm, highavailability, haproxy, keepalived, clust
 * **Load Balancer (VIP)**: HAProxy + Keepalived (대표 IP: `192.168.0.100`)
 * **Master Nodes**: 최소 3대 권장 (홀수 구성)
 * **Worker Nodes**: 실제 서비스가 구동될 노드들
-
-
 
 ---
 
@@ -37,7 +27,6 @@ sudo sed -i '/swap/s/^/#/' /etc/fstab
 
 # 방화벽 해제 (학습용 환경 기준)
 sudo ufw disable
-
 ```
 
 ### 2.2 커널 모듈 및 네트워크 브리지 설정
@@ -56,7 +45,6 @@ net.ipv4.ip_forward = 1
 EOF
 
 sudo sysctl --system
-
 ```
 
 ---
@@ -84,7 +72,6 @@ cat <<EOF | sudo tee /etc/docker/daemon.json
 EOF
 
 sudo systemctl restart docker
-
 ```
 
 ---
@@ -107,7 +94,6 @@ backend k8s-api-nodes
     server master1 192.168.0.11:6443 check
     server master2 192.168.0.12:6443 check
     server master3 192.168.0.13:6443 check
-
 ```
 
 ---
@@ -124,7 +110,6 @@ sudo kubeadm init \
   --control-plane-endpoint "192.168.0.100:6443" \
   --upload-certs \
   --pod-network-cidr=10.244.0.0/16
-
 ```
 
 성공 시 화면에 나타나는 `kubeadm join ... --control-plane` 명령어를 복사해 두세요. ✨
@@ -141,7 +126,6 @@ sudo kubeadm init \
 sudo kubeadm join 192.168.0.100:6443 --token <TOKEN> \
     --discovery-token-ca-cert-hash sha256:<HASH> \
     --control-plane --certificate-key <KEY>
-
 ```
 
 ### 6.2 워커 노드 (Worker)
@@ -151,7 +135,6 @@ sudo kubeadm join 192.168.0.100:6443 --token <TOKEN> \
 ```bash
 sudo kubeadm join 192.168.0.100:6443 --token <TOKEN> \
     --discovery-token-ca-cert-hash sha256:<HASH>
-
 ```
 
 ---
@@ -162,7 +145,6 @@ sudo kubeadm join 192.168.0.100:6443 --token <TOKEN> \
 
 ```bash
 kubectl get nodes
-
 ```
 
 **STATUS**가 모두 `Ready`라면, Docker 기반의 견고한 HA 클러스터 구축이 완료되었습니다! 🎉
