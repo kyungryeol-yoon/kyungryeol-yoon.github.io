@@ -5,7 +5,7 @@ categories: [Kubernetes, Sidecar]
 tags: [kubernetes, container, sidecar, pod, microservices, logging, proxy]
 ---
 
-# 🚀 사이드카 컨테이너(Sidecar Container)란?
+## 🚀 사이드카 컨테이너(Sidecar Container)란?
 
 **사이드카 컨테이너**는 주 컨테이너(main container)와 함께 **동일 Pod에서 실행되는 보조 컨테이너**입니다.  
 
