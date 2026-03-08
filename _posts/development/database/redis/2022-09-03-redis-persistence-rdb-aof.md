@@ -6,7 +6,7 @@ categories: [Database, Redis]
 tags: [redis, persistence, rdb, aof, backup]
 ---
 
-# Redis Persistence (영속성 & 데이터 저장)
+## Redis Persistence (영속성 & 데이터 저장)
 
 Redis는 인메모리 데이터 저장소로 매우 빠르지만, 메모리 기반이기 때문에 서버 재시작 시 데이터가 사라질 수 있습니다.  
 이를 보완하기 위해 Redis는 **디스크에 데이터를 저장하는 영속성(Persistence)** 기능을 제공합니다. Redis는 두 가지 영속성 방식을 지원합니다.
