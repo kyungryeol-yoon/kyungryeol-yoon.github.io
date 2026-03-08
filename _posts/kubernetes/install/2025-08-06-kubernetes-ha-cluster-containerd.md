@@ -5,20 +5,12 @@ categories: [Kubernetes, HA]
 tags: [kubernetes, containerd, kubeadm, highavailability, haproxy, keepalived, cloudnative]
 ---
 
-# ☸️ Containerd 기반 쿠버네티스 HA 클러스터 구축하기
-
-안녕하세요! 오늘은 운영 환경에서 필수적인 **쿠버네티스 고가용성(High Availability, HA) 클러스터**를 구축하는 방법을 알아보겠습니다. 특히 최신 표준인 **Containerd**를 런타임으로 사용하고, **HAProxy**를 이용해 마스터 노드의 부하를 분산하는 실전 세팅입니다. 🚀
-
----
-
 ## 1. 🏗️ 클러스터 아키텍처 및 환경
 고가용성 클러스터는 마스터 노드(Control Plane)를 여러 대 두어, 특정 노드에 장애가 발생해도 서비스가 중단되지 않도록 설계합니다.
 
 * **Container Runtime**: Containerd (Docker 대체 표준)
 * **Load Balancer**: HAProxy + Keepalived (Virtual IP 사용)
 * **Nodes**: Master 3대, Worker N대 권장
-
-
 
 ---
 
@@ -51,7 +43,6 @@ net.ipv4.ip_forward                 = 1
 EOF
 
 sudo sysctl --system
-
 ```
 
 ---
@@ -69,7 +60,6 @@ containerd config default | sudo tee /etc/containerd/config.toml
 sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
 
 sudo systemctl restart containerd
-
 ```
 
 ---
@@ -92,7 +82,6 @@ backend k8s-api-nodes
     server master1 192.168.0.11:6443 check
     server master2 192.168.0.12:6443 check
     server master3 192.168.0.13:6443 check
-
 ```
 
 ---
@@ -112,7 +101,6 @@ sudo kubeadm init \
   --upload-certs \
   --pod-network-cidr=10.244.0.0/16 \
   --cri-socket unix:///run/containerd/containerd.sock
-
 ```
 
 ---
@@ -127,7 +115,6 @@ sudo kubeadm init \
 sudo kubeadm join 192.168.0.100:6443 --token <TOKEN> \
     --discovery-token-ca-cert-hash sha256:<HASH> \
     --control-plane --certificate-key <KEY>
-
 ```
 
 ### 6.2 워커 노드 (Worker) 조인
@@ -135,7 +122,6 @@ sudo kubeadm join 192.168.0.100:6443 --token <TOKEN> \
 ```bash
 sudo kubeadm join 192.168.0.100:6443 --token <TOKEN> \
     --discovery-token-ca-cert-hash sha256:<HASH>
-
 ```
 
 ---
@@ -146,7 +132,6 @@ sudo kubeadm join 192.168.0.100:6443 --token <TOKEN> \
 
 ```bash
 kubectl get nodes
-
 ```
 
 **STATUS**가 모두 `Ready`라면 축하드립니다! 🎉 이제 어떤 마스터 노드 하나가 장애가 나더라도 끄떡없는 견고한 쿠버네티스 클러스터가 완성되었습니다.
