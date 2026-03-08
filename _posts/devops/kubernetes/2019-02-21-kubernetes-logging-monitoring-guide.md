@@ -38,7 +38,7 @@ B[Fluentd DaemonSet]
 C[Log Storage (ElasticSearch, S3, etc.)]
 
 A --> B --> C
-````
+```
 
 * Fluentd는 **각 Node에 DaemonSet으로 배포**
 * Pod 로그를 수집하고 중앙 저장소로 전송
