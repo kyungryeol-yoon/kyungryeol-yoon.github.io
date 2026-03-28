@@ -20,8 +20,14 @@ pin: true
 ### 📦 프로젝트 생성
 
 ```bash
+# 현재 디렉토리에 새로운 파이썬 프로젝트 환경을 초기화하는 기본적인 파일과 폴더 구조가 자동으로 생성
+uv init
+
 # 기본 프로젝트 생성
 uv init my-project
+
+# 설정 파일만 필요하다면
+uv init --bare
 
 # 특정 Python 버전으로 생성
 uv init my-project --python 3.11
@@ -29,6 +35,8 @@ uv init my-project --python 3.11
 # 가상환경 없이 생성
 uv init my-project --no-venv
 ```
+
+⚠️ 만약 `error: Failed to discover parent workspace;` 가 발생했다면 `--no-workspace` 옵션을 넣어주어 프로젝트를 생성
 
 ### 📚 의존성 관리
 
