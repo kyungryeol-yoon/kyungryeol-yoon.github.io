@@ -1,13 +1,18 @@
 ---
-title: "[Kubernetes] Pod, Service, Volume, Deployment 핵심 개념 정리"
+title: "[Kubernetes] ☸️ Pod, Service, Volume, Deployment 핵심 개념 정리"
 date: 2019-01-27
-categories: [Kubernetes, Kubernetes]
+categories: [Kubernetes, Core]
 tags: [kubernetes, container, devops, docker, deployment, cloud, pod, service]
 description: "Kubernetes를 이해하기 위한 핵심 개념 정리. Pod, Service, Volume, Deployment와 기본 배포 전략(Blue-Green, Rolling Update)을 실제 구조 중심으로 설명합니다."
+pin: false
 mermaid: true
 ---
 
-## ☸️ Kubernetes 핵심 개념 정리
+> 이 글에서는 Kubernetes의 핵심 구성 요소인 Pod, Service, Volume, Deployment를 살펴보고, 이를 활용한 대표적인 배포 전략을 다룹니다. Kubernetes 클러스터의 구조와 각 오브젝트의 역할을 명확히 이해하여 실무 운영의 기반을 다질 수 있습니다.
+
+---
+
+## 🏗️ Kubernetes 핵심 개념 정리
 
 쿠버네티스를 처음 접하면 가장 먼저 부딪히는 문제가 **용어의 복잡함**입니다.
 
@@ -20,7 +25,7 @@ Pod, Service, Deployment, ReplicaSet 등 다양한 개념이 등장하면서
 
 ---
 
-## 🏗 Kubernetes Cluster 구조
+## 🏢 Kubernetes Cluster 구조
 
 Kubernetes는 **Cluster 구조**로 동작합니다.
 
@@ -51,7 +56,7 @@ D --> K[Pod]
 
 ---
 
-### 🧠 Control Plane (Master)
+## 🧠 Control Plane (Master)
 
 Control Plane은 클러스터 전체를 관리하는 영역입니다.
 
@@ -84,7 +89,7 @@ A --> E[etcd]
 
 ---
 
-### 🖥 Worker Node
+## 🖥️ Worker Node
 
 Worker Node는 **실제로 컨테이너가 실행되는 서버**입니다.
 
@@ -208,27 +213,6 @@ Kubernetes 특징
 
 * Pod 간 직접 통신 가능
 * NAT 없이 Pod IP 사용
-
-### Service 구조
-
-Pod는 생성/삭제될 때마다 IP가 바뀝니다.
-
-이 문제를 해결하는 것이 **Service**입니다.
-
-```mermaid
-graph TD
-
-A[Service]
-
-A --> B[Pod 1]
-A --> C[Pod 2]
-A --> D[Pod 3]
-```
-
-Service 역할
-
-* Pod 로드밸런싱
-* 고정된 접근 포인트 제공
 
 ---
 
@@ -439,23 +423,17 @@ F --> G[Control Plane]
 
 ---
 
-## 🧠 정리
+## ❓ 자주 묻는 질문
 
-Kubernetes를 이해하기 위해 가장 중요한 개념은 다음과 같습니다.
+### Q. Pod와 Container의 차이는?
+Pod는 Kubernetes의 최소 배포 단위로, 하나 이상의 컨테이너를 포함합니다. 컨테이너가 Pod 안에서 실행되는 구조입니다.
 
-### Cluster 구조
+### Q. Deployment를 왜 사용하나요?
+Deployment는 Pod의 자동 생성, 복제본 관리, 무중단 배포(Rolling Update) 및 롤백 기능을 자동으로 제공하여 안정적인 운영을 돕습니다.
 
-* Control Plane
-* Worker Node
+---
 
-### 핵심 Object
+## 📚 참고
 
-* Pod
-* Service
-* Volume
-* Deployment
-
-### 배포 전략
-
-* Blue-Green
-* Rolling Update
+- [Kubernetes 공식 문서](https://kubernetes.io/docs/)
+- [Kubernetes 핵심 개념 가이드](/posts/Kubernetes/Core)
