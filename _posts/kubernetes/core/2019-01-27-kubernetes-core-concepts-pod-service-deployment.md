@@ -436,4 +436,3 @@ Deployment는 Pod의 자동 생성, 복제본 관리, 무중단 배포(Rolling U
 ## 📚 참고
 
 - [Kubernetes 공식 문서](https://kubernetes.io/docs/)
-- [Kubernetes 핵심 개념 가이드](/posts/Kubernetes/Core)
