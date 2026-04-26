@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Loki(v2.9.4)"
 date: 2024-04-07
-categories: [Observability, Loki]
+categories: [Observability, Grafana]
 tags: [kubernetes, grafana, loki, install]
 ---
 

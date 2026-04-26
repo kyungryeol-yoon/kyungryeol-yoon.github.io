@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] kubens"
 date: 2019-12-16
-categories: [Kubernetes, Tool]
+categories: [Kubernetes, Tools]
 tags: [kubernetes, kubens]
 ---
 

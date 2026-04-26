@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl apply command"
 date: 2023-01-10
-categories: [Kubernetes, Tool]
+categories: [Kubernetes, Tools]
 tags: [kubernetes, kubectl, command, apply]
 # comments: true
 ---

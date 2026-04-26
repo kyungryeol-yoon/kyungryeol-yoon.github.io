@@ -1,7 +1,7 @@
 ---
 title: "[Docker] Install Gitlab Runner(v17.6.1)"
 date: 2021-08-11
-categories: [DevOps, Gitlab]
+categories: [DevOps, GitLab]
 tags: [docker, install, gitlab, runner]
 ---
 

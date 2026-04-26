@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Install Loki(v3.1.1) Distributed Using Helm Chart"
 date: 2024-06-19
-categories: [Observability, Loki]
+categories: [Observability, Grafana]
 tags: [kubernetes, promtail, loki, grafana, install, helm]
 ---
 

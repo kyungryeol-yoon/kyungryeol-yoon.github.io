@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Dashboard 설치"
 date: 2024-11-21
-categories: [Kubernetes, Dashboard]
+categories: [Kubernetes, Tools]
 tags: [kubernetes, dashboard]
 ---
 

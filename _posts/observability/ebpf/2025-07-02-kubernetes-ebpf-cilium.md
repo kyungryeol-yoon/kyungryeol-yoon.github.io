@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] eBPF + Cilium로 클러스터 심층 모니터링"
 date: 2025-07-02
-categories: [Kubernetes, eBPF]
+categories: [Observability, eBPF]
 tags: [kubernetes, ebpf, cilium, observability, networking, devops]
 ---
 

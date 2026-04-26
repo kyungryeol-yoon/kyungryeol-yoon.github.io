@@ -1,7 +1,7 @@
 ---
 title: "[Docker-Compose] Install Gitlab(17.7.0)"
 date: 2021-04-11
-categories: [DevOps, Gitlab]
+categories: [DevOps, GitLab]
 tags: [docker, install, gitlab]
 ---
 

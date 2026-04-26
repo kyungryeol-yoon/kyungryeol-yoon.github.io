@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] kubectx"
 date: 2019-12-10
-categories: [Kubernetes, Tool]
+categories: [Kubernetes, Tools]
 tags: [kubernetes, kubectx]
 ---
 

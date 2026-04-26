@@ -1,7 +1,7 @@
 ---
 title: "[Gitlab] Back up & Restore"
 date: 2025-02-19
-categories: [DevOps, Gitlab]
+categories: [DevOps, GitLab]
 tags: [gitlab, backup, restore, docker]
 ---
 

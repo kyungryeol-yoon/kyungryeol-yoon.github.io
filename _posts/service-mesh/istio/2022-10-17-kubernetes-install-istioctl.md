@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Istioctl 다운로드 및 설치"
 date: 2022-10-17
-categories: [Service Mesh, Istio]
+categories: [Service-Mesh, Istio]
 tags: [kubernetes, istioctl, istio, service mesh]
 ---
 

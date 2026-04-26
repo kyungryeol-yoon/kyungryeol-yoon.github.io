@@ -2,7 +2,7 @@
 # layout: post
 title: "Machine Learning LSTM"
 date: 2019-10-01
-categories: [Artificial Intelligence, Machine Learning]
+categories: [Artificial-Intelligence, Machine-Learning]
 # excerpt: "Machine Learning LSTM에 대한 설명(Keras를 이용함)"
 tags: [lstm, python, machine learning, deep learning, rnn]
 # comments: true

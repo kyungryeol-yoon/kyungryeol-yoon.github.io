@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] metrics-server"
 date: 2021-11-21
-categories: [Kubernetes, Tool]
+categories: [Kubernetes, Tools]
 tags: [kubernetes, metrics-server]
 ---
 

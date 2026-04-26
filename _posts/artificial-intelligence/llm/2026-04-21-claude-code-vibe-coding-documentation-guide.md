@@ -1,7 +1,7 @@
 ---
 title: "[AI] 🤖 바이브 코딩의 핵심: Claude Code 프로젝트 문서 관리 완전 가이드"
 date: 2026-04-21
-categories: [Artificial Intelligence, LLM]
+categories: [Artificial-Intelligence, LLM]
 tags: [claude-code, vibe-coding, llm, ai, documentation, claude]
 pin: false
 ---

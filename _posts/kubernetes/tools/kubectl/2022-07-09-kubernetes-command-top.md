@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl top command"
 date: 2022-07-09
-categories: [Kubernetes, Tool]
+categories: [Kubernetes, Tools]
 tags: [kubernetes, kubectl, command, top]
 # comments: true
 # pin: true

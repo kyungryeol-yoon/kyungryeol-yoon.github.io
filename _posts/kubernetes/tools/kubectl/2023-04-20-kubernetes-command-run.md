@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl run command"
 date: 2023-04-20
-categories: [Kubernetes, Tool]
+categories: [Kubernetes, Tools]
 tags: [kubernetes, kubectl, command, run]
 # comments: true
 ---

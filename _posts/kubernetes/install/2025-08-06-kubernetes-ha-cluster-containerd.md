@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Containerd 기반 쿠버네티스 고가용성(HA) 클러스터 완벽 구축 가이드"
 date: 2025-08-06
-categories: [Kubernetes, HA]
+categories: [Kubernetes, Install]
 tags: [kubernetes, containerd, kubeadm, highavailability, haproxy, keepalived, cloudnative]
 ---
 

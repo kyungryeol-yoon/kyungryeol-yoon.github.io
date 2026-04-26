@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubeadm init command"
 date: 2022-09-25
-categories: [Kubernetes, Tool]
+categories: [Kubernetes, Tools]
 tags: [kubernetes, kubeadm, command, init]
 # comments: true
 # pin: true

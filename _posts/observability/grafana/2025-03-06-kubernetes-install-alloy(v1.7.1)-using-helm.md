@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Install Alloy(v1.7.1) Using Helm Chart"
 date: 2025-03-06
-categories: [Observability, Alloy]
+categories: [Observability, Grafana]
 tags: [kubernetes, alloy, helm, install]
 ---
 
