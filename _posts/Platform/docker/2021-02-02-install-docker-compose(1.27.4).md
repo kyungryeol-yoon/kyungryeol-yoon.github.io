@@ -1,7 +1,7 @@
 ---
 title: "[Docker-Compose] Install Docker-Compose(1.27.4)"
 date: 2021-02-02
-categories: [Docker, Docker-Compose]
+categories: [Platform, Docker]
 tags: [docker, install, docker-compose]
 ---
 

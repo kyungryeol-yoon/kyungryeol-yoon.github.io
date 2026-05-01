@@ -1,7 +1,7 @@
 ---
 title: "[Netty] Netty in Action 요약 및 실무 활용"
 date: 2019-09-02
-categories: [Backend, Software Design]
+categories: [Backend, Software-Design]
 tags: [netty, java, network, nio, asynchronous, reactor, tcp, udp]
 ---
 

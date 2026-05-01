@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubeadm join command"
 date: 2022-10-22
-categories: [Kubernetes, Tools]
+categories: [Platform, Kubernetes, Tools]
 tags: [kubernetes, kubeadm, command, join]
 # comments: true
 # pin: true

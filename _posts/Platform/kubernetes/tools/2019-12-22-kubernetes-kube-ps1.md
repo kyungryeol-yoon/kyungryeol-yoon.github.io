@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] kube-ps1"
 date: 2019-12-22
-categories: [Kubernetes, Tools]
+categories: [Platform, Kubernetes, Tools]
 tags: [kubernetes, kube-ps1]
 ---
 

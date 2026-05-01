@@ -1,7 +1,7 @@
 ---
 title: "[Flutter] Google Login"
 date: 2024-08-29
-categories: [Framework, Flutter]
+categories: [Frontend, Flutter]
 tags: [flutter, google, login]
 ---
 

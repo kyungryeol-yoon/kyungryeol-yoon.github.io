@@ -1,7 +1,7 @@
 ---
 title: "[Docker] Network - no route to host 오류 원인과 해결 방법"
 date: 2020-03-02
-categories: [Docker, Network]
+categories: [Platform, Docker]
 tags: [docker, network, error, no-route-to-host, troubleshooting]
 ---
 

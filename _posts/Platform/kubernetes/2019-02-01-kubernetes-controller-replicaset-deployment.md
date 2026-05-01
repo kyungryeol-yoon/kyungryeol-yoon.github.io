@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Controller, ReplicaSet, Deployment 구조 이해하기"
 date: 2019-02-01
-categories: [Kubernetes, Kubernetes]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, devops, container, deployment, replicaset, controller]
 description: "Kubernetes Controller 구조와 ReplicaSet, Deployment 동작 원리를 정리합니다. Pod을 안정적으로 관리하는 Kubernetes 컨트롤러 패턴을 이해합니다."
 mermaid: true

@@ -1,7 +1,7 @@
 ---
 title: "[Linux] alias 명령어 치환"
 date: 2018-10-25
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, alias]
 ---
 

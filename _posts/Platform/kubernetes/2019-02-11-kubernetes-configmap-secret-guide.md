@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] ConfigMap과 Secret 완벽 이해 (환경변수, 설정 관리)"
 date: 2019-02-11
-categories: [Kubernetes, Kubernetes]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, configmap, secret, devops, configuration, container]
 pin: false
 mermaid: true

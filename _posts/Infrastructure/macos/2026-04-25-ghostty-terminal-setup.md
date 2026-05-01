@@ -1,7 +1,7 @@
 ---
 title: "[macOS] 👻 Ghostty 터미널 완전 정복: 설치부터 커스터마이징까지"
 date: 2026-04-25
-categories: [OS, macOS]
+categories: [Infrastructure, macOS]
 tags: [ghostty, terminal, macos, starship, nerd-font, zshrc, homebrew, apple-silicon]
 pin: false
 ---

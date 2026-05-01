@@ -1,7 +1,7 @@
 ---
 title: "[Linux] 네트워크 - scp 서버간 파일 복사"
 date: 2018-09-11
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, network, scp]
 ---
 

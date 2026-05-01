@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Network Security 완벽 정리 (NetworkPolicy, Pod Network)"
 date: 2020-01-05
-categories: [Kubernetes, Kubernetes]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, network, security, networkpolicy, cni, devops]
 pin: false
 mermaid: true

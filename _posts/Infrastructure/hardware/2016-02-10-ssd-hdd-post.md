@@ -3,7 +3,7 @@
 title: "SSD VS HDD"
 date: 2016-02-10
 # excerpt: "SSD와 HDD"
-categories: [Hardware, Disk]
+categories: [Infrastructure, Hardware]
 tags: [ssd, hdd, hardware]
 ---
 

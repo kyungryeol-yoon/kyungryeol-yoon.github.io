@@ -1,7 +1,7 @@
 ---
 title: "[Microservice Pattern 실전] 주문-결제-배송 시스템 설계와 Docker/K8s 적용"
 date: 2021-11-11
-categories: [Backend, Software Design]
+categories: [Backend, Software-Design]
 tags: [microservice, pattern, docker, kubernetes, saga, event-driven]
 ---
 

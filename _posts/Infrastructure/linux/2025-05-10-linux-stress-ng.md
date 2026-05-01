@@ -1,7 +1,7 @@
 ---
 title: "[Linux] Stress-ng"
 date: 2025-05-10
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, stress-ng]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "[Python] Fast API"
 date: 2021-07-15
-categories: [Programming, Python]
+categories: [Backend, Python]
 tags: [python, fastapi, programming]
 ---
 

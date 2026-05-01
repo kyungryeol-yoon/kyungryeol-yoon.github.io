@@ -1,7 +1,7 @@
 ---
 title: "[Linux] Stress"
 date: 2025-05-17
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, stress]
 ---
 

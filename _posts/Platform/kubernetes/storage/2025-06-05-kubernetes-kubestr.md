@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Kubestr: 스토리지 성능과 상태 점검 도구"
 date: 2025-06-05
-categories: [Kubernetes, Storage]
+categories: [Platform, Kubernetes, Storage]
 tags: [kubernetes, storage, performance, benchmark, kubestr, pvc, pv]
 ---
 

@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubeadm reset command"
 date: 2022-07-03
-categories: [Kubernetes, Tools]
+categories: [Platform, Kubernetes, Tools]
 tags: [kubernetes, kubeadm, command, reset]
 # comments: true
 # pin: true

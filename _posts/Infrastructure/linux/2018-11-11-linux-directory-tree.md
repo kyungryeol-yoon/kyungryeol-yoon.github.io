@@ -1,7 +1,7 @@
 ---
 title: "[Linux] tree Directory 구조 조회"
 date: 2018-11-11
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, directory, tree]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Deploy MinIO"
 date: 2024-08-26
-categories: [Kubernetes, Storage]
+categories: [Platform, Kubernetes, Storage]
 tags: [kubernetes, minio]
 ---
 

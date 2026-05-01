@@ -1,7 +1,7 @@
 ---
 title: "[Error] Python PATH Problem"
 date: 2024-08-20
-categories: [Programming, Python]
+categories: [Backend, Python]
 tags: [python, list, programming]
 ---
 

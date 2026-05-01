@@ -1,7 +1,7 @@
 ---
 title: "[Python] pip install Package"
 date: 2021-06-05
-categories: [Programming, Python]
+categories: [Backend, Python]
 tags: [python, pip, package]
 ---
 

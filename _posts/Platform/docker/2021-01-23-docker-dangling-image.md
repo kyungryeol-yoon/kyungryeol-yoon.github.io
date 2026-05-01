@@ -1,7 +1,7 @@
 ---
 title: "[Docker] Dangling Image란? (Build 후 Repository:Tag 가 none 인 경우)"
 date: 2021-01-23
-categories: [Docker, Image]
+categories: [Platform, Docker]
 tags: [docker, image, dangling]
 ---
 

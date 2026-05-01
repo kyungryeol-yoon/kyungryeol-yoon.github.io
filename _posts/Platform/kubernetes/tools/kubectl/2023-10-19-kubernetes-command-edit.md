@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl edit command"
 date: 2023-10-19
-categories: [Kubernetes, Tools]
+categories: [Platform, Kubernetes, Tools]
 tags: [kubernetes, kubectl, command, edit]
 # comments: true
 # pin: true

@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] 사이드카 컨테이너(Sidecar Container) 이해"
 date: 2022-02-02
-categories: [Kubernetes, Sidecar]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, container, sidecar, pod, microservices, logging, proxy]
 ---
 

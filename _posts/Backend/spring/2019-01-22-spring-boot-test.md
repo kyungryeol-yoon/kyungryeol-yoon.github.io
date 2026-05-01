@@ -1,7 +1,7 @@
 ---
 title: "[Spring Boot] Spring Boot Test"
 date: 2019-01-22
-categories: [Framework, Spring]
+categories: [Backend, Spring]
 tags: [spring, java, test]
 ---
 

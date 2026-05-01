@@ -1,7 +1,7 @@
 ---
 title: "[Spring] Spring Context란?"
 date: 2023-02-05
-categories: [Framework, Spring]
+categories: [Backend, Spring]
 tags: [spring, context]
 ---
 

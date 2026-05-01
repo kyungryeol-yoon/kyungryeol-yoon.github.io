@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl explain command"
 date: 2023-08-07
-categories: [Kubernetes, Tools]
+categories: [Platform, Kubernetes, Tools]
 tags: [kubernetes, kubectl, command, explain]
 # comments: true
 ---

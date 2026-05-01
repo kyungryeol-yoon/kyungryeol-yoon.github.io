@@ -1,7 +1,7 @@
 ---
 title: "[Docker-Compose] Docker-Compose Command"
 date: 2022-05-25
-categories: [Docker, Docker-Compose]
+categories: [Platform, Docker]
 tags: [docker, command, docker-compose]
 ---
 

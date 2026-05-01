@@ -1,7 +1,7 @@
 ---
 title: "[Python] Python Setup Package"
 date: 2024-10-19
-categories: [Programming, Python]
+categories: [Backend, Python]
 tags: [python, package, programming]
 ---
 

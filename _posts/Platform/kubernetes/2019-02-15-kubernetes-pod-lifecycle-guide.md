@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Pod Lifecycle 완벽 정리 (Pod 상태, Restart 정책, Health Check)"
 date: 2019-02-15
-categories: [Kubernetes, Kubernetes]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, pod, lifecycle, container, devops, cloud, backend]
 pin: false
 mermaid: true

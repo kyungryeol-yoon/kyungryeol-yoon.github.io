@@ -1,8 +1,9 @@
 ---
 title: "[Clean Code] 현실적인 관점에서 바라본 클린 코드"
 date: 2020-11-02
-categories: [Programming, Software-Engineering]
+categories: [CS, Software-Engineering]
 tags: [clean-code, architecture, code-review, backend, frontend]
+description: "클린 코드 원칙을 단순히 이론에 그치지 않고, 실제 개발 환경에서 어떻게 현실적으로 적용할지 고민한 내용을 다룹니다. 유지보수 가능한 코드 작성을 위한 실무 관점의 클린 코드 가이드입니다."
 ---
 
 ## 🧹 Clean Code에 대한 현실적인 고찰

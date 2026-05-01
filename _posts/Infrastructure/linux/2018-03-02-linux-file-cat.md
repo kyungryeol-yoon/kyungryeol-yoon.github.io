@@ -1,7 +1,7 @@
 ---
 title: "[Linux] 파일 관리 - cat 파일 내용 출력"
 date: 2018-03-02
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, file, cat]
 ---
 

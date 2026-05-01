@@ -1,7 +1,7 @@
 ---
 title: "[Multipass] Setting Ubuntu"
 date: 2024-05-19
-categories: [Virtualization, Multipass]
+categories: [Infrastructure, Virtualization]
 tags: [multipass, ubuntu, linux]
 ---
 

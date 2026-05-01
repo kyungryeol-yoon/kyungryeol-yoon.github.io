@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Install Kubernetes using Kubekey(v3.0.7) Artifact on VirtualBox"
 date: 2024-03-02
-categories: [Kubernetes, Install]
+categories: [Platform, Kubernetes, Install]
 tags: [kubernetes, kubekey, artifact, install]
 ---
 

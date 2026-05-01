@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Strimzi Operator(0.45.0)"
 date: 2025-03-08
-categories: [Message-Broker, Kafka]
+categories: [Platform, Kafka]
 tags: [kubernetes, message broker, strimzi, operator]
 ---
 

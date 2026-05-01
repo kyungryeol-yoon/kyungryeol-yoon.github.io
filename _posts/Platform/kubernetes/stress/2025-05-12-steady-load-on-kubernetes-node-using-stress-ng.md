@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Steady Load on Kubernetes Node Using Stress-ng"
 date: 2025-05-12
-categories: [Kubernetes, Stress]
+categories: [Platform, Kubernetes, Stress]
 tags: [kubernetes, stress-ng]
 ---
 

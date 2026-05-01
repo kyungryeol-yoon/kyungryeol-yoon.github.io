@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Logging & Monitoring 완벽 가이드 (Prometheus, Grafana, Fluentd)"
 date: 2019-02-21
-categories: [Kubernetes, Kubernetes]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, logging, monitoring, prometheus, grafana, fluentd, devops]
 pin: false
 mermaid: true

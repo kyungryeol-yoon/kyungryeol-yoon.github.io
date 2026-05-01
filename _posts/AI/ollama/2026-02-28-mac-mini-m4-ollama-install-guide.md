@@ -1,7 +1,7 @@
 ---
 title: "[LLM] Mac Mini M4 환경에서 Ollama 설치 및 관리 가이드"
 date: 2026-02-28
-categories: [Artificial-Intelligence, Ollama]
+categories: [AI, Ollama]
 tags: [ollama, mac mini, apple silicon, m4, local llm]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Install Kong Ingress Controller - Gateway API"
 date: 2024-11-30
-categories: [Gateway, Kong]
+categories: [Platform, Kong]
 tags: [kubernetes, kong, ingress, controller, gateway, api]
 ---
 

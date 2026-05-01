@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] kubeadm init 시 bridge-nf-call-iptables 에러 해결"
 date: 2020-08-19
-categories: [Kubernetes, Error]
+categories: [Platform, Kubernetes, Error]
 tags: [kubernetes, kubeadm, error, br_netfilter]
 ---
 

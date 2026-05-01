@@ -1,7 +1,7 @@
 ---
 title: "[Linux] 네트워크 - ifconfig 네트워크 정보 확인"
 date: 2018-09-01
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, network, ifconfig]
 ---
 

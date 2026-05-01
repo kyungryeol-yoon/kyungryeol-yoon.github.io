@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Release 상태의 PV를 Available 상태로 변경"
 date: 2022-08-07
-categories: [Kubernetes, Storage]
+categories: [Platform, Kubernetes, Storage]
 tags: [kubernetes, storage]
 ---
 

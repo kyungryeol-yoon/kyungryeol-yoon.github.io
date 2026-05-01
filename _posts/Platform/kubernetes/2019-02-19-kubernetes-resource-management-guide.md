@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Resource Management 완벽 이해 (CPU, Memory, Limits & Requests, QoS)"
 date: 2019-02-19
-categories: [Kubernetes, Kubernetes]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, resource, cpu, memory, limits, requests, qos, devops]
 pin: false
 mermaid: true

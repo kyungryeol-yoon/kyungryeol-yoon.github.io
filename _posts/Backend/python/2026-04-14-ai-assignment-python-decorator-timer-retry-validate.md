@@ -1,7 +1,7 @@
 ---
 title: "[AI Assignment - Python] 🎀 데코레이터 완전 정복 — timer, retry, validate_types 직접 구현"
 date: 2026-04-14
-categories: [Programming, Python]
+categories: [Backend, Python]
 tags: [python, decorator, functools, type-hints, clean-code, oop]
 pin: false
 ---

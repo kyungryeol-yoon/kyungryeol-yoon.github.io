@@ -1,7 +1,7 @@
 ---
 title: "[Docker] Docker Image Save & Load, Export & Import"
 date: 2021-05-02
-categories: [Docker, Image]
+categories: [Platform, Docker]
 tags: [docker, image, save, load, export, import]
 ---
 

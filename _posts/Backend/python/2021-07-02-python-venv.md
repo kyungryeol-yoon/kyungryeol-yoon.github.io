@@ -1,7 +1,7 @@
 ---
 title: "[Python] 가상환경 venv 사용법"
 date: 2021-07-02
-categories: [Programming, Python]
+categories: [Backend, Python]
 tags: [python, venv, programming, backend, devops]
 pin: true
 ---

@@ -1,7 +1,7 @@
 ---
 title: "[Docker] stdout/stderr 관리와 실무 활용 가이드"
 date: 2020-12-02
-categories: [Docker, Logging]
+categories: [Platform, Docker]
 tags: [docker, logs, stdout, stderr, monitoring, docker-logs, container]
 ---
 

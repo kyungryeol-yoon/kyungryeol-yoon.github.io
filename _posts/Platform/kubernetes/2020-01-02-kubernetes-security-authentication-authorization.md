@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] 보안 가이드 (Authentication & Authorization, RBAC)"
 date: 2020-01-02
-categories: [Kubernetes, Kubernetes]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, security, authentication, authorization, rbac, serviceaccount]
 pin: false
 mermaid: true

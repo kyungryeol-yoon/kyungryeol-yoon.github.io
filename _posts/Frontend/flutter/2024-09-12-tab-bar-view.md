@@ -1,7 +1,7 @@
 ---
 title: "[Flutter] TabBarView"
 date: 2024-09-12
-categories: [Framework, Flutter]
+categories: [Frontend, Flutter]
 tags: [flutter, tabbarview]
 ---
 

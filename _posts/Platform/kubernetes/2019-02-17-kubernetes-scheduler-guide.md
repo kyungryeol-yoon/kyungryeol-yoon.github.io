@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Scheduler 이해 (Pod 스케줄링 원리, Node Selection, Taints/Tolerations)"
 date: 2019-02-17
-categories: [Kubernetes, Kubernetes]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, scheduler, pod, node, devops, cloud]
 pin: false
 mermaid: true

@@ -1,7 +1,7 @@
 ---
 title: "[Docker] DFOREGROUND 옵션 이해 및 활용"
 date: 2021-05-21
-categories: [Docker, DFOREGROUND]
+categories: [Platform, Docker]
 tags: [docker, container, foreground, background, apache, daemon]
 ---
 

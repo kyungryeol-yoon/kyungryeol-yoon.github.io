@@ -1,7 +1,7 @@
 ---
 title: "[DDD Start 실전] 주문-결제 시스템 설계 및 테스트"
 date: 2020-12-12
-categories: [Backend, Software Design]
+categories: [Backend, Software-Design]
 tags: [ddd, domain-driven design, bounded context, domain model, order, payment, start]
 ---
 

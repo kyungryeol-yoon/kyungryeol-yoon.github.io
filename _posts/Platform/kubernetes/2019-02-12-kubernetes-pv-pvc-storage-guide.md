@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Persistent Volume(PV)과 PVC 완벽 이해 (Kubernetes Storage)"
 date: 2019-02-12
-categories: [Kubernetes, Kubernetes]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, storage, pv, pvc, devops, container, cloud]
 pin: false
 mermaid: true

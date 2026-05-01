@@ -1,7 +1,7 @@
 ---
 title: "[Docker-Compose] Install Docker-Compose(2.33.1)"
 date: 2025-03-12
-categories: [Docker, Docker-Compose]
+categories: [Platform, Docker]
 tags: [docker, install, docker-compose]
 ---
 

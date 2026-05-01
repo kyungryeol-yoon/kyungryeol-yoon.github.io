@@ -1,7 +1,7 @@
 ---
 title: "[Git] Git Branch"
 date: 2023-07-25
-categories: [Git, Branch]
+categories: [DevOps, Git]
 tags: [git, branch]
 ---
 

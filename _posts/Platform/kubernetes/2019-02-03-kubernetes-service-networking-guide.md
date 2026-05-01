@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Service와 Networking 구조 이해하기 (ClusterIP, NodePort, LoadBalancer)"
 date: 2019-02-03
-categories: [Kubernetes, Kubernetes]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, service, networking, clusterip, nodeport, loadbalancer, devops]
 description: "Kubernetes Service 구조와 네트워크 동작 원리를 정리합니다. ClusterIP, NodePort, LoadBalancer 타입과 Pod 네트워킹을 이해합니다."
 mermaid: true

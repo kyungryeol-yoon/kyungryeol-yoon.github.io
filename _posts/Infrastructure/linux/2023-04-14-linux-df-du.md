@@ -1,7 +1,7 @@
 ---
 title: "[Linux] df, du란?"
 date: 2023-04-14
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, disk, usage, command, df, du]
 ---
 

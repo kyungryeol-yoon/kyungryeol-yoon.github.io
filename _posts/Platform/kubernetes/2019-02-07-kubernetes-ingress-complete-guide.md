@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Ingress 완벽 가이드 (Ingress Controller, HTTP Routing)"
 date: 2019-02-07
-categories: [Kubernetes, Kubernetes]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, ingress, networking, nginx, devops, cloud]
 pin: false
 mermaid: true

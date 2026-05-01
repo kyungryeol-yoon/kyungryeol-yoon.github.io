@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl port-forward command"
 date: 2022-11-19
-categories: [Kubernetes, Tools]
+categories: [Platform, Kubernetes, Tools]
 tags: [kubernetes, kubectl, command, port-forward]
 # comments: true
 # pin: true

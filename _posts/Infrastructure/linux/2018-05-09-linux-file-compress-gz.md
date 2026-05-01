@@ -1,7 +1,7 @@
 ---
 title: "[Linux] gz 압축 및 해제"
 date: 2018-05-09
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, file, directory, compress, gz]
 ---
 

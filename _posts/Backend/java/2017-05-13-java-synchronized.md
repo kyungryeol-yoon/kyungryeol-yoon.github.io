@@ -2,7 +2,7 @@
 # layout: post
 title: "[Java] Synchronized"
 date: 2017-05-13
-categories: [Programming, Java]
+categories: [Backend, Java]
 tags: [java, synchronized]
 # comments: true
 ---

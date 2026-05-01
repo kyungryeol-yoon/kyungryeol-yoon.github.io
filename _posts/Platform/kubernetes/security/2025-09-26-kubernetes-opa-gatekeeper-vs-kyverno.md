@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] 🛡️ OPA Gatekeeper vs Kyverno: 쿠버네티스 정책 관리 완전 가이드"
 date: 2025-09-26
-categories: [Kubernetes, Security]
+categories: [Platform, Kubernetes, Security]
 tags: [kubernetes, opa, gatekeeper, kyverno, policy, admission-controller, security, rego]
 pin: false
 ---

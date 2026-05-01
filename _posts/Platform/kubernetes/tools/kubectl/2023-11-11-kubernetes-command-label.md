@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl label command"
 date: 2023-11-11
-categories: [Kubernetes, Tools]
+categories: [Platform, Kubernetes, Tools]
 tags: [kubernetes, kubectl, command, label]
 # comments: true
 ---

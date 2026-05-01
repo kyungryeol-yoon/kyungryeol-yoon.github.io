@@ -1,7 +1,7 @@
 ---
 title: "[Docker] Dockerfile 작성 및 명령어"
 date: 2021-01-17
-categories: [Docker, Dockerfile]
+categories: [Platform, Docker]
 tags: [docker, dockerfile]
 ---
 

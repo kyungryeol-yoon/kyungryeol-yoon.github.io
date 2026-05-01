@@ -1,7 +1,7 @@
 ---
 title: "[Linux] 파일 관리 - chown 파일/Directory 소유권 변경"
 date: 2018-05-05
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, file, directory, chown]
 ---
 

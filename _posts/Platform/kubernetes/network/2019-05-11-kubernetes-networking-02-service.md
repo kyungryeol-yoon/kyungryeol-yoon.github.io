@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] 쿠버네티스 네트워킹 이해하기 (2) - Service와 kube-proxy의 마법"
 date: 2019-05-11
-categories: [Kubernetes, Network]
+categories: [Platform, Kubernetes, Network]
 tags: [kubernetes, network, service, kube-proxy, iptables, ipvs, clusterip]
 ---
 

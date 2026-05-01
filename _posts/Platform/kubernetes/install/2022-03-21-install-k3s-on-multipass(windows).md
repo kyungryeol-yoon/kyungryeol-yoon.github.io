@@ -2,7 +2,7 @@
 title: "[Kubernetes] k3s로 손쉬운 Kubernetes 클러스터 만들기 (Windows + Multipass + Ubuntu)"
 date: 2022-03-21
 description: "Windows 환경에서 Ubuntu Multipass를 이용해 k3s 기반 Kubernetes 클러스터를 구축하는 실전 설치 가이드"
-categories: [Kubernetes, Install]
+categories: [Platform, Kubernetes, Install]
 tags: [kubernetes, k3s, multipass, ubuntu, devops]
 ---
 

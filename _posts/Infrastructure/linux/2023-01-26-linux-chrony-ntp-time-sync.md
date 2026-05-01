@@ -1,7 +1,7 @@
 ---
 title: "[Linux] ⏱️ Chrony NTP 시간 동기화 완벽 가이드: 설정부터 iburst 에러 해결까지"
 date: 2023-01-26
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, chrony, ntp, chronyd, chrony-conf, iburst, time-sync, centos, ubuntu, rhel]
 description: "Linux에서 Chrony로 NTP 시간 동기화를 설정하는 방법을 정리했습니다. chrony.conf iburst 설정, 특정 NTP 서버 교체, chronyc 진단 명령어, 에러 트러블슈팅까지 실무 기준으로 다룹니다."
 pin: false

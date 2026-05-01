@@ -1,7 +1,7 @@
 ---
 title: "[Docker] Permission Denied 발생하는 경우"
 date: 2021-03-11
-categories: [Docker, Permission]
+categories: [Platform, Docker]
 tags: [docker, permission, denied]
 ---
 

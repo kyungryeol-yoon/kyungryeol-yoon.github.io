@@ -1,7 +1,7 @@
 ---
 title: "[Python] 가상환경 venv, virtualenv"
 date: 2021-06-22
-categories: [Programming, Python]
+categories: [Backend, Python]
 tags: [python, venv, virtualenv, programming]
 ---
 

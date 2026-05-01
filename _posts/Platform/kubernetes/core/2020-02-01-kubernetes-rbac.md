@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] RBAC"
 date: 2020-02-01
-categories: [Kubernetes, Core]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, kubectl, rbac]
 # comments: true
 ---

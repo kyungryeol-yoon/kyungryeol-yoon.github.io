@@ -1,7 +1,7 @@
 ---
 title: "[Error] K3S Install Helm"
 date: 2024-06-06
-categories: [Kubernetes, Error]
+categories: [Platform, Kubernetes, Error]
 tags: [kubernetes, k3s, helm, ubuntu, linux, install, error]
 ---
 

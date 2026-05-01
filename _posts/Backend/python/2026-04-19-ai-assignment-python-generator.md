@@ -1,7 +1,7 @@
 ---
 title: "[AI Assignment - Python] 🐍 제너레이터 실전 — batch, file reader, infinite ID"
 date: 2026-04-19
-categories: [Programming, Python]
+categories: [Backend, Python]
 tags: [python, generator, iterator, yield, eafp, type-hint]
 ---
 

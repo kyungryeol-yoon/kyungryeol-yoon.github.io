@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] About Argo CD"
 date: 2021-10-17
-categories: [DevOps, Argo CD]
+categories: [DevOps, Argo-CD]
 tags: [argo cd, kubernetes, gitops, devops]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Pod Security Policy 완벽 가이드 (PSP, 보안 정책 관리)"
 date: 2020-01-11
-categories: [Kubernetes, Kubernetes]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, security, psp, pod-security-policy, devops]
 pin: false
 mermaid: true

@@ -1,7 +1,7 @@
 ---
 title: "[Docker] 컨테이너 이미지 최적화와 UFS 심화 이해"
 date: 2021-10-05
-categories: [Docker, UFS]
+categories: [Platform, Docker]
 tags: [docker, container, ufs, union filesystem, image, layer, optimization, multi-stage build]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "[Network] 도메인 서버(DNS) 구축과 관리"
 date: 2017-04-09
-categories: [Network, DNS]
+categories: [Infrastructure, Network]
 tags: [dns, domain, network, server, devops]
 ---
 

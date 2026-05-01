@@ -3,7 +3,7 @@
 title: "[Kubernetes] Install Kubernetes(v1.11.0) on CentOS"
 date: 2020-01-28
 # excerpt: "Kubernetes Centos 설치법"
-categories: [Kubernetes, Install]
+categories: [Platform, Kubernetes, Install]
 tags: [kubernetes, centos, install]
 # comments: true
 ---

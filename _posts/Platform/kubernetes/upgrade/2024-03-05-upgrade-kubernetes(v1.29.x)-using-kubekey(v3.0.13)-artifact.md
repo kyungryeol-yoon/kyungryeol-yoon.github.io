@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Upgrade Kubernetes(v1.29.x) using Kubekey(v3.0.13) Artifact"
 date: 2024-03-05
-categories: [Kubernetes, Upgrade]
+categories: [Platform, Kubernetes, Upgrade]
 tags: [kubernetes, kubekey, artifact, upgrade]
 ---
 

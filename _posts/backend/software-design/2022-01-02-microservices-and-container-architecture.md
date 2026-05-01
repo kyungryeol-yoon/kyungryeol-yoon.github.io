@@ -1,7 +1,7 @@
 ---
 title: "[Microservices & Container] 마이크로서비스 패턴과 컨테이너 이미지 구조"
 date: 2022-01-02
-categories: [Backend, Software Design]
+categories: [Backend, Software-Design]
 tags: [microservice, container, pattern, ufs, docker, architecture, saga, event-driven, optimization]
 ---
 

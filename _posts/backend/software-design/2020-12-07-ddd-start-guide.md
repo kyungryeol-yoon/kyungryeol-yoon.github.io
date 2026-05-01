@@ -1,7 +1,7 @@
 ---
 title: "[DDD Start] 도메인 주도 설계 입문과 실전 예제"
 date: 2020-12-07
-categories: [Backend, Software Design]
+categories: [Backend, Software-Design]
 tags: [ddd, domain-driven design, bounded context, domain model, start]
 ---
 

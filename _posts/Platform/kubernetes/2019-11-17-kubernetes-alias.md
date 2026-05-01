@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Alias"
 date: 2019-11-17
-categories: [Kubernetes, Alias]
+categories: [Platform, Kubernetes, Tools]
 tags: [kubernetes, kubectl, alias]
 ---
 

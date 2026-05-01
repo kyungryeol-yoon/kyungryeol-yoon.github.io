@@ -1,7 +1,7 @@
 ---
 title: "[Python] 🚀 uv로 프로젝트 & 패키지 관리 완벽 가이드"
 date: 2026-03-19
-categories: [Programming, Python]
+categories: [Backend, Python]
 tags: [python, uv, package-management, venv, devops]
 pin: true
 ---

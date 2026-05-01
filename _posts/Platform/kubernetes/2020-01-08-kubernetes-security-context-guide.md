@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Security Context 완벽 가이드 (runAsUser, privileged, capabilities)"
 date: 2020-01-08
-categories: [Kubernetes, Kubernetes]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, security, security-context, devops, container]
 pin: false
 mermaid: true

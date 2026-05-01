@@ -1,7 +1,7 @@
 ---
 title: "[Android] SDK Manager"
 date: 2024-09-07
-categories: [Android, SDK]
+categories: [Frontend, Android]
 tags: [android, sdk]
 ---
 

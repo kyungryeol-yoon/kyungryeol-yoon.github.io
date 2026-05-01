@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] 쿠버네티스 네트워킹 이해하기 (3) - 외부로 서비스 노출하기 (NodePort, LoadBalancer)"
 date: 2019-05-17
-categories: [Kubernetes, Network]
+categories: [Platform, Kubernetes, Network]
 tags: [kubernetes, network, nodeport, loadbalancer, external-traffic, infrastructure, devops]
 ---
 

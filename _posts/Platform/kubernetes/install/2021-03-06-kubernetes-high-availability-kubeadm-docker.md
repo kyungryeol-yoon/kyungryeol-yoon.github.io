@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] kubeadm으로 마스터 노드 고가용성(HA) 클러스터 구축하기(Docker)"
 date: 2021-03-06
-categories: [Kubernetes, Install]
+categories: [Platform, Kubernetes, Install]
 tags: [kubernetes, docker, kubeadm, highavailability, haproxy, keepalived, cluster]
 ---
 

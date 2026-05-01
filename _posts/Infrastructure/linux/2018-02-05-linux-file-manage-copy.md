@@ -1,7 +1,7 @@
 ---
 title: "[Linux] 파일 관리 - cp 파일/Directory 복사"
 date: 2018-02-05
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, file, directory, cp, copy]
 ---
 

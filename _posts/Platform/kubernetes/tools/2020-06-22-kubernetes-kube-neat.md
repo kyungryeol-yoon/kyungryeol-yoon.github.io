@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] kubectl neat"
 date: 2020-06-22
-categories: [Kubernetes, Tools]
+categories: [Platform, Kubernetes, Tools]
 tags: [kubernetes, kubectl-neat]
 ---
 

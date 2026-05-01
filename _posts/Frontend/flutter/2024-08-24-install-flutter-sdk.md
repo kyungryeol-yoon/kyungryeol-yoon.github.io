@@ -1,7 +1,7 @@
 ---
 title: "[Flutter] SDK"
 date: 2024-08-24
-categories: [Framework, Flutter]
+categories: [Frontend, Flutter]
 tags: [flutter, sdk]
 ---
 

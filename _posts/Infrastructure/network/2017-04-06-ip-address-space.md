@@ -1,7 +1,7 @@
 ---
 title: "[Network] IP 주소와 주소 공간 이해"
 date: 2017-04-06
-categories: [Network, IP]
+categories: [Infrastructure, Network]
 tags: [network, ip, subnet, cidr, dhcp, devops]
 ---
 

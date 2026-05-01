@@ -1,7 +1,7 @@
 ---
 title: "[AI] 🤖 바이브 코딩의 핵심: Claude Code 프로젝트 문서 관리 완전 가이드"
 date: 2026-04-21
-categories: [Artificial-Intelligence, LLM]
+categories: [AI, LLM]
 tags: [claude-code, vibe-coding, llm, ai, documentation, claude]
 description: "Claude Code를 활용한 프로젝트에서 AI의 기억을 보완하는 문서 관리 전략을 다룹니다. README, CLAUDE.md 등 5대 필수 문서의 역할과 AI 시대에 최적화된 바이브 코딩 문서화 가이드를 실전 중심으로 정리했습니다."
 pin: false

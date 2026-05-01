@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Install Kubernetes(v1.29.x) using Kubekey(v3.1.1) Artifact on Multipass"
 date: 2025-04-28
-categories: [Kubernetes, Install]
+categories: [Platform, Kubernetes, Install]
 tags: [kubernetes, kubekey, artifact, install]
 ---
 

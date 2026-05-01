@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Control-Plane Node에 Pod 띄우기"
 date: 2019-07-05
-categories: [Kubernetes, Core]
+categories: [Platform, Kubernetes, Core]
 tags: [kubernetes, control-plane, node, pod]
 ---
 

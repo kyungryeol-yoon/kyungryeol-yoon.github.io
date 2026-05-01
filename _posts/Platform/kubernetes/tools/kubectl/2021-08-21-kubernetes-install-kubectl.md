@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Install kubectl"
 date: 2021-08-21
-categories: [Kubernetes, Tools]
+categories: [Platform, Kubernetes, Tools]
 tags: [kubernetes, install, kubectl]
 ---
 

@@ -2,7 +2,7 @@
 # layout: post
 title: "Compilation Process"
 date: 2016-05-12
-categories: [Programming, Compile]
+categories: [CS, Compile]
 # excerpt: "프로그램 코드를 컴퓨터가 이해할 수 있는 언어로 변환하는 작업"
 tags: [compilation process, compile languages, byte code languages, interpreter languages, c, cpp, java, csharp, javascript, python, ruby, programming]
 # comments: true

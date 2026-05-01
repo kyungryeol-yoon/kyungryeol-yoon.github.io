@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Kafbat - Kafka UI(1.1.0)"
 date: 2025-03-08
-categories: [Message-Broker, Kafka]
+categories: [Platform, Kafka]
 tags: [kubernetes, message broker, ui, kafbat]
 ---
 

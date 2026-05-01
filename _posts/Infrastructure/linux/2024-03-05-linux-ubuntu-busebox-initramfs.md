@@ -1,7 +1,7 @@
 ---
 title: "[Error] BusyBox initramfs 발생할 때"
 date: 2024-03-05
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [virtual box, ubuntu, busyBox, initramfs]
 ---
 

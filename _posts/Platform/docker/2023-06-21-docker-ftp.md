@@ -1,7 +1,7 @@
 ---
 title: "[Docker] FTP 서버"
 date: 2023-06-21
-categories: [Docker, FTP]
+categories: [Platform, Docker]
 tags: [docker, ftp]
 ---
 

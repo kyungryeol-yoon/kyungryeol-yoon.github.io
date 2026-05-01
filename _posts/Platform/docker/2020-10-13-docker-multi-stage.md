@@ -1,7 +1,7 @@
 ---
 title: "[Docker] Docker Multi Stage란?"
 date: 2020-10-13
-categories: [Docker, Dockerfile]
+categories: [Platform, Docker]
 tags: [docker, multi stage]
 ---
 

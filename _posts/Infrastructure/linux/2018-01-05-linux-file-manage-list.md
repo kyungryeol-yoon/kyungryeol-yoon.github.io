@@ -1,7 +1,7 @@
 ---
 title: "[Linux] 파일 관리 -ls 파일 목록 조회"
 date: 2018-01-05
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, file, ls, list]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "[Docker/Container] 컨테이너 사이즈와 UFS(Union File System) 이해"
 date: 2021-10-02
-categories: [Docker, UFS]
+categories: [Platform, Docker]
 tags: [docker, container, ufs, union filesystem, image, layer]
 ---
 

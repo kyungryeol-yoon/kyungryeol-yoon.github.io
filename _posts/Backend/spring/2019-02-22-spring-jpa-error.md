@@ -1,7 +1,7 @@
 ---
 title: "[Spring] JPA (Hibernate) - Error (creating bean with name 'entityManagerFactory')"
 date: 2019-02-22
-categories: [Framework, Spring]
+categories: [Backend, Spring]
 tags: [spring, java, jpa, error]
 ---
 

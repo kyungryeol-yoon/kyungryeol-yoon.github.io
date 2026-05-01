@@ -3,6 +3,7 @@ title: "[MySQL] MySQL 사용자에게 데이터베이스 사용권한 부여"
 date: 2016-11-05
 categories: [Database, MySQL]
 tags: [database, mysql, privileges]
+description: "MySQL 데이터베이스에서 사용자 계정을 관리하고 GRANT, REVOKE 명령을 사용하여 데이터베이스 및 테이블에 대한 권한을 부여하거나 제거하는 방법을 정리합니다."
 ---
 
 MySQL은 사용자 이름, 비밀번호, 접속 호스트로 인증한다.\\

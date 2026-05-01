@@ -27,18 +27,19 @@ pin: false
 - slug: 영문 소문자, 하이픈 구분 (예: `langchain-ensemble-retriever`)
 
 ## 기존 카테고리 (반드시 기존 것 사용)
-- DevOps > Kubernetes, Argo CD, GitLab, Harbor, Ansible, SRE
-- Docker > Docker-Compose, Dockerfile, Network, Image
-- Database > PostgreSQL, MySQL, Redis, InfluxDB
-- Programming > Python
-- Artificial Intelligence > LLM, Machine Learning
-- Monitoring > Prometheus, Grafana, Loki
-- Framework > Spring, Flutter
-- Backend > Software Design
-- News > AI
-- Blog > Jekyll, Chirpy
-- Linux > 다양한 소분류
-- Network > 다양한 소분류
+
+> categories는 `[대분류, 소분류]` 2단계 사용. Kubernetes만 `[Platform, Kubernetes, 세부]` 3단계 사용.
+
+- **Platform** > Kubernetes(Core/Install/Network/Security/Storage/Tools/Error/Stress/Upgrade), Docker, Istio, Kong, Kafka
+- **DevOps** > GitLab, Ansible, Argo-CD, Harbor, SRE, Git, k6
+- **Infrastructure** > Linux, macOS, Windows, Network, Hardware, Virtualization
+- **Database** > PostgreSQL, MySQL, Redis, InfluxDB
+- **Backend** > Spring, Python, Java, Software-Design, Supabase
+- **Frontend** > Flutter, Android
+- **Observability** > Grafana, OTel, eBPF
+- **AI** > LLM, Machine-Learning, Ollama
+- **CS** > Algorithms, Data-Structures, Design-Patterns, C++, Coding-Test, Interview
+- **Blog** > Jekyll, Chirpy
 
 ## 작성 스타일
 

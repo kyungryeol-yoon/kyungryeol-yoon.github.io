@@ -1,7 +1,7 @@
 ---
 title: "[Error] kubeadm join - pending"
 date: 2022-08-27
-categories: [Kubernetes, Error]
+categories: [Platform, Kubernetes, Error]
 tags: [kubernetes, kubeadm]
 ---
 

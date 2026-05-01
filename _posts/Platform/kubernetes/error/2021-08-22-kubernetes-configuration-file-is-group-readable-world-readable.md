@@ -1,7 +1,7 @@
 ---
 title: "[Error] Kubernetes configuration file is group-readable, world-readable"
 date: 2021-08-22
-categories: [Kubernetes, Error]
+categories: [Platform, Kubernetes, Error]
 tags: [kubernetes, kubectl]
 ---
 

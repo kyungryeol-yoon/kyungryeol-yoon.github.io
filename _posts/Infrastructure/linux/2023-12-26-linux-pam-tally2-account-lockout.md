@@ -1,7 +1,7 @@
 ---
 title: "[Linux] 🔐 pam_tally2로 로그인 실패 제한 및 계정 잠금 설정하기"
 date: 2023-12-26
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, pam, pam_tally2, pam_faillock, security, account-lock, authentication, centos, rhel]
 pin: false
 ---

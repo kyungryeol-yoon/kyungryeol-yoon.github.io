@@ -3,7 +3,7 @@
 title: "[Data Structures | C++] Stack : 스택"
 date: 2016-01-29
 # excerpt: 한 쪽 끝에서만 자료를 넣고 뺄 수 있는 LIFO(Last In First Out) 형식의 자료 구조
-categories: [Programming, Data-Structures]
+categories: [CS, Data-Structures]
 tags: [data structures, cpp, stack]
 # comments: true
 ---

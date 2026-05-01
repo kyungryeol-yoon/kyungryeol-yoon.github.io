@@ -1,7 +1,7 @@
 ---
 title: "[Git] Git Bash Alias - Windows"
 date: 2023-08-23
-categories: [OS, Windows]
+categories: [Infrastructure, Windows]
 tags: [git, windows, alias]
 ---
 

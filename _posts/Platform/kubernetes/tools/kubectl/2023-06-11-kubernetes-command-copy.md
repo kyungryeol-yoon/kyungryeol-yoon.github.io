@@ -2,7 +2,7 @@
 # layout: post
 title: "[Kubernetes] kubectl copy command"
 date: 2023-06-11
-categories: [Kubernetes, Tools]
+categories: [Platform, Kubernetes, Tools]
 tags: [kubernetes, kubectl, command, copy]
 # comments: true
 ---

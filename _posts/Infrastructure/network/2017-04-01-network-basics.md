@@ -1,7 +1,7 @@
 ---
 title: "[Network] 네트워크 기초 개념"
 date: 2017-04-01
-categories: [Network, Networking]
+categories: [Infrastructure, Network]
 tags: [network, tcp, udp, protocol, devops]
 ---
 

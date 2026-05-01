@@ -1,7 +1,7 @@
 ---
 title: "[Python] Background Tasks"
 date: 2023-11-05
-categories: [Programming, Python]
+categories: [Backend, Python]
 tags: [python, backgroundtasks]
 ---
 

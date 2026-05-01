@@ -1,7 +1,7 @@
 ---
 title: "[AI Assignment - Python] 🐍 타입 힌트와 컴프리헨션 — WeatherAnalyzer 클래스 구현기"
 date: 2026-04-07
-categories: [Programming, Python]
+categories: [Backend, Python]
 tags: [python, type-hints, comprehension, dataclass, oop, clean-code]
 pin: false
 ---

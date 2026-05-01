@@ -1,7 +1,7 @@
 ---
 title: "[Microservice Pattern] 마이크로서비스 패턴 개요와 핵심 설계"
 date: 2021-11-07
-categories: [Backend, Software Design]
+categories: [Backend, Software-Design]
 tags: [microservice, pattern, architecture, saga, event-driven, api gateway]
 ---
 

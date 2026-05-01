@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] CIS Benchmark와 kube-bench 소개"
 date: 2025-04-09
-categories: [Kubernetes, Security]
+categories: [Platform, Kubernetes, Security]
 tags: [kubernetes, security, cis, kube-bench, audit, devsecops]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "[AI] 🤝 CrewAI: 멀티 에이전트 AI 협업 프레임워크 완벽 가이드"
 date: 2025-08-21
-categories: [Artificial-Intelligence, LLM]
+categories: [AI, LLM]
 tags: [crewai, llm, ai-agent, multi-agent, python, openai, langchain, ai-framework]
 description: "CrewAI는 여러 AI Agent가 역할을 분담하고 협력하는 멀티 에이전트 프레임워크입니다. Agent·Task·Tool·Crew 구성요소부터 Sequential/Hierarchical 프로세스, 메모리 시스템, Python 코드 예제까지 실무 기준으로 정리했습니다."
 pin: false

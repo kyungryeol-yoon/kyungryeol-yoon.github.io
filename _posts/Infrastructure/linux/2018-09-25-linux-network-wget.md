@@ -1,7 +1,7 @@
 ---
 title: "[Linux] 네트워크 - wget 웹 다운로드"
 date: 2018-09-25
-categories: [OS, Linux]
+categories: [Infrastructure, Linux]
 tags: [linux, network, wget]
 ---
 
