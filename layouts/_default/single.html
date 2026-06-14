@@ -29,7 +29,7 @@
 
       {{ partial "series-nav.html" . }}
 
-      {{ if not .Params.noads }}{{ partial "ad-unit.html" (dict "slot" site.Params.adsenseSlotInArticle) }}{{ end }}
+      {{ if not .Params.noads }}{{ partial "ad-unit.html" (dict "slot" site.Params.adsenseSlotInArticle "format" "fluid" "layout" "in-article") }}{{ end }}
 
       {{ with first 4 ((where site.RegularPages "Section" "!=" "").Related .) }}
         <section class="related">

@@ -1,9 +1,10 @@
-{{- /* 공용 AdSense 광고 단위. dict 인자: slot(필수) · format(기본 auto) · responsive(기본 true).
+{{- /* 공용 AdSense 광고 단위. dict 인자:
+       slot(필수) · format(기본 auto) · responsive(기본 true, auto일 때만) ·
+       layout(옵션, 인아티클="in-article") · layoutKey(옵션, 인피드 네이티브 data-ad-layout-key).
        adsenseEnabled + client + slot 모두 있을 때만 출력 → 슬롯 비면 화면 깨끗. */ -}}
 {{- $client := site.Params.adsenseClient -}}
 {{- $slot := .slot -}}
 {{- $format := .format | default "auto" -}}
-{{- $responsive := .responsive | default "true" -}}
 {{- if and site.Params.adsenseEnabled $client $slot -}}
 <div class="ad-unit">
   <span class="ad-unit__label">Advertisement</span>
@@ -11,7 +12,9 @@
        data-ad-client="{{ $client }}"
        data-ad-slot="{{ $slot }}"
        data-ad-format="{{ $format }}"
-       data-full-width-responsive="{{ $responsive }}"></ins>
+       {{- with .layout }} data-ad-layout="{{ . }}"{{ end }}
+       {{- with .layoutKey }} data-ad-layout-key="{{ . }}"{{ end }}
+       {{- if eq $format "auto" }} data-full-width-responsive="{{ .responsive | default "true" }}"{{ end }}></ins>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 {{- end -}}

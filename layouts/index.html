@@ -28,7 +28,7 @@
           {{ end }}
         </article>
         {{ if and (eq (mod ($.Scratch.Get "ci") 6) 0) site.Params.adsenseSlotInFeed }}
-          {{ partial "ad-unit.html" (dict "slot" site.Params.adsenseSlotInFeed "format" "fluid") }}
+          {{ partial "ad-unit.html" (dict "slot" site.Params.adsenseSlotInFeed) }}
         {{ end }}
       {{ end }}
     </div>
