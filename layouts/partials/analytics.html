@@ -1,0 +1,11 @@
+{{- /* Google Analytics 4. production 빌드 + 측정 ID 있을 때만 출력(개발 중 집계 방지). */ -}}
+{{- if and hugo.IsProduction .Site.Params.googleAnalytics -}}
+{{- $id := .Site.Params.googleAnalytics -}}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ $id }}"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '{{ $id }}');
+</script>
+{{- end -}}

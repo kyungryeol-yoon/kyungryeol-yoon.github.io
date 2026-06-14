@@ -1,0 +1,7 @@
+{{- $list := slice -}}
+{{- range where site.RegularPages "Section" "!=" "" -}}
+  {{- $tags := slice -}}
+  {{- range .GetTerms "tags" }}{{ $tags = $tags | append (.LinkTitle | urlize) }}{{ end -}}
+  {{- $list = $list | append (dict "title" .Title "url" .RelPermalink "date" (.Date.Format "2006.01.02") "tags" $tags) -}}
+{{- end -}}
+{{- $list | jsonify -}}

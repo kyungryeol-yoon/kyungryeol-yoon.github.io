@@ -1,0 +1,41 @@
+{{ define "main" }}
+{{ $posts := where site.RegularPages "Section" "!=" "" }}
+{{ $paginator := .Paginate ($posts.ByDate.Reverse) }}
+
+<div class="layout-grid">
+  {{ partial "sidebar-nav.html" . }}
+
+  <div class="col-main">
+    <div class="post-list">
+      {{ range $paginator.Pages }}
+        {{ $.Scratch.Add "ci" 1 }}
+        {{ $cats := slice }}
+        {{ range .Ancestors.Reverse }}{{ if not .IsHome }}{{ $cats = $cats | append .Title }}{{ end }}{{ end }}
+        <article class="post-card">
+          <div class="card-head">
+            <a class="card-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </div>
+          {{ with partial "excerpt.html" . }}<p class="card-excerpt">{{ . }}</p>{{ end }}
+          <div class="card-meta">
+            <span class="cm"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>{{ .Date.Format "2006.01.02" }}</span>
+            {{ with $cats }}<span class="cm"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h3.5l2 2H19a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>{{ delimit . " · " }}</span>{{ end }}
+          </div>
+          {{ with .GetTerms "tags" }}
+            <div class="card-tags">
+              {{ range first 3 . }}<a class="tag-sm" href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>{{ end }}
+              {{ if gt (len .) 3 }}<span class="tag-more">+{{ sub (len .) 3 }}</span>{{ end }}
+            </div>
+          {{ end }}
+        </article>
+        {{ if and (eq (mod ($.Scratch.Get "ci") 6) 0) site.Params.adsenseSlotInFeed }}
+          {{ partial "ad-unit.html" (dict "slot" site.Params.adsenseSlotInFeed "format" "fluid") }}
+        {{ end }}
+      {{ end }}
+    </div>
+
+    {{ partial "pager.html" $paginator }}
+  </div>
+
+  {{ partial "aside-meta.html" . }}
+</div>
+{{ end }}

@@ -1,0 +1,57 @@
+{{- $title := .Title -}}
+{{- $isHome := .IsHome -}}
+{{- $pageTitle := cond $isHome .Site.Title (printf "%s | %s" .Title .Site.Title) -}}
+{{- $desc := cond .IsPage (partial "excerpt.html" .) "" -}}
+{{- $desc = $desc | default .Description | default .Site.Params.description -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#faf8f3">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#16181d">
+
+<title>{{ $pageTitle }}</title>
+<meta name="description" content="{{ $desc | plainify | truncate 160 }}">
+<link rel="canonical" href="{{ .Permalink }}">
+{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+{{ with .Site.Params.googleSiteVerification }}<meta name="google-site-verification" content="{{ . }}">{{ end }}
+
+<!-- 파비콘 (기존 Chirpy 세트 복사) -->
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "/img/favicons/favicon-32x32.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "/img/favicons/favicon-16x16.png" | relURL }}">
+<link rel="apple-touch-icon" href="{{ "/img/favicons/apple-touch-icon.png" | relURL }}">
+<link rel="shortcut icon" href="{{ "/img/favicons/favicon.ico" | relURL }}">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="{{ cond .IsPage "article" "website" }}">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ $desc | plainify | truncate 160 }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+{{- $og := "" -}}
+{{- with .Resources.GetMatch (.Params.image | default "cover.*") }}{{ $og = .Permalink }}{{ end -}}
+{{- if and (not $og) .IsPage }}{{ $og = partial "og-image.html" . }}{{ end -}}
+{{- if not $og }}{{ $og = "og-default.png" | absURL }}{{ end -}}
+<meta property="og:image" content="{{ $og }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Pretendard: 비차단 로드(시스템 폰트로 즉시 렌더 후 스왑) -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"></noscript>
+
+<!-- 다크모드 무깜빡임: 렌더 전 data-theme 확정 -->
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
+</script>
+
+{{ $main := resources.Get "css/main.css" }}
+{{ $chroma := resources.Get "css/chroma.css" }}
+{{ $css := slice $main $chroma | resources.Concat "css/bundle.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+{{ if hugo.IsProduction }}<link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | absURL }}" title="{{ .Site.Title }}">{{ end }}
+
+{{ partial "adsense.html" . }}
+{{ if .Site.Params.adsenseEnabled }}{{ partial "funding-choices.html" . }}{{ end }}
+{{ partial "analytics.html" . }}

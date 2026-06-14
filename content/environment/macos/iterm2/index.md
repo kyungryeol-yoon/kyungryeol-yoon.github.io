@@ -1,0 +1,108 @@
+---
+title: "[Mac OS] iTerm2 설치 및 꾸미기"
+date: 2023-05-30
+tags: [homebrew, iterm2, macos]
+# comments: true
+---
+
+## iTerm2 설치
+
+```bash
+brew install iterm2
+```
+
+> [Homebrew 설치 참고](https://kyungryeol-yoon.github.io/posts/homebrew-cask)
+{: .prompt-info }
+
+### oh my zsh 설치
+
+- iTerm2에 다음 명령어를 입력한다.
+
+  ```bash
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  ```
+
+### Theme 적용
+
+- 다음 명령어를 입력해 Theme를 다운받는다.
+
+  ```bash
+  git clone https://github.com/romkatv/powerlevel10k.git $ZSH/themes/powerlevel10k
+  ```
+
+- `.zshrc` 파일 열기
+
+  ```bash
+  open ~/.zshrc
+  ```
+
+- `ZSH_THEME`를 수정한다.
+
+  ```
+  ZSH_THEME="powerlevel10k/powerlevel10k"
+  ```
+
+- 변경사항을 적용해준다.
+
+  ```bash
+  source ~/.zshrc
+  ```
+
+> Theme 설정을 변경하고 싶다면, 다음 명령어를 통해 수정이 가능하다.
+```bash
+p10k configure
+```
+{: .prompt-tip }
+
+## 유용한 zsh Plugin
+
+### Syntax Highlighting (Plugin 적용은 아래 참고)
+
+- 명령어에 Highlight를 해주는 기능
+
+  ```bash
+  brew install zsh-syntax-highlighting
+  ```
+
+### Auto Suggestions (Plugin 적용은 아래 참고)
+
+- 이전에 입력한 명령어를 보여주는 기능
+- 오른쪽 방향키를 누르면 전체 명령어를 완성해준다.
+
+  ```bash
+  brew install zsh-autosuggestions
+  ```
+
+### Autojump (Plugin 적용은 아래 참고)
+
+- 이전에 방문했던 위치를 알아서 찾아준다.
+- 예를 들어 `/Downloads`에서 `j dev` 를 입력하면 `dev` 라는 이름을 가진 Directory 중 가장 많이 방문한 곳으로 이동한다.
+- `j -s`를 입력하면 방문한 Directory 기록 확인이 가능하다.
+
+  ```bash
+  brew install autojump
+  ```
+
+### Plugin 적용
+
+- `.zshrc` 파일 열기
+
+  ```bash
+  open ~/.zshrc
+  ```
+
+- 다음 명령어 추가
+
+  ```
+  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  ```
+
+  ```
+  plugins = (
+    git
+    autojump
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+  )
+  ```

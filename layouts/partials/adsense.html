@@ -1,0 +1,5 @@
+{{- /* AdSense 삽입 지점(분리된 partial). 데모는 params.adsenseEnabled=false 로 OFF.
+       실배포 시 hugo.toml에서 true 로 켜면 head에 스크립트가 들어간다. */ -}}
+{{- if and .Site.Params.adsenseEnabled .Site.Params.adsenseClient -}}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ .Site.Params.adsenseClient }}" crossorigin="anonymous"></script>
+{{- end -}}

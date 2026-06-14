@@ -1,0 +1,16 @@
+{{- /* 깔끔한 발췌. front matter description 우선, 없으면 원본 마크다운에서
+       코드/숏코드/헤딩/속성목록/마크다운 기호 제거 후 첫 문단. context=page. */ -}}
+{{- $e := .Description -}}
+{{- if not $e -}}
+  {{- $raw := .RawContent -}}
+  {{- $raw = $raw | replaceRE "(?s)\x60\x60\x60.*?\x60\x60\x60" " " -}}   {{- /* 펜스 코드 */ -}}
+  {{- $raw = $raw | replaceRE "(?s){{[<%].*?[>%]}}" " " -}}               {{- /* 숏코드 */ -}}
+  {{- $raw = $raw | replaceRE "(?m)^\\s*#{1,6}\\s+.*$" " " -}}            {{- /* 헤딩 줄 */ -}}
+  {{- $raw = $raw | replaceRE "(?m)^\\s*\\{:.*$" " " -}}                  {{- /* kramdown 속성목록 잔재 */ -}}
+  {{- $raw = $raw | replaceRE "(?m)^\\s*[-*>|].*$" " " -}}                {{- /* 인용/리스트/표 줄 */ -}}
+  {{- $raw = $raw | replaceRE "!?\\[([^\\]]*)\\]\\([^)]*\\)" "$1" -}}     {{- /* 링크/이미지 → 텍스트 */ -}}
+  {{- $raw = $raw | replaceRE "[#*\x60_~]" "" -}}                         {{- /* 잔여 기호 */ -}}
+  {{- $raw = $raw | replaceRE "\\s+" " " -}}
+  {{- $e = $raw -}}
+{{- end -}}
+{{- $e | plainify | strings.TrimSpace | truncate 150 -}}

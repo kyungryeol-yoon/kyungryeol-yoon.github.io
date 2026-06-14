@@ -1,0 +1,31 @@
+{{ define "main" }}
+<div class="layout-grid">
+  {{ partial "sidebar-nav.html" . }}
+
+  <div class="col-main">
+    <div class="masthead">
+      <div class="crumbs">
+        {{ range .Ancestors.Reverse }}{{ if not .IsHome }}<a href="{{ .RelPermalink }}">{{ .Title }}</a> · {{ end }}{{ end }}
+      </div>
+      <h1>{{ .Title }} <span class="count">{{ len .RegularPagesRecursive }}</span></h1>
+      {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
+    </div>
+
+    {{ if .Sections }}
+      <div class="section-label">하위 카테고리</div>
+      {{ partial "category-tree.html" . }}
+    {{ end }}
+
+    {{ with .RegularPages }}
+      <div class="section-label">글</div>
+      <ul class="post-index">
+        {{ range .ByDate.Reverse }}
+          <li><span class="t"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span><span class="d">{{ .Date.Format "2006.01.02" }}</span></li>
+        {{ end }}
+      </ul>
+    {{ end }}
+  </div>
+
+  {{ partial "aside-meta.html" . }}
+</div>
+{{ end }}

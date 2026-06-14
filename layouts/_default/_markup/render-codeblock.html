@@ -1,0 +1,8 @@
+{{- /* 일반 코드블록 렌더훅: 펜스에 {file="service.yaml"} 주면 .highlight에 data-filename 부여.
+       (mermaid는 render-codeblock-mermaid.html이 따로 처리하므로 여기 안 옴) */ -}}
+{{- $file := index .Attributes "file" -}}
+{{- $hl := transform.Highlight (trim .Inner "\n") .Type .Options -}}
+{{- if $file -}}
+  {{- $hl = replaceRE `^<div class="highlight"` (printf `<div class="highlight" data-filename="%s"` (htmlEscape $file)) $hl -}}
+{{- end -}}
+{{- $hl | safeHTML -}}

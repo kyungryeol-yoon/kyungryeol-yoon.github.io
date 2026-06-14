@@ -1,0 +1,6 @@
+{{- $type := .Get 0 | default "info" -}}
+{{- $labels := dict "info" "참고" "tip" "팁" "warning" "주의" "danger" "위험" -}}
+<div class="alert alert-{{ $type }}">
+  <span class="alert-label">{{ index $labels $type | default "참고" }}</span>
+  {{ .Inner | .Page.RenderString }}
+</div>

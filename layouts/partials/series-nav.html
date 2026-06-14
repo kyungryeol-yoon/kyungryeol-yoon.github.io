@@ -1,0 +1,16 @@
+{{- /* 시리즈 네비게이션 (2단계에서 series: 키 일괄 주입 후 활성화).
+       제거하려면 이 파일 + single.html의 호출 두 줄을 지우면 끝. */ -}}
+{{- with .Params.series -}}
+{{- $series := . -}}
+{{- $pages := where (where site.RegularPages "Params.series" $series) "Section" $.Section -}}
+{{- if gt (len $pages) 1 -}}
+<nav class="series-nav alert alert-info">
+  <span class="alert-label">시리즈: {{ $series }}</span>
+  <ol>
+    {{ range $pages.ByDate }}
+      <li>{{ if eq .Permalink $.Permalink }}<strong>{{ .Title }}</strong>{{ else }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}</li>
+    {{ end }}
+  </ol>
+</nav>
+{{- end -}}
+{{- end -}}

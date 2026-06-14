@@ -1,0 +1,68 @@
+baseURL = "https://kyungryeol-yoon.github.io/"
+locale = "ko-kr"
+title = "KyungRyeol Yoon"
+# 데모: 라이브와 분리. 실제 이주 시 baseURL/title 유지.
+
+enableRobotsTXT = true
+enableGitInfo = false
+summaryLength = 30
+
+# 글 URL은 기존 Chirpy와 동일하게 /posts/<slug>/ 로 보존.
+# 중첩 섹션(content/platform/kubernetes/network/...)은 카테고리 페이지 URL로 살아있고,
+# 개별 글은 front matter의 url 키로 /posts/<slug>/ 를 가리킨다(변환 스크립트가 주입).
+
+[pagination]
+  pagerSize = 10
+
+[taxonomies]
+  tag = "tags"
+  # category taxonomy는 쓰지 않는다(중첩 섹션으로 대체). 태그만 평면 taxonomy.
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true            # 원시 HTML 허용(일부 글 + 자작 render hook 출력)
+  [markup.goldmark.parser]
+    [markup.goldmark.parser.attribute]
+      block = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+    ordered = false
+  [markup.highlight]
+    noClasses = false        # CSS 클래스로 출력 → 라이트/다크 색상 분리
+    lineNos = true
+    lineNumbersInTable = false   # 번호를 코드와 같은 .line 흐름에 인라인 → 세로 정렬 어긋남 원천 차단
+    tabWidth = 2
+    wrapperClass = "highlight"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[related]
+  threshold = 80
+  includeNewer = true
+  toLower = true
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+  [[related.indices]]
+    name = "date"
+    weight = 10
+
+[params]
+  description = "차분하게 읽는 엔지니어링 노트 — 쿠버네티스·인프라·백엔드 기록"
+  author = "KyungRyeol Yoon"
+  avatar = "/img/avatar.png"
+  github = "kyungryeol-yoon"
+  email = "kr.yoon1101@gmail.com"
+  adsenseClient = "ca-pub-2132776376287437"
+  adsenseEnabled = true       # 실배포: AdSense 로더 + 동의 스크립트 ON. 자동광고 ON/OFF는 대시보드에서 제어.
+  googleAnalytics = "G-Q6B9CD1LK8"                                  # GA4 측정 ID (production 빌드에서만 출력)
+  googleSiteVerification = "DnngPeqD-wb8OaPS2I2miefsUIDFJ7Xrcl4Z875CUbU"   # Search Console 소유 확인
+  adsenseSlotInArticle = ""   # 본문 하단 인아티클 광고 슬롯 ID (AdSense에서 발급 후 입력. 빈 값이면 미출력)
+  adsenseSlotInFeed    = ""   # 홈 피드 인피드 광고 슬롯 ID (빈 값이면 미출력)

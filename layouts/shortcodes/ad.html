@@ -1,0 +1,9 @@
+{{- /* 본문 흐름 안 수동 광고. 사용법: {{< ad slot="1234567890" >}}
+       format/responsive 조정: {{< ad slot="123" format="fluid" responsive="false" >}}
+       슬롯 ID는 AdSense에서 발급받아 글마다 직접 지정. 공용 ad-unit.html 렌더러 사용. */ -}}
+{{- $slot := .Get "slot" -}}
+{{- if $slot -}}
+{{ partial "ad-unit.html" (dict "slot" $slot "format" (.Get "format") "responsive" (.Get "responsive")) }}
+{{- else -}}
+{{- warnf "ad shortcode: slot 인자가 필요합니다 (%s)" .Page.File.Path -}}
+{{- end -}}

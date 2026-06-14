@@ -1,0 +1,4 @@
+{{- .Page.Store.Set "hasMermaid" true -}}
+<pre class="mermaid" aria-label="diagram">
+{{- .Inner | htmlEscape | safeHTML -}}
+</pre>

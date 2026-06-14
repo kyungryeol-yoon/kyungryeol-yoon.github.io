@@ -1,0 +1,53 @@
+{{ define "main" }}
+<div class="post-shell">
+  <article class="post" data-pagefind-body>
+    <div class="post-head">
+      <div class="crumbs">
+        {{ range .Ancestors.Reverse }}{{ if not .IsHome }}<a href="{{ .RelPermalink }}">{{ .Title }}</a> · {{ end }}{{ end }}
+      </div>
+
+      <h1 class="post-title" data-pagefind-meta="title">{{ .Title }}</h1>
+      <div class="post-meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006년 1월 2일" }}</time>
+        <span>·</span>
+        <span>{{ .ReadingTime }}분 읽기</span>
+      </div>
+
+      {{ with .Resources.GetMatch (.Params.image | default "cover.*") }}
+        <img class="post-cover" src="{{ .RelPermalink }}" alt="{{ $.Params.imageAlt | default $.Title }}" loading="lazy">
+      {{ end }}
+    </div>
+
+    {{ if gt (len .Fragments.Headings) 0 }}{{ partial "toc.html" . }}{{ end }}
+
+    <div class="post-body">
+      {{ partial "series-nav.html" . }}
+
+      <div class="content">
+        {{ .Content }}
+      </div>
+
+      {{ partial "series-nav.html" . }}
+
+      {{ if not .Params.noads }}{{ partial "ad-unit.html" (dict "slot" site.Params.adsenseSlotInArticle) }}{{ end }}
+
+      {{ with first 4 ((where site.RegularPages "Section" "!=" "").Related .) }}
+        <section class="related">
+          <div class="section-label">관련 글</div>
+          <ul class="post-index">
+            {{ range . }}
+              {{ $cats := slice }}{{ range .Ancestors.Reverse }}{{ if not .IsHome }}{{ $cats = $cats | append .Title }}{{ end }}{{ end }}
+              <li><span class="t"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span><span class="d">{{ delimit $cats " · " }}</span></li>
+            {{ end }}
+          </ul>
+        </section>
+      {{ end }}
+
+      <nav class="post-nav">
+        <span>{{ with .PrevInSection }}<a href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ end }}</span>
+        <span>{{ with .NextInSection }}<a href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}</span>
+      </nav>
+    </div>
+  </article>
+</div>
+{{ end }}

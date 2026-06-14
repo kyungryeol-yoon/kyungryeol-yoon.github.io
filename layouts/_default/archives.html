@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="page-narrow">
+<div class="masthead">
+  <h1>Archive</h1>
+  <p>{{ len (where site.RegularPages "Section" "!=" "") }} posts</p>
+</div>
+
+{{ $posts := where site.RegularPages "Section" "!=" "" }}
+{{ range $posts.GroupByDate "2006" }}
+  <section class="timeline-year">
+    <h2 class="tl-year">{{ .Key }} <span class="tl-count">{{ len .Pages }}</span></h2>
+    <ul class="tl-list">
+      {{ range .Pages.ByDate.Reverse }}
+        <li class="tl-item">
+          <time class="tl-date" datetime="{{ .Date.Format "2006-01-02" }}"><b>{{ .Date.Format "02" }}</b> {{ .Date.Format "Jan" }}</time>
+          <a class="tl-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </section>
+{{ end }}
+</div>
+{{ end }}

@@ -1,0 +1,14 @@
+{{- /* 윈도우형 숫자 페이저. context = paginator. 루트상대 URL이라 로컬/배포 모두 정상. */ -}}
+{{- $p := . -}}
+{{- if gt $p.TotalPages 1 -}}
+<nav class="pager" aria-label="pagination">
+  {{ if $p.HasPrev }}<a class="pg-arrow" href="{{ $p.Prev.URL }}" aria-label="이전">←</a>{{ else }}<span class="pg-arrow disabled">←</span>{{ end }}
+  {{ range $p.Pagers }}
+    {{ $n := .PageNumber }}
+    {{ if or (le $p.TotalPages 7) (eq $n 1) (eq $n $p.TotalPages) (and (ge $n (sub $p.PageNumber 1)) (le $n (add $p.PageNumber 1))) }}
+      {{ if eq $n $p.PageNumber }}<span class="pg-cur">{{ $n }}</span>{{ else }}<a href="{{ .URL }}">{{ $n }}</a>{{ end }}
+    {{ else if or (eq $n 2) (eq $n (sub $p.TotalPages 1)) }}<span class="pg-gap">…</span>{{ end }}
+  {{ end }}
+  {{ if $p.HasNext }}<a class="pg-arrow" href="{{ $p.Next.URL }}" aria-label="다음">→</a>{{ else }}<span class="pg-arrow disabled">→</span>{{ end }}
+</nav>
+{{- end -}}

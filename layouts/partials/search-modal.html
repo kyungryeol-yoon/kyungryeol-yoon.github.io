@@ -1,0 +1,10 @@
+{{- /* ⌘K 검색 모달. Pagefind는 첫 오픈 시 app.js가 lazy 로드. */ -}}
+<div class="search-modal" id="search-modal" hidden>
+  <div class="search-modal__overlay" data-search-close></div>
+  <div class="search-modal__dialog" role="dialog" aria-modal="true" aria-label="Search">
+    <div id="pf-search" class="search-modal__body"></div>
+    <div class="search-modal__hint">
+      <span><kbd>esc</kbd> close</span>
+    </div>
+  </div>
+</div>

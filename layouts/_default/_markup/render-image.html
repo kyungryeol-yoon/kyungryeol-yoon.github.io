@@ -1,0 +1,3 @@
+{{- /* 트림판: lazy loading + 기본 처리만(WebP 파이프라인은 데모 제외). */ -}}
+<img src="{{ .Destination | safeURL }}" alt="{{ .PlainText }}" loading="lazy" decoding="async"
+  {{- with .Title }} title="{{ . }}"{{ end }}>

@@ -1,0 +1,24 @@
+{{- /* 재귀 카테고리 트리. 폴더 아이콘 + 개수(RegularPagesRecursive).
+       자식 있으면 chevron 토글(접기/펴기). 이름 클릭은 페이지 이동 유지. */ -}}
+<ul class="cat-tree">
+  {{ range .Sections.ByTitle }}
+    <li class="{{ if .Sections }}has-children{{ end }}" data-cat="{{ .RelPermalink }}">
+      <div class="cat-row">
+        {{ if .Sections }}
+          <button class="cat-toggle" type="button" aria-expanded="false" aria-label="펼치기/접기">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        {{ else }}
+          <span class="cat-toggle-spacer"></span>
+        {{ end }}
+        <a href="{{ .RelPermalink }}" class="cat-link">
+          <svg class="folder-ico folder-closed" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h3.5l2 2H19a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <svg class="folder-ico folder-open" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v2"/></svg>
+          <span class="cat-name">{{ .Title }}</span>
+          <span class="count">{{ len .RegularPagesRecursive }}</span>
+        </a>
+      </div>
+      {{ if .Sections }}<div class="children" hidden>{{ partial "category-tree.html" . }}</div>{{ end }}
+    </li>
+  {{ end }}
+</ul>
