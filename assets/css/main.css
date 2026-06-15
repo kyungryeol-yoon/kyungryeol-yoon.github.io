@@ -191,19 +191,7 @@ html[data-theme="dark"] .post-card:hover { background: var(--bg-soft); box-shado
 .crumbs a { color: var(--text-faint); }
 .crumbs a:hover { color: var(--accent); }
 
-/* 아카이브 연도별 미니 막대 그래프 (분포 한눈에 + 연도 점프) */
-.year-chart { display: flex; align-items: stretch; gap: var(--space-2); height: 120px; margin: var(--space-6) 0 var(--space-12); }
-.yc-col { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--text-faint); text-decoration: none; }
-.yc-track { flex: 1; width: 100%; display: flex; align-items: flex-end; justify-content: center; }
-.yc-bar { width: min(70%, 18px); min-height: 2px; background: var(--border); border-radius: 3px 3px 0 0; transition: background var(--transition); }
-.yc-year { font-size: 0.7rem; letter-spacing: 0.02em; }
-.yc-count { font-size: 0.7rem; font-variant-numeric: tabular-nums; opacity: 0.7; }
-.yc-col:hover { color: var(--accent); text-decoration: none; }
-.yc-col:hover .yc-bar, .yc-col.is-current .yc-bar { background: var(--accent); }
-@media (max-width: 480px) { .year-chart { gap: 3px; height: 96px; } .yc-year, .yc-count { font-size: 0.62rem; } }
-
 /* 아카이브 타임라인 (세로 라인 + 점) ------------------------------------ */
-.timeline-year { scroll-margin-top: 80px; }
 .tl-year { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin: var(--space-12) 0 var(--space-6); }
 .tl-count { font-size: var(--fs-sm); font-weight: 400; color: var(--text-faint); margin-left: var(--space-1); }
 .tl-list { list-style: none; margin: 0 0 var(--space-8); padding: 0; }
