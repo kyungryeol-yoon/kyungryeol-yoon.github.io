@@ -159,3 +159,9 @@ spec:
            name: stress-script
            defaultMode: 0775
 ```
+
+---
+
+## 🔗 관련 글
+
+- [[Kubernetes] Steady Load on Kubernetes Node Using Stress-ng](/kubernetes/cluster/steady-load-on-kubernetes-node-using-stress-ng/)

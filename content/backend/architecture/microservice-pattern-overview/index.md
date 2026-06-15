@@ -135,3 +135,10 @@ microservice-app/
 
 > 💡 결론: 마이크로서비스는 단순히 애플리케이션을 나누는 것이 아니라,
 > **설계 패턴과 운영 전략을 포함한 전체 아키텍처 접근**이 핵심입니다.
+
+---
+
+## 🔗 관련 글
+
+- [[Microservice Pattern 실전] 주문-결제-배송 시스템 설계와 Docker/K8s 적용](/backend/architecture/microservice-pattern/)
+- [[Microservices & Container] 마이크로서비스 패턴과 컨테이너 이미지 구조](/backend/architecture/microservices-and-container-architecture/)

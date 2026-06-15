@@ -120,3 +120,9 @@ docker history <image-name>
   * 레이어 캐시 전략
 
 > 💡 결론: 컨테이너 효율과 배포 속도를 높이려면 **이미지 구조와 UFS 동작 원리**를 이해하는 것이 필수입니다.
+
+---
+
+## 🔗 관련 글
+
+- [[Docker] 컨테이너 이미지 최적화와 UFS 심화 이해](/docker/container-size-ufs-optimized/)

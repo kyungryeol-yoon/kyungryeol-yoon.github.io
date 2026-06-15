@@ -105,3 +105,10 @@ ENTRYPOINT ["java", "-jar", "myapp.jar"]
 
 > 💡 결론: 마이크로서비스 설계와 컨테이너 이미지 최적화는 서로 보완적입니다.
 > 설계를 이해하고, 최적화 전략을 적용하면 **유연하고 효율적인 서비스 운영**이 가능합니다.
+
+---
+
+## 🔗 관련 글
+
+- [[Microservice Pattern 실전] 주문-결제-배송 시스템 설계와 Docker/K8s 적용](/backend/architecture/microservice-pattern/)
+- [[Microservice Pattern] 마이크로서비스 패턴 개요와 핵심 설계](/backend/architecture/microservice-pattern-overview/)

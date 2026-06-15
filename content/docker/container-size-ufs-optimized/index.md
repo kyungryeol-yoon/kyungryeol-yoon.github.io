@@ -135,3 +135,9 @@ docker history <image-name>
 
 > 💡 결론: 컨테이너 효율과 배포 속도를 높이려면
 > **이미지 구조와 UFS 동작 원리, 멀티스테이지 최적화 전략**을 이해하는 것이 필수입니다.
+
+---
+
+## 🔗 관련 글
+
+- [[Docker/Container] 컨테이너 사이즈와 UFS(Union File System) 이해](/docker/container-size-ufs/)

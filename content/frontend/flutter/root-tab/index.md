@@ -115,3 +115,9 @@ flutter run
 
 - **탭 간 전환 애니메이션**: 기본적으로 Flutter에서 제공하는 전환 애니메이션을 사용하여 사용자 경험을 향상시킬 수 있다.
 - **상태 관리**: 탭 간의 상태를 유지하기 위해 상태 관리 라이브러리(예: Provider, Riverpod)를 사용할 수 있다.
+
+---
+
+## 🔗 관련 글
+
+- [[Flutter] TabBarView](/frontend/flutter/tab-bar-view/)

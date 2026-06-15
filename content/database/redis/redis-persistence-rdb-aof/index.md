@@ -158,3 +158,9 @@ Redis Persistence는 데이터 안정성과 운영 목적에 따라 선택합니
 * 🔄 **혼합**: 두 방식 장점을 조합한 운영 전략
 
 ---
+
+---
+
+## 🔗 관련 글
+
+- [[Redis] Redis 백업 및 영속화 전략 (RDB & AOF)](/database/redis/redis-backup-and-persistence-strategy/)

@@ -103,3 +103,9 @@ description: "Flutter TabBarView로 탭별 화면을 전환하는 방법. RootTa
 
 - 대량의 콘텐츠를 다룰 경우 TabBarView를 스크롤 가능하도록 설정할 수 있다.
   - 예를 들어, SingleChildScrollView와 함께 사용할 수 있다.
+
+---
+
+## 🔗 관련 글
+
+- [[Flutter] RootTab](/frontend/flutter/root-tab/)

@@ -193,3 +193,10 @@ spec:
 
 > 💡 결론: 마이크로서비스는 단순한 구조 분리보다
 > **설계 패턴과 운영 전략을 포함한 전반적 아키텍처 접근**이 핵심입니다.
+
+---
+
+## 🔗 관련 글
+
+- [[Microservice Pattern] 마이크로서비스 패턴 개요와 핵심 설계](/backend/architecture/microservice-pattern-overview/)
+- [[Microservices & Container] 마이크로서비스 패턴과 컨테이너 이미지 구조](/backend/architecture/microservices-and-container-architecture/)

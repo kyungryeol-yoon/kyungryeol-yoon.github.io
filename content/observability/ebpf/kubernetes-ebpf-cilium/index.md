@@ -129,3 +129,9 @@ spec:
 💡 **한 줄 기억:**
 
 > **OTel + Cilium = “앱·네트워크·커널 통합 Observability + 보안까지 확보하는 실전 도구”**
+
+---
+
+## 🔗 관련 글
+
+- [[Kubernetes] eBPF로 실시간 커널 레벨 모니터링하기](/observability/ebpf/kubernetes-ebpf/)
