@@ -461,7 +461,7 @@ html[data-theme] .highlight .chroma .line { display: flex; align-items: flex-sta
 /* 홈/목록 3컬럼 (하이브리드) --------------------------------------------- */
 .layout-grid {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr) 240px;
+  grid-template-columns: 300px minmax(0, 1fr) 240px;
   gap: var(--space-12);
   align-items: start;
   padding-top: var(--space-8);

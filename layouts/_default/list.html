@@ -12,12 +12,12 @@
     </div>
 
     {{ if .Sections }}
-      <div class="section-label">하위 카테고리</div>
+      <div class="section-label">Subcategories</div>
       {{ partial "category-tree.html" . }}
     {{ end }}
 
     {{ with .RegularPages }}
-      <div class="section-label">글</div>
+      <div class="section-label">Posts</div>
       <ul class="post-index">
         {{ range .ByDate.Reverse }}
           <li><span class="t"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span><span class="d">{{ .Date.Format "2006.01.02" }}</span></li>
