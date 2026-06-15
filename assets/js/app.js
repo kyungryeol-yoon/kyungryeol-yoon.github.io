@@ -35,6 +35,14 @@
     return li;
   }
   let curLink = null, curTop = null;
+  // 전체 펼침 상태에서 활성 링크를 목차 칼럼 안에 보이게 — TOC 스크롤 컨테이너만 이동(페이지엔 영향 없음)
+  function follow(link) {
+    const sc = (nav && nav.scrollHeight > nav.clientHeight + 1) ? nav : toc;
+    if (!sc || sc.scrollHeight <= sc.clientHeight + 1) return;
+    const lr = link.getBoundingClientRect(), cr = sc.getBoundingClientRect();
+    if (lr.top < cr.top + 8) sc.scrollTop += lr.top - cr.top - 8;
+    else if (lr.bottom > cr.bottom - 8) sc.scrollTop += lr.bottom - cr.bottom + 8;
+  }
   function setActive(link) {
     if (!link || link === curLink) return;
     if (curLink) curLink.classList.remove("active");
@@ -46,6 +54,7 @@
       curTop = top;
       if (curTop) curTop.classList.add("toc-active");
     }
+    follow(curLink);
   }
   const obs = new IntersectionObserver(
     (entries) => {

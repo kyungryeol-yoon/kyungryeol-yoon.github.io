@@ -316,9 +316,7 @@ html[data-theme] .highlight .chroma .line { display: flex; align-items: flex-sta
 /* 스크롤바 숨김(스크롤은 유지) — 데스크톱은 .toc, 모바일은 내부 nav가 스크롤 */
 .toc, .toc nav { scrollbar-width: none; }                                      /* Firefox */
 .toc::-webkit-scrollbar, .toc nav::-webkit-scrollbar { width: 0; height: 0; }  /* WebKit/Chrome/Safari */
-/* L2(상위 h2)는 항상, L3+ 하위는 활성 섹션(.toc-active)에서만 펼침 → 항목 수 축소 */
-.toc nav > ul ul { display: none; }
-.toc nav > ul > li.toc-active ul { display: block; }
+/* 목차는 전체(h2~h4) 항상 펼침. 길이는 고정 칼럼의 독립 스크롤이 처리(활성 항목은 JS가 자동 추적). */
 /* 스크롤 여지 있을 때만 JS가 부여하는 페이드 — 스크롤 컨테이너(.toc 또는 내부 nav)에 적용 */
 .toc.scroll-fade-bottom, .toc .scroll-fade-bottom { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 2.5rem), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 2.5rem), transparent); }
 .toc.scroll-fade-top, .toc .scroll-fade-top { -webkit-mask-image: linear-gradient(to bottom, transparent, #000 2.5rem); mask-image: linear-gradient(to bottom, transparent, #000 2.5rem); }
