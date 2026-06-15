@@ -1,7 +1,7 @@
 ---
 title: "[Error] kubectl error - did you specify the right host or port?"
 date: 2020-01-29
-# excerpt: "The connection to the server localhost:8080 was refused 오류 해결법"
+description: "The connection to the server localhost:8080 was refused 오류 해결법"
 tags: [kubernetes, kubectl]
 ---
 

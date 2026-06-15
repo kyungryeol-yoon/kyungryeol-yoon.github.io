@@ -2,6 +2,7 @@
 title: "[Linux] 네트워크 - nslookup 도메인 정보 확인"
 date: 2018-09-07
 tags: [linux, network, nslookup]
+description: "리눅스 nslookup 명령어로 도메인·IP 정보를 네임서버에 질의하는 방법. 정방향·역방향 조회와 DNS 정보 확인 예제를 정리합니다."
 ---
 
 ## nslookup 명령어

@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl drain command"
 date: 2023-07-27
 tags: [kubernetes, kubectl, command, drain]
+description: "kubectl drain 명령어로 노드를 비워 파드를 축출하고 유지보수를 준비하는 방법. --ignore-daemonsets, --force, --grace-period 등 옵션을 정리합니다."
 ---
 
 ## 기본 구조

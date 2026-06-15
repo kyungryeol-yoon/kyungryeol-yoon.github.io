@@ -2,6 +2,7 @@
 title: "[macOS] 👻 Ghostty 터미널 완전 정복: 설치부터 커스터마이징까지"
 date: 2026-04-25
 tags: [ghostty, terminal, macos, starship, nerd-font, zshrc, homebrew, apple-silicon]
+description: "GPU 가속 최신 터미널 Ghostty 설치와 커스터마이징 가이드. Apple Silicon 성능 활용, Nerd Font 설정, 핵심 설정 옵션을 정리합니다."
 ---
 
 Ghostty는 GPU 가속을 통해 압도적인 속도를 제공하는 최신 터미널입니다.

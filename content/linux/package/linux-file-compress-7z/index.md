@@ -2,6 +2,7 @@
 title: "[Linux] 7z 압축 및 해제"
 date: 2018-05-25
 tags: [linux, file, directory, compress, 7z]
+description: "리눅스에서 7z로 압축·해제하는 방법. Ubuntu·Fedora의 p7zip 설치와 7z 압축·해제 명령어를 예제로 정리합니다."
 ---
 
 ## p7zip 설치하기

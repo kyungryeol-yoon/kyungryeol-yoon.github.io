@@ -2,6 +2,7 @@
 title: "[Spring] Spring Security, JWT, 인증, 인가"
 date: 2022-06-05
 tags: [spring, security, jwt]
+description: "스프링 시큐리티 기반으로 JWT를 사용해 인증·인가를 구현하는 방법. SecurityConfig, UserAccount 등 핵심 클래스 구성과 토큰 처리 흐름을 정리합니다."
 ---
 
 ## **Spring Security, JWT, 인증, 인가**

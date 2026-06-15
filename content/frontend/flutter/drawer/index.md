@@ -2,6 +2,7 @@
 title: "[Flutter] Drawer"
 date: 2024-09-10
 tags: [flutter, drawer]
+description: "Flutter에서 Drawer(사이드 메뉴)를 구현하는 방법. 프로젝트 설정과 main.dart에서 Scaffold·Drawer 위젯으로 내비게이션 UI를 구성하는 예제를 정리합니다."
 ---
 
 ### 기본 Flutter 프로젝트 설정

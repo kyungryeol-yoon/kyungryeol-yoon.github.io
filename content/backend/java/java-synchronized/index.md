@@ -2,6 +2,7 @@
 title: "[Java] Synchronized"
 date: 2017-05-13
 tags: [java, synchronized]
+description: "자바 synchronized 키워드 정리. 멀티스레드 환경에서 공유 자원에 lock을 걸어 동시 접근을 막고 동기화를 보장하는 원리와 사용법을 설명합니다."
 ---
 
 - Java에서 프로그래밍을 한다면 Multi-Thread로 인하여 동기화를 제어해야하는 경우가 생긴다.

@@ -2,6 +2,7 @@
 title: "[Python] 원하는 개수만큼 자르기"
 date: 2022-10-22
 tags: [python, list, programming]
+description: "파이썬에서 문자열·리스트를 원하는 개수만큼 균등하게 자르는 방법. 슬라이싱, zip, iter를 활용한 세 가지 청크 분할 코드를 비교합니다."
 ---
 
 ```python

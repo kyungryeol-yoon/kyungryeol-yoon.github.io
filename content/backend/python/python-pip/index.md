@@ -2,6 +2,7 @@
 title: "[Python] pip install Package"
 date: 2021-06-05
 tags: [python, pip, package]
+description: "pip로 패키지를 일괄 설치하는 방법. requirements.txt 작성법과 -r 옵션 사용법, 버전 명시 규칙을 예제로 정리합니다."
 ---
 
 ## pip의 일괄 설치 옵션 : -r requirements.txt

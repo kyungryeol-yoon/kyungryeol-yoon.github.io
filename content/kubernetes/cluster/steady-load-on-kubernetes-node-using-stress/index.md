@@ -2,6 +2,7 @@
 title: "[Kubernetes] Steady Load on Kubernetes Node Using Stress"
 date: 2025-05-19
 tags: [kubernetes, stress]
+description: "stress 도구와 DaemonSet·ConfigMap을 이용해 쿠버네티스 노드에 지속 부하를 주는 방법. 설치와 매니페스트 구성을 정리합니다."
 ---
 
 ## stress 설치

@@ -2,6 +2,7 @@
 title: "[SRE] SLO, SLI 및 SLA란?"
 date: 2024-08-11
 tags: [devops, slo, sli, sla]
+description: "SRE 핵심 지표 SLO·SLI·SLA 정리. 서비스 수준 목표·지표·협약의 정의와 차이, 가용성을 측정·관리하는 방법을 설명합니다."
 ---
 
 ## **SLO, SLI 및 SLA란?**

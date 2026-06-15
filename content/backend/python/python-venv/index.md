@@ -2,6 +2,7 @@
 title: "[Python] 가상환경 venv 사용법"
 date: 2021-07-02
 tags: [python, venv, programming, backend, devops]
+description: "파이썬 가상환경(venv) 사용법. 프로젝트별 의존성 분리가 필요한 이유와 가상환경 생성·활성화·패키지 설치 과정을 쉽게 설명합니다."
 pinned: true
 ---
 

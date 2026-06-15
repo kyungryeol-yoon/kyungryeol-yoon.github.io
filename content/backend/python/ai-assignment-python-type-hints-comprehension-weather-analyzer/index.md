@@ -2,6 +2,7 @@
 title: "[AI Assignment - Python] 🐍 타입 힌트와 컴프리헨션 — WeatherAnalyzer 클래스 구현기"
 date: 2026-04-07
 tags: [python, type-hints, comprehension, dataclass, oop, clean-code]
+description: "파이썬 타입 힌트와 컴프리헨션을 활용한 WeatherAnalyzer 클래스 구현. 도시별 평균 계산, 조건 필터링 등을 예제로 정리합니다."
 ---
 
 ## 🎯 과제: WeatherAnalyzer 클래스 구현

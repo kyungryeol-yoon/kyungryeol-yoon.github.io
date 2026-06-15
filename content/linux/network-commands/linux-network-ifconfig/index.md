@@ -2,6 +2,7 @@
 title: "[Linux] 네트워크 - ifconfig 네트워크 정보 확인"
 date: 2018-09-01
 tags: [linux, network, ifconfig]
+description: "리눅스 ifconfig 명령어로 네트워크 인터페이스 정보를 확인하는 방법. -a(비활성 포함), 인터페이스 up/down 활성화 옵션과 예제를 정리합니다."
 ---
 
 ## ifconfig 명령어

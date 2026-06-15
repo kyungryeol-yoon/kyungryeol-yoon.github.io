@@ -1,7 +1,7 @@
 ---
 title: "FSM이란?"
 date: 2016-01-25
-# excerpt: "인공지능 기법 중 하나로 유한한 개수의 상태를 가지는 추상기계이다."
+description: "유한 상태 기계(FSM) 개념 정리. 게임 AI 에이전트가 유한한 상태와 입력에 따라 상태를 전이하며 행동을 결정하는 원리를 설명합니다."
 tags: [fsm, game programming, design patterns]
 ---
 

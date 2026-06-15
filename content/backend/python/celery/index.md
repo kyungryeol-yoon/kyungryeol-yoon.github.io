@@ -2,6 +2,7 @@
 title: "About Celery"
 date: 2021-09-05
 tags: [celery, task, queue]
+description: "Celery 비동기 작업 큐 개념 정리. Task와 Worker, 메시지 브로커(RabbitMQ·Redis) 기반의 분산 비동기 처리와 스케줄링 동작 원리를 설명합니다."
 ---
 
 - 비동기 작업 큐이며, 스케쥴링이 가능하지만 실시간 처리에 중점을 두고 있음.

@@ -2,6 +2,7 @@
 title: "[Kubernetes] PostgreSQL SSL Mode 설정"
 date: 2025-01-08
 tags: [kubernetes, postgresql, ssl]
+description: "쿠버네티스 PostgreSQL에서 pg_hba.conf로 SSL 모드를 활성화하는 방법. server.crt·server.key·root.crt 인증서 준비와 설정 절차를 정리합니다."
 ---
 
 - Kubernetes에서 PostgreSQL의 `pg_hba.conf` 파일에서 SSL 모드를 활성화하려면 다음 단계에 따라 설정할 수 있다.

@@ -2,6 +2,7 @@
 title: "[Docker-Compose] Docker-Compose Command"
 date: 2022-05-25
 tags: [docker, command, docker-compose]
+description: "Docker Compose 주요 명령어 정리. up/ps/restart/down 등으로 컨테이너를 생성·실행·제어하는 방법과 -d, --build, --rmi 등 옵션을 예제로 다룹니다."
 ---
 
 ## Version 확인

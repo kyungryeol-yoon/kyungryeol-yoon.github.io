@@ -2,6 +2,7 @@
 title: "[Docker] FTP 서버"
 date: 2023-06-21
 tags: [docker, ftp]
+description: "Docker 컨테이너로 vsftpd 기반 FTP 서버를 구축하는 방법. 컨테이너 생성, vsftpd 설치·설정, 사용자 추가, FTP 접속까지 단계별로 정리합니다."
 ---
 
 ## docker ftp

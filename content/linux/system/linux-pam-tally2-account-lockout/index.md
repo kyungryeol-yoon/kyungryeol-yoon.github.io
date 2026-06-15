@@ -2,6 +2,7 @@
 title: "[Linux] 🔐 pam_tally2로 로그인 실패 제한 및 계정 잠금 설정하기"
 date: 2023-12-26
 tags: [linux, pam, pam_tally2, pam_faillock, security, account-lock, authentication, centos, rhel]
+description: "리눅스 PAM pam_tally2 모듈로 로그인 실패 횟수를 제한하고 계정을 자동 잠금해 브루트포스를 막는 방법. RHEL 8+ 대체 모듈 안내도 포함합니다."
 ---
 
 리눅스 서버에서 비밀번호를 무한 반복 시도하는 브루트포스(Brute-force) 공격은 가장 기초적이면서도 빈번한 위협입니다.

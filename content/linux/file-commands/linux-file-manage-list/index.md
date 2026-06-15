@@ -2,6 +2,7 @@
 title: "[Linux] 파일 관리 -ls 파일 목록 조회"
 date: 2018-01-05
 tags: [linux, file, ls, list]
+description: "리눅스 ls 명령어로 파일 목록을 조회하는 방법. -l(상세), -a(숨김 포함), -R(재귀), -r(역순) 등 주요 옵션과 예제를 정리합니다."
 ---
 
 ## ls 명령어

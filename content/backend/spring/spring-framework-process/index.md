@@ -2,6 +2,7 @@
 title: "Spring framework home.jsp 구동 과정과 web.xml, servlet-context.xml은 무엇인가?"
 date: 2016-10-16
 tags: [spring, framework, java, process]
+description: "스프링 프레임워크에서 home.jsp가 구동되는 과정 정리. DispatcherServlet의 요청 처리 흐름과 web.xml, servlet-context.xml의 역할을 단계별로 설명합니다."
 ---
 
 Spring project를 생성하고 바로 실행하면 browser에 home.jsp가 실행된다.\\

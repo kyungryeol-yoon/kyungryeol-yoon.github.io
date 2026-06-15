@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubens"
 date: 2019-12-16
 tags: [kubernetes, kubens]
+description: "kubens로 기본 Namespace를 빠르게 변경하는 방법. 네임스페이스 목록 조회와 fzf 연동 대화식 선택 사용법을 정리합니다."
 ---
 
 Kubernetes의 Namespace를 여러개 사용하고 있다면,\\

@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Install Kubernetes(v1.11.0) on CentOS"
 date: 2020-01-28
-# excerpt: "Kubernetes Centos 설치법"
+description: "CentOS에 쿠버네티스 v1.11.0을 설치하는 방법. 마스터 노드 사전 설정, 방화벽 포트 개방, kubeadm 클러스터 초기화 과정을 정리합니다."
 tags: [kubernetes, centos, install]
 ---
 

@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl neat"
 date: 2020-06-22
 tags: [kubernetes, kubectl-neat]
+description: "kubectl neat 플러그인으로 불필요한 메타데이터·기본값·상태 정보를 제거해 깔끔한 YAML을 얻는 방법. Krew 설치와 사용법을 정리합니다."
 ---
 
 - `-o yaml` 로 기존 리소스를 저장하면 아래와 같은 불필요한 정보도 추가되어 저장된다.

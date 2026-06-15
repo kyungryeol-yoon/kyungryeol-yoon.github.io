@@ -2,6 +2,7 @@
 title: "[Error] kubeadm join - pending"
 date: 2022-08-27
 tags: [kubernetes, kubeadm]
+description: "kubeadm join이 토큰 만료로 무한 pending되는 현상의 원인과 해결법. 새 토큰 생성과 discovery-token-ca-cert-hash 확인 절차를 정리합니다."
 ---
 
 - kubeadm join시 아래와 같은 에러가 발생하며 pending되는 현상 발생

@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl edit command"
 date: 2023-10-19
 tags: [kubernetes, kubectl, command, edit]
+description: "kubectl edit 명령어로 리소스를 에디터로 즉시 수정해 API 서버에 반영하는 방법. --namespace, --filename, --output 옵션을 예제로 정리합니다."
 ---
 
 ## 기본 구조

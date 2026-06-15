@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubeadm join command"
 date: 2022-10-22
 tags: [kubernetes, kubeadm, command, join]
+description: "kubeadm join 명령어로 워커·컨트롤 플레인 노드를 클러스터에 조인하는 방법. --token, --discovery-token-ca-cert-hash, --control-plane 옵션을 정리합니다."
 ---
 
 ## 기본 구조

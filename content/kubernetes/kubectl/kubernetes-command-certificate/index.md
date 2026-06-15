@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl certificate command"
 date: 2022-02-15
 tags: [kubernetes, kubectl, command, certificate]
+description: "kubectl certificate 명령어로 CSR 승인·거부 등 인증서를 관리하는 방법. --cert, --key, --namespace 옵션과 사용 예제를 정리합니다."
 ---
 
 ## 기본 구조

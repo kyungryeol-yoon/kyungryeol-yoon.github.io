@@ -2,6 +2,7 @@
 title: "[Kubernetes] Install Loki(v3.1.1) Distributed Using Helm Chart"
 date: 2024-06-19
 tags: [kubernetes, promtail, loki, grafana, install, helm]
+description: "Helm 차트로 쿠버네티스에 Loki(v3.1.1) Distributed 모드를 설치하는 방법. 마이크로서비스형 분산 로그 스토리지 배포와 설정을 정리합니다."
 ---
 
 > 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)

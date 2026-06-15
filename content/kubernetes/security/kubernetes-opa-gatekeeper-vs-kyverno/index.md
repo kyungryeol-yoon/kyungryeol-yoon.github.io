@@ -2,6 +2,7 @@
 title: "[Kubernetes] 🛡️ OPA Gatekeeper vs Kyverno: 쿠버네티스 정책 관리 완전 가이드"
 date: 2025-09-26
 tags: [kubernetes, opa, gatekeeper, kyverno, policy, admission-controller, security, rego]
+description: "OPA Gatekeeper와 Kyverno 비교 가이드. 쿠버네티스 정책을 클러스터 레벨에서 강제하는 두 정책 엔진의 구조·문법·장단점을 정리합니다."
 ---
 
 쿠버네티스 클러스터를 운영하다 보면 "모든 Pod에 리소스 제한을 설정해야 한다", "승인된 레지스트리의 이미지만 사용해야 한다"처럼 조직 차원의 정책을 강제해야 하는 상황이 생깁니다.

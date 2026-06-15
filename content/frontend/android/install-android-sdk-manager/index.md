@@ -2,6 +2,7 @@
 title: "[Android] SDK Manager"
 date: 2024-09-07
 tags: [android, sdk]
+description: "안드로이드 SDK Manager 소개와 사용법. SDK 플랫폼·빌드 도구·시스템 이미지를 설치·관리하는 도구의 주요 기능을 정리합니다."
 ---
 
 ## SDK Manager

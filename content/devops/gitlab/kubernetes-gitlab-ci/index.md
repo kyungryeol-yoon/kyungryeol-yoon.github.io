@@ -2,6 +2,7 @@
 title: "[Kubernetes] Gitlab CI"
 date: 2021-09-15
 tags: [kubernetes, gitlab, ci]
+description: "쿠버네티스 환경의 GitLab CI 파이프라인 구성. Docker-in-Docker(dind) 빌드 설정과 자주 발생하는 docker 버전 관련 에러 해결법을 정리합니다."
 ---
 
 > 💡 [Install Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner-using-helm/)

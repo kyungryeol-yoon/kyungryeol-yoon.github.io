@@ -2,6 +2,7 @@
 title: "[Docker] stdout/stderr 관리와 실무 활용 가이드"
 date: 2020-12-02
 tags: [docker, logs, stdout, stderr, monitoring, docker-logs, container]
+description: "Docker 컨테이너 로그(stdout·stderr) 관리 실무 가이드. 표준 출력/에러 개념, 로그 드라이버, 중앙화 로그 시스템 연결까지 실무 중심으로 다룹니다."
 ---
 
 ## 🐳 Docker 로그 관리: stdout과 stderr 완벽 가이드

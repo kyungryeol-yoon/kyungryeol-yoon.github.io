@@ -2,6 +2,7 @@
 title: "[Git] .gitignore 파일이 바로 적용이 안될 때 해결방법 : git 캐시 삭제"
 date: 2024-08-22
 tags: [git, gitignore, error]
+description: ".gitignore가 바로 적용되지 않을 때 해결법. git rm --cached로 인덱스 캐시를 비우고 커밋해 추적에서 제외하는 방법을 정리합니다."
 ---
 
 ## **문제점**

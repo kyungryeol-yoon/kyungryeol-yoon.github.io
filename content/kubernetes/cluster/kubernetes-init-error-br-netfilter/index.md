@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubeadm init 시 bridge-nf-call-iptables 에러 해결"
 date: 2020-08-19
 tags: [kubernetes, kubeadm, error, br_netfilter]
+description: "kubeadm init 시 bridge-nf-call-iptables 파일 부재 에러의 원인과 해결법. br_netfilter 모듈 로드와 sysctl 설정으로 Pod 네트워크 문제를 해결합니다."
 ---
 
 ## 🚨 1. 문제 상황 (The Error)

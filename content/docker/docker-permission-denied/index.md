@@ -2,6 +2,7 @@
 title: "[Docker] Permission Denied 발생하는 경우"
 date: 2021-03-11
 tags: [docker, permission, denied]
+description: "Docker 설치 후 /var/run/docker.sock permission denied 오류 해결법. 소켓 권한 변경과 docker 그룹 ownership 설정 방법을 정리합니다."
 ---
 
 ## docker 설치 후 /var/run/docker.sock의 permission denied 발생하는 경우

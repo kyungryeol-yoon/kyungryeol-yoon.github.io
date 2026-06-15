@@ -2,6 +2,7 @@
 title: "[Spring] Spring Context란?"
 date: 2023-02-05
 tags: [spring, context]
+description: "스프링 Context 개념 정리. Bean 확장 공간으로서의 ApplicationContext, 모든 서블릿이 공유하는 ROOT-CONTEXT와 서블릿 컨텍스트의 역할을 설명합니다."
 ---
 
 ## **Spring Context 란?**

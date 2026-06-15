@@ -2,6 +2,7 @@
 title: "[Kubernetes] Deploy MinIO"
 date: 2024-08-26
 tags: [kubernetes, minio]
+description: "쿠버네티스에 S3 호환 오브젝트 스토리지 MinIO를 배포하는 방법. MinIO 오브젝트 정의 작성과 적용, 접속 구성을 단계별로 정리합니다."
 ---
 
 ## Create MinIO Object

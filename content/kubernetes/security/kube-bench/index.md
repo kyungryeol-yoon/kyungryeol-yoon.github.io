@@ -2,6 +2,7 @@
 title: "[Kubernetes] CIS Benchmark와 kube-bench 소개"
 date: 2025-04-09
 tags: [kubernetes, security, cis, kube-bench, audit, devsecops]
+description: "CIS Kubernetes Benchmark와 점검 도구 kube-bench 소개. CIS 보안 기준에 따라 클러스터 설정의 준수 여부를 자동 점검하는 방법을 정리합니다."
 ---
 
 ## 🔒 CIS Kubernetes Benchmark와 kube-bench란?

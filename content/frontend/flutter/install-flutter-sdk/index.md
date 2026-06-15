@@ -2,6 +2,7 @@
 title: "[Flutter] SDK"
 date: 2024-08-24
 tags: [flutter, sdk]
+description: "Google의 크로스 플랫폼 프레임워크 Flutter SDK 소개와 설치. 모바일·웹·데스크톱 앱을 한 코드베이스로 개발하는 SDK 구성과 설치를 정리합니다."
 ---
 
 **Google에서 개발한 오픈 소스 프레임워크로, 모바일 앱뿐만 아니라 웹 및 데스크톱 앱까지 다양한 플랫폼에서 동작하는 크로스 플랫폼 앱을 개발하는 도구**

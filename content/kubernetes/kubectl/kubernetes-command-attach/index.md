@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl attach command"
 date: 2022-03-05
 tags: [kubernetes, kubectl, command, attach]
+description: "kubectl attach 명령어로 실행 중인 컨테이너의 표준 입출력에 연결하는 방법. -c, --stdin, --tty 옵션과 사용 예제를 정리합니다."
 ---
 
 ## 기본 구조

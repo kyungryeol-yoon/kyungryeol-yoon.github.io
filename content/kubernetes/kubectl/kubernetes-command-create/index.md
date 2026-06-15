@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl create command"
 date: 2023-03-30
 tags: [kubernetes, kubectl, command, create]
+description: "kubectl create 명령어로 리소스를 명령형으로 생성하는 방법. 자주 쓰는 하위 명령과 --dry-run, -o, --save-config 옵션을 예제로 정리합니다."
 ---
 
 ## 기본 구조

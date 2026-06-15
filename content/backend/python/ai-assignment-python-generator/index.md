@@ -2,6 +2,7 @@
 title: "[AI Assignment - Python] 🐍 제너레이터 실전 — batch, file reader, infinite ID"
 date: 2026-04-19
 tags: [python, generator, iterator, yield, eafp, type-hint]
+description: "파이썬 제너레이터 실전 — 배치 분할 batch_generator, 대용량 파일 한 줄씩 읽는 file_line_reader, 무한 ID 생성기를 타입 힌트와 함께 구현합니다."
 ---
 
 ## 🎯 과제 개요

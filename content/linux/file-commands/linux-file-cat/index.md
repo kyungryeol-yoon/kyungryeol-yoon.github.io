@@ -2,6 +2,7 @@
 title: "[Linux] 파일 관리 - cat 파일 내용 출력"
 date: 2018-03-02
 tags: [linux, file, cat]
+description: "리눅스 cat 명령어로 파일 내용을 출력하는 방법. 리다이렉션(>, >>)으로 파일 생성·입력, 줄 번호 출력 등 옵션과 예제를 정리합니다."
 ---
 
 ## cat 명령어

@@ -1,7 +1,7 @@
 ---
 title: "Web 신입 면접 정리"
 date: 2019-06-01
-# excerpt: "Web 신입 면접과 관련하여 정리"
+description: "웹 개발 신입 면접 대비 정리. 클러스터드/넌클러스터드 인덱스, GET·POST 차이 등 자주 나오는 백엔드·웹 기술 질문을 정리합니다."
 tags: [web, spring, java, programming, mvc, interview]
 ---
 

@@ -2,6 +2,7 @@
 title: "[Mac OS] iTerm2 설치 및 꾸미기"
 date: 2023-05-30
 tags: [homebrew, iterm2, macos]
+description: "macOS iTerm2 설치와 꾸미기 가이드. Homebrew 설치, oh-my-zsh 적용, 테마·폰트 설정으로 터미널을 커스터마이징하는 방법을 정리합니다."
 ---
 
 ## iTerm2 설치

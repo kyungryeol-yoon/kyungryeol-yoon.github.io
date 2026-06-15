@@ -2,6 +2,7 @@
 title: "[Kubernetes] Helm"
 date: 2024-02-12
 tags: [kubernetes, helm, install]
+description: "쿠버네티스 패키지 매니저 Helm 설치와 차트 명령어 정리. 스크립트·choco·scoop·apt 설치법과 주요 Helm 명령 사용법을 다룹니다."
 ---
 
 ## Install Helm

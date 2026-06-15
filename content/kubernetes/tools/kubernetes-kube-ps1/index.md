@@ -2,6 +2,7 @@
 title: "[Kubernetes] kube-ps1"
 date: 2019-12-22
 tags: [kubernetes, kube-ps1]
+description: "kube-ps1로 셸 프롬프트에 현재 쿠버네티스 Context·Namespace를 표시하는 방법. 설치와 kubeon/kubeoff 토글 사용법을 정리합니다."
 ---
 
 kube-ps1를 사용하면, 현재 사용하고 있는 Kubernetes Context 및 Namespace를 보여줍니다.\\

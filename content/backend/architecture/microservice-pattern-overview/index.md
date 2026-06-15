@@ -2,6 +2,7 @@
 title: "[Microservice Pattern] 마이크로서비스 패턴 개요와 핵심 설계"
 date: 2021-11-07
 tags: [microservice, pattern, architecture, saga, event-driven, api gateway]
+description: "마이크로서비스 아키텍처 패턴 개요와 핵심 설계. 작은 서비스 단위·독립 배포·명확한 책임 등 특징과 주요 설계 원칙을 정리합니다."
 ---
 
 ## 🏗️ Microservice Pattern (마이크로서비스 패턴) 개요

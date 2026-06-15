@@ -2,6 +2,7 @@
 title: "[Kubernetes] 쿠버네티스 네트워킹 이해하기 (2) - Service와 kube-proxy의 마법"
 date: 2019-05-11
 tags: [kubernetes, network, service, kube-proxy, iptables, ipvs, clusterip]
+description: "쿠버네티스 네트워킹 시리즈 2편 — Service와 kube-proxy 원리. 바뀌는 Pod IP를 고정 가상 IP로 추상화하는 서비스 디스커버리·로드밸런싱을 설명합니다."
 ---
 
 ## 🧐 1. 왜 Service가 필요한가요?

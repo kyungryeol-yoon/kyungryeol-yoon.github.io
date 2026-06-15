@@ -2,6 +2,7 @@
 title: "[Kubernetes] Install Loki(v2.9.4) Stack Using Helm Chart"
 date: 2024-04-19
 tags: [kubernetes, promtail, loki, grafana, install, helm]
+description: "Helm 차트로 쿠버네티스에 Loki(v2.9.4) Stack을 설치하는 방법. Loki·Promtail·Grafana 통합 로그 스택 배포와 기본값 커스터마이징을 정리합니다."
 ---
 
 > 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)

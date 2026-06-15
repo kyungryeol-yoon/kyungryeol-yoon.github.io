@@ -2,6 +2,7 @@
 title: "[Kubernetes] 사이드카 컨테이너(Sidecar Container) 이해"
 date: 2022-02-02
 tags: [kubernetes, container, sidecar, pod, microservices, logging, proxy]
+description: "쿠버네티스 사이드카 컨테이너 개념 정리. 같은 Pod에서 주 컨테이너를 보완·확장하는 보조 컨테이너의 역할과 활용 패턴을 설명합니다."
 ---
 
 ## 🚀 사이드카 컨테이너(Sidecar Container)란?

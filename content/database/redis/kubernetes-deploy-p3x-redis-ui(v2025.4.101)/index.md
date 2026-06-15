@@ -2,6 +2,7 @@
 title: "[Kubernetes] Deploy P3X Redis UI(v2025.4.101)"
 date: 2025-02-13
 tags: [kubernetes, redis, ui]
+description: "쿠버네티스에 P3X Redis UI(v2025.4.101) 웹 관리 도구를 배포하는 방법. Deployment와 ConfigMap 설정으로 Redis를 GUI로 관리하는 구성을 정리합니다."
 ---
 
 ## P3X Redis UI 배포

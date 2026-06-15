@@ -2,6 +2,7 @@
 title: "[Linux] 파일 관리 - mkdir Directory 생성"
 date: 2018-01-11
 tags: [linux, file, mkdir, directory]
+description: "리눅스 mkdir 명령어로 디렉터리를 생성하는 방법. -p(상위 디렉터리 동시 생성) 옵션과 권한 관련 주의점을 예제로 정리합니다."
 ---
 
 ## mkdir 명령어

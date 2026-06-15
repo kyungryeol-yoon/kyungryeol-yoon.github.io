@@ -2,6 +2,7 @@
 title: "[Kubernetes] PostgreSQL initdb 설정"
 date: 2022-11-19
 tags: [kubernetes, postgresql]
+description: "쿠버네티스에서 PostgreSQL 파드 최초 생성 시 initdb로 기본 테이블을 세팅하는 방법. ConfigMap·PV·PVC·Deployment 매니페스트 구성을 정리합니다."
 ---
 
 - PV 또는 PVC 설정이 되어 있지 않았을 때

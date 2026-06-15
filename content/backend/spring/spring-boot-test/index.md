@@ -2,6 +2,7 @@
 title: "[Spring Boot] Spring Boot Test"
 date: 2019-01-22
 tags: [spring, java, test]
+description: "스프링 부트 테스트 어노테이션 정리. @SpringBootTest 통합 테스트와 @WebMvcTest·@DataJpaTest·@RestClientTest 등 슬라이스 테스트의 용도와 로딩 Bean을 비교합니다."
 ---
 
 | Annotation | 설명 | Bean |

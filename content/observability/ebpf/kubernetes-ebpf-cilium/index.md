@@ -2,6 +2,7 @@
 title: "[Kubernetes] eBPF + Cilium로 클러스터 심층 모니터링"
 date: 2025-07-02
 tags: [kubernetes, ebpf, cilium, observability, networking, devops]
+description: "eBPF와 Cilium으로 쿠버네티스 클러스터를 심층 모니터링하는 방법. eBPF 기반 네트워크 가시성과 OTel 연계로 Observability를 확보하는 전략을 정리합니다."
 ---
 
 ## 🔍 eBPF + Cilium: 개발자 관점에서 보는 심층 모니터링

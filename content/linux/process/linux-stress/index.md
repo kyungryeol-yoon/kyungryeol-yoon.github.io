@@ -2,6 +2,7 @@
 title: "[Linux] Stress"
 date: 2025-05-17
 tags: [linux, stress]
+description: "리눅스 stress 도구로 CPU·메모리·디스크 부하 테스트를 하는 방법. 설치와 주요 옵션, CPU·메모리·HDD 부하 예제를 정리합니다."
 ---
 
 ## stress 설치

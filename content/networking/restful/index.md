@@ -2,6 +2,7 @@
 title: "[Network] RESTful란?"
 date: 2017-10-22
 tags: [network, restful]
+description: "RESTful의 개념 정리. REST 아키텍처를 제대로 구현한 웹 서비스의 조건과 RESTful API 설계 시 지켜야 할 제약을 설명합니다."
 ---
 
 > 💡 [REST API 참고](https://kyungryeol-yoon.github.io/posts/rest-api/)

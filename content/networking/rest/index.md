@@ -2,6 +2,7 @@
 title: "[Network] REST란?"
 date: 2017-10-10
 tags: [network, rest]
+description: "REST(Representational State Transfer) 정의와 핵심 원칙 정리. 자원의 표현으로 상태를 주고받는 아키텍처 스타일의 개념을 설명합니다."
 ---
 
 > 💡 [RESTful 참고](https://kyungryeol-yoon.github.io/posts/restful/)

@@ -2,6 +2,7 @@
 title: "[Docker] Dockerfile 작성 및 명령어"
 date: 2021-01-17
 tags: [docker, dockerfile]
+description: "Dockerfile 작성법과 주요 명령어 정리. FROM, RUN, CMD, ENTRYPOINT, COPY, LABEL 등 인스트럭션의 의미와 레이어 캐시 동작을 설명합니다."
 ---
 
 - **FROM** : Base Image

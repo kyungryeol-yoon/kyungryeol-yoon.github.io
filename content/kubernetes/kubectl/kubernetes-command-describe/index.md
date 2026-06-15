@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl describe command"
 date: 2022-01-11
 tags: [kubernetes, kubectl, command, describe]
+description: "kubectl describe 명령어로 리소스의 상세 정보와 이벤트를 조회하는 방법. --namespace, --show-events 등 옵션과 사용 예제를 정리합니다."
 ---
 
 ## 기본 구조

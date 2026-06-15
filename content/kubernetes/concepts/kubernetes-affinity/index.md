@@ -2,6 +2,7 @@
 title: "[Kubernetes] Affinity"
 date: 2022-12-09
 tags: [kubernetes, affinity]
+description: "쿠버네티스 Affinity(선호도) 개념 정리. nodeAffinity·podAffinity·podAntiAffinity로 파드를 원하는 노드·파드 근처에 배치하는 스케줄링 규칙을 설명합니다."
 ---
 
 ## Affinity?

@@ -2,6 +2,7 @@
 title: "[Docker-Compose] Install Docker-Compose(2.33.1)"
 date: 2025-03-12
 tags: [docker, install, docker-compose]
+description: "Docker 및 Docker Compose v2.33.1 설치 방법. 시스템 업데이트, GPG 키·레포지토리 설정, 도커 설치·활성화와 컴포즈 설치를 정리합니다."
 ---
 
 ## 도커 (Docker) 설치

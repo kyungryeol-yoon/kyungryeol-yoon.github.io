@@ -2,6 +2,7 @@
 title: "[Kubernetes] Deploy MySQL"
 date: 2020-01-30
 tags: [kubernetes, kubectl, mysql, pod]
+description: "쿠버네티스에 MySQL을 배포하는 방법. 컨테이너 이미지 준비, Deployment·Service 구성과 데이터 보존을 위한 볼륨 설정을 정리합니다."
 ---
 
 - 컨테이너 이미지가 존재한다는 가정하에 가능하다.

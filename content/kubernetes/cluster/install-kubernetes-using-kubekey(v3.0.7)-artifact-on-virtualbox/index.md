@@ -2,6 +2,7 @@
 title: "[Kubernetes] Install Kubernetes using Kubekey(v3.0.7) Artifact on VirtualBox"
 date: 2024-03-02
 tags: [kubernetes, kubekey, artifact, install]
+description: "KubeKey(v3.0.7) artifact로 VirtualBox 환경에서 쿠버네티스를 오프라인(에어갭) 설치하는 방법. artifact 구성과 버전 호환, 설치 절차를 정리합니다."
 ---
 
 > offline 설치 위한 artifact 참고

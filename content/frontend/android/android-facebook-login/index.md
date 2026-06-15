@@ -2,6 +2,7 @@
 title: "[Android] Facebook 로그인 구현하기"
 date: 2017-01-25
 tags: [android, programming, java, facebook, login]
+description: "안드로이드 앱에 Facebook 로그인을 구현하는 방법. AndroidManifest 설정, 로그인 버튼·권한 요청, 사용자 정보 획득과 콜백 처리를 정리합니다."
 ---
 
 ## AndroidManifest.xml

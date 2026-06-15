@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl wait command"
 date: 2023-11-29
 tags: [kubernetes, kubectl, command, wait]
+description: "kubectl wait 명령어로 리소스가 특정 조건을 충족할 때까지 대기하는 방법. --for, --timeout, --namespace 옵션과 사용 예제를 정리합니다."
 ---
 
 ## 기본 구조

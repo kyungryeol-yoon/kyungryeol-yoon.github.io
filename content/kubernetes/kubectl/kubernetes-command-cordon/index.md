@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl cordon command"
 date: 2023-07-07
 tags: [kubernetes, kubectl, command, cordon]
+description: "kubectl cordon 명령어로 노드를 스케줄링 비활성화해 신규 파드 배치를 차단하는 방법. --ignore-daemonsets, --selector 등 옵션을 정리합니다."
 ---
 
 ## 기본 구조

@@ -2,6 +2,7 @@
 title: "[Kubernetes] Kubestr: 스토리지 성능과 상태 점검 도구"
 date: 2025-06-05
 tags: [kubernetes, storage, performance, benchmark, kubestr, pvc, pv]
+description: "스토리지 성능·상태 점검 도구 Kubestr 사용법. StorageClass·PV·PVC 분석과 디스크 벤치마크로 쿠버네티스 스토리지를 진단하는 방법을 정리합니다."
 ---
 
 ## 📦 Kubestr란?

@@ -2,6 +2,7 @@
 title: "[Linux] 파일 관리 - pwd, cd"
 date: 2018-01-09
 tags: [linux, file, cd, pwd, directory]
+description: "리눅스 pwd와 cd 명령어 사용법. 현재 절대경로 조회(pwd)와 디렉터리 이동(cd), 홈·상위 이동 등 예제를 정리합니다."
 ---
 
 ## pwd 명령어

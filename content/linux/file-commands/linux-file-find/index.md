@@ -2,6 +2,7 @@
 title: "[Linux] 파일 관리 - find 파일/Directory 검색"
 date: 2018-03-11
 tags: [linux, file, find]
+description: "리눅스 find 명령어로 파일·디렉터리를 검색하는 방법. 이름·타입(-name, -type) 조건과 -exec 등 고급 활용 예제를 정리합니다."
 ---
 
 ## find 명령어

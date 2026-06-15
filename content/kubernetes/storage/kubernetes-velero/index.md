@@ -2,6 +2,7 @@
 title: "[Kubernetes] Velero: 클러스터 백업, 복구, 마이그레이션 도구"
 date: 2025-06-02
 tags: [kubernetes, backup, restore, velero, disaster-recovery, migration]
+description: "클러스터 백업·복구·마이그레이션 도구 Velero 사용법. 리소스·데이터 백업과 복원, 클러스터 간 이전으로 재해 복구를 구성하는 방법을 정리합니다."
 ---
 
 ## 🛡️ Velero란?

@@ -2,6 +2,7 @@
 title: "[Kubernetes] Install Kubernetes using Kubekey(v3.0.7) on VirtualBox"
 date: 2024-03-01
 tags: [kubernetes, kubekey, install]
+description: "KubeKey(v3.0.7)로 VirtualBox에 쿠버네티스 클러스터를 온라인 설치하는 방법. 바이너리 다운로드, Quick Install, 버전 지정 생성 과정을 정리합니다."
 ---
 
 ## script 다운로드

@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl cluster-info command"
 date: 2023-08-09
 tags: [kubernetes, kubectl, command, cluster-info]
+description: "kubectl cluster-info 명령어로 클러스터 API 서버·DNS 엔드포인트와 버전 정보를 조회하는 방법. --context, --namespace 옵션을 예제로 정리합니다."
 ---
 
 ## 기본 구조

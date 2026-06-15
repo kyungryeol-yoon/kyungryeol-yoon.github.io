@@ -2,6 +2,7 @@
 title: "[Python] Python Setup Package"
 date: 2024-10-19
 tags: [python, package, programming]
+description: "파이썬 패키지 디렉터리 구조와 setup.py 작성법. 프로젝트 루트, __init__.py, 패키지 배포를 위한 기본 구성을 정리합니다."
 ---
 
 ## Package Directory 구조 만들기

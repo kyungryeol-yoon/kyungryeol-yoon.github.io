@@ -2,6 +2,7 @@
 title: "[Kubernetes] Loki(v2.9.4)"
 date: 2024-04-07
 tags: [kubernetes, grafana, loki, install]
+description: "Grafana Loki(v2.9.4) 개념 정리. 로그 메타데이터만 인덱싱하는 경량 구조, Promtail 수집, LogQL 쿼리, Grafana 연동 동작 원리를 설명합니다."
 ---
 
 ## Loki

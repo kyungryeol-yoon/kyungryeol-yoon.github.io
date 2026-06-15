@@ -2,6 +2,7 @@
 title: "[Kubernetes] Install Tempo(v2.4.1) Using Helm Chart"
 date: 2024-05-09
 tags: [kubernetes, grafana, tempo, install]
+description: "Helm 차트로 쿠버네티스에 Grafana Tempo(v2.4.1) 분산 트레이싱 백엔드를 설치하는 방법. 트레이스 개념과 메트릭·로그와의 연계를 정리합니다."
 ---
 
 ## Tempo

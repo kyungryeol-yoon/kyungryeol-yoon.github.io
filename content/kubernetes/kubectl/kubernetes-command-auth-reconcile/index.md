@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl auth reconcile command"
 date: 2022-11-10
 tags: [kubernetes, kubectl, command, auth reconcile]
+description: "kubectl auth reconcile 명령어로 RBAC Role·RoleBinding 규칙을 조정·적용하는 방법. -f, --dry-run 옵션과 사용 예제를 정리합니다."
 ---
 
 ## 기본 구조

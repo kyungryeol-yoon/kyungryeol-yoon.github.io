@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubeadm init command"
 date: 2022-09-25
 tags: [kubernetes, kubeadm, command, init]
+description: "kubeadm init 명령어로 쿠버네티스 컨트롤 플레인을 초기화하는 방법. --config, --token, --pod-network-cidr, --apiserver-cert-extra-sans 등 주요 옵션을 정리합니다."
 ---
 
 ## 기본 구조

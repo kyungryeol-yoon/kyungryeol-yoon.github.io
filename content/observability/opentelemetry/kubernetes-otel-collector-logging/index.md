@@ -2,6 +2,7 @@
 title: "[Kubernetes] OTel(OpenTelemetry) Collector - Logging"
 date: 2024-06-10
 tags: [kubernetes, opentelemetry, collector, logging]
+description: "OpenTelemetry Collector로 쿠버네티스 로그를 수집하는 방법. 기존 수집 도구와 혼합한 Plan A, OTel 단독 Plan B 아키텍처와 배포·구성을 정리합니다."
 ---
 
 ## 🔀 OTEL 예시 흐름:

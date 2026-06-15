@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl copy command"
 date: 2023-06-11
 tags: [kubernetes, kubectl, command, copy]
+description: "kubectl cp(copy) 명령어로 컨테이너와 로컬 간 파일을 복사하는 방법. -c, --no-preserve 옵션과 사용 예제를 정리합니다."
 ---
 
 ## 기본 구조

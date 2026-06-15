@@ -2,6 +2,7 @@
 title: "[Linux] Stress-ng"
 date: 2025-05-10
 tags: [linux, stress-ng]
+description: "리눅스 stress-ng로 시스템에 부하를 주는 방법. 설치와 --cpu, --cpu-load 등 CPU·메모리 스트레스 테스트 옵션을 예제로 정리합니다."
 ---
 
 ## stress-ng 설치

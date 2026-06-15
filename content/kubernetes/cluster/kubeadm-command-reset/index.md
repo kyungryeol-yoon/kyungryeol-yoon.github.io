@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubeadm reset command"
 date: 2022-07-03
 tags: [kubernetes, kubeadm, command, reset]
+description: "kubeadm reset 명령어로 노드의 쿠버네티스 구성·컨테이너·네트워크 설정을 초기화하는 방법. --cri-socket 등 옵션과 정리 범위를 설명합니다."
 ---
 
 ## 기본 구조

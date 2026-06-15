@@ -2,6 +2,7 @@
 title: "[Linux] df, du란?"
 date: 2023-04-14
 tags: [linux, disk, usage, command, df, du]
+description: "리눅스 df와 du 명령어 차이와 사용법. df로 파일시스템 전체 여유 공간을, du로 파일·디렉터리별 사용량을 확인하는 방법을 정리합니다."
 ---
 
 ## df ( Disk Free )

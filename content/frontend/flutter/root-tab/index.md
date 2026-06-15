@@ -2,6 +2,7 @@
 title: "[Flutter] RootTab"
 date: 2024-09-15
 tags: [flutter, roottab]
+description: "Flutter RootTab과 TabBarView로 탭 기반 화면 전환 UI를 구성하는 방법. TabBar·TabBarView 위젯 구조와 탭 전환 구현을 설명합니다."
 ---
 
 ## RootTab

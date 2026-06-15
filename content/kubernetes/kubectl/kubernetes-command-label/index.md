@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl label command"
 date: 2023-11-11
 tags: [kubernetes, kubectl, command, label]
+description: "kubectl label 명령어로 리소스에 레이블을 추가·수정하는 방법. --overwrite, --namespace, --selector 옵션과 사용 예제를 정리합니다."
 ---
 
 ## 기본 구조

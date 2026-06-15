@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl port-forward command"
 date: 2022-11-19
 tags: [kubernetes, kubectl, command, port-forward]
+description: "kubectl port-forward 명령어로 로컬 포트를 파드·서비스로 포워딩하는 방법. --namespace, --address 옵션과 사용 예제를 정리합니다."
 ---
 
 ## 기본 구조

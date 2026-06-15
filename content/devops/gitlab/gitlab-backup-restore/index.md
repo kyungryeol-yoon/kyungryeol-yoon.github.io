@@ -2,6 +2,7 @@
 title: "[Gitlab] Back up & Restore"
 date: 2025-02-19
 tags: [gitlab, backup, restore, docker]
+description: "GitLab 백업과 복원 방법. tar 백업 파일 생성·경로 변경과 다른 서버로 이전·복원하는 절차를 정리합니다."
 ---
 
 ## Back up

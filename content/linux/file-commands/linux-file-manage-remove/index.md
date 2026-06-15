@@ -2,6 +2,7 @@
 title: "[Linux] 파일 관리 - rmdir, rm"
 date: 2018-01-15
 tags: [linux, file, rmdir, rm, directory]
+description: "리눅스 rm·rmdir 명령어로 파일과 디렉터리를 삭제하는 방법. 빈 디렉터리 삭제(rmdir), -r 재귀 삭제, -p 옵션을 예제로 정리합니다."
 ---
 
 ## rmdir 명령어

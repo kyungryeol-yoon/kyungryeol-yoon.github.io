@@ -1,7 +1,7 @@
 ---
 title: "SSD VS HDD"
 date: 2016-02-10
-# excerpt: "SSD와 HDD"
+description: "SSD와 HDD의 차이 정리. 보조 기억 장치의 동작 원리, 속도·내구성·가격 비교와 용도별 선택 기준을 D-RAM과 함께 설명합니다."
 tags: [ssd, hdd, hardware]
 ---
 

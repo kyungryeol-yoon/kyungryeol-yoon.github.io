@@ -1,7 +1,7 @@
 ---
 title: "Backend & Web 경력직(3~5) 면접 정리"
 date: 2020-07-30
-# excerpt: "BackEnd & Web 경력직(3~5) 면접과 관련하여 정리"
+description: "백엔드·웹 경력직(3~5년) 면접 대비 정리. TDD·테스트 경험, 데이터 모델 복잡도 등 실무 중심 면접 질문과 답변 포인트를 정리합니다."
 tags: [web, spring, java, programming, mvc, interview, backend, jpa, mybatis, collection]
 ---
 

@@ -2,6 +2,7 @@
 title: "[Python] 🚀 uv로 프로젝트 & 패키지 관리 완벽 가이드"
 date: 2026-03-19
 tags: [python, uv, package-management, venv, devops]
+description: "Rust 기반 초고속 패키지·가상환경·파이썬 버전 관리 도구 uv 완벽 가이드. pip·venv·pyenv를 대체하는 올인원 워크플로를 실무 명령어 기준으로 정리합니다."
 pinned: true
 ---
 

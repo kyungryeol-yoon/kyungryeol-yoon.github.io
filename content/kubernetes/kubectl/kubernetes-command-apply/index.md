@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl apply command"
 date: 2023-01-10
 tags: [kubernetes, kubectl, command, apply]
+description: "kubectl apply 명령어로 YAML/JSON 매니페스트를 선언적으로 적용해 리소스를 생성·갱신하는 방법. -f, --prune, --selector 등 핵심 옵션을 예제로 정리합니다."
 ---
 
 ## 기본 구조

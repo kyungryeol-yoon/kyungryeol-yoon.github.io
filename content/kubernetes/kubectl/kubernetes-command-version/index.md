@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl version command"
 date: 2022-08-12
 tags: [kubernetes, kubectl, command, version]
+description: "kubectl version 명령어로 클라이언트·서버 버전 정보를 조회하는 방법. --short, --client, --server 옵션과 사용 예제를 정리합니다."
 ---
 
 ## 기본 구조

@@ -2,6 +2,7 @@
 title: "[PostgreSQL] Delete Back up File"
 date: 2023-12-02
 tags: [database, postgresql, delete, backup, file]
+description: "PostgreSQL 백업 파일을 주기적으로 삭제하는 방법. find로 7일·24시간 기준 오래된 덤프 파일을 정리하는 명령어를 정리합니다."
 ---
 
 ## BackUp File 삭제 Command

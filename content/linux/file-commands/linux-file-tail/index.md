@@ -2,6 +2,7 @@
 title: "[Linux] 파일 관리 - tail 파일 내용 제일 아래줄부터 출력"
 date: 2018-02-22
 tags: [linux, file, tail]
+description: "리눅스 tail 명령어로 파일 끝부분을 출력하는 방법. -n(라인 수), -f(실시간 추적), -F(로그 로테이션 대응) 옵션을 예제로 정리합니다."
 ---
 
 ## tail 명령어

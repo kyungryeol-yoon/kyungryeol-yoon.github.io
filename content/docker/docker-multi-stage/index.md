@@ -2,6 +2,7 @@
 title: "[Docker] Docker Multi Stage란?"
 date: 2020-10-13
 tags: [docker, multi stage]
+description: "Docker 멀티스테이지 빌드 개념과 활용. 빌드 단계와 최종 이미지를 분리해 불필요한 환경을 제거하고 이미지 크기를 줄이는 방법을 예제로 설명합니다."
 ---
 
 ## Docker Multi Stage란?

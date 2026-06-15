@@ -2,6 +2,7 @@
 title: "[Linux] 우분투(Ubuntu) 크롬(Chrome) 설치 및 다운로드"
 date: 2020-05-11
 tags: [linux, install, ubuntu, chrome]
+description: "Ubuntu에 크롬(Chrome) 브라우저를 설치·다운로드하는 방법. 인증키 추가, PPA 등록, 패키지 업데이트·설치 과정을 단계별로 정리합니다."
 ---
 
 ## 우분투(Ubuntu)에서 크롬(Chrome) 설치 및 다운로드

@@ -2,6 +2,7 @@
 title: "[Kubernetes] Control-Plane Node에 Pod 띄우기"
 date: 2019-07-05
 tags: [kubernetes, control-plane, node, pod]
+description: "컨트롤 플레인 노드에 파드가 Pending되는 이유와 해결법. 마스터 노드의 taint를 toleration으로 허용해 파드를 배치하는 방법을 정리합니다."
 ---
 
 ## Control-Plane Node에 Pod를 올릴 경우

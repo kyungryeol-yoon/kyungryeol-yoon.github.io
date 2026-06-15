@@ -2,6 +2,7 @@
 title: "[Flutter] TabBarView"
 date: 2024-09-12
 tags: [flutter, tabbarview]
+description: "Flutter TabBarView로 탭별 화면을 전환하는 방법. RootTab·TabBar와 연동해 여러 화면을 스와이프·탭으로 오가는 UI 구현을 설명합니다."
 ---
 
 ## RootTab

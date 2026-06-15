@@ -2,6 +2,7 @@
 title: "[Git] Git Branch"
 date: 2023-07-25
 tags: [git, branch]
+description: "Git 브랜치 기본 사용법. git pull로 원격 저장소를 가져오고 git branch로 브랜치를 생성·확인·전환하는 과정을 예제로 정리합니다."
 ---
 
 ## **git pull**

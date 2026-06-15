@@ -2,6 +2,7 @@
 title: "[Linux] 네트워크 - scp 서버간 파일 복사"
 date: 2018-09-11
 tags: [linux, network, scp]
+description: "리눅스 scp 명령어로 서버 간 파일을 안전하게 복사하는 방법. 원격 경로 콜론(:) 표기, 인증·권한 주의점과 사용 예제를 정리합니다."
 ---
 
 ## scp 명령어

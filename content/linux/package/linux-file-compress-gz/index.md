@@ -2,6 +2,7 @@
 title: "[Linux] gz 압축 및 해제"
 date: 2018-05-09
 tags: [linux, file, directory, compress, gz]
+description: "리눅스에서 gzip으로 파일을 .gz로 압축·해제하는 방법. gzip 설치와 압축·복원 명령어 사용 예제를 정리합니다."
 ---
 
 ## gzip 설치하기

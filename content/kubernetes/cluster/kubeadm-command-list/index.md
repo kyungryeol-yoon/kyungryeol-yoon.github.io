@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubeadm list command"
 date: 2022-09-22
 tags: [kubernetes, kubeadm, command, list]
+description: "kubeadm 구성 요소(kube-apiserver, controller-manager, scheduler, etcd 등)와 명령 구조를 정리합니다. --kubeconfig, --output 옵션과 사용 예제를 포함합니다."
 ---
 
 ## 기본 구조

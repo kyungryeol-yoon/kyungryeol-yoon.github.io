@@ -2,6 +2,7 @@
 title: "[Linux] 프로세스 관리 - ps 프로세스 목록"
 date: 2018-07-01
 tags: [linux, process, list, ps]
+description: "리눅스 ps 명령어로 실행 중인 프로세스 목록을 조회하는 방법. -e, -f, -a, -u, -x 등 자주 쓰는 옵션과 조합 예제를 정리합니다."
 ---
 
 ## ps 명령어

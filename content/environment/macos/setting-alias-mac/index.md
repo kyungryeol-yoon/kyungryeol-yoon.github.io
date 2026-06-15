@@ -2,6 +2,7 @@
 title: "[Mac OS] Setting Alias Mac OS"
 date: 2017-12-01
 tags: [setting, alias, macos]
+description: "macOS에서 alias를 영구 등록하는 방법. 기본 셸 zsh의 ~/.zshrc를 수정해 자주 쓰는 명령을 별칭으로 등록하는 과정을 정리합니다."
 ---
 
 ### alias 등록

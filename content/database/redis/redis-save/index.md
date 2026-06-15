@@ -2,6 +2,7 @@
 title: "[Redis] Save"
 date: 2025-02-17
 tags: [redis, save, message broker]
+description: "Redis 데이터 영속화 방식(RDB·AOF) 정리. 메모리 저장소의 데이터를 디스크에 저장하도록 설정 파일·redis-cli로 저장 방식을 변경하는 방법을 설명합니다."
 ---
 
 - Redis는 기본적으로 메모리 기반 저장소이지만, 데이터를 디스크에 저장하기 위해 `RDB` 또는 `AOF` 모드를 사용할 수 있다.

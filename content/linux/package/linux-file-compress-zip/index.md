@@ -2,6 +2,7 @@
 title: "[Linux] zip 압축 및 해제"
 date: 2018-05-07
 tags: [linux, file, directory, compress, zip]
+description: "리눅스에서 zip·unzip으로 압축·해제하는 방법. Ubuntu 패키지 설치와 디렉터리·파일 압축, 해제 명령어 예제를 정리합니다."
 ---
 
 ## zip, unzip 설치하기

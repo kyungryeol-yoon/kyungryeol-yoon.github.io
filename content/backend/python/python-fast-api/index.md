@@ -2,6 +2,7 @@
 title: "[Python] Fast API"
 date: 2021-07-15
 tags: [python, fastapi, programming]
+description: "FastAPI 입문 — 파이썬 3.6+용 모던 고성능 웹 프레임워크 소개와 설치. uvicorn 연동, 간단한 API 서버 실행 예제를 정리합니다."
 ---
 
 ## FastAPI란?

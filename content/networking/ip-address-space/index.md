@@ -2,6 +2,7 @@
 title: "[Network] IP 주소와 주소 공간 이해"
 date: 2017-04-06
 tags: [network, ip, subnet, cidr, dhcp, devops]
+description: "IP 주소와 주소 공간 이해 가이드. IPv4·IPv6 구조, 서브넷·사설/공인 주소 개념을 컨테이너 네트워크·VPC 설계 관점에서 정리합니다."
 ---
 
 ## 📡 IP 주소와 주소 공간

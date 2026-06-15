@@ -2,6 +2,7 @@
 title: "[Kubernetes] Host Network"
 date: 2023-03-02
 tags: [kubernetes, host, network]
+description: "쿠버네티스 hostNetwork 설정 정리. true/false에 따른 파드 네트워크 동작 차이와 노드 IP·포트로 직접 접근하는 방식을 예제로 설명합니다."
 ---
 
 ## hostNetwork: false

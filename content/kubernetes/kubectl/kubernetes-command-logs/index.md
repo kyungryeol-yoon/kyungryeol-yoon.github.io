@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl logs command"
 date: 2022-04-12
 tags: [kubernetes, kubectl, command, logs]
+description: "kubectl logs 명령어로 파드·컨테이너 로그를 조회하는 방법. --follow(-f), --tail, --since 등 실시간 로깅 옵션을 예제로 정리합니다."
 ---
 
 ## 기본 구조

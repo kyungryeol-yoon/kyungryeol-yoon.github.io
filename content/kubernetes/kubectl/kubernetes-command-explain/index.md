@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl explain command"
 date: 2023-08-07
 tags: [kubernetes, kubectl, command, explain]
+description: "kubectl explain 명령어로 리소스 필드 스키마와 설명을 조회하는 방법. --recursive, --api-version, --show-defaults 옵션을 예제로 정리합니다."
 ---
 
 ## 기본 구조

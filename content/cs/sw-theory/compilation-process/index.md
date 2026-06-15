@@ -1,7 +1,7 @@
 ---
 title: "Compilation Process"
 date: 2016-05-12
-# excerpt: "프로그램 코드를 컴퓨터가 이해할 수 있는 언어로 변환하는 작업"
+description: "컴파일 과정 정리. 소스 코드가 전처리·컴파일·어셈블·링크를 거쳐 실행 파일이 되는 단계를 이해해 오류 해결에 활용하는 법을 설명합니다."
 tags: [compilation process, compile languages, byte code languages, interpreter languages, c, cpp, java, csharp, javascript, python, ruby, programming]
 ---
 

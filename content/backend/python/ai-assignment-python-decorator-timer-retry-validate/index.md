@@ -2,6 +2,7 @@
 title: "[AI Assignment - Python] 🎀 데코레이터 완전 정복 — timer, retry, validate_types 직접 구현"
 date: 2026-04-14
 tags: [python, decorator, functools, type-hints, clean-code, oop]
+description: "파이썬 데코레이터 실전 구현 — 실행 시간 측정 @timer, 자동 재시도 @retry, 타입 힌트 검증 @validate_types를 functools.wraps와 함께 직접 만들어 봅니다."
 ---
 
 ## 🎯 과제: 실무형 데코레이터 3개 구현

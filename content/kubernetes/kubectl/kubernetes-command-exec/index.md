@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl exec command"
 date: 2023-11-21
 tags: [kubernetes, kubectl, command, exec]
+description: "kubectl exec 명령어로 실행 중인 컨테이너 안에서 명령을 실행하는 방법. --stdin(-i), --tty(-t), --namespace 옵션과 예제를 정리합니다."
 ---
 
 ## 기본 구조

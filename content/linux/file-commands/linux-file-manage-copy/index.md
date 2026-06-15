@@ -2,6 +2,7 @@
 title: "[Linux] 파일 관리 - cp 파일/Directory 복사"
 date: 2018-02-05
 tags: [linux, file, directory, cp, copy]
+description: "리눅스 cp 명령어로 파일·디렉터리를 복사하는 방법. -r(재귀), -p(속성 보존) 옵션과 덮어쓰기 동작을 예제로 정리합니다."
 ---
 
 ## cp 명령어

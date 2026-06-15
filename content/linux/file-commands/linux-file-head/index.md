@@ -2,6 +2,7 @@
 title: "[Linux] 파일 관리 - head 파일 내용 윗줄부터 출력"
 date: 2018-02-11
 tags: [linux, file, head]
+description: "리눅스 head 명령어로 파일 앞부분을 출력하는 방법. -n(라인 수), -c(바이트) 옵션과 사용 예제를 정리합니다."
 ---
 
 ## head 명령어

@@ -2,6 +2,7 @@
 title: "[Kubernetes] Install InfluxDB Using Helm Chart"
 date: 2024-07-28
 tags: [kubernetes, influxdb, install, helm]
+description: "Helm 차트로 쿠버네티스에 시계열 데이터베이스 InfluxDB를 설치하는 방법. 설치와 values 구성, 접속 설정을 정리합니다."
 ---
 
 {{< alert "info" >}}

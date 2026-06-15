@@ -2,6 +2,7 @@
 title: "[Kubernetes] Install Gitlab Runner Using Helm Chart"
 date: 2021-09-11
 tags: [kubernetes, gitlab, runner]
+description: "Helm 차트로 쿠버네티스에 GitLab Runner를 설치하는 방법. Helm 리포지토리 추가, values 설정, 러너 등록 과정을 정리합니다."
 ---
 
 > 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)

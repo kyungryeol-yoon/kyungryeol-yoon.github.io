@@ -2,6 +2,7 @@
 title: "[Linux] Network - ping 상대 호스트와 연결 가능 여부 확인"
 date: 2018-01-02
 tags: [linux, network, ping, host]
+description: "리눅스 ping 명령어로 상대 호스트와의 연결 가능 여부를 확인하는 방법. -c(횟수), -i(간격), -s(크기) 등 옵션과 사용 예제를 정리합니다."
 ---
 
 ## ping 명령어

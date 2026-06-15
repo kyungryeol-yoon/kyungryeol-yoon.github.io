@@ -2,6 +2,7 @@
 title: "[Linux] Vi Editor"
 date: 2018-10-11
 tags: [linux, editor, vi, vim]
+description: "리눅스 대표 에디터 Vi/Vim 사용법. 명령 모드·입력 모드 전환, 파일 열기·저장·종료, 이동·편집 등 자주 쓰는 단축키를 표로 정리합니다."
 ---
 
 ## Vi, VIM(Vi IMproved=향상된 VI)

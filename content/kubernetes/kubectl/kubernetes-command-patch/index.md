@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl patch command"
 date: 2023-02-21
 tags: [kubernetes, kubectl, command, patch]
+description: "kubectl patch 명령어로 리소스의 일부 필드만 부분 수정하는 방법. -p(--patch), --type(strategic/merge/json) 옵션을 예제로 정리합니다."
 ---
 
 ## 기본 구조

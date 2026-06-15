@@ -2,6 +2,7 @@
 title: "[Kubernetes] Release 상태의 PV를 Available 상태로 변경"
 date: 2022-08-07
 tags: [kubernetes, storage]
+description: "동적 프로비저닝된 PV가 Helm 삭제 후 Released 상태로 남는 문제 해결법. claimRef를 제거해 PV를 Available 상태로 되돌려 재사용하는 방법을 정리합니다."
 ---
 
 - helm으로 설치된 경우 동적 프로비저닝을 통해 PV/PVC 가 동적으로 사용되었을 경우, helm으로 uninstall을 하게 되면 사용되었던 PV 자원의 상태는 release 상태가 된다.

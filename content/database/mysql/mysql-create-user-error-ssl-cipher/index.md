@@ -2,6 +2,7 @@
 title: "[MySQL] MySQL user 생성시 ERROR 1364 (HY000)"
 date: 2017-01-13
 tags: [database, mysql, error]
+description: "MySQL 사용자 생성 시 ERROR 1364 ssl_cipher 오류 해결법. 상위 버전의 보안 필드(ssl_cipher, x509_issuer 등) 기본값 문제와 해결 방법을 정리합니다."
 ---
 
 ## ERROR 1364 (HY000): Field 'ssl_cipher' doesn't have a default value

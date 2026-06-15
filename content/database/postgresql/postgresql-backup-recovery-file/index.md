@@ -2,6 +2,7 @@
 title: "[PostgreSQL] Back up 및 Recovery 방법"
 date: 2023-12-05
 tags: [database, postgresql, backup, recovery]
+description: "PostgreSQL 백업·복구 방법 정리. pg_dumpall·pg_dump로 백업하고 psql·pg_restore로 복원하는 명령어와 옵션을 예제로 다룹니다."
 ---
 
 ## BackUp 및 Recovery 방법

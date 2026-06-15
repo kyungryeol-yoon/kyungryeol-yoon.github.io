@@ -2,6 +2,7 @@
 title: "[Linux] tar, gz 압축 및 해제"
 date: 2018-02-02
 tags: [linux, file, directory, compress, tar, gz]
+description: "리눅스에서 tar와 tar.gz로 묶고 압축·해제하는 방법. -c, -x, -z, -v, -p 등 자주 쓰는 tar 옵션과 예제를 정리합니다."
 ---
 
 ## tar로 압축하기

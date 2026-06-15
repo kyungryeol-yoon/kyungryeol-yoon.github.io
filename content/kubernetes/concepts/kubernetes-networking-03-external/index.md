@@ -2,6 +2,7 @@
 title: "[Kubernetes] 쿠버네티스 네트워킹 이해하기 (3) - 외부로 서비스 노출하기 (NodePort, LoadBalancer)"
 date: 2019-05-17
 tags: [kubernetes, network, nodeport, loadbalancer, external-traffic, infrastructure, devops]
+description: "쿠버네티스 네트워킹 시리즈 3편 — NodePort·LoadBalancer로 서비스를 외부에 노출하는 방법. 각 방식의 동작 원리와 차이를 설명합니다."
 ---
 
 ## 🚪 1. 가장 단순한 외부 노출: NodePort

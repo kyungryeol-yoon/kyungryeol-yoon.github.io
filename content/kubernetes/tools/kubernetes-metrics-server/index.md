@@ -2,6 +2,7 @@
 title: "[Kubernetes] metrics-server"
 date: 2021-11-21
 tags: [kubernetes, metrics-server]
+description: "쿠버네티스 metrics-server로 노드·파드의 CPU·메모리 사용량을 수집하는 방법. 설치와 kubectl top 연동 리소스 모니터링을 정리합니다."
 ---
 
 - Kubernetes의 Metrics-Server는 각 Node에 설치된 kubelet을 통해서 node 및 pod의 CPU, Memory 의 사용량 Metric을 수집

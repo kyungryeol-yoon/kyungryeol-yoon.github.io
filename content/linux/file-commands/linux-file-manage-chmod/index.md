@@ -2,6 +2,7 @@
 title: "[Linux] 파일 관리 - chmod 파일/Directory 권한 변경"
 date: 2018-05-01
 tags: [linux, file, directory, chmod]
+description: "리눅스 chmod 명령어로 파일·디렉터리 권한을 변경하는 방법. 읽기(4)·쓰기(2)·실행(1) 숫자 표기와 소유자/그룹/기타 3구역 권한을 예제로 설명합니다."
 ---
 
 ## chmod 명령어

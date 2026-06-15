@@ -2,6 +2,7 @@
 title: "[Kubernetes] Deploy Redis Insight(2.64.1)"
 date: 2025-02-14
 tags: [kubernetes, redis, ui]
+description: "쿠버네티스에 RedisInsight(2.64.1) 시각화 도구를 배포하는 방법. 배포 매니페스트와 접속·설정 구성을 정리합니다."
 ---
 
 ## Redis Insight 배포

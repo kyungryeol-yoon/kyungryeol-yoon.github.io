@@ -2,6 +2,7 @@
 title: "[Python] 가상환경 venv, virtualenv"
 date: 2021-06-22
 tags: [python, venv, virtualenv, programming]
+description: "파이썬 가상환경 venv와 virtualenv의 차이 정리. 표준 라이브러리 venv와 외부 virtualenv의 특징, 생성·활성화 방법을 비교합니다."
 ---
 
 ## virtualenv와 venv의 차이?

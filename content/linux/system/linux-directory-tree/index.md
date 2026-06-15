@@ -2,6 +2,7 @@
 title: "[Linux] tree Directory 구조 조회"
 date: 2018-11-11
 tags: [linux, directory, tree]
+description: "리눅스 tree 명령어로 디렉터리 구조를 한눈에 조회하는 방법. 설치와 깊이·옵션 활용, ls 대비 장점을 예제로 정리합니다."
 ---
 
 ## tree란?

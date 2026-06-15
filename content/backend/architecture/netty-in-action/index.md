@@ -2,6 +2,7 @@
 title: "[Netty] Netty in Action 요약 및 실무 활용"
 date: 2019-09-02
 tags: [netty, java, network, nio, asynchronous, reactor, tcp, udp]
+description: "Netty in Action 핵심 요약과 실무 활용. 비동기 이벤트 기반 네트워크 프레임워크 Netty의 Channel·Pipeline·Handler 모델과 아키텍처를 정리합니다."
 ---
 
 ## ⚡ Netty in Action 요약과 실무 활용

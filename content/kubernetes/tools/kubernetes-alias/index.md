@@ -2,6 +2,7 @@
 title: "[Kubernetes] Alias"
 date: 2019-11-17
 tags: [kubernetes, kubectl, alias]
+description: "kubectl 명령을 짧게 쓰는 alias(별칭) 설정법. 자주 쓰는 명령 단축과 kubectl-aliases 모음을 활용하는 방법을 정리합니다."
 ---
 
 ## 별칭 주기

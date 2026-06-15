@@ -2,6 +2,7 @@
 title: "[Git] Git Bash Alias - Windows"
 date: 2023-08-23
 tags: [git, windows, alias]
+description: "Windows Git Bash에서 alias를 설정하는 방법. aliases.sh, bash.bashrc 파일을 수정해 자주 쓰는 명령을 별칭으로 등록하는 과정을 정리합니다."
 ---
 
 ## Windows Git Bash에서 Alias 설정

@@ -2,6 +2,7 @@
 title: "[Microservice Pattern 실전] 주문-결제-배송 시스템 설계와 Docker/K8s 적용"
 date: 2021-11-11
 tags: [microservice, pattern, docker, kubernetes, saga, event-driven]
+description: "마이크로서비스 패턴 실전 예제 — 주문-결제-배송 시스템을 Docker·Kubernetes 환경과 이벤트 기반 Saga 패턴으로 설계하는 방법을 다룹니다."
 ---
 
 ## 🚀 Microservice Pattern 실전 예제: 주문-결제-배송 시스템

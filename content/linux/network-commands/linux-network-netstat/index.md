@@ -2,6 +2,7 @@
 title: "[Linux] 네트워크 - netstat 네트워크 상태 확인"
 date: 2018-09-02
 tags: [linux, network, netstat]
+description: "리눅스 netstat 명령어로 포트와 네트워크 연결 상태를 확인하는 방법. -l, -n, -t, -u, -p 옵션과 grep 조합 활용 예제를 정리합니다."
 ---
 
 ## netstat 명령어

@@ -2,6 +2,7 @@
 title: "[Linux] Directory와 파일 용량 확인 명령어"
 date: 2022-11-24
 tags: [linux, disk, usage, command]
+description: "리눅스 du 명령어로 디렉터리·파일 용량을 확인하는 방법. -s(합계), -h(읽기 쉬운 단위) 옵션과 사용 예제를 정리합니다."
 ---
 
 ## du Directory명

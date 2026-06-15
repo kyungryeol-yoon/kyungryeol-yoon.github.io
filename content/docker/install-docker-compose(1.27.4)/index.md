@@ -2,6 +2,7 @@
 title: "[Docker-Compose] Install Docker-Compose(1.27.4)"
 date: 2021-02-02
 tags: [docker, install, docker-compose]
+description: "Docker Compose v1.27.4 설치 방법. curl로 바이너리 다운로드, 실행 권한 부여, 심볼릭 링크로 PATH 설정까지 단계별로 정리합니다."
 ---
 
 ## Docker-Compose 설치하기

@@ -2,6 +2,7 @@
 title: "[Blog] Chirpy"
 date: 2025-01-15
 tags: [blog, chirpy]
+description: "Jekyll Chirpy 테마로 GitHub Blog를 구축하는 방법. Linux/WSL/Docker/macOS 환경 준비, Ruby 버전 요건과 bundle 설치 과정을 정리합니다."
 ---
 
 > Linux 환경에서 작업 (아래 중에 하나 선택)

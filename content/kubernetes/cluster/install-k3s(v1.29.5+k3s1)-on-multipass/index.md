@@ -2,6 +2,7 @@
 title: "[Kubernetes] Install K3S(v1.29.5+k3s1) on Multipass"
 date: 2024-05-20
 tags: [kubernetes, k3s, multipass, ubuntu, linux, install]
+description: "Multipass VM에 경량 쿠버네티스 K3s(v1.29.5+k3s1)를 마스터·워커 노드로 설치하는 방법. swapoff, 노드 구성, 클러스터 조인 과정을 단계별로 정리합니다."
 ---
 
 ## VM deployments used multipass on mac

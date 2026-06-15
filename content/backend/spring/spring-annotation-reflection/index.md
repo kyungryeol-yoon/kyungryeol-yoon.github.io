@@ -2,6 +2,7 @@
 title: "[Spring] Annotation & Reflection이란?"
 date: 2018-01-13
 tags: [spring, java, annotation, reflection]
+description: "스프링 Annotation과 Reflection 개념 정리. 메타데이터로서의 어노테이션 역할과 리플렉션으로 런타임에 정보를 읽어 동작을 처리하는 원리를 설명합니다."
 ---
 
 ## Annotation이란?

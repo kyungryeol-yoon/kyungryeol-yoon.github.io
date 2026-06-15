@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl annotate command"
 date: 2023-11-19
 tags: [kubernetes, kubectl, command, annotate]
+description: "kubectl annotate 명령어로 쿠버네티스 리소스에 주석(annotation)을 추가·수정·삭제하는 방법. 기본 구조와 --overwrite, --namespace 등 주요 옵션을 예제로 정리합니다."
 ---
 
 ## 기본 구조

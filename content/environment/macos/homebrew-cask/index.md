@@ -2,6 +2,7 @@
 title: "[Mac OS] Homebrew and Cask"
 date: 2022-07-30
 tags: [homebrew, cask, macos]
+description: "macOS·Linux 패키지 관리 도구 Homebrew와 Cask 정리. CLI 소프트웨어 설치(Homebrew)와 GUI 앱 설치(Cask)의 차이와 사용법을 설명합니다."
 ---
 
 ## Homebrew와 Cask에 대한 설명

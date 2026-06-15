@@ -2,6 +2,7 @@
 title: "[Linux] 파일 관리 - mv 파일/Directory 이동"
 date: 2018-02-07
 tags: [linux, file, directory, mv, move]
+description: "리눅스 mv 명령어로 파일·디렉터리를 이동하거나 이름을 변경하는 방법. 같은 이름 존재 여부에 따른 이동/이름변경 동작을 예제로 정리합니다."
 ---
 
 ## mv 명령어

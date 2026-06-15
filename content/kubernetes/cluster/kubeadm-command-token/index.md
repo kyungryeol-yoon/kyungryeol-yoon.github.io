@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubeadm token command"
 date: 2022-10-02
 tags: [kubernetes, kubeadm, command, token]
+description: "kubeadm token 명령어로 클러스터 조인 토큰을 생성·삭제·조회하는 방법. create/delete/list 하위 명령과 사용 예제를 정리합니다."
 ---
 
 ## 기본 구조

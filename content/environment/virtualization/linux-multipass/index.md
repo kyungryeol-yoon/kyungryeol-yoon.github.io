@@ -2,6 +2,7 @@
 title: "[Multipass] Setting Ubuntu"
 date: 2024-05-19
 tags: [multipass, ubuntu, linux]
+description: "Canonical Multipass로 Ubuntu 가상 인스턴스를 만드는 방법. 설치, 이미지 조회, 인스턴스 생성·접속 등 macOS·Linux·Windows 공통 사용법을 정리합니다."
 ---
 
 ## Multipass 설치

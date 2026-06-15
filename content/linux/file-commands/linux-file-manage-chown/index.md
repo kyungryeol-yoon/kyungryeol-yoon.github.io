@@ -2,6 +2,7 @@
 title: "[Linux] 파일 관리 - chown 파일/Directory 소유권 변경"
 date: 2018-05-05
 tags: [linux, file, directory, chown]
+description: "리눅스 chown 명령어로 파일·디렉터리 소유권과 그룹을 변경하는 방법. 소유권 확인, 소유자·그룹 지정, -R 재귀 적용을 예제로 정리합니다."
 ---
 
 ## 소유권 확인

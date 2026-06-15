@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl auth can-i command"
 date: 2023-08-11
 tags: [kubernetes, kubectl, command, auth can-i]
+description: "kubectl auth can-i 명령어로 특정 작업의 수행 권한(RBAC)을 확인하는 방법. --namespace, --subresource, --list 옵션을 예제로 정리합니다."
 ---
 
 ## 기본 구조

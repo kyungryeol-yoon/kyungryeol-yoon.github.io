@@ -2,6 +2,7 @@
 title: "[Network] 🔒 Let's Encrypt + Certbot으로 Nginx HTTPS 무료 SSL 적용하기"
 date: 2023-10-26
 tags: [ssl, https, letsencrypt, certbot, nginx, tls, certificate, acme, ubuntu, linux]
+description: "Let's Encrypt와 Certbot으로 Nginx에 무료 HTTPS SSL/TLS 인증서를 적용하는 방법. 인증서 발급, Nginx 설정 자동화, 자동 갱신까지 단계별로 정리합니다."
 ---
 
 웹 서비스를 운영할 때 HTTPS는 선택이 아닌 필수입니다.

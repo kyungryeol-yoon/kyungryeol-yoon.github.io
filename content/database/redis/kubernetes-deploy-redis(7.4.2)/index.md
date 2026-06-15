@@ -2,6 +2,7 @@
 title: "[Kubernetes] Deploy Redis(7.4.2)"
 date: 2025-02-12
 tags: [kubernetes, redis, message broker]
+description: "쿠버네티스에 Redis(7.4.2)를 배포하는 방법. ACL 사용자 설정, PV·PVC 데이터 보존, Secret·ConfigMap 구성을 매니페스트로 정리합니다."
 ---
 
 ## Command를 통해 Redis ACL 설정하여 배포 + PVC 설정

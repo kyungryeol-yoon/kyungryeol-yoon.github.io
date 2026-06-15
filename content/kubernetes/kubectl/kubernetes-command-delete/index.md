@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl delete command"
 date: 2023-05-15
 tags: [kubernetes, kubectl, command, delete]
+description: "kubectl delete 명령어로 쿠버네티스 리소스를 삭제하는 방법. --all, --force, --grace-period, --timeout 등 주요 옵션을 예제로 정리합니다."
 ---
 
 ## 기본 구조

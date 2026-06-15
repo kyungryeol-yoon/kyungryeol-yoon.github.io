@@ -2,6 +2,7 @@
 title: "[Linux] alias 명령어 치환"
 date: 2018-10-25
 tags: [linux, alias]
+description: "리눅스 alias 명령어로 복잡한 명령·옵션을 짧은 문자열로 치환하는 방법. 별칭 등록·확인과 자주 쓰는 명령 단축 예제를 정리합니다."
 ---
 
 ## alias 명령어

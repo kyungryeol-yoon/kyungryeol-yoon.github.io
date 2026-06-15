@@ -2,6 +2,7 @@
 title: "[Error] BusyBox initramfs 발생할 때"
 date: 2024-03-05
 tags: [virtual box, ubuntu, busyBox, initramfs]
+description: "Ubuntu 부팅 시 BusyBox initramfs 화면에 진입하는 문제 해결법. 비정상 종료로 손상된 파일시스템을 fsck로 검사·복구하는 절차를 정리합니다."
 ---
 
 - VirtualBox의 Ubuntu 제대로 종료되지 않아 올바른 파티션을 찾지 못해 BusyBox 진입했다.

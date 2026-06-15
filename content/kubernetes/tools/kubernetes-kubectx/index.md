@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectx"
 date: 2019-12-10
 tags: [kubernetes, kubectx]
+description: "kubectx로 여러 쿠버네티스 Context를 빠르게 전환하는 방법. fzf 연동 대화식 메뉴와 긴 use-context 명령을 대체하는 사용법을 정리합니다."
 ---
 
 Kubernetes의 Context를 여러개 사용하고 있다면,\\

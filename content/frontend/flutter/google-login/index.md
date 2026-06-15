@@ -2,6 +2,7 @@
 title: "[Flutter] Google Login"
 date: 2024-08-29
 tags: [flutter, google, login]
+description: "Flutter에서 Firebase로 구글 로그인을 구현하는 방법. Firebase 프로젝트 생성, google-services.json 설정, 인증 연동 과정을 단계별로 정리합니다."
 ---
 
 ### Flutter 프로젝트 설정

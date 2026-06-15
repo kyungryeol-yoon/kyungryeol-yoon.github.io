@@ -2,6 +2,7 @@
 title: "[Docker] DFOREGROUND 옵션 이해 및 활용"
 date: 2021-05-21
 tags: [docker, container, foreground, background, apache, daemon]
+description: "Docker·리눅스 서비스의 DFOREGROUND(포그라운드 실행) 옵션 개념과 활용. 백그라운드와의 차이, 컨테이너에서 포그라운드 실행이 필요한 이유를 쉽게 설명합니다."
 ---
 
 ## ⚡ DFOREGROUND 옵션이란?

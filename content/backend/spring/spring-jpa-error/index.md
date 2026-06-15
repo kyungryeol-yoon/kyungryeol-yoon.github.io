@@ -2,6 +2,7 @@
 title: "[Spring] JPA (Hibernate) - Error (creating bean with name 'entityManagerFactory')"
 date: 2019-02-22
 tags: [spring, java, jpa, error]
+description: "OpenJDK 11 전환 후 발생하는 JPA(Hibernate) entityManagerFactory 빈 생성 오류의 원인과 해결법. BCI 방식 클래스 로딩과 관련한 문제를 분석합니다."
 ---
 
 ## JDK를 openjdk11로 변경했더니 startup할 때 오류가 발생

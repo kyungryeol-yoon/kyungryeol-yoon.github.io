@@ -2,6 +2,7 @@
 title: "[MySQL] MySQL 사용자 추가(권한추가)"
 date: 2016-11-02
 tags: [database, mysql, create, user]
+description: "MySQL 사용자 추가와 권한 부여 방법. create user로 계정·암호를 만들고 Host '%'로 외부 접근을 허용하거나 사용자를 삭제하는 방법을 정리합니다."
 ---
 
 ## 사용자 추가

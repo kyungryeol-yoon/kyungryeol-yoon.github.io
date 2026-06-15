@@ -2,6 +2,7 @@
 title: "[Network] 네트워크 기초 개념"
 date: 2017-04-01
 tags: [network, tcp, udp, protocol, devops]
+description: "개발자를 위한 네트워크 기초 개념 정리. 패킷·프로토콜(TCP·UDP·HTTP), 라우터·스위치 등 주요 장치와 통신 구조를 쉽게 설명합니다."
 ---
 
 ## 🌐 네트워크 기초 개념

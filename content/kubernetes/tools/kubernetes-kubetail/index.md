@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubetail"
 date: 2020-04-15
 tags: [kubernetes, kubetail]
+description: "kubetail로 여러 파드의 로그를 동시에 실시간 조회하는 방법. Ubuntu·macOS 설치와 컨테이너·매치 필터 사용법을 정리합니다."
 ---
 
 - 여러 POD의 로그를 동시에 조회하는 기능

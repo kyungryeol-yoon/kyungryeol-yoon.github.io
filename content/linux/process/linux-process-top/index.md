@@ -2,6 +2,7 @@
 title: "[Linux] 프로세스 관리 - top 실시간 프로세스 모니터링"
 date: 2018-07-25
 tags: [linux, process, top]
+description: "리눅스 top 명령어로 프로세스를 실시간 모니터링하는 방법. -d(갱신 주기), -i 옵션과 실행 중 k·r 등 단축키 사용법을 정리합니다."
 ---
 
 ## top 명령어

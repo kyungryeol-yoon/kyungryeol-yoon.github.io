@@ -2,6 +2,7 @@
 title: "[Kubernetes] Upgrade Kubernetes(v1.32.x) using Kubekey(v3.1.9) Artifact"
 date: 2025-05-02
 tags: [kubernetes, kubekey, artifact, upgrade]
+description: "KubeKey(v3.1.9) artifact로 쿠버네티스를 v1.32.x로 오프라인 업그레이드하는 방법. artifact 구성과 버전 호환, 업그레이드 절차를 정리합니다."
 ---
 
 > offline 설치 위한 artifact 참고

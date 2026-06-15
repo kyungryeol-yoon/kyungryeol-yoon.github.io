@@ -2,6 +2,7 @@
 title: "[Network] 도메인 서버(DNS) 구축과 관리"
 date: 2017-04-09
 tags: [dns, domain, network, server, devops]
+description: "개발자 관점의 DNS(도메인 네임 시스템) 구축·관리 가이드. 도메인↔IP 변환 원리, A·AAAA·CNAME·MX 등 레코드 종류와 DNS 서버 설정을 정리합니다."
 ---
 
 ## 🖥️ 도메인 서버(DNS) 구축

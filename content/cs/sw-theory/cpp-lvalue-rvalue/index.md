@@ -2,6 +2,7 @@
 title: "[C++] Lvalue와 Rvalue"
 date: 2016-03-20
 tags: [left value, right value, cpp, programming]
+description: "C++ Lvalue와 Rvalue 개념 정리. 메모리 주소를 갖는 Lvalue와 임시 값인 Rvalue의 차이, 대입 연산자 위치와 이동 시맨틱과의 관계를 설명합니다."
 ---
 
 ## Lvalue (Left-value)

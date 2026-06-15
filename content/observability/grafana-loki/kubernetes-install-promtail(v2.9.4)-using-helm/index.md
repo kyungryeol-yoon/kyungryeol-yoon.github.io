@@ -2,6 +2,7 @@
 title: "[Kubernetes] Install Promtail(v2.9.4) Using Helm Chart"
 date: 2024-04-02
 tags: [kubernetes, grafana, promtail, install]
+description: "Helm으로 쿠버네티스에 Promtail(v2.9.4)을 설치하는 방법. DaemonSet으로 노드별 /var/log/pods 로그를 수집해 Loki로 전달하는 구성을 정리합니다."
 ---
 
 ## Promtail

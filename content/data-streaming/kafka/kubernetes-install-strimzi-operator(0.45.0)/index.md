@@ -2,6 +2,7 @@
 title: "[Kubernetes] Strimzi Operator(0.45.0)"
 date: 2025-03-08
 tags: [kubernetes, message broker, strimzi, operator]
+description: "쿠버네티스에 Strimzi Operator(0.45.0)를 설치해 Kafka를 운영하는 방법. Operator YAML·Helm 설치 방식과 클러스터 구성을 정리합니다."
 ---
 
 > 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)

@@ -2,6 +2,7 @@
 title: "[Kubernetes] eBPF로 실시간 커널 레벨 모니터링하기"
 date: 2024-10-17
 tags: [kubernetes, ebpf, tracing, monitoring, devops, performance]
+description: "eBPF로 커널 레벨 실시간 모니터링을 하는 방법. 확장 BPF의 개념과 쿠버네티스에서 성능 분석·네트워크·보안 트레이싱에 활용하는 원리를 설명합니다."
 ---
 
 ## 🔍 eBPF: 개발자 관점에서 보는 커널 레벨 모니터링

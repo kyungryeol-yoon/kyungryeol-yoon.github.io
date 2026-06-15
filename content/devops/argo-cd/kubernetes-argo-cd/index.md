@@ -2,6 +2,7 @@
 title: "[Kubernetes] About Argo CD"
 date: 2021-10-17
 tags: [argo cd, kubernetes, gitops, devops]
+description: "GitOps 배포 도구 Argo CD 소개. Git 저장소를 단일 소스로 삼아 쿠버네티스 클러스터 상태를 선언적으로 동기화하는 작동 원리를 설명합니다."
 ---
 
 - Argo CD는 GitOps 스타일의 배포를 지원하는 CD 도구

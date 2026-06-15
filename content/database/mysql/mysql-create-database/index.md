@@ -2,6 +2,7 @@
 title: "[MySQL] MySQL 접속 및 데이터베이스 추가"
 date: 2016-11-07
 tags: [database, mysql, create]
+description: "MySQL 접속과 데이터베이스 생성 방법. DB 접속·목록 조회, create database/schema로 데이터베이스를 만드는 과정을 정리합니다."
 ---
 
 ## DB 접속

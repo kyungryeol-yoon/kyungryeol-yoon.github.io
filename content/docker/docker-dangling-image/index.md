@@ -2,6 +2,7 @@
 title: "[Docker] Dangling Image란? (Build 후 Repository:Tag 가 none 인 경우)"
 date: 2021-01-23
 tags: [docker, image, dangling]
+description: "Docker dangling image(repository:tag가 none인 이미지)의 발생 원인과 정리 방법. 사용 중 이미지 삭제 에러와 docker image prune 활용을 설명합니다."
 ---
 
 ## Dangling Images

@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl proxy command"
 date: 2022-06-25
 tags: [kubernetes, kubectl, command, proxy]
+description: "kubectl proxy 명령어로 쿠버네티스 API 서버 프록시를 실행하는 방법. --port, --address 옵션과 사용 예제를 정리합니다."
 ---
 
 ## 기본 구조

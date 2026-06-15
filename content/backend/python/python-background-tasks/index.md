@@ -2,6 +2,7 @@
 title: "[Python] Background Tasks"
 date: 2023-11-05
 tags: [python, backgroundtasks]
+description: "FastAPI에서 Starlette BackgroundTasks로 오래 걸리는 작업을 백그라운드에서 처리하는 방법. 응답을 먼저 반환하고 후속 작업을 수행하는 구조를 설명합니다."
 ---
 
 - 서버에서 요청을 처리할 때, 작업이 오래 걸리는 요청에 대해서는 응답을 먼저 보내주고 Background에서 나머지 작업을 수행하도록 한다.

@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl scale command"
 date: 2023-03-21
 tags: [kubernetes, kubectl, command, scale]
+description: "kubectl scale 명령어로 디플로이먼트·레플리카셋의 replica 수를 조정(스케일 인/아웃)하는 방법. --current-replicas, --resource-version 옵션을 정리합니다."
 ---
 
 ## 기본 구조

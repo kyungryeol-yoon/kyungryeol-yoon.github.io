@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl rollout command"
 date: 2023-09-17
 tags: [kubernetes, kubectl, command, rollout]
+description: "kubectl rollout 명령어로 디플로이먼트의 롤아웃 상태·이력 조회와 롤백을 관리하는 방법. --revision, --watch, undo 등 옵션을 예제로 정리합니다."
 ---
 
 ## 기본 구조

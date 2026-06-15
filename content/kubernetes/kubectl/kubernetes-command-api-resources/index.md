@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl api-resources command"
 date: 2023-09-12
 tags: [kubernetes, kubectl, command, api-resources]
+description: "kubectl api-resources 명령어로 클러스터의 모든 API 리소스 종류·별칭·네임스페이스 여부를 조회하는 방법. --namespaced, --api-group 등 옵션을 정리합니다."
 ---
 
 ## 기본 구조

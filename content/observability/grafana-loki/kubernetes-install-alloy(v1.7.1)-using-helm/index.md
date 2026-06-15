@@ -2,6 +2,7 @@
 title: "[Kubernetes] Install Alloy(v1.7.1) Using Helm Chart"
 date: 2025-03-06
 tags: [kubernetes, alloy, helm, install]
+description: "Helm 차트로 쿠버네티스에 Grafana Alloy(v1.7.1) 텔레메트리 수집기를 설치하는 방법. 네임스페이스 생성과 배포, 기본 설정 커스터마이징을 정리합니다."
 ---
 
 > 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)

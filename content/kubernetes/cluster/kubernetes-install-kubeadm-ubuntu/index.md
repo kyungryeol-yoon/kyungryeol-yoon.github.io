@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubeadm으로 쿠버네티스 클러스터 설치하기 (Ubuntu/Debian)"
 date: 2022-05-06
 tags: [kubernetes, kubeadm, ubuntu, debian, docker]
+description: "Ubuntu/Debian에서 kubeadm으로 쿠버네티스 클러스터를 설치하는 가이드. 마스터·워커 노드 사전 준비, 런타임 설정, 클러스터 초기화를 단계별로 정리합니다."
 ---
 
 ## 🏗️ 1. 클러스터 구성 환경

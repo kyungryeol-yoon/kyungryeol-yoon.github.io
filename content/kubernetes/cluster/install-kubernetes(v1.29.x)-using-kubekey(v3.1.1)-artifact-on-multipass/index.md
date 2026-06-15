@@ -2,6 +2,7 @@
 title: "[Kubernetes] Install Kubernetes(v1.29.x) using Kubekey(v3.1.1) Artifact on Multipass"
 date: 2025-04-28
 tags: [kubernetes, kubekey, artifact, install]
+description: "KubeKey(v3.1.1) artifact를 이용해 Multipass에서 쿠버네티스 v1.29.x를 오프라인 설치하는 방법. image-list, components.json 등 버전 호환과 절차를 정리합니다."
 ---
 
 > offline 설치 위한 artifact 참고

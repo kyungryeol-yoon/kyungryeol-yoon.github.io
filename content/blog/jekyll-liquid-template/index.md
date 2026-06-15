@@ -2,6 +2,7 @@
 title: "[Blog] Jekyll Liquid Tag Template"
 date: 2024-12-29
 tags: [blog, jekyll, liquid, tag, template]
+description: "Jekyll 글에서 {{ }}·{% %}가 Liquid 문법과 충돌할 때 해결법. raw 태그로 템플릿 구문을 그대로 출력하는 방법을 정리합니다."
 ---
 
 

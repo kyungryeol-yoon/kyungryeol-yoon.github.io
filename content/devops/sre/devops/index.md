@@ -2,6 +2,7 @@
 title: "[DevOps] 개발과 운영"
 date: 2017-08-02
 tags: [devops]
+description: "DevOps 개념 정리. 개발팀과 운영팀이 분리된 전통적 체계의 문제점과, 개발·운영을 통합해 배포·운영을 함께하는 DevOps 문화를 설명합니다."
 ---
 
 ## 기존 개발 체계의 문제점

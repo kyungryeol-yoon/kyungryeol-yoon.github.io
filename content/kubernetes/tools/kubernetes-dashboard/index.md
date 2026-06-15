@@ -2,6 +2,7 @@
 title: "[Kubernetes] Dashboard 설치"
 date: 2024-11-21
 tags: [kubernetes, dashboard]
+description: "쿠버네티스 Dashboard 설치와 사용법. 클러스터 리소스를 웹 UI로 시각화·관리하고 RBAC 기반 인증 토큰으로 접속하는 과정을 정리합니다."
 ---
 
 ## 📌 1. Kubernetes Dashboard란?

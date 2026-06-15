@@ -2,6 +2,7 @@
 title: "[Linux] 파일 관리 - touch 빈 파일 생성"
 date: 2018-03-25
 tags: [linux, file, touch]
+description: "리눅스 touch 명령어로 0바이트 빈 파일을 생성하는 방법. 여러 파일 동시 생성과 타임스탬프 갱신 사용 예제를 정리합니다."
 ---
 
 ## touch 명령어

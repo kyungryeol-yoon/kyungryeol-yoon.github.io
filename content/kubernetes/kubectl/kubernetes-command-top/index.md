@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl top command"
 date: 2022-07-09
 tags: [kubernetes, kubectl, command, top]
+description: "kubectl top 명령어로 노드·파드의 CPU·메모리 사용량을 조회하는 방법. --containers, --namespace 옵션과 metrics-server 사용 예제를 정리합니다."
 ---
 
 ## 기본 구조

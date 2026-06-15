@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl get command"
 date: 2022-01-22
 tags: [kubernetes, kubectl, command, get]
+description: "kubectl get 명령어로 파드·서비스·디플로이먼트 등 리소스 목록과 상태를 조회하는 방법. -A, -o, --selector 등 핵심 옵션을 예제로 정리합니다."
 ---
 
 ## 기본 구조

@@ -2,6 +2,7 @@
 title: "객체지향 설계 5원칙 SOLID"
 date: 2018-03-25
 tags: [object-oriented, solid, srp, ocp, lsp, isp, dip]
+description: "객체지향 설계 5원칙 SOLID 정리. SRP·OCP·LSP·ISP·DIP 각 원칙의 의미와 유지보수성을 높이는 설계 방법을 설명합니다."
 ---
 
 ## SOLID란?

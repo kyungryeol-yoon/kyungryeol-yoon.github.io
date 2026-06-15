@@ -1,7 +1,7 @@
 ---
 title: "Spring framework 특징 및 구성, 구조"
 date: 2016-10-15
-# excerpt: "Spring framework 특징 및 구성, 구조(Directory)"
+description: "스프링 프레임워크 특징과 구조 정리. POJO 기반 경량 컨테이너, IoC·DI·AOP 핵심 개념과 프로젝트 디렉터리 구성을 설명합니다."
 tags: [spring, framework, java]
 ---
 

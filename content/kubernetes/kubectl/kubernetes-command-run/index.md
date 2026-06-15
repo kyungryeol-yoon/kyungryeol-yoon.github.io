@@ -2,6 +2,7 @@
 title: "[Kubernetes] kubectl run command"
 date: 2023-04-20
 tags: [kubernetes, kubectl, command, run]
+description: "kubectl run 명령어로 이미지를 지정해 파드를 즉시 실행하는 방법. --image, --replicas, --port 옵션과 사용 예제를 정리합니다."
 ---
 
 ## 기본 구조
