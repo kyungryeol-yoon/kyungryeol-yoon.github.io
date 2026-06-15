@@ -9,8 +9,6 @@
       <h1 class="post-title" data-pagefind-meta="title">{{ .Title }}</h1>
       <div class="post-meta">
         <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006년 1월 2일" }}</time>
-        <span>·</span>
-        <span>{{ .ReadingTime }}분 읽기</span>
       </div>
 
       {{ with .Resources.GetMatch (.Params.image | default "cover.*") }}
