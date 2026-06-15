@@ -4,4 +4,4 @@
 node_modules/
 .DS_Store
 /drafts/
-.claude/
+.claude/settings.local.json

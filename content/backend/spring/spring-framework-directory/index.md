@@ -48,7 +48,7 @@ tags: [spring, framework, java]
 복잡한 트랜잭션관리를 애노테이션이나 XML로 설정할 수 있기 때문에 개발자가 매번 상황에 맞는 코드를 작성할 수 없게 설계
 
 
-# Spring Project Directory 구조
+## Spring Project Directory 구조
 
 ![](/images/spring/directory/src-main-java.png)
 : **src/main/java :** 자바 코드 (컨트롤러, 모델)

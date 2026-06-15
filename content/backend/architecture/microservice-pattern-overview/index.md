@@ -4,7 +4,7 @@ date: 2021-11-07
 tags: [microservice, pattern, architecture, saga, event-driven, api gateway]
 ---
 
-# 🏗️ Microservice Pattern (마이크로서비스 패턴) 개요
+## 🏗️ Microservice Pattern (마이크로서비스 패턴) 개요
 
 **마이크로서비스 아키텍처(Microservice Architecture)**는 하나의 큰 애플리케이션을  
 **작고 독립적인 서비스 단위**로 분리하여 운영하는 아키텍처 스타일입니다.
@@ -13,7 +13,7 @@ tags: [microservice, pattern, architecture, saga, event-driven, api gateway]
 
 ---
 
-# 1️⃣ 마이크로서비스 특징
+## 1️⃣ 마이크로서비스 특징
 
 | 특징 | 설명 |
 |------|------|
@@ -27,11 +27,11 @@ tags: [microservice, pattern, architecture, saga, event-driven, api gateway]
 
 ---
 
-# 2️⃣ 주요 마이크로서비스 패턴
+## 2️⃣ 주요 마이크로서비스 패턴
 
 마이크로서비스 설계에서 자주 활용되는 **패턴**입니다.
 
-## 2.1 Database per Service
+### 2.1 Database per Service
 
 - 각 서비스가 **자체 데이터베이스**를 보유  
 - 장점: 서비스 간 결합도 최소화  
@@ -44,7 +44,7 @@ Payment Service DB <-- 독립
 
 ---
 
-## 2.2 API Gateway Pattern
+### 2.2 API Gateway Pattern
 
 * 클라이언트 요청을 **단일 진입점**에서 처리
 * 인증, 로깅, 라우팅, 응답 집계 등 수행
@@ -57,7 +57,7 @@ Client → API Gateway → Order Service
 
 ---
 
-## 2.3 Circuit Breaker Pattern
+### 2.3 Circuit Breaker Pattern
 
 * 서비스 호출 실패 시 **전체 시스템 장애 방지**
 * 실패하면 fallback 처리
@@ -72,7 +72,7 @@ try {
 
 ---
 
-## 2.4 Saga Pattern
+### 2.4 Saga Pattern
 
 * **분산 트랜잭션 관리**를 위한 패턴
 * 예: 주문 → 결제 → 배송 순서 중 일부 실패 시 이전 단계 롤백
@@ -84,7 +84,7 @@ Order Service → Payment Service → Shipping Service
 
 ---
 
-## 2.5 Event-Driven Pattern
+### 2.5 Event-Driven Pattern
 
 * 서비스 간 이벤트 기반 **비동기 통신**
 * 장점: 느슨한 결합, 확장성 우수
@@ -95,7 +95,7 @@ OrderCreatedEvent → Payment Service → PaymentProcessedEvent → Shipping Ser
 
 ---
 
-# 3️⃣ 마이크로서비스 구조 예시
+## 3️⃣ 마이크로서비스 구조 예시
 
 ```
 microservice-app/
@@ -116,7 +116,7 @@ microservice-app/
 
 ---
 
-# 4️⃣ 실무 고려사항
+## 4️⃣ 실무 고려사항
 
 * 📝 **통합 로깅 & 모니터링**: 모든 서비스 로그를 통합 관리
 * 📝 **데이터 일관성 관리**: Saga 또는 이벤트 기반 설계
@@ -125,7 +125,7 @@ microservice-app/
 
 ---
 
-# 5️⃣ 요약
+## 5️⃣ 요약
 
 * **마이크로서비스 패턴** = 작은 단위 서비스 + 독립 배포 + 명확한 책임
 * 핵심 패턴: Database per Service, API Gateway, Circuit Breaker, Saga, Event-Driven

@@ -4,7 +4,7 @@ date: 2020-12-12
 tags: [ddd, domain-driven design, bounded context, domain model, order, payment, start]
 ---
 
-# 🚀 DDD Start 실전: 주문-결제 시스템 예제
+## 🚀 DDD Start 실전: 주문-결제 시스템 예제
 
 이번 글에서는 **DDD Start**를 기반으로 실제 **주문(Order) - 결제(Payment) 시스템**을 설계하고,  
 테스트 케이스까지 포함한 실전 예제를 다룹니다.  
@@ -12,7 +12,7 @@ DDD 입문자뿐만 아니라 실무 개발자에게도 바로 적용 가능한 
 
 ---
 
-# 1️⃣ 단계별 DDD Start 요약
+## 1️⃣ 단계별 DDD Start 요약
 
 | 단계 | 설명 | 예제 적용 |
 |------|------|-----------|
@@ -24,9 +24,9 @@ DDD 입문자뿐만 아니라 실무 개발자에게도 바로 적용 가능한 
 
 ---
 
-# 2️⃣ 도메인 모델링
+## 2️⃣ 도메인 모델링
 
-## 2.1 Order 엔티티
+### 2.1 Order 엔티티
 
 ```java
 public class Order {
@@ -57,7 +57,7 @@ public class Order {
 
 ---
 
-## 2.2 값 객체(Value Object)
+### 2.2 값 객체(Value Object)
 
 ```java
 public class OrderItem {
@@ -73,7 +73,7 @@ public class OrderItem {
 
 ---
 
-## 2.3 도메인 서비스
+### 2.3 도메인 서비스
 
 ```java
 public class PaymentService {
@@ -88,7 +88,7 @@ public class PaymentService {
 
 ---
 
-# 3️⃣ 코드 구조 예시
+## 3️⃣ 코드 구조 예시
 
 ```
 src/
@@ -113,7 +113,7 @@ src/
 
 ---
 
-# 4️⃣ 테스트 케이스 예제
+## 4️⃣ 테스트 케이스 예제
 
 ```java
 import org.junit.jupiter.api.Test;
@@ -148,7 +148,7 @@ class OrderTest {
 
 ---
 
-# 5️⃣ 실무 팁
+## 5️⃣ 실무 팁
 
 * 📝 **작게 시작**: 핵심 도메인부터 Aggregate 정의
 * 📝 **Bounded Context 유지**: Context 간 책임 명확히
@@ -158,7 +158,7 @@ class OrderTest {
 
 ---
 
-# 6️⃣ 요약
+## 6️⃣ 요약
 
 * **DDD Start** = 도메인 주도 설계 시작 단계 프로세스
 * **실전 적용**: 작은 핵심 도메인 모델링 → Bounded Context → 서비스 구현 → 테스트

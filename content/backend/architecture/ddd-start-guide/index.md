@@ -4,14 +4,14 @@ date: 2020-12-07
 tags: [ddd, domain-driven design, bounded context, domain model, start]
 ---
 
-# 🚀 DDD Start: 도메인 주도 설계 시작 가이드
+## 🚀 DDD Start: 도메인 주도 설계 시작 가이드
 
 **DDD Start**는 도메인 주도 설계를 처음 도입할 때의 **입문 단계와 실무 접근 방법**을 의미합니다.  
 이 글에서는 단계별 흐름과 실제 예제를 통해 DDD를 어떻게 시작할 수 있는지 정리합니다.
 
 ---
 
-# 1️⃣ DDD Start 단계 요약
+## 1️⃣ DDD Start 단계 요약
 
 | 단계 | 목적 | 설명 |
 |------|------|------|
@@ -23,9 +23,9 @@ tags: [ddd, domain-driven design, bounded context, domain model, start]
 
 ---
 
-# 2️⃣ 예제: 주문/결제 시스템 DDD Start
+## 2️⃣ 예제: 주문/결제 시스템 DDD Start
 
-## 2.1 비즈니스 언어 정리 (Ubiquitous Language)
+### 2.1 비즈니스 언어 정리 (Ubiquitous Language)
 
 - 주문(Order), 결제(Payment), 상품(Product), 고객(Customer)  
 - 주문 생성 → 결제 → 배송
@@ -34,7 +34,7 @@ tags: [ddd, domain-driven design, bounded context, domain model, start]
 
 ---
 
-## 2.2 도메인 분리
+### 2.2 도메인 분리
 
 ```
 
@@ -46,7 +46,7 @@ Generic Domain: 공통 유틸, 로깅, 인증
 
 ---
 
-## 2.3 Bounded Context 정의
+### 2.3 Bounded Context 정의
 
 | Context | 담당 기능 |
 |---------|-----------|
@@ -58,7 +58,7 @@ Generic Domain: 공통 유틸, 로깅, 인증
 
 ---
 
-## 2.4 도메인 모델링
+### 2.4 도메인 모델링
 
 ```java
 // Order 엔티티
@@ -90,7 +90,7 @@ public class PaymentService {
 
 ---
 
-## 2.5 설계 & 코드 구조 예시
+### 2.5 설계 & 코드 구조 예시
 
 ```
 src/
@@ -115,7 +115,7 @@ src/
 
 ---
 
-# 3️⃣ 실무 팁
+## 3️⃣ 실무 팁
 
 * 📌 먼저 **모델링과 협력(책임 중심 설계)**에 집중
 * 📌 Context마다 **Ubiquitous Language** 유지
@@ -124,7 +124,7 @@ src/
 
 ---
 
-# 4️⃣ 요약
+## 4️⃣ 요약
 
 * **DDD Start = DDD 입문/실전 단계 가이드**
 * 핵심: **언어 → 도메인 → 컨텍스트 → 모델링 → 코드 구조**

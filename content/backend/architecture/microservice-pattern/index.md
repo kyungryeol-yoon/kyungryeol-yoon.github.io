@@ -4,14 +4,14 @@ date: 2021-11-11
 tags: [microservice, pattern, docker, kubernetes, saga, event-driven]
 ---
 
-# 🚀 Microservice Pattern 실전 예제: 주문-결제-배송 시스템
+## 🚀 Microservice Pattern 실전 예제: 주문-결제-배송 시스템
 
 마이크로서비스 아키텍처는 하나의 큰 애플리케이션을 **작고 독립적인 서비스 단위**로 나누어 운영하는 방법론입니다.  
 이번 글에서는 실전 예제와 함께 **Docker/Kubernetes 환경 + 이벤트 기반 Saga**를 적용해보겠습니다.
 
 ---
 
-# 1️⃣ 핵심 패턴 요약
+## 1️⃣ 핵심 패턴 요약
 
 | 패턴 | 설명 | 실전 예제 적용 |
 |------|------|----------------|
@@ -23,7 +23,7 @@ tags: [microservice, pattern, docker, kubernetes, saga, event-driven]
 
 ---
 
-# 2️⃣ 서비스 구조 예시
+## 2️⃣ 서비스 구조 예시
 
 ```
 
@@ -46,9 +46,9 @@ microservice-app/
 
 ---
 
-# 3️⃣ 도메인 모델링
+## 3️⃣ 도메인 모델링
 
-## 3.1 Order 엔티티
+### 3.1 Order 엔티티
 
 ```java
 public class Order {
@@ -65,7 +65,7 @@ public class Order {
 }
 ```
 
-## 3.2 Payment 도메인 서비스
+### 3.2 Payment 도메인 서비스
 
 ```java
 public class PaymentService {
@@ -78,7 +78,7 @@ public class PaymentService {
 }
 ```
 
-## 3.3 이벤트 발행
+### 3.3 이벤트 발행
 
 ```java
 public class OrderCreatedEvent {
@@ -91,7 +91,7 @@ public class OrderCreatedEvent {
 
 ---
 
-# 4️⃣ 이벤트 기반 Saga 예제
+## 4️⃣ 이벤트 기반 Saga 예제
 
 ```java
 // 주문 생성 → 결제 → 배송
@@ -110,9 +110,9 @@ ShippingService subscribes PaymentCompletedEvent
 
 ---
 
-# 5️⃣ Docker & Kubernetes 예제
+## 5️⃣ Docker & Kubernetes 예제
 
-## 5.1 Dockerfile (Order Service 예시)
+### 5.1 Dockerfile (Order Service 예시)
 
 ```dockerfile
 FROM openjdk:17-jdk-slim
@@ -121,7 +121,7 @@ COPY target/order-service.jar .
 ENTRYPOINT ["java", "-jar", "order-service.jar"]
 ```
 
-## 5.2 docker-compose 예시
+### 5.2 docker-compose 예시
 
 ```yaml
 version: '3'
@@ -148,7 +148,7 @@ networks:
   micro-net:
 ```
 
-## 5.3 Kubernetes Deployment (Order Service)
+### 5.3 Kubernetes Deployment (Order Service)
 
 ```yaml
 apiVersion: apps/v1
@@ -174,7 +174,7 @@ spec:
 
 ---
 
-# 6️⃣ 실무 팁
+## 6️⃣ 실무 팁
 
 * 📝 **서비스 독립성**: 각 서비스 DB와 로직 독립
 * 📝 **API Gateway 활용**: 인증/라우팅/로깅 집중 관리
@@ -184,7 +184,7 @@ spec:
 
 ---
 
-# 7️⃣ 정리
+## 7️⃣ 정리
 
 * **마이크로서비스 패턴**은 단순히 나누는 구조가 아니라, **패턴 기반 설계 + 인프라 적용**까지 포함
 * 핵심 패턴: Database per Service, API Gateway, Circuit Breaker, Saga, Event-Driven

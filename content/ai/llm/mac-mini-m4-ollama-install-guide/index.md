@@ -4,7 +4,7 @@ date: 2026-02-28
 tags: [ollama, mac mini, apple silicon, m4, local llm]
 ---
 
-# Mac Mini M4(Apple Silicon) 환경에서 Ollama 설치 및 관리 가이드
+## Mac Mini M4(Apple Silicon) 환경에서 Ollama 설치 및 관리 가이드
 
 ## 📌 개요
 
