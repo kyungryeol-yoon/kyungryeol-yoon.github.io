@@ -6,8 +6,23 @@
 </div>
 
 {{ $posts := where site.RegularPages "Section" "!=" "" }}
-{{ range $posts.GroupByDate "2006" }}
-  <section class="timeline-year">
+{{ $groups := $posts.GroupByDate "2006" }}
+{{ $max := 1 }}
+{{ range $groups }}{{ if gt (len .Pages) $max }}{{ $max = len .Pages }}{{ end }}{{ end }}
+
+<div class="year-chart" aria-label="연도별 글 분포">
+  {{ range $groups.Reverse }}
+    {{ $h := math.Round (div (mul (len .Pages) 100.0) $max) }}
+    <a class="yc-col{{ if eq .Key (now.Format "2006") }} is-current{{ end }}" href="#y{{ .Key }}" title="{{ .Key }} · {{ len .Pages }} posts">
+      <span class="yc-track"><span class="yc-bar" style="height:{{ $h }}%"></span></span>
+      <span class="yc-year">{{ substr .Key 2 }}</span>
+      <span class="yc-count">{{ len .Pages }}</span>
+    </a>
+  {{ end }}
+</div>
+
+{{ range $groups }}
+  <section class="timeline-year" id="y{{ .Key }}">
     <h2 class="tl-year">{{ .Key }} <span class="tl-count">{{ len .Pages }}</span></h2>
     <ul class="tl-list">
       {{ range .Pages.ByDate.Reverse }}
