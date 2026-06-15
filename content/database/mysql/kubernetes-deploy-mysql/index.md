@@ -1,9 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] Deploy MySQL"
 date: 2020-01-30
 tags: [kubernetes, kubectl, mysql, pod]
-# comments: true
 ---
 
 - 컨테이너 이미지가 존재한다는 가정하에 가능하다.

@@ -56,7 +56,6 @@ make kk
   ```bash
   ./kk create config --with-kubernetes v1.20.4
   ```
-{: .prompt-info }
 
 - 파일 작성
 
@@ -129,7 +128,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
     ```bash
     export KUBECONFIG=$HOME/.kube/config
     ```
-{: .prompt-danger }
 
 > [ERROR] error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
 ```bash
@@ -137,4 +135,3 @@ chown -R kubelet:kubelet /var/lib/kubelet/pods
 chmod 750 /var/lib/kubelet/pods
 systemctl restart kubelet
 ```
-{: .prompt-danger }

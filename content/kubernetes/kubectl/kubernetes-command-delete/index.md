@@ -1,10 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] kubectl delete command"
 date: 2023-05-15
 tags: [kubernetes, kubectl, command, delete]
-# comments: true
-# pin: true
 ---
 
 ## 기본 구조
@@ -16,8 +13,7 @@ kubectl delete [리소스 유형] [리소스 이름]
 kubectl delete pod [파드 이름]
 ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 
@@ -37,5 +33,4 @@ kubectl delete pod --all --force
 kubectl delete all --all
 ```
 
-> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-{: .prompt-info }
+> 💡 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

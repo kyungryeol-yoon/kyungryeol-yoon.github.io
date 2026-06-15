@@ -11,8 +11,7 @@ tags: [docker, install, docker-compose]
   sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   ```
 
-> 다른 버전을 다운로드하고 싶을 경우, [GitHub에서 버전 확인](https://github.com/docker/compose/releases) 후 다운로드
-{: .prompt-info }
+> 💡 다른 버전을 다운로드하고 싶을 경우, [GitHub에서 버전 확인](https://github.com/docker/compose/releases) 후 다운로드
 
 ## 다운로드한 Docker-Compose 파일을 실행 가능하도록 다운로드한 경로에 권한을 부여
 

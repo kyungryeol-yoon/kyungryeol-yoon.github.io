@@ -1,9 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] kubectl create command"
 date: 2023-03-30
 tags: [kubernetes, kubectl, command, create]
-# comments: true
 ---
 
 ## 기본 구조
@@ -12,8 +10,7 @@ tags: [kubernetes, kubectl, command, create]
 kubectl create [리소스 종류] [리소스 이름]
 ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### 자주 사용하는 Command
 
@@ -94,5 +91,4 @@ kubectl create secret generic my-secret --from-literal=password=1234
     kubectl create pod my-pod --image=nginx --restart-policy=OnFailure
     ```
 
-> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-{: .prompt-info }
+> 💡 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

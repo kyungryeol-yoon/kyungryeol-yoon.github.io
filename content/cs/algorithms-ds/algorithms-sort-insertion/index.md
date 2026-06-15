@@ -1,10 +1,8 @@
 ---
-# layout: post
 title: "[Algorithms | C++] Insertion sort : 삽입 정렬"
 date: 2016-02-03
 # excerpt: "매 순서마다 해당 원소를 삽입할 수 있는 위치를 찾는 알고리즘"
 tags: [algorithms, cpp, insertion sort]
-# comments: true
 ---
 
 ## 삽입 정렬(Insertion sort) 알고리즘 개념
@@ -119,4 +117,3 @@ void DoubleList::InsertSort() {
 
 > 삽입 정렬 - 위키백과 참고
 - <https://ko.wikipedia.org/wiki/%EC%82%BD%EC%9E%85_%EC%A0%95%EB%A0%AC>
-{: .prompt-info }

@@ -1,10 +1,8 @@
 ---
-# layout: post
 title: "[Algorithms | C++] Quick sort : 퀵 정렬"
 date: 2016-02-04
 # excerpt: "분할 정복 알고리즘의 하나, 평균적으로 매우 빠른 수행 속도를 자랑하는 정렬 방법"
 tags: [algorithms, cpp, quick sort]
-# comments: true
 ---
 
 ## 퀵 정렬(Quick sort) 알고리즘의 개념 요약
@@ -155,4 +153,3 @@ int DoubleList::Partition(int Left, int Right)
 
 > 퀵 정렬 - 위키백과 참고
 - <https://ko.wikipedia.org/wiki/%ED%80%B5_%EC%A0%95%EB%A0%AC>
-{: .prompt-info }

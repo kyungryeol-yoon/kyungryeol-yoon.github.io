@@ -1,10 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] kubectl version command"
 date: 2022-08-12
 tags: [kubernetes, kubectl, command, version]
-# comments: true
-# pin: true
 ---
 
 ## 기본 구조
@@ -14,8 +11,7 @@ tags: [kubernetes, kubectl, command, version]
 kubectl version
 ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 
@@ -37,5 +33,4 @@ kubectl version
     kubectl version --server
     ```
 
-> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-{: .prompt-info }
+> 💡 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

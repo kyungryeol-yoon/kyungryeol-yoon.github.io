@@ -11,7 +11,6 @@ tags: [k6, test, javascript, open source]
 
 > Load Test Type
 - <https://grafana.com/docs/k6/latest/testing-guides/test-types/>
-{: .prompt-info }
 
 ## 주요 성능 지표
 
@@ -115,7 +114,6 @@ export function teardown(data) {
 
 > Test Life Cycle
 - <https://grafana.com/docs/k6/latest/using-k6/test-lifecycle/>
-{: .prompt-info }
 
 ## Test Code 작성 방법
 
@@ -143,16 +141,13 @@ export default function () {
 
 > - K6 Web Page Test : <https://test.k6.io>
 - K6 API Test : <https://test-api.k6.io>
-{: .prompt-info }
 
 > - 1명의 가상 유저가 한번만 default function을 호출하는 것이 아닌, 60초 동안 해당 함수를 계속 호출한다.
 - 즉, default function을 1명씩 1번 호출해서 총 10번 호출하는 것이 아닌, 1명의 가상유저가 5~10번 정도 호출한다.
-{: .prompt-info }
 
 > - Production 환경이 아닌 Dev 또는 Staging 환경에서 진행
 - 성능을 분석할 때, 절대 평균값으로 판단하지 않기
 - 클라우드 환경을 이용한다면, k6를 테스트할 때 Scale Up, Out에 주의
-{: .prompt-warning }
 
 ### Test Code 작성 예시
 
@@ -258,7 +253,6 @@ export const options = {
  
 > 참고
   - <https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/>
-{: .prompt-info }
 
 #### Trend 관련
 
@@ -329,11 +323,9 @@ export function scenarioFunc(token) {
 
 > K6 HTTP Module
 - <https://grafana.com/docs/k6/latest/javascript-api/k6-http/>
-{: .prompt-info }
 
 > K6 JavaScript API
 - <https://grafana.com/docs/k6/latest/javascript-api/>
-{: .prompt-info }
 
 ### Result
 
@@ -500,16 +492,12 @@ scenario2 ✓ [======================================] 1 VUS 10s
 
 > 출력 가능한 옵션
 - <https://grafana.com/docs/k6/latest/results-output/real-time/>
-{: .prompt-info }
 
 > Swagger API 관련
 - <https://k6.io/blog/load-testing-your-api-with-swagger-openapi-and-k6/>
-{: .prompt-info }
 
 > Postman 관련
 - <https://grafana.com/blog/2020/04/19/load-testing-your-api-with-postman/>
-{: .prompt-info }
 
 > k6-learn
 - <https://github.com/grafana/k6-learn>
-{: .prompt-info }

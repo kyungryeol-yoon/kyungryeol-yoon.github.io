@@ -1,10 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] kubectl port-forward command"
 date: 2022-11-19
 tags: [kubernetes, kubectl, command, port-forward]
-# comments: true
-# pin: true
 ---
 
 ## 기본 구조
@@ -28,8 +25,7 @@ kubectl port-forward replicaset/mongo-75f59d57f4 28015:27017
 kubectl port-forward service/mongo 28015:27017
 ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 
@@ -45,5 +41,4 @@ kubectl port-forward service/mongo 28015:27017
     kubectl port-forward my-pod 127.0.0.1:8080:80
     ```
 
-> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-{: .prompt-info }
+> 💡 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

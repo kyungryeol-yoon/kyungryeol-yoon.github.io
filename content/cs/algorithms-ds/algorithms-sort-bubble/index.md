@@ -1,10 +1,8 @@
 ---
-# layout: post
 title: "[Algorithms | C++] Bubble sort : 버블 정렬"
 date: 2016-02-02
 # excerpt: 서로 인접한 두 원소를 검사하여 정렬하는 알고리즘
 tags: [algorithms, cpp, bubble sort]
-# comments: true
 ---
 
 ## 버블 정렬(Bubble sort) 알고리즘의 개념
@@ -109,4 +107,3 @@ void DoubleList::BubbleSort() {
 
 > 버블 정렬 - 위키백과 참고
 - <https://ko.wikipedia.org/wiki/%EA%B1%B0%ED%92%88_%EC%A0%95%EB%A0%AC>
-{: .prompt-info }

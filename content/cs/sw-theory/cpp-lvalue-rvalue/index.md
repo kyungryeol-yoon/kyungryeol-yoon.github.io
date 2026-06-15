@@ -1,9 +1,7 @@
 ---
-# layout: post
 title: "[C++] Lvalue와 Rvalue"
 date: 2016-03-20
 tags: [left value, right value, cpp, programming]
-# comments: true
 ---
 
 ## Lvalue (Left-value)

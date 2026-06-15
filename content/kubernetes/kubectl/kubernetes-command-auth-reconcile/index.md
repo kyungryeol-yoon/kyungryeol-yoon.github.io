@@ -1,10 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] kubectl auth reconcile command"
 date: 2022-11-10
 tags: [kubernetes, kubectl, command, auth reconcile]
-# comments: true
-# pin: true
 ---
 
 ## 기본 구조
@@ -16,8 +13,7 @@ kubectl auth reconcile -f [파일 경로]
 kubectl auth reconcile -f ./rbac.yaml
 ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 
@@ -33,5 +29,4 @@ kubectl auth reconcile -f ./rbac.yaml
     kubectl auth reconcile -f ./rbac.yaml --dry-run
     ```
 
-> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-{: .prompt-info }
+> 💡 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

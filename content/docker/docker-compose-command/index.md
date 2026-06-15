@@ -21,8 +21,7 @@ docker-compose --version
 docker-compose up [옵션] [서비스명]
 ```
 
-> 특정 서비스들의 경우, 백그라운드로 실행하지 않으면 Container가 생성 및 실행되며, 바로 종료될 수 있다.
-{: .prompt-info }
+> 💡 특정 서비스들의 경우, 백그라운드로 실행하지 않으면 Container가 생성 및 실행되며, 바로 종료될 수 있다.
 
 ## 현재 동작중인 Container 상태를 확인
 
@@ -46,8 +45,7 @@ docker-compose run
 
 - 만약 특정 서비스에서 `/bin/bash`를 실행시켜 Shell 환경으로 진입하고 싶다면 아래와 같은 명령어를 이용하면 된다.
 
-> 참고로 서비스명과 Container명은 다르다.
-{: .prompt-info }
+> 💡 참고로 서비스명과 Container명은 다르다.
 
 - 서비스명은 `docker-compose.yml`의 `services:` 밑에 작성한 서비스 이름이다.
 
@@ -79,7 +77,6 @@ docker-compose restart
 ```bash
 docker-compose restart [서비스명]
 ```
-{: .prompt-tip }
 
 ## docker-compose로 생성한 Container들을 일괄 삭제
 
@@ -87,8 +84,7 @@ docker-compose restart [서비스명]
 docker-compose rm
 ```
 
-> 삭제 전, 관련 Container들을 종료 시켜두어야 한다.
-{: .prompt-info }
+> 💡 삭제 전, 관련 Container들을 종료 시켜두어야 한다.
 
 ## 실행중인 Container를 강제로 정지
 
@@ -107,8 +103,7 @@ docker-compose kill -s SIGINT
 docker-compose down
 ```
 
-> `docker-compose down --rmi all` 명령을 사용한다면 모든 Image까지 삭제한다.
-{: .prompt-info }
+> 💡 `docker-compose down --rmi all` 명령을 사용한다면 모든 Image까지 삭제한다.
 
 ## 서비스 포트 번호의 설정 확인
 
@@ -123,5 +118,4 @@ docker-compose port nginx 80
 docker-compose config
 ```
 
-> `docker-compose.yml`의 내용을 출력 해주므로 많이 쓸 일은 없다.
-{: .prompt-info }
+> 💡 `docker-compose.yml`의 내용을 출력 해주므로 많이 쓸 일은 없다.

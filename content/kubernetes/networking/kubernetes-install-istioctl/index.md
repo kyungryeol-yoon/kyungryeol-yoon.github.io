@@ -13,7 +13,6 @@ export PATH=$PATH:$HOME/.istioctl/bin
 
 > istioctl 참고
 - <https://github.com/istio/istio/releases>
-{: .prompt-info }
 
 ## istio 관련 배포 확인
 

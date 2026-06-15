@@ -4,12 +4,10 @@ date: 2024-11-30
 tags: [kubernetes, kong, ingress, controller, gateway, api]
 ---
 
-> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
-{: .prompt-info }
+> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 
 > Kong Ingress Controller 참고
 - <https://docs.konghq.com/kubernetes-ingress-controller/latest/>
-{: .prompt-info }
 
 ## Install the experimental Gateway API CRDs
 

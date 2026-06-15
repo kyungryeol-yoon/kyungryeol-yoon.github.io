@@ -19,8 +19,7 @@ tags: [kubernetes, grafana, promtail, install]
 - Prometheus가 저장소와 polling 역할을 같이 담당하는 반면 Promtail은 저장소의 역할은 하지 않고 로그를 찾아 저장소로 push 하는 역할을 한다.
 - 하지만 설정 방식이나 문법은 크게 차이가 없다.
 
-> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
-{: .prompt-info }
+> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 
 ## Install the Promtail Helm charts
 
@@ -32,14 +31,12 @@ helm install promtail grafana/promtail --namespace [NAMESPACE NAME]
 
 > Promtail 설치 참고
 - <https://grafana.com/docs/loki/latest/clients/promtail/installation/>
-{: .prompt-info }
 
 ## Customize Default Configuration
 
 - values.yaml 수정
 
-  > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
-  {: .prompt-info }
+  > 💡 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   
   - Chart
     - <https://github.com/grafana/helm-charts/tree/main/charts/promtail>

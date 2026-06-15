@@ -4,12 +4,10 @@ date: 2021-09-11
 tags: [kubernetes, gitlab, runner]
 ---
 
-> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
-{: .prompt-info }
+> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 
 > gitlab runner 참고
 - <https://docs.gitlab.com/runner/install/kubernetes.html>
-{: .prompt-info }
 
 ## Helm Chart를 사용하여 GitLab Runner 설치
 
@@ -32,7 +30,6 @@ tags: [kubernetes, gitlab, runner]
 
 > values.yaml 참고
 - <https://gitlab.com/gitlab-org/charts/gitlab-runner/blob/main/values.yaml>
-{: .prompt-info }
 
 - gitlab과 연결을 위해 아래와 같이 설정
 
@@ -136,8 +133,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
 - `<CONFIG_VALUES_FILE>`은 커스텀 설정이 포함된 파일의 경로. Helm Chart를 사용하여 GitLab Runner 설정하기를 참고
 - `<RELEASE-NMAE>`은 차트를 설치할 때 지어주는 이름. Helm Chart를 사용하여 GitLab Runner 설치하기에서는 gitlab-runner라고 했다.
 
-> GitLab Runner Helm Chart를 최신 버전이 아닌 특정 버전으로 업데이트하길 원한다면, `helm upgrade` 명령어에 `--version <RUNNER_HELM_CHART_VERSION>`을 추가
-{: .prompt-info }
+> 💡 GitLab Runner Helm Chart를 최신 버전이 아닌 특정 버전으로 업데이트하길 원한다면, `helm upgrade` 명령어에 `--version <RUNNER_HELM_CHART_VERSION>`을 추가
 
 ## Kubernetes RBAC 설정
 
@@ -243,8 +239,7 @@ helm upgrade --namespace <NAMESPACE> -f <CONFIG_VALUES_FILE> <RELEASE-NAME> gitl
   kubectl get rolebindings hello-rb -o yaml
   ```
 
-> 만약 gitlab-ci.yml 에서 runner의 tag 또는 name을 지정할 경우 helm의 values.yaml에서 tags 혹은 name에 값을 설정해주면 된다.
-{: .prompt-info }
+> 💡 만약 gitlab-ci.yml 에서 runner의 tag 또는 name을 지정할 경우 helm의 values.yaml에서 tags 혹은 name에 값을 설정해주면 된다.
 
 ```yaml
   ## Specify the tags associated with the runner. Comma-separated list of tags.

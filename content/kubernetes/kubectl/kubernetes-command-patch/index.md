@@ -1,9 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] kubectl patch command"
 date: 2023-02-21
 tags: [kubernetes, kubectl, command, patch]
-# comments: true
 ---
 
 ## 기본 구조
@@ -15,8 +13,7 @@ kubectl patch [리소스 종류] [리소스 이름] [수정할 필드]=[새 값]
 kubectl patch deployment my-deployment -p '{"spec":{"replicas":3}}'
 ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 
@@ -32,5 +29,4 @@ kubectl patch deployment my-deployment -p '{"spec":{"replicas":3}}'
     kubectl patch deployment my-deployment --type=json -p '[{"op":"replace","path":"/spec/replicas","value":3}]'
     ```
 
-> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-{: .prompt-info }
+> 💡 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

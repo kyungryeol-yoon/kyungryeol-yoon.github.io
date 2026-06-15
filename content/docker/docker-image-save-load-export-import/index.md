@@ -67,8 +67,7 @@ tags: [docker, image, save, load, export, import]
   sudo docker import file_name.tar image_name
   ```
 
-> root 권한으로 실행하지 않을 경우, 액세스 권한이 없는 파일들이 포함되지 않는 문제가 발생할 수 있다.
-{: .prompt-info }
+> 💡 root 권한으로 실행하지 않을 경우, 액세스 권한이 없는 파일들이 포함되지 않는 문제가 발생할 수 있다.
 
 ## Export & Import 와 Save & Load의 차이
 

@@ -1,9 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] kubectl explain command"
 date: 2023-08-07
 tags: [kubernetes, kubectl, command, explain]
-# comments: true
 ---
 
 ## 기본 구조
@@ -15,8 +13,7 @@ kubectl explain [리소스 종류]
 kubectl explain podPod
 ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 
@@ -38,5 +35,4 @@ kubectl explain podPod
     kubectl explain pod --show-defaults
     ```
 
-> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-{: .prompt-info }
+> 💡 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

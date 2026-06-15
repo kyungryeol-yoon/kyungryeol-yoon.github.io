@@ -1,10 +1,8 @@
 ---
-# layout: post
 title: "Backend & Web 경력직(3~5) 면접 정리"
 date: 2020-07-30
 # excerpt: "BackEnd & Web 경력직(3~5) 면접과 관련하여 정리"
 tags: [web, spring, java, programming, mvc, interview, backend, jpa, mybatis, collection]
-# comments: true
 ---
 
 ### Java Test(TDD 관련) 어디까지 구성해보았는가?(보통 프로젝트 하나를 혼자서 담당하였다면 test 구문 짜는게 엄청 오래 걸리고 힘들다. 혼자서 어디까지 커버하였는가?)

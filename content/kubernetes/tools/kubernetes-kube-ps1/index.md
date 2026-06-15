@@ -15,5 +15,4 @@ kubeoff 명령어를 실행해서 kube-ps을 비활성화 시킬수도 있습니
 (⎈ |greentea:kube-system) $
 ```
 
-> kube-ps1에 대한 설정 방법은 [설치 문서](https://github.com/jonmosco/kube-ps1)를 참고하시기 바랍니다.
-{: .prompt-info }
+> 💡 kube-ps1에 대한 설정 방법은 [설치 문서](https://github.com/jonmosco/kube-ps1)를 참고하시기 바랍니다.

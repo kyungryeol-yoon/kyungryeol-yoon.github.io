@@ -27,7 +27,6 @@ tags: [flutter, sdk]
 
 > Install Flutter
 - <https://docs.flutter.dev/get-started/install>
-{: .prompt-info }
 
 ## **flutter 시스템 환경 변수 설정**
 
@@ -81,8 +80,7 @@ tags: [flutter, sdk]
   - **➡️cmdline-tools 라는 플러그인 설치가 필요합니다.**
 - **❌ Anroid license status unknown.**
   - **➡️안드로이드 관련 라이센스 동의가 필요합니다.**
-    > 명령어를 입력하여 라이센스 동의를 하라고 알려주고 있는데, 먼저 명령어를 사용하기 위해서는 cmdline-tools 라는 플러그인이 설치되어야 명령어를 사용할 수 있다.
-    {: .prompt-info }
+    > 💡 명령어를 입력하여 라이센스 동의를 하라고 알려주고 있는데, 먼저 명령어를 사용하기 위해서는 cmdline-tools 라는 플러그인이 설치되어야 명령어를 사용할 수 있다.
 
 - **❌ Visual Studio not installed: this is necessary to develop Windows apps**
   - **➡️**Visual Studio 개발 앱이 설치되어 있지 않다. (Visual Studio를 사용하지 않는다면, 무시해도 좋다. cf. VS Code 와 다르다.)
@@ -94,13 +92,11 @@ tags: [flutter, sdk]
 flutter doctor --andriod-licenses
 ```
 
-> Android **sdkmanager** not found. Update to the latest Android SDK and ensure that the **cmdline-tools** are installed to resolve this.
-{: .prompt-danger }
+> 🚨 Android **sdkmanager** not found. Update to the latest Android SDK and ensure that the **cmdline-tools** are installed to resolve this.
 
 #### **해결방법: SDK Manager 에서 cmdline-tools 설치**
 
-> [SDK Manager 설치 참고](https://kyungryeol-yoon.github.io/posts/install-android-sdk-manager/)
-{: .prompt-info }
+> 💡 [SDK Manager 설치 참고](https://kyungryeol-yoon.github.io/posts/install-android-sdk-manager/)
 
 1. **Andriod Studio 실행**
 2. **More Actions  SDK Manager**

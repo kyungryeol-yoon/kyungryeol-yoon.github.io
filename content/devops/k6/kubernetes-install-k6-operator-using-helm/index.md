@@ -4,8 +4,7 @@ date: 2024-07-29
 tags: [kubernetes, k6, install, helm, testing tool, open source]
 ---
 
-> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
-{: .prompt-info }
+> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 
 ## Install k6-operator
 ```bash
@@ -16,12 +15,10 @@ helm install k6-operator grafana/k6-operator
 
 > K6-operator 설치 참고
 - <https://grafana.com/docs/k6/latest/set-up/set-up-distributed-k6/install-k6-operator/>
-{: .prompt-info }
 
 ## Customize Default Configuration
 - values.yaml 수정
-  > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
-  {: .prompt-info }
+  > 💡 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   - Chart
     - <https://github.com/grafana/k6-operator/tree/main/charts/k6-operator>
   - Release file (.tgz)
@@ -98,14 +95,11 @@ helm install k6-operator grafana/k6-operator -f override-values.yaml -n [NAMESPA
 
 > **Run k6 사용법**
   - <https://grafana.com/docs/k6/latest/set-up/set-up-distributed-k6/usage/>
-{: .prompt-info }
 
 > **Stream real-time**
   - <https://grafana.com/docs/k6/latest/results-output/real-time/>
-{: .prompt-info }
 
-> [InfluxDB 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-influxdb-using-helm/)
-{: .prompt-info }
+> 💡 [InfluxDB 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-influxdb-using-helm/)
 
 ### Dockerfile Build with xk6-output-influxdb
 ```Dockerfile
@@ -209,8 +203,7 @@ export default function () {
 kubectl -n [NAMESPACE NAME] create configmap test-script --from-file /home/documents/k6/scritps.js 
 ```
 
-> [K6 Load Test 참고](https://kyungryeol-yoon.github.io/posts/k6-load-testing-tool/)
-{: .prompt-info }
+> 💡 [K6 Load Test 참고](https://kyungryeol-yoon.github.io/posts/k6-load-testing-tool/)
 
 ## Uninstall the Chart
 ```bash

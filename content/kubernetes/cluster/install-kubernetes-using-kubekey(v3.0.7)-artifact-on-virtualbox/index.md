@@ -16,7 +16,6 @@ tags: [kubernetes, kubekey, artifact, install]
 - <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
 - <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
 - <https://github.com/kubesphere/kubekey/blob/v3.0.13/docs/manifest-example.md>
-{: .prompt-info }
 
 ## script 다운로드
 
@@ -537,7 +536,6 @@ sudo ./kk init registry -f config-sample.yaml -a artifact-3.0.7.tar.gz
   ```bash
   sudo passwd root
   ```
-{: .prompt-info }
 
 ## Harbor 인증서 복사 및 업데이트 (harbor curl: (60) SSL certificate problem: unable to get local issuer certificate)
 
@@ -557,8 +555,7 @@ ls -lrt /etc/ssl/certs
 systemctl restart containerd
 ```
 
-> harbor 주소 : [harbor 설치한 ip]:80
-{: .prompt-info }
+> 💡 harbor 주소 : [harbor 설치한 ip]:80
 
 ## Harbor 프로젝트 생성 및 수정
 
@@ -654,7 +651,6 @@ sudo ./kk artifact image push -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```bash
 docker login [your.host.com]:port -u username -p password
 ```
-{: .prompt-info }
 
 ## Cluster 설치
 
@@ -666,17 +662,14 @@ sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz
 ```bash
 sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz --with-packages
 ```
-{: .prompt-tip }
 
 > `--skip-push-images`를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
 ```bash
 sudo ./kk create cluster -f config-sample.yaml -a artifact-3.0.7.tar.gz --skip-push-images
 ```
-{: .prompt-tip }
 
 > kubekey command 참고
 - <https://github.com/kubesphere/kubekey/blob/master/docs/commands/kk-upgrade.md>
-{: .prompt-info }
 
 ### Cluster 설치하면서 log 확인
 
@@ -698,7 +691,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
     ```bash
     export KUBECONFIG=$HOME/.kube/config
     ```
-{: .prompt-danger }
 
 > [ERROR] error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
 ```bash
@@ -706,4 +698,3 @@ chown -R kubelet:kubelet /var/lib/kubelet/pods
 chmod 750 /var/lib/kubelet/pods
 systemctl restart kubelet
 ```
-{: .prompt-danger }

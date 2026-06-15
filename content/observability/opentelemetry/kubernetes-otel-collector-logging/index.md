@@ -270,8 +270,7 @@ graph TD
             exporters: [loki]
   ```
 
-  > 참고 : <https://opentelemetry.io/blog/2024/otel-collector-container-log-parser/>
-  {: .prompt-info }
+  > 💡 참고 : <https://opentelemetry.io/blog/2024/otel-collector-container-log-parser/>
 
 ### Receiver Configuration - Plan A
 

@@ -247,4 +247,3 @@ tags: [redis, acl, database, message broker]
 
 > ACL 참고
 - <https://redis.io/docs/latest/operate/oss_and_stack/management/security/acl>
-{: .prompt-info }

@@ -20,12 +20,10 @@ description: "시계열 데이터베이스(TSDB)인 InfluxDB의 개념과 핵심
 > **Key Concepts 참고**
   - **InfluxDB v1** : <https://docs.influxdata.com/influxdb/v1/concepts/key_concepts/>
   - **InfluxDB v2** : <https://docs.influxdata.com/influxdb/v2/reference/key-concepts/>
-{: .prompt-info }
 
 > **Glossary 참고**
   - **InfluxDB v1** : <https://docs.influxdata.com/influxdb/v1/concepts/glossary/>
   - **InfluxDB v2** : <https://docs.influxdata.com/influxdb/v2/reference/glossary/>
-{: .prompt-info }
 
 ### InfluxDB는 2가지 핵심 기능
 - **Continuous Query(Task)** : 일정 주기마다 데이터를 처리하여 새롭게 저장하는 기능
@@ -96,8 +94,7 @@ CREATE RETENTION POLICY <retention_policy_name> ON <database_name> DURATION <dur
   - 이미 존재하는 것과 동일한 retention policy을 생성하려고 시도하면 InfluxDB가 에러를 리턴하지 않는다.
   - 기존 retention policy과 이름은 같지만 속성이 다른 retention policy을 만들려고 하면 InfluxDB에서 에러를 반환한다.
 
-> CREATE DATABASE 조회에서 새로운 RETENTION POLICY를 지정할 수도 있다.
-{: .prompt-info }
+> 💡 CREATE DATABASE 조회에서 새로운 RETENTION POLICY를 지정할 수도 있다.
 
 ### RETENTION POLICY 수정
 - ALTER RETENTION POLICY 쿼리는 DURATION, REPLICATION, SHARD DURATION 또는 DEFAULT 중 적어도 하나의 RETENTION POLICY 속성을 선언해야 한다.
@@ -116,8 +113,7 @@ CREATE RETENTION POLICY <retention_policy_name> ON <database_name> DURATION <dur
   ```
   - what_is_time은 원래 REPLICATION 인수 1을 유지한다.
 
-> 성공적인 ALTER RETENTION POLICY 쿼리는 빈 결과를 반환한다.
-{: .prompt-info }
+> 💡 성공적인 ALTER RETENTION POLICY 쿼리는 빈 결과를 반환한다.
 
 ### RETENTION POLICY 삭제
 ```
@@ -131,7 +127,6 @@ DROP RETENTION POLICY <retention_policy_name> ON <database_name>
 
 > - 성공적인 DROP RETENTION POLICY 쿼리는 빈 결과를 반환한다.
 - 존재하지 않는 RETENTION POLICY을 삭제하려고 하면 InfluxDB에서 에러를 반환하지는 않는다.
-{: .prompt-info }
 
 ## InfluxDB Config file 설정
 - InfluxDB 상에서 기본 설정들을 바꿔주기 위해서는 Influxdb.config 파일을 수정해야 한다.
@@ -172,7 +167,6 @@ DROP RETENTION POLICY <retention_policy_name> ON <database_name>
 
 > Config 참고
 - <https://docs.influxdata.com/influxdb/v1/administration/config/>
-{: .prompt-info }
 
 - Influx config에서 retenton policy 설정
   ```conf

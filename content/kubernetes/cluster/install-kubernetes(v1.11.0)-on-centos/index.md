@@ -1,10 +1,8 @@
 ---
-# layout: post
 title: "[Kubernetes] Install Kubernetes(v1.11.0) on CentOS"
 date: 2020-01-28
 # excerpt: "Kubernetes Centos 설치법"
 tags: [kubernetes, centos, install]
-# comments: true
 ---
 
 ## Configure the master node

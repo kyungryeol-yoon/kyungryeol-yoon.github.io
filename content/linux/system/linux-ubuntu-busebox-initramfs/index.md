@@ -68,8 +68,6 @@ Enter 'help' for a list of built-in commands.
 fsck /dev/sda3
 ```
 
-> 대상경로는 사용자마다 다를 수 있으니 본인의 실행시켜야하는 대상경로를 확인해야 한다.
-{: .prompt-info }
+> 💡 대상경로는 사용자마다 다를 수 있으니 본인의 실행시켜야하는 대상경로를 확인해야 한다.
 
-> 대상경로확인은 exit 치면 나온다.
-{: .prompt-info }
+> 💡 대상경로확인은 exit 치면 나온다.

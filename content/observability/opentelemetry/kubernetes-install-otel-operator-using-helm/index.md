@@ -4,8 +4,7 @@ date: 2024-06-09
 tags: [kubernetes, opentelemetry, operator, cert-manager, install, helm]
 ---
 
-> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
-{: .prompt-info }
+> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 
 ## 🔀 OTEL 예시 흐름:
 
@@ -41,8 +40,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/do
 - 사용 편의성 향상
   Cert-manager를 사용하면 수동으로 인증서를 발급하고 관리하는 번거로움 없이 OpenTelemetry Collector를 안전하게 배포하고 운영할 수 있다.
 
-> OTel(OpenTelemetry) 설치 시 반드시 Cert-manager가 필요한 것은 아니지만, HTTPS를 사용하여 보안을 강화하려는 경우 필수. Cert-manager는 Kubernetes 환경에서만 사용 가능.
-{: .prompt-warning }
+> ⚠️ OTel(OpenTelemetry) 설치 시 반드시 Cert-manager가 필요한 것은 아니지만, HTTPS를 사용하여 보안을 강화하려는 경우 필수. Cert-manager는 Kubernetes 환경에서만 사용 가능.
 
 ## Install OpenTelemetry Operator
 
@@ -52,8 +50,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/do
   kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
   ```
 
-  > [OpenTelemetry Operator - 설치 참고](https://github.com/open-telemetry/opentelemetry-operator)
-  {: .prompt-info }
+  > 💡 [OpenTelemetry Operator - 설치 참고](https://github.com/open-telemetry/opentelemetry-operator)
 
 - 2. Install Helm Chart - OpenTelemetry Operator
 
@@ -63,8 +60,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/do
   helm install opentelemetry-operator open-telemetry/opentelemetry-operator --set "manager.collectorImage.repository=otel/opentelemetry-collector-k8s"
   ```
 
-  > [OpenTelemetry Operator - Helm 설치 참고](https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator)
-  {: .prompt-info }
+  > 💡 [OpenTelemetry Operator - Helm 설치 참고](https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator)
 
 ### Opentelemetry Operator가 관리하는 기능 두가지
 

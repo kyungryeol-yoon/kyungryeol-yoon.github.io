@@ -9,8 +9,7 @@ tags: [flutter, tabbarview]
 - **정의**: 일반적으로 "RootTab"은 여러 개의 탭을 상단에 배치하여 사용자가 여러 화면을 쉽게 전환할 수 있게 하는 UI 구성 요소를 의미한다.
 - **구성**: 각 탭은 사용자가 선택할 수 있는 특정 항목을 나타낸다. 이 탭은 일반적으로 TabBar 위젯을 통해 생성된다.
 
-> [설명 참고](https://kyungryeol-yoon.github.io/posts/root-tab)
-{: .prompt-info }
+> 💡 [설명 참고](https://kyungryeol-yoon.github.io/posts/root-tab)
 
 ## TabBarView
 

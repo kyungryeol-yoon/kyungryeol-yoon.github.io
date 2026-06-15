@@ -158,4 +158,3 @@ if dependant.background_tasks_param_name:
 
 > FastAPI Background Tasks 참고
 - <https://fastapi.tiangolo.com/tutorial/background-tasks/>
-{: .prompt-info }

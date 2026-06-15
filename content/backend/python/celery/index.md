@@ -9,8 +9,7 @@ tags: [celery, task, queue]
 - 작업단위를 Task, 작업자를 Worker라고 함.
 - 메시지 브로커를 사용함.
 
-> 주로 RabbitMQ나 Redis를 사용하는데, RabbitMQ와 궁합이 가장 잘 맞는다고 알려져있음.
-{: .prompt-info }
+> 💡 주로 RabbitMQ나 Redis를 사용하는데, RabbitMQ와 궁합이 가장 잘 맞는다고 알려져있음.
 
 
 ## 메세지 전달을 기반으로 한 비동기 task Queue

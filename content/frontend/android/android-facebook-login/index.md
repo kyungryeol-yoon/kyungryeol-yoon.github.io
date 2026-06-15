@@ -20,8 +20,7 @@ tags: [android, programming, java, facebook, login]
 
 ## Login 요청 버튼 구현
 
-> Arrays.asList를 이용하여 권한을 추가로 요청하실 수 있습니다. 일부 권한은 페이스북 앱 리뷰를 통과해야 합니다.
-{: .prompt-info }
+> 💡 Arrays.asList를 이용하여 권한을 추가로 요청하실 수 있습니다. 일부 권한은 페이스북 앱 리뷰를 통과해야 합니다.
 
 ```java
 private void isLoginFacebook() {

@@ -51,4 +51,3 @@ py -버전 -m venv [가상환경이름]
 
 > venv 참고
 - <https://docs.python.org/3/library/venv.htm>
-{: .prompt-info }

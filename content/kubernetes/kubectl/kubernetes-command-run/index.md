@@ -1,9 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] kubectl run command"
 date: 2023-04-20
 tags: [kubernetes, kubectl, command, run]
-# comments: true
 ---
 
 ## 기본 구조
@@ -15,8 +13,7 @@ kubectl run [파드 이름] --image=[이미지 이름]
 kubectl run nginx --image=nginx
 ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 - `--image`: 실행할 이미지 이름을 지정
@@ -37,5 +34,4 @@ kubectl run nginx --image=nginx
     kubectl run nginx --image=nginx --port=80
     ```
 
-> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-{: .prompt-info }
+> 💡 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

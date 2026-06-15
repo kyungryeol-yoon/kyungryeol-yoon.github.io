@@ -32,8 +32,7 @@ cat /etc/passwd
 cat -n /etc/passwd
 ```
 
-> `#`는 주석을 의미한다.
-{: .prompt-info }
+> 💡 `#`는 주석을 의미한다.
 
 ### 예제 3)
 

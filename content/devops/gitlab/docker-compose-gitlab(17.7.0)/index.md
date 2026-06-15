@@ -4,8 +4,7 @@ date: 2021-04-11
 tags: [docker, install, gitlab]
 ---
 
-> [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose(1.27.4)/)
-{: .prompt-info }
+> 💡 [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose(1.27.4)/)
 
 ## GitLab Docker 이미지
 
@@ -127,8 +126,6 @@ Confirm password:
 Password successfully updated for user with username root.
 ```
 
-> [Docker Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/docker-install-gitlab-runner/)
-{: .prompt-info }
+> 💡 [Docker Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/docker-install-gitlab-runner/)
 
-> [Kubernetes Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner-using-helm/)
-{: .prompt-info }
+> 💡 [Kubernetes Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner-using-helm/)

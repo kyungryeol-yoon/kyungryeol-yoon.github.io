@@ -1,10 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] kubeadm join command"
 date: 2022-10-22
 tags: [kubernetes, kubeadm, command, join]
-# comments: true
-# pin: true
 ---
 
 ## 기본 구조
@@ -16,8 +13,7 @@ kubeadm join [Master Node IP]:[Port] --token [Token] --discovery-token-ca-cert-h
 kubeadm join 192.168.0.1:6443 --token abcdef.1234567890abcdef --discovery-token-ca-cert-hash sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
 ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 
@@ -33,8 +29,7 @@ kubeadm join 192.168.0.1:6443 --token abcdef.1234567890abcdef --discovery-token-
     kubeadm join 192.168.0.1:6443 --discovery-token-ca-certhash\ sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
     ```
 
-> `\` 는 아랫줄까지 한줄로 쓰겠다는 의미
-{: .prompt-tip }
+> 💡 `\` 는 아랫줄까지 한줄로 쓰겠다는 의미
 
 - `--control-plane`: Master Node에서 실행되는 Kubernetes 컨트롤 플레인 구성 요소를 설치
     ```bash
@@ -65,5 +60,4 @@ kubeadm join 192.168.0.1:6443 --token abcdef.1234567890abcdef --discovery-token-
     kubeadm join 192.168.0.1:6443 --token abcdef.1234567890abcdef --discovery-token-ca-cert-hash sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef --skip-preflight-checks
     ```
 
-> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-{: .prompt-info }
+> 💡 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

@@ -48,7 +48,6 @@ tags: [kubernetes, metrics-server]
 
 > Install metrics-server 참고
 - <https://github.com/kubernetes-sigs/metrics-server>
-{: .prompt-info }
 
 ## Metrics-Server 설치
 

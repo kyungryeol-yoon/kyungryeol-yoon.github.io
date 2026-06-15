@@ -17,7 +17,6 @@ tags: [kubernetes, kubectl-neat]
 
 > Install krew 참고
 - <https://github.com/kubernetes-sigs/krew>
-{: .prompt-info }
 
 ```
 (
@@ -43,8 +42,7 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 kubectl krew [Command]
 ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ## Install neat with krew
 
@@ -52,8 +50,7 @@ kubectl krew [Command]
 kubectl krew install neat
 ```
 
-> kubectl-neat에 대한 설정 방법은 [설치 문서](https://github.com/itaysk/kubectl-neat)를 참고
-{: .prompt-info }
+> 💡 kubectl-neat에 대한 설정 방법은 [설치 문서](https://github.com/itaysk/kubectl-neat)를 참고
 
 ### 기본 구조
 

@@ -1,9 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] kubectl copy command"
 date: 2023-06-11
 tags: [kubernetes, kubectl, command, copy]
-# comments: true
 ---
 
 ## 기본 구조
@@ -15,8 +13,7 @@ kubectl cp [소스] [대상]
 kubectl cp /path/to/local/file my-pod:/path/to/destination
 ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 - `-c`, `--container`: 컨테이너 이름을 지정
@@ -31,5 +28,4 @@ kubectl cp /path/to/local/file my-pod:/path/to/destination
     kubectl cp /path/to/local/file my-pod:/path/to/destination --no-preserve
     ```
 
-> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-{: .prompt-info }
+> 💡 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

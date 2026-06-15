@@ -16,7 +16,6 @@ tags: [kubernetes, kubekey, artifact, upgrade]
 - <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
 - <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
 - <https://github.com/kubesphere/kubekey/blob/v3.1.9/docs/manifest-example.md>
-{: .prompt-info }
 
 ## script 다운로드
 
@@ -120,7 +119,6 @@ failed: [LocalHost] [DownloadBinaries] exec failed after 1 retries: Failed to do
 
 > Components 참고
   - <https://github.com/kubesphere/kubekey/blob/v3.1.9/version/components.json>
-{: .prompt-info }
 
 ## Export Artifact
 
@@ -223,13 +221,11 @@ sudo ./kk upgrade cluster -f config-v1.32.4.yaml -a artifact-3.1.9.tar.gz
 ```bash
 sudo ./kk upgrade cluster -f config-v1.32.4.yaml -a artifact-3.1.9.tar.gz --skip-dependency-check
 ```
-{: .prompt-tip }
 
 > image 별도로 push 방법
 ```bash
 sudo ./kk artifact image push -f config-v1.32.4.yaml -a artifact-3.1.9.tar.gz
 ```
-{: .prompt-tip }
 
 > [ERROR] Harbor에 image push 할 때 Unauthorized 에러 발생 때
 - 다시 로그인
@@ -237,11 +233,9 @@ sudo ./kk artifact image push -f config-v1.32.4.yaml -a artifact-3.1.9.tar.gz
 docker login [your.host.com]:port -u username -p password
 sudo docker login https://cr.harbor.kubekey.com -u admin -p Harbor12345
 ```
-{: .prompt-danger }
 
 > kubekey command 참고
 - <https://github.com/kubesphere/kubekey/blob/master/docs/commands/kk-upgrade.md>
-{: .prompt-info }
 
 ### Upgrade log 확인
 

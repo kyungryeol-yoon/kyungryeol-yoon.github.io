@@ -33,8 +33,7 @@ head -5 /etc/passwd
 head -n 5 [파일명]
 ```
 
-> `-n` 옵션은 생략이 가능
-{: .prompt-info }
+> 💡 `-n` 옵션은 생략이 가능
 
 ### 예제2)
 

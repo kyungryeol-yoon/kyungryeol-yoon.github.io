@@ -6,7 +6,6 @@ tags: [kubernetes, install, kubectl]
 
 > 참고
 - <https://kubernetes.io/ko/docs/tasks/tools/install-kubectl-linux/>
-{: .prompt-info }
 
 
 ## Install kubectl

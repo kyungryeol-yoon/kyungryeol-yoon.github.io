@@ -4,8 +4,7 @@ date: 2021-09-19
 tags: [docker, install, harbor, docker-compose]
 ---
 
-> [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose(1.27.4)/)
-{: .prompt-info }
+> 💡 [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose(1.27.4)/)
 
 ## Harbor
 

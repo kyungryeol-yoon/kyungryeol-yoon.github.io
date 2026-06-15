@@ -16,7 +16,6 @@ tags: [kubernetes, kubekey, artifact, install]
 - <https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/images-list.txt>
 - <https://kubesphere.io/docs/v3.4/installing-on-linux/introduction/air-gapped-installation>
 - <https://github.com/kubesphere/kubekey/blob/v3.1.1/docs/manifest-example.md>
-{: .prompt-info }
 
 ## Multipass 접속을 위한 ssh key 생성
 
@@ -461,7 +460,6 @@ failed: [LocalHost] [DownloadBinaries] exec failed after 1 retries: Failed to do
 
 > Components 참고
   - <https://github.com/kubesphere/kubekey/blob/v3.1.1/version/components.json>
-{: .prompt-info }
 
 ### Export Artifact
 
@@ -747,8 +745,7 @@ multipass copy-files $HOME/.ssh/id_rsa_multipass kk-repo:/home/ubuntu/.ssh/id_rs
 sudo ./kk init registry -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
 ```
 
-> harbor 주소 : [harbor 설치한 ip]:80
-{: .prompt-info }
+> 💡 harbor 주소 : [harbor 설치한 ip]:80
 
 > [ERROR] ssh error
 - 각 node 별로 ssh가 안될시 root passwd가 맞지 않아 발생함.
@@ -756,7 +753,6 @@ sudo ./kk init registry -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
 ```bash
 sudo passwd root
 ```
-{: .prompt-danger }
 
 ### Harbor 인증서 복사 및 업데이트 (`harbor curl: (60) SSL certificate problem: unable to get local issuer certificate`)
 
@@ -766,7 +762,6 @@ sudo passwd root
 time="2025-05-01T22:53:12+09:00" level=fatal msg="pulling image: failed to pull and unpack image \"cr.harbor.kubekey.com/kubesphereio/kube-apiserver:v1.29.3\": failed to resolve reference \"cr.harbor.kubekey.com/kubesphereio/kube-apiserver:v1.29.3\": failed to do request: Head \"https://cr.harbor.kubekey.com:443/v2/kubesphereio/kube-apiserver/manifests/v1.29.3\": tls: failed to verify certificate: x509: certificate signed by unknown authority"
 , error: exit status 1
 ```
-{: .prompt-danger }
 
 #### Repo 및 각 Node의 인증서 복사
 
@@ -895,19 +890,16 @@ sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
 ```bash
 sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz --with-packages
 ```
-{: .prompt-tip }
 
 > image 별도로 push 방법
 ```bash
 sudo ./kk artifact image push -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz
 ```
-{: .prompt-tip }
 
 > `--skip-push-images`를 추가하면 harbor에 image를 push하는 과정으로 생략할 수 있다.
 ```bash
 sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz --skip-push-images
 ```
-{: .prompt-tip }
 
 > [ERROR] Harbor에 image push 할 때 Unauthorized 에러 발생 때
 - 다시 로그인
@@ -915,11 +907,9 @@ sudo ./kk create cluster -f config-v1.29.3.yaml -a artifact-3.1.1.tar.gz --skip-
 docker login [your.host.com]:port -u username -p password
 sudo docker login https://cr.harbor.kubekey.com -u admin -p Harbor12345
 ```
-{: .prompt-danger }
 
 > kubekey command 참고
 - <https://github.com/kubesphere/kubekey/blob/master/docs/commands/kk-upgrade.md>
-{: .prompt-info }
 
 #### Cluster 설치하면서 log 확인
 
@@ -941,7 +931,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
     ```bash
     export KUBECONFIG=$HOME/.kube/config
     ```
-{: .prompt-danger }
 
 > [ERROR] error making pod data directories: mkdir /var/lib/kubelet/pods/86cfe394-ba32-4a9f-ad65-1fb21f98a4ba: read-only file system
 ```bash
@@ -949,7 +938,6 @@ chown -R kubelet:kubelet /var/lib/kubelet/pods
 chmod 750 /var/lib/kubelet/pods
 systemctl restart kubelet
 ```
-{: .prompt-danger }
 
 ### Cluster 설치 완료
 

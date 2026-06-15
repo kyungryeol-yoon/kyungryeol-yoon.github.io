@@ -1,9 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] kubectl rollout command"
 date: 2023-09-17
 tags: [kubernetes, kubectl, command, rollout]
-# comments: true
 ---
 
 ## 기본 구조
@@ -15,8 +13,7 @@ kubectl rollout [하위 명령어] [리소스 종류]/[리소스 이름]
 kubectl rollout status deployment/my-deploymentmy-deployment 
 ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 
@@ -145,8 +142,7 @@ kubectl rollout pause deployment/my-deployment
     kubectl rollout pause deployment --selector=app=nginx
     ```
 
-> 일시 중지된 rollout 작업은 kubectl rollout resume 명령어를 사용하여 다시 시작할 수 있다. 이 명령어를 사용하면, rollout 작업이 이전 상태에서 재개된다.
-{: .prompt-danger }
+> 🚨 일시 중지된 rollout 작업은 kubectl rollout resume 명령어를 사용하여 다시 시작할 수 있다. 이 명령어를 사용하면, rollout 작업이 이전 상태에서 재개된다.
 
 ### 일시 중지된 rollout 작업 다시 시작
 
@@ -167,5 +163,4 @@ kubectl rollout resume deployment/my-deployment
     kubectl rollout resume deployment --selector=app=nginx
     ```
 
-> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-{: .prompt-info }
+> 💡 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

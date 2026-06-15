@@ -14,7 +14,6 @@ tags: [kubernetes, grafana, loki, install]
 
 > Loki 참고
 - <https://github.com/grafana/loki>
-{: .prompt-info }
 
 - "Like Prometheus, but for logs"
 - Prometheus가 metric을 시계열 데이터로 저장하기 위해 사용된다면 Loki는 log 데이터를 저장하기 위해 사용된다.
@@ -41,7 +40,6 @@ tags: [kubernetes, grafana, loki, install]
 
 > Manage storage 참고
 - <https://grafana.com/docs/loki/latest/operations/storage/>
-{: .prompt-info }
 
 - Loki는 chunk와 index라는 두 가지 유형의 데이터를 저장해야 한다.
 - Loki는 별도의 stream으로 log를 수신하며 각 steam은 tenant ID와 label set으로 고유하게 식별된다.
@@ -68,20 +66,17 @@ tags: [kubernetes, grafana, loki, install]
 
   > minio 참고
   - <https://blog.min.io/how-to-grafana-loki-minio/>
-  {: .prompt-info }
 
 ### Loki 설정
 
 > **설정 파일에 대한 자세한 내용**
 - <https://grafana.com/docs/loki/latest/configuration/>
 - common 아래에 설정을 하면 전체가 공통으로 사용할 설정을 하게 된다.
-{: .prompt-info }
 
 - Loki는 component별 microservice로 구성할 수 있다.
 
   > Component 참고
   - <https://grafana.com/docs/loki/latest/fundamentals/architecture/components/>
-  {: .prompt-info }
 
 - Loki의 component는 대략 아래와 같이 있다.
   - **Distributor** : client가 수신하는 stream을 처리하는 역할, steam의 유효성을 확인하고 여러 ingester로 병렬로 전송을 적절하게 제어
@@ -106,8 +101,7 @@ tags: [kubernetes, grafana, loki, install]
 - 이 단일 노드는 다수의 컨테이너로 구성되어 Loki 서버, Prometheus, Grafana 및 Prometheus 메트릭 저장소를 모두 단일 클러스터에 배포한다.
 - 이 단순한 배포 방식은 개발 및 테스트 용도로 적합할 수 있다.
 
-> [loki-stack 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-loki(v2.9.4)-stack-using-helm/)
-{: .prompt-info }
+> 💡 [loki-stack 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-loki(v2.9.4)-stack-using-helm/)
 
 ### 2. loki-distributed
 
@@ -115,8 +109,7 @@ tags: [kubernetes, grafana, loki, install]
 - 이 차트는 Loki의 구성 요소들을 다수의 노드로 분산시키고, 데이터를 보다 효율적으로 처리하고 처리 능력을 확장할 수 있도록 도와준다.
 - 분산된 Loki를 사용하면 대량의 로그를 처리하는 데 더 적합하며, 고가용성과 확장성을 갖추기 위해 다양한 구성을 가능하게 한다.
 
-> [loki-distributed 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-loki(v3.1.1)-distributed-using-helm/)
-{: .prompt-info }
+> 💡 [loki-distributed 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-loki(v3.1.1)-distributed-using-helm/)
 
 ## Architecture
 
@@ -267,7 +260,6 @@ tags: [kubernetes, grafana, loki, install]
 
     > Loki Storage 참고
     - <https://grafana.com/docs/loki/latest/storage/>
-    {: .prompt-info }
 
 ### Ruler
 
@@ -310,7 +302,6 @@ tags: [kubernetes, grafana, loki, install]
 
   > Retention 설정 참고
   - <https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period>
-  {: .prompt-info }
 
 ## API
 
@@ -330,4 +321,3 @@ tags: [kubernetes, grafana, loki, install]
 
 > API 참고
 - <https://grafana.com/docs/loki/latest/reference/loki-http-api/>
-{: .prompt-info }

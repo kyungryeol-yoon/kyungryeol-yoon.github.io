@@ -36,8 +36,7 @@ py -3.10 -m venv venv
 python3.10 -m venv venv
 ```
 
-> **Tip**: `--system-site-packages` 옵션을 붙이면 시스템에 이미 설치된 전역 패키지들을 포함한 상태로 가상환경을 시작할 수 있습니다.
-{: .prompt-tip }
+> 💡 **Tip**: `--system-site-packages` 옵션을 붙이면 시스템에 이미 설치된 전역 패키지들을 포함한 상태로 가상환경을 시작할 수 있습니다.
 
 ---
 
@@ -105,5 +104,4 @@ __pycache__/
 
 ---
 
-> 참고 자료: [venv와 virtualenv 차이](https://kyungryeol-yoon.github.io/posts/python-venv-virtualenv/)
-{: .prompt-info }
+> 💡 참고 자료: [venv와 virtualenv 차이](https://kyungryeol-yoon.github.io/posts/python-venv-virtualenv/)

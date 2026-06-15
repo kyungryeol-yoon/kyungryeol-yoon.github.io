@@ -1,9 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] kubectl drain command"
 date: 2023-07-27
 tags: [kubernetes, kubectl, command, drain]
-# comments: true
 ---
 
 ## 기본 구조
@@ -15,8 +13,7 @@ kubectl drain [노드 이름]
 kubectl drain my-node
 ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 
@@ -50,5 +47,4 @@ kubectl drain my-node
     kubectl drain my-node -n my-namespace
     ```
 
-> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-{: .prompt-info }
+> 💡 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

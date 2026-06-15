@@ -4,8 +4,7 @@ date: 2024-06-19
 tags: [kubernetes, promtail, loki, grafana, install, helm]
 ---
 
-> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
-{: .prompt-info }
+> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 
 ## Install the Loki Distributed Helm charts
 
@@ -17,14 +16,12 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
 
 > Loki Distributed - Helm 설치 참고
 - <https://grafana.com/docs/loki/latest/setup/install/helm/>
-{: .prompt-info }
 
 ## Customize Default Configuration
 
 - values.yaml 수정
 
-  > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
-  {: .prompt-info }
+  > 💡 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
 
   - Chart
     - <https://github.com/grafana/helm-charts/tree/main/charts/loki-distributed>
@@ -35,7 +32,6 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
 
 > Loki 설정 값 문서
 - <https://grafana.com/docs/loki/latest/configuration/>
-{: .prompt-info }
 
 - Grafana Loki 모범 사례
   - 레이블은 Loki에서 Log를 검색할 때 필터링이 되는 기준이 되는데 여기선 정적 레이블을 가급적이면 사용하라고 가이드하고 있다.
@@ -53,7 +49,6 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
 > 참고
 - <https://grafana.com/docs/loki/latest/best-practices/>
 - <https://grafana.com/blog/2021/02/16/the-essential-config-settings-you-should-use-so-you-wont-drop-logs-in-loki/>
-{: .prompt-info }
 
 - Request Validation, Rate-Limit 에러
   - 아래의 값으로 설정하면 필히 쓰로틀링이 걸리게 된다. 하여 적절한 값으로 조정이 필요하다.
@@ -64,7 +59,6 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
 > 참고
 - <https://grafana.com/docs/loki/latest/operations/request-validation-rate-limits/>
 - <https://grafana.com/docs/loki/latest/configuration/#limits_config>
-{: .prompt-info }
 
 - Loki Grafana 모니터링
   - Loki는 기본적으로 /metrics 엔드포인트로부터 각 Components들의 Metric들을 확인할 수 있다.
@@ -79,7 +73,6 @@ helm install loki-distributed grafana/loki-distributed --namespace [NAMESPACE NA
 
 > Loki에 대한 모니터링 참고
 - <https://grafana.com/docs/loki/latest/operations/observability/>
-{: .prompt-info }
 
 #### analytics false
 
@@ -112,7 +105,6 @@ analytics:
 
   > Retention 설정 참고
   - <https://grafana.com/docs/loki/latest/operations/storage/retention/#configuring-the-retention-period>
-  {: .prompt-info }
 
 #### storage
 
@@ -141,8 +133,7 @@ storage_config:
       server_address: dns:///index-gateway.<namespace>.svc.cluster.local:9095
 ```
 
-> [minio 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-deploy-minio/)
-{: .prompt-info }
+> 💡 [minio 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-deploy-minio/)
 
 ### Install Customize Default Configuration
 

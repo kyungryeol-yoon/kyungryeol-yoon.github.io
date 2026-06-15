@@ -4,8 +4,7 @@ date: 2024-02-02
 tags: [kubernetes, awx, ansible, install, helm, open source]
 ---
 
-> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
-{: .prompt-info }
+> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 
 ## Install awx-operator
 
@@ -18,13 +17,11 @@ helm install ansible-awx-operator awx-operator/awx-operator -n awx --create-name
 > **설치 참고**
   - <https://ansible.readthedocs.io/projects/awx-operator/en/latest/installation/basic-install.html>
   - <https://github.com/ansible/awx-operator/blob/devel/docs/installation/basic-install.md>
-{: .prompt-info }
 
 ## Customize Default Configuration
 
 - values.yaml 수정
-  > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
-  {: .prompt-info }
+  > 💡 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
 
 - Chart : <https://github.com/ansible/awx-operator/tree/{tags}/.helm/starter>
 - Release file (.tgz) : <https://github.com/ansible/awx-operator/releases>
@@ -47,11 +44,9 @@ kubectl get pods -n awx
 
 ## Create PV, PVC and deploy AWX yaml file
 
-> AWX에는 postgres Pod에 대한 영구 볼륨이 필요
-{: .prompt-info }
+> 💡 AWX에는 postgres Pod에 대한 영구 볼륨이 필요
 
-> 다만 StorageClass가 설정되어 있다면 자동으로 pv, pvc 생성을 해주므로 AWX instance 바로 배포
-{: .prompt-tip }
+> 💡 다만 StorageClass가 설정되어 있다면 자동으로 pv, pvc 생성을 해주므로 AWX instance 바로 배포
 
 ### StorageClass
 

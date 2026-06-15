@@ -1,10 +1,8 @@
 ---
-# layout: post
 title: "Spring framework 특징 및 구성, 구조"
 date: 2016-10-15
 # excerpt: "Spring framework 특징 및 구성, 구조(Directory)"
 tags: [spring, framework, java]
-# comments: true
 ---
 
 ## Spring framework란?

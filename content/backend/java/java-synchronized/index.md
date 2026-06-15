@@ -1,9 +1,7 @@
 ---
-# layout: post
 title: "[Java] Synchronized"
 date: 2017-05-13
 tags: [java, synchronized]
-# comments: true
 ---
 
 - Java에서 프로그래밍을 한다면 Multi-Thread로 인하여 동기화를 제어해야하는 경우가 생긴다.

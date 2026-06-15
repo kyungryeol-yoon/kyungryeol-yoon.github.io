@@ -2,7 +2,6 @@
 title: "[Mac OS] Homebrew and Cask"
 date: 2022-07-30
 tags: [homebrew, cask, macos]
-# comments: true
 ---
 
 ## Homebrew와 Cask에 대한 설명

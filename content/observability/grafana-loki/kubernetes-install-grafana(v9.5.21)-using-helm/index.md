@@ -4,8 +4,7 @@ date: 2024-06-08
 tags: [kubernetes, grafana, helm, install]
 ---
 
-> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
-{: .prompt-info }
+> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 
 ## Install the Grafana Helm charts
 
@@ -25,7 +24,6 @@ tags: [kubernetes, grafana, helm, install]
 
   > Grafana - Helm 설치 참고
   - <https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm>
-  {: .prompt-info }
 
 - Password 설정하지 않았을 때, 아래와 같이 찾아보기
 
@@ -47,8 +45,7 @@ tags: [kubernetes, grafana, helm, install]
 
 - values.yaml 수정
 
-  > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
-  {: .prompt-info }
+  > 💡 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   
   - Chart
     - <https://github.com/grafana/helm-charts/tree/main/charts/grafana>

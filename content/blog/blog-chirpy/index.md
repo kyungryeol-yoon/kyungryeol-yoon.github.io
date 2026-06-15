@@ -8,7 +8,6 @@ tags: [blog, chirpy]
 - WSL(Windows Subsystem for Linux)
 - Docker
 - Mac OS
-{: .prompt-info }
 
 
 > - bundle 실행 전 반드시 ruby Version이 최소 3 Version 이상인지 확인해야 한다.
@@ -17,7 +16,6 @@ tags: [blog, chirpy]
       - 블로그 기능(Dark Mode, 검색, 이미지 표시, Mobile 환경 비정상 동작 등)
 - Node.js Version 20 이상 추천한다.
   - Node.js Version이 낮을 경우, 몇몇 npm module이 설치가 되지 않을 때가 있다.
-{: .prompt-tip }
 
 
 ## Ruby 설치
@@ -56,8 +54,7 @@ ruby -v
 curl -fsSL https://deb.nodesource.com/setup_23.x -o nodesource_setup.sh
 ```
 
-> node.js 모듈을 설치하지 않으면 `assets/js/dist/*.min.js` **Not Found** 에러 발생과 함께 블로그 기능이 정상적으로 동작하지 않는다.
-{: .prompt-info }
+> 💡 node.js 모듈을 설치하지 않으면 `assets/js/dist/*.min.js` **Not Found** 에러 발생과 함께 블로그 기능이 정상적으로 동작하지 않는다.
 
 ## 필요 패키지 설치
 

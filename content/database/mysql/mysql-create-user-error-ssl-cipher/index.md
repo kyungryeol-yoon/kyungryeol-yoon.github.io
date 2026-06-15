@@ -1,9 +1,7 @@
 ---
-# layout: post
 title: "[MySQL] MySQL user 생성시 ERROR 1364 (HY000)"
 date: 2017-01-13
 tags: [database, mysql, error]
-# comments: true
 ---
 
 ## ERROR 1364 (HY000): Field 'ssl_cipher' doesn't have a default value

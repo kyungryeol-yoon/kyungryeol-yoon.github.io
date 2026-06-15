@@ -4,8 +4,7 @@ date: 2025-03-06
 tags: [kubernetes, alloy, helm, install]
 ---
 
-> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
-{: .prompt-info }
+> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 
 ## Install the Helm charts
 
@@ -25,14 +24,12 @@ tags: [kubernetes, alloy, helm, install]
 
   > Alloy - Helm 설치 참고
   - <https://grafana.com/docs/alloy/latest/set-up/install/kubernetes/>
-  {: .prompt-info }
 
 ## Customize Default Configuration
 
 - values.yaml 수정
 
-  > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
-  {: .prompt-info }
+  > 💡 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   
   - Release file (.tgz)
     - <https://github.com/grafana/helm-charts/releases>
@@ -79,8 +76,7 @@ alloy:
 ...✂...
 ```
 
-> 참고 - <https://grafana.com/docs/loki/latest/send-data/alloy/examples/alloy-kafka-logs/>
-{: .prompt-info }
+> 💡 참고 - <https://grafana.com/docs/loki/latest/send-data/alloy/examples/alloy-kafka-logs/>
 
 ### Kafka를 통해 OpenTelemetry logs 수집
 
@@ -148,8 +144,7 @@ alloy:
 ...✂...
 ```
 
-> 참고 - <https://grafana.com/docs/loki/latest/send-data/alloy/examples/alloy-kafka-logs/>
-{: .prompt-info }
+> 💡 참고 - <https://grafana.com/docs/loki/latest/send-data/alloy/examples/alloy-kafka-logs/>
 
 ### Kubernetes Pods logs 연결
 
@@ -263,8 +258,7 @@ alloy:
 ...✂...
 ```
 
-> 참고 - <https://grafana.com/docs/alloy/latest/collect/logs-in-kubernetes/#pods-logs>
-{: .prompt-info }
+> 💡 참고 - <https://grafana.com/docs/alloy/latest/collect/logs-in-kubernetes/#pods-logs>
 
 ### 외부 접속을 위한 NodePort 설정
 

@@ -4,8 +4,7 @@ date: 2025-03-08
 tags: [kubernetes, message broker, strimzi, operator]
 ---
 
-> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
-{: .prompt-info }
+> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 
 ## 설치 방법
 
@@ -14,8 +13,7 @@ tags: [kubernetes, message broker, strimzi, operator]
   - <https://github.com/strimzi/strimzi-kafka-operator/tree/main/helm-charts/helm3/strimzi-kafka-operator>
 - cluster-operator Yaml 파일 (<https://github.com/strimzi/strimzi-kafka-operator/tree/main/install/cluster-operator>)
 
-> Strimzi Release 참고 - <https://github.com/strimzi/strimzi-kafka-operator/releases>
-{: .prompt-info }
+> 💡 Strimzi Release 참고 - <https://github.com/strimzi/strimzi-kafka-operator/releases>
 
 ## Operator Yaml로 설치
 
@@ -40,8 +38,7 @@ watchNamespaces: []
 watchAnyNamespace: false
 ```
 
-> values yaml 참고 - <https://github.com/strimzi/strimzi-kafka-operator/blob/main/helm-charts/helm3/strimzi-kafka-operator/values.yaml>
-{: .prompt-info }
+> 💡 values yaml 참고 - <https://github.com/strimzi/strimzi-kafka-operator/blob/main/helm-charts/helm3/strimzi-kafka-operator/values.yaml>
 
 ### 확인
 
@@ -193,8 +190,7 @@ spec:
     userOperator: {}
 ```
 
-> 참고 - <https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/kafka/kraft>
-{: .prompt-info }
+> 💡 참고 - <https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/kafka/kraft>
 
 ### Kafka Single Node 설치 - kraft 모드
 
@@ -284,8 +280,7 @@ spec:
     userOperator: {}
 ```
 
-> 참고 - <https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/kafka/kraft>
-{: .prompt-info }
+> 💡 참고 - <https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/kafka/kraft>
 
 ### Kafka 설치 - kraft 모드
 

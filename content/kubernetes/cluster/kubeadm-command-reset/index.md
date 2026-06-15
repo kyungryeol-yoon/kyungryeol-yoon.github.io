@@ -1,10 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] kubeadm reset command"
 date: 2022-07-03
 tags: [kubernetes, kubeadm, command, reset]
-# comments: true
-# pin: true
 ---
 
 ## 기본 구조
@@ -18,8 +15,7 @@ kubeadm reset
 - 모든 Kubernetes 설정 파일을 삭제합니다.
 - 모든 데이터를 삭제합니다.
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 
@@ -47,5 +43,4 @@ kubeadm reset
     sudo kubeadm reset --dry-run
     ```
 
-> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-{: .prompt-info }
+> 💡 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

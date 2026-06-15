@@ -14,8 +14,7 @@ tags: [flutter, roottab]
 - **정의**: TabBarView는 TabBar와 함께 사용되는 위젯으로, 각 탭에 해당하는 내용을 표시한다.
 - **구성**: TabBarView는 여러 개의 자식 위젯을 받아서 각 탭이 선택될 때 보여줄 내용을 정의한다. 각 탭에 대해 해당하는 콘텐츠를 작성할 수 있다.
 
-> [설명 참고](https://kyungryeol-yoon.github.io/posts/tab-bar-view)
-{: .prompt-info }
+> 💡 [설명 참고](https://kyungryeol-yoon.github.io/posts/tab-bar-view)
 
 ### Flutter 프로젝트 생성
 

@@ -19,8 +19,7 @@ sudo apt install kubetail
 brew tap johanhaleby/kubetail && brew install kubetail
 ```
 
-> kubetail에 대한 설정 방법은 [설치 문서](https://github.com/johanhaleby/kubetail)를 참고하시기 바랍니다.
-{: .prompt-info }
+> 💡 kubetail에 대한 설정 방법은 [설치 문서](https://github.com/johanhaleby/kubetail)를 참고하시기 바랍니다.
 
 ## How to use
 ### Container or Multiple Containers
@@ -68,5 +67,4 @@ loki-write-1
 loki-write-2
 ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.

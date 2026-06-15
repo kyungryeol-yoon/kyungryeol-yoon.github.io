@@ -1,10 +1,8 @@
 ---
-# layout: post
 title: "RestController와 Controller (ResponseBody, ResponseEntity)"
 date: 2016-10-20
 # excerpt: "Restful한 Spring @ResponseBody, @RestController, @Controller VS, ResponseEntity"
 tags: [spring, framework, java, programming, controller, mvc, restcontroller]
-# comments: true
 ---
 
 ## REST의 탄생 배경

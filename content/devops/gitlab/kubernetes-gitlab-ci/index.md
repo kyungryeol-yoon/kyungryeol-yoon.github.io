@@ -4,8 +4,7 @@ date: 2021-09-15
 tags: [kubernetes, gitlab, ci]
 ---
 
-> [Install Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner-using-helm/)
-{: .prompt-info }
+> 💡 [Install Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner-using-helm/)
 
 ```yml
 stages:
@@ -103,8 +102,7 @@ ERROR: Cannot connect to the Docker daemon at tcp://docker:2375. Is the docker d
 errors pretty printing info
 ```
 
-> 만약 gitlab-ci.yml 에서 runner의 tag 또는 name을 지정할 경우 helm의 values.yaml에서 tags 혹은 name에 값을 설정해주면 된다.
-{: .prompt-info }
+> 💡 만약 gitlab-ci.yml 에서 runner의 tag 또는 name을 지정할 경우 helm의 values.yaml에서 tags 혹은 name에 값을 설정해주면 된다.
 
 ```yaml
   ## Specify the tags associated with the runner. Comma-separated list of tags.

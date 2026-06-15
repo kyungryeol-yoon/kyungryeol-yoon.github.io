@@ -40,5 +40,4 @@ $ kubens
   4/4
 ```
 
-> kubens에 대한 설정 방법은 [설치 문서](https://github.com/ahmetb/kubectl-aliases)를 참고하시기 바랍니다.
-{: .prompt-info }
+> 💡 kubens에 대한 설정 방법은 [설치 문서](https://github.com/ahmetb/kubectl-aliases)를 참고하시기 바랍니다.

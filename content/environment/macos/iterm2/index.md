@@ -2,7 +2,6 @@
 title: "[Mac OS] iTerm2 설치 및 꾸미기"
 date: 2023-05-30
 tags: [homebrew, iterm2, macos]
-# comments: true
 ---
 
 ## iTerm2 설치
@@ -11,8 +10,7 @@ tags: [homebrew, iterm2, macos]
 brew install iterm2
 ```
 
-> [Homebrew 설치 참고](https://kyungryeol-yoon.github.io/posts/homebrew-cask)
-{: .prompt-info }
+> 💡 [Homebrew 설치 참고](https://kyungryeol-yoon.github.io/posts/homebrew-cask)
 
 ### oh my zsh 설치
 
@@ -52,7 +50,6 @@ brew install iterm2
 ```bash
 p10k configure
 ```
-{: .prompt-tip }
 
 ## 유용한 zsh Plugin
 

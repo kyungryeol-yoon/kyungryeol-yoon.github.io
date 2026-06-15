@@ -4,8 +4,7 @@ date: 2025-03-08
 tags: [kubernetes, message broker, ui, kafbat]
 ---
 
-> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
-{: .prompt-info }
+> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 
 ## Add Repo the Helm charts
 
@@ -73,4 +72,3 @@ helm install -n [NAMESPACE] kafbat-ui kafbat-ui/kafka-ui -f values.yaml
 ```bash
 helm install -n [NAMESPACE] kafka-ui charts/kafka-ui -f charts/kafka-ui/values.yaml
 ```
-{: .prompt-info }

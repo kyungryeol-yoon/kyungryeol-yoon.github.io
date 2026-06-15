@@ -92,7 +92,6 @@ brew install --cask multipass
 
 > - Instance의 Disk 크기를 늘릴 때 Partition이 자동으로 확장되지 않아 새로운 사용 가능한 공간을 사용하지 못할 수 있다.
 - 이는 일반적으로 Disk 크기를 늘리려고 할 때 Partition이 이미 꽉 찬 경우에 발생한다.
-{: .prompt-warning }
 
 #### 다음과 같이 파티션을 수동으로 확장해야 한다.
 
@@ -240,8 +239,7 @@ multipass snapshot <instance name> -n, --name <snapshot name> --comment, -c, -m 
 multipass snapshot kk-repo -n kk-repo-snap-test -c test
 ```
 
-> Snapshot 이름 없이 생성 했을 시, snapshot(1,2,3...)으로 자동 저장된다.
-{: .prompt-tip }
+> 💡 Snapshot 이름 없이 생성 했을 시, snapshot(1,2,3...)으로 자동 저장된다.
 
 ### Snapshot 조회
 
@@ -304,7 +302,6 @@ multipass <alias-name> -- <argument>
 > - Shell 설정파일 (.bashrc, .zshrc, ..) 에 PATH 환경 변수에 아래 경로를 등록하면 multipass prefix는 생략 가능하다.
 - 각 OS 마다 경로는 다음과 같지만 환경마다 다를 수 있다.
 - macOS의 경우 alias 등록 시 PATH 환경 변수에 추가할 경로가 안내된다.
-{: .prompt-tip }
 
 ```bash
 #MacOS m1 silicon
@@ -387,4 +384,3 @@ this is test message3
 
 > cloud init examples
 - <https://cloudinit.readthedocs.io/en/latest/reference/examples.html>
-{: .prompt-info }

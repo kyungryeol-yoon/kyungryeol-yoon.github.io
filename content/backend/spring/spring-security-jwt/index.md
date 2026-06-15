@@ -322,8 +322,7 @@ public String createAuthJwtToken(UserAccount userAccount) {
 - Account의 id(엔티티의 id)와 username(로그인 시 id로 사용됨)을  HMAC512 알고리즘으로 암호화한다.
 - 만료시간은 현재 시간으로부터 JwtProperties(Jwt관련 설정 정보를 모아놓은 클래스)에 정의된 EXPIRATION_TIME까지로 설정
 
-> 만료시간은 밀리 세컨드로 설정됨
-{: .prompt-info }
+> 💡 만료시간은 밀리 세컨드로 설정됨
 
 #### **decodeJwtToken**
 
@@ -400,8 +399,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 - JWT로 인증을 하기 위한 클래스
 - Spring Security 로그인 시 인증을 담당하는 UsernamePasswordAuthenticationFilter를 상속받는다.
 
-> Spring Bean으로 등록하지 않는 이유는 해당 클래스가 AuthenticationManager를 의존성 주입받는데 해당 클래스를 사용하는 SecurityConfig에서 AuthenticationManager를 빈으로 등록하기 때문에 순환 참조가 발생하기 때문이다.
-{: .prompt-info }
+> 💡 Spring Bean으로 등록하지 않는 이유는 해당 클래스가 AuthenticationManager를 의존성 주입받는데 해당 클래스를 사용하는 SecurityConfig에서 AuthenticationManager를 빈으로 등록하기 때문에 순환 참조가 발생하기 때문이다.
 
 #### **attemptAuthentication**
 

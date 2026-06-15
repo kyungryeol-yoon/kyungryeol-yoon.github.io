@@ -43,4 +43,3 @@ tags: [blog, jekyll, liquid, tag, template]
 
 > Jekyll Liquid 참고
 - <https://jekyllrb-ko.github.io/docs/liquid/tags/>
-{: .prompt-info }

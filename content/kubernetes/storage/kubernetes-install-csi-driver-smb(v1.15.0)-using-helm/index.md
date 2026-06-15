@@ -4,8 +4,7 @@ date: 2024-08-12
 tags: [kubernetes, k8s-sig-storage, smb, install, helm]
 ---
 
-> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
-{: .prompt-info }
+> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 
 ## Install CSI Driver SMB
 
@@ -17,13 +16,11 @@ helm install csi-driver-smb csi-driver-smb/csi-driver-smb --version 1.15.0
 
 > CSI Driver SMB - Helm 설치 참고
 - <https://github.com/kubernetes-csi/csi-driver-smb>
-{: .prompt-info }
 
 ## Customize Default Configuration
 
 - values.yaml 수정
-  > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
-  {: .prompt-info }
+  > 💡 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   - Chart
     - <https://github.com/kubernetes-csi/csi-driver-smb/tree/master/charts>
   - Release file (.tgz)
@@ -120,7 +117,6 @@ mountOptions:
 
 > **Storage Class 참고**
   - <https://github.com/kubernetes-csi/csi-driver-smb/blob/master/deploy/example/storageclass-smb.yaml>
-{: .prompt-info }
 
 ### 4. PersistentVolumeClaim 생성
 

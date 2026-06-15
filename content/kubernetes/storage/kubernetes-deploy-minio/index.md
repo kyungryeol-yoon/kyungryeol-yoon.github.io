@@ -55,7 +55,6 @@ spec:
 
 > minio 설치 참고
 - <https://min.io/docs/minio/kubernetes/upstream/index.html>
-{: .prompt-info }
 
 
 ## Apply the MinIO Object Definition

@@ -114,7 +114,6 @@ docker exec -t <container name> gitlab-backup create
 
 > 참고
 - gitlab 공식 문서 : <https://docs.gitlab.com/administration/backup_restore/backup_archive_process>
-{: .prompt-info }
 
 ### Resotre
 
@@ -155,4 +154,3 @@ docker exec -it <name of container> gitlab-rake gitlab:check SANITIZE=true
 - Gitlab Back up : <https://docs.gitlab.com/administration/backup_restore>
 - Gitlab Archive Process : <https://docs.gitlab.com/administration/backup_restore/backup_archive_process>
 - Gitlab Restore : <https://docs.gitlab.com/administration/backup_restore/restore_gitlab>
-{: .prompt-info }

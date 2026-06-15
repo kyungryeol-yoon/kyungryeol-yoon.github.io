@@ -4,11 +4,9 @@ date: 2017-10-22
 tags: [network, restful]
 ---
 
-> [REST API 참고](https://kyungryeol-yoon.github.io/posts/rest-api/)
-{: .prompt-info }
+> 💡 [REST API 참고](https://kyungryeol-yoon.github.io/posts/rest-api/)
 
-> [REST 참고](https://kyungryeol-yoon.github.io/posts/rest/)
-{: .prompt-info }
+> 💡 [REST 참고](https://kyungryeol-yoon.github.io/posts/rest/)
 
 ## **RESTful의 개념**
 

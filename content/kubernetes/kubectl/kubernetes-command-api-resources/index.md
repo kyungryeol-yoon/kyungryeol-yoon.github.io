@@ -1,9 +1,7 @@
 ---
-# layout: post
 title: "[Kubernetes] kubectl api-resources command"
 date: 2023-09-12
 tags: [kubernetes, kubectl, command, api-resources]
-# comments: true
 ---
 
 ## 기본 구조
@@ -13,8 +11,7 @@ tags: [kubernetes, kubectl, command, api-resources]
     kubectl api-resources
     ```
 
-> [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
-{: .prompt-info }
+> 💡 [명령어] `--help`를 입력하면 더 다양한 옵션들을 찾을 수 있다.
 
 ### Option
 
@@ -36,5 +33,4 @@ tags: [kubernetes, kubectl, command, api-resources]
     kubectl api-resources --api-group=apps
     ```
 
-> 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-{: .prompt-info }
+> 💡 자주 쓰는 명령어는 [kubectl-cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

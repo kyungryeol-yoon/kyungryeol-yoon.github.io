@@ -4,8 +4,7 @@ date: 2024-10-15
 tags: [kubernetes, install, multipass]
 ---
 
-> [Multipass 설명 참고](https://kyungryeol-yoon.github.io/posts/linux-multipass/)
-{: .prompt-info }
+> 💡 [Multipass 설명 참고](https://kyungryeol-yoon.github.io/posts/linux-multipass/)
 
 ## cloud-init yaml 구성
 

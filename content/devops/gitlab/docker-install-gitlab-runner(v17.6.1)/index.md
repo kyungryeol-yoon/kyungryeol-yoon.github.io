@@ -4,8 +4,7 @@ date: 2021-08-11
 tags: [docker, install, gitlab, runner]
 ---
 
-> [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose(1.27.4)/)
-{: .prompt-info }
+> 💡 [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose(1.27.4)/)
 
 ## GitLab Runner 설치
 

@@ -4,8 +4,7 @@ date: 2024-04-19
 tags: [kubernetes, promtail, loki, grafana, install, helm]
 ---
 
-> [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
-{: .prompt-info }
+> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
 
 ## Install the Loki Stack Helm charts
 
@@ -17,14 +16,12 @@ helm install loki-stack grafana/loki-stack --namespace [NAMESPACE NAME] --versio
 
 > Loki Stack - Helm 설치 참고
 - <https://grafana.com/docs/loki/latest/setup/install/helm/>
-{: .prompt-info }
 
 ## Customize Default Configuration
 
 - values.yaml 수정
 
-  > 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
-  {: .prompt-info }
+  > 💡 최상위 values.yaml을 수정하면 하위 폴더 values.yaml을 override 한다.
   
   - Chart
     - <https://github.com/grafana/helm-charts/tree/main/charts/loki-stack>
@@ -43,8 +40,7 @@ promtail:
       - url: http://{{ .Release.Name }}:3100/loki/api/v1/push
 ```
 
-> [Promtail 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-promtail(v2.9.4)-using-helm/)
-{: .prompt-info }
+> 💡 [Promtail 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-promtail(v2.9.4)-using-helm/)
 
 ### Setting Loki
 
@@ -68,8 +64,7 @@ loki:
     uid: ""
 ```
 
-> [Loki 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-loki(v2.9.4)/)
-{: .prompt-info }
+> 💡 [Loki 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-loki(v2.9.4)/)
 
 ### Setting Grafana
 
@@ -86,8 +81,7 @@ grafana:
     tag: 10.3.3
 ```
 
-> [Grafana 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-grafana(v9.5.21)-using-helm/)
-{: .prompt-info }
+> 💡 [Grafana 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-grafana(v9.5.21)-using-helm/)
 
 ### Install Customize Default Configuration
 

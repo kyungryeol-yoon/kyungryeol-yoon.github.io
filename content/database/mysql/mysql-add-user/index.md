@@ -16,8 +16,7 @@ mysql> create user user_id@localhost identified by 'PASSWORD';
 
 ### 사용자(user)를 추가하면서 패스워드까지 설정
 
-> 기존에 사용하던 계정에 외부 접근 권한을 부여하려면, Host를 '%' 로 하여 똑같은 계정을 추가한다
-{: .prompt-info }
+> 💡 기존에 사용하던 계정에 외부 접근 권한을 부여하려면, Host를 '%' 로 하여 똑같은 계정을 추가한다
 
 - `%` 의 의미는 외부에서의 접근을 허용
 

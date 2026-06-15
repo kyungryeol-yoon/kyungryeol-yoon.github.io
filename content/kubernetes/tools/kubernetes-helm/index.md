@@ -8,7 +8,6 @@ tags: [kubernetes, helm, install]
 
 > 설치 참고
 - <https://helm.sh/docs/intro/install/>
-{: .prompt-info }
 
 ### Script 방식
 
@@ -50,7 +49,6 @@ sudo apt-get install helm
 
 > Helm Commands 참고
 - <https://helm.sh/ko/docs/helm/>
-{: .prompt-info }
 
 ### helm search
 
@@ -134,8 +132,7 @@ sudo apt-get install helm
 
 - 저장소 업데이트
     - `helm repo update [name1] [name2] ...`
-        > 이전에 repository를 추가한 경우, 아래 명령을 실행하여 최신 버전의 패키지를 가져온다.
-        {: .prompt-info }
+        > 💡 이전에 repository를 추가한 경우, 아래 명령을 실행하여 최신 버전의 패키지를 가져온다.
 
 ### helm repo remove
 
@@ -157,7 +154,6 @@ sudo apt-get install helm
 
 > Chart 참고
 - <https://helm.sh/ko/docs/topics/charts/>
-{: .prompt-info }
 
 - Chart.yaml
     - 차트에 대한 정보를 가진 YAML 파일
