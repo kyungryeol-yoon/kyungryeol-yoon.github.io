@@ -176,11 +176,12 @@ html[data-theme="dark"] .post-card:hover { background: var(--bg-soft); box-shado
 .to-top__track { stroke: var(--text-faint); opacity: 0.5; }   /* 진행률 무관 '완전한 원'으로 또렷이 보이게 (호만 떠 보이는 착시 방지) */
 .to-top__bar { stroke: var(--accent); transition: stroke-dashoffset 0.1s linear; }
 @media (prefers-reduced-motion: reduce) { .to-top { transition: opacity 0.3s ease, visibility 0.3s ease; } .to-top__bar { transition: none; } }
-/* 터치 기기: 버튼이 본문을 가리지 않게 — 평소 반투명, 누를 때 선명, 스크롤 중 숨김 */
+/* 터치 기기: 버튼이 본문을 가리지 않게 — 평소 반투명, 스크롤 중 숨김 */
+/* (:active로 '누를 때 선명'을 주면 모바일에서 :active가 풀리지 않고 고정돼
+    이후 반투명·스크롤 숨김이 모두 막히므로 사용하지 않음) */
 @media (hover: none) {
   .to-top.visible { opacity: 0.65; }
-  .to-top.visible:active { opacity: 1; }
-  .to-top.is-scrolling { opacity: 0; pointer-events: none; }   /* 스크롤 중 숨김(멈추면 JS가 제거 → 페이드인) */
+  .to-top.visible.is-scrolling { opacity: 0; pointer-events: none; }   /* 스크롤 중 숨김(멈추면 JS가 제거 → 페이드인) */
 }
 
 /* 페이저 */
