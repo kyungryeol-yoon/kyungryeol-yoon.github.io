@@ -176,6 +176,12 @@ html[data-theme="dark"] .post-card:hover { background: var(--bg-soft); box-shado
 .to-top__track { stroke: var(--text-faint); opacity: 0.5; }   /* 진행률 무관 '완전한 원'으로 또렷이 보이게 (호만 떠 보이는 착시 방지) */
 .to-top__bar { stroke: var(--accent); transition: stroke-dashoffset 0.1s linear; }
 @media (prefers-reduced-motion: reduce) { .to-top { transition: opacity 0.3s ease, visibility 0.3s ease; } .to-top__bar { transition: none; } }
+/* 터치 기기: 버튼이 본문을 가리지 않게 — 평소 반투명, 누를 때 선명, 스크롤 중 숨김 */
+@media (hover: none) {
+  .to-top.visible { opacity: 0.65; }
+  .to-top.visible:active { opacity: 1; }
+  .to-top.is-scrolling { opacity: 0; pointer-events: none; }   /* 스크롤 중 숨김(멈추면 JS가 제거 → 페이드인) */
+}
 
 /* 페이저 */
 .pager { display: flex; align-items: center; justify-content: center; gap: var(--space-2); margin: var(--space-12) 0 var(--space-6); }
@@ -306,11 +312,16 @@ html[data-theme] .highlight .chroma .line { display: flex; align-items: flex-sta
 .toc-summary::-webkit-details-marker { display: none; }
 .toc-summary::marker { content: ""; }
 .toc nav ul { list-style: none; margin: 0; padding: 0; }
-.toc nav ul ul { padding-left: var(--space-3); }
-.toc nav li { margin: 2px 0; }
-.toc nav a { color: var(--text-faint); display: block; padding: 2px 0 2px var(--space-2); border-left: 2px solid transparent; transition: var(--transition); }
+/* 들여쓴 그룹(H3 이하)마다 세로 가이드선 — 같은 레벨 형제가 공유해 "한 묶음"이 보임 */
+.toc nav ul ul { padding-left: var(--space-3); border-left: 1px solid var(--border); }
+.toc nav li { margin: 3px 0; }
+.toc nav a { color: var(--text-faint); display: block; padding: 3px 0 3px var(--space-2); border-left: 2px solid transparent; transition: var(--transition); }
 .toc nav a:hover { color: var(--accent); text-decoration: none; }
 .toc nav a.active { color: var(--accent); border-left-color: var(--accent); }
+/* 레벨별 크기·굵기·명도 차등 — 들여쓰기에만 기대지 않고 위계 전달 */
+.toc nav > ul > li > a { font-size: var(--fs-sm); font-weight: 600; color: var(--text-soft); }                 /* L1 = H2 */
+.toc nav > ul > li > ul > li > a { font-size: 0.82rem; font-weight: 400; color: var(--text-faint); }          /* L2 = H3 */
+.toc nav > ul > li > ul > li > ul > li > a { font-size: 0.78rem; }                                            /* L3 = H4 */
 
 /* TOC 공통(데스크톱 우측 / 모바일 접이식 동일 로직) ------------------------- */
 /* 스크롤바 숨김(스크롤은 유지) — 데스크톱은 .toc, 모바일은 내부 nav가 스크롤 */
@@ -469,7 +480,9 @@ html[data-theme] .highlight .chroma .line { display: flex; align-items: flex-sta
   position: sticky; top: 80px;
   max-height: calc(100vh - 100px); overflow-y: auto;
   font-size: var(--fs-sm);
+  scrollbar-width: none;                 /* 스크롤바 폭이 라벨을 밀어 개행시키는 것 방지(스크롤은 유지) */
 }
+.col-left::-webkit-scrollbar, .col-right::-webkit-scrollbar { width: 0; height: 0; }
 .col-left .cat-tree { margin: 0; }
 .side-block { margin-bottom: var(--space-8); }
 .side-title { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; color: var(--text-faint); margin-bottom: var(--space-3); }

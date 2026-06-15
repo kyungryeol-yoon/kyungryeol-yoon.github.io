@@ -159,6 +159,8 @@
   const bar = document.getElementById("to-top-bar");
   if (!btn) return;
   const article = document.querySelector(".post .content"); // 글이면 본문 기준, 아니면 페이지 기준
+  const touch = window.matchMedia("(hover: none)").matches;  // 터치 기기에서만 스크롤 중 숨김
+  let idleTimer;
   function ratio() {
     if (article) {
       const start = article.offsetTop;
@@ -174,7 +176,13 @@
     btn.classList.toggle("visible", window.scrollY > window.innerHeight * 0.4);
   }
   update();
-  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("scroll", () => {
+    update();
+    if (!touch) return;
+    btn.classList.add("is-scrolling");
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => btn.classList.remove("is-scrolling"), 260);  // 멈춘 뒤 ~0.26s면 재등장
+  }, { passive: true });
   window.addEventListener("resize", update);
   btn.addEventListener("click", () => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
