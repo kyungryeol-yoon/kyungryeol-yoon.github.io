@@ -11,7 +11,7 @@ description: "macOS iTerm2 설치와 꾸미기 가이드. Homebrew 설치, oh-my
 brew install iterm2
 ```
 
-> 💡 [Homebrew 설치 참고](https://kyungryeol-yoon.github.io/posts/homebrew-cask)
+> 💡 [Homebrew 설치 참고](/environment/macos/homebrew-cask/)
 
 ### oh my zsh 설치
 

@@ -6,7 +6,7 @@ description: "Helm 차트로 쿠버네티스에 시계열 데이터베이스 Inf
 ---
 
 {{< alert "info" >}}
-[Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+[Helm 설치 및 설명 참고](/kubernetes/tools/kubernetes-helm/)
 {{< /alert >}}
 
 ## Install InfluxDB
@@ -35,7 +35,7 @@ helm install influxdb influxdata/influxdb
     - <https://github.com/influxdata/helm-charts/releases>
 
 {{< alert "tip" >}}
-[InfluxDB 설정 및 사용법 참고](https://kyungryeol-yoon.github.io/posts/influxdb/)
+[InfluxDB 설정 및 사용법 참고](/database/influxdb/influxdb/)
 {{< /alert >}}
 
 ### Setting config

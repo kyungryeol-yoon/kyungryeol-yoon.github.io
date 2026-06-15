@@ -20,7 +20,7 @@ description: "Helm으로 쿠버네티스에 Promtail(v2.9.4)을 설치하는 방
 - Prometheus가 저장소와 polling 역할을 같이 담당하는 반면 Promtail은 저장소의 역할은 하지 않고 로그를 찾아 저장소로 push 하는 역할을 한다.
 - 하지만 설정 방식이나 문법은 크게 차이가 없다.
 
-> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+> 💡 [Helm 설치 및 설명 참고](/kubernetes/tools/kubernetes-helm/)
 
 ## Install the Promtail Helm charts
 

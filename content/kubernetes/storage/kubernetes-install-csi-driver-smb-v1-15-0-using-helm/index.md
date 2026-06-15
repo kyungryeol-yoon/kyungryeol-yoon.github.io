@@ -5,7 +5,7 @@ tags: [kubernetes, k8s-sig-storage, smb, install, helm]
 description: "Helm 차트로 쿠버네티스에 CSI Driver SMB(v1.15.0)를 설치하는 방법. SMB/CIFS 공유를 PersistentVolume으로 마운트하는 구성을 정리합니다."
 ---
 
-> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+> 💡 [Helm 설치 및 설명 참고](/kubernetes/tools/kubernetes-helm/)
 
 ## Install CSI Driver SMB
 

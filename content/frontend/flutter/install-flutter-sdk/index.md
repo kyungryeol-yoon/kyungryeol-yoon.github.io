@@ -97,7 +97,7 @@ flutter doctor --andriod-licenses
 
 #### **해결방법: SDK Manager 에서 cmdline-tools 설치**
 
-> 💡 [SDK Manager 설치 참고](https://kyungryeol-yoon.github.io/posts/install-android-sdk-manager/)
+> 💡 [SDK Manager 설치 참고](/frontend/android/install-android-sdk-manager/)
 
 1. **Andriod Studio 실행**
 2. **More Actions  SDK Manager**

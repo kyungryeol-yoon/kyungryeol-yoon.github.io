@@ -105,4 +105,4 @@ __pycache__/
 
 ---
 
-> 💡 참고 자료: [venv와 virtualenv 차이](https://kyungryeol-yoon.github.io/posts/python-venv-virtualenv/)
+> 💡 참고 자료: [venv와 virtualenv 차이](/backend/python/python-venv-virtualenv/)

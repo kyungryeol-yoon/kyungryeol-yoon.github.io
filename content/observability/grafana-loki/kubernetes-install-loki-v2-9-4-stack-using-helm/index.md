@@ -5,7 +5,7 @@ tags: [kubernetes, promtail, loki, grafana, install, helm]
 description: "Helm 차트로 쿠버네티스에 Loki(v2.9.4) Stack을 설치하는 방법. Loki·Promtail·Grafana 통합 로그 스택 배포와 기본값 커스터마이징을 정리합니다."
 ---
 
-> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+> 💡 [Helm 설치 및 설명 참고](/kubernetes/tools/kubernetes-helm/)
 
 ## Install the Loki Stack Helm charts
 
@@ -41,7 +41,7 @@ promtail:
       - url: http://{{ .Release.Name }}:3100/loki/api/v1/push
 ```
 
-> 💡 [Promtail 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-promtail(v2.9.4)-using-helm/)
+> 💡 [Promtail 설치 및 설정 관련 참고](/observability/grafana-loki/kubernetes-install-promtail-v2-9-4-using-helm/)
 
 ### Setting Loki
 
@@ -65,7 +65,7 @@ loki:
     uid: ""
 ```
 
-> 💡 [Loki 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-loki(v2.9.4)/)
+> 💡 [Loki 관련 참고](/observability/grafana-loki/kubernetes-loki-v2-9-4/)
 
 ### Setting Grafana
 
@@ -82,7 +82,7 @@ grafana:
     tag: 10.3.3
 ```
 
-> 💡 [Grafana 설치 및 설정 관련 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-grafana(v9.5.21)-using-helm/)
+> 💡 [Grafana 설치 및 설정 관련 참고](/observability/grafana-loki/kubernetes-install-grafana-v9-5-21-using-helm/)
 
 ### Install Customize Default Configuration
 

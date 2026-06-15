@@ -5,7 +5,7 @@ tags: [kubernetes, opentelemetry, operator, cert-manager, install, helm]
 description: "Helm 차트로 쿠버네티스에 OpenTelemetry Operator를 설치하는 방법. cert-manager 의존성과 OTel 수집 흐름, 설치 구성을 정리합니다."
 ---
 
-> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+> 💡 [Helm 설치 및 설명 참고](/kubernetes/tools/kubernetes-helm/)
 
 ## 🔀 OTEL 예시 흐름:
 

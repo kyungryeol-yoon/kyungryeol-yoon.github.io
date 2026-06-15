@@ -5,9 +5,9 @@ tags: [network, rest api]
 description: "REST API 개념 정리. API와 REST의 의미, 자원·메서드·표현 기반 설계 원칙과 REST API의 특징을 입문자 눈높이로 설명합니다."
 ---
 
-> 💡 [RESTful 참고](https://kyungryeol-yoon.github.io/posts/restful/)
+> 💡 [RESTful 참고](/networking/restful/)
 
-> 💡 [REST 참고](https://kyungryeol-yoon.github.io/posts/rest/)
+> 💡 [REST 참고](/networking/rest/)
 
 ## **REST API의 개념**
 

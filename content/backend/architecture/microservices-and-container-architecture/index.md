@@ -36,7 +36,7 @@ description: "마이크로서비스 패턴과 컨테이너 이미지 구조·최
 | Saga | 분산 트랜잭션 관리 |
 | Event-Driven | 이벤트 기반 비동기 통신 |
 
-> 🔗 [상세 Microservice Pattern 글 보기](https://kyungryeol-yoon.github.io/posts/microservice-pattern-overview/)
+> 🔗 [상세 Microservice Pattern 글 보기](/backend/architecture/microservice-pattern-overview/)
 
 ---
 
@@ -82,7 +82,7 @@ COPY --from=build /app/target/myapp.jar .
 ENTRYPOINT ["java", "-jar", "myapp.jar"]
 ```
 
-> 🔗 [상세 컨테이너 이미지 최적화 글 보기](https://kyungryeol-yoon.github.io/posts/container-size-ufs-optimized/)
+> 🔗 [상세 컨테이너 이미지 최적화 글 보기](/docker/container-size-ufs-optimized/)
 
 ---
 

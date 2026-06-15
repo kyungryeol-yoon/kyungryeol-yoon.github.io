@@ -5,7 +5,7 @@ tags: [kubernetes, message broker, ui, kafbat]
 description: "Helm으로 쿠버네티스에 Kafbat(Kafka UI, 1.1.0)을 설치하는 방법. Kafka 연결·NodePort 설정 등 values 구성과 배포를 정리합니다."
 ---
 
-> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+> 💡 [Helm 설치 및 설명 참고](/kubernetes/tools/kubernetes-helm/)
 
 ## Add Repo the Helm charts
 

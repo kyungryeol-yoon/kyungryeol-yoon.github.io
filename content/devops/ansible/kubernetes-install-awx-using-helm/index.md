@@ -5,7 +5,7 @@ tags: [kubernetes, awx, ansible, install, helm, open source]
 description: "Helm 차트로 쿠버네티스에 Ansible AWX를 설치하는 방법. awx-operator 설치와 AWX 인스턴스 배포·구성 과정을 정리합니다."
 ---
 
-> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+> 💡 [Helm 설치 및 설명 참고](/kubernetes/tools/kubernetes-helm/)
 
 ## Install awx-operator
 

@@ -5,7 +5,7 @@ tags: [docker, install, gitlab]
 description: "Docker Compose로 GitLab(17.7.0)을 설치하는 방법. 모놀리식 GitLab 이미지 구성, 볼륨·포트 설정과 compose 파일 작성을 정리합니다."
 ---
 
-> 💡 [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose(1.27.4)/)
+> 💡 [Docker-Compose 설치 참고](/docker/install-docker-compose-1-27-4/)
 
 ## GitLab Docker 이미지
 
@@ -127,6 +127,6 @@ Confirm password:
 Password successfully updated for user with username root.
 ```
 
-> 💡 [Docker Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/docker-install-gitlab-runner/)
+> 💡 [Docker Gitlab Runner 참고](/devops/gitlab/docker-install-gitlab-runner-v17-6-1/)
 
-> 💡 [Kubernetes Gitlab Runner 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-gitlab-runner-using-helm/)
+> 💡 [Kubernetes Gitlab Runner 참고](/devops/gitlab/kubernetes-install-gitlab-runner-using-helm/)

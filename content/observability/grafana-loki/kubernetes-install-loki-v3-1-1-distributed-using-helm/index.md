@@ -5,7 +5,7 @@ tags: [kubernetes, promtail, loki, grafana, install, helm]
 description: "Helm 차트로 쿠버네티스에 Loki(v3.1.1) Distributed 모드를 설치하는 방법. 마이크로서비스형 분산 로그 스토리지 배포와 설정을 정리합니다."
 ---
 
-> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+> 💡 [Helm 설치 및 설명 참고](/kubernetes/tools/kubernetes-helm/)
 
 ## Install the Loki Distributed Helm charts
 
@@ -134,7 +134,7 @@ storage_config:
       server_address: dns:///index-gateway.<namespace>.svc.cluster.local:9095
 ```
 
-> 💡 [minio 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-deploy-minio/)
+> 💡 [minio 설치 참고](/kubernetes/storage/kubernetes-deploy-minio/)
 
 ### Install Customize Default Configuration
 

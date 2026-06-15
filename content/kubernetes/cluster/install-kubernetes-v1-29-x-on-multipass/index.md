@@ -5,7 +5,7 @@ tags: [kubernetes, install, multipass]
 description: "Multipass와 cloud-init, kubeadm으로 쿠버네티스 v1.29.x 클러스터를 구축하는 방법. Calico/Flannel Pod 네트워크 CIDR 설정과 마스터·워커 구성을 정리합니다."
 ---
 
-> 💡 [Multipass 설명 참고](https://kyungryeol-yoon.github.io/posts/linux-multipass/)
+> 💡 [Multipass 설명 참고](/environment/virtualization/linux-multipass/)
 
 ## cloud-init yaml 구성
 

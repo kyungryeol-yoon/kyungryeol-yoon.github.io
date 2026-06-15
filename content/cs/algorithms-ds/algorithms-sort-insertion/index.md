@@ -18,7 +18,7 @@ tags: [algorithms, cpp, insertion sort]
 
 - 배열에 8, 5, 6, 2, 4가 저장되어 있다고 가정하고 자료를 오름차순으로 정렬해 보자.
 
-- ![](/images/algorithms/insertion-sort/insertion-sort.png){: width="900" height="950"}
+- ![](/images/algorithms/insertion-sort/insertion-sort.png)
 
 - 1회전: 두 번째 자료인 5를 Key로 해서 그 이전의 자료들과 비교한다.
   - Key 값 5와 첫 번째 자료인 8을 비교한다. 8이 5보다 크므로 8을 5자리에 넣고 Key 값 5를 8의 자리인 첫 번째에 기억시킨다.
@@ -37,7 +37,7 @@ tags: [algorithms, cpp, insertion sort]
 
 ### C++로 구현한 삽입 정렬 (Insertion sort)
 
-- [이전에 작성한 양방향 링크드 리스트의 코드를 재활용](https://kyungryeol-yoon.github.io/posts/data-structures-linked-list-array/)
+- [이전에 작성한 양방향 링크드 리스트의 코드를 재활용](/cs/algorithms-ds/data-structures-linked-list-array/)
 
 ```c++
 void DoubleList::InsertSort() {

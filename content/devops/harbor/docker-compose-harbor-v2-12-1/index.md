@@ -5,7 +5,7 @@ tags: [docker, install, harbor, docker-compose]
 description: "Docker Compose로 컨테이너 레지스트리 Harbor(v2.12.1)를 설치하는 방법. RBAC 기반 접근 제어 등 특징과 설치·구성 과정을 정리합니다."
 ---
 
-> 💡 [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose(1.27.4)/)
+> 💡 [Docker-Compose 설치 참고](/docker/install-docker-compose-1-27-4/)
 
 ## Harbor
 

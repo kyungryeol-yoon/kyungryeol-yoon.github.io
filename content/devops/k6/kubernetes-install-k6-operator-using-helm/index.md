@@ -5,7 +5,7 @@ tags: [kubernetes, k6, install, helm, testing tool, open source]
 description: "Helm 차트로 쿠버네티스에 k6-operator를 설치하는 방법. 분산 부하 테스트를 위한 오퍼레이터 설치와 구성을 정리합니다."
 ---
 
-> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+> 💡 [Helm 설치 및 설명 참고](/kubernetes/tools/kubernetes-helm/)
 
 ## Install k6-operator
 ```bash
@@ -100,7 +100,7 @@ helm install k6-operator grafana/k6-operator -f override-values.yaml -n [NAMESPA
 > **Stream real-time**
   - <https://grafana.com/docs/k6/latest/results-output/real-time/>
 
-> 💡 [InfluxDB 설치 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-install-influxdb-using-helm/)
+> 💡 [InfluxDB 설치 참고](/database/influxdb/kubernetes-install-influxdb-using-helm/)
 
 ### Dockerfile Build with xk6-output-influxdb
 ```Dockerfile
@@ -204,7 +204,7 @@ export default function () {
 kubectl -n [NAMESPACE NAME] create configmap test-script --from-file /home/documents/k6/scritps.js 
 ```
 
-> 💡 [K6 Load Test 참고](https://kyungryeol-yoon.github.io/posts/k6-load-testing-tool/)
+> 💡 [K6 Load Test 참고](/devops/k6/k6-load-testing-tool/)
 
 ## Uninstall the Chart
 ```bash

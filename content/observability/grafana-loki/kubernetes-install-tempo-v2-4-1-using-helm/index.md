@@ -19,7 +19,7 @@ description: "Helm 차트로 쿠버네티스에 Grafana Tempo(v2.4.1) 분산 트
   - Tempo는 LogQL과 PromQL에서 영감을 얻은 추적 우선 쿼리 언어인 TraceQL을 구현한다.
     - 이 쿼리 언어를 사용하면 사용자는 매우 정확하고 쉽게 스팬(Span)을 선택하고 지정된 조건을 충족하는 스팬으로 바로 이동할 수 있다.
 
-> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+> 💡 [Helm 설치 및 설명 참고](/kubernetes/tools/kubernetes-helm/)
 
 ## Install the Tempo Helm charts
 

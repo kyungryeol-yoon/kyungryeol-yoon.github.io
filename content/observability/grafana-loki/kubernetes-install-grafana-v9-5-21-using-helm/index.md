@@ -5,7 +5,7 @@ tags: [kubernetes, grafana, helm, install]
 description: "Helm 차트로 쿠버네티스에 Grafana(v9.5.21)를 설치하는 방법. 네임스페이스 생성, 배포, 접속 설정 과정을 단계별로 정리합니다."
 ---
 
-> 💡 [Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+> 💡 [Helm 설치 및 설명 참고](/kubernetes/tools/kubernetes-helm/)
 
 ## Install the Grafana Helm charts
 

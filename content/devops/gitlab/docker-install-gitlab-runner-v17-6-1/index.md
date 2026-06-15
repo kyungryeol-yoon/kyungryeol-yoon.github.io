@@ -5,7 +5,7 @@ tags: [docker, install, gitlab, runner]
 description: "Docker로 GitLab Runner(v17.6.1)를 설치하는 방법. 작업 디렉터리·데이터 영속화를 위한 바인드 마운트와 러너 등록 과정을 정리합니다."
 ---
 
-> 💡 [Docker-Compose 설치 참고](https://kyungryeol-yoon.github.io/posts/docker-install-compose(1.27.4)/)
+> 💡 [Docker-Compose 설치 참고](/docker/install-docker-compose-1-27-4/)
 
 ## GitLab Runner 설치
 

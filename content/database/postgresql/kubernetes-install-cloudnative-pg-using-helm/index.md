@@ -6,7 +6,7 @@ description: "Helm 차트로 쿠버네티스에 CloudNativePG 오퍼레이터를
 ---
 
 {{< alert "info" >}}
-[Helm 설치 및 설명 참고](https://kyungryeol-yoon.github.io/posts/kubernetes-helm/)
+[Helm 설치 및 설명 참고](/kubernetes/tools/kubernetes-helm/)
 {{< /alert >}}
 
 ## PostgreSQL Helm Repo 추가
