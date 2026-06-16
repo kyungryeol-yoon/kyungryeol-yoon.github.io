@@ -1,7 +1,7 @@
 ---
 title: "[Docker/Container] 컨테이너 사이즈와 UFS(Union File System) 이해"
 date: 2021-10-02
-tags: [docker, container, ufs, union filesystem, image, layer]
+tags: [docker, container, ufs, union-filesystem, image, layer]
 description: "Docker·OCI 컨테이너의 이미지 사이즈와 Union File System(UFS) 개념을 정리합니다. 이미지 레이어 구조, UFS 동작 원리, 실무 이미지 최적화 팁을 다룹니다."
 ---
 

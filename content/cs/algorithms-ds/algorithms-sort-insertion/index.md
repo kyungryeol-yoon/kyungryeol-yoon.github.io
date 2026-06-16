@@ -2,7 +2,7 @@
 title: "[Algorithms | C++] Insertion sort : 삽입 정렬"
 date: 2016-02-03
 description: "삽입 정렬(Insertion sort) 알고리즘 개념과 C++ 구현. 정렬된 부분에 원소를 알맞은 위치에 삽입하는 원리와 시간 복잡도를 예제로 설명합니다."
-tags: [algorithms, cpp, insertion sort]
+tags: [algorithms, cpp, insertion-sort]
 ---
 
 ## 삽입 정렬(Insertion sort) 알고리즘 개념

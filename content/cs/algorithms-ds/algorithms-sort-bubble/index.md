@@ -2,7 +2,7 @@
 title: "[Algorithms | C++] Bubble sort : 버블 정렬"
 date: 2016-02-02
 description: "버블 정렬(Bubble sort) 알고리즘 개념과 C++ 구현. 인접한 두 원소를 비교·교환해 정렬하는 원리와 시간 복잡도를 예제로 설명합니다."
-tags: [algorithms, cpp, bubble sort]
+tags: [algorithms, cpp, bubble-sort]
 ---
 
 ## 버블 정렬(Bubble sort) 알고리즘의 개념

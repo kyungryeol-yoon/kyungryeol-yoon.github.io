@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Install AWX Using Helm Chart"
 date: 2024-02-02
-tags: [kubernetes, awx, ansible, install, helm, open source]
+tags: [kubernetes, awx, ansible, install, helm, open-source]
 description: "Helm 차트로 쿠버네티스에 Ansible AWX를 설치하는 방법. awx-operator 설치와 AWX 인스턴스 배포·구성 과정을 정리합니다."
 ---
 

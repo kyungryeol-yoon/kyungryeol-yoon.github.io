@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Install Kubernetes using Kubespray(v2.22.2) on VirtualBox"
 date: 2024-06-01
-tags: [kubernetes, kubespray, virtual box, vagrant, install]
+tags: [kubernetes, kubespray, virtual-box, vagrant, install]
 description: "Kubespray(v2.22.2) Ansible 플레이북으로 VirtualBox에 고가용성 쿠버네티스 클러스터를 구축하는 방법. 네트워크 플러그인 선택과 구성을 정리합니다."
 ---
 

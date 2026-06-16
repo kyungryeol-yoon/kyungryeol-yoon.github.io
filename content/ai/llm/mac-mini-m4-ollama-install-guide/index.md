@@ -1,7 +1,7 @@
 ---
 title: "[LLM] Mac Mini M4 환경에서 Ollama 설치 및 관리 가이드"
 date: 2026-02-28
-tags: [ollama, mac mini, apple silicon, m4, local llm]
+tags: [ollama, mac-mini, apple-silicon, m4, local-llm]
 description: "Mac Mini M4(Apple Silicon)에서 로컬 LLM 도구 Ollama를 설치·관리하는 가이드. Homebrew 설치, 모델 실행·관리 방법을 정리합니다."
 ---
 

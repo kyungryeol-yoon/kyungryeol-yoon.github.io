@@ -2,7 +2,7 @@
 title: "[Data Structures | C++] Stack : 스택"
 date: 2016-01-29
 description: "스택(Stack) 자료구조 정리. 후입선출(LIFO) 구조와 TOP·BOTTOM 개념, push·pop 입출력 동작 원리를 C++ 예제로 설명합니다."
-tags: [data structures, cpp, stack]
+tags: [data-structures, cpp, stack]
 ---
 
 ## 스택(Stack)

@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] 🔏 인증서와 cert-manager: 두 갈래 PKI와 TLS 자동화"
 date: 2026-06-05
-tags: [cert-manager, tls, pki, certificate, kubeadm, gateway-api, lets-encrypt, kubernetes, network]
+tags: [cert-manager, tls, pki, certificate, kubeadm, gateway-api, letsencrypt, kubernetes, network]
 description: "key·cert·CA·TLS 용어를 신분증 비유로 정리하고, 쿠버네티스의 두 갈래 PKI(클러스터 내부 vs 앱/인그레스)와 cert-manager의 인증서 발급·갱신 자동화를 다룹니다."
 ---
 

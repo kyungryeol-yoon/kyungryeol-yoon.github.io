@@ -2,7 +2,7 @@
 title: "[Coding] Coding Test 정리"
 date: 2019-05-31
 description: "코딩 테스트 대비 문제 풀이 모음. 문자열 뒤집기, 링크드 리스트 병합·정렬, 이진 검색 등 자주 출제되는 유형을 C++ 예제로 정리합니다."
-tags: [cpp, programming, coding test]
+tags: [cpp, programming, coding-test]
 ---
 
 ## 모든 코딩 테스트는 C++로 작성하였습니다.

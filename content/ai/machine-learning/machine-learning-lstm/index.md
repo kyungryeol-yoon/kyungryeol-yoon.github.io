@@ -2,7 +2,7 @@
 title: "Machine Learning LSTM"
 date: 2019-10-01
 description: "LSTM(장단기 메모리) 개념과 Keras 구현. RNN의 장기 의존성 문제를 해결하는 LSTM 구조와 시계열·시퀀스 학습 원리를 설명합니다."
-tags: [lstm, python, machine learning, deep learning, rnn]
+tags: [lstm, python, machine-learning, deep-learning, rnn]
 ---
 
 ## Recurrent Neural Network

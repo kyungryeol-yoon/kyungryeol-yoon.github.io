@@ -1,7 +1,7 @@
 ---
 title: "[Network] REST API란?"
 date: 2017-10-15
-tags: [network, rest api]
+tags: [network, rest-api]
 description: "REST API 개념 정리. API와 REST의 의미, 자원·메서드·표현 기반 설계 원칙과 REST API의 특징을 입문자 눈높이로 설명합니다."
 ---
 

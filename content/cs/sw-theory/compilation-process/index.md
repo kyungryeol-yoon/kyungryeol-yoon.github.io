@@ -2,7 +2,7 @@
 title: "Compilation Process"
 date: 2016-05-12
 description: "컴파일 과정 정리. 소스 코드가 전처리·컴파일·어셈블·링크를 거쳐 실행 파일이 되는 단계를 이해해 오류 해결에 활용하는 법을 설명합니다."
-tags: [compilation process, compile languages, byte code languages, interpreter languages, c, cpp, java, csharp, javascript, python, ruby, programming]
+tags: [compilation-process, compile-languages, byte-code-languages, interpreter-languages, c, cpp, java, csharp, javascript, python, ruby, programming]
 ---
 
 - 컴파일 과정은 프로그램을 만드는 데 있어서 반드시 알아야 하는 내용은 아니지만 이 과정을 머리속에 담고 있는 개발자는 앞으로 무수히 부딪히게 될 많은 문제나 오류들을 이해하는데 **훨씬 큰 이점**을 얻게 될 것이다.

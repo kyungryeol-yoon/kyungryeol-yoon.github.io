@@ -1,7 +1,7 @@
 ---
 title: "[Redis] ACL"
 date: 2025-02-05
-tags: [redis, acl, database, message broker]
+tags: [redis, acl, database, message-broker]
 description: "Redis 6+의 ACL(접근 제어 목록) 정리. User 개념으로 실행 가능한 명령과 접근 키를 제한하고, 사용자 생성·암호·권한을 지정하는 방법을 설명합니다."
 ---
 

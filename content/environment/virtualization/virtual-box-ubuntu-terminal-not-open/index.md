@@ -1,7 +1,7 @@
 ---
 title: "[Virtual Box] Ubuntu Terminal Not Open"
 date: 2022-12-01
-tags: [virtual box, ubuntu, termianl, error]
+tags: [virtual-box, ubuntu, termianl, error]
 description: "VirtualBox Ubuntu에서 터미널이 열리지 않는 문제 해결법. locale 재생성과 TTY(Ctrl+Alt+F3) 접속으로 복구하는 방법을 정리합니다."
 ---
 

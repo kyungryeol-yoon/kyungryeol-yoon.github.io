@@ -2,7 +2,7 @@
 title: "FSM이란?"
 date: 2016-01-25
 description: "유한 상태 기계(FSM) 개념 정리. 게임 AI 에이전트가 유한한 상태와 입력에 따라 상태를 전이하며 행동을 결정하는 원리를 설명합니다."
-tags: [fsm, game programming, design patterns]
+tags: [fsm, game-programming, design-patterns]
 ---
 
 - 유한상태기계(finite state machine, FSM)는 게임 에이전트에게 환상적인 지능을 부여하기 위한 선택 도구로 사용되어왔다.

@@ -1,7 +1,7 @@
 ---
 title: "[DDD Start 실전] 주문-결제 시스템 설계 및 테스트"
 date: 2020-12-12
-tags: [ddd, domain-driven design, bounded context, domain model, order, payment, start]
+tags: [ddd, domain-driven-design, bounded-context, domain-model, order, payment, start]
 description: "DDD로 주문(Order)-결제(Payment) 시스템을 설계하는 실전 예제. 애그리거트·도메인 모델 설계와 테스트 케이스 작성까지 단계별로 다룹니다."
 ---
 

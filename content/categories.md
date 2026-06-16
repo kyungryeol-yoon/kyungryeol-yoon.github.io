@@ -1,5 +1,5 @@
 ---
-title: "카테고리"
+title: "Categories"
 layout: categories
 url: /categories/
 ---

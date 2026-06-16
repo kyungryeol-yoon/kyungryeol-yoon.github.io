@@ -1,7 +1,7 @@
 ---
 title: "[Kubernetes] Kafbat - Kafka UI(1.1.0)"
 date: 2025-03-08
-tags: [kubernetes, message broker, ui, kafbat]
+tags: [kubernetes, message-broker, ui, kafbat]
 description: "Helm으로 쿠버네티스에 Kafbat(Kafka UI, 1.1.0)을 설치하는 방법. Kafka 연결·NodePort 설정 등 values 구성과 배포를 정리합니다."
 ---
 
