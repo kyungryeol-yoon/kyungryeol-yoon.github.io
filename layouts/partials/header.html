@@ -10,7 +10,7 @@
     <nav class="nav">
       <div class="nav-links" id="primary-nav">
         <a href="{{ "/" | relURL }}"{{ if .IsHome }} class="active"{{ end }}>Home</a>
-        <a href="{{ "/archives/" | relURL }}"{{ if hasPrefix .RelPermalink "/archives" }} class="active"{{ end }}>Archive</a>
+        <a href="{{ "/archives/" | relURL }}"{{ if hasPrefix .RelPermalink "/archives" }} class="active"{{ end }}>Archives</a>
         <a href="{{ "/categories/" | relURL }}"{{ if or (hasPrefix .RelPermalink "/categories") (and .IsSection (not .IsHome)) }} class="active"{{ end }}>Categories</a>
         <button class="nav-link-btn" id="tag-trigger" type="button">Tags</button>
         <span class="social nav-social">{{ partial "social.html" . }}</span>
