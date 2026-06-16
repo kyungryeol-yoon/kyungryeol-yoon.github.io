@@ -1,7 +1,7 @@
 ---
 title: "[Redis] Redis 백업 및 영속화 전략 (RDB & AOF)"
 date: 2023-04-03
-description: "Redis 인메모리 데이터의 디스크 백업 방법과 특징을 RDB 스냅샷, AOF 로그 기반으로 정리"
+description: "Redis 인메모리 데이터의 백업·영속화 전략 정리. RDB 스냅샷과 AOF 로그 방식의 차이·장단점과 장애·리부팅에 대비한 백업 구성을 설명합니다."
 tags: [redis, rdb, aof, persistence, backup]
 ---
 

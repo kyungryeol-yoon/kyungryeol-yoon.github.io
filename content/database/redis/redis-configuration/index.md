@@ -1,7 +1,7 @@
 ---
 title: "[Redis] Redis 설정 옵션 정리"
 date: 2023-10-01
-description: "Redis의 주요 설정 옵션들을 공식 구성 파일(redis.conf) 기준으로 정리한 개발자용 가이드"
+description: "Redis 주요 설정 옵션을 redis.conf 기준으로 정리한 개발자 가이드. 설치·방화벽 포트 설정부터 설정 파일 구조와 핵심 옵션까지 실무 관점으로 다룹니다."
 tags: [redis, database, configuration]
 ---
 

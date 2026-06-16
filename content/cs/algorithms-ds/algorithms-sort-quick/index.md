@@ -1,7 +1,7 @@
 ---
 title: "[Algorithms | C++] Quick sort : 퀵 정렬"
 date: 2016-02-04
-description: "분할 정복 알고리즘의 하나, 평균적으로 매우 빠른 수행 속도를 자랑하는 정렬 방법"
+description: "퀵 정렬(Quick sort) 알고리즘 개념과 C++ 구현. 분할 정복으로 피벗 기준 분할을 반복하는 원리, 평균·최악 시간 복잡도와 불안정·비교 정렬 특성을 정리합니다."
 tags: [algorithms, cpp, quick sort]
 ---
 

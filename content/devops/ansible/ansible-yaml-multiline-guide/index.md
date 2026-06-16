@@ -1,7 +1,7 @@
 ---
 title: "[Ansible] Ansible YAML에서 Multiline 처리 방법"
 date: 2021-12-23
-description: "Ansible Playbook 작성 시 YAML의 Multiline 스타일과 처리 방법을 정리합니다."
+description: "Ansible Playbook의 YAML 멀티라인 처리법 정리. Literal(|)과 Folded(>) 스타일의 줄바꿈 보존 차이와 chomping 지시자 사용법을 예제로 설명합니다."
 tags: [ansible, yaml, multiline, playbook]
 ---
 

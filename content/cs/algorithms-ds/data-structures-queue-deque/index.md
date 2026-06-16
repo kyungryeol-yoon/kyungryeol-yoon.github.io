@@ -1,7 +1,7 @@
 ---
 title: "[Data Structures | C++] Queue & Deque : 큐 & 데큐"
 date: 2016-01-24
-description: "먼저 집어 넣은 데이터가 먼저 나오는 FIFO(First In First Out)구조로 저장하는 형식"
+description: "큐(Queue)와 데크(Deque) 자료구조 정리. 선입선출(FIFO) 구조와 양방향 입출력 데크의 개념, FRONT·REAR 포인터 동작을 C++ 예제로 설명합니다."
 tags: [data structures, cpp, queue, deque]
 ---
 

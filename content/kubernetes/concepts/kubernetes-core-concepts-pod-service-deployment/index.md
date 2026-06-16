@@ -316,7 +316,7 @@ Kubernetes에서는 다양한 배포 전략을 사용할 수 있습니다.
 
 ---
 
-## 🔵🟢 Blue-Green Deployment
+## 🔵 Blue-Green Deployment
 
 Blue-Green 배포는 **두 개의 환경을 동시에 운영하는 방식**입니다.
 
