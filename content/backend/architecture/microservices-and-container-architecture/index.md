@@ -82,7 +82,7 @@ COPY --from=build /app/target/myapp.jar .
 ENTRYPOINT ["java", "-jar", "myapp.jar"]
 ```
 
-> 🔗 [상세 컨테이너 이미지 최적화 글 보기](/docker/container-size-ufs-optimized/)
+> 🔗 [상세 컨테이너 이미지 최적화 글 보기](/docker/container-image-size-ufs-optimization/)
 
 ---
 
