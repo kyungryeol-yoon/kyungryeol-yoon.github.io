@@ -140,6 +140,28 @@
       while (el) { if (el.classList && el.classList.contains("has-children")) apply(el, true); el = el.parentElement ? el.parentElement.closest("li.has-children") : null; }
     }
   });
+  // 전체 펼치기/접기 버튼 (categories 페이지 메인 트리 한정)
+  const allBtn = document.getElementById("cat-expand-all");
+  const pageItems = document.querySelectorAll(".page-narrow .cat-tree li.has-children");
+  function syncBtn() {
+    if (!allBtn || !pageItems.length) return;
+    const allOpen = [...pageItems].every((li) => li.classList.contains("open"));
+    allBtn.setAttribute("aria-expanded", allOpen ? "true" : "false");
+    const label = allBtn.querySelector(".label");
+    if (label) label.textContent = allOpen ? "전체 접기" : "전체 펼치기";
+  }
+  if (allBtn && pageItems.length) {
+    allBtn.addEventListener("click", () => {
+      const willOpen = allBtn.getAttribute("aria-expanded") !== "true";
+      pageItems.forEach((li) => {
+        apply(li, willOpen);
+        if (willOpen) saved.add(li.dataset.cat); else saved.delete(li.dataset.cat);
+      });
+      try { localStorage.setItem(KEY, JSON.stringify([...saved])); } catch (e) {}
+      syncBtn();
+    });
+  }
+
   // 토글 클릭
   document.querySelectorAll(".cat-toggle").forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -149,8 +171,11 @@
       apply(li, willOpen);
       if (willOpen) saved.add(li.dataset.cat); else saved.delete(li.dataset.cat);
       try { localStorage.setItem(KEY, JSON.stringify([...saved])); } catch (e) {}
+      syncBtn();
     });
   });
+
+  syncBtn();
 })();
 
 // [10] 스크롤 진행률 링 + 맨 위로 (한 화면 스크롤 후 fade-in) ---------------

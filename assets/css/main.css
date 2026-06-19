@@ -373,6 +373,13 @@ html[data-theme] .highlight .chroma .line { display: flex; align-items: flex-sta
 .cat-tree li.open > .cat-row .folder-closed { display: none; }
 .cat-tree li.open > .cat-row .folder-open { display: inline-block; }
 @media (prefers-reduced-motion: reduce) { .cat-toggle svg { transition: none; } }
+/* 전체 펼치기/접기 버튼 */
+.cat-tools { display: flex; justify-content: flex-end; margin: var(--space-3) 0 0; }
+.cat-tool-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; color: var(--text-soft); font-size: var(--fs-sm); cursor: pointer; }
+.cat-tool-btn:hover { color: var(--accent); border-color: var(--accent); }
+.cat-tool-btn svg { transition: transform var(--transition); }
+.cat-tool-btn[aria-expanded="true"] svg { transform: rotate(90deg); }
+@media (prefers-reduced-motion: reduce) { .cat-tool-btn svg { transition: none; } }
 /* 태그 페이지(/tags/) */
 .tag-cloud-page { margin-top: var(--space-6); }
 
