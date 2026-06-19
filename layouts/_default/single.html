@@ -21,6 +21,10 @@
     <div class="post-body">
       {{ partial "series-nav.html" . }}
 
+      {{ if and (not .Params.noads) (gt .WordCount 600) site.Params.adsenseSlotInArticle2 }}
+        {{ partial "ad-unit.html" (dict "slot" site.Params.adsenseSlotInArticle2 "format" "fluid" "layout" "in-article") }}
+      {{ end }}
+
       <div class="content">
         {{ .Content }}
       </div>
@@ -45,6 +49,10 @@
         <span>{{ with .PrevInSection }}<a href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ end }}</span>
         <span>{{ with .NextInSection }}<a href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}</span>
       </nav>
+
+      {{ if and (not .Params.noads) site.Params.adsenseSlotMultiplex }}
+        {{ partial "ad-unit.html" (dict "slot" site.Params.adsenseSlotMultiplex "format" "autorelaxed") }}
+      {{ end }}
     </div>
   </article>
 </div>

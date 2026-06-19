@@ -24,6 +24,8 @@
         {{ end }}
       </ul>
     {{ end }}
+
+    {{ with site.Params.adsenseSlotMultiplex }}{{ partial "ad-unit.html" (dict "slot" . "format" "autorelaxed") }}{{ end }}
   </div>
 
   {{ partial "aside-meta.html" . }}

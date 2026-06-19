@@ -19,5 +19,7 @@
     </ul>
   </section>
 {{ end }}
+
+{{ with site.Params.adsenseSlotMultiplex }}{{ partial "ad-unit.html" (dict "slot" . "format" "autorelaxed") }}{{ end }}
 </div>
 {{ end }}

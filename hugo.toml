@@ -65,5 +65,7 @@ summaryLength = 30
   googleAnalytics = "G-Q6B9CD1LK8"                                  # GA4 측정 ID (production 빌드에서만 출력)
   googleSiteVerification = "DnngPeqD-wb8OaPS2I2miefsUIDFJ7Xrcl4Z875CUbU"   # Search Console 소유 확인
   adsenseSlotInArticle = "6871506274"   # 본문 하단 인아티클 광고 슬롯 ID (inarticle 단위)
+  adsenseSlotInArticle2 = "9146609073"  # 긴 글 상단 2번째 인아티클 슬롯 ID
   adsenseSlotInFeed    = "5479553812"   # 홈 피드 광고 슬롯 ID (디스플레이 반응형 단위)
+  adsenseSlotMultiplex = "1965250919"   # 멀티플렉스(콘텐츠 추천형) 슬롯 ID — 글·목록 하단
   adsenseFeedLayoutKey = ""             # 인피드 네이티브 전환 시 layout-key 입력(현재 디스플레이라 빈 값)
