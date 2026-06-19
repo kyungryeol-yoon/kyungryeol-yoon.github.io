@@ -11,6 +11,10 @@
       {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
     </div>
 
+    {{ if and site.Params.adsenseSlotDisplay (gt (len .RegularPagesRecursive) 8) }}
+      {{ partial "ad-unit.html" (dict "slot" site.Params.adsenseSlotDisplay) }}
+    {{ end }}
+
     {{ if .Sections }}
       <div class="section-label">Subcategories</div>
       {{ partial "category-tree.html" . }}
