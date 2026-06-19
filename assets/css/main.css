@@ -493,6 +493,10 @@ html[data-theme] .highlight .chroma .line { display: flex; align-items: flex-sta
 .col-left .cat-tree { margin: 0; }
 .side-block { margin-bottom: var(--space-8); }
 .side-title { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; color: var(--text-faint); margin-bottom: var(--space-3); }
+.side-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); margin-bottom: var(--space-3); }
+.side-head .side-title { margin-bottom: 0; }
+.cat-tool-btn--mini { border: 0; border-radius: 6px; padding: 2px 4px; gap: 0; color: var(--text-faint); }
+.cat-tool-btn--mini:hover { color: var(--accent); border-color: transparent; background: var(--bg-soft); }
 .side-title-link { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; color: var(--accent); }
 .recent-list { list-style: none; padding: 0; margin: 0; }
 .recent-list li { padding: var(--space-2) 0; border-bottom: 1px solid var(--border-soft); line-height: 1.4; }

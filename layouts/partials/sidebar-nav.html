@@ -1,7 +1,12 @@
 {{- /* 좌측 사이드바: 카테고리 트리(개수 합산). 홈/목록 3컬럼 전용. */ -}}
 <aside class="col-left">
   <div class="side-block">
-    <div class="side-title">Categories</div>
+    <div class="side-head">
+      <span class="side-title">Categories</span>
+      <button class="cat-tool-btn cat-tool-btn--mini" type="button" aria-expanded="false" aria-label="카테고리 전체 펼치기/접기" title="전체 펼치기/접기">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+    </div>
     {{ partial "category-tree.html" site.Home }}
   </div>
 </aside>

@@ -140,27 +140,31 @@
       while (el) { if (el.classList && el.classList.contains("has-children")) apply(el, true); el = el.parentElement ? el.parentElement.closest("li.has-children") : null; }
     }
   });
-  // 전체 펼치기/접기 버튼 (categories 페이지 메인 트리 한정)
-  const allBtn = document.getElementById("cat-expand-all");
-  const pageItems = document.querySelectorAll(".page-narrow .cat-tree li.has-children");
-  function syncBtn() {
-    if (!allBtn || !pageItems.length) return;
-    const allOpen = [...pageItems].every((li) => li.classList.contains("open"));
-    allBtn.setAttribute("aria-expanded", allOpen ? "true" : "false");
-    const label = allBtn.querySelector(".label");
-    if (label) label.textContent = allOpen ? "전체 접기" : "전체 펼치기";
-  }
-  if (allBtn && pageItems.length) {
-    allBtn.addEventListener("click", () => {
-      const willOpen = allBtn.getAttribute("aria-expanded") !== "true";
-      pageItems.forEach((li) => {
+  // 전체 펼치기/접기 버튼 (여러 개 지원 — categories 페이지 + 홈/목록 사이드바)
+  const syncers = [];
+  document.querySelectorAll(".cat-tool-btn").forEach((btn) => {
+    // 버튼과 같은 블록 안의 트리를 찾음
+    let scope = btn.parentElement;
+    while (scope && !scope.querySelector(".cat-tree")) scope = scope.parentElement;
+    const treeItems = scope ? scope.querySelectorAll(".cat-tree li.has-children") : [];
+    if (!treeItems.length) return;
+    const sync = () => {
+      const allOpen = [...treeItems].every((li) => li.classList.contains("open"));
+      btn.setAttribute("aria-expanded", allOpen ? "true" : "false");
+      const label = btn.querySelector(".label");
+      if (label) label.textContent = allOpen ? "전체 접기" : "전체 펼치기";
+    };
+    btn.addEventListener("click", () => {
+      const willOpen = btn.getAttribute("aria-expanded") !== "true";
+      treeItems.forEach((li) => {
         apply(li, willOpen);
         if (willOpen) saved.add(li.dataset.cat); else saved.delete(li.dataset.cat);
       });
       try { localStorage.setItem(KEY, JSON.stringify([...saved])); } catch (e) {}
-      syncBtn();
+      syncers.forEach((fn) => fn());
     });
-  }
+    syncers.push(sync);
+  });
 
   // 토글 클릭
   document.querySelectorAll(".cat-toggle").forEach((btn) => {
@@ -171,11 +175,11 @@
       apply(li, willOpen);
       if (willOpen) saved.add(li.dataset.cat); else saved.delete(li.dataset.cat);
       try { localStorage.setItem(KEY, JSON.stringify([...saved])); } catch (e) {}
-      syncBtn();
+      syncers.forEach((fn) => fn());
     });
   });
 
-  syncBtn();
+  syncers.forEach((fn) => fn());
 })();
 
 // [10] 스크롤 진행률 링 + 맨 위로 (한 화면 스크롤 후 fade-in) ---------------
