@@ -159,7 +159,6 @@ html[data-theme="dark"] .post-card:hover { background: var(--bg-soft); box-shado
 
 /* 광고 — 본문 하단·홈 피드. 미니멀 톤: 박스 없이 가운데 정렬 + 소형 라벨 */
 .ad-unit { max-width: var(--measure); margin: var(--space-12) auto; text-align: center; overflow: hidden; }
-.ad-unit__label { display: block; font-size: 0.7rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2); }
 .ad-unit ins { display: block; }
 .post-list .ad-unit { margin: var(--space-6) auto; }
 @media (max-width: 768px) { .ad-unit { margin: var(--space-8) auto; } }

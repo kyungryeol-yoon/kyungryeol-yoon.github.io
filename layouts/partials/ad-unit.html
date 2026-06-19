@@ -7,7 +7,6 @@
 {{- $format := .format | default "auto" -}}
 {{- if and site.Params.adsenseEnabled $client $slot -}}
 <div class="ad-unit">
-  <span class="ad-unit__label">Advertisement</span>
   <ins class="adsbygoogle" style="display:block"
        data-ad-client="{{ $client }}"
        data-ad-slot="{{ $slot }}"
