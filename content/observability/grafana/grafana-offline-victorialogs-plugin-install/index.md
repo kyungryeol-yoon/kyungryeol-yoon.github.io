@@ -1,7 +1,7 @@
 ---
 title: "[Grafana] 폐쇄망 K8s에서 VictoriaLogs 플러그인 수동 설치와 permission denied 해결"
 date: 2026-06-18
-tags: [grafana, victorialogs, 폐쇄망, plugin, kubernetes, troubleshooting, airgapped]
+tags: [grafana, victorialogs, victoriametrics, 폐쇄망, plugin, kubernetes, troubleshooting, airgapped]
 description: "폐쇄망(에어갭) 쿠버네티스 환경에서 Grafana에 VictoriaLogs 데이터소스 플러그인을 수동 설치하는 방법과, 백엔드 플러그인의 'Could not start plugin backend permission denied' 에러를 권한·커스텀 이미지로 해결하는 실전 가이드입니다."
 ---
 
@@ -20,6 +20,29 @@ description: "폐쇄망(에어갭) 쿠버네티스 환경에서 Grafana에 Victo
 | 함정 | 거의 없음 | **실행 권한(+x) 필요** |
 
 > ⚠️ **VictoriaLogs 데이터소스는 백엔드 플러그인**입니다(`victoriametrics-logs-datasource`). Go 바이너리를 Grafana가 직접 실행하므로 **실행 권한이 없으면 기동에 실패**합니다. 이 점이 뒤에서 다룰 에러의 직접 원인입니다.
+
+---
+
+## 0️⃣ 플러그인 내려받기 (인터넷 되는 곳에서)
+
+폐쇄망 반입 전, 인터넷이 되는 PC에서 플러그인 zip을 받습니다. Grafana 플러그인 API의 `download` 엔드포인트를 쓰면 됩니다.
+
+```bash
+# 로그 데이터소스 (이 글의 주제)
+curl -L -o victoriametrics-logs-datasource.zip \
+  https://grafana.com/api/plugins/victoriametrics-logs-datasource/versions/0.28.0/download
+
+# 메트릭 데이터소스도 동일한 방식
+curl -L -o victoriametrics-metrics-datasource.zip \
+  https://grafana.com/api/plugins/victoriametrics-metrics-datasource/versions/0.25.0/download
+
+# 압축 해제 → 폴더명이 곧 플러그인 ID
+unzip victoriametrics-logs-datasource.zip   # → victoriametrics-logs-datasource/
+```
+
+> ⚠️ **레포명 ≠ 플러그인 ID 주의.** GitHub 레포는 `victorialogs-datasource`지만, **실제 설치 플러그인 ID는 `victoriametrics-logs-datasource`** 입니다. 압축을 풀면 폴더명이 `victoriametrics-logs-datasource`이고, 뒤에 나오는 **복사 경로·`type`·미서명 허용 목록 모두 이 ID**를 써야 합니다. (메트릭은 `victoriametrics-metrics-datasource`)
+
+> 💡 버전(`0.28.0` 등)은 예시입니다. 최신 버전은 [플러그인 페이지](https://grafana.com/grafana/plugins/victoriametrics-logs-datasource/)에서 확인하세요.
 
 ---
 
@@ -43,10 +66,19 @@ kubectl get pod <grafana-pod> -n <ns> \
 외부에서 받은 플러그인 디렉터리를 메인 컨테이너의 플러그인 경로(기본 `/var/lib/grafana/plugins`)로 복사합니다. **`-c grafana`로 컨테이너를 반드시 명시**합니다.
 
 ```bash
-kubectl cp <plugin-dir> \
-  <ns>/<grafana-pod>:/var/lib/grafana/plugins/victorialogs-datasource \
+kubectl cp ./victoriametrics-logs-datasource \
+  <ns>/<grafana-pod>:/var/lib/grafana/plugins/victoriametrics-logs-datasource \
   -c grafana
 ```
+
+복사가 됐는지 컨테이너 안에서 바로 확인합니다.
+
+```bash
+kubectl exec -it <grafana-pod> -n <ns> -c grafana -- \
+  ls -l /var/lib/grafana/plugins/victoriametrics-logs-datasource
+```
+
+> 👀 이때 백엔드 바이너리(예: `gpx_victoriametrics_logs_datasource_linux_amd64`)의 권한에 **실행 비트(`x`)가 빠져 있는 것**이 보일 수 있습니다. 그게 바로 다음 단계에서 만나는 `permission denied`의 원인입니다.
 
 복사 후 파드를 재시작합니다.
 
@@ -82,7 +114,7 @@ Could not start plugin backend ... permission denied
 
 ```bash
 kubectl exec -it <grafana-pod> -n <ns> -c grafana -- \
-  chmod -R 755 /var/lib/grafana/plugins/victorialogs-datasource
+  chmod -R 755 /var/lib/grafana/plugins/victoriametrics-logs-datasource
 ```
 
 재시작하면 플러그인이 정상 기동하고 데이터소스 목록에 나타납니다.
@@ -102,10 +134,10 @@ USER root
 
 # 폐쇄망에서 미리 받아 반입한 플러그인을 이미지에 포함
 ENV GF_PATHS_PLUGINS=/var/lib/grafana/plugins
-COPY victorialogs-datasource ${GF_PATHS_PLUGINS}/victorialogs-datasource
+COPY victoriametrics-logs-datasource ${GF_PATHS_PLUGINS}/victoriametrics-logs-datasource
 
 # 핵심: 백엔드 바이너리에 실행 권한 부여
-RUN chmod -R 755 ${GF_PATHS_PLUGINS}/victorialogs-datasource
+RUN chmod -R 755 ${GF_PATHS_PLUGINS}/victoriametrics-logs-datasource
 
 # 미서명 플러그인 로딩 허용(서명 안 된 플러그인일 때)
 ENV GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=victoriametrics-logs-datasource
@@ -154,6 +186,42 @@ data:
 ```
 
 > 💡 단, 사이드카는 **데이터소스 "등록"** 을 자동화할 뿐, **플러그인 바이너리 자체는 여전히 이미지에 있어야** 합니다(4단계). 둘은 보완 관계입니다.
+
+---
+
+## 📊 메트릭 데이터소스(VictoriaMetrics)도 동일합니다
+
+VictoriaMetrics **메트릭** 데이터소스(`victoriametrics-metrics-datasource`)도 **백엔드 플러그인**이라, 위 로그 데이터소스와 **설치·권한·커스텀 이미지 절차가 100% 동일**합니다. 플러그인은 수집용이 아니라 Grafana에서 메트릭을 **조회·시각화**하는 용도이며(수집은 `vmagent` 등이 담당), 바꿀 값만 아래처럼 치환하면 됩니다.
+
+| 구분 | 로그 (이 글) | 메트릭 |
+|---|---|---|
+| 플러그인 ID / 폴더명 | `victoriametrics-logs-datasource` | `victoriametrics-metrics-datasource` |
+| 다운로드 URL | `.../plugins/victoriametrics-logs-datasource/versions/0.28.0/download` | `.../plugins/victoriametrics-metrics-datasource/versions/0.25.0/download` |
+| 미서명 허용 ID | `victoriametrics-logs-datasource` | `victoriametrics-metrics-datasource` |
+| 데이터소스 `type` | `victoriametrics-logs-datasource` | `victoriametrics-metrics-datasource` |
+| 백엔드 엔드포인트(`url`) | VictoriaLogs `http://victorialogs:9428` | VictoriaMetrics `http://victoriametrics:8428` |
+
+즉 위 **0️⃣~4️⃣ 단계에서 `logs`를 `metrics`로 바꾸기만** 하면 됩니다. 데이터소스 자동 등록(사이드카) ConfigMap만 메트릭용으로 보이면 다음과 같습니다.
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: victoriametrics-datasource
+  labels:
+    grafana_datasource: "1"
+data:
+  victoriametrics.yaml: |
+    apiVersion: 1
+    datasources:
+      - name: VictoriaMetrics
+        type: victoriametrics-metrics-datasource
+        access: proxy
+        url: http://victoriametrics:8428
+        isDefault: true
+```
+
+> 💡 메트릭은 VictoriaMetrics가 Prometheus 호환이라 Grafana 기본 **Prometheus 데이터소스로도 조회**할 수 있습니다. 다만 이 전용 플러그인은 **MetricsQL**(PromQL 확장)·자동완성 등 VM 특화 기능을 지원합니다.
 
 ---
 
