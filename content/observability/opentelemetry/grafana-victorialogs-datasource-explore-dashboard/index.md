@@ -226,7 +226,7 @@ Builder → Code는 안전하게 직렬화됩니다. 반대(Code → Builder)는
 - **1편** — [조회 개요: Grafana·vmui·Perses](/observability/opentelemetry/victorialogs-log-viewing-grafana-vmui-perses/)
 - **2편 (현재)** — Grafana 연결: 플러그인·Explore·대시보드
 - **3편** — [vmui로 LogsQL 탐색](/observability/opentelemetry/victorialogs-vmui-logsql-live-tail/)
-- **4편** — Perses 연결 *(예정)*
+- **4편** — [Perses로 코드형 대시보드](/observability/opentelemetry/perses-victorialogs-dashboard-gitops/)
 
 이 편의 한 줄 요약: **"플러그인(`victoriametrics-logs-datasource`) + 데이터소스 URL(cluster `8427` / single `9428`)이면 연결 끝."** 폐쇄망은 init container로 설치하되 백엔드 실행 권한에 주의하고, LogsQL로 Explore → QueryBuilder → 패널 → Ad Hoc 필터 순으로 확장합니다.
 

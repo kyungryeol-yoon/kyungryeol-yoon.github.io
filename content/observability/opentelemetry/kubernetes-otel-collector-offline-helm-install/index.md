@@ -427,7 +427,7 @@ Secret으로 토큰을 만들어 `extraEnvs`로 주입하고, exporter `headers`
 - **1편** — [조회 개요: Grafana·vmui·Perses](/observability/opentelemetry/victorialogs-log-viewing-grafana-vmui-perses/)
 - **2편** — [Grafana 연결: 플러그인·Explore·대시보드](/observability/opentelemetry/grafana-victorialogs-datasource-explore-dashboard/)
 - **3편** — [vmui로 LogsQL 탐색](/observability/opentelemetry/victorialogs-vmui-logsql-live-tail/)
-- **4편** — Perses 연결 *(예정)*
+- **4편** — [Perses로 코드형 대시보드](/observability/opentelemetry/perses-victorialogs-dashboard-gitops/)
 
 이 편의 한 줄 요약: **"`mode`에 따라 receiver/exporter/pipeline이 갈린다 — Agent는 `filelog→otlp`, Gateway는 `otlp→otlphttp`."** 폐쇄망에서는 이미지 경로 덮어쓰기, `memory_limiter`·재시도 큐·TLS·Secret·`VL-Stream-Fields`가 안정 운영의 필수 요소이며, 설치 직후 vmui로 적재를 검증하면 됩니다.
 

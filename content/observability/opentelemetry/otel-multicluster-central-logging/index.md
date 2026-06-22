@@ -223,7 +223,7 @@ env:dev
 - **1편** — [조회 개요: Grafana·vmui·Perses](/observability/opentelemetry/victorialogs-log-viewing-grafana-vmui-perses/)
 - **2편** — [Grafana 연결: 플러그인·Explore·대시보드](/observability/opentelemetry/grafana-victorialogs-datasource-explore-dashboard/)
 - **3편** — [vmui로 LogsQL 탐색](/observability/opentelemetry/victorialogs-vmui-logsql-live-tail/)
-- **4편** — Perses 연결 *(예정)*
+- **4편** — [Perses로 코드형 대시보드](/observability/opentelemetry/perses-victorialogs-dashboard-gitops/)
 
 이 편의 한 줄 요약: **"멀티클러스터 = 구성 복제 + 값 2개(`env`, endpoint) 변경, 새 난관은 클러스터 간 통신뿐."** 외부 진입은 vmauth로 단일화해 TLS·인증을 적용하고 백엔드 컴포넌트는 직접 노출하지 않으며, 확장은 dev부터 단계적으로 검증하며 펼칩니다.
 

@@ -213,7 +213,7 @@ sinks:
 - **1편** — [조회 개요: Grafana·vmui·Perses](/observability/opentelemetry/victorialogs-log-viewing-grafana-vmui-perses/)
 - **2편** — [Grafana 연결: 플러그인·Explore·대시보드](/observability/opentelemetry/grafana-victorialogs-datasource-explore-dashboard/)
 - **3편** — [vmui로 LogsQL 탐색](/observability/opentelemetry/victorialogs-vmui-logsql-live-tail/)
-- **4편** — Perses 연결 *(예정)*
+- **4편** — [Perses로 코드형 대시보드](/observability/opentelemetry/perses-victorialogs-dashboard-gitops/)
 
 이 편의 한 줄 요약: **"Vector는 sources → transforms → sinks의 DAG이고, OTel과 1:1로 대응된다."** `kubernetes_logs`로 수집해 elasticsearch/http sink로 VictoriaLogs에 적재하며, `_stream_fields`로 카디널리티를 관리하고 대규모는 agent + aggregator 2단으로 구성합니다.
 

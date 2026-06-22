@@ -187,7 +187,7 @@ single-node는 `9428`, 클러스터는 vmauth `8427`입니다.
 - **1편 (현재)** — 조회 개요: Grafana·vmui·Perses
 - **2편** — [Grafana 연결: 플러그인·Explore·대시보드](/observability/opentelemetry/grafana-victorialogs-datasource-explore-dashboard/)
 - **3편** — [vmui로 LogsQL 탐색](/observability/opentelemetry/victorialogs-vmui-logsql-live-tail/)
-- **4편** — Perses 연결 *(예정)*
+- **4편** — [Perses로 코드형 대시보드](/observability/opentelemetry/perses-victorialogs-dashboard-gitops/)
 
 이 편의 한 줄 요약: **"로그 조회는 데이터소스 방식(Grafana·Perses)과 내장 UI 방식(vmui)으로 나뉘고, 모두 LogsQL을 쓴다."** 연결 지점은 single `9428` / cluster vmauth `8427`로 동일하며, 도구는 용도(빠른 디버깅·상시 대시보드·GitOps)로 고르면 됩니다.
 

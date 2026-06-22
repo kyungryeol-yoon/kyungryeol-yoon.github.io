@@ -148,7 +148,7 @@ Live 모드(라이브 테일링)를 쓰세요. 신규 로그는 전달 보장을
 - **1편** — [조회 개요: Grafana·vmui·Perses](/observability/opentelemetry/victorialogs-log-viewing-grafana-vmui-perses/)
 - **2편** — [Grafana 연결: 플러그인·Explore·대시보드](/observability/opentelemetry/grafana-victorialogs-datasource-explore-dashboard/)
 - **3편 (현재)** — vmui로 LogsQL 탐색
-- **4편** — Perses 연결 *(예정)*
+- **4편** — [Perses로 코드형 대시보드](/observability/opentelemetry/perses-victorialogs-dashboard-gitops/)
 
 이 편의 한 줄 요약: **"vmui는 설치·연결 없는 VictoriaLogs 내장 UI다."** `/select/vmui`로 접속해 LogsQL로 조회하고, 라이브 테일·JSON 원본으로 적재 검증과 디버깅을 빠르게 합니다. 상시 운영은 Grafana, 빠른 확인은 vmui로 병행하세요.
 
