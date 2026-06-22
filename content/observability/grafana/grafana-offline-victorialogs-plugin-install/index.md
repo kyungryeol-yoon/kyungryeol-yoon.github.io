@@ -1,6 +1,6 @@
 ---
 title: "[Grafana] 폐쇄망 K8s에서 VictoriaLogs 플러그인 수동 설치와 permission denied 해결"
-date: 2026-06-18
+date: 2026-06-11
 tags: [grafana, victorialogs, victoriametrics, 폐쇄망, plugin, kubernetes, troubleshooting, airgapped]
 description: "폐쇄망(에어갭) 쿠버네티스 환경에서 Grafana에 VictoriaLogs 데이터소스 플러그인을 수동 설치하는 방법과, 백엔드 플러그인의 'Could not start plugin backend permission denied' 에러를 권한·커스텀 이미지로 해결하는 실전 가이드입니다."
 ---
