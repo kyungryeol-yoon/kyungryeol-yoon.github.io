@@ -1,6 +1,6 @@
 ---
 title: "OpenTelemetry 로그 파이프라인 멀티클러스터로 확장하기: 4개 K8s 클러스터를 mgmt로 중앙집중"
-date: 2026-06-22
+date: 2026-06-15
 tags: ["opentelemetry", "otel-collector", "victorialogs", "kubernetes", "multicluster", "logging", "observability"]
 description: "단일 클러스터에서 검증한 OpenTelemetry 로그 파이프라인을 dev·stg·prod·mgmt 멀티클러스터로 확장할 때 바뀌는 env 라벨과 Gateway endpoint, 클러스터 간 네트워크·TLS·인증 고려사항과 검증 절차를 정리합니다."
 series: "OTel + VictoriaLogs 로그 스택"
@@ -201,10 +201,29 @@ env:dev
 
 ## 🧭 시리즈: OTel + VictoriaLogs 로그 스택
 
+**OTel 트랙**
+
 - **1편** — [OpenTelemetry 개념과 Agent/Gateway 구조](/observability/opentelemetry/otel-collector-agent-gateway-architecture/)
 - **2편** — [VictoriaLogs 클러스터 구축](/observability/opentelemetry/kubernetes-victorialogs-cluster-helm-install/)
 - **3편** — [폐쇄망 OTel Collector Helm 설치](/observability/opentelemetry/kubernetes-otel-collector-offline-helm-install/)
 - **4편 (현재)** — 멀티클러스터 확장 + 운영·검증
+
+**Vector 트랙** (대안 수집기)
+
+- **1편** — [Vector 개념과 파이프라인 구조](/observability/opentelemetry/kubernetes-vector-log-pipeline-concept/)
+- **2편** — [Vector 설치: Agent/Aggregator Helm values](/observability/opentelemetry/kubernetes-vector-agent-aggregator-helm-install/)
+- **3편** — [VRL로 로그 가공](/observability/opentelemetry/kubernetes-vector-vrl-log-processing/)
+
+**비교**
+
+- **OTel vs Vector** — [어떤 걸 선택할까](/observability/opentelemetry/kubernetes-otel-collector-vs-vector/)
+
+**대시보드 트랙**
+
+- **1편** — [조회 개요: Grafana·vmui·Perses](/observability/opentelemetry/victorialogs-log-viewing-grafana-vmui-perses/)
+- **2편** — [Grafana 연결: 플러그인·Explore·대시보드](/observability/opentelemetry/grafana-victorialogs-datasource-explore-dashboard/)
+- **3편** — [vmui로 LogsQL 탐색](/observability/opentelemetry/victorialogs-vmui-logsql-live-tail/)
+- **4편** — Perses 연결 *(예정)*
 
 이 편의 한 줄 요약: **"멀티클러스터 = 구성 복제 + 값 2개(`env`, endpoint) 변경, 새 난관은 클러스터 간 통신뿐."** 외부 진입은 vmauth로 단일화해 TLS·인증을 적용하고 백엔드 컴포넌트는 직접 노출하지 않으며, 확장은 dev부터 단계적으로 검증하며 펼칩니다.
 
