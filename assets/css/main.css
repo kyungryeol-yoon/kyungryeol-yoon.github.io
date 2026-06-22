@@ -158,8 +158,8 @@ html[data-theme="dark"] .post-card:hover { background: var(--bg-soft); box-shado
 .tag-more { font-size: 0.8rem; color: var(--text-faint); }
 
 /* 광고 — 본문 하단·홈 피드. 미니멀 톤: 박스 없이 가운데 정렬 + 소형 라벨 */
-.ad-unit { max-width: var(--measure); margin: var(--space-12) auto; text-align: center; overflow: hidden; }
-.ad-unit ins { display: block; }
+.ad-unit { width: 100%; max-width: var(--measure); margin: var(--space-12) auto; text-align: center; overflow: hidden; }
+.ad-unit ins { display: block; width: 100%; }
 .post-list .ad-unit { margin: var(--space-6) auto; }
 @media (max-width: 768px) { .ad-unit { margin: var(--space-8) auto; } }
 
