@@ -7,7 +7,7 @@ series: "OTel + VictoriaLogs 로그 스택"
 series_order: 2
 ---
 
-OpenTelemetry Collector를 Helm으로 설치할 때 핵심은 **`mode`(daemonset/deployment)에 따라 receiver·exporter·pipeline을 정확히 나누는 것**이고, 폐쇄망에서는 여기에 **이미지 경로와 TLS·Secret을 사내 기준으로 덮어쓰는 작업**이 더해집니다. Agent는 `filelog`로 노드 로그를 긁어 Gateway로 보내고, Gateway는 `otlp`로 받아 VictoriaLogs의 `/insert/opentelemetry/v1/logs`로 내보냅니다. 설치 후에는 Grafana 없이도 **vmui(`/select/vmui`)로 적재를 즉시 검증**할 수 있습니다. 이 글은 **"OTel + VictoriaLogs 로그 스택" 시리즈 2편(설치편)** 으로, [1편(개념편)](/observability/opentelemetry/otel-collector-agent-gateway-architecture/)에서 다룬 Agent/Gateway 구조 위에 **실전 values.yaml**을 얹습니다.
+OpenTelemetry Collector를 Helm으로 설치할 때 핵심은 **`mode`(daemonset/deployment)에 따라 receiver·exporter·pipeline을 정확히 나누는 것**이고, 폐쇄망에서는 여기에 **이미지 경로와 TLS·Secret을 사내 기준으로 덮어쓰는 작업**이 더해집니다. Agent는 `filelog`로 노드 로그를 긁어 Gateway로 보내고, Gateway는 `otlp`로 받아 VictoriaLogs의 `/insert/opentelemetry/v1/logs`로 내보냅니다. 설치 후에는 Grafana 없이도 **vmui(`/select/vmui`)로 적재를 즉시 검증**할 수 있습니다. 이 글은 **"OTel + VictoriaLogs 로그 스택" 시리즈 3편(설치편)** 으로, [1편(개념편)](/observability/opentelemetry/otel-collector-agent-gateway-architecture/)의 Agent/Gateway 구조와 [2편(백엔드편)](/observability/opentelemetry/kubernetes-victorialogs-cluster-helm-install/)에서 세운 VictoriaLogs 위에 **실전 values.yaml**을 얹습니다.
 
 ## 🧭 설치 전 체크리스트
 
@@ -406,8 +406,9 @@ Secret으로 토큰을 만들어 `extraEnvs`로 주입하고, exporter `headers`
 ## 🧭 시리즈: OTel + VictoriaLogs 로그 스택
 
 - **1편** — [OpenTelemetry 개념과 Agent/Gateway 구조](/observability/opentelemetry/otel-collector-agent-gateway-architecture/)
-- **2편 (현재)** — 폐쇄망 Helm 설치 + values 완벽 설정
-- **3편** — 멀티클러스터 확장 + 검증 *(예정)*
+- **2편** — [VictoriaLogs 클러스터 구축](/observability/opentelemetry/kubernetes-victorialogs-cluster-helm-install/)
+- **3편 (현재)** — 폐쇄망 Helm 설치 + values 완벽 설정
+- **4편** — [멀티클러스터 중앙집중](/observability/opentelemetry/otel-multicluster-central-logging/)
 
 이 편의 한 줄 요약: **"`mode`에 따라 receiver/exporter/pipeline이 갈린다 — Agent는 `filelog→otlp`, Gateway는 `otlp→otlphttp`."** 폐쇄망에서는 이미지 경로 덮어쓰기, `memory_limiter`·재시도 큐·TLS·Secret·`VL-Stream-Fields`가 안정 운영의 필수 요소이며, 설치 직후 vmui로 적재를 검증하면 됩니다.
 
