@@ -506,10 +506,10 @@ html[data-theme] .highlight .chroma .line { display: flex; align-items: flex-sta
 .pin-li-ico { flex: none; color: var(--accent); transform: translateY(1px); }
 /* 고정 글 위젯(details) */
 .pin-box { margin: 0; }
-.pin-summary { display: flex; align-items: center; gap: var(--space-2); cursor: pointer; list-style: none; }
+.pin-summary { display: flex; align-items: center; gap: var(--space-2); cursor: pointer; list-style: none; width: 100%; }
 .pin-summary::-webkit-details-marker { display: none; }
 .pin-n { font-weight: 400; color: var(--text-faint); }
-.pin-summary .chev { margin-left: auto; color: var(--text-faint); transition: transform var(--transition); }
+.pin-summary .chev { margin-left: auto; flex: none; color: var(--text-faint); transition: transform var(--transition); }
 .pin-box[open] .pin-summary .chev { transform: rotate(90deg); }
 @media (min-width: 1081px) { .pin-summary { cursor: default; pointer-events: none; } .pin-summary .chev { display: none; } }
 
