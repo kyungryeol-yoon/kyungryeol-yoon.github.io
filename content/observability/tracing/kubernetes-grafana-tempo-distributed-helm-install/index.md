@@ -1,6 +1,6 @@
 ---
 title: "Grafana Tempo로 트레이스 백엔드 구축하기: OTLP 수집부터 오브젝트 스토리지 저장까지"
-date: 2026-06-23T13:00:00+09:00
+date: 2026-06-25
 tags: ["tempo", "tracing", "kubernetes", "helm", "observability", "otlp", "grafana"]
 description: "분산 트레이스 백엔드로 Grafana Tempo를 Helm으로 구축하는 방법을 다룹니다. tempo-distributed 차트, OTLP 수집, S3/MinIO 오브젝트 스토리지, retention, OTel Collector 연동까지 폐쇄망·대규모 기준으로 설명합니다."
 series: "OTel 트레이스 확장"

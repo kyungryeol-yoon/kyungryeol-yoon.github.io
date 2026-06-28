@@ -1,6 +1,6 @@
 ---
 title: "로그와 트레이스를 연결하기: Grafana에서 trace_id로 로그↔트레이스 점프하기"
-date: 2026-06-23T15:00:00+09:00
+date: 2026-06-27
 tags: ["grafana", "tracing", "victorialogs", "tempo", "victoriatraces", "observability", "correlation"]
 description: "Grafana에서 로그와 트레이스를 trace_id로 상호 연결하는 방법을 다룹니다. VictoriaLogs OpenTelemetry preset과 Derived Fields, Tempo의 trace-to-logs 설정으로 에러 로그에서 트레이스로, 트레이스에서 로그로 한 번에 점프하는 관측성의 핵심을 완성합니다."
 series: "OTel 트레이스 확장"

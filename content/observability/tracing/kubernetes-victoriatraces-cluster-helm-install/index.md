@@ -1,6 +1,6 @@
 ---
 title: "VictoriaTraces로 트레이스 백엔드 구축하기: VictoriaLogs 생태계로 통일하는 분산 추적"
-date: 2026-06-23T14:00:00+09:00
+date: 2026-06-26
 tags: ["victoriatraces", "victorialogs", "tracing", "kubernetes", "helm", "observability", "otlp"]
 description: "VictoriaLogs 기반의 트레이스 백엔드 VictoriaTraces를 Helm으로 구축하는 방법을 다룹니다. single/cluster 차트, OTLP 적재 경로, retention, vmui·Jaeger 데이터소스 조회, OTel Collector 연동을 VictoriaLogs 스택과 일관되게 설명합니다."
 series: "OTel 트레이스 확장"

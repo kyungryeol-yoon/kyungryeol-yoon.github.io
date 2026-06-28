@@ -1,6 +1,6 @@
 ---
 title: "K8s 분산 트레이스 시작하기: OTel 파이프라인에 트레이스를 더하는 두 가지 길"
-date: 2026-06-23T12:00:00+09:00
+date: 2026-06-24
 tags: ["opentelemetry", "tracing", "kubernetes", "observability", "otlp", "instrumentation", "distributed-tracing"]
 description: "쿠버네티스에서 분산 트레이스를 수집하는 기본 개념과, 기존 OpenTelemetry 로그 파이프라인에 통합하는 경로와 트레이스만 독립적으로 구축하는 경로를 함께 설명합니다. 앱 계측의 필요성, 공용·분리 Gateway 선택, 트레이스 백엔드 선택의 큰 그림을 다룹니다."
 series: "OTel 트레이스 확장"
