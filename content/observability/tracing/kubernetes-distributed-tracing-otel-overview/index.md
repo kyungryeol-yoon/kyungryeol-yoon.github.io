@@ -43,18 +43,109 @@ series_order: 1
 - **OTel SDK로 코드 계측** — 언어별 SDK로 Tracer를 초기화하고 span을 만듭니다. 가장 정밀하지만 코드 변경이 따릅니다.
 - **자동 계측(auto-instrumentation)** — 에이전트·오퍼레이터가 런타임에 주입해 **코드 수정을 최소화**합니다. 빠른 도입에 유리합니다.
 
-계측된 앱은 **OTLP로 Collector(같은 클러스터 Agent/Gateway 또는 백엔드로 직접)** 에 트레이스를 보냅니다. 이때 **`service.name` 등 리소스 속성**을 반드시 지정해야 조회·상관관계에서 서비스를 식별할 수 있습니다.
+계측된 앱은 **OTLP로 Collector(같은 클러스터 Agent/Gateway 또는 백엔드로 직접)** 에 트레이스를 보냅니다. 이때 **`service.name` 등 리소스 속성**을 반드시 지정해야 조회·상관관계에서 서비스를 식별할 수 있습니다. 아래 예시의 `<collector>`는 경로에 따라 Agent/Gateway 또는 백엔드 주소(예: `otel-collector.observability:4317`)로 바꾸면 됩니다.
+
+> 💡 **언어 불문 공통**: 모든 OTel SDK는 코드 대신 **환경변수**로도 설정됩니다. `OTEL_SERVICE_NAME=checkout-api`, `OTEL_EXPORTER_OTLP_ENDPOINT=http://<collector>:4317`, `OTEL_EXPORTER_OTLP_PROTOCOL=grpc` 세 개만 주면 엔드포인트·서비스명이 잡혀, 코드보다 간단할 때가 많습니다(쿠버네티스에선 Deployment `env`로 주입).
+
+**.NET (ASP.NET Core)** — `OpenTelemetry.Extensions.Hosting` + `OpenTelemetry.Exporter.OpenTelemetryProtocol`
 
 ```csharp
-// 개념 예시 (.NET) — 언어별 SDK가 존재
+// Program.cs
 builder.Services.AddOpenTelemetry()
+  .ConfigureResource(r => r.AddService("checkout-api"))
   .WithTracing(t => t
     .AddAspNetCoreInstrumentation()
+    .AddHttpClientInstrumentation()
     .AddOtlpExporter(o => {
       o.Endpoint = new Uri("http://<collector>:4317");
       o.Protocol = OtlpExportProtocol.Grpc;
     }));
 ```
+
+**Java (Spring Boot)** — `opentelemetry-spring-boot-starter`를 추가하면 코드 변경 없이 환경변수만으로 동작합니다.
+
+```properties
+# application.properties (또는 동일 이름의 환경변수)
+otel.service.name=checkout-api
+otel.exporter.otlp.endpoint=http://<collector>:4317
+otel.exporter.otlp.protocol=grpc
+```
+
+```bash
+# 또는 빌드/코드 수정 없이 자동 계측 에이전트로:
+java -javaagent:opentelemetry-javaagent.jar \
+  -Dotel.service.name=checkout-api \
+  -Dotel.exporter.otlp.endpoint=http://<collector>:4317 \
+  -jar app.jar
+```
+
+**Python** — `pip install opentelemetry-distro opentelemetry-exporter-otlp` 후 zero-code로 감싸 실행합니다.
+
+```bash
+opentelemetry-bootstrap -a install
+OTEL_SERVICE_NAME=checkout-api \
+OTEL_EXPORTER_OTLP_ENDPOINT=http://<collector>:4317 \
+opentelemetry-instrument python app.py
+```
+
+```python
+# SDK로 직접 초기화하려면:
+from opentelemetry import trace
+from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+
+provider = TracerProvider(resource=Resource.create({"service.name": "checkout-api"}))
+provider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter(endpoint="http://<collector>:4317")))
+trace.set_tracer_provider(provider)
+```
+
+**Node.js** — `@opentelemetry/sdk-node` + 자동 계측 + gRPC exporter를 앱 진입 전에 시작합니다.
+
+```javascript
+// tracing.js — `node -r ./tracing.js app.js` 로 먼저 로드
+const { NodeSDK } = require('@opentelemetry/sdk-node');
+const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
+const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-grpc');
+const { resourceFromAttributes } = require('@opentelemetry/resources');
+const { ATTR_SERVICE_NAME } = require('@opentelemetry/semantic-conventions');
+
+const sdk = new NodeSDK({
+  resource: resourceFromAttributes({ [ATTR_SERVICE_NAME]: 'checkout-api' }),
+  traceExporter: new OTLPTraceExporter({ url: 'http://<collector>:4317' }),
+  instrumentations: [getNodeAutoInstrumentations()],
+});
+sdk.start();
+```
+
+**Go** — SDK로 TracerProvider를 구성합니다(Go는 자동 계측이 없어 SDK 코드가 기본).
+
+```go
+import (
+    "context"
+    "go.opentelemetry.io/otel"
+    "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
+    "go.opentelemetry.io/otel/sdk/resource"
+    sdktrace "go.opentelemetry.io/otel/sdk/trace"
+    semconv "go.opentelemetry.io/otel/semconv/v1.26.0"
+)
+
+func initTracer(ctx context.Context) (*sdktrace.TracerProvider, error) {
+    exp, err := otlptracegrpc.New(ctx,
+        otlptracegrpc.WithEndpoint("<collector>:4317"),
+        otlptracegrpc.WithInsecure())
+    if err != nil {
+        return nil, err
+    }
+    res, _ := resource.New(ctx, resource.WithAttributes(semconv.ServiceName("checkout-api")))
+    tp := sdktrace.NewTracerProvider(sdktrace.WithBatcher(exp), sdktrace.WithResource(res))
+    otel.SetTracerProvider(tp)
+    return tp, nil
+}
+```
+
+> 💡 **코드 수정 없이 가려면** [OTel Operator 자동 계측](https://opentelemetry.io/docs/kubernetes/operator/automatic/)을 쓰세요. `Instrumentation` 리소스와 파드 어노테이션만으로 **Java·Python·Node.js·.NET**에 SDK를 런타임 주입합니다(Go는 컴파일 언어라 미지원 — 위 SDK 코드 사용).
 
 ---
 
