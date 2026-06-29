@@ -47,7 +47,11 @@ series_order: 1
 
 > 💡 **언어 불문 공통**: 모든 OTel SDK는 코드 대신 **환경변수**로도 설정됩니다. `OTEL_SERVICE_NAME=checkout-api`, `OTEL_EXPORTER_OTLP_ENDPOINT=http://<collector>:4317`, `OTEL_EXPORTER_OTLP_PROTOCOL=grpc` 세 개만 주면 엔드포인트·서비스명이 잡혀, 코드보다 간단할 때가 많습니다(쿠버네티스에선 Deployment `env`로 주입).
 
-**.NET (ASP.NET Core)** — `OpenTelemetry.Extensions.Hosting` + `OpenTelemetry.Exporter.OpenTelemetryProtocol`
+**언어별 바로가기:** [.NET](#net-aspnet-core) · [Java](#java-spring-boot) · [Python](#python) · [Node.js](#nodejs) · [Go](#go)
+
+#### .NET (ASP.NET Core)
+
+`OpenTelemetry.Extensions.Hosting` + `OpenTelemetry.Exporter.OpenTelemetryProtocol` 패키지를 사용합니다.
 
 ```csharp
 // Program.cs
@@ -62,7 +66,9 @@ builder.Services.AddOpenTelemetry()
     }));
 ```
 
-**Java (Spring Boot)** — `opentelemetry-spring-boot-starter`를 추가하면 코드 변경 없이 환경변수만으로 동작합니다.
+#### Java (Spring Boot)
+
+`opentelemetry-spring-boot-starter`를 추가하면 코드 변경 없이 환경변수만으로 동작합니다.
 
 ```properties
 # application.properties (또는 동일 이름의 환경변수)
@@ -79,7 +85,9 @@ java -javaagent:opentelemetry-javaagent.jar \
   -jar app.jar
 ```
 
-**Python** — `pip install opentelemetry-distro opentelemetry-exporter-otlp` 후 zero-code로 감싸 실행합니다.
+#### Python
+
+`pip install opentelemetry-distro opentelemetry-exporter-otlp` 후 zero-code로 감싸 실행합니다.
 
 ```bash
 opentelemetry-bootstrap -a install
@@ -101,7 +109,9 @@ provider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter(endpoint="http:/
 trace.set_tracer_provider(provider)
 ```
 
-**Node.js** — `@opentelemetry/sdk-node` + 자동 계측 + gRPC exporter를 앱 진입 전에 시작합니다.
+#### Node.js
+
+`@opentelemetry/sdk-node` + 자동 계측 + gRPC exporter를 앱 진입 전에 시작합니다.
 
 ```javascript
 // tracing.js — `node -r ./tracing.js app.js` 로 먼저 로드
@@ -119,7 +129,9 @@ const sdk = new NodeSDK({
 sdk.start();
 ```
 
-**Go** — SDK로 TracerProvider를 구성합니다(Go는 자동 계측이 없어 SDK 코드가 기본).
+#### Go
+
+SDK로 TracerProvider를 구성합니다(Go는 자동 계측이 없어 SDK 코드가 기본).
 
 ```go
 import (
