@@ -39,6 +39,70 @@ flowchart TB
 
 > ⚠️ **로그에 `trace_id`가 없으면 연결은 불가능**합니다. 연결이 안 될 때 가장 흔한 원인이 바로 이것이니, **계측 단계에서 반드시 확보**하세요.
 
+아래는 언어별로 **로그에 `trace_id`(와 `span_id`)를 싣는 법**입니다. VictoriaLogs OTel preset이 자동 인식하도록 **필드명을 `trace_id`(snake_case)로 맞추는 것**을 권장합니다(camelCase `traceId`도 감지되지만, 라이브러리 기본 필드명이 `otelTraceID` 등으로 다르면 수동 Derived Field로 보정).
+
+**언어별 바로가기:** [Java](#java-logback-mdc) · [Python](#python) · [Node.js](#nodejs-pino) · [.NET](#net) · [Go](#go-slog)
+
+#### Java (Logback MDC)
+
+`opentelemetry-spring-boot-starter`(또는 자동 계측 에이전트)가 MDC에 `trace_id`·`span_id`·`trace_flags`를 넣어줍니다. 로그 패턴에서 꺼내 쓰면 됩니다.
+
+```xml
+<!-- logback-spring.xml -->
+<pattern>%d %-5level [trace_id=%mdc{trace_id} span_id=%mdc{span_id}] %logger - %msg%n</pattern>
+```
+
+#### Python
+
+`opentelemetry-instrumentation-logging`이 로그 레코드에 trace context를 자동 주입합니다.
+
+```python
+from opentelemetry.instrumentation.logging import LoggingInstrumentor
+
+# otelTraceID / otelSpanID / otelServiceName 를 로그 포맷에 주입
+LoggingInstrumentor().instrument(set_logging_format=True)
+```
+
+> 필드명이 `otelTraceID`라 preset 자동 인식이 안 되면, 구조화 로깅에서 `trace_id` 키로 다시 실거나 수동 Derived Field로 매핑하세요.
+
+#### Node.js (pino)
+
+`@opentelemetry/instrumentation-pino`를 켜면 로그에 `trace_id`·`span_id`·`trace_flags`가 자동으로 붙습니다.
+
+```javascript
+// 자동 계측(instrumentation-pino) 활성 상태에서
+const logger = require('pino')();
+logger.info('order placed');
+// → {"level":30,"trace_id":"...","span_id":"...","msg":"order placed"}
+```
+
+#### .NET
+
+`ILogger` 로그를 OTLP로 내보내면 활성 `Activity`의 `TraceId`·`SpanId`가 LogRecord에 자동으로 실려 상관됩니다.
+
+```csharp
+builder.Logging.AddOpenTelemetry(o => {
+  o.IncludeScopes = true;
+  o.AddOtlpExporter();   // 로그도 OTLP로 → trace_id 자동 상관
+});
+```
+
+#### Go (slog)
+
+Go는 자동 주입이 없어, 스팬 컨텍스트에서 `trace_id`를 꺼내 구조화 로그 필드로 직접 넣습니다.
+
+```go
+import (
+    "log/slog"
+    "go.opentelemetry.io/otel/trace"
+)
+
+sc := trace.SpanContextFromContext(ctx)
+slog.InfoContext(ctx, "order placed",
+    slog.String("trace_id", sc.TraceID().String()),
+    slog.String("span_id", sc.SpanID().String()))
+```
+
 ---
 
 ## ➡️ 로그 → 트레이스 (VictoriaLogs OTel preset)
