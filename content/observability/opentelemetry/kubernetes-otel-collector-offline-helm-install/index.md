@@ -65,6 +65,8 @@ docker push <사내레지스트리>/otel-collector-contrib:0.1xx.x
 1. **설치 순서: Gateway 먼저 → Agent 나중.** Gateway가 4317을 리슨한 뒤 Agent가 붙어야 `connection refused`를 피합니다.
 2. **Helm 리스트는 병합되지 않습니다.** `pipelines`의 `receivers`/`processors`/`exporters`는 프리셋이 일부를 주입하더라도 **전체를 명시**해야 안전합니다.
 
+> ⚠️ 같은 맥락에서, **`processors:` 아래 정의만으로는 동작하지 않습니다** — 반드시 `service.pipelines.logs.processors` 리스트에 이름을 넣어야 통과하고, 나열 순서가 곧 실행 순서입니다. 이 함정과 함께 **로그 레벨 파싱**(JSON/logfmt/klog/평문)·**특정 네임스페이스 수집 제외**(filelog `exclude` vs `filter` processor)는 [트러블슈팅편 — 로그 레벨 구분](/observability/opentelemetry/victorialogs-otel-troubleshooting/#-8-평문klog-로그-레벨-구분-otel에서-파싱한다) · [processor 등록·네임스페이스 제외](/observability/opentelemetry/victorialogs-otel-troubleshooting/#-9-processor는-pipeline에-등록해야-동작한다--네임스페이스-제외)를 참고하세요.
+
 ---
 
 ## ⚙️ Agent values.yaml (DaemonSet)
@@ -99,10 +101,10 @@ securityContext:
 # 프리셋: 로그 수집 + k8s 메타데이터
 presets:
   logsCollection:
-    enabled: true               # filelog receiver 자동 생성, /var/log/pods 읽기
+    enabled: true               # container operator 포함 filelog 자동 생성 → 경로에서 namespace/pod/container 추출
     includeCollectorLogs: false # 콜렉터 자기 로그는 제외(루프 방지)
   kubernetesAttributes:
-    enabled: true               # namespace/pod/container 라벨 자동 부착
+    enabled: true               # 위 기본 필드 기준으로 API 질의 → labels/annotations 보강 (+ 필요한 RBAC 자동 생성)
 
 config:
   processors:
@@ -152,6 +154,38 @@ config:
 ```
 
 > 💡 `securityContext.runAsUser: 0`(root)으로 둔 건 컨테이너 런타임이 `/var/log/pods`를 root 권한으로 쓰기 때문입니다. 환경에 따라 non-root로도 읽히니, 보안정책이 엄격하면 먼저 non-root로 시도하고 **로그가 안 읽히면 root로 조정**하세요.
+
+> ⚠️ 실제로는 **hostPath가 Kyverno에 걸려 경고**가 뜨거나(대개 Audit 모드라 배포는 됨), **hostPort가 values로 지워지지 않는** 차트 함정을 만나기 쉽습니다. 정책 모드 진단과 대응(PolicyException·post-render)은 [트러블슈팅편 — hostPath/hostPort와 Kyverno Audit](/observability/opentelemetry/victorialogs-otel-troubleshooting/#-4-hostpathhostport와-kyverno-audit-모드)을 참고하세요.
+
+> ⚠️ **두 프리셋은 역할이 다르고, `kubernetesAttributes`만으로는 k8s 필드가 안 붙습니다.** `logsCollection`이 만드는 `filelog`가 두 가지를 함께 켜야 pod 정보가 생깁니다 — **① `include_file_path: true`** 로 각 로그에 원본 파일 경로(`log.file.path`)를 붙이고, **② `operators: [type: container]`** 가 그 경로(`/var/log/pods/<namespace>_<pod>_<uid>/<container>/*.log`)를 파싱해 `k8s.namespace.name`·`k8s.pod.name`·`k8s.container.name` **기본 필드**를 추출합니다. 그다음에야 `kubernetesAttributes`(k8sattributes)가 그 기준으로 **Kubernetes API에 질의해 labels·annotations를 보강**합니다. `include_file_path`가 꺼져 있으면 파싱할 경로 자체가 없고, `container` operator가 없으면 기준이 될 pod 정보가 없어 **어느 쪽이 빠져도 필드가 하나도 안 들어옵니다.** 개념은 [1편](/observability/opentelemetry/otel-collector-agent-gateway-architecture/#-여러-환경의-로그를-어떻게-구분하나)을 참고하세요.
+
+`logsCollection` 프리셋은 이 둘을 자동으로 넣어 줍니다. **프리셋 없이 직접 `filelog`를 정의**하거나 동작을 확인하고 싶다면, 아래 형태가 최소 구성입니다.
+
+```yaml
+config:
+  receivers:
+    filelog:
+      include: [/var/log/pods/*/*/*.log]
+      include_file_path: true      # ① log.file.path 부착 — 없으면 경로 파싱 불가
+      operators:
+        - type: container          # ② 경로에서 namespace/pod/container 추출
+  processors:
+    k8sattributes:                 # ③ 위 기본 필드 기준으로 API 질의 → labels/annotations 보강
+      auth_type: serviceAccount    # 파드의 SA 토큰으로 API 인증
+      passthrough: false           # true면 API 호출을 안 해 labels가 안 붙음
+      extract:
+        metadata:
+          - k8s.namespace.name
+          - k8s.pod.name
+          - k8s.node.name
+          - k8s.container.name
+      filter:
+        node_from_env_var: K8S_NODE_NAME   # 자기 노드 pod만 watch (API 부하 감소)
+```
+
+> 💡 **RBAC는 차트가 자동으로 만듭니다.** `presets.kubernetesAttributes`를 켜면 그 프리셋이 동작하는 데 필요한 **최소 RBAC(ServiceAccount·ClusterRole·Binding)를 차트가 자동 생성**하므로 별도로 만들 필요가 없습니다. 프리셋 범위를 넘어서는 추가 메타데이터(더 넓은 labels/annotations 스코프)를 원할 때만 그에 맞는 RBAC를 추가로 부여하면 됩니다.
+
+> 💡 **수동으로 `k8sattributes`를 설정한다면(프리셋 대신)** 세 옵션이 중요합니다 — `auth_type: serviceAccount`(파드에 마운트된 SA 토큰으로 API 인증), `passthrough: false`(**`true`면 API 호출을 안 해 labels가 안 붙음**), `filter.node_from_env_var: K8S_NODE_NAME`(자기 노드 pod만 watch — 없으면 노드마다 전체 클러스터를 watch해 API 서버 부하가 노드 수만큼 급증). `K8S_NODE_NAME`은 OTel 차트가 downward API(`spec.nodeName`)로 자동 주입하므로 따로 정의하지 않아도 됩니다.
 
 ---
 
@@ -247,7 +281,20 @@ ingress:
   enabled: false   # 기본 비활성. 외부 수신이 필요할 때만 켜고 아래 참고 섹션대로 설정
 ```
 
-핵심은 **exporter 선택**입니다. Agent → Gateway 구간은 `otlp`(gRPC), Gateway → VictoriaLogs 최종 적재는 `otlphttp`의 **`logs_endpoint`** 키를 씁니다.
+핵심은 **exporter 선택**입니다. Agent → Gateway 구간은 `otlp`(gRPC), Gateway → VictoriaLogs 최종 적재는 `otlphttp`(HTTP)의 **`logs_endpoint`** 키를 씁니다.
+
+### `endpoint` vs `logs_endpoint` — 경로를 어디까지 쓰나
+
+**`otlphttp` exporter는 어떤 키를 쓰느냐에 따라 `/v1/logs` 경로를 자동으로 붙이기도, 안 붙이기도 합니다.** 여기서 400·404가 자주 납니다.
+
+| 키 | 자동 경로 완성 | 적어야 하는 값(예: 클러스터 vmauth) |
+|---|---|---|
+| `endpoint` | ✅ OTLP 표준대로 뒤에 **`/v1/logs` 자동 부착** | `http://<vmauth>:8427/insert/opentelemetry` 까지만 → 실제 전송은 `…/opentelemetry/v1/logs` |
+| `logs_endpoint` | ❌ 자동으로 안 붙음 | **전체 경로**를 다 써야 함: `http://<vmauth>:8427/insert/opentelemetry/v1/logs` |
+
+즉 위 예시가 `logs_endpoint`에 전체 경로(`…/v1/logs`)를 적은 이유는, 이 키가 경로를 자동 완성하지 않기 때문입니다. `endpoint` 키를 쓰면 베이스(`…/insert/opentelemetry`)까지만 적어도 됩니다.
+
+> 💡 exporter **타입**도 헷갈리지 마세요. `otlphttp` = HTTP(키 `endpoint`/`logs_endpoint`), `otlp` = gRPC(키 `endpoint`)입니다. exporter 이름 뒤의 `/victorialogs`(예: `otlphttp/victorialogs`)는 **별칭일 뿐** 타입 판단과 무관합니다 — 타입은 앞부분(`otlphttp`/`otlp`)으로 갈립니다.
 
 ---
 
@@ -335,7 +382,7 @@ k8s.namespace.name:<ns>
 
 로그가 보이면 파이프라인이 정상입니다. Grafana 데이터소스 연결은 대시보드 편에서 다룹니다.
 
-> ⚠️ 적재·조회 포트는 모드에 따라 다릅니다. **single-node는 본체 `9428`**, **클러스터 모드는 vmauth 진입 `8427`** 입니다(`9427`은 없음). 실제 서비스명·포트는 `kubectl get svc -n <ns>`로 최종 확인하세요(차트 `nameOverride`에 따라 이름이 달라집니다).
+> ⚠️ 적재·조회 포트는 모드에 따라 다릅니다. **single-node는 본체 `9428`** 하나에 모든 기능이 통합돼 있고, **클러스터 모드는 vmauth 진입 `8427`**(또는 `vlinsert` 직결 `9481`)입니다(`9427`은 없음). 컴포넌트별 포트(vlinsert `9481`·vlselect `9471`·vmauth `8427`·single `9428`)는 [2편 백엔드 편](/observability/opentelemetry/kubernetes-victorialogs-cluster-helm-install/#-victorialogs-클러스터는-무엇으로-구성되나)에 정리해 두었습니다. 실제 서비스명·포트는 `kubectl get svc -n <ns>`로 최종 확인하세요(차트 `nameOverride`에 따라 이름이 달라집니다).
 
 ---
 
@@ -393,7 +440,7 @@ Gateway로 보낼 땐 `otlp`(gRPC), VictoriaLogs로 최종 적재할 땐 `otlpht
 vmui(`/select/vmui`)로 바로 조회됩니다. 적재 검증은 Grafana 연결 전에 vmui로 하는 것이 빠릅니다.
 
 **Q. 라벨이 너무 많아 조회가 느려요.**
-`VL-Stream-Fields` 헤더로 스트림 필드를 `namespace/pod/env` 등 핵심만 남기세요. VictoriaLogs는 기본적으로 모든 resource 라벨을 스트림 필드로 취급해 카디널리티가 폭발할 수 있습니다.
+`VL-Stream-Fields` 헤더로 스트림 필드를 `namespace/pod/env` 등 핵심만 남기세요. VictoriaLogs는 기본적으로 모든 resource 라벨을 스트림 필드로 취급해 카디널리티가 폭발할 수 있습니다. `VL-Extra-Fields`·`VL-Ignore-Fields`·`VL-Time-Field` 등 나머지 적재 헤더 전체 목록은 [트러블슈팅편 — VL-* 적재 헤더 종류](/observability/opentelemetry/victorialogs-otel-troubleshooting/#-10-vl--적재-헤더-종류)를 참고하세요.
 
 **Q. 인증은 어떻게 하나요?**
 Secret으로 토큰을 만들어 `extraEnvs`로 주입하고, exporter `headers`의 `Authorization`에서 사용합니다.

@@ -111,7 +111,7 @@ k8s.namespace.name:<ns>    # 특정 네임스페이스
 - **Builder → Code** — LogsQL로 **안전하게 직렬화**됩니다.
 - **Code → Builder** — 확인을 거치며 **수동 작성 쿼리는 폐기**되니 주의하세요(raw LogsQL의 builder 자동변환은 아직 미지원).
 
-> 💡 스트림 필드는 field picker의 **"Stream fields"** 그룹에 모여 있고, 선택하면 자동으로 stream filter로 변환됩니다.
+> 💡 스트림 필드는 field picker의 **"Stream fields"** 그룹에 모여 있고, 선택하면 자동으로 stream filter로 변환됩니다. 참고로 스트림 필드는 `_stream`에 **묶여** 있어 `stats by ("k8s.namespace.name")`로 직접 그룹핑하면 빈 결과가 납니다. 이 함정과 `block_stats`로 **용량을 산정**하는 법은 [트러블슈팅편 — 스트림 필드 분류](/observability/opentelemetry/victorialogs-otel-troubleshooting/#-6-victorialogs는-폴더가-아니라-스트림-필드로-분류한다) · [로그 용량 산정](/observability/opentelemetry/victorialogs-otel-troubleshooting/#-7-네임스페이스클러스터별-로그-용량-산정-block_stats)을 참고하세요.
 
 ---
 

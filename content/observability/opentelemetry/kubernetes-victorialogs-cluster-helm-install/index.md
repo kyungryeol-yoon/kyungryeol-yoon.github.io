@@ -23,12 +23,16 @@ flowchart LR
     VSEL --> VS
 ```
 
-| 컴포넌트 | 역할 | 배포 형태 |
-|---|---|---|
-| **vlinsert** | 적재 요청을 받아 vlstorage들에 **고르게 분산(샤딩)** | Deployment |
-| **vlstorage** | 로그를 **저장**(PVC 보유) | StatefulSet |
-| **vlselect** | 쿼리를 모든 vlstorage에 **fan-out 후 병합** | Deployment |
-| **vmauth** | 적재→vlinsert, 쿼리→vlselect **라우팅·LB·인증** (8427) | Deployment |
+| 컴포넌트 | 역할 | 기본 포트 | 배포 형태 |
+|---|---|---|---|
+| **vlinsert** | 적재 요청을 받아 vlstorage들에 **고르게 분산(샤딩)** | **9481** | Deployment |
+| **vlstorage** | 로그를 **저장**(PVC 보유) | 9491 | StatefulSet |
+| **vlselect** | 쿼리를 모든 vlstorage에 **fan-out 후 병합** | **9471** | Deployment |
+| **vmauth** | 적재→vlinsert, 쿼리→vlselect **라우팅·LB·인증** | **8427** | Deployment |
+
+> ⚠️ **포트는 배포 모드에 따라 완전히 다릅니다.** 공식·커뮤니티 예시 대부분은 **single-node** 기준이라 모든 기능이 포트 **`9428`** 하나에 통합돼 있습니다(적재·조회·vmui 전부 `9428`). 반면 **클러스터 모드**는 위 표처럼 컴포넌트별로 포트가 분리됩니다. 그래서 single-node 문서를 보고 클러스터에 `9428`로 적재를 시도하면 닿지 않습니다.
+
+> 💡 **적재는 vmauth(`8427`) 단일 진입점을 거치는 것이 표준**입니다(인증·LB·라우팅). vmauth 없이 `vlinsert`로 **직결(`9481`)** 하는 것도 가능하지만, 그러면 인증·로드밸런싱을 직접 처리해야 합니다. 조회 역시 vmauth(`8427`) 경유가 표준이고 `vlselect` 직결은 `9471`입니다. 실제 포트·서비스명은 `kubectl get svc -n <ns>`로 최종 확인하세요(차트 `nameOverride`에 따라 이름이 달라집니다).
 
 > ⚠️ **vlinsert는 로그를 복제(replication)하지 않고 샤딩만 합니다.** 저장 노드에 고르게 분산해 선형 확장은 쉽지만, 노드 장애 시 해당 샤드 데이터는 보호되지 않습니다. HA 복제가 필요하면 `vlagent`로 다중 클러스터에 replicate하는 별도 구성을 씁니다.
 
@@ -108,13 +112,15 @@ vmauth:
 - **PVC 확장** — 사후 확장 가능 여부는 StorageClass의 `allowVolumeExpansion`에 달려 있으니 **미리 확인**하세요.
 - **축소 불가** — StatefulSet PVC는 줄이기 어렵습니다.
 
-> 💡 적재량을 모를 땐 **작게 시작 → vmui에서 스트림별 볼륨 확인 → 증설**이 정석입니다. 과대 산정보다 점진 증설이 PVC 특성에 맞습니다.
+> 💡 적재량을 모를 땐 **작게 시작 → vmui에서 스트림별 볼륨 확인 → 증설**이 정석입니다. 과대 산정보다 점진 증설이 PVC 특성에 맞습니다. 실제 **네임스페이스·클러스터별 디스크 용량**은 `_size`가 아니라 `block_stats` pipe로 산정합니다(저장이 폴더가 아니라 **날짜 파티션 + 스트림 필드**라 그렇습니다). 동작 확인된 쿼리와 "여러 클러스터에서 같은 이름 네임스페이스가 합쳐지는 함정"은 [트러블슈팅편 — 로그 용량 산정](/observability/opentelemetry/victorialogs-otel-troubleshooting/#-7-네임스페이스클러스터별-로그-용량-산정-block_stats)을 참고하세요.
 
 ---
 
 ## 🔐 vmauth 인증·TLS
 
 **외부(클러스터 간) 진입이라면 vmauth에 인증·TLS가 필수**입니다. 내부 전용이라도 최소 인증을 권장합니다. **인증 토큰·비밀번호는 Secret으로** 만들어 주입하고, 명령행 인자로 직접 넘기지 않습니다(프로세스 목록 노출 위험).
+
+> ⚠️ vmauth `url_map`을 **직접 커스텀**한다면 두 함정을 주의하세요 — `url_prefix` 끝에 `/insert`·`/select`를 붙이면 경로가 중복되어 `400`이 나고, 포괄 규칙(`/.*`) 하나로 전부 vlinsert로 보내면 조회가 `-select.disable`에 걸립니다. 올바른 `/insert/.*`→vlinsert, `/select/.*`→vlselect 분리 설정은 [트러블슈팅편 — vmauth 400](/observability/opentelemetry/victorialogs-otel-troubleshooting/#-2-vmauth-400-url_prefix-경로-중복) · [select.disable](/observability/opentelemetry/victorialogs-otel-troubleshooting/#-3--selectdisable-에러-조회가-vlinsert로-잘못-라우팅)을 참고하세요.
 
 ```bash
 kubectl create secret generic vmauth-auth \

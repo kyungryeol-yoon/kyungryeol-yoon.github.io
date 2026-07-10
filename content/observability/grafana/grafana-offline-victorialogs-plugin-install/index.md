@@ -181,11 +181,13 @@ data:
       - name: VictoriaLogs
         type: victoriametrics-logs-datasource
         access: proxy
-        url: http://victorialogs:9428
+        url: http://victorialogs:9428   # single-node 예시. 클러스터는 vmauth 진입 http://<release>-vmauth.<ns>.svc:8427
         isDefault: false
 ```
 
 > 💡 단, 사이드카는 **데이터소스 "등록"** 을 자동화할 뿐, **플러그인 바이너리 자체는 여전히 이미지에 있어야** 합니다(4단계). 둘은 보완 관계입니다.
+
+> ⚠️ **`url` 포트는 VictoriaLogs 배포 모드에 따라 다릅니다.** `9428`은 **single-node** 값이고, **클러스터 모드는 vmauth 진입 `8427`**(`http://<release>-vmauth.<ns>.svc:8427`)을 씁니다. 조회 URL 상세는 [Grafana 데이터소스 연결 편](/observability/opentelemetry/grafana-victorialogs-datasource-explore-dashboard/)을, 컴포넌트별 포트는 [VictoriaLogs 클러스터 구축 편](/observability/opentelemetry/kubernetes-victorialogs-cluster-helm-install/#-victorialogs-클러스터는-무엇으로-구성되나)을 참고하세요.
 
 ---
 

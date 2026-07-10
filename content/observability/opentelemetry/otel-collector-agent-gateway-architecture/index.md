@@ -114,7 +114,9 @@ flowchart LR
 
 ## 🏷️ 여러 환경의 로그를 어떻게 구분하나
 
-**`k8sattributes` processor가 각 로그에 쿠버네티스 메타데이터를 자동으로 부착**합니다. `k8s.namespace.name`, `k8s.pod.name`, `k8s.container.name` 등이 별도 설정 없이 붙습니다.
+**쿠버네티스 메타데이터는 두 단계로 붙습니다.** 먼저 `filelog` receiver가 `include_file_path: true`로 각 로그에 원본 파일 경로를 붙이고, `container` operator가 그 **경로**(`/var/log/pods/<namespace>_<pod>_<uid>/<container>/…`)를 파싱해 `k8s.namespace.name`·`k8s.pod.name`·`k8s.container.name` 같은 **기본 필드**를 추출합니다. 그 다음 **`k8sattributes` processor가 그 기본 정보를 기준으로 Kubernetes API에 질의해 labels·annotations 등을 보강**합니다.
+
+> 💡 순서가 중요합니다. `k8sattributes`만 켜고 `filelog`의 경로 추출(`include_file_path: true` + `container` operator)이 없으면, 기준이 되는 pod 정보 자체가 없어 **k8s 필드가 하나도 안 붙습니다.** Helm 차트에서는 `logsCollection` 프리셋이 이 둘을 포함한 `filelog`를 자동 구성하므로 함께 동작합니다(설치·수동 구성 예시는 [3편](/observability/opentelemetry/kubernetes-otel-collector-offline-helm-install/) 참고).
 
 여기에 **환경 라벨(dev/stg/prod)** 을 추가하면, **하나의 백엔드·하나의 Grafana에서 환경별로 로그를 필터해 조회**할 수 있습니다. 멀티클러스터라도 백엔드를 중앙 하나로 모으고 `env` 라벨로 구분하는 식입니다.
 
@@ -145,7 +147,7 @@ flowchart LR
 대규모에서는 권장하지만, 소규모에서는 생략하고 Agent가 백엔드로 직접 전송해도 충분합니다.
 
 **Q. 로그에 네임스페이스·앱 이름은 어떻게 붙나요?**
-`k8sattributes` processor가 `k8s.namespace.name`·`k8s.pod.name`·`k8s.container.name` 등을 자동으로 부착합니다.
+`filelog`의 `container` operator가 로그 파일 경로에서 `k8s.namespace.name`·`k8s.pod.name`·`k8s.container.name` 기본 필드를 추출하고, `k8sattributes` processor가 그 위에 labels·annotations를 API로 보강합니다. `k8sattributes`만으로는 기본 필드가 안 붙으니 둘을 함께 씁니다.
 
 **Q. OTel을 쓰면 나중에 백엔드를 바꿀 수 있나요?**
 네. **exporter 목적지만 바꾸면** 됩니다. Agent/Gateway 수집 구성은 그대로 두고 VictoriaLogs ↔ Loki 등으로 교체할 수 있습니다.

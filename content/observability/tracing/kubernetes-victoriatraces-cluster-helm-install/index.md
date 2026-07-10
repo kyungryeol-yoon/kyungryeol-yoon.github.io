@@ -132,6 +132,19 @@ service:
 
 > ⚠️ **적재 경로가 Tempo와 다릅니다.** VictoriaTraces는 `otlphttp`의 **`traces_endpoint`** 에 `/insert/opentelemetry/v1/traces`를 줍니다. gRPC로 보내려면 VictoriaTraces에서 `-otlpGRPCListenAddr`(예: `:4317`)로 gRPC 리스너를 켠 뒤 `otlp` exporter를 씁니다(기본 비활성). Gateway 공용/분리 구성은 [개요](/observability/tracing/kubernetes-distributed-tracing-otel-overview/)를 참고하세요.
 
+### `endpoint` vs `traces_endpoint` — 경로를 어디까지 쓰나
+
+**`otlphttp` exporter는 어떤 키를 쓰느냐에 따라 `/v1/traces` 경로를 자동으로 붙이기도, 안 붙이기도 합니다.** 로그(`logs_endpoint`)와 똑같은 규칙이라 400·404가 자주 나는 지점입니다.
+
+| 키 | 자동 경로 완성 | 적어야 하는 값(클러스터 vmauth) |
+|---|---|---|
+| `endpoint` | ✅ OTLP 표준대로 뒤에 **`/v1/traces` 자동 부착** | `http://<vmauth>:8427/insert/opentelemetry` 까지만 → 실제 전송은 `…/opentelemetry/v1/traces` |
+| `traces_endpoint` | ❌ 자동으로 안 붙음 | **전체 경로**를 다 써야 함: `http://<vmauth>:8427/insert/opentelemetry/v1/traces` |
+
+위 예시가 `traces_endpoint`에 전체 경로(`…/v1/traces`)를 적은 이유가 이것입니다. `endpoint` 키를 쓰면 베이스(`…/insert/opentelemetry`)까지만 적어도 됩니다. 참고로 **포트는 배포 모드에 따라 다릅니다** — single-node는 `10428`, 클러스터는 vmauth `8427`(또는 `vtinsert` 직결)입니다.
+
+> 💡 exporter **타입**도 헷갈리지 마세요. `otlphttp` = HTTP(키 `traces_endpoint`/`endpoint`), `otlp` = gRPC(키 `endpoint`)입니다. exporter 이름 뒤의 `/victoriatraces`(예: `otlphttp/victoriatraces`)는 **별칭일 뿐** 타입 판단과 무관합니다.
+
 ---
 
 ## 🔎 조회: vmui와 Grafana(Jaeger)
