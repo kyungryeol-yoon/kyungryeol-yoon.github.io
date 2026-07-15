@@ -80,7 +80,7 @@ requests to /select/* are disabled with -select.disable command-line flag
 
 **원인**: url_map에 **포괄 규칙 하나**(`src_paths: ["/.*"]`)만 두고 전부 vlinsert로 보내면, **조회(`/select/*`) 요청까지 vlinsert로** 갑니다. cluster에서는 차트가 vlinsert에 `-select.disable`을, vlselect에 `-insert.disable`을 **기본으로 자동 주입**합니다(정상 동작). 그래서 조회가 vlinsert에 도달하면 이 플래그에 걸려 거부됩니다.
 
-**해결**: 앞의 2번처럼 url_map을 `/insert/.*` → vlinsert, `/select/.*` → vlselect로 **분리**합니다. **vlinsert에 `-select.disable`이 있는 것 자체는 정상**입니다 — 이 에러는 "vlinsert에 문제가 있다"가 아니라 **"조회 요청이 엉뚱한 컴포넌트로 라우팅됐다"**는 신호로 읽어야 합니다.
+**해결**: 앞의 2번처럼 url_map을 `/insert/.*` → vlinsert, `/select/.*` → vlselect로 **분리**합니다. **vlinsert에 `-select.disable`이 있는 것 자체는 정상**입니다 — 이 에러는 "vlinsert에 문제가 있다"가 아니라 "**조회 요청이 엉뚱한 컴포넌트로 라우팅됐다**"는 신호로 읽어야 합니다.
 
 ```bash
 # vlinsert에 select.disable이 있는지 확인 (있는 게 정상)
@@ -93,7 +93,7 @@ kubectl -n <ns> get pod <vlinsert-pod> -o yaml | grep -A20 args
 
 ### 증상 A — hostPath 금지 경고인데 배포는 됨
 
-OTel Agent(DaemonSet)가 노드 로그(`/var/log/pods`)를 읽으려면 **hostPath 마운트(readOnly)**가 필요합니다. 그런데 설치 시 이런 경고가 뜹니다.
+OTel Agent(DaemonSet)가 노드 로그(`/var/log/pods`)를 읽으려면 **hostPath 마운트**(readOnly)가 필요합니다. 그런데 설치 시 이런 경고가 뜹니다.
 
 ```text
 HostPath volumes are forbidden ... spec.volumes[*].hostPath must be unset
@@ -180,7 +180,7 @@ config:
 
 **증상**: 저장 디렉터리를 열어봤더니 **날짜별로만** 나뉘어 있고, 네임스페이스·파드별 폴더 구성이 없습니다.
 
-**원인이자 개념**: VictoriaLogs는 디렉터리 계층으로 분류하지 않습니다. 물리 저장은 **날짜 파티션(day partition, `YYYYMMDD`)** 단위이고, 네임스페이스·파드·클러스터 구분은 폴더가 아니라 **스트림 필드(stream fields)**로 합니다. 날짜를 물리 단위로 두는 이유는 **retention(오래된 로그 삭제)을 날짜 통째로 지워** 빠르게 처리하기 위해서입니다.
+**원인이자 개념**: VictoriaLogs는 디렉터리 계층으로 분류하지 않습니다. 물리 저장은 **날짜 파티션(day partition, `YYYYMMDD`)** 단위이고, 네임스페이스·파드·클러스터 구분은 폴더가 아니라 **스트림 필드**(stream fields)로 합니다. 날짜를 물리 단위로 두는 이유는 **retention(오래된 로그 삭제)을 날짜 통째로 지워** 빠르게 처리하기 위해서입니다.
 
 ### 스트림 필드 vs 일반 필드
 

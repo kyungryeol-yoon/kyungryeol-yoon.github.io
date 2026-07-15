@@ -28,7 +28,7 @@ kubectl get -n github-runner pods -l app=githubrunner-cs -o name \
 
 GitHub Actions의 공식 호스티드 runner는 매번 깨끗한 VM에서 시작하지만, **self-hosted runner는 환경이 유지**되므로 직접 청소하지 않으면 계속 누적됩니다. 결국 노드의 디스크가 가득 차면 `ImagePull` 실패나 Pod `Evicted`로 이어집니다.
 
-> ⚠️ 디스크가 이미 가득 찬 뒤에는 Pod가 `Evicted`되어 정리 명령조차 못 들어갈 수 있습니다. **주기적 정리(자동화)**가 핵심입니다.
+> ⚠️ 디스크가 이미 가득 찬 뒤에는 Pod가 `Evicted`되어 정리 명령조차 못 들어갈 수 있습니다. **주기적 정리**(자동화)가 핵심입니다.
 
 ---
 
@@ -85,7 +85,7 @@ kubectl exec -n github-runner pod/githubrunner-cs-0 -c githubrunner-cs -- docker
 - `-a` / `--all`: dangling뿐 아니라 **컨테이너가 참조하지 않는 모든 이미지**를 삭제합니다. 디스크는 더 확보되지만, 다음 빌드에서 베이스 이미지를 다시 받아야 합니다(캐시 손실).
 - `--volumes`: 미사용 볼륨까지 삭제합니다. **데이터 유실 위험**이 있으니 runner 캐시 볼륨 구조를 모르면 쓰지 마세요.
 
-> ⚠️ runner에서는 보통 **`docker system prune -f`(기본)**가 안전한 균형점입니다. 디스크를 더 비워야 하면 `-a`까지 고려하되, `--volumes`는 무엇이 지워지는지 확인 후에만 사용하세요.
+> ⚠️ runner에서는 보통 `docker system prune -f`(**기본**)가 안전한 균형점입니다. 디스크를 더 비워야 하면 `-a`까지 고려하되, `--volumes`는 무엇이 지워지는지 확인 후에만 사용하세요.
 
 ---
 

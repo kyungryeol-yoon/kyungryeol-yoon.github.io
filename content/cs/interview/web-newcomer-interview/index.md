@@ -101,9 +101,9 @@ UserService userService;
 * DL(의존성 검색(특정 컨테이너에 종속되는 API 사용)) : 저장소에 저장되어 있는 Bean에 접근하기 위해 컨테이너가 제공하는 API를 이용하여 Bean을 조회하는 것. 컨테이너가 제공하는 API를 사용하기 때문에 컨테이너에 종속성이 늘어남.
 
 * DI : 각 클래스간의 의존관계를 Bean설정 정보를 바탕으로 컨테이너가 자동으로 연결시켜주는 것.
-** SetterInjection(셋터를 통해 주입)
-** Constructor(생성자를 통해 주입)
-** Method(자바 메서드를 통해 주입)
+    * SetterInjection(셋터를 통해 주입)
+    * Constructor(생성자를 통해 주입)
+    * Method(자바 메서드를 통해 주입)
 * 의존관계 Bean설정(사용자가 설정해줌), 어노테이션 등등이 있다. 컨테이너가 정보들을 읽고 자동으로 설정.
 ```java
 @Autowired // 의존관계 설정

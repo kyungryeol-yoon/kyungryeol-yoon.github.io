@@ -5,7 +5,7 @@ tags: [cert-manager, tls, pki, certificate, kubeadm, gateway-api, letsencrypt, k
 description: "key·cert·CA·TLS 용어를 신분증 비유로 정리하고, 쿠버네티스의 두 갈래 PKI(클러스터 내부 vs 앱/인그레스)와 cert-manager의 인증서 발급·갱신 자동화를 다룹니다."
 ---
 
-쿠버네티스를 다루다 보면 kubeadm로 클러스터를 세울 때도 인증서가 나오고, Ingress·Gateway에도 인증서가 나옵니다. 같은 걸까요? 이 글에서는 `key`·`cert`·`CA`·`TLS` 용어를 신분증 비유로 정리하고, 쿠버네티스에 **PKI가 두 갈래(클러스터 내부 mTLS vs 앱/인그레스 TLS)**로 별개라는 점, 그리고 cert-manager가 "받은 인증서를 넣는" 게 아니라 **발급·갱신 행위를 자동화**한다는 핵심을 다룹니다.
+쿠버네티스를 다루다 보면 kubeadm로 클러스터를 세울 때도 인증서가 나오고, Ingress·Gateway에도 인증서가 나옵니다. 같은 걸까요? 이 글에서는 `key`·`cert`·`CA`·`TLS` 용어를 신분증 비유로 정리하고, 쿠버네티스에 **PKI가 두 갈래**(클러스터 내부 mTLS vs 앱/인그레스 TLS)로 별개라는 점, 그리고 cert-manager가 "받은 인증서를 넣는" 게 아니라 **발급·갱신 행위를 자동화**한다는 핵심을 다룹니다.
 
 > **이 시리즈는** 쿠버네티스 gRPC 삽질에서 출발해 HTTP/2·TLS·로드밸런서·Gateway API·인증서까지 풀어가는 기록입니다. 이번 6편은 **인증서와 cert-manager** 편입니다. 앞선 [2편(h2 vs h2c)](/kubernetes/networking/kubernetes-grpc-http2-vs-h2c-tls/), [5편(Gateway API)](/kubernetes/networking/kubernetes-ingress-to-gateway-api-httproute/)을 먼저 보면 좋습니다.
 

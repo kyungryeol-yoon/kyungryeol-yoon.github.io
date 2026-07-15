@@ -77,7 +77,7 @@ b = a + 5;       // 'a + 5'는 Rvalue, 'b'는 Lvalue (대입 연산자의 왼쪽
 
 ## C++11에서 추가된 Rvalue 참조와 Move Semantics
 
-- C++11부터 도입된 **Rvalue 참조(T&&)**와 Move Semantics은 Rvalue 개념을 보다 발전시킨 것이다.
+- C++11부터 도입된 **Rvalue 참조**(T&&)와 Move Semantics은 Rvalue 개념을 보다 발전시킨 것이다.
 - Rvalue 참조는 임시 객체나 이동 가능한 객체를 이동할 수 있게 해 주며, 이를 통해 성능을 크게 개선할 수 있다.
 
 ```cpp

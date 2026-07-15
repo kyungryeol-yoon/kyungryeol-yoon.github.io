@@ -5,7 +5,7 @@ tags: [gateway-api, httproute, requestredirect, https-redirect, ssl-redirect, al
 description: "Gateway API의 표준 필터 RequestRedirect로 HTTP를 HTTPS로 리다이렉트하는 방법을 정리합니다. 리스너 2개+라우트 2개 기본형부터 allowedRoutes로 평문 노출을 원천 차단하는 실무 패턴까지 다룹니다."
 ---
 
-Gateway API에서 HTTP→HTTPS 리다이렉트는 Ingress의 annotation(`ssl-redirect`)이 아니라 **표준 필터 `RequestRedirect`**로 합니다. 이 글에서는 **HTTP(80)·HTTPS(443) 리스너 2개 + HTTPRoute 2개**로 구성하는 기본형과, 앱 팀이 `sectionName`을 빠뜨려도 평문 노출이 안 되도록 **`allowedRoutes`로 80 리스너를 잠그는** 실무 패턴, 그리고 "구성했는데 http가 계속 되는" 트러블슈팅을 정리합니다.
+Gateway API에서 HTTP→HTTPS 리다이렉트는 Ingress의 annotation(`ssl-redirect`)이 아니라 **표준 필터** `RequestRedirect`로 합니다. 이 글에서는 **HTTP(80)·HTTPS(443) 리스너 2개 + HTTPRoute 2개**로 구성하는 기본형과, 앱 팀이 `sectionName`을 빠뜨려도 평문 노출이 안 되도록 **`allowedRoutes`로 80 리스너를 잠그는** 실무 패턴, 그리고 "구성했는데 http가 계속 되는" 트러블슈팅을 정리합니다.
 
 > **이 시리즈는** 쿠버네티스 gRPC 삽질에서 출발해 HTTP/2·TLS·로드밸런서·Gateway API·인증서까지 풀어가는 기록입니다. 앞선 [Ingress → Gateway API 편](/kubernetes/networking/kubernetes-ingress-to-gateway-api-httproute/)과 [cert-manager TLS 편](/kubernetes/networking/kubernetes-cert-manager-pki-tls/)을 먼저 보면 이해가 빠릅니다.
 
@@ -220,7 +220,7 @@ Ingress는 컨트롤러마다 `nginx.ingress.kubernetes.io/ssl-redirect: "true"`
 
 ### Q. 301과 302 중 무엇을 써야 하나요?
 
-HTTP→HTTPS 영구 전환에는 **301(영구 이동)**을 권장합니다. 브라우저·검색엔진이 결과를 캐시해 다음부터 바로 https로 요청하기 때문입니다. `statusCode`를 생략하면 기본값은 302(임시)입니다.
+HTTP→HTTPS 영구 전환에는 **301**(영구 이동)을 권장합니다. 브라우저·검색엔진이 결과를 캐시해 다음부터 바로 https로 요청하기 때문입니다. `statusCode`를 생략하면 기본값은 302(임시)입니다.
 
 ### Q. 리다이렉트 라우트를 빼고 443 라우트만 두면 안 되나요?
 

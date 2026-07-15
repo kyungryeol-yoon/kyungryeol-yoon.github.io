@@ -46,7 +46,7 @@ brew uninstall wget
 
 ### Homebrew Cask
 
-- Homebrew Cask는 Homebrew의 확장 기능으로, **그래픽 사용자 인터페이스(GUI)**를 가진 애플리케이션을 설치하는 데 사용된다.
+- Homebrew Cask는 Homebrew의 확장 기능으로, **그래픽 사용자 인터페이스**(GUI)를 가진 애플리케이션을 설치하는 데 사용된다.
 - Cask는 일반적으로 macOS 앱스토어에 있는 것과 같은 **GUI 애플리케이션**을 설치할 때 유용하다.
 - 예를 들어, 브라우저나, 이미지 편집기, 텍스트 편집기와 같은 애플리케이션들이 여기에 해당한다.
 

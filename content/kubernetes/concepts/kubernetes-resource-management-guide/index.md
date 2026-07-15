@@ -7,7 +7,7 @@ description: "Kubernetes 리소스 관리 방법을 정리합니다. CPU와 Memo
 
 ## ☸️ Kubernetes Resource Management 이해하기
 
-Kubernetes에서 **리소스 관리(Resource Management)**는 안정적인 클러스터 운영과 애플리케이션 성능 보장을 위해 필수적입니다.
+Kubernetes에서 **리소스 관리**(Resource Management)는 안정적인 클러스터 운영과 애플리케이션 성능 보장을 위해 필수적입니다.
 
 리소스를 관리하지 않으면 다음 문제가 발생할 수 있습니다.
 
