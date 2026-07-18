@@ -15,18 +15,50 @@
       {{ partial "ad-unit.html" (dict "slot" site.Params.adsenseSlotDisplay) }}
     {{ end }}
 
-    {{ if .Sections }}
-      <div class="section-label">Subcategories</div>
-      {{ partial "category-tree.html" . }}
+    {{ with .Sections }}
+      <nav class="arch-chips sub-chips" aria-label="하위 섹션">
+        {{ range .ByTitle }}
+          <a href="{{ .RelPermalink }}"><span class="y">{{ .Title }}</span><span class="c">{{ len .RegularPagesRecursive }}</span></a>
+        {{ end }}
+      </nav>
+    {{ end }}
+
+    {{/* 직접 하위 글이 없고 서브섹션만 있으면 전체 최근 글로 fallback */}}
+    {{ if and (not .RegularPages) .Sections }}
+      {{ with .RegularPagesRecursive }}
+        <div class="section-label">최근 글</div>
+        <ul class="post-index">
+          {{ range .ByDate.Reverse | first 8 }}
+            <li><span class="t"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span><span class="d">{{ .Date.Format "2006.01.02" }}</span></li>
+          {{ end }}
+        </ul>
+      {{ end }}
     {{ end }}
 
     {{ with .RegularPages }}
       <div class="section-label">Posts</div>
-      <ul class="post-index">
-        {{ range .ByDate.Reverse }}
-          <li><span class="t"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span><span class="d">{{ .Date.Format "2006.01.02" }}</span></li>
+      {{ if gt (len .) 8 }}
+        {{ $groups := .GroupByDate "2006" }}
+        {{ range $groups }}
+          <section class="timeline-year">
+            <h2 class="tl-year">{{ .Key }} <span class="tl-count">{{ len .Pages }}</span></h2>
+            <ul class="tl-list">
+              {{ range .Pages.ByDate.Reverse }}
+                <li class="tl-item">
+                  <time class="tl-date" datetime="{{ .Date.Format "2006-01-02" }}"><b>{{ .Date.Format "02" }}</b> {{ .Date.Format "Jan" }}</time>
+                  <a class="tl-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                </li>
+              {{ end }}
+            </ul>
+          </section>
         {{ end }}
-      </ul>
+      {{ else }}
+        <ul class="post-index">
+          {{ range .ByDate.Reverse }}
+            <li><span class="t"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span><span class="d">{{ .Date.Format "2006.01.02" }}</span></li>
+          {{ end }}
+        </ul>
+      {{ end }}
     {{ end }}
 
     {{ with site.Params.adsenseSlotMultiplex }}{{ partial "ad-unit.html" (dict "slot" . "format" "autorelaxed") }}{{ end }}

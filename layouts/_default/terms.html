@@ -1,15 +1,82 @@
 {{ define "main" }}
-<div class="page-narrow">
-  <div class="masthead">
-    <h1>Tags</h1>
-    <p>{{ len .Data.Terms }} tags</p>
-  </div>
-  <div class="tag-cloud tag-cloud-page">
-    {{ range .Data.Terms.Alphabetical }}
-      <a href="{{ .Page.RelPermalink }}" class="tag">{{ .Page.Title }} <span class="tag-c">{{ .Count }}</span></a>
-    {{ end }}
-  </div>
+{{ $terms := .Data.Terms.Alphabetical }}
 
-  {{ with site.Params.adsenseSlotMultiplex }}{{ partial "ad-unit.html" (dict "slot" . "format" "autorelaxed") }}{{ end }}
+{{/* 첫 글자별로 그룹 구성. 비-알파벳(한글·숫자 등)은 '#' 버킷으로. */}}
+{{ $groups := dict }}
+{{ $letters := slice }}
+{{ range $terms }}
+  {{ $l := upper (substr .Page.Title 0 1) }}
+  {{ if not (in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" $l) }}{{ $l = "#" }}{{ end }}
+  {{ if not (isset $groups $l) }}
+    {{ $letters = $letters | append $l }}
+    {{ $groups = merge $groups (dict $l (slice .)) }}
+  {{ else }}
+    {{ $existing := index $groups $l }}
+    {{ $groups = merge $groups (dict $l ($existing | append .)) }}
+  {{ end }}
+{{ end }}
+
+{{/* 알파벳 순 정렬 + '#'는 마지막 */}}
+{{ $alpha := slice }}
+{{ $misc := slice }}
+{{ range $letters }}
+  {{ if eq . "#" }}{{ $misc = $misc | append . }}{{ else }}{{ $alpha = $alpha | append . }}{{ end }}
+{{ end }}
+{{ $ordered := sort $alpha }}
+{{ range $misc }}{{ $ordered = $ordered | append . }}{{ end }}
+
+<div class="archives tags-index" data-scrollspy>
+  <aside class="arch-rail" aria-label="A-Z 목차">
+    <div class="arch-rail-title">A-Z</div>
+    <ul class="arch-rail-list">
+      {{ range $ordered }}
+        {{ $letter := . }}
+        {{ $count := len (index $groups $letter) }}
+        <li><a href="#t-{{ $letter }}" data-key="{{ $letter }}"><span class="y">{{ $letter }}</span><span class="c">{{ $count }}</span></a></li>
+      {{ end }}
+    </ul>
+  </aside>
+
+  <div class="arch-main">
+    <div class="masthead arch-masthead">
+      <div class="tags-head">
+        <div>
+          <h1>Tags</h1>
+          <p>{{ len $terms }} tags</p>
+        </div>
+        <div class="tags-sort" role="tablist" aria-label="정렬">
+          <button type="button" role="tab" aria-selected="true" data-sort="az" class="is-active">A-Z</button>
+          <button type="button" role="tab" aria-selected="false" data-sort="pop">인기순</button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="arch-chips" aria-label="A-Z 바로가기">
+      {{ range $ordered }}
+        <a href="#t-{{ . }}" data-key="{{ . }}"><span class="y">{{ . }}</span></a>
+      {{ end }}
+    </nav>
+
+    <div class="tags-view tags-view-az" data-view="az">
+      {{ range $ordered }}
+        {{ $letter := . }}
+        <section class="tag-letter-group" id="t-{{ $letter }}" data-scrollspy-section data-key="{{ $letter }}">
+          <h2 class="tl-year">{{ $letter }} <span class="tl-count">{{ len (index $groups $letter) }}</span></h2>
+          <div class="tag-cloud tag-cloud-page">
+            {{ range index $groups $letter }}
+              <a href="{{ .Page.RelPermalink }}" class="tag" data-count="{{ .Count }}">{{ .Page.Title }} <span class="tag-c">{{ .Count }}</span></a>
+            {{ end }}
+          </div>
+        </section>
+      {{ end }}
+    </div>
+
+    <div class="tags-view tags-view-pop" data-view="pop" hidden>
+      <p class="tags-pop-note">사용 빈도가 높은 순으로 정렬됩니다.</p>
+      <div class="tag-cloud tag-cloud-page" id="tags-pop-cloud"></div>
+    </div>
+
+    {{ with site.Params.adsenseSlotMultiplex }}{{ partial "ad-unit.html" (dict "slot" . "format" "autorelaxed") }}{{ end }}
+  </div>
 </div>
 {{ end }}

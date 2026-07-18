@@ -102,33 +102,68 @@
 })();
 
 
-// [2c] Archives 연도 스크롤스파이 + 활성 칩 자동 센터링 -----------------------
-(function archSpy() {
-  const root = document.querySelector(".archives");
+// [2c] Sticky rail/chips 스크롤스파이 — 어떤 컨테이너든 [data-scrollspy]에 자동 적용
+// 컨테이너에 data-scrollspy, 섹션에 data-scrollspy-section + data-key,
+// 레일/칩 링크에 data-key만 붙이면 어느 페이지든 동일 UX가 붙는다.
+(function navSpy() {
+  document.querySelectorAll("[data-scrollspy]").forEach((root) => {
+    const sections = [...root.querySelectorAll("[data-scrollspy-section][data-key]")];
+    if (!sections.length) return;
+    const rail = new Map(), chips = new Map();
+    root.querySelectorAll(".arch-rail-list a[data-key]").forEach((a) => rail.set(a.dataset.key, a));
+    root.querySelectorAll(".arch-chips a[data-key]").forEach((a) => chips.set(a.dataset.key, a));
+    let cur = null;
+    function setActive(key) {
+      if (key === cur) return;
+      [rail, chips].forEach((m) => {
+        const p = m.get(cur); if (p) { p.classList.remove("is-active"); p.removeAttribute("aria-current"); }
+        const n = m.get(key); if (n) { n.classList.add("is-active"); n.setAttribute("aria-current", "location"); }
+      });
+      cur = key;
+      const chip = chips.get(key);
+      if (chip) chip.scrollIntoView({ inline: "center", block: "nearest" });
+    }
+    const obs = new IntersectionObserver((entries) => {
+      const vis = entries.filter((e) => e.isIntersecting).map((e) => e.target);
+      if (!vis.length) return;
+      vis.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+      setActive(vis[0].dataset.key);
+    }, { rootMargin: "-80px 0px -60% 0px", threshold: 0 });
+    sections.forEach((s) => obs.observe(s));
+  });
+})();
+
+// [2d] Tags 인덱스 정렬 토글 (A-Z ↔ 인기순) --------------------------------
+(function tagsSort() {
+  const root = document.querySelector(".tags-index");
   if (!root) return;
-  const sections = [...root.querySelectorAll(".timeline-year")];
-  if (!sections.length) return;
-  const rail = new Map(), chips = new Map();
-  root.querySelectorAll(".arch-rail-list a[data-year]").forEach((a) => rail.set(a.dataset.year, a));
-  root.querySelectorAll(".arch-chips a[data-year]").forEach((a) => chips.set(a.dataset.year, a));
-  let cur = null;
-  function setActive(year) {
-    if (year === cur) return;
-    [rail, chips].forEach((m) => {
-      const p = m.get(cur); if (p) { p.classList.remove("is-active"); p.removeAttribute("aria-current"); }
-      const n = m.get(year); if (n) { n.classList.add("is-active"); n.setAttribute("aria-current", "location"); }
-    });
-    cur = year;
-    const chip = chips.get(year);
-    if (chip) chip.scrollIntoView({ inline: "center", block: "nearest" });
+  const btns = root.querySelectorAll(".tags-sort button[data-sort]");
+  const viewAZ = root.querySelector('.tags-view[data-view="az"]');
+  const viewPop = root.querySelector('.tags-view[data-view="pop"]');
+  const cloud = root.querySelector("#tags-pop-cloud");
+  if (!btns.length || !viewAZ || !viewPop || !cloud) return;
+  let built = false;
+  function buildPop() {
+    if (built) return;
+    // A-Z 뷰 안의 모든 태그를 복제해 count DESC로 정렬
+    const tags = [...viewAZ.querySelectorAll("a.tag[data-count]")].map((a) => ({
+      el: a.cloneNode(true),
+      n: parseInt(a.dataset.count, 10) || 0,
+    }));
+    tags.sort((a, b) => b.n - a.n);
+    tags.forEach((t) => cloud.appendChild(t.el));
+    built = true;
   }
-  const obs = new IntersectionObserver((entries) => {
-    const vis = entries.filter((e) => e.isIntersecting).map((e) => e.target);
-    if (!vis.length) return;
-    vis.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
-    setActive(vis[0].dataset.year);
-  }, { rootMargin: "-80px 0px -60% 0px", threshold: 0 });
-  sections.forEach((s) => obs.observe(s));
+  function setMode(mode) {
+    btns.forEach((b) => {
+      const on = b.dataset.sort === mode;
+      b.classList.toggle("is-active", on);
+      b.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    if (mode === "pop") { buildPop(); viewAZ.hidden = true; viewPop.hidden = false; root.classList.add("is-pop"); }
+    else { viewAZ.hidden = false; viewPop.hidden = true; root.classList.remove("is-pop"); }
+  }
+  btns.forEach((b) => b.addEventListener("click", () => setMode(b.dataset.sort)));
 })();
 
 // [4] 헤딩 앵커 링크 복사 --------------------------------------------------
@@ -267,96 +302,14 @@
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
 })();
 
-// [9] 태그 다중선택 필터 모달 ---------------------------------------------
-(function tagModal() {
-  const modal = document.getElementById("tag-modal");
-  const trigger = document.getElementById("tag-trigger");
-  if (!modal || !trigger) return;
-  const chipsWrap = document.getElementById("tagm-chips");
-  const resultsEl = document.getElementById("tagm-results");
-  const selCount = document.getElementById("tagm-selcount");
-  const clearBtn = document.getElementById("tagm-clear");
-  const filterInput = document.getElementById("tagm-filter");
-  let posts = null, lastFocus = null, filterText = "";
-  const selected = new Set();
-
-  async function ensureData() {
-    if (posts) return;
-    try { const r = await fetch("/index.json"); posts = await r.json(); } catch (e) { posts = []; }
-  }
-  function render() {
-    const sel = [...selected];
-    selCount.textContent = sel.length ? `(${sel.length})` : "";
-    clearBtn.hidden = sel.length === 0;
-    const all = posts || [];
-    const matching = sel.length ? all.filter((p) => sel.every((t) => (p.tags || []).indexOf(t) !== -1)) : all;
-    // 패싯: 매칭 글에 함께 등장하는 태그만 선택 가능 → 0건 막다른 길 차단
-    const avail = new Set();
-    matching.forEach((p) => (p.tags || []).forEach((t) => avail.add(t)));
-    const q = filterText;
-    chipsWrap.querySelectorAll(".tag-chip").forEach((chip) => {
-      const enabled = selected.has(chip.dataset.tag) || avail.has(chip.dataset.tag);
-      chip.disabled = !enabled;
-      chip.classList.toggle("is-disabled", !enabled);
-      // 텍스트 검색: 선택된 칩은 항상 보이고, 나머지는 이름 부분일치만 표시
-      const hit = !q || selected.has(chip.dataset.tag) || (chip.dataset.name || "").indexOf(q) !== -1;
-      chip.classList.toggle("is-filtered", !hit);
-    });
-    if (!sel.length) { resultsEl.innerHTML = '<p class="tag-empty">태그를 선택하면 해당 글이 표시됩니다.</p>'; return; }
-    resultsEl.innerHTML = '<ul class="post-index">' + matching.map((p) =>
-      `<li><span class="t"><a href="${p.url}">${p.title.replace(/</g, "&lt;")}</a></span><span class="d">${p.date}</span></li>`
-    ).join("") + "</ul>";
-  }
-  async function open() {
-    lastFocus = document.activeElement;
-    modal.hidden = false; document.body.style.overflow = "hidden";
-    await ensureData(); render();
-    if (filterInput) requestAnimationFrame(() => filterInput.focus());
-  }
-  function close() {
-    modal.hidden = true; document.body.style.overflow = "";
-    if (filterInput && filterText) { filterInput.value = ""; filterText = ""; render(); }
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-
-  trigger.addEventListener("click", open);
-  modal.querySelectorAll("[data-tagm-close]").forEach((el) => el.addEventListener("click", close));
-  chipsWrap.addEventListener("click", (e) => {
-    const chip = e.target.closest(".tag-chip");
-    if (!chip) return;
-    const t = chip.dataset.tag;
-    if (selected.has(t)) { selected.delete(t); chip.setAttribute("aria-pressed", "false"); }
-    else { selected.add(t); chip.setAttribute("aria-pressed", "true"); }
-    render();
-  });
-  clearBtn.addEventListener("click", () => {
-    selected.clear();
-    chipsWrap.querySelectorAll(".tag-chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
-    render();
-  });
-  if (filterInput) {
-    filterInput.addEventListener("input", () => { filterText = filterInput.value.trim().toLowerCase(); render(); });
-  }
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) close(); });
-  // 딥링크: #tags (빈 모달) / #tags=slug,slug (사전 선택·공유 가능)
-  if (location.hash.indexOf("#tags") === 0) {
-    const q = location.hash.split("=")[1];
-    if (q) decodeURIComponent(q).split(",").forEach((t) => {
-      selected.add(t);
-      const c = chipsWrap.querySelector('.tag-chip[data-tag="' + t + '"]');
-      if (c) c.setAttribute("aria-pressed", "true");
-    });
-    open();
-  }
-})();
-
-// [6] ⌘K 검색 모달 (Pagefind lazy 로드) -----------------------------------
-(function searchModal() {
+// [6] ⌘K 통합 모달 (Pagefind 텍스트 검색 + 태그 다중선택 필터) ------------
+(function findModal() {
   const modal = document.getElementById("search-modal");
   const trigger = document.getElementById("search-trigger");
   if (!modal) return;
-  let loaded = false, lastFocus = null;
 
+  // -- Pagefind lazy 로드 --
+  let loaded = false, lastFocus = null;
   function loadPagefind() {
     return new Promise((resolve) => {
       const css = document.createElement("link");
@@ -372,30 +325,103 @@
     await loadPagefind();
     if (window.PagefindUI) {
       new PagefindUI({
-        element: "#pf-search", autofocus: true, showSubResults: true, showImages: false,
-        translations: { placeholder: "Search posts…", zero_results: '"[SEARCH_TERM]" 결과 없음', clear_search: "Clear", load_more: "더 보기" },
+        element: "#pf-search", autofocus: false, showSubResults: true, showImages: false,
+        translations: { placeholder: "글 검색…", zero_results: '"[SEARCH_TERM]" 결과 없음', clear_search: "지우기", load_more: "더 보기" },
       });
     }
     loaded = true;
   }
-  function focusInput() {
+  function focusPagefind() {
     const i = modal.querySelector(".pagefind-ui__search-input");
-    if (i) { i.focus(); }
+    if (i) i.focus();
   }
-  async function open() {
+
+  // -- 태그 필터 (details 안) --
+  const details = modal.querySelector("#search-tags");
+  const chipsWrap = modal.querySelector("#tagm-chips");
+  const resultsEl = modal.querySelector("#tagm-results");
+  const selCount = modal.querySelector("#tagm-selcount");
+  const clearBtn = modal.querySelector("#tagm-clear");
+  const filterInput = modal.querySelector("#tagm-filter");
+  let posts = null, filterText = "";
+  const selected = new Set();
+
+  async function ensureTagData() {
+    if (posts) return;
+    try { const r = await fetch("/index.json"); posts = await r.json(); } catch (e) { posts = []; }
+  }
+  function renderTags() {
+    if (!chipsWrap) return;
+    const sel = [...selected];
+    if (selCount) selCount.textContent = sel.length ? `(${sel.length})` : "";
+    if (clearBtn) clearBtn.hidden = sel.length === 0;
+    const all = posts || [];
+    const matching = sel.length ? all.filter((p) => sel.every((t) => (p.tags || []).indexOf(t) !== -1)) : all;
+    const avail = new Set();
+    matching.forEach((p) => (p.tags || []).forEach((t) => avail.add(t)));
+    const q = filterText;
+    chipsWrap.querySelectorAll(".tag-chip").forEach((chip) => {
+      const enabled = selected.has(chip.dataset.tag) || avail.has(chip.dataset.tag);
+      chip.disabled = !enabled;
+      chip.classList.toggle("is-disabled", !enabled);
+      const hit = !q || selected.has(chip.dataset.tag) || (chip.dataset.name || "").indexOf(q) !== -1;
+      chip.classList.toggle("is-filtered", !hit);
+    });
+    if (!resultsEl) return;
+    if (!sel.length) { resultsEl.innerHTML = '<p class="tag-empty">태그를 선택하면 해당 글이 표시됩니다.</p>'; return; }
+    resultsEl.innerHTML = '<ul class="post-index">' + matching.map((p) =>
+      `<li><span class="t"><a href="${p.url}">${p.title.replace(/</g, "&lt;")}</a></span><span class="d">${p.date}</span></li>`
+    ).join("") + "</ul>";
+  }
+
+  // -- 열기/닫기 (통합) --
+  async function open(opts) {
     lastFocus = document.activeElement;
     modal.hidden = false;
     document.body.style.overflow = "hidden";
     await ensureUI();
-    requestAnimationFrame(focusInput);
+    if (opts && opts.tags && details) {
+      details.open = true;
+      await ensureTagData();
+      renderTags();
+      requestAnimationFrame(() => filterInput && filterInput.focus());
+    } else {
+      requestAnimationFrame(focusPagefind);
+    }
   }
   function close() {
     modal.hidden = true;
     document.body.style.overflow = "";
+    if (filterInput && filterText) { filterInput.value = ""; filterText = ""; renderTags(); }
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
-  if (trigger) trigger.addEventListener("click", open);
+
+  if (trigger) trigger.addEventListener("click", () => open());
   modal.querySelectorAll("[data-search-close]").forEach((el) => el.addEventListener("click", close));
+
+  // 태그 details 처음 열릴 때 데이터 로드
+  if (details) details.addEventListener("toggle", async () => {
+    if (!details.open) return;
+    await ensureTagData(); renderTags();
+  });
+  if (chipsWrap) chipsWrap.addEventListener("click", (e) => {
+    const chip = e.target.closest(".tag-chip");
+    if (!chip) return;
+    const t = chip.dataset.tag;
+    if (selected.has(t)) { selected.delete(t); chip.setAttribute("aria-pressed", "false"); }
+    else { selected.add(t); chip.setAttribute("aria-pressed", "true"); }
+    renderTags();
+  });
+  if (clearBtn) clearBtn.addEventListener("click", () => {
+    selected.clear();
+    chipsWrap.querySelectorAll(".tag-chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
+    renderTags();
+  });
+  if (filterInput) filterInput.addEventListener("input", () => {
+    filterText = filterInput.value.trim().toLowerCase();
+    renderTags();
+  });
+
   document.addEventListener("keydown", (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
       e.preventDefault(); modal.hidden ? open() : close();
@@ -405,7 +431,18 @@
       close();
     }
   });
-  if (location.hash === "#search") open(); // 딥링크/테스트용
+
+  // 딥링크: #search / #tags / #tags=slug,slug
+  if (location.hash === "#search") open();
+  else if (location.hash.indexOf("#tags") === 0) {
+    const q = location.hash.split("=")[1];
+    if (q && chipsWrap) decodeURIComponent(q).split(",").forEach((t) => {
+      selected.add(t);
+      const c = chipsWrap.querySelector('.tag-chip[data-tag="' + t + '"]');
+      if (c) c.setAttribute("aria-pressed", "true");
+    });
+    open({ tags: true });
+  }
 })();
 
 // [5] 코드블록 헤더(신호등 점 + 언어 라벨 + 복사) ---------------------------

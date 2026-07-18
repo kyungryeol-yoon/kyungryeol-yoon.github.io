@@ -3,12 +3,12 @@
 {{ $groups := $posts.GroupByDate "2006" }}
 {{ $last := sub (len $groups) 1 }}
 
-<div class="archives">
+<div class="archives" data-scrollspy>
   <aside class="arch-rail" aria-label="연도 목차">
     <div class="arch-rail-title">Years</div>
     <ul class="arch-rail-list">
       {{ range $groups }}
-        <li><a href="#y-{{ .Key }}" data-year="{{ .Key }}"><span class="y">{{ .Key }}</span><span class="c">{{ len .Pages }}</span></a></li>
+        <li><a href="#y-{{ .Key }}" data-key="{{ .Key }}"><span class="y">{{ .Key }}</span><span class="c">{{ len .Pages }}</span></a></li>
       {{ end }}
     </ul>
   </aside>
@@ -21,12 +21,12 @@
 
     <nav class="arch-chips" aria-label="연도 바로가기">
       {{ range $groups }}
-        <a href="#y-{{ .Key }}" data-year="{{ .Key }}"><span class="y">{{ .Key }}</span><span class="c">{{ len .Pages }}</span></a>
+        <a href="#y-{{ .Key }}" data-key="{{ .Key }}"><span class="y">{{ .Key }}</span><span class="c">{{ len .Pages }}</span></a>
       {{ end }}
     </nav>
 
     {{ range $i, $g := $groups }}
-      <section class="timeline-year" id="y-{{ $g.Key }}" data-year="{{ $g.Key }}">
+      <section class="timeline-year" id="y-{{ $g.Key }}" data-scrollspy-section data-key="{{ $g.Key }}">
         <h2 class="tl-year">{{ $g.Key }} <span class="tl-count">{{ len $g.Pages }}</span></h2>
         {{ $months := $g.Pages.GroupByDate "2006-01" }}
         {{ range $months }}

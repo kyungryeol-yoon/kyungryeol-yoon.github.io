@@ -7,8 +7,14 @@
 
   <div class="col-main">
     <div class="post-list">
+      {{ $.Scratch.Set "curYear" "" }}
       {{ range $paginator.Pages }}
         {{ $.Scratch.Add "ci" 1 }}
+        {{ $y := .Date.Format "2006" }}
+        {{ if ne ($.Scratch.Get "curYear") $y }}
+          <div class="feed-year-sep" aria-hidden="true"><span>{{ $y }}</span></div>
+          {{ $.Scratch.Set "curYear" $y }}
+        {{ end }}
         {{ $cats := slice }}
         {{ range .Ancestors.Reverse }}{{ if not .IsHome }}{{ $cats = $cats | append .Title }}{{ end }}{{ end }}
         <article class="post-card">

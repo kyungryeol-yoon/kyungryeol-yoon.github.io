@@ -1,17 +1,75 @@
 {{ define "main" }}
-<div class="page-narrow">
-  <div class="masthead">
-    <h1>Categories</h1>
-    <p>중첩 섹션 기반 — 같은 이름의 하위 카테고리도 상위 경로가 다르면 별도 페이지입니다.</p>
-  </div>
-  <div class="cat-tools">
-    <button id="cat-expand-all" class="cat-tool-btn" type="button" aria-expanded="false">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-      <span class="label">전체 펼치기</span>
-    </button>
-  </div>
-  {{ partial "category-tree.html" site.Home }}
+{{ $sections := site.Home.Sections.ByTitle }}
+{{ $totalPosts := len (where site.RegularPages "Section" "!=" "") }}
+{{ $ICON_FOLDER := `<svg class="cat-card-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h3.5l2 2H19a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>` }}
+{{ $ICON_DOC := `<svg class="cat-card-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>` }}
+{{ $ICON_CHEV := `<svg class="cat-card-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>` }}
 
-  {{ with site.Params.adsenseSlotMultiplex }}{{ partial "ad-unit.html" (dict "slot" . "format" "autorelaxed") }}{{ end }}
+<div class="archives cat-index" data-scrollspy>
+  <aside class="arch-rail" aria-label="카테고리 목차">
+    <div class="arch-rail-title">Categories</div>
+    <ul class="arch-rail-list">
+      {{ range $sections }}
+        <li><a href="#c-{{ .Section }}" data-key="{{ .Section }}"><span class="y">{{ .Title }}</span><span class="c">{{ len .RegularPagesRecursive }}</span></a></li>
+      {{ end }}
+    </ul>
+  </aside>
+
+  <div class="arch-main">
+    <div class="masthead arch-masthead">
+      <h1>Categories</h1>
+      <p>{{ len $sections }} categories · {{ $totalPosts }} posts</p>
+    </div>
+
+    <nav class="arch-chips" aria-label="카테고리 바로가기">
+      {{ range $sections }}
+        <a href="#c-{{ .Section }}" data-key="{{ .Section }}"><span class="y">{{ .Title }}</span><span class="c">{{ len .RegularPagesRecursive }}</span></a>
+      {{ end }}
+    </nav>
+
+    {{ range $sections }}
+      <section class="cat-section" id="c-{{ .Section }}" data-scrollspy-section data-key="{{ .Section }}">
+        <h2 class="tl-year"><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="tl-count">{{ len .RegularPagesRecursive }}</span></h2>
+        <div class="cat-cards">
+          {{ if .Sections }}
+            {{ range .Sections.ByTitle }}
+              <details class="cat-card-wrap">
+                <summary>
+                  {{ $ICON_FOLDER | safeHTML }}
+                  <span class="cat-card-name">{{ .Title }}</span>
+                  <span class="cat-card-count">{{ len .RegularPagesRecursive }}</span>
+                  {{ $ICON_CHEV | safeHTML }}
+                </summary>
+                <div class="cat-card-preview">
+                  {{ with .RegularPagesRecursive }}
+                    <ul class="post-index">
+                      {{ range .ByDate.Reverse | first 5 }}
+                        <li><span class="t"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span><span class="d">{{ .Date.Format "2006.01.02" }}</span></li>
+                      {{ end }}
+                    </ul>
+                  {{ end }}
+                  <a class="cat-card-all" href="{{ .RelPermalink }}">전체 보기 →</a>
+                </div>
+              </details>
+            {{ end }}
+          {{ else }}
+            {{ $posts := .RegularPagesRecursive.ByDate.Reverse }}
+            {{ range first 6 $posts }}
+              <a class="cat-card cat-card--post" href="{{ .RelPermalink }}">
+                {{ $ICON_DOC | safeHTML }}
+                <span class="cat-card-name">{{ .Title }}</span>
+                <span class="cat-card-count">{{ .Date.Format "2006.01.02" }}</span>
+              </a>
+            {{ end }}
+          {{ end }}
+        </div>
+        {{ if and (not .Sections) (gt (len .RegularPagesRecursive) 6) }}
+          <div class="cat-section-more"><a href="{{ .RelPermalink }}">전체 보기 →</a></div>
+        {{ end }}
+      </section>
+    {{ end }}
+
+    {{ with site.Params.adsenseSlotMultiplex }}{{ partial "ad-unit.html" (dict "slot" . "format" "autorelaxed") }}{{ end }}
+  </div>
 </div>
 {{ end }}

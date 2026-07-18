@@ -1,9 +1,28 @@
-{{- /* ⌘K 검색 모달. Pagefind는 첫 오픈 시 app.js가 lazy 로드. */ -}}
+{{- /* ⌘K 통합 모달. Pagefind 텍스트 검색 + 태그 다중선택 필터를 한 곳에서. */ -}}
 <div class="search-modal" id="search-modal" hidden>
   <div class="search-modal__overlay" data-search-close></div>
-  <div class="search-modal__dialog" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal__dialog" role="dialog" aria-modal="true" aria-label="찾기">
     <div id="pf-search" class="search-modal__body"></div>
+
+    <details class="search-tags" id="search-tags">
+      <summary>
+        <span class="search-tags__label">태그로 좁히기</span>
+        <span class="search-tags__sel" id="tagm-selcount"></span>
+        <button class="search-tags__clear" id="tagm-clear" type="button" hidden>초기화</button>
+      </summary>
+      <div class="search-tags__body">
+        <input type="text" id="tagm-filter" class="search-tags__filter" placeholder="태그 검색…" autocomplete="off" spellcheck="false" />
+        <div class="tag-chips" id="tagm-chips">
+          {{ range $name, $taxonomy := site.Taxonomies.tags }}
+            <button class="tag-chip" type="button" data-tag="{{ $name | urlize }}" data-name="{{ $name | lower }}" aria-pressed="false">{{ $name }} <span class="tag-chip-c">{{ len $taxonomy.Pages }}</span></button>
+          {{ end }}
+        </div>
+        <div class="tag-results" id="tagm-results"></div>
+      </div>
+    </details>
+
     <div class="search-modal__hint">
+      <a href="{{ "/tags/" | relURL }}" class="search-modal__all">전체 태그 A-Z →</a>
       <span><kbd>esc</kbd> close</span>
     </div>
   </div>
