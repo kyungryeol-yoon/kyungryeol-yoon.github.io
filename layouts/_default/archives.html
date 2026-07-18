@@ -1,28 +1,52 @@
 {{ define "main" }}
-<div class="page-narrow">
-<div class="masthead">
-  <h1>Archives</h1>
-  <p>{{ len (where site.RegularPages "Section" "!=" "") }} posts</p>
-</div>
-
 {{ $posts := where site.RegularPages "Section" "!=" "" }}
 {{ $groups := $posts.GroupByDate "2006" }}
 {{ $last := sub (len $groups) 1 }}
-{{ range $i, $g := $groups }}
-  <section class="timeline-year">
-    <h2 class="tl-year">{{ $g.Key }} <span class="tl-count">{{ len $g.Pages }}</span></h2>
-    <ul class="tl-list">
-      {{ range $g.Pages.ByDate.Reverse }}
-        <li class="tl-item">
-          <time class="tl-date" datetime="{{ .Date.Format "2006-01-02" }}"><b>{{ .Date.Format "02" }}</b> {{ .Date.Format "Jan" }}</time>
-          <a class="tl-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-        </li>
+
+<div class="archives">
+  <aside class="arch-rail" aria-label="연도 목차">
+    <div class="arch-rail-title">Years</div>
+    <ul class="arch-rail-list">
+      {{ range $groups }}
+        <li><a href="#y-{{ .Key }}" data-year="{{ .Key }}"><span class="y">{{ .Key }}</span><span class="c">{{ len .Pages }}</span></a></li>
       {{ end }}
     </ul>
-  </section>
-  {{ if ne $i $last }}{{ with site.Params.adsenseSlotDisplay }}{{ partial "ad-unit.html" (dict "slot" .) }}{{ end }}{{ end }}
-{{ end }}
+  </aside>
 
-{{ with site.Params.adsenseSlotMultiplex }}{{ partial "ad-unit.html" (dict "slot" . "format" "autorelaxed") }}{{ end }}
+  <div class="arch-main">
+    <div class="masthead arch-masthead">
+      <h1>Archives</h1>
+      <p>{{ len $posts }} posts</p>
+    </div>
+
+    <nav class="arch-chips" aria-label="연도 바로가기">
+      {{ range $groups }}
+        <a href="#y-{{ .Key }}" data-year="{{ .Key }}"><span class="y">{{ .Key }}</span><span class="c">{{ len .Pages }}</span></a>
+      {{ end }}
+    </nav>
+
+    {{ range $i, $g := $groups }}
+      <section class="timeline-year" id="y-{{ $g.Key }}" data-year="{{ $g.Key }}">
+        <h2 class="tl-year">{{ $g.Key }} <span class="tl-count">{{ len $g.Pages }}</span></h2>
+        {{ $months := $g.Pages.GroupByDate "2006-01" }}
+        {{ range $months }}
+          {{ $mkey := .Key }}
+          {{ $mdate := (index .Pages 0).Date }}
+          <h3 class="tl-month" id="y-{{ $mdate.Format "2006-01" }}">{{ $mdate.Format "January" }}</h3>
+          <ul class="tl-list">
+            {{ range .Pages.ByDate.Reverse }}
+              <li class="tl-item">
+                <time class="tl-date" datetime="{{ .Date.Format "2006-01-02" }}"><b>{{ .Date.Format "02" }}</b> {{ .Date.Format "Jan" }}</time>
+                <a class="tl-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+              </li>
+            {{ end }}
+          </ul>
+        {{ end }}
+      </section>
+      {{ if ne $i $last }}{{ with site.Params.adsenseSlotDisplay }}{{ partial "ad-unit.html" (dict "slot" .) }}{{ end }}{{ end }}
+    {{ end }}
+
+    {{ with site.Params.adsenseSlotMultiplex }}{{ partial "ad-unit.html" (dict "slot" . "format" "autorelaxed") }}{{ end }}
+  </div>
 </div>
 {{ end }}

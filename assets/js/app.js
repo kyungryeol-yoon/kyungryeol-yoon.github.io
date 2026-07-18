@@ -102,6 +102,35 @@
 })();
 
 
+// [2c] Archives 연도 스크롤스파이 + 활성 칩 자동 센터링 -----------------------
+(function archSpy() {
+  const root = document.querySelector(".archives");
+  if (!root) return;
+  const sections = [...root.querySelectorAll(".timeline-year")];
+  if (!sections.length) return;
+  const rail = new Map(), chips = new Map();
+  root.querySelectorAll(".arch-rail-list a[data-year]").forEach((a) => rail.set(a.dataset.year, a));
+  root.querySelectorAll(".arch-chips a[data-year]").forEach((a) => chips.set(a.dataset.year, a));
+  let cur = null;
+  function setActive(year) {
+    if (year === cur) return;
+    [rail, chips].forEach((m) => {
+      const p = m.get(cur); if (p) { p.classList.remove("is-active"); p.removeAttribute("aria-current"); }
+      const n = m.get(year); if (n) { n.classList.add("is-active"); n.setAttribute("aria-current", "location"); }
+    });
+    cur = year;
+    const chip = chips.get(year);
+    if (chip) chip.scrollIntoView({ inline: "center", block: "nearest" });
+  }
+  const obs = new IntersectionObserver((entries) => {
+    const vis = entries.filter((e) => e.isIntersecting).map((e) => e.target);
+    if (!vis.length) return;
+    vis.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+    setActive(vis[0].dataset.year);
+  }, { rootMargin: "-80px 0px -60% 0px", threshold: 0 });
+  sections.forEach((s) => obs.observe(s));
+})();
+
 // [4] 헤딩 앵커 링크 복사 --------------------------------------------------
 (function anchorCopy() {
   document.querySelectorAll("a[data-anchor]").forEach((a) => {

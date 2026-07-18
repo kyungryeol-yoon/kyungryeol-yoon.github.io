@@ -214,6 +214,111 @@ html[data-theme="dark"] .post-card:hover { background: var(--bg-soft); box-shado
   .tl-item::before, .tl-item::after { left: 52px; }
 }
 
+/* 아카이브 셸: 데스크톱 = 좌측 sticky 연도 레일 + 본문 2열, 모바일 = 상단 sticky 연도 칩 */
+.archives { max-width: var(--maxw-page); margin-inline: auto; }
+.arch-main { min-width: 0; }
+.arch-masthead { padding-top: var(--space-8); }
+@media (min-width: 900px) {
+  .archives {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 760px);
+    column-gap: var(--space-12);
+    justify-content: center;
+    align-items: start;
+  }
+}
+
+/* 연도 레일 (데스크톱) — TOC와 동일한 sticky top:80px 패턴 */
+.arch-rail {
+  position: sticky; top: 80px; align-self: start;
+  max-height: calc(100vh - 100px); overflow-y: auto;
+  padding-top: var(--space-16);
+  scrollbar-width: none;
+}
+.arch-rail::-webkit-scrollbar { width: 0; height: 0; }
+.arch-rail-title {
+  text-transform: uppercase; letter-spacing: 0.08em;
+  font-size: 0.72rem; color: var(--text-faint);
+  margin-bottom: var(--space-3);
+}
+.arch-rail-list { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--border); }
+.arch-rail-list li { margin: 0; }
+.arch-rail-list a {
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-2);
+  padding: 6px var(--space-3);
+  margin-left: -1px;
+  border-left: 2px solid transparent;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+  transition: var(--transition);
+}
+.arch-rail-list a:hover { color: var(--accent); background: var(--bg-soft); text-decoration: none; }
+.arch-rail-list a.is-active {
+  color: var(--accent); border-left-color: var(--accent); font-weight: 600;
+}
+.arch-rail-list .y { font-size: var(--fs-sm); }
+.arch-rail-list .c { font-size: 0.72rem; color: var(--text-faint); }
+.arch-rail-list a.is-active .c { color: var(--accent); }
+
+/* 연도 칩 스트립 (모바일) — 헤더 바로 아래 sticky, 가로 스크롤, 스냅 */
+.arch-chips {
+  display: flex; gap: var(--space-2);
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  position: sticky; top: 60px; z-index: 20;
+  margin: 0 calc(-1 * var(--space-6)) var(--space-6);
+  padding: var(--space-3) var(--space-6);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: saturate(150%) blur(8px);
+  border-bottom: 1px solid var(--border-soft);
+}
+.arch-chips::-webkit-scrollbar { width: 0; height: 0; }
+.arch-chips a {
+  flex: none; display: inline-flex; align-items: center; gap: 5px;
+  border: 1px solid var(--border); background: var(--surface);
+  border-radius: 999px; padding: 5px 12px;
+  color: var(--text-soft); font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+  scroll-snap-align: center;
+  transition: var(--transition);
+}
+.arch-chips a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.arch-chips a.is-active {
+  background: var(--accent-soft); border-color: var(--accent);
+  color: var(--accent); font-weight: 600;
+}
+.arch-chips .c { font-size: 0.72rem; opacity: 0.7; }
+
+/* 월 서브헤더 (연도 내부 재그룹핑) */
+.tl-month {
+  font-size: 0.9rem; font-weight: 600; color: var(--text-soft);
+  letter-spacing: 0.02em;
+  margin: var(--space-6) 0 var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--border-soft);
+}
+.timeline-year > .tl-month:first-of-type {
+  border-top: 0; padding-top: 0; margin-top: var(--space-3);
+}
+
+/* 앵커 이동 시 sticky 헤더/칩스트립에 가리지 않도록 */
+.timeline-year, .tl-month { scroll-margin-top: 80px; }
+@media (max-width: 899px) {
+  .timeline-year, .tl-month { scroll-margin-top: 120px; }
+}
+
+/* 화면 크기별 표시 */
+@media (max-width: 899px) { .arch-rail { display: none; } }
+@media (min-width: 900px) { .arch-chips { display: none; } }
+
+/* 인쇄 */
+@media print {
+  .arch-rail, .arch-chips { display: none; }
+  .archives { display: block; }
+}
+
 /* post layout (single) — 본문 + 우측 TOC ---------------------------------- */
 .post-shell { padding-top: var(--space-8); }
 .post {
