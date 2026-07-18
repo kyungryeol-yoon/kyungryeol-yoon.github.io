@@ -43,18 +43,16 @@
                 <div class="cat-card-preview">
                   {{ with .RegularPagesRecursive }}
                     <ul class="post-index">
-                      {{ range .ByDate.Reverse | first 5 }}
+                      {{ range .ByDate.Reverse }}
                         <li><span class="t"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span><span class="d">{{ .Date.Format "2006.01.02" }}</span></li>
                       {{ end }}
                     </ul>
                   {{ end }}
-                  <a class="cat-card-all" href="{{ .RelPermalink }}">전체 보기 →</a>
                 </div>
               </details>
             {{ end }}
           {{ else }}
-            {{ $posts := .RegularPagesRecursive.ByDate.Reverse }}
-            {{ range first 6 $posts }}
+            {{ range .RegularPagesRecursive.ByDate.Reverse }}
               <a class="cat-card cat-card--post" href="{{ .RelPermalink }}">
                 {{ $ICON_DOC | safeHTML }}
                 <span class="cat-card-name">{{ .Title }}</span>
@@ -63,9 +61,6 @@
             {{ end }}
           {{ end }}
         </div>
-        {{ if and (not .Sections) (gt (len .RegularPagesRecursive) 6) }}
-          <div class="cat-section-more"><a href="{{ .RelPermalink }}">전체 보기 →</a></div>
-        {{ end }}
       </section>
     {{ end }}
 

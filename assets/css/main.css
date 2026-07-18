@@ -400,17 +400,6 @@ html[data-theme="dark"] .post-card:hover { background: var(--bg-soft); box-shado
 .cat-card-preview .post-index li:last-child { border-bottom: 0; }
 .cat-card-preview .post-index .t a { color: var(--text); }
 .cat-card-preview .post-index .t a:hover { color: var(--accent); }
-.cat-card-all {
-  display: inline-block; margin-top: var(--space-2);
-  color: var(--accent); font-size: var(--fs-sm);
-}
-.cat-card-all:hover { text-decoration: underline; }
-
-/* leaf 섹션 그리드 하단 '전체 보기 →' */
-.cat-section-more { margin: var(--space-2) 0 var(--space-6); }
-.cat-section-more a { color: var(--text-faint); font-size: var(--fs-sm); }
-.cat-section-more a:hover { color: var(--accent); }
-
 /* 인쇄: 확장 패널 숨김 */
 @media print {
   .cat-card-wrap { display: block; }
