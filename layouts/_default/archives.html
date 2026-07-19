@@ -30,9 +30,8 @@
         <h2 class="tl-year">{{ $g.Key }} <span class="tl-count">{{ len $g.Pages }}</span></h2>
         {{ $months := $g.Pages.GroupByDate "2006-01" }}
         {{ range $months }}
-          {{ $mkey := .Key }}
           {{ $mdate := (index .Pages 0).Date }}
-          <h3 class="tl-month" id="y-{{ $mdate.Format "2006-01" }}">{{ $mdate.Format "January" }}</h3>
+          <h3 class="tl-month" id="y-{{ .Key }}">{{ $mdate.Format "January" }}</h3>
           <ul class="tl-list">
             {{ range .Pages.ByDate.Reverse }}
               <li class="tl-item">

@@ -17,9 +17,10 @@
         {{ end }}
         {{ $cats := slice }}
         {{ range .Ancestors.Reverse }}{{ if not .IsHome }}{{ $cats = $cats | append .Title }}{{ end }}{{ end }}
+        {{ $vt := printf "t-%s" (substr .File.UniqueID 0 12) }}
         <article class="post-card">
           <div class="card-head">
-            <a class="card-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+            <a class="card-title" href="{{ .RelPermalink }}" style="view-transition-name: {{ $vt }}">{{ .Title }}</a>
           </div>
           {{ with partial "excerpt.html" . }}<p class="card-excerpt">{{ . }}</p>{{ end }}
           <div class="card-meta">

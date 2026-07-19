@@ -47,15 +47,18 @@
                         <li><span class="t"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span><span class="d">{{ .Date.Format "2006.01.02" }}</span></li>
                       {{ end }}
                     </ul>
+                  {{ else }}
+                    <p class="cat-card-empty">아직 글이 없습니다.</p>
                   {{ end }}
                 </div>
               </details>
             {{ end }}
           {{ else }}
             {{ range .RegularPagesRecursive.ByDate.Reverse }}
+              {{ $vt := printf "t-%s" (substr .File.UniqueID 0 12) }}
               <a class="cat-card cat-card--post" href="{{ .RelPermalink }}">
                 {{ $ICON_DOC | safeHTML }}
-                <span class="cat-card-name">{{ .Title }}</span>
+                <span class="cat-card-name" style="view-transition-name: {{ $vt }}">{{ .Title }}</span>
                 <span class="cat-card-count">{{ .Date.Format "2006.01.02" }}</span>
               </a>
             {{ end }}

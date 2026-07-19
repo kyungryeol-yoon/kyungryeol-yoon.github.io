@@ -1,5 +1,32 @@
 // 자작 테마 클라이언트 스크립트 — 바닐라, 기능별 독립 블록(제거 시 해당 블록만 삭제).
 
+// [11] [M6] Web Share API — 지원 시 네이티브 공유 시트, 미지원 시 URL 복사 -----
+(function shareButton() {
+  const btns = document.querySelectorAll(".share-btn");
+  if (!btns.length) return;
+  const canShare = typeof navigator.share === "function";
+  btns.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const title = document.title;
+      const url = location.href;
+      const label = btn.querySelector(".share-label");
+      if (canShare) {
+        try { await navigator.share({ title, url }); } catch (e) { /* 사용자 취소 등 무시 */ }
+        return;
+      }
+      // 폴백: 클립보드 복사 + 1.5s 문구 교체
+      try {
+        await navigator.clipboard.writeText(url);
+        if (label) {
+          const orig = label.textContent;
+          label.textContent = "복사됨";
+          setTimeout(() => { label.textContent = orig; }, 1500);
+        }
+      } catch (e) {}
+    });
+  });
+})();
+
 // [1] 다크모드 토글 -------------------------------------------------------
 (function darkToggle() {
   const btn = document.getElementById("theme-toggle");
@@ -121,13 +148,14 @@
       });
       cur = key;
       const chip = chips.get(key);
-      if (chip) chip.scrollIntoView({ inline: "center", block: "nearest" });
+      if (chip) chip.scrollIntoView({ inline: "center", block: "nearest", behavior: "instant" });
     }
     const obs = new IntersectionObserver((entries) => {
-      const vis = entries.filter((e) => e.isIntersecting).map((e) => e.target);
+      // IntersectionObserverEntry의 boundingClientRect를 재사용 — getBoundingClientRect 재호출 방지
+      const vis = entries.filter((e) => e.isIntersecting);
       if (!vis.length) return;
-      vis.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
-      setActive(vis[0].dataset.key);
+      vis.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      setActive(vis[0].target.dataset.key);
     }, { rootMargin: "-80px 0px -60% 0px", threshold: 0 });
     sections.forEach((s) => obs.observe(s));
   });
@@ -350,6 +378,8 @@
     if (posts) return;
     try { const r = await fetch("/index.json"); posts = await r.json(); } catch (e) { posts = []; }
   }
+  const ESC_MAP = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ESC_MAP[c]);
   function renderTags() {
     if (!chipsWrap) return;
     const sel = [...selected];
@@ -370,7 +400,7 @@
     if (!resultsEl) return;
     if (!sel.length) { resultsEl.innerHTML = '<p class="tag-empty">태그를 선택하면 해당 글이 표시됩니다.</p>'; return; }
     resultsEl.innerHTML = '<ul class="post-index">' + matching.map((p) =>
-      `<li><span class="t"><a href="${p.url}">${p.title.replace(/</g, "&lt;")}</a></span><span class="d">${p.date}</span></li>`
+      `<li><span class="t"><a href="${esc(p.url)}">${esc(p.title)}</a></span><span class="d">${esc(p.date)}</span></li>`
     ).join("") + "</ul>";
   }
 
@@ -381,9 +411,8 @@
     document.body.style.overflow = "hidden";
     await ensureUI();
     if (opts && opts.tags && details) {
+      // details.open = true → toggle 이벤트가 ensureTagData + renderTags 를 담당(중복 방지)
       details.open = true;
-      await ensureTagData();
-      renderTags();
       requestAnimationFrame(() => filterInput && filterInput.focus());
     } else {
       requestAnimationFrame(focusPagefind);
