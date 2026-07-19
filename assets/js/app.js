@@ -518,7 +518,7 @@
       text = text.replace(/\n$/, "");
       navigator.clipboard.writeText(text).then(() => {
         btn.classList.add("copied");
-        btn.innerHTML = ICON_DONE;
+        btn.innerHTML = ICON_DONE + '<span class="code-copy-text">복사됨</span>';
         setTimeout(() => {
           btn.classList.remove("copied");
           btn.innerHTML = ICON_COPY;
