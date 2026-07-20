@@ -23,7 +23,7 @@
   - 새 경로를 만들면 **생성 경로를 사용자에게 명확히 안내**합니다.
 - 아래는 **현재 존재하는 섹션(참고용, 한정 아님)** — 더 맞는 새 분류면 만들어도 됩니다.
 
-> ai〔llm·machine-learning〕 · backend〔architecture·java·python·spring·supabase〕 · blog · cs〔algorithms-ds·interview·sw-theory〕 · data-streaming〔kafka〕 · database〔influxdb·mysql·postgresql·redis〕 · devops〔ansible·argo-cd·git·gitlab·harbor·k6·sre〕 · docker · environment〔macos·virtualization〕 · frontend〔android·flutter〕 · hardware · kubernetes〔cluster·concepts·kubectl·networking·security·storage·tools·troubleshooting〕 · linux〔file-commands·network-commands·package·process·system〕 · networking · observability〔ebpf·grafana-loki·opentelemetry〕
+> ai〔llm·machine-learning〕 · backend〔architecture·java·python·spring·supabase〕 · blog · cs〔algorithms-ds·interview·sw-theory〕 · data-streaming〔kafka〕 · database〔influxdb·mysql·postgresql·redis〕 · devops〔ansible·argo-cd·git·gitlab·harbor·k6·sre〕 · docker · environment〔macos·virtualization〕 · frontend〔android·flutter〕 · hardware · kubernetes〔cluster(install·kubeadm)·concepts·kubectl·networking(gateway-api·grpc)·security·storage·tools·troubleshooting〕 · linux〔file-commands·network-commands·package·process·system〕 · networking · observability〔ebpf·grafana-loki·opentelemetry(collector·vector)·tracing·victorialogs〕
 
 ## Front Matter 템플릿
 ```yaml

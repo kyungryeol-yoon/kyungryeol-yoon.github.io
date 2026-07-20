@@ -93,7 +93,7 @@ vmauth:
   enabled: true                  # 진입점/LB/인증 (8427)
 ```
 
-> 💡 retention·PVC 사이징은 [VictoriaLogs 백엔드 편](/observability/opentelemetry/kubernetes-victorialogs-cluster-helm-install/)과 같은 원리입니다 — per-day 파티션이라 오래된 날짜 파티션을 통째로 지워 retention이 빠르게 적용되고, PVC는 점진 증설을 전제로 보수적으로 잡습니다.
+> 💡 retention·PVC 사이징은 [VictoriaLogs 백엔드 편](/observability/victorialogs/kubernetes-victorialogs-cluster-helm-install/)과 같은 원리입니다 — per-day 파티션이라 오래된 날짜 파티션을 통째로 지워 retention이 빠르게 적용되고, PVC는 점진 증설을 전제로 보수적으로 잡습니다.
 
 ---
 
@@ -228,7 +228,7 @@ VictoriaTraces에서 `-otlpGRPCListenAddr`로 gRPC 리스너를 켠 뒤 `otlp` e
 
 이 편의 한 줄 요약: **"VictoriaTraces는 VictoriaLogs 기반의 트레이스 DB로, 로컬 디스크에 저장하고 Jaeger API로 조회한다."** 적재는 `/insert/opentelemetry/v1/traces`, 조회는 Grafana **Jaeger 데이터소스**이며, VictoriaLogs 스택과의 운영 일관성이 강점입니다(성숙도는 Tempo보다 발전 중).
 
-> 🔗 이 트레이스 확장은 [**"OTel + VictoriaLogs 로그 스택" 시리즈**(완결)](/observability/opentelemetry/otel-collector-agent-gateway-architecture/) 위에 얹힙니다.
+> 🔗 이 트레이스 확장은 [**"OTel + VictoriaLogs 로그 스택" 시리즈**(완결)](/observability/opentelemetry/collector/otel-collector-agent-gateway-architecture/) 위에 얹힙니다.
 
 ---
 
@@ -240,4 +240,4 @@ VictoriaTraces에서 `-otlpGRPCListenAddr`로 gRPC 리스너를 켠 뒤 `otlp` e
 - [victoria-traces-cluster Helm chart](https://docs.victoriametrics.com/helm/victoria-traces-cluster/)
 - [victoria-traces-single Helm chart](https://docs.victoriametrics.com/helm/victoria-traces-single/)
 - 관련 글: [Grafana Tempo 백엔드 구축 (트레이스 확장 2편)](/observability/tracing/kubernetes-grafana-tempo-distributed-helm-install/)
-- 관련 글: [VictoriaLogs 클러스터 구축 (로그 스택 시리즈)](/observability/opentelemetry/kubernetes-victorialogs-cluster-helm-install/)
+- 관련 글: [VictoriaLogs 클러스터 구축 (로그 스택 시리즈)](/observability/victorialogs/kubernetes-victorialogs-cluster-helm-install/)

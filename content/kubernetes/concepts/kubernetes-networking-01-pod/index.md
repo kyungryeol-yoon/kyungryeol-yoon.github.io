@@ -1,6 +1,7 @@
 ---
 title: "[Kubernetes] 쿠버네티스 네트워킹 이해하기 (1) - Pod 네트워킹의 원리"
 date: 2019-05-07
+series: "쿠버네티스 네트워킹 이해하기"
 tags: [kubernetes, network, pod, pause-container, cni, infrastructure]
 description: "쿠버네티스 네트워킹 시리즈 1편 — Pod 네트워킹 원리. 컨테이너 간·Pod 간·Pod-Service·외부 통신 4가지 과제와 Pod 네트워크 모델을 설명합니다."
 ---

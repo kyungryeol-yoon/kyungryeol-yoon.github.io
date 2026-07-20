@@ -7,7 +7,7 @@ series: "OTel + VictoriaLogs 로그 스택"
 series_order: 3
 ---
 
-단일 클러스터에서 검증한 OpenTelemetry 로그 파이프라인을 멀티클러스터로 펼치는 것은, 의외로 **구성을 그대로 복제하고 값 두 개(env 라벨, Gateway endpoint)만 바꾸는 작업**입니다. 새로 등장하는 유일한 난관은 **클러스터 간 통신** — mgmt vmauth 노출, TLS, 인증, 네트워크 경로입니다. 각 클러스터의 Gateway가 중앙(mgmt) VictoriaLogs로 push하고, Grafana·vmui에서 `env` 라벨로 환경별 로그를 분리 조회합니다. 이 글은 **"OTel + VictoriaLogs 로그 스택" 시리즈 4편(확장·운영편)** 으로, [1편(개념)](/observability/opentelemetry/otel-collector-agent-gateway-architecture/)·[3편(설치)](/observability/opentelemetry/kubernetes-otel-collector-offline-helm-install/)에서 만든 단일 클러스터 구성을 여러 클러스터로 확장합니다.
+단일 클러스터에서 검증한 OpenTelemetry 로그 파이프라인을 멀티클러스터로 펼치는 것은, 의외로 **구성을 그대로 복제하고 값 두 개(env 라벨, Gateway endpoint)만 바꾸는 작업**입니다. 새로 등장하는 유일한 난관은 **클러스터 간 통신** — mgmt vmauth 노출, TLS, 인증, 네트워크 경로입니다. 각 클러스터의 Gateway가 중앙(mgmt) VictoriaLogs로 push하고, Grafana·vmui에서 `env` 라벨로 환경별 로그를 분리 조회합니다. 이 글은 **"OTel + VictoriaLogs 로그 스택" 시리즈 4편(확장·운영편)** 으로, [1편(개념)](/observability/opentelemetry/collector/otel-collector-agent-gateway-architecture/)·[3편(설치)](/observability/opentelemetry/collector/kubernetes-otel-collector-offline-helm-install/)에서 만든 단일 클러스터 구성을 여러 클러스터로 확장합니다.
 
 ## 🗺️ 멀티클러스터에서 무엇이 달라지나
 
@@ -203,27 +203,27 @@ env:dev
 
 **OTel 트랙**
 
-- **1편** — [OpenTelemetry 개념과 Agent/Gateway 구조](/observability/opentelemetry/otel-collector-agent-gateway-architecture/)
-- **2편** — [VictoriaLogs 클러스터 구축](/observability/opentelemetry/kubernetes-victorialogs-cluster-helm-install/)
-- **3편** — [폐쇄망 OTel Collector Helm 설치](/observability/opentelemetry/kubernetes-otel-collector-offline-helm-install/)
+- **1편** — [OpenTelemetry 개념과 Agent/Gateway 구조](/observability/opentelemetry/collector/otel-collector-agent-gateway-architecture/)
+- **2편** — [VictoriaLogs 클러스터 구축](/observability/victorialogs/kubernetes-victorialogs-cluster-helm-install/)
+- **3편** — [폐쇄망 OTel Collector Helm 설치](/observability/opentelemetry/collector/kubernetes-otel-collector-offline-helm-install/)
 - **4편 (현재)** — 멀티클러스터 확장 + 운영·검증
 
 **Vector 트랙** (대안 수집기)
 
-- **1편** — [Vector 개념과 파이프라인 구조](/observability/opentelemetry/kubernetes-vector-log-pipeline-concept/)
-- **2편** — [Vector 설치: Agent/Aggregator Helm values](/observability/opentelemetry/kubernetes-vector-agent-aggregator-helm-install/)
-- **3편** — [VRL로 로그 가공](/observability/opentelemetry/kubernetes-vector-vrl-log-processing/)
+- **1편** — [Vector 개념과 파이프라인 구조](/observability/opentelemetry/vector/kubernetes-vector-log-pipeline-concept/)
+- **2편** — [Vector 설치: Agent/Aggregator Helm values](/observability/opentelemetry/vector/kubernetes-vector-agent-aggregator-helm-install/)
+- **3편** — [VRL로 로그 가공](/observability/opentelemetry/vector/kubernetes-vector-vrl-log-processing/)
 
 **비교**
 
-- **OTel vs Vector** — [어떤 걸 선택할까](/observability/opentelemetry/kubernetes-otel-collector-vs-vector/)
+- **OTel vs Vector** — [어떤 걸 선택할까](/observability/opentelemetry/collector/kubernetes-otel-collector-vs-vector/)
 
 **대시보드 트랙**
 
-- **1편** — [조회 개요: Grafana·vmui·Perses](/observability/opentelemetry/victorialogs-log-viewing-grafana-vmui-perses/)
-- **2편** — [Grafana 연결: 플러그인·Explore·대시보드](/observability/opentelemetry/grafana-victorialogs-datasource-explore-dashboard/)
-- **3편** — [vmui로 LogsQL 탐색](/observability/opentelemetry/victorialogs-vmui-logsql-live-tail/)
-- **4편** — [Perses로 코드형 대시보드](/observability/opentelemetry/perses-victorialogs-dashboard-gitops/)
+- **1편** — [조회 개요: Grafana·vmui·Perses](/observability/victorialogs/victorialogs-log-viewing-grafana-vmui-perses/)
+- **2편** — [Grafana 연결: 플러그인·Explore·대시보드](/observability/victorialogs/grafana-victorialogs-datasource-explore-dashboard/)
+- **3편** — [vmui로 LogsQL 탐색](/observability/victorialogs/victorialogs-vmui-logsql-live-tail/)
+- **4편** — [Perses로 코드형 대시보드](/observability/victorialogs/perses-victorialogs-dashboard-gitops/)
 
 이 편의 한 줄 요약: **"멀티클러스터 = 구성 복제 + 값 2개(`env`, endpoint) 변경, 새 난관은 클러스터 간 통신뿐."** 외부 진입은 vmauth로 단일화해 TLS·인증을 적용하고 백엔드 컴포넌트는 직접 노출하지 않으며, 확장은 dev부터 단계적으로 검증하며 펼칩니다.
 
@@ -236,5 +236,5 @@ env:dev
 - [VictoriaLogs cluster](https://docs.victoriametrics.com/victorialogs/cluster/)
 - [VictoriaLogs cluster Helm chart](https://docs.victoriametrics.com/helm/victoria-logs-cluster/)
 - [Collector Configuration — OpenTelemetry](https://opentelemetry.io/docs/collector/configuration/)
-- 관련 글: [OpenTelemetry 개념과 Agent/Gateway 구조 (시리즈 1편)](/observability/opentelemetry/otel-collector-agent-gateway-architecture/)
-- 관련 글: [폐쇄망 OTel Collector Helm 설치 (시리즈 3편)](/observability/opentelemetry/kubernetes-otel-collector-offline-helm-install/)
+- 관련 글: [OpenTelemetry 개념과 Agent/Gateway 구조 (시리즈 1편)](/observability/opentelemetry/collector/otel-collector-agent-gateway-architecture/)
+- 관련 글: [폐쇄망 OTel Collector Helm 설치 (시리즈 3편)](/observability/opentelemetry/collector/kubernetes-otel-collector-offline-helm-install/)
