@@ -1,0 +1,24 @@
+{{- /* 글 카드. 인자: dict "page"(Page) "showCategory"(bool — 상위 카테고리 라벨 표시 여부).
+       카테고리 목록 페이지에서는 이미 현재 위치가 카테고리이므로 false, 홈 피드는 true. */ -}}
+{{- $page := .page -}}
+{{- $showCategory := .showCategory -}}
+<article class="post-card">
+  <div class="card-head">
+    <a class="card-title" href="{{ $page.RelPermalink }}" style="view-transition-name: {{ partial "vt-name.html" $page }}">{{ $page.Title }}</a>
+  </div>
+  {{ with partial "excerpt.html" $page }}<p class="card-excerpt">{{ . }}</p>{{ end }}
+  <div class="card-meta">
+    <span class="cm"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><time datetime="{{ $page.Date.Format "2006-01-02" }}">{{ $page.Date.Format "2006.01.02" }}</time></span>
+    {{ if $showCategory }}
+      {{ $cats := slice }}
+      {{ range $page.Ancestors.Reverse }}{{ if not .IsHome }}{{ $cats = $cats | append .Title }}{{ end }}{{ end }}
+      {{ with $cats }}<span class="cm"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h3.5l2 2H19a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>{{ delimit . " · " }}</span>{{ end }}
+    {{ end }}
+  </div>
+  {{ with $page.GetTerms "tags" }}
+    <div class="card-tags">
+      {{ range first 3 . }}<a class="tag-sm" href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>{{ end }}
+      {{ if gt (len .) 3 }}<span class="tag-more">+{{ sub (len .) 3 }}</span>{{ end }}
+    </div>
+  {{ end }}
+</article>

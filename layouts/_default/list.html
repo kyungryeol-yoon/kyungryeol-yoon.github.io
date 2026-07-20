@@ -1,4 +1,13 @@
 {{ define "main" }}
+{{/* 글 목록: 직속 글이 있으면 그걸, 없으면(하위 섹션만 있는 카테고리) 재귀 전체를 사용.
+     어느 쪽이든 "POSTS" 라벨 + 연도별 그룹 + 카드로 완전히 동일하게 렌더링(일체감).
+     masthead의 총 개수 표시도 실제 렌더링 대상과 일치시키기 위해 맨 위에서 계산. */}}
+{{ $posts := .RegularPages }}
+{{ $showCategory := false }}
+{{ if not $posts }}
+  {{ $posts = .RegularPagesRecursive }}
+  {{ $showCategory = true }}
+{{ end }}
 <div class="layout-grid">
   {{ partial "sidebar-nav.html" . }}
 
@@ -7,11 +16,12 @@
       <div class="crumbs">
         {{ range .Ancestors.Reverse }}{{ if not .IsHome }}<a href="{{ .RelPermalink }}">{{ .Title }}</a> · {{ end }}{{ end }}
       </div>
-      <h1>{{ .Title }} <span class="count">{{ len .RegularPagesRecursive }}</span></h1>
+      <h1>{{ .Title }}</h1>
+      <p>{{ len $posts }} posts</p>
       {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
     </div>
 
-    {{ if and site.Params.adsenseSlotDisplay (gt (len .RegularPagesRecursive) 8) }}
+    {{ if and site.Params.adsenseSlotDisplay (gt (len $posts) 8) }}
       {{ partial "ad-unit.html" (dict "slot" site.Params.adsenseSlotDisplay) }}
     {{ end }}
 
@@ -23,42 +33,23 @@
       </nav>
     {{ end }}
 
-    {{/* 직접 하위 글이 없고 서브섹션만 있으면 전체 최근 글로 fallback */}}
-    {{ if and (not .RegularPages) .Sections }}
-      {{ with .RegularPagesRecursive }}
-        <div class="section-label">최근 글</div>
-        <ul class="post-index">
-          {{ range .ByDate.Reverse | first 8 }}
-            <li><span class="t"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span><span class="d">{{ .Date.Format "2006.01.02" }}</span></li>
-          {{ end }}
-        </ul>
+    <div class="section-label">Posts</div>
+    {{ with $posts }}
+      {{ $paginator := $.Paginate (.ByDate.Reverse) }}
+      {{ $groups := $paginator.Pages.GroupByDate "2006" }}
+      {{ range $groups }}
+        <section class="timeline-year">
+          <h2 class="tl-year">{{ .Key }} <span class="tl-count">{{ len .Pages }}</span></h2>
+          <div class="post-list">
+            {{ range .Pages.ByDate.Reverse }}
+              {{ partial "post-card.html" (dict "page" . "showCategory" $showCategory) }}
+            {{ end }}
+          </div>
+        </section>
       {{ end }}
-    {{ end }}
-
-    {{ with .RegularPages }}
-      <div class="section-label">Posts</div>
-      {{ if gt (len .) 8 }}
-        {{ $groups := .GroupByDate "2006" }}
-        {{ range $groups }}
-          <section class="timeline-year">
-            <h2 class="tl-year">{{ .Key }} <span class="tl-count">{{ len .Pages }}</span></h2>
-            <ul class="tl-list">
-              {{ range .Pages.ByDate.Reverse }}
-                <li class="tl-item">
-                  <time class="tl-date" datetime="{{ .Date.Format "2006-01-02" }}"><b>{{ .Date.Format "02" }}</b> {{ .Date.Format "Jan" }}</time>
-                  <a class="tl-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                </li>
-              {{ end }}
-            </ul>
-          </section>
-        {{ end }}
-      {{ else }}
-        <ul class="post-index">
-          {{ range .ByDate.Reverse }}
-            <li><span class="t"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span><span class="d">{{ .Date.Format "2006.01.02" }}</span></li>
-          {{ end }}
-        </ul>
-      {{ end }}
+      {{ partial "pager.html" $paginator }}
+    {{ else }}
+      <p class="cat-card-empty">아직 글이 없습니다.</p>
     {{ end }}
 
     {{ with site.Params.adsenseSlotMultiplex }}{{ partial "ad-unit.html" (dict "slot" . "format" "autorelaxed") }}{{ end }}

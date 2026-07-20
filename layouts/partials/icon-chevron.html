@@ -1,0 +1,5 @@
+{{- /* 오른쪽 화살표 chevron 아이콘(펼치기 토글 공통). 인자: dict "size"(px, 기본 12) "strokeWidth"(기본 2.5) "class"(선택). */ -}}
+{{- $size := .size | default 12 -}}
+{{- $sw := .strokeWidth | default 2.5 -}}
+{{- $class := .class | default "" -}}
+<svg{{ with $class }} class="{{ . }}"{{ end }} width="{{ $size }}" height="{{ $size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="{{ $sw }}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>

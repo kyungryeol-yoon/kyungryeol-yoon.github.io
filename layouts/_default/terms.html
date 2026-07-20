@@ -25,7 +25,7 @@
 {{ $ordered := sort $alpha }}
 {{ range $misc }}{{ $ordered = $ordered | append . }}{{ end }}
 
-<div class="archives tags-index" data-scrollspy>
+<div class="archives" data-scrollspy>
   <aside class="arch-rail" aria-label="A-Z 목차">
     <div class="arch-rail-title">A-Z</div>
     <ul class="arch-rail-list">
@@ -39,16 +39,8 @@
 
   <div class="arch-main">
     <div class="masthead arch-masthead">
-      <div class="tags-head">
-        <div>
-          <h1>Tags</h1>
-          <p>{{ len $terms }} tags</p>
-        </div>
-        <div class="tags-sort" role="tablist" aria-label="정렬">
-          <button type="button" role="tab" aria-selected="true" aria-controls="tags-view-az" data-sort="az" class="is-active">A-Z</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="tags-view-pop" data-sort="pop">인기순</button>
-        </div>
-      </div>
+      <h1>Tags</h1>
+      <p>{{ len $terms }} tags</p>
     </div>
 
     <nav class="arch-chips" aria-label="A-Z 바로가기">
@@ -57,24 +49,17 @@
       {{ end }}
     </nav>
 
-    <div class="tags-view tags-view-az" id="tags-view-az" role="tabpanel" data-view="az">
-      {{ range $ordered }}
-        {{ $letter := . }}
-        <section class="tag-letter-group" id="t-{{ $letter }}" data-scrollspy-section data-key="{{ $letter }}">
-          <h2 class="tl-year">{{ $letter }} <span class="tl-count">{{ len (index $groups $letter) }}</span></h2>
-          <div class="tag-cloud tag-cloud-page">
-            {{ range index $groups $letter }}
-              <a href="{{ .Page.RelPermalink }}" class="tag" data-count="{{ .Count }}">{{ .Page.Title }} <span class="tag-c">{{ .Count }}</span></a>
-            {{ end }}
-          </div>
-        </section>
-      {{ end }}
-    </div>
-
-    <div class="tags-view tags-view-pop" id="tags-view-pop" role="tabpanel" data-view="pop" hidden>
-      <p class="tags-pop-note">사용 빈도가 높은 순으로 정렬됩니다.</p>
-      <div class="tag-cloud tag-cloud-page" id="tags-pop-cloud"></div>
-    </div>
+    {{ range $ordered }}
+      {{ $letter := . }}
+      <section class="tag-letter-group" id="t-{{ $letter }}" data-scrollspy-section data-key="{{ $letter }}">
+        <h2 class="tl-year">{{ $letter }} <span class="tl-count">{{ len (index $groups $letter) }}</span></h2>
+        <div class="tag-cloud tag-cloud-page">
+          {{ range index $groups $letter }}
+            <a href="{{ .Page.RelPermalink }}" class="tag">{{ .Page.Title }} <span class="tag-c">{{ .Count }}</span></a>
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
 
     {{ with site.Params.adsenseSlotMultiplex }}{{ partial "ad-unit.html" (dict "slot" . "format" "autorelaxed") }}{{ end }}
   </div>

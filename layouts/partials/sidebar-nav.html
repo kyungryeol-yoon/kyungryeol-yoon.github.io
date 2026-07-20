@@ -4,9 +4,9 @@
     <div class="side-head">
       <span class="side-title">Categories</span>
       <button class="cat-tool-btn cat-tool-btn--mini" type="button" aria-expanded="false" aria-label="카테고리 전체 펼치기/접기" title="전체 펼치기/접기">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        {{ partial "icon-chevron.html" (dict "size" 12 "strokeWidth" 2.5) }}
       </button>
     </div>
-    {{ partial "category-tree.html" site.Home }}
+    {{ partial "category-tree.html" (dict "section" site.Home "current" .) }}
   </div>
 </aside>

@@ -1,8 +1,6 @@
 {{ define "main" }}
 {{ $sections := site.Home.Sections.ByTitle }}
 {{ $totalPosts := len (where site.RegularPages "Section" "!=" "") }}
-{{ $ICON_FOLDER := `<svg class="cat-card-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h3.5l2 2H19a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>` }}
-{{ $ICON_DOC := `<svg class="cat-card-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>` }}
 {{ $ICON_CHEV := `<svg class="cat-card-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>` }}
 
 <div class="archives cat-index" data-scrollspy>
@@ -35,7 +33,6 @@
             {{ range .Sections.ByTitle }}
               <details class="cat-card-wrap">
                 <summary>
-                  {{ $ICON_FOLDER | safeHTML }}
                   <span class="cat-card-name">{{ .Title }}</span>
                   <span class="cat-card-count">{{ len .RegularPagesRecursive }}</span>
                   {{ $ICON_CHEV | safeHTML }}
@@ -54,13 +51,15 @@
               </details>
             {{ end }}
           {{ else }}
-            {{ range .RegularPagesRecursive.ByDate.Reverse }}
-              {{ $vt := printf "t-%s" (substr .File.UniqueID 0 12) }}
-              <a class="cat-card cat-card--post" href="{{ .RelPermalink }}">
-                {{ $ICON_DOC | safeHTML }}
-                <span class="cat-card-name" style="view-transition-name: {{ $vt }}">{{ .Title }}</span>
-                <span class="cat-card-count">{{ .Date.Format "2006.01.02" }}</span>
-              </a>
+            {{ with .RegularPagesRecursive }}
+              {{ range .ByDate.Reverse }}
+                <a class="cat-card cat-card--post" href="{{ .RelPermalink }}">
+                  <span class="cat-card-name" style="view-transition-name: {{ partial "vt-name.html" . }}">{{ .Title }}</span>
+                  <time class="cat-card-count" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+                </a>
+              {{ end }}
+            {{ else }}
+              <p class="cat-card-empty">아직 글이 없습니다.</p>
             {{ end }}
           {{ end }}
         </div>

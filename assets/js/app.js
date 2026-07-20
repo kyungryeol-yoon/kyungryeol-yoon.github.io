@@ -161,39 +161,6 @@
   });
 })();
 
-// [2d] Tags 인덱스 정렬 토글 (A-Z ↔ 인기순) --------------------------------
-(function tagsSort() {
-  const root = document.querySelector(".tags-index");
-  if (!root) return;
-  const btns = root.querySelectorAll(".tags-sort button[data-sort]");
-  const viewAZ = root.querySelector('.tags-view[data-view="az"]');
-  const viewPop = root.querySelector('.tags-view[data-view="pop"]');
-  const cloud = root.querySelector("#tags-pop-cloud");
-  if (!btns.length || !viewAZ || !viewPop || !cloud) return;
-  let built = false;
-  function buildPop() {
-    if (built) return;
-    // A-Z 뷰 안의 모든 태그를 복제해 count DESC로 정렬
-    const tags = [...viewAZ.querySelectorAll("a.tag[data-count]")].map((a) => ({
-      el: a.cloneNode(true),
-      n: parseInt(a.dataset.count, 10) || 0,
-    }));
-    tags.sort((a, b) => b.n - a.n);
-    tags.forEach((t) => cloud.appendChild(t.el));
-    built = true;
-  }
-  function setMode(mode) {
-    btns.forEach((b) => {
-      const on = b.dataset.sort === mode;
-      b.classList.toggle("is-active", on);
-      b.setAttribute("aria-selected", on ? "true" : "false");
-    });
-    if (mode === "pop") { buildPop(); viewAZ.hidden = true; viewPop.hidden = false; root.classList.add("is-pop"); }
-    else { viewAZ.hidden = false; viewPop.hidden = true; root.classList.remove("is-pop"); }
-  }
-  btns.forEach((b) => b.addEventListener("click", () => setMode(b.dataset.sort)));
-})();
-
 // [4] 헤딩 앵커 링크 복사 --------------------------------------------------
 (function anchorCopy() {
   document.querySelectorAll("a[data-anchor]").forEach((a) => {
@@ -206,12 +173,12 @@
   });
 })();
 
-// [7] 카테고리 트리 접기/펴기 (chevron 토글, 상태 기억) -------------------
+// [7] 카테고리 트리 접기/펴기 (chevron 토글) -------------------------------
+// 상태를 저장하지 않음: 매 페이지 로드마다 "현재 경로의 조상만 펼침"으로
+// 결정론적으로 계산 — 예전에 다른 곳에서 눌러본 기록이 남아 계속 열려 있는
+// 것처럼 보이는 문제(사실상 localStorage 캐시)를 없애기 위함.
 (function catTree() {
   if (!document.querySelector(".cat-tree li.has-children")) return;
-  const KEY = "catOpen";
-  let saved;
-  try { saved = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch (e) { saved = new Set(); }
 
   function apply(li, isOpen) {
     li.classList.toggle("open", isOpen);
@@ -221,18 +188,21 @@
     if (children) children.hidden = !isOpen;
   }
   const items = document.querySelectorAll(".cat-tree li.has-children");
-  // 저장된 상태 복원
-  items.forEach((li) => apply(li, saved.has(li.dataset.cat)));
-  // 현재 경로의 조상 카테고리 자동 펼침
+  // 기본은 전부 접힘
+  items.forEach((li) => apply(li, false));
+  // 현재 경로의 조상 카테고리만 펼침
   const path = location.pathname;
   items.forEach((li) => {
     const cat = li.dataset.cat;
     if (cat && cat !== "/" && path.indexOf(cat) === 0) {
       let el = li;
-      while (el) { if (el.classList && el.classList.contains("has-children")) apply(el, true); el = el.parentElement ? el.parentElement.closest("li.has-children") : null; }
+      while (el) {
+        if (el.classList && el.classList.contains("has-children")) apply(el, true);
+        el = el.parentElement ? el.parentElement.closest("li.has-children") : null;
+      }
     }
   });
-  // 전체 펼치기/접기 버튼 (여러 개 지원 — categories 페이지 + 홈/목록 사이드바)
+  // 전체 펼치기/접기 버튼 (홈/목록 사이드바; 여러 인스턴스 지원)
   const syncers = [];
   document.querySelectorAll(".cat-tool-btn").forEach((btn) => {
     // 버튼과 같은 블록 안의 트리를 찾음
@@ -248,30 +218,28 @@
     };
     btn.addEventListener("click", () => {
       const willOpen = btn.getAttribute("aria-expanded") !== "true";
-      treeItems.forEach((li) => {
-        apply(li, willOpen);
-        if (willOpen) saved.add(li.dataset.cat); else saved.delete(li.dataset.cat);
-      });
-      try { localStorage.setItem(KEY, JSON.stringify([...saved])); } catch (e) {}
+      treeItems.forEach((li) => apply(li, willOpen));
       syncers.forEach((fn) => fn());
     });
     syncers.push(sync);
   });
 
-  // 토글 클릭
+  // 토글 클릭(이번 페이지 보는 동안만 유효 — 다른 페이지로 이동하면 다시 현재 경로 기준으로 계산됨)
   document.querySelectorAll(".cat-toggle").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       const li = btn.closest("li");
-      const willOpen = !li.classList.contains("open");
-      apply(li, willOpen);
-      if (willOpen) saved.add(li.dataset.cat); else saved.delete(li.dataset.cat);
-      try { localStorage.setItem(KEY, JSON.stringify([...saved])); } catch (e) {}
+      apply(li, !li.classList.contains("open"));
       syncers.forEach((fn) => fn());
     });
   });
 
   syncers.forEach((fn) => fn());
+
+  // 현재 카테고리가 사이드바 스크롤 밖에 있으면 보이게 — 매 페이지 이동마다
+  // .col-left 내부 스크롤이 0으로 리셋되어 계속 다시 스크롤해야 하는 문제 방지.
+  const currentLi = document.querySelector(".col-left .cat-tree li.is-current");
+  if (currentLi) currentLi.scrollIntoView({ block: "center", behavior: "instant" });
 })();
 
 // [10] 스크롤 진행률 링 + 맨 위로 (한 화면 스크롤 후 fade-in) ---------------
@@ -330,7 +298,7 @@
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
 })();
 
-// [6] ⌘K 통합 모달 (Pagefind 텍스트 검색 + 태그 다중선택 필터) ------------
+// [6] ⌘K 검색 모달 (Pagefind 텍스트 검색) -----------------------------------
 (function findModal() {
   const modal = document.getElementById("search-modal");
   const trigger = document.getElementById("search-trigger");
@@ -364,92 +332,22 @@
     if (i) i.focus();
   }
 
-  // -- 태그 필터 (details 안) --
-  const details = modal.querySelector("#search-tags");
-  const chipsWrap = modal.querySelector("#tagm-chips");
-  const resultsEl = modal.querySelector("#tagm-results");
-  const selCount = modal.querySelector("#tagm-selcount");
-  const clearBtn = modal.querySelector("#tagm-clear");
-  const filterInput = modal.querySelector("#tagm-filter");
-  let posts = null, filterText = "";
-  const selected = new Set();
-
-  async function ensureTagData() {
-    if (posts) return;
-    try { const r = await fetch("/index.json"); posts = await r.json(); } catch (e) { posts = []; }
-  }
-  const ESC_MAP = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
-  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ESC_MAP[c]);
-  function renderTags() {
-    if (!chipsWrap) return;
-    const sel = [...selected];
-    if (selCount) selCount.textContent = sel.length ? `(${sel.length})` : "";
-    if (clearBtn) clearBtn.hidden = sel.length === 0;
-    const all = posts || [];
-    const matching = sel.length ? all.filter((p) => sel.every((t) => (p.tags || []).indexOf(t) !== -1)) : all;
-    const avail = new Set();
-    matching.forEach((p) => (p.tags || []).forEach((t) => avail.add(t)));
-    const q = filterText;
-    chipsWrap.querySelectorAll(".tag-chip").forEach((chip) => {
-      const enabled = selected.has(chip.dataset.tag) || avail.has(chip.dataset.tag);
-      chip.disabled = !enabled;
-      chip.classList.toggle("is-disabled", !enabled);
-      const hit = !q || selected.has(chip.dataset.tag) || (chip.dataset.name || "").indexOf(q) !== -1;
-      chip.classList.toggle("is-filtered", !hit);
-    });
-    if (!resultsEl) return;
-    if (!sel.length) { resultsEl.innerHTML = '<p class="tag-empty">태그를 선택하면 해당 글이 표시됩니다.</p>'; return; }
-    resultsEl.innerHTML = '<ul class="post-index">' + matching.map((p) =>
-      `<li><span class="t"><a href="${esc(p.url)}">${esc(p.title)}</a></span><span class="d">${esc(p.date)}</span></li>`
-    ).join("") + "</ul>";
-  }
-
-  // -- 열기/닫기 (통합) --
-  async function open(opts) {
+  // -- 열기/닫기 --
+  async function open() {
     lastFocus = document.activeElement;
     modal.hidden = false;
     document.body.style.overflow = "hidden";
     await ensureUI();
-    if (opts && opts.tags && details) {
-      // details.open = true → toggle 이벤트가 ensureTagData + renderTags 를 담당(중복 방지)
-      details.open = true;
-      requestAnimationFrame(() => filterInput && filterInput.focus());
-    } else {
-      requestAnimationFrame(focusPagefind);
-    }
+    requestAnimationFrame(focusPagefind);
   }
   function close() {
     modal.hidden = true;
     document.body.style.overflow = "";
-    if (filterInput && filterText) { filterInput.value = ""; filterText = ""; renderTags(); }
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
   if (trigger) trigger.addEventListener("click", () => open());
   modal.querySelectorAll("[data-search-close]").forEach((el) => el.addEventListener("click", close));
-
-  // 태그 details 처음 열릴 때 데이터 로드
-  if (details) details.addEventListener("toggle", async () => {
-    if (!details.open) return;
-    await ensureTagData(); renderTags();
-  });
-  if (chipsWrap) chipsWrap.addEventListener("click", (e) => {
-    const chip = e.target.closest(".tag-chip");
-    if (!chip) return;
-    const t = chip.dataset.tag;
-    if (selected.has(t)) { selected.delete(t); chip.setAttribute("aria-pressed", "false"); }
-    else { selected.add(t); chip.setAttribute("aria-pressed", "true"); }
-    renderTags();
-  });
-  if (clearBtn) clearBtn.addEventListener("click", () => {
-    selected.clear();
-    chipsWrap.querySelectorAll(".tag-chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
-    renderTags();
-  });
-  if (filterInput) filterInput.addEventListener("input", () => {
-    filterText = filterInput.value.trim().toLowerCase();
-    renderTags();
-  });
 
   document.addEventListener("keydown", (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
@@ -461,17 +359,8 @@
     }
   });
 
-  // 딥링크: #search / #tags / #tags=slug,slug
+  // 딥링크: #search
   if (location.hash === "#search") open();
-  else if (location.hash.indexOf("#tags") === 0) {
-    const q = location.hash.split("=")[1];
-    if (q && chipsWrap) decodeURIComponent(q).split(",").forEach((t) => {
-      selected.add(t);
-      const c = chipsWrap.querySelector('.tag-chip[data-tag="' + t + '"]');
-      if (c) c.setAttribute("aria-pressed", "true");
-    });
-    open({ tags: true });
-  }
 })();
 
 // [5] 코드블록 헤더(신호등 점 + 언어 라벨 + 복사) ---------------------------

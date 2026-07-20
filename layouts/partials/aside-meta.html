@@ -2,11 +2,10 @@
        데스크톱=항상 펼침(제목처럼), 모바일=상단 접이식(has-pin일 때만 상단으로). */ -}}
 {{- $posts := where site.RegularPages "Section" "!=" "" -}}
 {{- $pinned := where $posts "Params.pinned" true -}}
-{{- $chev := `<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>` -}}
 <aside class="col-right{{ with $pinned }} has-pin{{ end }}">
   {{ with $pinned }}
     <details class="pin-box" open>
-      <summary class="side-title pin-summary">고정 글 <span class="pin-n">{{ len . }}</span> {{ $chev | safeHTML }}</summary>
+      <summary class="side-title pin-summary">고정 글 <span class="pin-n">{{ len . }}</span> {{ partial "icon-chevron.html" (dict "size" 14 "strokeWidth" 2.4 "class" "chev") }}</summary>
       <ul class="recent-list">
         {{ range .ByDate.Reverse }}
           <li class="pin-li">
@@ -18,7 +17,7 @@
     </details>
   {{ else }}
     <details class="pin-box" open>
-      <summary class="side-title pin-summary">최근 글 {{ $chev | safeHTML }}</summary>
+      <summary class="side-title pin-summary">최근 글 {{ partial "icon-chevron.html" (dict "size" 14 "strokeWidth" 2.4 "class" "chev") }}</summary>
       <ul class="recent-list">
         {{ range first 6 $posts.ByDate.Reverse }}
           <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
