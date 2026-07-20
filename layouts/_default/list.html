@@ -16,8 +16,10 @@
       <div class="crumbs">
         {{ range .Ancestors.Reverse }}{{ if not .IsHome }}<a href="{{ .RelPermalink }}">{{ .Title }}</a> · {{ end }}{{ end }}
       </div>
-      <h1>{{ .Title }}</h1>
-      <p>{{ len $posts }} posts</p>
+      <div class="masthead-title-row">
+        <h1>{{ .Title }}</h1>
+        <span class="masthead-count">{{ len $posts }} posts</span>
+      </div>
       {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
     </div>
 
